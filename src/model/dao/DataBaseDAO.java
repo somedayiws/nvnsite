@@ -7,6 +7,7 @@ public class DataBaseDAO {
 	Connection con;
 	Statement stm;
 	String userName = "root";
+//	String userName = "somedayiws";
     String password = "zxcvbnm1233";
     //String password = "4Sp0w9gwu8";
 //    String url = "jdbc:mysql://127.12.97.2:3306/webvietnhat";
