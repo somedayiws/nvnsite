@@ -1,0 +1,65 @@
+package controller;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import model.bean.BAIVIET;
+import model.bean.TAIKHOAN;
+import model.bo.BaiVietBO;
+
+@WebServlet("/ctv/DichBaiDichServlet")
+public class DichBaiDichServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    public DichBaiDichServlet() {
+        super();
+    }
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doPost(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
+		String id = request.getParameter("id");
+		String submit =  request.getParameter("submit");
+		BaiVietBO baiviet = new BaiVietBO();
+		BAIVIET bviet = null;
+		if(id != null && !"".equals(id)){
+			if(submit==null){
+				bviet = baiviet.getBaiViet(id);
+				request.setAttribute("baiviet", bviet);
+				TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("user");
+				String info = baiviet.getInfo(id, user.getIdTaiKhoan());
+				request.setAttribute("TinhTrang", info.split(",")[0]);
+				request.setAttribute("NgayGui", info.split(",")[1]);
+				request.getRequestDispatcher("DichBai.jsp").forward(request, response);
+			}else{
+				
+				TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("user");
+				String tieude =  request.getParameter("tieude");
+				String mota =  request.getParameter("mota");
+				String noidung =  request.getParameter("noidung");
+				
+				if(submit.equals("luu")){
+					baiviet.CapNhatBaiViet(id, tieude, mota, noidung, "DangDich", user.getNgonNgu(), user.getIdTaiKhoan());
+				}else if(submit.equals("gui")){
+					baiviet.CapNhatBaiViet(id, tieude, mota, noidung, "Ok", user.getNgonNgu(), user.getIdTaiKhoan());
+				}else if(submit.equals("huy")){
+					baiviet.CapNhatBaiViet(id, "HuyDich", user.getIdTaiKhoan());
+				}
+				response.sendRedirect("DanhSachBaiDichServlet");
+			}
+		}else{
+			response.sendRedirect("TrangChuCTVServlet");
+		}
+	}
+
+}

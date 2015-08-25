@@ -1,0 +1,106 @@
+package controller;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import model.bean.BAIVIET;
+import model.bean.DANHMUC;
+import model.bean.TAIKHOAN;
+import model.bo.RestoreDataBO;
+
+/**
+ * Servlet implementation class ShowRestoreServlet
+ */
+@WebServlet("/admin/ShowRestoreServlet")
+public class ShowRestoreServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ShowRestoreServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+
+		String type = request.getParameter("type");
+		String result_Restore = (String) request.getAttribute("result_Restore");
+		doPost(request, response, type, result_Restore);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response, String type, String result_Restore)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		System.out.println("type: " + type);
+		RestoreDataBO restoredata = new RestoreDataBO();
+
+		if (result_Restore != null) {
+			if(result_Restore.contains("tài khoản")){
+			response.sendRedirect("ListAccountServlet");}
+			else if(result_Restore.contains("danh mục")){
+				response.sendRedirect("ListCategoryServlet");
+			}
+			else if(result_Restore.contains("bài viết")){
+				response.sendRedirect("ListPostsServlet");
+			}
+			
+		} else {
+			if (type.contains("account")) {
+				ArrayList<TAIKHOAN> listAccountDeleted = new ArrayList<TAIKHOAN>();
+				listAccountDeleted = restoredata.listAccountDeleted();
+
+				request.setAttribute("listAccountDeleted", listAccountDeleted);
+				RequestDispatcher requestDis_restoreAccount = request
+						.getRequestDispatcher("RestoreAccount.jsp");
+				requestDis_restoreAccount.forward(request, response);
+
+			}
+			else if (type.contains("category")) {
+				ArrayList<DANHMUC> listCategoryDeleted = new ArrayList<DANHMUC>();
+				listCategoryDeleted = restoredata.listCategoryDeleted();
+
+				request.setAttribute("listCategoryDeleted", listCategoryDeleted);
+				RequestDispatcher requestDis_restoreAccount = request
+						.getRequestDispatcher("RestoreCategory.jsp");
+				requestDis_restoreAccount.forward(request, response);
+
+			}
+			
+			else if (type.contains("posts")) {
+				ArrayList<BAIVIET> listPostsDeleted = new ArrayList<BAIVIET>();
+				listPostsDeleted = restoredata.listPostsDeleted();
+
+				request.setAttribute("listPostsDeleted", listPostsDeleted);
+				RequestDispatcher requestDis_restoreAccount = request
+						.getRequestDispatcher("RestorePosts.jsp");
+				requestDis_restoreAccount.forward(request, response);
+
+			}
+			else{
+				response.sendRedirect("Home(Admin).jsp");
+			}
+
+		}
+	}
+
+}

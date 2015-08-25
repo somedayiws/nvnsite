@@ -1,0 +1,7 @@
+.rq, .error {
+	color: red;
+}
+
+#panel_error {
+	display: none;
+}

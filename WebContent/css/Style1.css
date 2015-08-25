@@ -1,0 +1,243 @@
+@CHARSET "UTF-8";
+/*Bắt đầu định dạng chung cho web*/
+body {
+	margin: 0px;
+	padding: 0px;
+	min-width: 500px;
+	min-height: 800px;
+	background-color: gainsboro;
+}
+
+.header {
+	width: 85%;
+	height: 200px;
+	margin: auto;
+	border: 1px solid;
+}
+
+.header img {
+	width: 100%;
+	height: 100%;
+}
+
+.menu1 {
+	width: 85%;
+	height: 6%;
+	margin: auto;
+	border: 1px solid;
+}
+
+.container1 {
+	width: 85%;
+	height: 60%;
+	margin: auto;
+	border: 1px solid;
+}
+
+.footer {
+	width: 85%;
+	margin: auto;
+	border: 1px solid;
+}
+/*Kết thúc định dạng chung*/
+
+/*Bắt đầu phần menu*/
+.menu, .menu ul, .menu li, .menu a {
+	border: none;
+	outline: none;
+	margin: 0;
+	padding: 0;
+	z-index: 999
+}
+
+.menu {
+	height: 40px;
+	width: auto;
+	background-color: #222;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#555),
+		to(#222));
+	background-image: -webkit-linear-gradient(top, #555, #222);
+	background-image: -moz-linear-gradient(top, #555, #222);
+	background-image: -ms-linear-gradient(top, #555, #222);
+	background-image: -o-linear-gradient(top, #555, #222);
+	background-image: linear-gradient(top, #555, #222);
+	-moz-box-shadow: 0 5px 5px #000;
+	-webkit-box-shadow: 0 5px 5px #000;
+	box-shadow: 0 5px 5px #000;
+}
+
+.menu li {
+	position: relative;
+	list-style: none;
+	float: left;
+	display: block;
+	height: 40px
+}
+
+.menu li a {
+	background:
+		url(http://4.bp.blogspot.com/-n7OkwgMuP7Q/UQs19HkuUsI/AAAAAAAABiQ/k3qWwdmqgfQ/s1600/bagi.gif)
+		no-repeat top right;
+	display: block;
+	text-decoration: none;
+	font- family: Arial;
+	font-weight: 700;
+	font-size: 14px;
+	color: #ddd;
+	text-shadow: 1px 1px 1px #000;
+	-webkit-transition: color .2s ease-in-out;
+	-moz-transition: color .2s ease-in-out;
+	-o-transition: color . 2s ease-in-out;
+	-ms-transition: color .2s ease-in-out;
+	transition: color . 2s ease-in-out;
+	margin: 0;
+	padding: 12px 14px 12px
+}
+
+.menu li:first-child a {
+	padding: 10px 10px 7px
+}
+
+.menu li:hover>a {
+	color: #48d
+}
+
+.menu ul {
+	position: absolute;
+	top: 41px;
+	left: 0;
+	opacity: 0;
+	background: #fdfdfd
+		url(http://4.bp.blogspot.com/-mlmoMuUf48g/UQu3dezXeFI/AAAAAAAABpE/cDDiKShrEu0/s1600/menuhover.png)
+		repeat-x top;
+	-webkit-border-radius: 0 0 5px 5px;
+	-moz-border-radius: 0 0 5px 5px;
+	border-radius: 0 0 5px 5px;
+	border: 1px solid #666;
+	border-top: none;
+	-webkit-transition: opacity .25s ease .1s;
+	-moz-transition: opacity .25s ease .1s;
+	-o-transition: opacity .25s ease .1s;
+	-ms-transition: opacity .25s ease .1s;
+	transition: opacity .25s ease .1s
+}
+
+.menu li:hover>ul {
+	opacity: 1
+}
+
+.menu ul li {
+	height: 0;
+	overflow: hidden;
+	-webkit-transition: height .25s ease .1s;
+	-moz-transition: height .25s ease .1s;
+	-o-transition: height .25s ease .1s;
+	-ms-transition: height .25s ease .1s;
+	transition: height .25s ease .1s;
+	padding: 0
+}
+
+.menu li:hover>ul li {
+	height: 36px;
+	overflow: visible;
+	padding: 0
+}
+
+.menu ul li a {
+	color: #111;
+	font-weight: 400;
+	width: 100px;
+	margin: 0;
+	padding: 10px 0 10px 30px;
+	text-shadow: none
+}
+
+.menu ul li:first-child a {
+	padding: 10px 14px 10px 30px
+}
+
+.menu ul li:last-child a {
+	border: none
+}
+
+.menu a.trigger {
+	background:
+		url(http://3.bp.blogspot.com/-pJAQN5knuO8/UQre-F12FjI/AAAAAAAABgs/6WarLD7FwNw/s1600/arrow.png)
+		no-repeat 6px center
+}
+/*Kết thúc phần menu*/
+/*content*/
+/*Trái*/
+.trai {
+	float: left;
+	width: 19%;
+	border: 1px solid;
+	height: 100%;
+}
+/*giua*/
+.giua {
+	float: left;
+	width: 60%;
+	margin-left: 0.7%;
+	border: 1px solid;
+	height: 100%;
+}
+.mucx {
+	height: 250px;
+	width: 98%;
+	margin: 5px;
+	border: 1px solid;
+}
+.mucx1 {
+	/* height: 350px; */
+	width: 98%;
+	margin: 5px;
+	border: 1px solid;
+}
+.demuc {
+	width: 100%;
+	height: 35px;
+	margin-bottom: 3px;
+	background-color: yellow;
+}
+.hot {
+	float: left;
+	margin: 5px;
+	width: 30%;
+	height: 80%;
+	border: 1px solid;
+}
+.list {
+	float: left;
+	margin: 5px;
+	width: 65%;
+	height: 80%;
+	border: 1px solid;
+}
+.hot1 {
+	margin: 5px;
+	width: 30%;
+	height: 35%;
+	border: 1px solid;
+	float: left;
+}
+.infohot1{
+	margin: 5px;
+	float: left;
+	width: 65%;
+	height: 35%;
+	border: 1px solid;
+}
+.list1 {
+	margin: 5px;
+	/* height: 47%; */
+	border: 1px solid;
+}
+/*phải*/
+.phai {
+	float: right;
+	width: 19%;
+	border: 1px solid;
+	height: 100%;
+}
+/*end content*/

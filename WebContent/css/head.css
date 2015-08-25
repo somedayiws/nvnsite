@@ -1,0 +1,29 @@
+/* định dạng khung trong danh sách bài viết */
+.row .row {
+    border: 1px solid #EAEAF3;
+    margin: 5px;
+    border-radius: 5px; /* Bo góc */
+    -moz-border-radius: 5px; /* firefox */
+    -webkit-border-radius: 5px; /* chrome & safari */
+    -ms-border-radius: 5px; /* ie */
+    -o-border-radius: 5px; /* opera */
+}
+.row {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+/* menu */
+a.glyphicon.glyphicon-home {
+    margin-top: 10px;
+}
+a.fa.fa-home.fa-2x {
+    margin-top: 8px;
+    height: 55px;
+}
+.navbar-header img {
+    border: 0;
+    margin-top: 8px;
+}
+.col-xs-12.col-sm-12.col-md-12 p {
+    border-top: 1px solid ghostwhite;
+}
