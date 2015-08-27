@@ -43,6 +43,8 @@ public class DangNhapServlet extends HttpServlet {
 								password);
 						// Tạo session lưu trữ phiên làm việc
 						request.getSession().setAttribute("user", user);
+						// Set user role variable on session - ckfinder
+						request.getSession().setAttribute("CKFinder_UserRole", user.getQuyenQuanTri());
 						// Điều hướng đến trang khác mà không cần gửi dữ liệu
 						response.sendRedirect("TrangChuServlet");
 					} else {

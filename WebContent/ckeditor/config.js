@@ -24,4 +24,11 @@ CKEDITOR.editorConfig = function( config ) {
 	                	];
 
 config.removeButtons = 'Cut,Copy,Paste,PasteText,PasteFromWord,Find,Replace,SelectAll,Scayt,Source,Templates,NewPage,Preview,Language,BidiRtl,BidiLtr';
+config.filebrowserBrowseUrl = 'ckfinder/ckfinder.html';
+config.filebrowserImageBrowseUrl = 'ckfinder/ckfinder.html?type=Images';
+config.filebrowserFlashBrowseUrl = 'ckfinder/ckfinder.html?type=Flash';
+config.filebrowserUploadUrl = 'ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Files';
+config.filebrowserImageUploadUrl = 'ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Images';
+config.filebrowserFlashUploadUrl = 'ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Flash';
+
 };
