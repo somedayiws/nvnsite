@@ -10,10 +10,9 @@
 <script type="text/javascript" src="./jquery/jquery-1.11.2.min.js"></script>
 <script type="text/javascript"
 	src="../bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
-<title>Manager</title>
-<style type="text/css">
-
-</style>
+<link rel="stylesheet"
+	href="./css/home.css">
+<title>Trang chủ Admin</title>
 </head>
 <%
 	//Check session exist
@@ -22,14 +21,14 @@
 %>
 <body>
 	<%if(username!=null){ %>
-	<div class="container-fluid">
+	<div class="container-fluid" >
 		<%@include file="header_ver_1.jsp"%>	
 		<%@include file="Menu.jsp"%>
-		<div class="col-md-4 col-md-offset-4" style="margin-top: 6.5%">
+		<div class="col-md-4 col-md-offset-4" id = "divcontent">
 			<img src="../images/congthongtin.png" class=img-responsive alt="Cổng thông tin">
-			<marquee direction="right"><h2>Welcome to Admin</h2></marquee>
+			<marquee direction="left"><h2>Chào mừng bạn đến với trang Admin</h2></marquee>
 		</div>
-		<div class="col-md-12" style="clear: both;">
+		<div id="divfooter" class="col-md-12">
 		<%@include file="footer.jsp"%>	
 		</div>
 

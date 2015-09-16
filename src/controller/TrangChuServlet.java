@@ -46,5 +46,4 @@ public class TrangChuServlet extends HttpServlet {
 		request.setAttribute("topbaiviet", topbaiviet);
 		request.getRequestDispatcher("TrangChu.jsp").forward(request, response);
 	}
-
 }

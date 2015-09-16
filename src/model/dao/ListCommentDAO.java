@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import model.bean.BINHLUAN;
 
 public class ListCommentDAO {
-	 MySQLConnector db = new MySQLConnector();
+	DataBaseDAO db = new DataBaseDAO();
 	 ListAccountDAO account = new ListAccountDAO();
 	
 	/**Get CommentVi by IdBaiViet*/

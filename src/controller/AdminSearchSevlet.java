@@ -54,8 +54,7 @@ public class AdminSearchSevlet extends HttpServlet {
 
 		AdminSearchBO adminSearch = new AdminSearchBO();
 		TAIKHOAN[] account = adminSearch.selectAccount(typeFind, stringFind);
-
-		
+	
 		request.setAttribute("account", account);
 		request.setAttribute("button", btnFind);
 		RequestDispatcher requestDis_error = request

@@ -4,9 +4,6 @@
  */
 
 CKEDITOR.editorConfig = function( config ) {
-	// Define changes to default configuration here. For example:
-	// config.language = 'fr';
-	// config.uiColor = '#AADC6E';
 	config.toolbarGroups = [
 	                		{ name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
 	                		{ name: 'clipboard', groups: [ 'undo', 'clipboard' ] },

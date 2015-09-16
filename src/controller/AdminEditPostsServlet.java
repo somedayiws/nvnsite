@@ -45,6 +45,7 @@ public class AdminEditPostsServlet extends HttpServlet {
 		String namePostVi = request.getParameter("namePostVi");
 		String namePostJa = request.getParameter("namePostJa");
 		String idcategory_Vi = request.getParameter("categoryVi");
+		@SuppressWarnings("unused")
 		String idcategory_Ja = request.getParameter("categoryJa");
 		String idaccount = request.getParameter("account");
 		String contentVi = request.getParameter("contentVi");

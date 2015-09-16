@@ -35,9 +35,11 @@ public class DanhSachBaiVietServlet extends HttpServlet {
 		DanhMucBO danhmuc = new DanhMucBO();
 		ArrayList<BAIVIET> listbaiviet = new ArrayList<BAIVIET>();
 		if(id != null && !"".equals(id)){
-			listbaiviet = baiviet.getDanhSachBaiViet(id, "10");
+			listbaiviet = baiviet.getDanhSachBaiViet(id, 0, "10");
 			ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc("");
 			ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet();
+			DANHMUC dmchon = danhmuc.getDanhMuc(id);
+			request.setAttribute("danhmuc", dmchon);
 			request.setAttribute("listbaiviet", listbaiviet);
 			request.setAttribute("listdanhmuc", listdanhmuc);
 			request.setAttribute("topbaiviet", topbaiviet);

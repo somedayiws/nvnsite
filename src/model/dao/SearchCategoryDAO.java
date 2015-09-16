@@ -7,7 +7,7 @@ import model.bean.DANHMUC;
 
 
 public class SearchCategoryDAO {
-	MySQLConnector db = new MySQLConnector();
+	DataBaseDAO db = new DataBaseDAO();
 
 	public DANHMUC[] searchCategory(String typeFind, String stringFind) {
 		typeFind = DinhDangSQL.FomatSQL(typeFind);

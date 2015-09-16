@@ -64,10 +64,13 @@ h3 {
 	border-radius:10px;
 	display: none;
 }
+/* .btn_animation{ */
+/* 	background-color: red; */
+/* } */
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("#background").css("height",$(window).height());
+		$("#background").css("height",$(window).height());		
 	$(".idAcc").click(function(){
 		$("#message").slideToggle(1000);
 		});
@@ -128,6 +131,7 @@ h3 {
 <%
 	//Receive data from server
 	BAIVIET posts = (BAIVIET) request.getAttribute("post");
+	System.out.println("post.ID: "+posts.getIdBaiViet());
 	String result_Send = (String) request.getAttribute("result");
 	String status =(String)request.getAttribute("status");
 	System.out.println("status_detail: "+status);
@@ -178,21 +182,31 @@ h3 {
 				</div>
 				<div class="col-md-9 " id="content" style="margin-top: 5%">
 					<div class="col-md-12 ">
+					<%if(status!=null && status.equals("DangBai")){ %>
+						<div class="panel panel-primary">
+      <div class="panel-heading">Thông báo</div>
+      <div class="panel-body">Bài đăng đã dịch, chờ duyệt</div>
+    </div>
+    <%} %>
 						<a href="SendPostServlet?idPost=<%=posts.getIdBaiViet()%>&status=<%=posts.getTrangThai()%>">
 						<button
-								class="btn btn-primary" <%if((posts.getTrangThai().equals("DangDich") || posts.getTrangThai().equals("OK")) || (status!=null && !status.equals("HuyDich"))){ %> disabled="disabled" <%} %> data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-send"></span> Chuyển bài</button>
+								class="btn btn-primary" <%if((posts.getTrangThai().equals("DangDich")||posts.getTrangThai().equals("KhongDich")|| posts.getTrangThai().equals("SoanThao") || posts.getTrangThai().equals("OK")) || (status!=null && !status.equals("HuyDich"))){ %> disabled="disabled" <%} %> data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-send"></span> Chuyển bài</button>
 						</a> 
-								<a
-							href="ShowAdminEditPostsServlet?idPost=<%=posts.getIdBaiViet()%>"><button <%if(posts.getTrangThai().equals("OK")){ %> disabled="disabled"  <%} %>
-								class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Chỉnh sửa</button></a> <a
-							href="TranslateServlet?idPost=<%=posts.getIdBaiViet()%>"><button <%if(posts.getTrangThai().equals("OK")){ %> disabled="disabled"  <%} %>
-								class="btn btn-primary"><span class="glyphicon glyphicon-subtitles"></span> Dịch bài</button></a>
 						<a
-							href="UploadPostServlet?idPost=<%=posts.getIdBaiViet()%>"><button <%if(posts.getTrangThai().equals("OK")){ %> disabled="disabled"  <%} %>
-								class="btn btn-primary"><span class="glyphicon glyphicon-pushpin" ></span>Duyệt bài</button></a>
+							href="ShowAdminEditPostsServlet?idPost=<%=posts.getIdBaiViet()%>"><button <%if(posts.getTrangThai().equals("OK") || posts.getTrangThai().equals("DangDich") || posts.getTrangThai().equals("SoanThao")){ %> disabled="disabled"  <%} %>
+								class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Chỉnh sửa</button>
+						</a>
 						<a
-							href="SendAgainServlet?idPost=<%=posts.getIdBaiViet()%>"><button <%if(posts.getTrangThai().equals("OK")){ %> disabled="disabled"  <%} %>
-								class="btn btn-primary"><span class="glyphicon glyphicon-pushpin" ></span>Gởi lại</button></a>
+							href="TranslateServlet?idPost=<%=posts.getIdBaiViet()%>"><button <%if(posts.getTrangThai().equals("OK")|| posts.getTrangThai().equals("DangDich") || posts.getTrangThai().equals("SoanThao")){ %> disabled="disabled"  <%} %>
+								class="btn btn-primary"><span class="glyphicon glyphicon-subtitles"></span> Dịch bài</button>
+						</a>
+						<a
+							href="UploadPostServlet?idPost=<%=posts.getIdBaiViet()%>"><button <%if(posts.getTrangThai().equals("OK")){ %> disabled="disabled"  <%}%>
+								class="btn btn-primary <%if(status!=null && status.equals("Ok")){ %> btn_animation <%} %>"><span class="glyphicon glyphicon-pushpin" ></span>Duyệt bài</button></a>
+<!-- 						<a -->
+<%-- 							href="SendAgainServlet?idPost=<%=posts.getIdBaiViet()%>"><button <%if(status!=null && !status.equals("LoiDich")){ %> disabled="disabled"  <%} %> --%>
+<!-- 								class="btn btn-primary"><span class="glyphicon glyphicon-pushpin" ></span>Gởi lại</button> -->
+<!-- 						</a> -->
 						
 						<a href="ListPostsServlet"><button class="btn btn-primary"><span class="glyphicon glyphicon-share-alt"></span>Quay
 								lại</button></a>

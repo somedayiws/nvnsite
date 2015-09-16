@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -48,10 +49,33 @@ public class ListCategoryServlet extends HttpServlet {
 		DANHMUC[] category_after_search = (DANHMUC[])request.getAttribute("category");
 		String button = (String)request.getAttribute("button");
 		
+		//Nhận lại kết quả thay đổi hiển thị
+		String resultChangeShowed =(String)request.getAttribute("resultChangeShowed");
+		
 		ListCategoryBO listCategory = new ListCategoryBO();
+		int page = 1;
+		listCategory.setMenu(3, 2);
+		try {
+			page = Integer.parseInt(request.getParameter("page"));
+		} catch (NumberFormatException e) {
+			page = 1;
+		}
+		ArrayList<DANHMUC> category = listCategory.getCategory(page);
+		String pageNav = listCategory.getMenuPhanTrang();
 		
-		DANHMUC[] category = listCategory.getCategory();
+		//đếm số danh mục được hiển thị trên thanh menu
+		int countCategoryShowed = listCategory.countCategoryShowed();
+		//Danh mục hiển thị lên thanh menu
+		ArrayList<DANHMUC> listCategoryShowed = listCategory.getCategoryShowed();
 		
+		//gởi số danh mục
+		request.setAttribute("countCategoryShowed", countCategoryShowed);
+		//gởi các danh mục được hiển thị
+		request.setAttribute("listCategoryShowed", listCategoryShowed);
+		
+		//gởi kết quả thay đổi hiển thị
+		request.setAttribute("resultChangeShowed",resultChangeShowed);
+		request.setAttribute("pageNav", pageNav);		
 		request.setAttribute("resultInsert", resultInsert);
 		request.setAttribute("resultUpdate", resultUpdate);
 		request.setAttribute("resultDelete", resultDelete);

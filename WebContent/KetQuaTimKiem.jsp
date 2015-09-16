@@ -6,7 +6,7 @@
 <%@page import="controller.SessionCounter"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -20,226 +20,90 @@
 <script src="js/jquery.lazyload.js"></script>
 <title>Danh mục bài viết</title>
 <link rel="stylesheet" href="css/ClientStyle.css">
-<link rel="stylesheet" href="font-awesome-4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="font-awesome-4.4.0/css/font-awesome.min.css">
 
 </head>
 <body onLoad="initialize()">
-	<!-- form tìm kiếm -->
-	<form id="seach" class="navbar-form navbar-right" role="search" action="TimKiemServlet" method="post">
-		<div class="form-group">
-			<input type="text" class="form-control" placeholder="Tìm kiếm - Nhật ngữ"  name="txtFind">
-		</div>
-		<button type="submit" class="btn btn-default">Search</button>
-	</form>
-	<!-- form đăng nhập -->
-	<form action="DangNhapServlet" method="post" id="fdangnhap">
-	<div class="modal fade" id="mdangnhap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h3 class="modal-title" id="myModalLabel"> Đăng nhập - ログイン</h3>
-	      </div>
-	      <div class="modal-body">
-	        <div class="row">
-	        	<strong>Tài khoản - アカウント</strong>
-	        	<input name="taikhoan" type="text" placeholder="Tài khoản" class="form-control">
-	        </div>
-	        <div class="row">
-	        	<strong>Mật khẩu - パスワード</strong>
-	        	<input name="matkhau" type="password" placeholder="Tài khoản" class="form-control">
-	        </div>
-	        <a href="DangKyThanhVienServlet"><i class="fa fa-user-plus"></i> Đăng ký - 新規取得</a>
-	      </div>
-	      <div class="modal-footer">
-	      	<button name="xuly" value="dangnhap" class="btn btn-primary btn-sm">Đăng nhập - ログオン</button>
-	        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal"><i class="fa fa-reply"></i> Hủy - 取り消す</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-	</form>
-	<!-- logo đại diện -->
-	<a href="TrangChuServlet">
-		<img id="logo" alt="Logo" src="images/trangchu/logo-vietnhat24h.png">
-	</a>
 	<!-- Lấy dữ liệu từ server gửi về -->
-	<% 
-		/* Danh mục được hiển thị trên menu */
-		ArrayList<DANHMUC> listdanhmuc = (ArrayList<DANHMUC>)request.getAttribute("listdanhmuc");
+	<%
 		/* Danh mục được hiển thị trong phần content */
 		ArrayList<BAIVIET> listbaiviet = (ArrayList<BAIVIET>)request.getAttribute("listbaiviet");
-		/* Top 10 bài viết */
-		ArrayList<BAIVIET> top = (ArrayList<BAIVIET>)request.getAttribute("topbaiviet");
-		/* Lấy sesion người dùng */
-		TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("user");
 	%>
-	<!-- Kết thúc quá trình lấy dữ liệu -->
-	<!-- menu ngang -->
-	<nav class="navbar navbar-inverse">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#myNavbar">
-				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
+	<%@include file="header.jsp"%>
+	<div id="mainContent">
+
+		<!-- Quảng cáo lung tung -->
+		<div id="sahred">
+			<g:plusone></g:plusone>
+
+			<a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+
+			<div id="fb-root"></div>
+			<!-- Your share button code -->
+			<div class="fb-share-button"
+				data-href="http://webvietnhat-demo.jelastic.skali.net/"
+				data-layout="button_count"></div>
 		</div>
-		<div class="collapse navbar-collapse" id="myNavbar">
-		<ul class="nav navbar-nav">
-			<li class="active"><a href="TrangChuServlet" class="fa fa-home fa-2x"></a></li>
+		<div class="col-sm-9 col-md-9" id="baiviet">
+			<h3>
+				<i class="fa fa-empire"></i> Kết quả tìm kiếm -
+			</h3>
 			<%
-				int i = 0;
-				while(listdanhmuc != null && i < listdanhmuc.size() && i<9) {
+				if(listbaiviet == null) {
 			%>
-			<li><a href="DanhSachBaiVietServlet?id=<%= listdanhmuc.get(i).getIdDanhMuc() %>"> <small class=vi><%=listdanhmuc.get(i).getTenDanhMucVi()%></small><br>
-				<small class=ja><%=listdanhmuc.get(i).getTenDanhMucJa()%></small></a></li>
-			<%
-				i++; } 
-				if(listdanhmuc != null && i < listdanhmuc.size()){
-			%>
-			<!-- <li><a href="#"> <small class=vi>Thông Tin</small><br><small class=ja>じょうほう </small></a></li> -->
-			<li class="dropdown"><a class="dropdown-toggle"
-				data-toggle="dropdown" href="#"> <small class=vi>Danh
-						Mục</small><br>
-				<small class=ja>カテゴリ</small> <span class="caret"></span></a>
-				<ul class="dropdown-menu">
-					<%
-						while(listdanhmuc != null && i < listdanhmuc.size()) {
-					%>
-					<li><a href="DanhSachBaiVietServlet?id=<%= listdanhmuc.get(i).getIdDanhMuc() %>"><%=listdanhmuc.get(i).getTenDanhMucVi()%>-<%=listdanhmuc.get(i).getTenDanhMucJa()%></a></li>
-					<%
-						i++; }
-					%>
-				</ul></li>
+			<div class="alert alert-warning" role="alert">Không tìm thấy dữ
+				liệu bạn cần ...</div>
 			<%
 				}
 			%>
-		</ul>
-		<% if(user != null) { %>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="CapNhatThongTinServlet">Chào <%= user.getTenTaiKhoan() %> <i class="fa fa-cogs"> </i></a>
-					<ul class="dropdown-menu">
-						<li><a href="TrangCaNhanServlet"><i class="fa fa-info-circle"></i> Trang cá nhân</a></li>
-						<li><a href="DangXuatServlet"><i class="fa fa-sign-out"></i> Đăng xuất</a></li>
-					</ul></li>
-			</ul>
-		<% } else { %>
-		<ul class="nav navbar-nav navbar-right">
-			<li><a data-toggle="modal" data-target="#mdangnhap" ><i class="fa fa-user"></i> Login<br>ログイン</a></li>
-		</ul>
-		<% } %>
-	</div>
-	</div>
-	</nav>
-	<!-- Quảng cáo lung tung -->
-	<div class="col-sm-1 col-md-1">
-		
-	</div>
-	<div id="sahred">
-		<g:plusone></g:plusone>
-
-		<a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
-
-		<div id="fb-root"></div>
-		<!-- Your share button code -->
-		<div class="fb-share-button"
-			data-href="http://webvietnhat-demo.jelastic.skali.net/"
-			data-layout="button_count"></div>
-	</div>
-	<!-- hiển thị nội dung chính ở đây -->
-	<div class="col-sm-8 col-md-8" id="baiviet">
-		<h3>
-			<i class="fa fa-empire"></i> Kết quả tìm kiếm - 
-		</h3>
-		<% if(listbaiviet == null) { %>
-			<div class="row">Không tìm thấy dữ liệu bạn cần ...</div>
-		<% } %>
-		<%
-			i=0;
-			while(listbaiviet != null && i<listbaiviet.size()){
-		%>
-		<!-- Bắt đầu 1 danh mục -->
-		<div style="float: left; min-width: 280px; min-height: 170px; width: 96.3%; border: 1px solid; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; margin: 10px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05) inset;">
-			<strong><i class="fa fa-star-o"></i> <%= listbaiviet.get(i).getTenBaiVietVi() %>
-				- <%= listbaiviet.get(i).getTenBaiVietJa() %></strong>
-			<div class="row">
-				<div class="row">
-					<div class="col-xs-12 col-sm-12 col-md-12">
-						<a href="BaiVietServlet?id=<%= listbaiviet.get(i).getIdBaiViet()%>"> <img alt="Ảnh đại diện" src="images/baiviet.jpg"
-							style="width: 50px; float: left;"> <small><%= listbaiviet.get(i).getTaiKhoan().getHoTen() %></small>
-							<p><%= listbaiviet.get(i).getTenBaiVietVi() %>
-								-
-								<%= listbaiviet.get(i).getTenBaiVietJa() %>
-							</p>
-						</a>
-					</div>
-					<div class="col-xs-12 col-sm-12 col-md-12">
-						<% if(listbaiviet.get(i).getMoTaVi() != null) { %>
-							<p><%= listbaiviet.get(i).getMoTaVi().length()>90 ? (listbaiviet.get(i).getMoTaVi().substring(0, 90)+"..."): listbaiviet.get(i).getMoTaVi() %></p>
-						<% } %>
-						<% if(listbaiviet.get(i).getMoTaJa() != null) { %>
-							<p><%= listbaiviet.get(i).getMoTaJa().length()>90 ? (listbaiviet.get(i).getMoTaJa().substring(0, 90)+"..."): listbaiviet.get(i).getMoTaJa() %></p>
-						<% } %>
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-12 col-md-12" style="background-color: white;" id="tuychonviet">
-					<a href="BaiVietServlet?id=<%= listbaiviet.get(i).getIdBaiViet()%>"><i class="fa fa-comments-o"></i> Bình luận - コメント</a>
-					<a href="BaiVietServlet?id=<%= listbaiviet.get(i).getIdBaiViet()%>"><i class="fa fa-hand-o-right"></i> Xem thêm - 詳細</a>
-				</div>
-			</div>
-	
-			</div>
-			<% 
-				i++; } 
-			%>
-	</div>
-	<!-- Quảng cáo lung tung -->
-	<div class="col-sm-2 col-md-2">
-		<% if(user == null) { %>
-			<button type="button" data-toggle="modal" data-target="#mdangnhap" class="btn btn-success form-control"><i class="fa fa-newspaper-o"></i> Đăng bài - 投稿</button>
-		<% }else{ %>
-			<button type="button" onclick="dichuyen('DangBaiVietServlet');" class="btn btn-success form-control"><i class="fa fa-newspaper-o"></i> Đăng bài - 投稿</button>
-		<% } %>
-		
-		<br> Bản đồ - 地図  - Việt Nam<br>
-		<div id="div_id1" style="height: 250px; width: 100%"></div>
-		<br> Bản đồ - 地図 - JaPan <br>
-		<div id="div_id2" style="height: 250px; width: 100%"></div>
-		<div class="xemnhieu">
-			<strong>Xem nhiều nhất - 人気の動画</strong>
-			<ul>
-				<%
-					i=0;
-					while(top != null && i<top.size()){
-				%>
-					<li><a href="BaiVietServlet?id=<%= top.get(i).getIdBaiViet()%>"><i class="fa fa-thumbs-o-up"></i> <%= top.get(i).getTenBaiVietVi()%> - <%= top.get(i).getTenBaiVietJa()%></a></li>
-				<% i++; } %>
-			</ul>
-		</div>
-		<div id="them">
 			<%
-				SessionCounter counter = (SessionCounter) session.getAttribute("counter");
-				request.getRemoteAddr();
+				i=0;
+				while(listbaiviet != null && i<listbaiviet.size()){
 			%>
-			<strong>
-				<i class="fa fa-users"></i> Views - 履歴 : <%= counter.getActiveView()%> <br>
-				<i class="fa fa-globe"></i> Online - 直結 : <%= counter.getActiveSessionNumber()%>
-			</strong>
+			<div class="baivieti col-xs-12 col-sm-12 col-md-12">
+				<a href="BaiVietServlet?id=<%=listbaiviet.get(i).getIdBaiViet()%>"
+					class="thongtinthem"> <embed
+						src="<%=listbaiviet.get(i).getLienKet()%>"><strong>Tác
+						giả : <%=listbaiviet.get(i).getTaiKhoan().getHoTen()%></strong><br> <em>
+						Ngày : <%=listbaiviet.get(i).getNgayDang()%><br> View : <%=listbaiviet.get(i).getLuotXem()%>
+				</em>
+				</a>
+				<div class="motabai">
+					<a href="BaiVietServlet?id=<%=listbaiviet.get(i).getIdBaiViet()%>">
+						<%=listbaiviet.get(i).getTenBaiVietVi()== null ? "" : listbaiviet.get(i).getTenBaiVietVi() + "<br>"%>
+						<%=listbaiviet.get(i).getTenBaiVietJa()== null ? "" : listbaiviet.get(i).getTenBaiVietJa()%>
+					</a>
+					<p>
+						<%
+							if(listbaiviet.get(i).getMoTaVi() != null) {
+						%>
+						<%=listbaiviet.get(i).getMoTaVi().length()>90 ? (listbaiviet.get(i).getMoTaVi().substring(0, 90)+"..."): listbaiviet.get(i).getMoTaVi()%><br>
+						<%
+							}
+						%>
+						<%
+							if(listbaiviet.get(i).getMoTaJa() != null) {
+						%>
+						<%=listbaiviet.get(i).getMoTaJa().length()>60 ? (listbaiviet.get(i).getMoTaJa().substring(0, 60)+"..."): listbaiviet.get(i).getMoTaJa()%></p>
+					<%
+						}
+					%>
+					<a href="BaiVietServlet?id=<%=listbaiviet.get(i).getIdBaiViet()%>"
+						class="xemthem">Xem thêm ...</a>
+				</div>
+			</div>
+			<%
+				i++; }
+			%>
 		</div>
+		<%@include file="sidebar.jsp"%>
 	</div>
 	<div class="clearfix"></div>
-	<br>
 	<!-- kết thúc -->
-	<div class="col-sm-4 col-md-4 col-md-offset-8">
-			<button type="button" class="btn btn-default btn-xs" id="xemtiep">
-				<span class="glyphicon glyphicon-th-list"></span> Xem tiếp - 続き...
-			</button>
-	</div>
-	<div class="col-sm-10 col-md-12" align="center" id="load">
-</div>
-<div class="clearfix"></div>
+	<div class="col-sm-10 col-md-12" align="center" id="load"></div>
+	<div class="clearfix"></div>
+	<%@include file="footer.jsp"%>
 </body>
 <!-- Script ở đây -->
 <!-- Google map -->
@@ -306,7 +170,7 @@
 	}(document, 'script', 'facebook-jssdk'));
 </script>
 <!-- Hộp thoại phản hồi -->
-<script lang="javascript">
+<!-- <script lang="javascript">
 	(function() {
 		var _h1 = document.getElementsByTagName('title')[0] || false;
 		var product_name = '';
@@ -320,18 +184,35 @@
 		var s = document.getElementsByTagName('script');
 		s[0].parentNode.insertBefore(ga, s[0]);
 	})();
+</script> -->
+<script lang="javascript">
+	(function() {
+		var _h1 = document.getElementsByTagName('title')[0] || false;
+		var product_name = '';
+		if (_h1) {
+			product_name = _h1.textContent || _h1.innerText;
+		}
+		var ga = document.createElement('script');
+		ga.type = 'text/javascript';
+		ga.src = '//live.vnpgroup.net/js/web_client_box.php?hash=57f198fbced364bace74f3bb8ff5a8e4&data=eyJzc29faWQiOjMwNjkyNzMsImhhc2giOiIzM2NiZTM2NWE5MDY2MmUyZjM5NGI5MWJkNDJjNzRjMiJ9&pname='
+				+ product_name;
+		var s = document.getElementsByTagName('script');
+		s[0].parentNode.insertBefore(ga, s[0]);
+	})();
 </script>
 <!-- Ajax load bài viết -->
-<script type="text/javascript">
-		/* xem thêm các bài viết */
-		var nbaiviet = 10;
-		$(document).ready(function() {
-			$("#xemtiep").click(function() {
+<script language="JavaScript">
+	var nbaiviet = 10;
+	var id = $("#txtFind").val();
+	jQuery(document).ready(function($) {
+		$(window).scroll(function() {
+			if (($(document).height() - $(this).scrollTop() - $(this).height()) < 10) {
 				$.ajax({
 					url : "DataBaiVietServlet", //file 
 					type : "POST", //phuong thức gưi
 					data : {
-						vitri : nbaiviet
+						vitri : nbaiviet,
+						txtFind : id
 					}, //dữ liệu gửi
 					async : true, //
 					beforeSend : function() {
@@ -347,39 +228,10 @@
 						$("#load").html("");
 					}
 				});
-			});
+			}
 		});
+	});
 </script>
-<!-- Xử lý load lấy data bài viết -->
-<script type="text/javascript">
-		function loadData(x){
-			$.ajax({
-				url : "DataBinhLuanServlet", //file 
-				type : "POST", //phuong thức gưi
-				data : {
-					idbaiviet: $('#idbaiviet'+x).val(),
-					ngonngu : $('#language').val(),
-					vitri: $('#nbinhluan'+x).val()
-				}, //dữ liệu gửi
-				async : true, //
-				/* beforeSend : function() {
-					$("#cho").html("<img id='anh' src='images/load.gif' title='load...' />").slideUp(300).fadeIn(100);
-				}, */
-				success : function(res) {
-					//Tham số res chứa kết quả trả về. Đây là tham số mặc định.
-					//Bạn có thể đổi tên là result, ketqua,... ở đây tôi đặt là res.
-					//Thẻ div#result sẽ có nội dung trả về là biến res chứa dữ liệu được in ra từ process.php
-					//$("#result").append(res).slideUp(300).delay(800).fadeIn(400);
-					$("#binhluan"+x).append(res);
-					$('#nbinhluan'+x).val(parseInt($("#binhluan"+x).children().size())/2 - 1);
-					//$("#result").html(res);
-				},
-				error : function() {
-					alert('Có lỗi xảy ra');
-				}
-			});
-		}
-	</script>
 <!-- Chuyển hướng đến danh muc x -->
 <script type="text/javascript">
 	function loadData(trang, x){

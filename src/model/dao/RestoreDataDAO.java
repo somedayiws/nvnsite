@@ -9,7 +9,7 @@ import model.bean.DANHMUC;
 import model.bean.TAIKHOAN;
 
 public class RestoreDataDAO {
-	MySQLConnector db = new MySQLConnector();
+	DataBaseDAO db = new DataBaseDAO();
 	
 	/**List account deleted*/
 	public ArrayList<TAIKHOAN> listAccountDeleted() {

@@ -2,7 +2,7 @@ package model.dao;
 
 public class AdminDeletePostsDAO {
 	
-	MySQLConnector db = new MySQLConnector();
+	DataBaseDAO db = new DataBaseDAO();
 	/**Delete posts*/
 	
 	public boolean deletePost(String idPost) {

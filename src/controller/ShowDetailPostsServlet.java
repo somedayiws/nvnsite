@@ -10,11 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.bean.BAIVIET;
-import model.bean.DANHMUC;
-import model.bean.TAIKHOAN;
-import model.bo.ChangeStatusBO;
-import model.bo.ListAccountBO;
-import model.bo.ListCategoryBO;
 import model.bo.ListStatusHistoryBO;
 import model.bo.ShowAdminEditPostsBO;
 

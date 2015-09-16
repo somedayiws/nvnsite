@@ -3,7 +3,7 @@ package model.dao;
 import model.bean.TAIKHOAN;
 
 public class EditDAO {
-	MySQLConnector db = new MySQLConnector();
+	DataBaseDAO db = new DataBaseDAO();
 
 	/** Update information account */
 	public boolean updateInfor(TAIKHOAN accountInfor) {

@@ -50,9 +50,7 @@ public class AdminEditServlet extends HttpServlet {
 		String typeUser = request.getParameter("typeUser");
 		String language = request.getParameter("language");
 		String status = request.getParameter("status");
-		
-		System.out.println("language: "+language);
-		System.out.println("status: "+status);
+				
 		
 		TAIKHOAN account = new TAIKHOAN();
 		AdminEditBO adminEdit = new AdminEditBO();

@@ -9,6 +9,13 @@ public class DANHMUC {
 	ArrayList<BAIVIET> BaiViets;
 	int SoLuongBV = 0;
 	int HienThi;
+	String icon;
+	public String getIcon() {
+		return icon;
+	}
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
 	public DANHMUC(String idDanhMuc, String tenDanhMucVi, String tenDanhMucJa,
 			int hienThi) {
 		super();

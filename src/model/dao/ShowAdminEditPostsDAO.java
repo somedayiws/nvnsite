@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import model.bean.BAIVIET;
 
 public class ShowAdminEditPostsDAO {
-	MySQLConnector db = new MySQLConnector();
+	DataBaseDAO db = new DataBaseDAO();
 	
 	/**Check post exist*/
 	public boolean checkExist_Post(String idPost){
@@ -31,8 +31,7 @@ public class ShowAdminEditPostsDAO {
 				+ idPost + "' AND CoXoa=0";
 		ResultSet result_select_postsByid = db
 				.getResultSet(sql_select_postsByid);
-
-		System.out.println("idPost: "+idPost);
+	
 		ListCategoryDAO listcategory = new ListCategoryDAO();
 		ListAccountDAO listAccount = new ListAccountDAO();
 		ListCommentDAO comment = new ListCommentDAO();

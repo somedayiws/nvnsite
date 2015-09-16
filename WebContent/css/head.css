@@ -27,3 +27,6 @@ a.fa.fa-home.fa-2x {
 .col-xs-12.col-sm-12.col-md-12 p {
     border-top: 1px solid ghostwhite;
 }
+div#myNavbar {
+    padding: 0px;
+}

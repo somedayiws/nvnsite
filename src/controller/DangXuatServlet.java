@@ -30,7 +30,7 @@ public class DangXuatServlet extends HttpServlet {
 		request.getSession().invalidate();
 		if(user.getQuyenQuanTri().equals("admin")){
 			response.sendRedirect("admin/Login.jsp");
-		}else if(user.getQuyenQuanTri().equals("congtacvien")){
+		}else if(user.getQuyenQuanTri().equals("ctv")){
 			response.sendRedirect("ctv/TrangChuCTVServlet");
 		}else {
 			response.sendRedirect("DangNhapServlet");

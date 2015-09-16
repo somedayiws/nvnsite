@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -49,13 +50,21 @@ public class ListPostsServlet extends HttpServlet {
 		ListCategoryBO listcategory = new ListCategoryBO();
 		ListAccountBO listaccount  = new ListAccountBO();
 		
-		BAIVIET[] posts = listPost.getPosts();
-		DANHMUC[] category = listcategory.getCategory();
-		TAIKHOAN[] account = listaccount.getDataAccountInfor();
-		String resultEdit = (String)request.getAttribute("resultEdit");
+		int page = 1;
+		listPost.setMenu(2, 2);
+		try {
+			page = Integer.parseInt(request.getParameter("page"));
+		} catch (NumberFormatException e) {
+			page = 1;
+		}
+		BAIVIET[] posts = listPost.getPosts(page);
 		
+			
+		TAIKHOAN[] account = listaccount.getDataAccountInfor(0,listaccount.totalRecord(),"all");
+		String resultEdit = (String)request.getAttribute("resultEdit");
+		String pageNav = listPost.getMenuPhanTrang();
+		request.setAttribute("pageNav", pageNav);
 		request.setAttribute("posts", posts);
-		request.setAttribute("category", category);
 		request.setAttribute("account", account);
 		request.setAttribute("resultEdit", resultEdit);
 		RequestDispatcher requestDis_posts = request.getRequestDispatcher("ListPosts.jsp");

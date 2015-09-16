@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="model.bean.DANHMUC"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -21,7 +22,7 @@
 	String resultInsert = (String) request.getAttribute("resultInsert");
 
 	//Receive information list category
-	DANHMUC[] category = (DANHMUC[]) request.getAttribute("category");
+	ArrayList<DANHMUC> category = (ArrayList<DANHMUC>) request.getAttribute("category");
 
 	//Receive result edit category
 	String resultUpdate = (String) request.getAttribute("resultUpdate");
@@ -32,14 +33,58 @@
 	//Receive result search category
 	DANHMUC[] category_after_search = (DANHMUC[])request.getAttribute("category_after_search");
 	String button = (String)request.getAttribute("button");
+	
+	//Nhận lại số danh mục được hiển thị lên thanh menu
+	int countCategoryShowed = (Integer)request.getAttribute("countCategoryShowed");	
+	//Nhận lại các danh mục được hiển thị
+	ArrayList<DANHMUC> listCategoryShowed = (ArrayList<DANHMUC>)request.getAttribute("listCategoryShowed");
+	
+	//Nhận lại kết quả khi thay đổi hiển thị
+	String resultChangeShowed =(String)request.getAttribute("resultChangeShowed");	
 %>
 <script type="text/javascript">
+
+function xem(f,x){
+	var reader = new FileReader();
+	reader.onload = function (e) {
+		var img = document.getElementById(x);
+		img.src = e.target.result;
+		img.style.display = "inline";
+	};
+	reader.readAsDataURL(f.files[0]);
+}
+
+function check_Image(){
+	 var test_value = $(".Image").val();	
+	  var extension = test_value.split('.').pop().toLowerCase();
+		 
+	    if ($.inArray(extension, ['png', 'gif', 'jpeg', 'jpg']) == -1) {
+	      alert("File ảnh không hợp lệ!");
+	      return false;
+	    } else {
+	      alert("File ảnh hợp lệ!");
+	      return true;
+	    }
+}	
+
 	/*---------------Check validate form Insert---------------*/
 	function checkValidFormInsert() {		
 		var nameCategoryVi = document.getElementById("nameCategoryVi").value;
 		var nameCategoryJa = document.getElementById("nameCategoryJa").value;
 				
 		var c_value = 0;
+		
+		
+		//Kiểm tra định dạng ảnh
+		
+			    var test_value = $("#Image").val();
+			    var extension = test_value.split('.').pop().toLowerCase();
+			 
+			    
+			 
+			
+			
+			
 		if (nameCategoryVi == "" || nameCategoryJa == "") {
 
 			alert("Bạn phải nhập tên danh mục(vừa tiếng việt vừa tiếng nhật)");
@@ -54,15 +99,22 @@
 			alert("Bạn phải chọn có hiển thị lên trang chủ hay không");
 			return false;
 		} 
+		if ($.inArray(extension, ['png', 'gif', 'jpeg', 'jpg']) == -1) {
+		      alert("File ảnh không hợp lệ!");
+		      return false;
+		 } 
 		return true;
 	}
 	/*------------------End check form insert---------------------*/
 	
 	/*------------------Check validate form edit-----------------*/
 	$(document).ready(function() {
+		
+		  
 		<%if(category!=null){%>
-	for(var i=0;i<<%=category.length%>
+	for(var i=0;i<<%=category.size()%>
 	; i++) {
+		
 			var validator = $("#formedit" + i).validate({
 
 				rules : {
@@ -73,8 +125,9 @@
 					nameCategoryVi : "Hãy nhập tên danh mục tiếng việt",
 					nameCategoryJa : "Hãy nhập tên danh mục tiếng nhật",
 				},
-
+				
 			});
+			
 		}
 	<%}%>
 	});
@@ -131,40 +184,60 @@
 	<div class="container-fluid">
 	<%@include file="header_ver_1.jsp"%>
 	
-		
-				<%@include file="Menu.jsp"%>
+	<%@include file="Menu.jsp"%>
 			
 	
 		<div style="margin-top: 10px">
 		<div class="row">
-			<div class="col-md-2"></div>
+			<div class="col-md-2">				
+			</div>
 			<div class="col-md-8 panel panel-primary">
+			
 				<div class="panel-heading">Thêm danh mục</div>
 				<div class="panel-body">
+				<!-- Hiển thị kết quả thay đổi hiển thị -->
+				<%if(resultChangeShowed!=null){ %>				
+				<div class="alert alert-info">
+  					<strong>Thông báo!</strong><%=resultChangeShowed%>
+				</div>
+				<%} %>
+				
 					<form class="form-horizontal" name="formcreateCategory"
-						action="CreateCategoryServlet" method="post"
+						action="CreateCategoryServlet" method="post" enctype="multipart/form-data"
 						onsubmit="return checkValidFormInsert()">
 						<div class="form-group">
 							<label>Tên danh mục(Việt Nam)<span class="rq"> * </span>:
 							</label><input type="text" class="form-control" id="nameCategoryVi"
-								maxlength="300" name="nameCategoryVi">
+								maxlength="15" name="nameCategoryVi">
 						</div>
 						<div class="form-group">
 							<label>Tên danh mục(Nhật Bản)<span class="rq"> * </span>:
 							</label><input type="text" class="form-control" id="nameCategoryJa"
-								maxlength="300" name="nameCategoryJa">
+								maxlength="15" name="nameCategoryJa">
 						</div>
-						<label>Hiện thị lên thanh menu<span class="rq"> * </span>:
-						</label>
-						<div class="radio-inline">
-							<label><input type="radio" id="display" name="display"
-								value="yes">Có</label>
+						<%if(countCategoryShowed>=5){ %>
+						<div class="alert alert-danger">
+  							<strong>Cảnh báo!</strong>Số danh mục hiển thị lên thanh menu đã tối đa.
+  							Nếu muốn thay đổi thì nhấn vào <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalChangeShow">đây</button>
 						</div>
-						<div class="radio-inline">
-							<label><input type="radio" id="display" name="display"
-								value="no">Không</label>
+						<%} %>						 
+							<label>Hiện thị lên thanh menu<span class="rq"> * </span>:
+							</label>					
+							<div class="radio-inline">
+								<label><input type="radio" id="display" name="display"
+									value="yes" <%if(countCategoryShowed >= 5){ %> disabled="disabled" <%} %>>Có</label>
+							</div>
+							<div class="radio-inline">
+								<label><input type="radio" id="display" name="display" 
+									value="no">Không</label>
+							</div>
+						
+						<div class="form-group">
+							<label>Icon</label> <input type="file" id="Image" name="Image" onchange="xem(this,'fua');"/>
+							<p class="help-block">Chọn file .png, .jpg ...<br>
+							<img alt="Ảnh đại diện" src="../images/icondefault.png" id="fua" width="50px" height="50px">
+				</p>
 						</div>
-						<br>
 						<button type="submit" class="btn btn-primary btn-md">Tạo
 							danh mục</button>
 					</form>
@@ -252,12 +325,12 @@
 				</div>
 				<div class="col-sm-1 form-group">
 				<button type="submit" name="btnFind" value="Find"
-					class="btn btn-primary">Search</button>
+					class="btn btn-primary">Tìm kiếm</button>
 					</div>
 				</form>
 					<div class="col-sm-1 form-group">
 				<a href="ShowRestoreServlet?type=category"><button type="submit" name="btnRestore" 
-					class="btn btn-primary">Restore</button></a>
+					class="btn btn-primary">Khôi phục</button></a>
 					</div>
 			
 		</div>
@@ -278,6 +351,7 @@
 					<th>Tên danh mục(Việt Nam)</th>
 					<th>Tên danh mục(Nhật Bản)</th>
 					<th>Hiển thị(1: có,0:không)</th>
+					<th>File ảnh</th>
 					<th></th>
 					<th></th>
 				</tr>
@@ -294,6 +368,12 @@
 					<td><%=category_after_search[i]
 									.getTenDanhMucJa()%></td>
 					<td><%=category_after_search[i].getHienThi()%></td>
+					<td><img src="<%if(category.get(i).getIcon()==null){ %>
+						../images/icondefault.png
+					<%}else{ %>
+					../images/<%=category.get(i).getIcon()%>
+					<%}%>
+					" alt="image" width="50px" height="50px"></td>
 					<td><button type="button" class="btn btn-default"
 							data-toggle="modal"
 							data-target="#<%=category_after_search[i].getIdDanhMuc()%>">
@@ -336,29 +416,36 @@
 					<th>ID</th>
 					<th>Tên danh mục(Việt Nam)</th>
 					<th>Tên danh mục(Nhật Bản)</th>
-					<th>Hiển thị(1: có,0:không)</th>
+					<th>Hiển thị(1: có,0:không)</th>	
+					<th>File ảnh</th>				
 					<th></th>
 					<th></th>
 				</tr>
 			</thead>
 
-			<%
-				for (int i = 0; i < category.length; i++) {
+			<%				
+				for (int i = 0; i < category.size(); i++) {
 			%>
 			<tbody>
 				<tr>
-					<td><%=category[i].getIdDanhMuc()%></td>
-					<td><%=category[i].getTenDanhMucVi()%></td>
-					<td><%=category[i].getTenDanhMucJa()%></td>
-					<td><%=category[i].getHienThi()%></td>
+					<td><%=category.get(i).getIdDanhMuc()%></td>
+					<td><%=category.get(i).getTenDanhMucVi()%></td>
+					<td><%=category.get(i).getTenDanhMucJa()%></td>
+					<td><%=category.get(i).getHienThi()%></td>
+					<td><img src="<%if(category.get(i).getIcon()==null){ %>
+						../images/icondefault.png
+					<%}else{ %>
+					../images/<%=category.get(i).getIcon()%>
+					<%}%>
+					" alt="image" width="50px" height="50px"></td>
 					<td><button type="button" class="btn btn-default"
 							data-toggle="modal"
-							data-target="#<%=category[i].getIdDanhMuc()%>">
+							data-target="#<%=category.get(i).getIdDanhMuc()%>">
 							<span class="glyphicon glyphicon-pencil"></span> Chỉnh sửa
 						</button></td>
 					<td><button type="button" class="btn btn-default"
 							data-toggle="modal"
-							data-target="#delete<%=category[i].getIdDanhMuc()%>">
+							data-target="#delete<%=category.get(i).getIdDanhMuc()%>">
 							<span class="glyphicon glyphicon-remove"></span> Xóa
 						</button></td>
 				</tr>
@@ -387,9 +474,9 @@
 		<!-- Modal Edit -->
 		<%
 			if (category != null) {
-				for (int i = 0; i < category.length; i++) {
+				for (int i = 0; i < category.size(); i++) {
 		%>
-		<div class="modal fade" id="<%=category[i].getIdDanhMuc()%>">
+		<div class="modal fade" id="<%=category.get(i).getIdDanhMuc()%>">
 			<div class="modal-dialog">
 
 				<!-- Modal content-->
@@ -401,45 +488,61 @@
 					<div class="modal-body">
 
 						<form id="formedit<%=i%>" name="form_edit_Category"
-							action="EditCategoryServlet" method="post">
+							action="EditCategoryServlet" method="post" enctype="multipart/form-data">
 							<div class="form-group">
 								<label>ID danh mục<span class="rq"> * </span>:
 								</label> <input class="form-control" maxlength="300" type="text"
 									name="idCategory" id="idCategory"
-									value="<%=category[i].getIdDanhMuc()%>" readonly="readonly">
+									value="<%=category.get(i).getIdDanhMuc()%>" readonly="readonly">
 							</div>
 							<div class="form-group">
 								<label>Tên danh mục(Việt Nam)<span class="rq"> *
 								</span>:
 								</label> <input class="form-control" maxlength="300" type="text"
 									name="nameCategoryVi" id="nameCategoryVi"
-									value="<%=category[i].getTenDanhMucVi()%>">
+									value="<%=category.get(i).getTenDanhMucVi()%>">
 							</div>
 							<div class="form-group">
 								<label>Tên danh mục(Nhật Bản)<span class="rq"> *
 								</span>:
 								</label> <input type="text" class="form-control" maxlength="300"
 									name="nameCategoryJa" id="nameCategoryJa"
-									value="<%=category[i].getTenDanhMucJa()%>">
+									value="<%=category.get(i).getTenDanhMucJa()%>">
 							</div>
 
 							<div class="form-group">
 								<label>Hiển thị lên trang chủ:</label> <select
 									class="form-control" name="display">
-									<option value="yes" <%if (category[i].getHienThi() == 1) {%>
-										selected="selected" <%}%>>Có</option>
-									<option value="no" <%if (category[i].getHienThi() == 0) {%>
+									<option value="yes" <%if (category.get(i).getHienThi() == 1) {%>
+										selected="selected" <%} if(countCategoryShowed>=5){%> disabled="disabled" <%} %>>Có</option>
+									<option value="no" <%if (category.get(i).getHienThi() == 0) {%>
 										selected="selected" <%}%>>Không</option>
 								</select>
+							</div>							
+							<div class="form-group">
+								<label>Icon: </label>	
+								<input type="text" class ="form-control col-md-4" name="ImageIcon" value="<%=category.get(i).getIcon()%>" disabled="disabled">
 							</div>
-							<button type="submit" class="btn btn-success btn-lg">Hoàn
+							<div class="form-group">					
+							<input type="file" class="Image" name="Image" onchange="xem(this,'fu<%=i%>');"/>
+							<p class="help-block">Chọn file .png, .jpg ...<br>
+							<img src="<%if(category.get(i).getIcon()==null){ %>
+									../images/icondefault.png
+									<%}else{ %>
+									../images/<%=category.get(i).getIcon()%>
+									<%}%>
+								" alt="image" id="fu<%=i%>" width="50px" height="50px">
+<%-- 							<img alt="Ảnh đại diện" src="../images/"<%=category.get(i).getIcon()%> id="fu2" width="50px" height="50px"> --%>
+							</p>
+						</div>
+							<button type="submit" class="btn btn-success btn-lg" >Hoàn
 								thành</button>
 						</form>
 
 					</div>
 					<div class="modal-footer">
 						<button type="button" id="btn" class="btn btn-default"
-							data-dismiss="modal">Close</button>
+							data-dismiss="modal">Quay lại</button>
 					</div>
 				</div>
 			</div>
@@ -448,7 +551,7 @@
 
 
 		<!-- Modal Delete -->
-		<div class="modal fade" id="delete<%=category[i].getIdDanhMuc()%>">
+		<div class="modal fade" id="delete<%=category.get(i).getIdDanhMuc()%>">
 			<div class="modal-dialog">
 
 				<!-- Modal content-->
@@ -466,7 +569,7 @@
 							<div class="form-group">
 								<label>ID danh mục: </label> <input type="text"
 									class="form-control" name="IdDanhmuc"
-									value="<%=category[i].getIdDanhMuc()%>" readonly="readonly">
+									value="<%=category.get(i).getIdDanhMuc()%>" readonly="readonly">
 							</div>
 							<button type="submit" class="btn btn-success btn-lg">Xóa</button>
 						</form>
@@ -486,7 +589,55 @@
 			}
 			}
 		%>
-
+<!-- Model thay đổi hiện lên thanh menu -->
+<div class="modal fade" id="modalChangeShow" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Danh mục được hiển thị</h4>
+        </div>
+        <div class="modal-body">
+        <%	if(listCategoryShowed!=null){ %>
+         	<table class="table table-condensed">
+    			<thead>
+				      <tr>
+				        <th>ID</th>
+				        <th>Tên danh mục(VN)</th>
+				        <th>Tên danh mục(JA)</th>
+				        <td></td>
+				      </tr>
+    			</thead>
+    			<tbody>
+    			<%
+    		
+    			for(int i=0;i<listCategoryShowed.size();i++){ %>
+				      <tr>
+				        <td><%=listCategoryShowed.get(i).getIdDanhMuc()%></td>
+				        <td><%=listCategoryShowed.get(i).getTenDanhMucVi() %></td>
+				        <td><%=listCategoryShowed.get(i).getTenDanhMucJa() %></td>
+				        <td>
+				        	<a href="EditCategoryServlet?id=<%=listCategoryShowed.get(i).getIdDanhMuc()%>"><button class="btnChange btn btn-primary btn-sm" >Thay đổi</button></a>
+				        </td>
+				      </tr>
+				  <%} %>
+				</tbody>
+    		</table>
+    		<%}else{ %>
+    			<div class="alert alert-danger">
+  					<strong>Cảnh báo!</strong>Bị lỗi trong quá trình lấy dữ liệu. Vui lòng liên hệ với nhà phát triển phần mềm để sửa lỗi này
+				</div>
+    		<%} %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 
 
 
@@ -494,6 +645,8 @@
 	</div>
 	
 </div>
-
+<div class="menuPhanTrang">
+		<%= request.getAttribute("pageNav") %>
+	</div>
 </body>
 </html>

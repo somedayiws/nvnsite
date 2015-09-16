@@ -2,8 +2,10 @@ package controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,17 +45,43 @@ public class LoginServlet extends HttpServlet {
 		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		String remember_me = request.getParameter("remember-me");
+		String result=null;
 		
+		System.out.println("remember-me: "+remember_me);
 		LoginBO checkLogin = new LoginBO();
-		
-		if(checkLogin.checkLogin(username, password)){
-			HttpSession session = request.getSession();
-			session.setAttribute("username", username);
-			response.sendRedirect("Home(Admin).jsp");
-		}
-		else{
-			response.sendRedirect("ShowHomeServlet");
-		}
+		if(checkLogin.checkValidate(username, password)){
+			if(checkLogin.checkLogin(username, password)){
+				HttpSession session = request.getSession();
+				session.setAttribute("username", username);
+				
+				if(remember_me!=null){
+				   Cookie user = new Cookie("username",username);
+				 
+				   // Set expiry date after 24 Hrs for both the cookies.
+				   user.setMaxAge(60*60*24); 
+				  
+				   // Add both the cookies in the response header.
+				   response.addCookie(user);
+				   
+				   System.out.println("user.getName: "+user.getName());
+				   System.out.println("user.getValue: "+user.getValue());
+				  
+				}
+				RequestDispatcher requestDis = request.getRequestDispatcher("Home(Admin).jsp");
+				requestDis.forward(request, response);
+			}
+			else{
+				result = "2";//Acc không tồn tại trong hệ thống
+				request.setAttribute("result", result);
+				RequestDispatcher requestDis = request.getRequestDispatcher("Login.jsp");
+				requestDis.forward(request, response);
+			}
+	}else{
+		result = "1";//Username và password không hợp lệ
+		request.setAttribute("result", result);
+		RequestDispatcher requestDis = request.getRequestDispatcher("Login.jsp");
+		requestDis.forward(request, response);
 	}
-
+	}
 }

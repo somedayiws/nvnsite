@@ -24,6 +24,7 @@ public class Pagination {
 		if(this.current_page > this.total_page) this.current_page = this.total_page;
 		this.start = (this.current_page - 1)*this.limit;
 	}
+	@SuppressWarnings("unused")
 	private String link(int page){
 		if(page<1 && this.link_first!=null) return this.link_first;
 		return null;

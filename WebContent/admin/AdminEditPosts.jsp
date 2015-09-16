@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="model.bean.BAIVIET"%>
 <%@page import="model.bean.TAIKHOAN"%>
 <%@page import="model.bean.DANHMUC"%>
@@ -17,14 +18,26 @@
 <script type="text/javascript" src="../check_validate/formEdit.js"></script>
 <link rel="stylesheet" href="css/register.css">
 <script src="../ckeditor/ckeditor.js"></script>
+<script src="../js/jquery-ui.js"></script>
 <title>Chỉnh sửa bài viết</title>
 </head>
 <%
 	/**Reveice data from server*/
-	DANHMUC[] categorys = (DANHMUC[]) request.getAttribute("categorys");
+	ArrayList<DANHMUC> categorys = (ArrayList<DANHMUC>) request.getAttribute("categorys");
 	TAIKHOAN[] account = (TAIKHOAN[]) request.getAttribute("account");
 	BAIVIET post = (BAIVIET) request.getAttribute("post");
+
+	
+	
 %>
+<script>
+	function checkData(){
+		var namePostVi = document.getElementById("namePostVi").value;
+		alert(namePostVi);
+		return false;
+	}
+</script>
+
 <body>
 	<div class="container-fluid">
 		<%@include file="header_ver_1.jsp"%>
@@ -36,8 +49,10 @@
 				if (post != null) {
 			%>
 			<div class="col-md-8 col-md-offset-2">
+			
+			
 				<form action="AdminEditPostsServlet" method="get" id="formAdminEditPost"
-					name="formAdminEditPost">
+					name="formAdminEditPost" onsubmit="return checkData()">
 
 
 					<!-- Id danh muc -->
@@ -47,86 +62,6 @@
 							name="IdPost" value="<%=post.getIdBaiViet()%>"
 							readonly="readonly">
 					</div>
-
-					<!-- Tên danh mục -->
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>Tên bài viết(Việt Nam)<span class="rq"> *
-								</span>:
-								</label><input type="text" class="form-control" id="namePostVi"
-									maxlength="300" name="namePostVi"
-									value="<%if (post.getTenBaiVietVi() != null) {%><%=post.getTenBaiVietVi()%><%}%>">
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>Name post(Japan)<span class="rq"> * </span>:
-								</label><input type="text" class="form-control" id="namePostJa"
-									maxlength="300" name="namePostJa"
-									value="<%if (post.getTenBaiVietJa() != null) {%><%=post.getTenBaiVietJa()%><%}%>">
-							</div>
-						</div>
-					</div>
-
-					<!-- Danh muc -->
-					<%
-						if (categorys != null) {
-					%>
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>Danh mục Việt Nam<span class="rq"> * </span>
-								</label> <select name="categoryVi" class="form-control">
-									<%
-										for (int i = 0; i < categorys.length; i++) {
-									%>
-									<option value="<%=categorys[i].getIdDanhMuc()%>"
-										<%if (categorys[i].getIdDanhMuc().equals(
-								post.getDanhMuc().getIdDanhMuc())) {%>
-										selected="selected" <%}%>><%=categorys[i].getTenDanhMucVi()%></option>
-									<%
-										}
-									%>
-								</select>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>Category Japan<span class="rq"> * </span>
-								</label> <select name="categoryJa" class="form-control">
-									<%
-										for (int i = 0; i < categorys.length; i++) {
-									%>
-									<option value="<%=categorys[i].getIdDanhMuc()%>"
-										<%if (categorys[i].getIdDanhMuc().equals(
-								post.getDanhMuc().getIdDanhMuc())) {%>
-										selected="selected" <%}%>><%=categorys[i].getTenDanhMucJa()%></option>
-									<%
-										}
-									%>
-								</select>
-							</div>
-						</div>
-					</div>
-					<%
-						} else {
-					%>
-
-					<div class="panel panel-info">
-						<div class="panel-heading">Danh mục- お知らせ</div>
-						<div class="panel-body">
-							Không có danh mục trong cơ sở dữ liệu - データベース内のエントリがありません<br>
-							<a href="../ListCategoryServlet"><button
-									class="btn btn-success">Tạo danh mục - 記事を作成</button></a>
-						</div>
-					</div>
-
-					<%
-						}
-					%>
-
-
 					<!-- Tài khoản -->
 					<%
 						if (account != null) {
@@ -160,6 +95,100 @@
 					<%
 						}
 					%>
+					<!-- Trạng thái -->
+					<div class="form-group">
+						<label>Trạng thái<span class="rq"> * </span></label>
+						<input type="text" class="form-control"
+							name="Status" value="<%=post.getTrangThai()%>"
+							readonly="readonly">				
+					</div>
+					
+					<!--Ghi chú  -->
+					<div class="form-group">
+						<label>Ghi chú - Note</label>
+						<textarea rows="10" cols="20" class="form-control" name="note" readonly="readonly"><%=post.getGhiChu() %></textarea>
+					</div>
+					<!-- Tên bai viet -->
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Tên bài viết(Việt Nam)<span class="rq"> *
+								</span>:
+								</label><input type="text" class="form-control" id="namePostVi"
+									maxlength="300" name="namePostVi"
+									value="<%if (post.getTenBaiVietVi() != null) {%><%=post.getTenBaiVietVi()%><%}%>">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Name post(Japan)<span class="rq"> * </span>:
+								</label><input type="text" class="form-control" id="namePostJa"
+									maxlength="300" name="namePostJa"
+									value="<%if (post.getTenBaiVietJa() != null) {%><%=post.getTenBaiVietJa()%><%}%>">
+							</div>
+						</div>
+					</div>
+
+					<!-- Danh muc -->
+					
+					<%
+						if (categorys != null) {
+					%>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Danh mục Việt Nam<span class="rq"> * </span>
+								</label> <select name="categoryVi" class="form-control">
+									<%
+										for (int i = 0; i < categorys.size(); i++) {
+									%>
+									<option value="<%=categorys.get(i).getIdDanhMuc()%>"
+										<%if (categorys.get(i).getIdDanhMuc().equals(
+								post.getDanhMuc().getIdDanhMuc())) {%>
+										selected="selected" <%}%>><%=categorys.get(i).getTenDanhMucVi()%></option>
+									<%
+										}
+									%>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Category Japan<span class="rq"> * </span>
+								</label> <select name="categoryJa" class="form-control">
+									<%
+										for (int i = 0; i < categorys.size(); i++) {
+									%>
+									<option value="<%=categorys.get(i).getIdDanhMuc()%>"
+										<%if (categorys.get(i).getIdDanhMuc().equals(
+								post.getDanhMuc().getIdDanhMuc())) {%>
+										selected="selected" <%}%>><%=categorys.get(i).getTenDanhMucJa()%></option>
+									<%
+										}
+									%>
+								</select>
+							</div>
+						</div>
+					</div>
+					<%
+						} else {
+					%>
+
+					<div class="panel panel-info">
+						<div class="panel-heading">Danh mục- お知らせ</div>
+						<div class="panel-body">
+							Không có danh mục trong cơ sở dữ liệu - データベース内のエントリがありません<br>
+							<a href="../ListCategoryServlet"><button
+									class="btn btn-success">Tạo danh mục - 記事を作成</button></a>
+						</div>
+					</div>
+
+					<%
+						}
+					%>
+
+
+					
 
 
 					<!-- Nội dung -->
@@ -178,24 +207,7 @@
 						</div>
 					</div>
 					
-					<!-- Trạng thái -->
-					<div class="form-group">
-						<label>Trạng thái<span class="rq"> * </span></label>
-						<select name="status" class="form-control">
-							<option value ="MoiDang" >Mới đăng - 最終投稿</option>							
-							<option value ="ChuyenDich">Chuyển dịch - 移動</option>
-							<option value ="DangDich" >Đang dịch - 翻訳</option>
-							<option value ="DaDich" >Đã dịch - </option>
-							<option value ="LoiDich">Lỗi dịch - 翻訳エラー</option>
-							<option value="DangBai" >Đăng bài - ポスト</option>																			
-						</select>						
-					</div>
 					
-					<!--Ghi chú  -->
-					<div class="form-group">
-						<label>Ghi chú - Note</label>
-						<textarea rows="10" cols="20" class="form-control" name="note"><%=post.getGhiChu() %></textarea>
-					</div>
 					
 					<!-- Mô tả -->
 					<div class="row">
@@ -216,19 +228,19 @@
 					<!-- Lượt xem -->
 					<div class="form-group">
 						<label>Lượt xem - View</label>
-						<input type="text" name="view" class="form-control" value="<%=post.getLuotXem()%>">
+						<input type="text" name="view" class="form-control" value="<%=post.getLuotXem()%>" readonly="readonly">
 					</div>
 					
 					<!-- Liên kết -->
 					<div class="form-group">
 						<label>Liên kết - Link</label>
-						<input type="text" name="link" class="form-control" value="<%=post.getLienKet()%>">
+						<input type="text" name="link" class="form-control" value="<%=post.getLienKet()%>" readonly="readonly">
 					</div>
 					
 					<!-- Ngày đăng -->
 					<div class="form-group">
 						<label>Ngày đăng - Date</label>
-						<input type="text" name="date" class="form-control" value="<%=post.getNgayDang()%>">
+						<input type="text" name="date" class="form-control" value="<%=post.getNgayDang()%>" readonly="readonly">
 					</div>
 					
 					<button class="btn btn-primary">Chỉnh sửa - Edit</button>

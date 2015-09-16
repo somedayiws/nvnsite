@@ -14,39 +14,15 @@
 <script type="text/javascript" src="../check_validate/formEdit.js"></script>
 <link rel="stylesheet" href="css/register.css">
 <script type="text/javascript" src="../check_validate/checkCreate(Admin).js"></script>
-<title>Đăng ký tài khoản</title>
-<script type="text/javascript">
-$(document).ready(function(){
-	$("#language").css("display","none");
-	
-//     $("#typeUsers").change(function(){
-//       	if($("#typeUser").val() == "CTV"){
-//       		$("#language").slideToggle(1000);
-//       	};
-//     });
-});
-function change(value){
-	if(value == "CTV"){
-		$("#language").slideDown(500);
-	}
-	else{
-		$("#language").slideUp(500);
-	}
-}
-</script>
+<script type="text/javascript" src="./js/createAccount.js"></script>
+<title>Tạo tài khoản</title>
 </head>
 <body>
 	<div class="container-fluid">
-		<%@include file="header_ver_1.jsp"%>
-	
-			
-				<%@include file="Menu.jsp"%>
-			
-	
-
-		<div  style="margin-top: 10px">
-			<div class="col-md-2" style="background-color: #B2B2B2"></div>
-			<div class="col-md-8 panel panel-primary">
+		<%@include file="header_ver_1.jsp"%>				
+		<%@include file="Menu.jsp"%>		
+		<div  style="margin-top: 10px">			
+			<div class="col-md-8 col-md-offset-2 panel panel-primary">
 				<div class="panel-heading">Thêm tài khoản - アカウントを追加します</div>
 				<div class="panel-body">
 					<form id="formCreateAccount" name="form_create"

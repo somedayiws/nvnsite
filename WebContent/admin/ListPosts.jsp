@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="model.bean.TAIKHOAN"%>
 <%@page import="model.bean.DANHMUC"%>
 <%@page import="model.bean.BAIVIET"%>
@@ -73,8 +74,7 @@ $(document).ready(function(){
 
 <%
 	//Receive data from server
-	BAIVIET[] posts = (BAIVIET[]) request.getAttribute("posts");
-	DANHMUC[] category = (DANHMUC[]) request.getAttribute("category");
+	BAIVIET[] posts = (BAIVIET[]) request.getAttribute("posts");	
 	TAIKHOAN[] account = (TAIKHOAN[]) request.getAttribute("account");
 	String resultEdit = (String) request.getAttribute("resultEdit");
 	String resultDelete = (String) request.getAttribute("resultDelete");
@@ -92,7 +92,7 @@ $(document).ready(function(){
 				if (resultEdit != null) {
 			%>
 			<div class="panel panel-info">
-				<div class="panel-heading">Thông báo chỉnh sửa - お知らせ</div>
+				<div class="panel-heading">Thông báo - お知らせ</div>
 				<div class="panel-body"><%=resultEdit%>
 				</div>
 			</div>
@@ -104,7 +104,7 @@ $(document).ready(function(){
 				if (resultDelete != null) {
 			%>
 			<div class="panel panel-info">
-				<div class="panel-heading">Thông báo xóa - お知らせ</div>
+				<div class="panel-heading">Thông báo - お知らせ</div>
 				<div class="panel-body"><%=resultDelete%>
 				</div>
 			</div>
@@ -114,7 +114,7 @@ $(document).ready(function(){
 			<div class="row">
 				<div class="col-md-1 form-group" style="float: right;">
 					<a href="ShowRestoreServlet?type=posts"><button
-							class="btn btn-success">Restore</button></a>
+							class="btn btn-success">Khôi phục</button></a>
 				</div>
 				<div class="col-md-1 form-group" style="float: right;">
 				
@@ -195,10 +195,7 @@ $(document).ready(function(){
 			<div class="panel panel-info">
 				<div class="panel-heading">Thông báo - お知らせ</div>
 				<div class="panel-body">
-					Không có bài viết trong cơ sở dữ liệu - データベース内のエントリがありません<br>
-					<a href="../DangBaiVietServlet"><button class="btn btn-success">Tạo
-							bài viết - 記事を作成</button></a>
-
+					Không có bài viết trong cơ sở dữ liệu - データベース内のエントリがありません<br>					
 				</div>
 			</div>
 			<%
@@ -238,7 +235,7 @@ $(document).ready(function(){
 						</div>
 						<div class="modal-footer">
 							<button type="button" id="btn" class="btn btn-default"
-								data-dismiss="modal">Close</button>
+								data-dismiss="modal">Quay lại</button>
 						</div>
 					</div>
 				</div>
@@ -251,6 +248,9 @@ $(document).ready(function(){
 			%>
 		</div>
 
+	</div>
+	<div class="menuPhanTrang">
+		<%= request.getAttribute("pageNav") %>
 	</div>
 </body>
 </html>

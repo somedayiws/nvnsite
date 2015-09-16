@@ -12,14 +12,19 @@ public class TaiKhoanBO {
 		return taikhoanDAO.chekOk(username, password);
 	}
 
+	public boolean chekOk(String username, String password, int x) {
+		// TODO Auto-generated method stub
+		return taikhoanDAO.chekOk(username, password, x);
+	}
+	
 	public TAIKHOAN getTaiKhoan(String username, String password) {
 		// TODO Auto-generated method stub
 		return taikhoanDAO.getTaiKhoan(username, password);
 	}
 
-	public void UpdateThongTin(TAIKHOAN user) {
+	public boolean UpdateThongTin(TAIKHOAN user) {
 		// TODO Auto-generated method stub
-		taikhoanDAO.UpdateThongTin(user);
+		return taikhoanDAO.UpdateThongTin(user);
 	}
 
 	public void addTaiKhoan(String taikhoan, String matkhau, String hoten,

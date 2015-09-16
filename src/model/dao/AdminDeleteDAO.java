@@ -1,7 +1,7 @@
 package model.dao;
 
 public class AdminDeleteDAO {
-	MySQLConnector db = new MySQLConnector();
+	DataBaseDAO db = new DataBaseDAO();
 	
 	/**Delete Account*/
 	public boolean deleteAccount(String username)

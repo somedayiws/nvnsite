@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class LoginDAO {
-	MySQLConnector db= new MySQLConnector();
+	DataBaseDAO db= new DataBaseDAO();
 	/**Check login*/
 	public boolean checkLogin(String username,String password) {
 		username = DinhDangSQL.FomatSQL(username);

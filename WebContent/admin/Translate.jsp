@@ -17,7 +17,7 @@
 <script type="text/javascript" src="../check_validate/formEdit.js"></script>
 <link rel="stylesheet" href="css/register.css">
 <script src="../ckeditor/ckeditor.js"></script>
-<title>Detail Posts</title>
+<title>Dịch bài</title>
 <style type="text/css">
 h3 {
 	text-align: center;

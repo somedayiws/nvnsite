@@ -14,20 +14,20 @@
 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="../check_validate/formEdit.js"></script>
 <link rel="stylesheet" href="css/register.css">
-<title>Manager</title>
+<link rel="stylesheet" href="css/listAccount.css">
+<title>Quản lý người dùng</title>
 </head>
 
 
 <%
 	TAIKHOAN[] listAccount = (TAIKHOAN[]) request.getAttribute("listAccount");
 	String result = (String) request.getAttribute("result");
+	System.out.println("resultlistAcc: "+result);
 	TAIKHOAN[] account = (TAIKHOAN[])request.getAttribute("account");
-	String button = (String)request.getAttribute("button");
-	
-	
+	String button = (String)request.getAttribute("button");		
 %>
 <%if(listAccount!=null){ %>
-<script type="text/javascript">
+<script>
 $(document).ready(function() {	
 	for(var i=0;i<<%=listAccount.length%>
 	; i++) {
@@ -41,6 +41,7 @@ $(document).ready(function() {
 						digits : true,
 						minlength : 10,
 					},
+
 				},
 				messages : {
 					name : "Hãy nhập tên của bạn",
@@ -128,21 +129,26 @@ $(document).ready(function() {
 <body>
 	<div class="container-fluid">
 		<%@include file="header_ver_1.jsp"%>
-
+		<%@include file="Menu.jsp"%>
+		<div id="divcontent">		
 		
-			<%@include file="Menu.jsp"%>
-
-		
-
-		<div  style="margin-top: 10px">
-			
 			<%
 				if (listAccount != null) {
 			%>
-			<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<%
+			//Hiển thị kết quả chỉnh sửa và xóa
+				if (result != null) {
+			%>
+						<div class="col-md-4 col-md-offset-4 alert alert-info">
+						  <strong>Thông báo!</strong><%=result %>
+						</div>
+			<%
+				}
+			%>		
 				<form action="AdminSearchSevlet" method="post"
 					onsubmit="return checkValidateSearch()">
-					<h4 class="col-md-1 col-md-offset-1">Tìm kiếm</h4>
+					<h4 class="col-md-2">Tìm kiếm</h4>
 					<div class="col-md-2 form-group">
 						<select class="form-control" id="typeFind" name="typeFind">
 							<option value="IdTaiKhoan">ID</option>
@@ -158,95 +164,95 @@ $(document).ready(function() {
 						<input type="text" class="form-control" id="stringFind"
 							name="stringFind">
 					</div>
-					<div class="col-md-1 form-group">
+					<div class=" form-group">
 						<button type="submit" name="btnFind" value="Find"
-							class="btn btn-primary">Search</button>
+							class=" col-md-1 btn btn-primary btn-sm">Tìm kiếm</button>
 					</div>
 				</form>
-				<div class="col-md-1 form-group">
-					<a href="CreateAccount.jsp"><button class="btn btn-success">Create
+				<div class="form-group">
+					<a href="ShowCreateAccount"><button class=" col-md-1 btn btn-success btn-sm">Tạo tài khoản
 							</button></a>
 				</div>
-				<div class="col-md-1 form-group">
-					<a href="ShowRestoreServlet?type=account"><button class="btn btn-success">Restore</button></a>
+				<div class="form-group">
+					<a href="ShowRestoreServlet?type=account"><button class=" col-md-1 btn btn-success btn-sm">Khôi phục</button></a>
 				</div>
 			</div>
 			
-			<!--*********************** Display result ******************************** -->
+<!--*********************** Hiển thị kết quả ******************************** -->
 			<%
 				if (button != null) {
 					if (account != null) {
 			%>
-			<div class="panel panel-default">
-  <div class="panel-heading">Kết quả</div>
-  <div class="panel-body">
-			<div class="table-responsive">
-				<table class="table table-hover table-condensed">
-					<thead>
-						<tr>
-							<th>ID</th>
-							<th>Họ tên</th>
-							<th>Địa chỉ</th>
-							<th>Điện thoại</th>
-							<th>Email</th>
-							<th>Tài khoản</th>
-							<th>Phân quyền</th>
-							<th></th>
-							<th></th>
-						</tr>
-					</thead>
-					<%
-						for (int i = 0; i < account.length; i++) {
-					%>
-					<tbody>
-						<tr>
-							<td><%=account[i].getIdTaiKhoan()%></td>
-							<td><%=account[i].getHoTen()%></td>
-							<td><%=account[i].getDiaChi()%></td>
-							<td><%=account[i].getDienThoai()%></td>
-							<td><%=account[i].getEmail()%></td>
-							<td><%=account[i].getTenTaiKhoan()%></td>
-							<td><%=account[i].getQuyenQuanTri()%></td>
-							<td><button type="button" class="btn btn-default"
-									data-toggle="modal"
-									data-target="#<%=account[i].getIdTaiKhoan()%>">
-									<span class="glyphicon glyphicon-pencil"></span> Chỉnh sửa
-								</button></td>
-							<td><button type="button" class="btn btn-default"
-									data-toggle="modal"
-									data-target="#delete<%=account[i].getIdTaiKhoan()%>">
-									<span class="glyphicon glyphicon-remove"></span> Xóa
-								</button></td>
-						</tr>
-					</tbody>
-
-
-					<%
-						}
-					%>
-				</table>
-			</div>
-			</div>
-</div>
-			<%
-				} 
-			
-			
-			
-				}
-			%>
-			<%
-				if (result != null) {
-			%>
-			<div class="panel panel-info">
-				<div class="panel-heading">Thông báo</div>
-				<div class="panel-body"><%=result%></div>
-			</div>
+				<div class="col-md-10 col-md-offset-1 panel panel-default">
+  					<div class="panel-heading">Kết quả</div>
+  					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table table-hover table-condensed">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Họ tên</th>
+										<th>Địa chỉ</th>
+										<th>Điện thoại</th>
+										<th>Email</th>
+										<th>Tài khoản</th>
+										<th>Phân quyền</th>
+										<th></th>
+										<th></th>
+									</tr>
+								</thead>
+									<%
+										for (int i = 0; i < account.length; i++) {
+									%>
+								<tbody>
+									<tr>
+										<td><%=account[i].getIdTaiKhoan()%></td>
+										<td><%=account[i].getHoTen()%></td>
+										<td><%=account[i].getDiaChi()%></td>
+										<td><%=account[i].getDienThoai()%></td>
+										<td><%=account[i].getEmail()%></td>
+										<td><%=account[i].getTenTaiKhoan()%></td>
+										<td><%=account[i].getQuyenQuanTri()%></td>
+										<td><button type="button" class="btn btn-default btn-sm"
+											data-toggle="modal"
+											data-target="#<%=account[i].getIdTaiKhoan()%>">
+											<span class="glyphicon glyphicon-pencil"></span> Chỉnh sửa
+											</button>
+										</td>
+										<td><button type="button" class="btn btn-default btn-sm"
+											<%if(account[i].getQuyenQuanTri().equals("admin")){ %>
+												disabled="disabled"
+											<%} %>
+											data-toggle="modal"
+											data-target="#delete<%=account[i].getIdTaiKhoan()%>">
+											<span class="glyphicon glyphicon-remove"></span> Xóa
+											</button>
+										</td>
+									</tr>
+								</tbody>							
+									<%
+										}
+									%>
+							</table>
+						</div>
+					</div>
+				</div>
 			<%
 				}
-			%>
-			
-			<!-- ********************************************************************** -->
+					//Khi không tìm thấy kết quả nào
+					else{
+			%>			
+						<div class="col-md-6 col-md-offset-3 alert alert-info">
+						  <strong>Thông báo!</strong> Không tìm thấy kết quả nào.
+						</div>
+			<%
+					}
+				}
+			%>			
+<!-- ********************Hiển thị danh sách người dùng******************************************* -->
+		<div class="col-md-10 col-md-offset-1 panel panel-primary">
+			<div class="panel-heading">Danh sách người dùng</div>
+  			<div class="panel-body">
 			<div class="table-responsive">
 				<table class=" table table-hover">
 					<thead>
@@ -282,7 +288,7 @@ $(document).ready(function() {
 								<%} %>
 							</td>
 							<td><%=listAccount[i].getTinhTrang() %></td>
-							<td><button type="button" class="btn btn-default"
+							<td><button type="button" class="btn btn-default btn-sm"
 									data-toggle="modal"
 									data-target="#<%=listAccount[i].getIdTaiKhoan()%>">
 									<span class="glyphicon glyphicon-pencil"></span> Chỉnh sửa
@@ -290,38 +296,37 @@ $(document).ready(function() {
 							<td><button type="button" data-toggle="modal"
 									data-target="#delete<%=listAccount[i].getIdTaiKhoan()%>"
 									<%if (listAccount[i].getQuyenQuanTri().equals("admin")) {%>
-									class="btn btn-default disabled" <%} else {%>
-									class="btn btn-default" <%}%>>
+									class="btn btn-default btn-sm disabled" <%} else {%>
+									class="btn btn-default btn-sm" <%}%>>
 									<span class="glyphicon glyphicon-remove"></span> Xóa
 								</button></td>
 						</tr>
 					</tbody>
-
-
 					<%
 						}
 					%>
-				</table>
+				</table>							
+			</div>
+			<div id="divpage" class="menuPhanTrang">
+				<%= request.getAttribute("pageNav") %>
 			</div>
 			<%
 				} else {
 			%>
-			<div class="panel panel-info">
-				<div class="panel-heading">Thông báo</div>
-				<div class="panel-body">
-					Không có tài khoản trong cơ sở dữ liệu 
-				</div>
+			<div class="alert alert-info">
+  				<strong>Thông báo!</strong> Không có người dùng nào.
 			</div>
 			<a href="CreateAccount.jsp"><button
-							class="btn btn-success">Create Account</button></a> <br>				
-			<a href="ShowRestoreServlet?type=account"><button class="btn btn-success">Restore</button></a>		
+							class="btn btn-success">Tạo tài khoản</button></a> <br>				
+			<a href="ShowRestoreServlet?type=account"><button class="btn btn-success">Khôi phục</button></a>
+		</div>	
+		</div>		
 			<%
 				}
 				if (listAccount != null) {
 					for (int i = 0; i < listAccount.length; i++) {
 			%>
-
-			<!-- Modal -->
+<!-------------------------- Modal chỉnh sửa--------------------------------->
 			<div class="modal fade" id="<%=listAccount[i].getIdTaiKhoan()%>">
 				<div class="modal-dialog">
 
@@ -395,31 +400,24 @@ $(document).ready(function() {
 											selected="selected"<%} %>>日本</option>																		
 									</select>
 								</div>
+							<%} %>
 									<div class="form-group">
 									<label>Tình trạng<span class="rq"> * </span>
 									</label> <input class="form-control" maxlength="30" type="text"
-										name="status"  value="<%=listAccount[i].getTinhTrang()%>">
-
+										name="status"  value="<%=listAccount[i].getTinhTrang()%>" disabled="disabled">
 								</div>
-							<%} %>
-								<button type="submit" class="btn btn-success btn-lg">Hoàn
+							
+								<button type="submit" class="btn btn-success btn-sm">Hoàn
 									thành</button>
+								<button type="button" id="btn" class="btn btn-default btn-sm btn_modal"
+								data-dismiss="modal">Quay lại</button>
 							</form>
 
-						</div>
-						<div class="modal-footer">
-							<button type="button" id="btn" class="btn btn-default"
-								data-dismiss="modal">Close</button>
-						</div>
+						</div>						
 					</div>
 				</div>
 			</div>
-
-
-			<!-- end Modal -->
-
-
-			<!-- Modal -->
+<!------------------------------------ Modal xóa -------------------------------------->
 			<div class="modal fade"
 				id="delete<%=listAccount[i].getIdTaiKhoan()%>">
 				<div class="modal-dialog">
@@ -434,34 +432,25 @@ $(document).ready(function() {
 
 							<form name="form_edit_admin" action="AdminDeleteServlet"
 								method="post">
-
-
 								<div class="form-group">
 									<label>Tên tài khoản<span class="rq"> * </span>:
 									</label> <input type="text" class="form-control" maxlength="20"
 										name="username" value="<%=listAccount[i].getTenTaiKhoan()%>"
 										readonly="readonly">
 								</div>
-								<button type="submit" class="btn btn-success btn-lg">Xóa</button>
+								<button type="submit" class="btn btn-success btn-sm">Xóa</button>
+								<button type="button" id="btn" class="btn btn-default btn-sm btn_modal"
+								data-dismiss="modal">Quay lại</button>
 							</form>
-
-						</div>
-						<div class="modal-footer">
-							<button type="button" id="btn" class="btn btn-default"
-								data-dismiss="modal">Close</button>
-						</div>
+						</div>						
 					</div>
 				</div>
-			</div>
-
-
-			<!-- end Modal -->
+			</div>		
 			<%
 				}
 				}
 			%>
 		</div>
-	
 	</div>
 </body>
 </html>

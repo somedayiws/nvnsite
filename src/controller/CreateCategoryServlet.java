@@ -1,6 +1,10 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +12,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.FileCleanerCleanup;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import model.bean.DANHMUC;
 import model.bo.CreateCategoryBO;
@@ -46,10 +57,78 @@ public class CreateCategoryServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 
+		boolean isMultipart = ServletFileUpload
+				.isMultipartContent(request);
+		String nameCategoryVi;
+		String nameCategoryJa;
+		String icon;
+		String display;
+		if (!isMultipart) {
 		/** Get data from client */
-		String nameCategoryVi = request.getParameter("nameCategoryVi");
-		String nameCategoryJa = request.getParameter("nameCategoryJa");
-		String display = request.getParameter("display");
+		 nameCategoryVi = request.getParameter("nameCategoryVi");
+		 nameCategoryJa = request.getParameter("nameCategoryJa");
+		 display = request.getParameter("display");
+		 icon = request.getParameter("Image");
+		}else{			
+			FileItemFactory factory = new DiskFileItemFactory();
+			ServletFileUpload upload = new ServletFileUpload(factory);
+			
+			@SuppressWarnings("rawtypes")
+			List items = null;
+			
+			
+		
+			
+			try {
+				items = upload.parseRequest(request);
+			} catch (FileUploadException e) {
+				e.printStackTrace();
+			}
+
+			@SuppressWarnings("rawtypes")
+			Iterator iter = items.iterator();
+			@SuppressWarnings("rawtypes")
+			Hashtable params = new Hashtable();
+			String filename = null;
+			
+
+			while (iter.hasNext()) {
+
+				FileItem item = (FileItem) iter.next();
+				if (item.isFormField()) {
+					params.put(item.getFieldName(),item.getString("UTF-8"));
+				} else {
+					try {
+						String itemName = item.getName();
+						
+						System.out.println("itemName: "+itemName);
+						filename = itemName.substring(itemName
+								.lastIndexOf("\\") + 1);
+						System.out.println("filename: "+filename);
+						String realPath = getServletContext().getRealPath("/")+ "images\\" + filename;
+						
+						System.out.println("realPath: "+realPath);
+						File savedFile = new File(realPath);
+						@SuppressWarnings("unused")
+						FileCleanerCleanup item2 = new FileCleanerCleanup();
+						// Upload file l�n server
+						item.write(savedFile);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			
+			nameCategoryVi = (String) params.get("nameCategoryVi");
+			nameCategoryJa = (String) params.get("nameCategoryJa");
+			display = (String) params.get("display");
+			
+			if(filename == null || filename.trim().equals("")) icon = "icondefault.png";
+			else icon = filename;
+			
+		}
+				
+		System.out.println("display: "+display);
 		int show;
 
 		CreateCategoryBO createCategory = new CreateCategoryBO();
@@ -60,7 +139,7 @@ public class CreateCategoryServlet extends HttpServlet {
 		/** Put data into object */
 		category.setTenDanhMucVi(nameCategoryVi);
 		category.setTenDanhMucJa(nameCategoryJa);
-
+		category.setIcon(icon);
 		/** Check validate */
 		if (createCategory.checkValidate(category, display)) {
 			if (display.equals("yes"))
@@ -112,6 +191,7 @@ public class CreateCategoryServlet extends HttpServlet {
 					.getRequestDispatcher("Error.jsp");
 			requestDis_error.forward(request, response);
 		}
+		
 
 	}
 

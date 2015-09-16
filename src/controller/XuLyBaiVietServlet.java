@@ -37,14 +37,14 @@ public class XuLyBaiVietServlet extends HttpServlet {
 			{
 				if(submit.equals("gui")){
 					bviet.CapNhatBaiViet(fruits[i], "Ok", user.getIdTaiKhoan());
-					request.setAttribute("meg", "Đã gửi bài cho admin.");
+					request.setAttribute("meg", "<div class='alert alert-success' role='alert'>Đã gửi bài cho admin.</div>");
 				}else{
 					bviet.CapNhatBaiViet(fruits[i], "HuyDich", user.getIdTaiKhoan());
-					request.setAttribute("meg", "Đã hủy bài không mong muốn.");
+					request.setAttribute("meg", "<div class='alert alert-success' role='alert'>Đã hủy bài không mong muốn.</div>");
 				}
 			}
 		}else{
-			request.setAttribute("meg", "Bạn chưa chọn bài nào cả.");
+			request.setAttribute("meg", "<div class='alert alert-warning' role='alert'>Bạn chưa chọn bài nào cả.</div>");
 		}
 		request.getRequestDispatcher("DanhSachBaiDichServlet").forward(request, response);
 	}

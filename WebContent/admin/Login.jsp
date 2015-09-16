@@ -13,95 +13,43 @@
 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="../check_validate/checkValidate.js"></script>
 <link rel="stylesheet"
-	href="../admin/css/register.css">
-
-
-
-<title>Login - Admin</title>
-<style type="text/css">
-	.cl-effect-1 a::before,
-.cl-effect-1 a::after {
-	display: inline-block;
-	opacity: 0;
-	-webkit-transition: -webkit-transform 0.3s, opacity 0.2s;
-	-moz-transition: -moz-transform 0.3s, opacity 0.2s;
-	transition: transform 0.3s, opacity 0.2s;
-}
-
-.cl-effect-1 a::before {
-	margin-right: 10px;
-	content: '[';
-	-webkit-transform: translateX(20px);
-	-moz-transform: translateX(20px);
-	transform: translateX(20px);
-}
-
-.cl-effect-1 a::after {
-	margin-left: 10px;
-	content: ']';
-	-webkit-transform: translateX(-20px);
-	-moz-transform: translateX(-20px);
-	transform: translateX(-20px);
-}
-
-.cl-effect-1 a:hover::before,
-.cl-effect-1 a:hover::after,
-.cl-effect-1 a:focus::before,
-.cl-effect-1 a:focus::after {
-	opacity: 1;
-	-webkit-transform: translateX(0px);
-	-moz-transform: translateX(0px);
-	transform: translateX(0px);
-}
-</style>
+	href="../admin/css/login.css">
+<link rel="stylesheet" href="css/register.css">
+<title>Đăng nhập - ログイン</title>
 </head>
-
-<script>
-	$(document).ready(function() {
-
-		$("#panel").slideDown("slow");
-
-	});
-</script>
-<body style="background-color: black">
-	<div id="panel" class="col-md-4 col-md-offset-4"
-		style="display: none; color: blue; background-color: white; height: 420px; border-radius: 20px; margin-top: 50px; box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.5), 0px 2px 2px 0px rgba(255, 255, 255, 0.5)">
-		<h3 style="text-align: center; margin-top: 20px">
-			<span class="glyphicon glyphicon-lock"></span>Đăng nhập - ログイン
-		</h3>
-		<hr>
-		<form action="LoginServlet" method="post" id="form_register_and_restore" name="form_register_and_restore" >
-			<div class="form-group">
-				<label>Tên đăng nhập - ユーザー名</label> <input type="text" name="username"
-					placeholder="Username" class="form-control" autocomplete="off">
-			</div>
-			<div class="form-group">
-				<label>Mật khẩu - パスワード</label> <input type="password" name="password"
-					placeholder="Password" class="form-control" autocomplete="off">
-			</div>
-			<div class="row">
-				<div class="col-md-6 form-group" style="float: left;">
-					<div class="checkbox">
-						<label><input type="checkbox" value="remember">Ghi nhớ - 覚えています
-私に</label>
-					</div>
+<%
+	//Nhận kết quả khi login không thành công
+	String result =(String)request.getAttribute("result");	
+%>
+<body>
+ <div class="container">
+        <div class="card card-container">          
+            <img id="profile-img" class="profile-img-card" src="../images/avatar_2x.png" />
+             <!-- Hiển thị kết quả khi login thất bại -->
+            <%if(result!=null){ %>
+            	<div class="alert alert-danger">
+  					<strong>Lỗi - エラー!</strong> <%if(result.equals("1")){%>Tên đăng nhập và mật khẩu không hợp lệ - <%}else{ %>Tài khoản không tồn tại trong hệ thống - <%} %>
 				</div>
-				<div class=" col-md-6 form-group">
+            <%} %>
+            <p id="profile-name" class="profile-name-card"></p>
+            <form class="form-signin" action="LoginServlet" method="post" id="form_register_and_restore">
+                <span id="reauth-email" class="reauth-email"></span>
+                <input type="text" id="inputEmail" name="username" class="form-control" placeholder="Tên đăng nhập - ユーザ名" required autofocus>
+                <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Mật khẩu - パスワード" required>
+                <div id="remember" class="checkbox">
+                    <label>
+                        <input type="checkbox" name="remember-me" value="remember-me"> Ghi nhớ - 私を覚えてますか
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Đăng nhập - ログイン</button>
+            </form><!-- /form -->
+            <a href="ShowForgotPassword" class="forgot-password">
+               Quyên mật khẩu - パスワードを忘れましたか
+            </a>
+           
+        </div><!-- /card-container -->               
+    </div><!-- /container -->
 
-					<button id="btn_login" type="submit" style="float: right;" class="btn btn-primary btn-lg">
-						Đăng nhập - ログイン <span class="glyphicon glyphicon-log-in"></span>
-					</button>
-
-				</div>
-			</div>
-			<hr>
-			<nav class="cl-effect-1" id="cl-effect-1">
-				<a  href="#" style="float: left;text-decoration: none;">Quên mật khẩu - パスワードをお忘れですか</a> <a
-					href="#" style="float: right; text-decoration: none;">Đăng ký - 登録</a>
-			</nav>
-		</form>
-
-	</div>
 </body>
 </html>
 

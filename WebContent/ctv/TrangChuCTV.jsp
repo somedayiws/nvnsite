@@ -3,7 +3,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <!-- Thư viện cho menu -->
 <link rel="stylesheet" href="../bootstrap-3.3.5-dist/css/bootstrap.min.css">
 <script src="../js/jquery.min.js"></script>
@@ -84,7 +85,7 @@ input.error {
 				<input type="password" name="matkhau" placeholder="Mật khẩu" class="form-control">
 			</div>
 			<div class="row">
-				<i class="fa fa-frown-o"></i> <a href="#"> Quên mật khẩu !!!</a>
+				<i class="fa fa-frown-o"></i> <a href="CTVResetMatKhauServlet"> Quên mật khẩu !!!</a>
 			</div>
 			<div class="row">
 				<button type="reset" class="btn btn-warning btn-sm" id="huy"><i class="fa fa-eraser"></i> Reset - </button>

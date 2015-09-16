@@ -7,7 +7,7 @@ import model.bean.TAIKHOAN;
 
 public class AdminSearchDAO {
 
-	MySQLConnector db = new MySQLConnector();
+	DataBaseDAO db = new DataBaseDAO();
 
 	public TAIKHOAN[] searchAccount(String typeFind, String stringFind) {
 		

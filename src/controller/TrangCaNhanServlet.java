@@ -50,7 +50,7 @@ public class TrangCaNhanServlet extends HttpServlet {
 				String uresponse = request.getParameter("recaptcha_response_field");
 				
 				ReCaptchaImpl reCaptcha = new ReCaptchaImpl();
-				reCaptcha.setPrivateKey("6LcUfwsTAAAAAA3VD4c_O4wK66-0AxVccisDCx8m");
+				reCaptcha.setPrivateKey("6LeIbgwTAAAAAOPCOI-VANpsDzAl_bMsS8e10NIV");
 				ReCaptchaResponse reCaptchaResponse = reCaptcha.checkAnswer(remoteAddr, challenge, uresponse); 
 				if(reCaptchaResponse.isValid()) //Kiểm tra hợp lệ của response
 				{
@@ -62,22 +62,31 @@ public class TrangCaNhanServlet extends HttpServlet {
 					user.setMatKhau(matkhau);
 					TaiKhoanBO tk = new TaiKhoanBO();
 					tk.UpdateThongTin(user);
-					request.setAttribute("meg", "Cập nhật thành công.");
+					request.setAttribute("meg", "<div class='alert alert-success' role='alert'><p>Cập nhật thành công.</p></div>");
 				}
 				else 
 				{
-					request.setAttribute("meg", "Mã xác nhận không đúng");
+					request.setAttribute("meg", "<div class='alert alert-danger' role='alert'>Mã xác nhận không đúng.</div>");
 				}
 			}else{
-				request.setAttribute("meg", "Chào bạn " + user.getHoTen() + ", Chúc bạn một ngày làm việc vui vẻ.");
+				request.setAttribute("meg", "<div class='alert alert-success' role='alert'><p>Chào bạn " + user.getHoTen() + ", Chúc bạn một ngày làm việc vui vẻ.</p></div>");
 			}
 			BaiVietBO bv = new BaiVietBO();
 			DanhMucBO danhmuc = new DanhMucBO();
-			ArrayList<BAIVIET> listBV = bv.getListBaiViet(user.getIdTaiKhoan());
+			int page = 1;
+			bv.setMenu(10, 10);
+			try {
+				page = Integer.parseInt(request.getParameter("page"));
+			} catch (NumberFormatException e) {
+				page = 1;
+			}
+			ArrayList<BAIVIET> listBV = bv.getListBaiViet(user.getIdTaiKhoan(), page);
 			//Danh mục hiển thị
 			ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc("");
 			//Danh sách bài viết host
 			ArrayList<BAIVIET> topbaiviet = bv.getTopBaiViet();
+			String pageNav = bv.getMenuPhanTrang();
+			request.setAttribute("pageNav", pageNav);
 			request.setAttribute("dsbaidang", listBV);
 			request.setAttribute("listdanhmuc", listdanhmuc);
 			request.setAttribute("topbaiviet", topbaiviet);

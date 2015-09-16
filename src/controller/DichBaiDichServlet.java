@@ -42,20 +42,22 @@ public class DichBaiDichServlet extends HttpServlet {
 				request.setAttribute("NgayGui", info.split(",")[1]);
 				request.getRequestDispatcher("DichBai.jsp").forward(request, response);
 			}else{
-				
 				TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("user");
 				String tieude =  request.getParameter("tieude");
 				String mota =  request.getParameter("mota");
 				String noidung =  request.getParameter("noidung");
-				
+				String kqua = "";
 				if(submit.equals("luu")){
-					baiviet.CapNhatBaiViet(id, tieude, mota, noidung, "DangDich", user.getNgonNgu(), user.getIdTaiKhoan());
+					if(baiviet.CapNhatBaiViet(id, tieude, mota, noidung, "DangDich", user.getNgonNgu(), user.getIdTaiKhoan())) kqua="?xuly=luu-thanhcong";
+					else kqua="?xuly=luu-thatbai";
 				}else if(submit.equals("gui")){
-					baiviet.CapNhatBaiViet(id, tieude, mota, noidung, "Ok", user.getNgonNgu(), user.getIdTaiKhoan());
+					if(baiviet.CapNhatBaiViet(id, tieude, mota, noidung, "Ok", user.getNgonNgu(), user.getIdTaiKhoan())) kqua="?xuly=gui-thanhcong";
+					else kqua="?xuly=gui-thatbai";
 				}else if(submit.equals("huy")){
-					baiviet.CapNhatBaiViet(id, "HuyDich", user.getIdTaiKhoan());
+					if(baiviet.CapNhatBaiViet(id, "HuyDich", user.getIdTaiKhoan())) kqua="?xuly=huy-thanhcong";
+					else kqua="?xuly=huy-thatbai";
 				}
-				response.sendRedirect("DanhSachBaiDichServlet");
+				response.sendRedirect("DanhSachBaiDichServlet"+kqua);
 			}
 		}else{
 			response.sendRedirect("TrangChuCTVServlet");

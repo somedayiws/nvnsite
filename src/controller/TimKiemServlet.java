@@ -38,12 +38,13 @@ public class TimKiemServlet extends HttpServlet {
 		DanhMucBO danhmuc = new DanhMucBO();
 		ArrayList<BAIVIET> listbaiviet = new ArrayList<BAIVIET>();
 		if(vitri != null && !"".equals(txtFind)){
-			listbaiviet = baiviet.getFind(txtFind, vitri, "20");
+			listbaiviet = baiviet.getFind(txtFind, vitri, "10");
 		}else{
-			listbaiviet = baiviet.getFind(txtFind, "0", "20");
+			listbaiviet = baiviet.getFind(txtFind, "0", "10");
 		}
 		ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc("");
 		ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet();
+		request.setAttribute("txtFind", txtFind);
 		request.setAttribute("listbaiviet", listbaiviet);
 		request.setAttribute("listdanhmuc", listdanhmuc);
 		request.setAttribute("topbaiviet", topbaiviet);

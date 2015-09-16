@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,7 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.bean.BAIVIET;
+import model.bean.DANHMUC;
 import model.bean.TAIKHOAN;
+import model.bo.BaiVietBO;
+import model.bo.DanhMucBO;
 import model.bo.TaiKhoanBO;
 import model.bo.ValidateBO;
 
@@ -43,18 +48,59 @@ public class DangNhapServlet extends HttpServlet {
 								password);
 						// Tạo session lưu trữ phiên làm việc
 						request.getSession().setAttribute("user", user);
-						// Set user role variable on session - ckfinder
 						request.getSession().setAttribute("CKFinder_UserRole", user.getQuyenQuanTri());
 						// Điều hướng đến trang khác mà không cần gửi dữ liệu
-						response.sendRedirect("TrangChuServlet");
+						response.sendRedirect("TrangCaNhanServlet");
 					} else {
-						response.sendRedirect("TrangChuServlet");
+						String txtFind = (String)request.getAttribute("txtFind");
+						if(txtFind == null) txtFind="";
+						DanhMucBO danhmuc = new DanhMucBO();
+						BaiVietBO baiviet = new BaiVietBO();
+						//Danh mục và bài viết tiêu biểu
+						ArrayList<DANHMUC> list = danhmuc.getListDanhMuc("0", "10");
+						//Danh mục hiển thị
+						ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc(txtFind);
+						//Danh sách bài viết host
+						ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet();
+						request.setAttribute("list", list);
+						request.setAttribute("listdanhmuc", listdanhmuc);
+						request.setAttribute("topbaiviet", topbaiviet);
+						request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Tên đăng nhập hoặc mật khẩu không chính xác.</p></div>");
+						request.getRequestDispatcher("DangNhapTaiKhoan.jsp").forward(request, response);
 					}
 				} else {
-					response.sendRedirect("TrangChuServlet");
+					String txtFind = (String)request.getAttribute("txtFind");
+					if(txtFind == null) txtFind="";
+					DanhMucBO danhmuc = new DanhMucBO();
+					BaiVietBO baiviet = new BaiVietBO();
+					//Danh mục và bài viết tiêu biểu
+					ArrayList<DANHMUC> list = danhmuc.getListDanhMuc("0", "10");
+					//Danh mục hiển thị
+					ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc(txtFind);
+					//Danh sách bài viết host
+					ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet();
+					request.setAttribute("list", list);
+					request.setAttribute("listdanhmuc", listdanhmuc);
+					request.setAttribute("topbaiviet", topbaiviet);
+					request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Bạn chưa nhập tài khoản.</p></div>");
+					request.getRequestDispatcher("DangNhapTaiKhoan.jsp").forward(request, response);
 				}
 			} else {
-				response.sendRedirect("TrangChuServlet");
+				String txtFind = (String)request.getAttribute("txtFind");
+				if(txtFind == null) txtFind="";
+				DanhMucBO danhmuc = new DanhMucBO();
+				BaiVietBO baiviet = new BaiVietBO();
+				//Danh mục và bài viết tiêu biểu
+				ArrayList<DANHMUC> list = danhmuc.getListDanhMuc("0", "10");
+				//Danh mục hiển thị
+				ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc(txtFind);
+				//Danh sách bài viết host
+				ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet();
+				request.setAttribute("list", list);
+				request.setAttribute("listdanhmuc", listdanhmuc);
+				request.setAttribute("topbaiviet", topbaiviet);
+				request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Bạn chưa mật khẩu.</p></div>");
+				request.getRequestDispatcher("DangNhapTaiKhoan.jsp").forward(request, response);
 			}
 		} else {
 			response.sendRedirect("TrangChuServlet");

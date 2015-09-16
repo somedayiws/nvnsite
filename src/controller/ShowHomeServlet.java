@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,15 +40,18 @@ public class ShowHomeServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		
+		RequestDispatcher requestDis;
 		//Check session exist
 		HttpSession session_user = request.getSession();
 		String username =(String)session_user.getAttribute("username");	
 	
 		if(username!=null){
-		response.sendRedirect("Home(Admin).jsp");}
-		else{
-			response.sendRedirect("Login.jsp");
+			 requestDis = request.getRequestDispatcher("Home(Admin).jsp");
 		}
+		else{
+			 requestDis = request.getRequestDispatcher("Login.jsp");
+		}
+		requestDis.forward(request, response);
 		
 	}
 

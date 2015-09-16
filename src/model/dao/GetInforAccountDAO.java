@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import model.bean.TAIKHOAN;
 
 public class GetInforAccountDAO {
-	MySQLConnector db = new MySQLConnector();
+	DataBaseDAO db = new DataBaseDAO();
 	
 	/**Get Account from database by username */
 	public TAIKHOAN getInforAcc(String username)

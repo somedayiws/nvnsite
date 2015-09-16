@@ -14,7 +14,7 @@ public class DanhMucDAO {
 		// TODO Auto-generated method stub
 		txtFind = DinhDangSQL.FomatSQL(txtFind);
 		ResultSet rs = null;
-		if(txtFind.equals("")) rs = db.getResultSet("select danhmuc.IdDanhMuc, TenDanhMucVi, TenDanhMucJa, HienThi, count(IdBaiViet) as SoLuongBai from danhmuc left join baiviet on danhmuc.IdDanhMuc=baiviet.IdDanhMuc group by danhmuc.IdDanhMuc order by HienThi desc");
+		if(txtFind.equals("")) rs = db.getResultSet("select danhmuc.IdDanhMuc, TenDanhMucVi, TenDanhMucJa, HienThi, count(IdBaiViet) as SoLuongBai from danhmuc left join baiviet on danhmuc.IdDanhMuc=baiviet.IdDanhMuc  and TrangThai=N'OK' group by danhmuc.IdDanhMuc order by HienThi desc");
 		else rs = db.getResultSet("select danhmuc.IdDanhMuc, TenDanhMucVi, TenDanhMucJa, HienThi, count(IdBaiViet) as SoLuongBai from danhmuc left join baiviet on danhmuc.IdDanhMuc=baiviet.IdDanhMuc group by danhmuc.IdDanhMuc order by HienThi desc");
 		ArrayList<DANHMUC> list = new ArrayList<DANHMUC>();
 		try {
@@ -63,5 +63,22 @@ public class DanhMucDAO {
 		tn = DinhDangSQL.FomatSQL(tn);
 		String sql = "insert into danhmuc values (N'"+id+"', N'"+tv+"', N'"+tn+"', '"+ghim+"')";
 		db.updateData(sql);
+	}
+
+	public DANHMUC getDanhMuc(String id) {
+		// TODO Auto-generated method stub
+		id = DinhDangSQL.FomatSQL(id);
+		String sql = "select danhmuc.IdDanhMuc, TenDanhMucVi, TenDanhMucJa, HienThi, count(IdBaiViet) as SoLuongBai from danhmuc left join baiviet on danhmuc.IdDanhMuc=baiviet.IdDanhMuc and TrangThai=N'OK' where danhmuc.IdDanhMuc=N'"+id+"' group by danhmuc.IdDanhMuc order by HienThi desc";
+		ResultSet rs = db.getResultSet(sql);
+		try {
+			if(rs.next()){
+				DANHMUC dm = new DANHMUC(DinhDangSQL.DeFomatSQL(rs.getString("IdDanhMuc")),DinhDangSQL.DeFomatSQL(rs.getString("TenDanhMucVi")), DinhDangSQL.DeFomatSQL(rs.getString("TenDanhMucJa")), rs.getInt("HienThi"));
+				dm.setSoLuongBV(rs.getInt("SoLuongBai"));
+				return dm;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

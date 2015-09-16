@@ -29,9 +29,14 @@ public class DataBaiVietServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		String n = request.getParameter("vitri");
+		String id = request.getParameter("id");
+		String txtFind = request.getParameter("txtFind");
+		System.out.println("Xem : " + id);
 		if(n == null) n = "10";
 		BaiVietBO baiviet = new BaiVietBO();
-		ArrayList<BAIVIET> listbaiviet = baiviet.getDanhSachBaiViet(Integer.parseInt(n), "4");
+		ArrayList<BAIVIET> listbaiviet = null;
+		if(txtFind==null) listbaiviet = baiviet.getDanhSachBaiViet(id, Integer.parseInt(n), "5");
+		else listbaiviet = baiviet.getFind(txtFind, n, "10");
 		request.setAttribute("listbaiviet", listbaiviet);
 		request.setAttribute("n", n);
 		request.getRequestDispatcher("DataBaiViet.jsp").forward(request, response);

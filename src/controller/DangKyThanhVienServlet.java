@@ -34,13 +34,19 @@ public class DangKyThanhVienServlet extends HttpServlet {
 		DanhMucBO danhmuc = new DanhMucBO();
 		BaiVietBO baiviet = new BaiVietBO();
 		String submit = request.getParameter("submit");
+		String txtFind = (String)request.getAttribute("txtFind");
+		if(txtFind == null) txtFind="";
+		//Danh mục và bài viết tiêu biểu
+		ArrayList<DANHMUC> list = danhmuc.getListDanhMuc("0", "10");
+		//Danh mục hiển thị
+		ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc(txtFind);
+		//Danh sách bài viết host
+		ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet();
+		request.setAttribute("list", list);
+		request.setAttribute("listdanhmuc", listdanhmuc);
+		request.setAttribute("topbaiviet", topbaiviet);
 		if(submit == null){
-			//Danh mục hiển thị
-			ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc("");
-			//Danh sách bài viết host
-			ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet();
-			request.setAttribute("listdanhmuc", listdanhmuc);
-			request.setAttribute("topbaiviet", topbaiviet);
+			request.setAttribute("loi", "");
 			request.getRequestDispatcher("DangKyThanhVien.jsp").forward(request, response);
 		}
 		else{
@@ -51,17 +57,21 @@ public class DangKyThanhVienServlet extends HttpServlet {
 			String dienthoai = request.getParameter("dienthoai");
 			String email = request.getParameter("email");
 			String ngonngu = request.getParameter("ngonngu");
-			if(taikhoan == null) response.sendRedirect("TrangChuServlet");
-			if(matkhau == null) response.sendRedirect("TrangChuServlet");
-			if(email == null) response.sendRedirect("TrangChuServlet");
-			if(hoten == null) response.sendRedirect("TrangChuServlet");
+			if(taikhoan == null) request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Bạn chưa nhập đầy đủ thông tin.</p></div>");
+			if(matkhau == null) request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Bạn chưa nhập đầy đủ thông tin.</p></div>");
+			if(email == null) request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Bạn chưa nhập đầy đủ thông tin.</p></div>");
+			if(hoten == null) request.setAttribute("loi", "Bạn chưa nhập đầy <div class='alert alert-danger' role='alert'><p>Bạn chưa nhập đầy đủ thông tin.</p></div>");
 			TaiKhoanBO taiKhoanBO = new TaiKhoanBO();
-			if(!taiKhoanBO.chekOk(taikhoan, matkhau)){
+			if(!taiKhoanBO.chekOk(taikhoan, "")){
 				taiKhoanBO.addTaiKhoan(taikhoan, matkhau, hoten, diachi, dienthoai, email, ngonngu);
+				request.setAttribute("loi", "");
+				request.setAttribute("tbao", "<div class='alert alert-success' role='alert'><p>Đăng ký thành công.<br>Vui lòng đăng nhập tài khoản thành viên.</p></div>");
+				request.getRequestDispatcher("DangNhapTaiKhoan.jsp").forward(request, response);
+			}else{
+				request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Tài khoản đã tồn tại. Vui lòng chọn tài khoản khác để đăng ký. Cảm ơn!</p></div>");
 			}
-			response.sendRedirect("ctv/TrangChuCTVServlet");
+			request.getRequestDispatcher("DangKyThanhVien.jsp").forward(request, response);
 		}
-		
 	}
 
 }

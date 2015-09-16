@@ -1,6 +1,5 @@
 package model.dao;
 
-import java.nio.charset.Charset;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -9,7 +8,7 @@ import model.bean.TAIKHOAN;
 public class RegisterDAO {
 
 	/** Attribute and Object */
-	MySQLConnector db = new MySQLConnector();
+	DataBaseDAO db = new DataBaseDAO();
 	public String errorExist;
 
 	/** Check account exist */

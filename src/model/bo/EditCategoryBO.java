@@ -1,7 +1,6 @@
 package model.bo;
 
 import model.bean.DANHMUC;
-import model.dao.CreateCategoryDAO;
 import model.dao.EditCategoryDAO;
 
 public class EditCategoryBO {
@@ -27,4 +26,13 @@ public class EditCategoryBO {
 	{
 		return editCategory.updateCategory(category);
 	}
+	//Thay đổi hiển thị
+	public boolean changeShowed(String idCategory){
+		return editCategory.changeShowed(idCategory);
+	}
+	//Kiểm tra IdDanhMuc tồn tại trong bảng danh mục
+		public boolean checkExistID(String idCategory){
+			return editCategory.checkExistID(idCategory);
+		}
 }
+

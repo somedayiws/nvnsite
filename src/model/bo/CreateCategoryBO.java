@@ -9,7 +9,7 @@ public class CreateCategoryBO {
 	/** Check validate data */
 	public boolean checkValidate(DANHMUC category, String display) {
 		if (category.getTenDanhMucVi() == ""
-				|| category.getTenDanhMucJa() == "" || display == null)
+				|| category.getTenDanhMucJa() == "" || display == null || category.getIcon() == "")
 			return false;
 		else
 			return true;

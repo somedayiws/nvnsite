@@ -43,10 +43,12 @@ public class CapNhatThongTinServlet extends HttpServlet {
 				user.setEmail(email);
 				user.setMatKhau(matkhau);
 				TaiKhoanBO tk = new TaiKhoanBO();
-				tk.UpdateThongTin(user);
-				request.setAttribute("meg", "Cập nhật thành công.");
+				if(tk.UpdateThongTin(user))
+					request.setAttribute("meg", "<div class='alert alert-success' role='alert'>Cập nhật thành công.</div>");
+				else
+					request.setAttribute("meg", "<div class='alert alert-danger' role='alert'>Cập nhật thất bại.</div>");
 			}else{
-				request.setAttribute("meg", "Chào bạn " + user.getHoTen() + ", Chúc bạn một ngày làm việc vui vẻ.");
+				request.setAttribute("meg", "<div class='alert alert-success' role='alert'><p>Chào bạn " + user.getHoTen() + ", Chúc bạn một ngày làm việc vui vẻ.</p></div>");
 			}
 			request.getRequestDispatcher("ThongTinCTV.jsp").forward(request, response);
 		}else{

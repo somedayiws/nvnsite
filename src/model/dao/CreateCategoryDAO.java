@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import model.bean.DANHMUC;
 
 public class CreateCategoryDAO {
-	MySQLConnector db = new MySQLConnector();
+	DataBaseDAO db = new DataBaseDAO();
 
 	/** Check exist */
 	public boolean checkCategoryExit(DANHMUC category) {
@@ -51,10 +51,11 @@ public class CreateCategoryDAO {
 	public boolean insertCategory(DANHMUC category) {
 		category.setTenDanhMucVi(DinhDangSQL.FomatSQL(category.getTenDanhMucVi()));
 		category.setTenDanhMucJa(DinhDangSQL.FomatSQL(category.getTenDanhMucJa()));
+		category.setIcon(DinhDangSQL.FomatSQL(category.getIcon()));
 		String sql_insert_category = "INSERT INTO danhmuc VALUES('"
 				+ category.getIdDanhMuc() + "',N'" + category.getTenDanhMucVi()
 				+ "',N'" + category.getTenDanhMucJa() + "','"
-				+ category.getHienThi() + "','0')";
+				+ category.getHienThi() + "','0','"+category.getIcon()+"')";
 		
 		return db.updateData(sql_insert_category);
 	}

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import model.bean.TAIKHOAN;
 
 public class GetAccountDAO {
-	MySQLConnector db= new MySQLConnector();
+	DataBaseDAO db= new DataBaseDAO();
 	ListAccountDAO listAcc = new ListAccountDAO();
 	public ArrayList<TAIKHOAN> getAccountByStatus(String status){
 		String sql_select_AccountByStatus = null;

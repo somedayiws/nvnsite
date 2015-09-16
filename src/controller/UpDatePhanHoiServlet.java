@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.bean.BAIVIET;
 import model.bo.BaiVietBO;
 
 @WebServlet("/ctv/UpDatePhanHoiServlet")

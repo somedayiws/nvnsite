@@ -34,15 +34,24 @@ public class DanhSachBaiDichServlet extends HttpServlet {
 		TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("user");
 		ArrayList<BAIVIET> listbaiviet = new ArrayList<BAIVIET>();
 		if(user != null){
-			if(view != null && view.equals("qua-han")){
-				listbaiviet = baiviet.getListPhanCong(user.getIdTaiKhoan(), "qua-han");
-			}else if(view != null && view.equals("moi")){
-				listbaiviet = baiviet.getListPhanCong(user.getIdTaiKhoan(), "moi");
-			}else if(view != null && view.equals("dich")){
-				listbaiviet = baiviet.getListPhanCong(user.getIdTaiKhoan(), "dich");
-			}else {
-				listbaiviet = baiviet.getListPhanCong(user.getIdTaiKhoan());
+			int page = 1;
+			baiviet.setMenu(10, 10);
+			try {
+				page = Integer.parseInt(request.getParameter("page"));
+			} catch (NumberFormatException e) {
+				page = 1;
 			}
+			if(view != null && view.equals("qua-han")){
+				listbaiviet = baiviet.getListPhanCong(user.getIdTaiKhoan(), "qua-han", page);
+			}else if(view != null && view.equals("moi")){
+				listbaiviet = baiviet.getListPhanCong(user.getIdTaiKhoan(), "moi", page);
+			}else if(view != null && view.equals("dich")){
+				listbaiviet = baiviet.getListPhanCong(user.getIdTaiKhoan(), "dich", page);
+			}else {
+				listbaiviet = baiviet.getListPhanCong(user.getIdTaiKhoan(), page);
+			}
+			String pageNav = baiviet.getMenuPhanTrang();
+			request.setAttribute("pageNav", pageNav);
 			request.setAttribute("listbaiviet", listbaiviet);
 			request.getRequestDispatcher("ListBaiDich.jsp").forward(request, response);
 		}else{

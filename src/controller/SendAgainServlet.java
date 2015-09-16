@@ -1,10 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -54,7 +50,7 @@ public class SendAgainServlet extends HttpServlet {
 		 request.setAttribute("idPost", idPost);
 		 request.setAttribute("accountErrorTranslate", accountErrorTranslate);
 		 ListAccountBO listAcc = new ListAccountBO();
-		 TAIKHOAN[] listAccount = listAcc.getDataAccountInfor();
+		 TAIKHOAN[] listAccount = listAcc.getDataAccountInfor(1);
 		 request.setAttribute("listAccount", listAccount);
 		 request.setAttribute("status", status);
 			RequestDispatcher requestDis = request

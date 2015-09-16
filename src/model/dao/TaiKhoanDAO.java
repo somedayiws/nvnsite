@@ -13,8 +13,59 @@ public class TaiKhoanDAO {
 		//Kiểm tra tồn tại của user
 		username = DinhDangSQL.FomatSQL(username);
 		password = DinhDangSQL.FomatSQL(password);
+		String sql = "";
+		if(password.equals("")){
+			sql = "select * from taikhoan where TenTaiKhoan=N'"+username+"' and QuyenQuanTri=N'user'";
+		}else{
+			sql = "select * from taikhoan where TenTaiKhoan=N'"+username+"' and MatKhau=N'" + password + "' and QuyenQuanTri=N'user'";
+		}
+		ResultSet rs = db.getResultSet(sql);
+		try {
+			if(rs.next()) return true;
+		} catch (SQLException e) {
+			//Lỗi trả về sai
+			e.printStackTrace();
+			return false;
+		}
+		return false;
+	}
+	
+	public boolean chekOk(String username, String password, int x) {
+		//Kiểm tra tồn tại của user
+		username = DinhDangSQL.FomatSQL(username);
+		password = DinhDangSQL.FomatSQL(password);
+		String sql = "";
+		if(password.equals("")){
+			if(x==0)
+				sql = "select * from taikhoan where TenTaiKhoan=N'"+username+"' and QuyenQuanTri=N'user'";
+			else if(x==1)
+				sql = "select * from taikhoan where TenTaiKhoan=N'"+username+"' and QuyenQuanTri=N'ctv'";
+			else
+				sql = "select * from taikhoan where TenTaiKhoan=N'"+username+"' and QuyenQuanTri=N'admin'";
+		}else{
+			if(x==0)
+				sql = "select * from taikhoan where TenTaiKhoan=N'"+username+"' and MatKhau=N'" + password + "' and QuyenQuanTri=N'user'";
+			else if(x==1)
+				sql = "select * from taikhoan where TenTaiKhoan=N'"+username+"' and MatKhau=N'" + password + "' and QuyenQuanTri=N'ctv'";
+			else
+				sql = "select * from taikhoan where TenTaiKhoan=N'"+username+"' and QuyenQuanTri=N'admin'";
+		}
+		ResultSet rs = db.getResultSet(sql);
+		try {
+			if(rs.next()) return true;
+		} catch (SQLException e) {
+			//Lỗi trả về sai
+			e.printStackTrace();
+			return false;
+		}
+		return false;
+	}
+	
+	public boolean chekEmail(String email) {
+		//Kiểm tra tồn tại của user
+		email = DinhDangSQL.FomatSQL(email);
 		
-		ResultSet rs = db.getResultSet("select * from taikhoan where TenTaiKhoan='"+username+"' and MatKhau='" + password + "'");
+		ResultSet rs = db.getResultSet("select * from taikhoan where Email=N'"+email+"'");
 		try {
 			if(rs.next()) return true;
 		} catch (SQLException e) {
@@ -29,8 +80,12 @@ public class TaiKhoanDAO {
 		//lấy tài khoản thỏa mãn
 		username = DinhDangSQL.FomatSQL(username);
 		password = DinhDangSQL.FomatSQL(password);
-		
-		ResultSet rs = db.getResultSet("select * from taikhoan where TenTaiKhoan='"+username+"' and MatKhau='" + password + "'");
+		ResultSet rs = null;
+		if(password.equals("reset")){
+			rs = db.getResultSet("select * from taikhoan where TenTaiKhoan=N'"+username+"'");
+		}else {
+			rs = db.getResultSet("select * from taikhoan where TenTaiKhoan=N'"+username+"' and MatKhau=N'" + password + "'");
+		}
 		TAIKHOAN taikhoan = null;
 		try {
 			if(rs.next()){
@@ -46,7 +101,7 @@ public class TaiKhoanDAO {
 		return taikhoan;
 	}
 
-	public void UpdateThongTin(TAIKHOAN user) {
+	public boolean UpdateThongTin(TAIKHOAN user) {
 		// TODO Auto-generated method stub
 		String sql = "update taikhoan set MatKhau=N'"+DinhDangSQL.FomatSQL(user.getMatKhau())
 				+"', DiaChi=N'"+DinhDangSQL.FomatSQL(user.getDiaChi())
@@ -54,7 +109,7 @@ public class TaiKhoanDAO {
 				+"', DienThoai='"+DinhDangSQL.FomatSQL(user.getDienThoai())
 				+"', Email=N'"+DinhDangSQL.FomatSQL(user.getEmail())
 				+"' where TenTaiKhoan=N'"+DinhDangSQL.FomatSQL(user.getTenTaiKhoan())+"'";
-		db.updateData(sql);
+		return db.updateData(sql);
 	}
 
 	public void addTaiKhoan(String taikhoan, String matkhau, String hoten,
@@ -70,16 +125,18 @@ public class TaiKhoanDAO {
 		String sql = "insert into taikhoan(IdTaiKhoan, TenTaiKhoan, MatKhau, QuyenQuanTri, HoTen, DiaChi, DienThoai, Email, NgonNgu, CoXoa, TinhTrang)"
 				+ " values (N'"+getIdTaiKhoanMax()+"', N'"+taikhoan+"', N'"+matkhau+"',N'user',"
 				+ " N'"+hoten+"', N'"+diachi+"', '"+dienthoai+"',"
-				+ " N'"+email+"', N'"+ngonngu+"', '0', N'hoatdong')";
+				+ " N'"+email+"', N'"+ngonngu+"', '0', N'MoiTao')";
 		db.updateData(sql);
 	}
 	public String getIdTaiKhoanMax(){
-		String id = "US00000000";
-		ResultSet rs = db.getResultSet("select IdTaiKhoan from taikhoan order by IdTaiKhoan desc limit 1");
+		String id = "TK00000000";
+		ResultSet rs = db.getResultSet("select IdTaiKhoan from taikhoan where QuyenQuanTri=N'user' order by IdTaiKhoan desc limit 1");
 		try {
 			if(rs.next()){
 				int tam = Integer.parseInt(rs.getString(1).substring(2)) + 1;
-				id = id.substring(0, 10 - (tam+"").length()) + tam;
+				if(tam <= 99999999)
+					id = id.substring(0, 10 - (tam+"").length()) + tam;
+				else id = "TK" + tam;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

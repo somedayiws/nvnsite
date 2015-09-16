@@ -20,7 +20,7 @@ public class BaiVietDAO {
 	public BAIVIET getBaiViet(String id) {
 		// TODO Auto-generated method stub
 		id = DinhDangSQL.FomatSQL(id);
-		ResultSet rs = db.getResultSet("select IdBaiViet, TenBaiVietVi, TenBaiVietJa, MoTaVi, MoTaJa, danhmuc.IdDanhMuc, TenDanhMucVi, TenDanhMucJa, HienThi, taikhoan.IdTaiKhoan, TenTaiKhoan, MatKhau, HoTen, DiaChi, DienThoai, Email, QuyenQuanTri, NoiDungVi, NoiDungJa, TrangThai, GhiChu from baiviet inner join danhmuc on baiviet.IdDanhMuc=danhmuc.IdDanhMuc inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan where IdBaiViet='"+id+"'");
+		ResultSet rs = db.getResultSet("select IdBaiViet, TenBaiVietVi, TenBaiVietJa, MoTaVi, MoTaJa, danhmuc.IdDanhMuc, TenDanhMucVi, TenDanhMucJa, HienThi, taikhoan.IdTaiKhoan, TenTaiKhoan, MatKhau, HoTen, DiaChi, DienThoai, Email, QuyenQuanTri, NoiDungVi, NoiDungJa, TrangThai, GhiChu, LienKet from baiviet inner join danhmuc on baiviet.IdDanhMuc=danhmuc.IdDanhMuc inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan where IdBaiViet='"+id+"'");
 		BAIVIET bv = null;
 		BinhLuanDAO bl = new BinhLuanDAO();
 		try {
@@ -37,7 +37,9 @@ public class BaiVietDAO {
 				bv.setNoiDungJa(DinhDangSQL.DeFomatSQL(rs.getString("NoiDungJa")));
 				bv.setTrangThai(DinhDangSQL.DeFomatSQL(rs.getString("TrangThai")));
 				bv.setGhiChu(DinhDangSQL.DeFomatSQL(rs.getString("GhiChu")));
-				db.updateData("update baiviet set LuotXem = LuotXem + 1 where IdBaiViet=N'"+id+"'");
+				bv.setLienKet(DinhDangSQL.DeFomatSQL(rs.getString("LienKet")));
+				if(bv.getTrangThai().equals("OK"))
+					db.updateData("update baiviet set LuotXem = LuotXem + 1 where IdBaiViet=N'"+id+"'");
 				bv.setBinhLuanVi(bl.getListBinhLuan(id, "vi", "0"));
 				bv.setBinhLuanJa(bl.getListBinhLuan(id, "ja", "0"));
 				return bv;
@@ -56,7 +58,7 @@ public class BaiVietDAO {
 		// TODO Auto-generated method stub
 		ArrayList<BAIVIET> list = new ArrayList<BAIVIET>();
 		ResultSet rs = null;
-		String sql = "select IdBaiViet, TenBaiVietVi, TenBaiVietJa, danhmuc.IdDanhMuc, TenDanhMucVi, TenDanhMucJa, HienThi, taikhoan.IdTaiKhoan, TenTaiKhoan, MatKhau, HoTen, DiaChi, DienThoai, Email, QuyenQuanTri, NoiDungVi, NoiDungJa, TrangThai, GhiChu from baiviet "
+		String sql = "select IdBaiViet, MoTaVi, MoTaJa,TenBaiVietVi, TenBaiVietJa, danhmuc.IdDanhMuc, TenDanhMucVi, TenDanhMucJa, HienThi, taikhoan.IdTaiKhoan, TenTaiKhoan, MatKhau, HoTen, DiaChi, DienThoai, Email, QuyenQuanTri, NoiDungVi, NoiDungJa, TrangThai, GhiChu, LienKet from baiviet "
 					+ "inner join danhmuc on baiviet.IdDanhMuc=danhmuc.IdDanhMuc "
 					+ "inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan "
 					+ "limit " + n + ", " + top;
@@ -68,6 +70,9 @@ public class BaiVietDAO {
 			while(rs.next()){
 				String id = DinhDangSQL.DeFomatSQL(rs.getString("IdBaiViet"));
 				BAIVIET bv = new BAIVIET(id, DinhDangSQL.DeFomatSQL(rs.getString("TenBaiVietVi")), DinhDangSQL.DeFomatSQL(rs.getString("TenBaiVietJa")), new DANHMUC(DinhDangSQL.DeFomatSQL(rs.getString("IdDanhMuc")), DinhDangSQL.DeFomatSQL(rs.getString("TenDanhMucVi")), DinhDangSQL.DeFomatSQL(rs.getString("TenDanhMucJa")), rs.getInt("HienThi")), new TAIKHOAN(DinhDangSQL.DeFomatSQL(rs.getString("IdTaiKhoan")), DinhDangSQL.DeFomatSQL(rs.getString("TenTaiKhoan")), DinhDangSQL.DeFomatSQL(rs.getString("MatKhau")), DinhDangSQL.DeFomatSQL(rs.getString("HoTen")), DinhDangSQL.DeFomatSQL(rs.getString("DiaChi")), rs.getString("DienThoai"), DinhDangSQL.DeFomatSQL(rs.getString("Email")), DinhDangSQL.DeFomatSQL(rs.getString("QuyenQuanTri"))), DinhDangSQL.DeFomatSQL(rs.getString("NoiDungVi")), DinhDangSQL.DeFomatSQL(rs.getString("NoiDungJa")), DinhDangSQL.DeFomatSQL(rs.getString("TrangThai")), DinhDangSQL.DeFomatSQL(rs.getString("GhiChu")));
+				bv.setLienKet(DinhDangSQL.DeFomatSQL(rs.getString("LienKet")));
+				bv.setMoTaVi(DinhDangSQL.DeFomatSQL(rs.getString("MoTaVi")));
+				bv.setMoTaJa(DinhDangSQL.DeFomatSQL(rs.getString("MoTaJa")));
 				bv.setBinhLuanVi(bl.getListBinhLuan(id, "vi", "3"));
 				list.add(bv);
 			}
@@ -84,22 +89,23 @@ public class BaiVietDAO {
 	 */
 	public ArrayList<BAIVIET> getListBaiViet(String id, String vitri, String top) {
 		// TODO Auto-generated method stub
-		String sql = "select IdBaiViet,TenBaiVietVi,TenBaiVietJa,MoTaVi,MoTaJa,NoiDungVi,NoiDungJa,NgayDang,Lienket,LuotXem,HoTen from baiviet inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan where TrangThai=N'OK' and IdDanhMuc='"+id+"' limit " + vitri + ", " +top;
+		String sql = "select IdBaiViet,TenBaiVietVi,TenBaiVietJa,MoTaVi,MoTaJa,NoiDungVi,NoiDungJa,NgayDang,Lienket,LuotXem,HoTen from baiviet inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan where TrangThai=N'OK' and IdDanhMuc=N'"+DinhDangSQL.FomatSQL(id)+"' order by NgayDang desc, LuotXem desc limit " + vitri + ", " +top;
 		ResultSet rs = db.getResultSet(sql);
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		ArrayList<BAIVIET> list = new ArrayList<BAIVIET>();
 		try {
 			while(rs.next()){
 				BAIVIET bv = new BAIVIET();
-				bv.setIdBaiViet(rs.getString("IdBaiViet"));
-				bv.setTenBaiVietVi(rs.getString("TenBaiVietVi"));
-				bv.setTenBaiVietJa(rs.getString("TenBaiVietJa"));
-				bv.setMoTaVi(rs.getString("MoTaVi"));
-				bv.setMoTaJa(rs.getString("MoTaJa"));
-				bv.setNgayDang(rs.getString("NgayDang"));
-				bv.setLienKet(rs.getString("LienKet"));
+				bv.setIdBaiViet(DinhDangSQL.DeFomatSQL(rs.getString("IdBaiViet")));
+				bv.setTenBaiVietVi(DinhDangSQL.DeFomatSQL(rs.getString("TenBaiVietVi")));
+				bv.setTenBaiVietJa(DinhDangSQL.DeFomatSQL(rs.getString("TenBaiVietJa")));
+				bv.setMoTaVi(DinhDangSQL.DeFomatSQL(rs.getString("MoTaVi")));
+				bv.setMoTaJa(DinhDangSQL.DeFomatSQL(rs.getString("MoTaJa")));
+				bv.setNgayDang(sdf.format(rs.getDate("NgayDang")));
+				bv.setLienKet(DinhDangSQL.DeFomatSQL(rs.getString("LienKet")));
 				bv.setLuotXem(rs.getInt("LuotXem"));
 				TAIKHOAN tk = new TAIKHOAN();
-				tk.setHoTen(rs.getString("HoTen"));
+				tk.setHoTen(DinhDangSQL.DeFomatSQL(rs.getString("HoTen")));
 				bv.setTaiKhoan(tk);
 				list.add(bv);
 			}
@@ -114,12 +120,18 @@ public class BaiVietDAO {
 	 */
 	public boolean ThemBaiViet(String tieuDeVi, String moTaVi, String noiDungVi,
 			String tieuDeJa, String moTaJa, String noiDungJa, String theLoai,
-			String taiKhoan, String hinhAnh) {
+			String taiKhoan, String hinhAnh, String trangThai) {
 		// TODO Auto-generated method stub
 		Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		String sql = "insert into baiviet(IdBaiViet, TenBaiVietVi, TenBaiVietJa, IdDanhMuc, MotaVi, MotaJa, IdTaiKhoan, NoiDungVi, NoiDungJa, TrangThai, LuotXem, NgayDang, CoXoa) values "
-				+ "(N'"+getID()+"', N'"+tieuDeVi+"', N'"+tieuDeJa+"', N'"+theLoai+"', N'"+moTaVi+"', N'"+moTaJa+"', N'"+taiKhoan+"', N'"+noiDungVi+"', N'"+noiDungJa+"', N'MoiPost', '0', '"+sdf.format(cal.getTime())+"', '0')";
+		String sql = "insert into baiviet(IdBaiViet, TenBaiVietVi, TenBaiVietJa, IdDanhMuc, MotaVi, MotaJa, IdTaiKhoan, NoiDungVi, NoiDungJa, TrangThai, LuotXem, NgayDang, CoXoa, LienKet) values "
+				+ "(N'"+getID()+"', N'"+DinhDangSQL.FomatSQL(tieuDeVi)
+				+"', N'"+DinhDangSQL.FomatSQL(tieuDeJa)+"', N'"+DinhDangSQL.FomatSQL(theLoai)+"', N'"
+				+DinhDangSQL.FomatSQL(moTaVi)+"', N'"+DinhDangSQL.FomatSQL(moTaJa)+"', N'"
+				+DinhDangSQL.FomatSQL(taiKhoan)+"', N'"+DinhDangSQL.FomatSQL(noiDungVi)+"', N'"
+				+DinhDangSQL.FomatSQL(noiDungJa)+"', N'"+trangThai+"', '0', '"
+				+sdf.format(cal.getTime())+"', '0', N'"+hinhAnh+"')";
+		System.out.println("SQL : " + sql);
 		return db.updateData(sql);
 	}
 	/*
@@ -127,12 +139,15 @@ public class BaiVietDAO {
 	 * return true/false
 	 */
 	public boolean ThemBaiVietVi(String tieuDe, String moTa, String noiDung,
-			String theLoai, String taiKhoan, String hinhAnh) {
+			String theLoai, String taiKhoan, String hinhAnh, String trangThai) {
 		// TODO Auto-generated method stub
 		Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		String sql = "insert into baiviet(IdBaiViet, TenBaiVietVi, IdDanhMuc, MotaVi, IdTaiKhoan, NoiDungVi, TrangThai, LuotXem, NgayDang, CoXoa) values "
-				+ "(N'"+getID()+"', N'"+tieuDe+"', N'"+theLoai+"', N'"+moTa+"', N'"+taiKhoan+"', N'"+noiDung+"', N'MoiPost', '0', '"+sdf.format(cal.getTime())+"', '0')";
+		String sql = "insert into baiviet(IdBaiViet, TenBaiVietVi, IdDanhMuc, MotaVi, IdTaiKhoan, NoiDungVi, TrangThai, LuotXem, NgayDang, CoXoa, LienKet) values "
+				+ "(N'"+getID()+"', N'"+DinhDangSQL.FomatSQL(tieuDe)+"', N'"
+				+DinhDangSQL.FomatSQL(theLoai)+"', N'"+DinhDangSQL.FomatSQL(moTa)+"', N'"
+				+DinhDangSQL.FomatSQL(taiKhoan)+"', N'"+DinhDangSQL.FomatSQL(noiDung)+"', N'"+trangThai+"', '0', '"
+				+sdf.format(cal.getTime())+"', '0', N'"+hinhAnh+"')";
 		
 		return db.updateData(sql);
 	}
@@ -141,12 +156,15 @@ public class BaiVietDAO {
 	 * return true/false
 	 */
 	public boolean ThemBaiVietJa(String tieuDe, String moTa, String noiDung,
-			String theLoai, String taiKhoan, String hinhAnh) {
+			String theLoai, String taiKhoan, String hinhAnh, String trangThai) {
 		// TODO Auto-generated method stub
 		Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		String sql = "insert into baiviet(IdBaiViet, TenBaiVietJa, IdDanhMuc, MotaJa, IdTaiKhoan, NoiDungJa, TrangThai, LuotXem, NgayDang, CoXoa) values "
-				+ "(N'"+getID()+"', N'"+tieuDe+"', N'"+theLoai+"', N'"+moTa+"', N'"+taiKhoan+"', N'"+noiDung+"', N'MoiPost', '0', '"+sdf.format(cal.getTime())+"', '0')";
+		String sql = "insert into baiviet(IdBaiViet, TenBaiVietJa, IdDanhMuc, MotaJa, IdTaiKhoan, NoiDungJa, TrangThai, LuotXem, NgayDang, CoXoa, LienKet) values "
+				+ "(N'"+getID()+"', N'"+DinhDangSQL.FomatSQL(tieuDe)+"', N'"
+				+DinhDangSQL.FomatSQL(theLoai)+"', N'"+DinhDangSQL.FomatSQL(moTa)+"', N'"
+				+DinhDangSQL.FomatSQL(taiKhoan)+"', N'"+DinhDangSQL.FomatSQL(noiDung)+"', N'"+trangThai+"', '0', '"
+				+sdf.format(cal.getTime())+"', '0', N'"+hinhAnh+"')";
 		return db.updateData(sql);
 	}
 	/*
@@ -175,7 +193,7 @@ public class BaiVietDAO {
 		// TODO Auto-generated method stub
 		ArrayList<BAIVIET> list = new ArrayList<BAIVIET>();
 		ResultSet rs = null;
-		String sql = "select IdBaiViet, TenBaiVietVi, TenBaiVietJa, danhmuc.IdDanhMuc, TenDanhMucVi, TenDanhMucJa, HienThi, taikhoan.IdTaiKhoan, TenTaiKhoan, MatKhau, HoTen, DiaChi, DienThoai, Email, QuyenQuanTri, NoiDungVi, NoiDungJa, TrangThai, GhiChu from baiviet "
+		String sql = "select IdBaiViet, TenBaiVietVi,MoTaVi, MoTaJa, TenBaiVietJa, danhmuc.IdDanhMuc, TenDanhMucVi, TenDanhMucJa, HienThi, taikhoan.IdTaiKhoan, TenTaiKhoan, MatKhau, HoTen, DiaChi, DienThoai, Email, QuyenQuanTri, NoiDungVi, NoiDungJa, TrangThai, GhiChu, LienKet from baiviet "
 					+ "inner join danhmuc on baiviet.IdDanhMuc=danhmuc.IdDanhMuc "
 					+ "inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan "
 					+ "order by LuotXem desc limit 10";
@@ -184,9 +202,12 @@ public class BaiVietDAO {
 		try {
 			while(rs.next()){
 				String id = rs.getString("IdBaiViet");
-				BAIVIET bv = new BAIVIET(id, rs.getString("TenBaiVietVi"), rs.getString("TenBaiVietJa"), new DANHMUC(rs.getString("IdDanhMuc"), rs.getString("TenDanhMucVi"), rs.getString("TenDanhMucJa"), rs.getInt("HienThi")), new TAIKHOAN(rs.getString("IdTaiKhoan"), rs.getString("TenTaiKhoan"), rs.getString("MatKhau"), rs.getString("HoTen"), rs.getString("DiaChi"), rs.getString("DienThoai"), rs.getString("Email"), rs.getString("QuyenQuanTri")), rs.getString("NoiDungVi"), rs.getString("NoiDungJa"), rs.getString("TrangThai"), rs.getString("GhiChu"));
+				BAIVIET bv = new BAIVIET(id, DinhDangSQL.DeFomatSQL(rs.getString("TenBaiVietVi")), DinhDangSQL.DeFomatSQL(rs.getString("TenBaiVietJa")), new DANHMUC(DinhDangSQL.DeFomatSQL(rs.getString("IdDanhMuc")), DinhDangSQL.DeFomatSQL(rs.getString("TenDanhMucVi")), DinhDangSQL.DeFomatSQL(rs.getString("TenDanhMucJa")), rs.getInt("HienThi")), new TAIKHOAN(DinhDangSQL.DeFomatSQL(rs.getString("IdTaiKhoan")), DinhDangSQL.DeFomatSQL(rs.getString("TenTaiKhoan")), DinhDangSQL.DeFomatSQL(rs.getString("MatKhau")), DinhDangSQL.DeFomatSQL(rs.getString("HoTen")), DinhDangSQL.DeFomatSQL(rs.getString("DiaChi")), DinhDangSQL.DeFomatSQL(rs.getString("DienThoai")), DinhDangSQL.DeFomatSQL(rs.getString("Email")), DinhDangSQL.DeFomatSQL(rs.getString("QuyenQuanTri"))), DinhDangSQL.DeFomatSQL(rs.getString("NoiDungVi")), DinhDangSQL.DeFomatSQL(rs.getString("NoiDungJa")), DinhDangSQL.DeFomatSQL(rs.getString("TrangThai")), DinhDangSQL.DeFomatSQL(rs.getString("GhiChu")));
 				bv.setBinhLuanVi(bl.getListBinhLuan(id, "vi", "0"));
 				bv.setBinhLuanVi(bl.getListBinhLuan(id, "ja", "0"));
+				bv.setLienKet(DinhDangSQL.DeFomatSQL(rs.getString("LienKet")));
+				bv.setMoTaVi(DinhDangSQL.DeFomatSQL(rs.getString("MoTaVi")));
+				bv.setMoTaJa(DinhDangSQL.DeFomatSQL(rs.getString("MoTaJa")));
 				list.add(bv);
 			}
 			return list;
@@ -203,38 +224,43 @@ public class BaiVietDAO {
 	 */
 	public ArrayList<BAIVIET> getFind(String txtFind, String vitri, String top) {
 		// TODO Auto-generated method stub
+		String sql = "select IdBaiViet,TenBaiVietVi,TenBaiVietJa,MoTaVi,MoTaJa,NoiDungVi,NoiDungJa,NgayDang,Lienket,LuotXem,HoTen from baiviet "
+				+ "inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan "
+				+ "where TrangThai=N'OK' and (TenBaiVietJa like N'%"+txtFind+"%' or TenBaiVietVi like N'%"+txtFind+"%'"
+				+ " or MotaJa like N'%"+txtFind+"%' or MotaVi like N'%"+txtFind+"%')"
+				+ "order by NgayDang desc, LuotXem desc limit " + vitri + ", " +top;
+		ResultSet rs = db.getResultSet(sql);
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		ArrayList<BAIVIET> list = new ArrayList<BAIVIET>();
-		ResultSet rs = null;
-		String sql = "select IdBaiViet, TenBaiVietVi, TenBaiVietJa, danhmuc.IdDanhMuc, TenDanhMucVi, TenDanhMucJa, HienThi, taikhoan.IdTaiKhoan, TenTaiKhoan, MatKhau, HoTen, DiaChi, DienThoai, Email, QuyenQuanTri, NoiDungVi, NoiDungJa, TrangThai, GhiChu from baiviet "
-						+ " inner join danhmuc on baiviet.IdDanhMuc=danhmuc.IdDanhMuc"
-						+ " inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan"
-						+ " where TenBaiVietJa like '%"+txtFind+"%' or TenBaiVietVi like '%"+txtFind+"%'"
-						+ " or MotaJa like '%"+txtFind+"%' or MotaVi like '%"+txtFind+"%' limit "+vitri+", "+top;
-		
-		rs = db.getResultSet(sql);
-		
-		BinhLuanDAO bl = new BinhLuanDAO();
-		
 		try {
 			while(rs.next()){
-				String id = rs.getString("IdBaiViet");
-				BAIVIET bv = new BAIVIET(id, rs.getString("TenBaiVietVi"), rs.getString("TenBaiVietJa"), new DANHMUC(rs.getString("IdDanhMuc"), rs.getString("TenDanhMucVi"), rs.getString("TenDanhMucJa"), rs.getInt("HienThi")), new TAIKHOAN(rs.getString("IdTaiKhoan"), rs.getString("TenTaiKhoan"), rs.getString("MatKhau"), rs.getString("HoTen"), rs.getString("DiaChi"), rs.getString("DienThoai"), rs.getString("Email"), rs.getString("QuyenQuanTri")), rs.getString("NoiDungVi"), rs.getString("NoiDungJa"), rs.getString("TrangThai"), rs.getString("GhiChu"));
-				bv.setBinhLuanVi(bl.getListBinhLuan(id, "vi", "3"));
+				BAIVIET bv = new BAIVIET();
+				bv.setIdBaiViet(DinhDangSQL.DeFomatSQL(rs.getString("IdBaiViet")));
+				bv.setTenBaiVietVi(DinhDangSQL.DeFomatSQL(rs.getString("TenBaiVietVi")));
+				bv.setTenBaiVietJa(DinhDangSQL.DeFomatSQL(rs.getString("TenBaiVietJa")));
+				bv.setMoTaVi(DinhDangSQL.DeFomatSQL(rs.getString("MoTaVi")));
+				bv.setMoTaJa(DinhDangSQL.DeFomatSQL(rs.getString("MoTaJa")));
+				bv.setNgayDang(sdf.format(rs.getDate("NgayDang")));
+				bv.setLienKet(DinhDangSQL.DeFomatSQL(rs.getString("LienKet")));
+				bv.setLuotXem(rs.getInt("LuotXem"));
+				TAIKHOAN tk = new TAIKHOAN();
+				tk.setHoTen(DinhDangSQL.DeFomatSQL(rs.getString("HoTen")));
+				bv.setTaiKhoan(tk);
 				list.add(bv);
 			}
-			return list;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
-		return null;
+		return list;
 	}
 	/*
 	 * Dùng cho trang cộng tác viên
 	 * Lấy danh sách bài viết tương ứng với tài khoản được phân công
 	 * return ArrayList<BAIVIET> or null
 	 */
-	public ArrayList<BAIVIET> getListPhanCong(String idTaiKhoan) {
+	private int tongtrang = 0;
+	public ArrayList<BAIVIET> getListPhanCong(String idTaiKhoan, int page) {
 		ArrayList<BAIVIET> list = new ArrayList<BAIVIET>();
 		ResultSet rs = null;
 		String sql = "select baiviet.IdBaiViet, TenBaiVietVi, TenBaiVietJa, MotaVi, MotaJa, NoiDungVi, NoiDungJa, GhiChu from baiviet "
@@ -242,8 +268,9 @@ public class BaiVietDAO {
 				+ "where (lichsu.TrangThai = N'ChuyenDich' or lichsu.TrangThai = N'DangDich' or lichsu.TrangThai = N'LoiDich' "
 				+ "or lichsu.TrangThai = N'DaDich') and lichsu.IdTaiKhoan = N'"+idTaiKhoan+"'";
 		
-		rs = db.getResultSet(sql);
-		
+		//Tạo menu phân trang Url, page, sql
+		db.createMenu("DanhSachBaiDichServlet?view=all&", page, sql);
+		rs = db.getResultSet(sql + " limit " + (page-1)*db.getNBangGhi() +","+ db.getNBangGhi());
 		try {
 			while(rs.next()){
 				BAIVIET bv = new BAIVIET();
@@ -273,6 +300,13 @@ public class BaiVietDAO {
 			String noidung, String tinhtrang, String ngonNgu, String idTaiKhoan) {
 		// TODO Auto-generated method stub
 		String sql = "";
+		id = DinhDangSQL.FomatSQL(id);
+		tieude = DinhDangSQL.FomatSQL(tieude);
+		mota = DinhDangSQL.FomatSQL(mota);
+		noidung = DinhDangSQL.FomatSQL(noidung);
+		tinhtrang = DinhDangSQL.FomatSQL(tinhtrang);
+		ngonNgu = DinhDangSQL.FomatSQL(ngonNgu);
+		idTaiKhoan = DinhDangSQL.FomatSQL(idTaiKhoan);
 		if(ngonNgu.equals("ja")){
 			sql = "update baiviet set TenBaiVietVi=N'"+tieude
 					+"', MotaVi=N'"+mota
@@ -305,7 +339,8 @@ public class BaiVietDAO {
 	 * Lấy danh sách bài dịch được phân công cho cộng tác viên x, với tùy chọn(Bài quá hạn, mới, đang dịch)
 	 * return ArrayList<BAIVIET>
 	 */
-	public ArrayList<BAIVIET> getListPhanCong(String idTaiKhoan, String view) {
+	
+	public ArrayList<BAIVIET> getListPhanCong(String idTaiKhoan, String view, int page) {
 		// TODO Auto-generated method stub
 		ArrayList<BAIVIET> list = new ArrayList<BAIVIET>();
 		ResultSet rs = null;
@@ -326,8 +361,10 @@ public class BaiVietDAO {
 					+ "where (lichsu.TrangThai = N'DangDich' "
 					+ "or lichsu.TrangThai = N'DaDich') and lichsu.IdTaiKhoan = N'"+idTaiKhoan+"'";
 		}
+		//Tạo menu phân trang Url, page, sql
+		db.createMenu("DanhSachBaiDichServlet?view="+view+"&", page, sql);
 		
-		rs = db.getResultSet(sql);
+		rs = db.getResultSet(sql + " limit " + (page-1)*db.getNBangGhi() +","+ db.getNBangGhi());
 		
 		try {
 			while(rs.next()){
@@ -356,7 +393,7 @@ public class BaiVietDAO {
 	 */
 	public boolean setBinhLuan(String id, String bluan) {
 		// TODO Auto-generated method stub
-		return db.updateData("update baiviet set GhiChu=CONCAT(GhiChu, N'"+bluan+"') where IdBaiViet=N'"+id+"'");
+		return db.updateData("update baiviet set GhiChu=CONCAT(GhiChu, N'"+DinhDangSQL.FomatSQL(bluan)+"') where IdBaiViet=N'"+id+"'");
 	}
 	/*
 	 * Dùng cho trang cộng tác viên
@@ -365,6 +402,8 @@ public class BaiVietDAO {
 	 */
 	public String getCount(String chon, String taikhoan) {
 		// TODO Auto-generated method stub
+		chon = DinhDangSQL.FomatSQL(chon);
+		taikhoan = DinhDangSQL.FomatSQL(taikhoan);
 		String sql = "";
 		if(chon.equals("all")){
 			sql = "select count(*) as dem from lichsu where (TrangThai = N'ChuyenDich' or TrangThai = N'DangDich' or TrangThai = N'LoiDich' or TrangThai = N'DaDich') and IdTaiKhoan = N'"+taikhoan+"'";
@@ -419,27 +458,31 @@ public class BaiVietDAO {
 	 * Lấy danh sách bài viết của 1 user (Đã đăng, Đang duyệt, Bị hủy)
 	 * return ArrayList<BAIVIET>
 	 */
-	public ArrayList<BAIVIET> getListBaiViet(String id) {
+	public ArrayList<BAIVIET> getListBaiViet(String id, int page) {
 		// TODO Auto-generated method stub
 		String sql = "select IdBaiViet, TenBaiVietVi, TenBaiVietJa, LuotXem, NgayDang, TrangThai, Lienket from baiviet where IdTaiKhoan=N'"+id+"'";
-		ResultSet rs = db.getResultSet(sql);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		db.createMenu("TrangCaNhanServlet?", page, sql);
+		ResultSet rs = db.getResultSet(sql+ " limit " + (page-1)*db.getNBangGhi() +","+ db.getNBangGhi());
 		ArrayList<BAIVIET> list = new ArrayList<BAIVIET>();
 		try {
 			while(rs.next()){
 				BAIVIET bv = new BAIVIET();
-				bv.setIdBaiViet(rs.getString("IdBaiViet"));
-				bv.setTenBaiVietVi(rs.getString("TenBaiVietVi"));
-				bv.setTenBaiVietJa(rs.getString("TenBaiVietJa"));
+				bv.setIdBaiViet(DinhDangSQL.DeFomatSQL(rs.getString("IdBaiViet")));
+				bv.setTenBaiVietVi(DinhDangSQL.DeFomatSQL(rs.getString("TenBaiVietVi")));
+				bv.setTenBaiVietJa(DinhDangSQL.DeFomatSQL(rs.getString("TenBaiVietJa")));
 				bv.setLuotXem(rs.getInt("LuotXem"));
-				bv.setNgayDang(rs.getString("NgayDang"));
-				String trangthai = rs.getString("TrangThai");
+				bv.setNgayDang(sdf.format(rs.getDate("NgayDang")));
+				String trangthai = DinhDangSQL.DeFomatSQL(rs.getString("TrangThai"));
 				if(trangthai.equals("OK"))
-					bv.setTrangThai("Đã đăng");
-				else if(trangthai.equals("clientdang"))
-					bv.setTrangThai("Đang duyệt");
+					bv.setTrangThai("Đã đăng<br>既設");
+				else if(trangthai.equals("MoiDang")||trangthai.equals("DangDich")||trangthai.equals("KhongDich"))
+					bv.setTrangThai("Đang duyệt<br>バロース");
+				else if(trangthai.equals("SoanThao"))
+					bv.setTrangThai("Soạn thảo<br>開発中");
 				else
-					bv.setTrangThai("Bị hủy");
-				bv.setLienKet(rs.getString("Lienket"));
+					bv.setTrangThai("Bị hủy<br>破壊的");
+				bv.setLienKet(DinhDangSQL.DeFomatSQL(rs.getString("Lienket")));
 				list.add(bv);
 			}
 		} catch (SQLException e) {
@@ -447,5 +490,70 @@ public class BaiVietDAO {
 		}
 		return list;
 	}
-
+	
+	public String getTongTrang() {
+		// TODO Auto-generated method stub
+		return tongtrang+"";
+	}
+	
+	public String getMenuPhanTrang(){
+		return db.getMenuPhanTrang();
+	}
+	
+	public void setMenu(int nBangghi, int ntrang){
+		db.setMenu(nBangghi, ntrang);
+	}
+	
+	public boolean CapNhatBaiViet(String id, String tieuDe, String moTa,
+			String noiDung, String theLoai, String hinh, String ngonngu,
+			String taiKhoan, String tinhTrang) {
+		// TODO Auto-generated method stub
+		id = DinhDangSQL.FomatSQL(id);
+		tieuDe = DinhDangSQL.FomatSQL(tieuDe);
+		moTa = DinhDangSQL.FomatSQL(moTa);
+		noiDung = DinhDangSQL.FomatSQL(noiDung);
+		theLoai = DinhDangSQL.FomatSQL(theLoai);
+		hinh = DinhDangSQL.FomatSQL(hinh);
+		taiKhoan = DinhDangSQL.FomatSQL(taiKhoan);
+		String sql = "";
+		if(ngonngu.equals("vi")){
+			sql = "update baiviet set TenBaiVietVi=N'"+tieuDe+"', MotaVi=N'"+moTa+"',"
+				+ " IdDanhMuc=N'"+theLoai+"', IdTaiKhoan=N'"+taiKhoan+"',"
+				+ " NoiDungVi=N'"+noiDung+"', TrangThai=N'"+tinhTrang+"',"
+				+ " Lienket=N'"+hinh+"' where IdBaiViet=N'"+id+"'";
+		}else{
+			sql = "update baiviet set TenBaiVietJa=N'"+tieuDe+"', MotaJa=N'"+moTa+"',"
+					+ " IdDanhMuc=N'"+theLoai+"', IdTaiKhoan=N'"+taiKhoan+"',"
+					+ " NoiDungJa=N'"+noiDung+"', TrangThai=N'"+tinhTrang+"',"
+					+ " Lienket=N'"+hinh+"' where IdBaiViet=N'"+id+"'";
+		}
+		return db.updateData(sql);
+	}
+	
+	public boolean CapNhatBaiViet(String id, String tieuDeVi, String tieuDeJa,
+			String moTaVi, String moTaJa, String noiDungVi, String noiDungJa,
+			String theLoai, String hinh, String taiKhoan, String tinhTrang) {
+		id = DinhDangSQL.FomatSQL(id);
+		tieuDeVi = DinhDangSQL.FomatSQL(tieuDeVi);
+		tieuDeJa = DinhDangSQL.FomatSQL(tieuDeJa);
+		moTaVi = DinhDangSQL.FomatSQL(moTaVi);
+		moTaJa = DinhDangSQL.FomatSQL(moTaJa);
+		noiDungVi = DinhDangSQL.FomatSQL(noiDungVi);
+		theLoai = DinhDangSQL.FomatSQL(theLoai);
+		hinh = DinhDangSQL.FomatSQL(hinh);
+		taiKhoan = DinhDangSQL.FomatSQL(taiKhoan);
+		// TODO Auto-generated method stub
+		String sql = "update baiviet set TenBaiVietVi=N'"+tieuDeVi+"', MotaVi=N'"+moTaVi+"',"
+				+ " MotaJa=N'"+moTaJa+"', TenBaiVietJa=N'"+tieuDeJa+"',"
+				+ " IdDanhMuc=N'"+theLoai+"', IdTaiKhoan=N'"+taiKhoan+"',"
+				+ " NoiDungVi=N'"+noiDungVi+"', NoiDungJa=N'"+noiDungJa+"',"
+				+ " Lienket=N'"+hinh+"', TrangThai=N'"+tinhTrang+"' where IdBaiViet=N'"+id+"'";
+		return db.updateData(sql);
+	}
+	
+	public boolean XoaBaiViet(String id) {
+		// TODO Auto-generated method stub
+		String sql = "delete from baiviet where IdBaiViet=N'"+DinhDangSQL.FomatSQL(id)+"'";
+		return db.updateData(sql);
+	}
 }

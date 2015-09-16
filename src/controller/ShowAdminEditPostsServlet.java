@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -57,9 +58,9 @@ public class ShowAdminEditPostsServlet extends HttpServlet {
 		ListCategoryBO listCategory = new ListCategoryBO();
 		ListAccountBO listAccount = new ListAccountBO();
 		ShowAdminEditPostsBO editPosts = new ShowAdminEditPostsBO();
-		
-		DANHMUC[] categorys = listCategory.getCategory();
-		TAIKHOAN[] account = listAccount.getDataAccountInfor();
+		 
+		ArrayList<DANHMUC> categorys = listCategory.getCategory(1);
+		TAIKHOAN[] account = listAccount.getDataAccountInfor(1);
 		BAIVIET post = editPosts.post(idPost);
 		
 //		System.out.println("id danh muc: "+post.getDanhMuc().getIdDanhMuc());

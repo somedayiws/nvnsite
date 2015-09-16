@@ -4,7 +4,7 @@ import model.bean.TAIKHOAN;
 
 public class AdminEditDAO {
 
-	MySQLConnector db = new MySQLConnector();
+	DataBaseDAO db = new DataBaseDAO();
 
 	/** (Admin)Update account */
 	public boolean updateAccount(TAIKHOAN account) {

@@ -131,5 +131,117 @@
 		reader.readAsDataURL(f.files[0]);
 	}
 </script>
+
+<%-- <div id="menuPhanTrang">
+			<ul class="pagination  pagination-sm" id="menupt">
+			  <li class="disabled" onclick="chuyen(0);"><a href="#">&laquo;</a></li>
+			  <li><a href="#" onclick="loadMenu('giam');" >... <span class="sr-only">(current)</span></a></li>
+			  <li class="active" onclick="chuyen(2);"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+			  <%
+			  		i = 3;
+			  		int n = Integer.parseInt(tong)+2;
+			  		while(i<n) {
+			  %>
+			  			<li><a href="#" onclick="chuyen(<%= i %>);"><%= i-1 %> <span class="sr-only">(current)</span></a></li>
+			  <%
+			  		i++;
+			  		}
+			  %>
+			  <li><a href="#" onclick="loadMenu('tang');" >... <span class="sr-only">(current)</span></a></li>
+			  <li><a href="#" onclick="chuyen(<%= (Integer.parseInt(tong)+3) %>);">&raquo;</a></li>
+			</ul>
+		</div> --%>
+
+<script type="text/javascript">
+			var index = 2;
+			var day = 0;
+			var tongtrang = parseInt($("#tongtrang").val());
+			function chuyen(x){
+				if(x==0 && index>2){
+					x = index-1;
+					if(x<day+2){
+						loadMenu('giam');
+						return;
+					}
+				}
+				if(x==(tongtrang+3) && index<tongtrang+1){
+					x = index+1;
+					if(x>day+11){
+						loadMenu('tang');
+						return;
+					}
+				}
+				var chon = $('#menupt li:eq('+x+')');
+				var dachon = $('#menupt li[class="active"]');
+				if(x!=2) {
+					$('#menupt li:eq(0)').removeClass();
+				}
+				else {
+					$('#menupt li:eq(0)').attr("class", "disabled");
+				}
+				if(x!=(tongtrang+1)) {
+					$('#menupt li:last-child').removeClass();
+				}
+				else {
+					$('#menupt li:last-child').attr("class", "disabled");
+				}
+				var noidung = $('.noidung'+(x-1));
+				
+				if(noidung.val() == null){
+					//load ajax
+					$.ajax({
+						url : "DanhSachDichServlet",
+						type : "post",
+						data : {
+							id: x-1
+						},
+						success : function(result) {
+							$(".dulieu").append(result);
+						}
+					});
+				}
+				$('.noidung'+(index-1)).hide();
+				$('.noidung'+(x-1)).show();
+				index = x;
+				dachon.removeClass();
+				chon.attr("class", "active");
+			}
+			function loadMenu(kieu){
+				var i = 1;
+				if(kieu == "tang"){
+					day += 10;
+				}else{
+					if(day>0) day -= 10;
+				}
+				if(day == 0){
+					$('#menupt li:eq(1)').hide();
+					for(i=2; i<tongtrang+2; i++){
+						if(i<12) $("#menupt li:eq("+i+")").show();
+						else $("#menupt li:eq("+i+")").hide();
+					}
+					if(day+10 < tongtrang+2) $("#menupt li:eq("+(tongtrang+2)+")").show();
+					else $("#menupt li:eq("+(tongtrang+2)+")").hide();
+				}else{
+					$('#menupt li:eq(1)').show();
+					var dem = 0;
+					for(i=2; i<=tongtrang+1; i++){
+						if(i>(day+1)){
+							$("#menupt li:eq("+i+")").show();
+							if(dem>9) break;
+							dem++;
+						}
+						else $("#menupt li:eq("+i+")").hide();
+					}
+					while(i<=tongtrang){
+						$("#menupt li:eq("+i+")").hide();
+						i++;
+					}
+					if(day+10 < tongtrang+2) $("#menupt li:eq("+(tongtrang+2)+")").show();
+					else $("#menupt li:eq("+(tongtrang+2)+")").hide();
+				}
+				chuyen(day+2);
+			}
+		</script>
+
 </body>	
 </html>

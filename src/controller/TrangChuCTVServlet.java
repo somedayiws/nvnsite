@@ -35,8 +35,8 @@ public class TrangChuCTVServlet extends HttpServlet {
 			request.getRequestDispatcher("TrangChuCTV.jsp").forward(request, response);
 		}else{
 			BaiVietBO baiviet = new BaiVietBO();
-			ArrayList<BAIVIET> listmoi = baiviet.getListPhanCong(user.getIdTaiKhoan(), "moi");
-			ArrayList<BAIVIET> listtre = baiviet.getListPhanCong(user.getIdTaiKhoan(), "qua-han");
+			ArrayList<BAIVIET> listmoi = baiviet.getListPhanCong(user.getIdTaiKhoan(), "moi", 1);
+			ArrayList<BAIVIET> listtre = baiviet.getListPhanCong(user.getIdTaiKhoan(), "qua-han", 1);
 			request.setAttribute("listmoi", listmoi);
 			request.setAttribute("listtre", listtre);
 			request.getRequestDispatcher("HomeCTV.jsp").forward(request, response);

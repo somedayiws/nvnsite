@@ -5,8 +5,15 @@ import model.dao.ListPostsDAO;
 
 public class ListPostsBO {
 	ListPostsDAO listPosts = new ListPostsDAO();
-	public   BAIVIET[] getPosts(){
-		return listPosts.getDataPosts();
+	public   BAIVIET[] getPosts(int page){
+		return listPosts.getDataPosts(page);
+	}
+	public String getMenuPhanTrang(){
+		return listPosts.getMenuPhanTrang();
+	}
+	
+	public void setMenu(int nBangghi, int ntrang){
+		listPosts.setMenu(nBangghi, ntrang);
 	}
 //	public static void main(String[] args) {
 //		

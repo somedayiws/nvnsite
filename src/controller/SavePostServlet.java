@@ -46,7 +46,8 @@ public class SavePostServlet extends HttpServlet {
 			
 			ListAccountBO acc = new ListAccountBO();
 			TAIKHOAN account = acc.getAccountbyUser(username);
-			 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+			 @SuppressWarnings("unused")
+			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		       //get current date time with Date()
 		       Date date = new Date();
 			updateStatus.changeStatusHistory("DangDich", idPost, account.getIdTaiKhoan(),date);

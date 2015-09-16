@@ -3,16 +3,19 @@ package controller;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 import javax.servlet.http.HttpSession;
+
 import java.util.List;
 import java.util.ArrayList;
 
 public class SessionCounter implements HttpSessionListener {
 
+	@SuppressWarnings("rawtypes")
 	private List sessions = new ArrayList();
 	private int view = 0;
 
 	public SessionCounter() {}
 
+	@SuppressWarnings("unchecked")
 	public void sessionCreated(HttpSessionEvent event) {
 		HttpSession session = event.getSession();
 		sessions.add(session.getId());

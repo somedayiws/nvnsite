@@ -39,7 +39,7 @@ public class BaiVietServlet extends HttpServlet {
 		BAIVIET bviet = null;
 		if(id != null && !"".equals(id)){
 			bviet = baiviet.getBaiViet(id);
-			listbaiviet = baiviet.getDanhSachBaiViet(bviet.getDanhMuc().getIdDanhMuc(), "10");
+			listbaiviet = baiviet.getDanhSachBaiViet(bviet.getDanhMuc().getIdDanhMuc(), 0, "10");
 			request.setAttribute("baiviet", bviet);
 			request.setAttribute("listbaiviet", listbaiviet);
 			request.setAttribute("listdanhmuc", listdanhmuc);

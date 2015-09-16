@@ -25,4 +25,9 @@ public class DanhMucBO {
 		danhmuc.addDanhMuc(id, tv, tn, ghim);
 	}
 
+	public DANHMUC getDanhMuc(String id) {
+		// TODO Auto-generated method stub
+		return danhmuc.getDanhMuc(id);
+	}
+
 }

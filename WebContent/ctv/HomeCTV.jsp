@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <!-- Thư viện cho menu -->
 <link rel="stylesheet" href="../bootstrap-3.3.5-dist/css/bootstrap.min.css">
 <script src="../js/jquery.min.js"></script>
@@ -18,38 +19,6 @@
 <script src="../js/magicsuggest-min.js"></script>
 <link rel="stylesheet" href="css/CongtacvienStyle.css">
 <link rel="stylesheet" href="../font-awesome-4.4.0/css/font-awesome.min.css">
-
-<script src="../js/jquery.validate.js" type="text/javascript"></script>
-<script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
-						$("#fdangnhap")
-								.validate(
-										{
-											rules : {
-												taikhoan : {
-													required : true
-												},
-												matkhau : {
-													required : true
-												}
-											},
-											messages : {
-												taikhoan : {
-													required : "<br>Chưa nhập tên tài khoản"
-												},
-												matkhau : {
-													required : "<br>Chưa nhập mật khẩu!"
-												}
-											},
-											submitHandler : function(form) {
-															form.submit();
-											}
-										});
-					});
-</script>
-<!-- kết thúc -->
 <!-- load thống kê -->
 <script src="js/JavaScrip.js"></script>
 <!-- kết thúc -->
@@ -75,8 +44,8 @@
 	<div class="col-sm-10 col-md-10">
 	<strong> <%= ((String)request.getAttribute("meg"))==null ? "" : ((String)request.getAttribute("meg")) %> </strong><br>
 	<form action="XuLyBaiVietServlet" method="get">
-		<button type="submit" name="submit" class="btn btn-warning btn-sm" id="huy" value="huy">Hủy bài - </button>
-		<button type="submit" name="submit" class="btn btn-primary btn-sm" id="gui" value="gui">Gửi bài - </button>
+		<button type="submit" name="submit" class="btn btn-warning btn-sm" id="huy" value="huy" onclick="return confirm('Những bài dịch sẽ được gửi với yêu cầu HỦY DỊCH lên Admin và điều sẽ ảnh hưởng xấu đến thành tích của bạn.\n\t Bạn thật sự muốn hủy bài dich?');">Hủy bài - </button>
+		<button type="submit" name="submit" class="btn btn-primary btn-sm" id="gui" value="gui" onclick="return confirm('Các bài dịch sẽ được gửi lên Admin để kiểm duyệt.\n\tBạn muốn gửi?');">Gửi bài - </button>
 		<label>Danh sách bài mới chuyển đến</label>
 		<table class="table table-hover">
 		  <tr id="tieude">
@@ -156,4 +125,51 @@
 	</form>
 	</div>
 </body>
+<!-- Validate -->
+<script src="../js/jquery.validate.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(document)
+			.ready(
+					function() {
+						$("#fdangnhap")
+								.validate(
+										{
+											rules : {
+												taikhoan : {
+													required : true
+												},
+												matkhau : {
+													required : true
+												}
+											},
+											messages : {
+												taikhoan : {
+													required : "<br>Chưa nhập tên tài khoản"
+												},
+												matkhau : {
+													required : "<br>Chưa nhập mật khẩu!"
+												}
+											},
+											submitHandler : function(form) {
+															form.submit();
+											}
+										});
+					});
+</script>
+<!-- Phản hồi -->
+<script lang="javascript">
+	(function() {
+		var _h1 = document.getElementsByTagName('title')[0] || false;
+		var product_name = '';
+		if (_h1) {
+			product_name = _h1.textContent || _h1.innerText;
+		}
+		var ga = document.createElement('script');
+		ga.type = 'text/javascript';
+		ga.src = '//live.vnpgroup.net/js/web_client_box.php?hash=57f198fbced364bace74f3bb8ff5a8e4&data=eyJzc29faWQiOjMwNjkyNzMsImhhc2giOiIzM2NiZTM2NWE5MDY2MmUyZjM5NGI5MWJkNDJjNzRjMiJ9&pname='
+				+ product_name;
+		var s = document.getElementsByTagName('script');
+		s[0].parentNode.insertBefore(ga, s[0]);
+	})();
+</script>
 </html>

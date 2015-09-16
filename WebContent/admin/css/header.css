@@ -1,0 +1,11 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+#divheader{
+	background-color: #0066CC; 
+	color: white;
+}
+#divheader h1{
+	text-shadow: 5px 5px 10px black;
+}

@@ -1,7 +1,7 @@
 package model.dao;
 
 public class DeleteCategoryDAO {
-	MySQLConnector db = new MySQLConnector();
+	DataBaseDAO db = new DataBaseDAO();
 	
 	/**Delete category*/
 	public boolean deleteCategory(String IdCategory){

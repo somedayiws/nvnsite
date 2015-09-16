@@ -24,32 +24,54 @@
 </head>
 <%
 	/**Receive data from server*/
-	TAIKHOAN[] listAccount = (TAIKHOAN[]) request
-			.getAttribute("listAccount");
+	TAIKHOAN[] listAccount = (TAIKHOAN[]) request.getAttribute("listAccount");
+
+	
+
 	String idPost = (String)request.getAttribute("idPost");
 	ArrayList<TAIKHOAN> listAccountByStatus =(ArrayList<TAIKHOAN>)request.getAttribute("listAccountByStatus");
 	TAIKHOAN accountErrorTranslate =(TAIKHOAN) request.getAttribute("accountErrorTranslate");
 	String status =(String)request.getAttribute("status");
-	System.out.println("status: "+status);
+	
+	/*
+		Lấy ngôn ngữ bài viết
+		0 : Song ngữ
+		1 : Tiếng việt
+		2 : Tiếng nhật
+	*/
+	String languagePost =(String)request.getAttribute("languagePost");
+	
 %>
 <body>
 	<div class="container-fluid">
 		<%@include file="header_ver_1.jsp"%>
 		<%@include file="Menu.jsp"%>
 		<div style="margin-top: 10px">
-
-<table class="table table-hover">
+		
+		
+		<!-- Hiển thị ngôn ngữ bài viết -->
+		
+		
+			<label>Ngôn ngữ bài viết - </label>
+			<%if(languagePost == "1"){ %><h3>Tiếng việt -</h3> 
+			<%}else if(languagePost == "2") {%><h3>Tiếng nhật -</h3>
+			<%}else{ %><h3> Song ngữ -</h3> <%} %>
+		
+		
+		<table class="table table-hover">
 				<thead>
 					<tr>
 						<th>ID</th>
 						<th>Username - ユーザー名</th>
 						<th>Email - メールアドレス</th>
+						<th>Ngôn ngữ - </th>
 						<th></th>
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
 					<%
+					if(status!=null){
 					if(status.equals("HuyDich")){
 						if(listAccountByStatus!=null){
 							for(int i=0;i<listAccountByStatus.size();i++){
@@ -58,6 +80,9 @@
 						<td><%=listAccountByStatus.get(i).getIdTaiKhoan() %></td>
 						<td><%=listAccountByStatus.get(i).getTenTaiKhoan() %></td>
 						<td><%=listAccountByStatus.get(i).getEmail() %></td>
+						<td><%=listAccountByStatus.get(i).getNgonNgu() %></td>
+						
+						
 						<td><button class="btn btn-primary" data-toggle="modal"
 								data-target="#myModal<%=listAccountByStatus.get(i).getIdTaiKhoan()%>">Chuyển
 								bài - 投稿を送信</button></td>
@@ -69,7 +94,7 @@
 					%>
 						<div class="panel panel-warning">
       <div class="panel-heading">Cảnh báo - 警告</div>
-      <div class="panel-body">Không có tài khoản nào dịch được bài này - /div>
+      <div class="panel-body">Không có tài khoản nào dịch được bài này - </div>
     </div>
 					<%}}
 					else if(status.equals("LoiDich")){
@@ -91,21 +116,41 @@
       <div class="panel-heading">Cảnh báo - 警告</div>
       <div class="panel-body">Không có lỗi bài dịch -  </div>
     </div>
-					<%	
+					<%}	
 						}
 					}
 					else{
-						if (listAccount != null) {
+						if (listAccount != null) {													
 							for (int i = 0; i < listAccount.length; i++) {
 					%>
 					<tr>
 						<td><%=listAccount[i].getIdTaiKhoan() %></td>
 						<td><%=listAccount[i].getTenTaiKhoan() %></td>
 						<td><%=listAccount[i].getEmail() %></td>
-						<td><button class="btn btn-primary" data-toggle="modal"
-								data-target="#myModal<%=listAccount[i].getIdTaiKhoan()%>">Chuyển
+						<td><%=listAccount[i].getNgonNgu() %></td>	
+						
+						<!-- Nếu ngôn ngữ bài viết là tiếng việt thì gợi ý ctv có ngôn ngữ là tiếng nhật nghĩa là không cho ctv có ngôn ngữ tiếng việt dịch
+							Nếu ngôn ngữ bài viết là tiếng nhật thì gợi ý ctv có ngôn ngữ là tiếng việt nghĩa là không cho ctv có ngôn ngữ tiếng nhật dịch
+							Nếu là song ngữ thì luôn cho hiển thị nút chuyển bài
+						 -->				
+						 <td><button class="btn btn-primary" data-toggle="modal" 
+						 <%if(languagePost == "1"){
+							 //Ngôn ngữ bài viết là tiếng việt							 
+								if(listAccount[i].getNgonNgu().equals("vi")){
+									//Ngôn ngữ ctv là tiếng việt							
+						%>
+								disabled="disabled"
+						<%}
+								
+						 } else if( languagePost == "2") {
+							//Ngôn ngữ bài viết là tiếng nhật
+								if(listAccount[i].getNgonNgu().equals("ja")){
+									//Ngôn ngữ ctv là tiếng nhật
+						%>
+							disabled="disabled"
+						<%}} %> 
+						data-target="#myModal<%=listAccount[i].getIdTaiKhoan()%>">Chuyển
 								bài - 投稿を送信</button></td>
-
 					</tr>
 					<%}
 						}

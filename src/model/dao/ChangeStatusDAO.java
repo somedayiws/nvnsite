@@ -7,7 +7,7 @@ import java.util.Date;
 
 
 public class ChangeStatusDAO {
-	MySQLConnector db = new MySQLConnector();
+	DataBaseDAO db = new DataBaseDAO();
 	public void changeStatusHistory(String status,String idPosts,String idAccount,Date date){
 		 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		String sql_change_status_history = "insert into lichsu values('"+idPosts+"','"+idAccount+"',N'"+status+"','"+dateFormat.format(date)+"')";		

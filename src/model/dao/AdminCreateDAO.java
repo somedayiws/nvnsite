@@ -8,7 +8,7 @@ import model.bean.TAIKHOAN;
 public class AdminCreateDAO {
 	
 	/** Attribute and Object */
-	MySQLConnector db = new MySQLConnector();
+	DataBaseDAO db = new DataBaseDAO();
 	public String errorExist;
 
 	/** Check account exist */

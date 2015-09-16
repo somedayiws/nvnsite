@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
@@ -14,11 +13,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.bean.BAIVIET;
 import model.bean.TAIKHOAN;
 import model.bo.ChangeStatusBO;
 import model.bo.GetAccountBO;
 import model.bo.ListAccountBO;
 import model.bo.ListStatusHistoryBO;
+import model.bo.ShowAdminEditPostsBO;
 
 /**
  * Servlet implementation class SendPostServlet
@@ -45,14 +46,38 @@ public class SendPostServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String idPost = request.getParameter("idPost");
 		
+		/**
+		 * Biến để lưu ngôn ngữ bài viết
+		 * 0 : Song ngữ
+		 * 1 : Tiếng việt
+		 * 2 : Tiếng nhật 
+		 * */
+		String languagePost = "0";
 		
 		
 			ListAccountBO listAcc = new ListAccountBO();
 			GetAccountBO getAcc = new GetAccountBO();
+			
+			//Xác định ngôn ngữ của bài viết
+			ShowAdminEditPostsBO getPost = new ShowAdminEditPostsBO();
+			BAIVIET post = getPost.post(idPost);
+											
+			if(post.getTenBaiVietJa().equals("null") && post.getMoTaJa().equals("null") && post.getNoiDungJa().equals("null")){
+				//Bài viết là tiếng việt
+				languagePost = "1";
+			}
+			if(post.getTenBaiVietVi().equals("null") && post.getMoTaVi().equals("null") && post.getNoiDungVi().equals("null")){
+				//Bài viết là tiếng nhật
+				languagePost = "2";
+			}
+			
+			
 			ListStatusHistoryBO listStatus = new ListStatusHistoryBO();
 			String status = listStatus.getStatus(idPost);
-			TAIKHOAN[] listAccount = listAcc.getDataAccountInfor();
+			TAIKHOAN[] listAccount = listAcc.getDataAccountInfor(0,listAcc.totalRecord(),"CTV");
 			ArrayList<TAIKHOAN> listAccountByStatus = getAcc.listAccountByStatus("HuyDich");
+			
+			request.setAttribute("languagePost", languagePost);
 			request.setAttribute("listAccountByStatus", listAccountByStatus);
 			request.setAttribute("idPost", idPost);
 			request.setAttribute("listAccount", listAccount);

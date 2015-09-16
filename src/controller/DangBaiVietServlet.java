@@ -55,7 +55,6 @@ public class DangBaiVietServlet extends HttpServlet {
 				request.setAttribute("topbaiviet", topbaiviet);
 				request.getRequestDispatcher("DangBaiViet.jsp").forward(request, response);
 			} else {
-				System.out.println("Làm đây 2");
 				FileItemFactory factory = new DiskFileItemFactory();
 				ServletFileUpload upload = new ServletFileUpload(factory);
 				
@@ -68,6 +67,8 @@ public class DangBaiVietServlet extends HttpServlet {
 				String TheLoai;
 				String NoiDung, NoiDungVi, NoiDungJa;
 				String HinhAnh;
+				String DangBai;
+				String ketqua = "";
 				String TaiKhoan = ((TAIKHOAN)request.getSession().getAttribute("user")).getIdTaiKhoan();
 				try {
 					items = upload.parseRequest(request);
@@ -86,18 +87,12 @@ public class DangBaiVietServlet extends HttpServlet {
 					FileItem item = (FileItem) iter.next();
 					if (item.isFormField()) {
 						params.put(item.getFieldName(),item.getString("UTF-8"));
-						System.out.println("Du lieu: " + item.getString()
-								+ "       " + item.getFieldName());
 					} else {
 						try {
 							String itemName = item.getName();
 							filename = itemName.substring(itemName
 									.lastIndexOf("\\") + 1);
-//							filename = "IMG"
-//									+ filename.substring(filename
-//											.indexOf("."));
-							String realPath = getServletContext().getRealPath("/")+ "images\\" + filename;
-//							System.out.println(realPath);
+							String realPath = getServletContext().getRealPath("/")+ "images/" + filename;
 							File savedFile = new File(realPath);
 							@SuppressWarnings("unused")
 							FileCleanerCleanup item2 = new FileCleanerCleanup();
@@ -110,30 +105,56 @@ public class DangBaiVietServlet extends HttpServlet {
 				}
 
 				ngonngu = (String) params.get("NgonNgu");
-				TieuDe = (String) params.get("TieuDe");
-				TieuDeVi = (String) params.get("TieuDeVi");
-				TieuDeJa = (String) params.get("TieuDeJa");
-				MoTa = (String) params.get("MoTa");
-				MoTaVi = (String) params.get("MoTaVi");
-				MoTaJa = (String) params.get("MoTaJa");
 				TheLoai = (String) params.get("TheLoai");
-				NoiDung = (String) params.get("NoiDung");
-				NoiDungVi = (String) params.get("NoiDungVi");
-				NoiDungJa = (String) params.get("NoiDungJa");
-				HinhAnh = filename;
-//				System.out.println("file name : image/" + filename);
+				DangBai = (String) params.get("dangbai");
+				if(filename == null || filename.trim().equals("")) HinhAnh = "baiviet.jpg";
+				else HinhAnh = filename;
 				BaiVietBO baivietBO = new BaiVietBO();
 				if(ngonngu.equals("0")){
-					baivietBO.ThemBaiVietVi(TieuDe, MoTa, NoiDung, TheLoai, TaiKhoan, "images/" + HinhAnh);
+					TieuDe = (String) params.get("TieuDe");
+					MoTa = (String) params.get("MoTa");
+					NoiDung = (String) params.get("NoiDung");
+					if(DangBai != null) {
+						if(baivietBO.ThemBaiVietVi(TieuDe, MoTa, NoiDung, TheLoai, TaiKhoan, "images/" + HinhAnh, "MoiDang")) ketqua = "them-thanhcong";
+						else ketqua = "them-thatbai";
+					}
+					else {
+						if(baivietBO.ThemBaiVietVi(TieuDe, MoTa, NoiDung, TheLoai, TaiKhoan, "images/" + HinhAnh, "SoanThao")) ketqua = "them-thanhcong";
+						else ketqua = "them-thatbai";
+					}
 				}else if(ngonngu.equals("1")){
-					baivietBO.ThemBaiVietJa(TieuDe, MoTa, NoiDung, TheLoai, TaiKhoan, "images/" + HinhAnh);
+					TieuDe = (String) params.get("TieuDe");
+					MoTa = (String) params.get("MoTa");
+					NoiDung = (String) params.get("NoiDung");
+					if(DangBai != null) {
+						if(baivietBO.ThemBaiVietJa(TieuDe, MoTa, NoiDung, TheLoai, TaiKhoan, "images/" + HinhAnh, "MoiDang")) ketqua = "them-thanhcong";
+						else ketqua = "them-thatbai";
+					}
+					else {
+						if(baivietBO.ThemBaiVietJa(TieuDe, MoTa, NoiDung, TheLoai, TaiKhoan, "images/" + HinhAnh, "SoanThao")) ketqua = "them-thanhcong";
+						else ketqua = "them-thatbai";
+					}
 				}else{
-					baivietBO.ThemBaiViet(TieuDeVi, MoTaVi, NoiDungVi, TieuDeJa, MoTaJa, NoiDungJa, TheLoai, TaiKhoan, "images/" + HinhAnh);
+					TieuDeVi = (String) params.get("TieuDeVi");
+					TieuDeJa = (String) params.get("TieuDeJa");
+					
+					MoTaVi = (String) params.get("MoTaVi");
+					MoTaJa = (String) params.get("MoTaJa");
+					
+					NoiDungVi = (String) params.get("NoiDungVi");
+					NoiDungJa = (String) params.get("NoiDungJa");
+					
+					if(DangBai != null) {
+						if(baivietBO.ThemBaiViet(TieuDeVi, MoTaVi, NoiDungVi, TieuDeJa, MoTaJa, NoiDungJa, TheLoai, TaiKhoan, "images/" + HinhAnh, "MoiDang")) ketqua = "them-thanhcong";
+						else ketqua = "them-thatbai";
+					}
+					else baivietBO.ThemBaiViet(TieuDeVi, MoTaVi, NoiDungVi, TieuDeJa, MoTaJa, NoiDungJa, TheLoai, TaiKhoan, "images/" + HinhAnh, "SoanThao");
 				}
-				response.sendRedirect("TrangChuServlet");
+				response.sendRedirect("TrangCaNhanServlet?xuly=" + ketqua);
 			}
 		} catch (Exception e) {
 			System.out.println("Throw exception upload file!");
+			response.sendRedirect("TrangCaNhanServlet?xuly=loi-he-thong");
 		}
 	}
 

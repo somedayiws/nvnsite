@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import model.bean.BAIVIET;
 
 public class AdminCreatePostsDAO {
-	MySQLConnector db = new MySQLConnector();
+	DataBaseDAO db = new DataBaseDAO();
 
 	
 	/**Get  id posts last*/

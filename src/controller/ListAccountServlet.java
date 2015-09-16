@@ -52,7 +52,7 @@ public class ListAccountServlet extends HttpServlet {
 		String resultUpdate, resultDelete;
 
 		
-		//System.out.println("listAccount: "+listAccount);
+	
 		System.out.println("button: "+button);
 		System.out.println("account: "+account);
 		System.out.println("result: "+result);
@@ -77,15 +77,29 @@ public class ListAccountServlet extends HttpServlet {
 				request.setAttribute("result", resultDelete);
 			}
 		}
-
+		//Paging page = new Paging();
+		//int currentPage = page.currentPage("", 1);
+	
 		ListAccountBO listAcc = new ListAccountBO();
-		TAIKHOAN[] listAccount = listAcc.getDataAccountInfor();
+		
+		//int totalPage = listAcc.totalRecord();
+		int page = 1;
+		listAcc.setMenu(10, 5);
+		try {
+			page = Integer.parseInt(request.getParameter("page"));
+		} catch (NumberFormatException e) {
+			page = 1;
+		}
+		TAIKHOAN[] listAccount = listAcc.getDataAccountInfor(page);
+		//System.out.println("Leng contrller : " + listAccount.length);
+		String pageNav = listAcc.getMenuPhanTrang();
+		request.setAttribute("pageNav", pageNav);
+		//System.out.println("Menu : " + pageNav);
 		request.setAttribute("account", account);
 		request.setAttribute("button", button);
+		//request.setAttribute("totalPage",totalPage);
+		//request.setAttribute("currentPage", currentPage);
 		request.setAttribute("listAccount", listAccount);
-		
-		
-		
 		RequestDispatcher requestDis_result = request
 				.getRequestDispatcher("ListAccount.jsp");
 		requestDis_result.forward(request, response);

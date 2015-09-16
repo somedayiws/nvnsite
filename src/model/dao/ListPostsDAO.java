@@ -2,22 +2,18 @@ package model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import model.bean.BAIVIET;
-import model.bean.BINHLUAN;
-import model.bean.DANHMUC;
-import model.bean.TAIKHOAN;
 
 public class ListPostsDAO {
-	MySQLConnector db = new MySQLConnector();
+	DataBaseDAO db = new DataBaseDAO();
 	ListCategoryDAO category = new ListCategoryDAO();
 	ListAccountDAO account = new ListAccountDAO();
 	ListCommentDAO comment = new ListCommentDAO();
 
 	/** Get Data Post */
 
-	public BAIVIET[] getDataPosts() {
+	public BAIVIET[] getDataPosts(int page) {
 
 		/** Count number records */
 		int numberOfPosts = 0;
@@ -27,12 +23,31 @@ public class ListPostsDAO {
 			while (result_count.next()) {
 				numberOfPosts = result_count.getInt("COUNTPOSTS");
 			}
+			System.out.println("number: "+numberOfPosts);
 			if (numberOfPosts == 0)
 				return null;
-			BAIVIET[] posts = new BAIVIET[numberOfPosts];
+			
+			if (numberOfPosts > db.getNBangGhi() && page != -1)
+				numberOfPosts = db.getNBangGhi();
 
+			BAIVIET[] posts = new BAIVIET[numberOfPosts];
+			
 			String sql_select_posts = "SELECT * FROM baiviet WHERE CoXoa = 0";
-			ResultSet result_select = db.getResultSet(sql_select_posts);
+			
+			db.createMenu("ListPostsServlet?", page, sql_select_posts);
+			
+			ResultSet result_select = null;
+			if (page != -1) {
+				result_select = db.getResultSet(sql_select_posts + " limit "
+						+ (page - 1) * db.getNBangGhi() + ","
+						+ db.getNBangGhi());
+			System.out.println("sql: "+sql_select_posts + " limit "
+						+ (page - 1) * db.getNBangGhi() + ","
+						+ db.getNBangGhi());
+			} else {
+				result_select = db.getResultSet(sql_select_posts);
+			}
+			//ResultSet result_select = db.getResultSet(sql_select_posts);
 
 			String IdPosts,IdCategory,IdAccount;
 			int i = 0;
@@ -267,5 +282,13 @@ public class ListPostsDAO {
 			return null;
 		}
 
+	}
+	
+	public String getMenuPhanTrang(){
+		return db.getMenuPhanTrang();
+	}
+	
+	public void setMenu(int nBangghi, int ntrang){
+		db.setMenu(nBangghi, ntrang);
 	}
 }

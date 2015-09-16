@@ -2,28 +2,16 @@ package model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+
 
 import model.bean.TAIKHOAN;
 
 public class ListAccountDAO {
-	MySQLConnector db = new MySQLConnector();	
-	public TAIKHOAN[] getDataAcountInfor()	
+	DataBaseDAO db = new DataBaseDAO();	
+	public TAIKHOAN[] getDataAcountInfor(int start,int limit,String status)	
 	{
-		int number_of_account = 0;
-		/**Count total number of account*/
-		String sql_count_account = "SELECT COUNT(*) NUMBER_OF_RECORDS FROM taikhoan WHERE CoXoa = 0";
-		ResultSet result_count = db.getResultSet(sql_count_account);
-		try {
-			while(result_count.next())
-			{
-				number_of_account = result_count.getInt("NUMBER_OF_RECORDS");
-			}
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		System.out.println("number_of_account: "+number_of_account);
+		int number_of_account = totalRecord(status);
+		
 		if(number_of_account == 0)
 		{
 			return null;
@@ -32,7 +20,17 @@ public class ListAccountDAO {
 		TAIKHOAN[] listAccount = new TAIKHOAN[number_of_account];
 		
 		int i = 0;
-		String sql_select_account = "SELECT * FROM taikhoan WHERE CoXoa = 0";
+		String sql_select_account = null;
+		//Lấy các tài khoản CTV
+		if(status.equals("CTV")){
+			sql_select_account = "SELECT * FROM taikhoan WHERE CoXoa = 0 AND QuyenQuanTri = '"+status+"' limit "+start+","+limit+"";
+		}
+		//Lấy tất cả tài khoản
+		else{
+			sql_select_account = "SELECT * FROM taikhoan WHERE CoXoa = 0 limit "+start+","+limit+"";
+		}
+		System.out.println("sql_select_account: "+sql_select_account);
+		if(sql_select_account==null){ return null;}
 		ResultSet result_select = db.getResultSet(sql_select_account);
 		try {
 			while(result_select.next())
@@ -109,5 +107,83 @@ public class ListAccountDAO {
 			return null;
 		}
 	}
+	
+	public int totalRecord(String status){
+		int number_of_account = 0;
+		String sql_count_account = null;
+		if(status.equals("CTV")){
+			sql_count_account = "SELECT COUNT(*) NUMBER_OF_RECORDS FROM taikhoan WHERE CoXoa = 0 AND QuyenQuanTri = 'CTV'";
+		}
+		else{
+		/**Count total number of account*/
+		sql_count_account = "SELECT COUNT(*) NUMBER_OF_RECORDS FROM taikhoan WHERE CoXoa = 0";}
+		
+		if(sql_count_account == null) return 0;
+		ResultSet result_count = db.getResultSet(sql_count_account);
+		try {
+			while(result_count.next())
+			{
+				number_of_account = result_count.getInt("NUMBER_OF_RECORDS");
+			}
+			return number_of_account;
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			return 0;
+		}
+	}
+	public String getMenuPhanTrang(){
+		return db.getMenuPhanTrang();
+	}
+	
+	public void setMenu(int nBangghi, int ntrang){
+		db.setMenu(nBangghi, ntrang);
+	}
+
+	public TAIKHOAN[] getDataAcountInfor(int page) {
+		// TODO Auto-generated method stub
+		int number_of_account = totalRecord("all");
+		if(number_of_account == 0)
+		{
+			return null;
+		}
+		
+		if(number_of_account>db.getNBangGhi()) number_of_account = db.getNBangGhi();
+		
+		TAIKHOAN[] listAccount = new TAIKHOAN[number_of_account];
+		
+		int i = 0;
+		String sql_select_account = "SELECT * FROM taikhoan WHERE CoXoa = 0";
+		
+		//Tạo menu phân trang Url, page, sql
+		db.createMenu("ListAccountServlet?", page, sql_select_account);
+		System.out.println("sql : " + sql_select_account  + " limit " + (page-1)*db.getNBangGhi() +","+ db.getNBangGhi());
+		ResultSet result_select = db.getResultSet(sql_select_account  + " limit " + (page-1)*db.getNBangGhi() +","+ db.getNBangGhi());
+		
+		try {
+			while(result_select.next())
+			{
+				listAccount[i] = new TAIKHOAN();
+				listAccount[i].setIdTaiKhoan(DinhDangSQL.DeFomatSQL(result_select.getString("IdTaiKhoan")));
+				listAccount[i].setTenTaiKhoan(DinhDangSQL.DeFomatSQL(result_select.getString("TenTaiKhoan")));
+				listAccount[i].setMatKhau(DinhDangSQL.DeFomatSQL(result_select.getString("MatKhau")));
+				listAccount[i].setHoTen(DinhDangSQL.DeFomatSQL(result_select.getString("HoTen")));				
+				listAccount[i].setDiaChi(DinhDangSQL.DeFomatSQL(result_select.getString("DiaChi")));
+				listAccount[i].setDienThoai(DinhDangSQL.DeFomatSQL(result_select.getString("DienThoai")));
+				listAccount[i].setEmail(DinhDangSQL.DeFomatSQL(result_select.getString("Email")));
+				listAccount[i].setQuyenQuanTri(DinhDangSQL.DeFomatSQL(result_select.getString("QuyenQuanTri")));
+				listAccount[i].setNgonNgu(DinhDangSQL.DeFomatSQL(result_select.getString("NgonNgu")));
+				listAccount[i].setTinhTrang(DinhDangSQL.DeFomatSQL(result_select.getString("TinhTrang")));
+				i++;
+			}
+			System.out.println("leng " + listAccount.length);
+			return listAccount;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 
 }

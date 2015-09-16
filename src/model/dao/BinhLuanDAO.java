@@ -45,7 +45,6 @@ public class BinhLuanDAO {
 		idTaiKhoan = DinhDangSQL.FomatSQL(idTaiKhoan);
 		binhluan = DinhDangSQL.FomatSQL(binhluan);
 		String sql = "insert into binhluan(IdBaiViet, IdTaiKhoan, PhanHoiVi, CoXoa) values (N'"+id+"', N'"+idTaiKhoan+"', N'"+binhluan+"', '0')";
-		System.out.println("SQL : " + sql);
 		db.updateData(sql);
 	}
 
@@ -55,7 +54,6 @@ public class BinhLuanDAO {
 		idTaiKhoan = DinhDangSQL.FomatSQL(idTaiKhoan);
 		binhluan = DinhDangSQL.FomatSQL(binhluan);
 		String sql = "insert into binhluan(IdBaiViet, IdTaiKhoan, PhanHoiJa, CoXoa) values (N'"+id+"', N'"+idTaiKhoan+"', N'"+binhluan+"', '0')";
-		System.out.println("SQL : " + sql);
 		db.updateData(sql);
 	}
 }

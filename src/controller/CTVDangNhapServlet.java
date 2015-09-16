@@ -37,13 +37,13 @@ public class CTVDangNhapServlet extends HttpServlet {
 		if (username != null) {
 			if (kiemtra.check(username, "")) {
 				if (kiemtra.check(password, "")) {
-					if (taikhoanBO.chekOk(username, password)) {
+					if (taikhoanBO.chekOk(username, password, 1)) {
 						TAIKHOAN user = taikhoanBO.getTaiKhoan(username,
 								password);
 						// Tạo session lưu trữ phiên làm việc
 						request.getSession().setAttribute("user", user);
 						// Điều hướng đến trang khác mà không cần gửi dữ liệu
-						response.sendRedirect("ThongTinCTV.jsp");
+						response.sendRedirect("TrangChuCTVServlet");
 					} else {
 						request.setAttribute("meg", "Tên đăng nhập hoặc mật khẩu không chính xác!");
 						request.getRequestDispatcher("TrangChuCTV.jsp").forward(request, response);

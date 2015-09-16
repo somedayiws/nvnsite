@@ -3,15 +3,12 @@
 
 
 <head>
-
+<link rel="stylesheet" href="css/footer.css">
 </head>
 <body>
 
-		<div style="background-color: #E0E0D1;">
-			<p>Design by Hai Ho - Infomation technology - University of
-				Science and Technology - The University of Da Nang</p>
-			<p>Email:hoquochaibkdn@gmail.com</p>
-			<p>Phone:0988965135</p>
+		<div id="divfooter">
+			Copyright@2015			
 		</div>
 
 

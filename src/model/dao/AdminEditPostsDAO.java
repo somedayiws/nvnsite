@@ -4,7 +4,7 @@ import model.bean.BAIVIET;
 
 public class AdminEditPostsDAO {
 
-	MySQLConnector db = new MySQLConnector();
+	DataBaseDAO db = new DataBaseDAO();
 
 	/** Update posts in database */
 	public boolean updatePost(BAIVIET post, String idCategory, String idAccount) {
