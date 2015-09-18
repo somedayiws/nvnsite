@@ -22,24 +22,26 @@
 			<!-- Lấy dữ liệu từ server gửi về -->
 			<%
 				/* Danh mục được hiển thị content */
-				ArrayList<DANHMUC> list = (ArrayList<DANHMUC>) request
-											.getAttribute("list");
-				/* Danh mục được hiển thị trong phần menu */
-				ArrayList<DANHMUC> listdanhmuc = (ArrayList<DANHMUC>) request
-											.getAttribute("listdanhmuc");
-				/* Top 10 bài viết */
-				ArrayList<BAIVIET> top = (ArrayList<BAIVIET>) request
-											.getAttribute("topbaiviet");
-				/* Top 10 bài viết moi */
-				ArrayList<BAIVIET> topmoi = (ArrayList<BAIVIET>) request
-											.getAttribute("topmoi");
-				/* Lấy sesion người dùng */
-				TAIKHOAN user = (TAIKHOAN) request.getSession()
-											.getAttribute("user");
-				if (user != null) {
+					ArrayList<DANHMUC> list = (ArrayList<DANHMUC>) request
+												.getAttribute("list");
+					/* Danh mục được hiển thị trong phần menu */
+					ArrayList<DANHMUC> listdanhmuc = (ArrayList<DANHMUC>) request
+												.getAttribute("listdanhmuc");
+					/* Top 10 bài viết */
+					ArrayList<BAIVIET> top = (ArrayList<BAIVIET>) request
+												.getAttribute("topbaiviet");
+					/* Top 10 bài viết moi */
+					ArrayList<BAIVIET> topmoi = (ArrayList<BAIVIET>) request
+												.getAttribute("topmoi");
+					/* Lấy sesion người dùng */
+					TAIKHOAN user = (TAIKHOAN) request.getSession()
+												.getAttribute("user");
+					if (user != null) {
 			%>
 			<input type="hidden" id="tkDangNhap" value="<%=user.getHoTen()%>">
 			<ul class="nav navbar-nav navbar-right">
+				<li><a href="DangKyThanhVienServlet"><i class="fa fa-user"></i>
+						Quảng cáo - ログイン</a> |</li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="CapNhatThongTinServlet">Chào <%=user.getTenTaiKhoan()%>
 						<i class="fa fa-cogs"> </i></a>
@@ -56,12 +58,12 @@
 			<input type="hidden" id="tkDangNhap" value="null">
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="DangKyThanhVienServlet"><i class="fa fa-user"></i>
-						Đăng ký - ログイン</a> | <a data-toggle="modal" data-target="#mdangnhap"><i
+						Quảng cáo - ログイン</a> | <a href="DangKyThanhVienServlet"><i class="fa fa-user"></i>Đăng ký - ログイン</a> | <a data-toggle="modal" data-target="#mdangnhap"><i
 						class="fa fa-user"></i> Đăng nhập - ログインログイン</a></li>
 				<%
 					}
 				%>
-<!-- 				<li id="google_translate_element"></li> -->
+				<!-- 				<li id="google_translate_element"></li> -->
 			</ul>
 
 			<script type="text/javascript">
@@ -147,7 +149,7 @@
 					class="fa fa-home fa-2x"></a></li>
 				<%
 					int i = 0;
-													while (listdanhmuc != null && i < listdanhmuc.size() && i < 8) {
+															while (listdanhmuc != null && i < listdanhmuc.size() && i < 8) {
 				%>
 				<li><a
 					href="DanhSachBaiVietServlet?id=<%=listdanhmuc.get(i).getIdDanhMuc()%>">
@@ -156,8 +158,8 @@
 				</a></li>
 				<%
 					i++;
-													}
-													if (listdanhmuc != null && i < listdanhmuc.size()) {
+															}
+															if (listdanhmuc != null && i < listdanhmuc.size()) {
 				%>
 				<!-- <li><a href="#"> <small class=vi>Thông Tin</small><br><small class=ja>じょうほう </small></a></li> -->
 				<li class="dropdown"><a class="dropdown-toggle"
@@ -171,7 +173,7 @@
 							href="DanhSachBaiVietServlet?id=<%=listdanhmuc.get(i).getIdDanhMuc()%>"><%=listdanhmuc.get(i).getTenDanhMucVi()%>-<%=listdanhmuc.get(i).getTenDanhMucJa()%></a></li>
 						<%
 							i++;
-																								}
+																												}
 						%>
 					</ul></li>
 				<%
@@ -186,8 +188,8 @@
 	<div id="textdiv">
 		<span class="col-sm-2 col-md-2" id="datetime"><i
 			class="fa fa-clock-o"></i> Ngày 8 tháng 9 2015 </span> <span
-			 id="textcontent"> <marquee>
-				Dòng chữ chạy tự động nội dung web </marquee>
+			id="textcontent"> <marquee> Dòng chữ chạy tự động
+				nội dung web </marquee>
 		</span>
 		<%
 			if (user == null) {

@@ -18,7 +18,7 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery-2.1.0.min.js"></script>
 <script src="js/jquery.lazyload.js"></script>
-<script type="text/javascript" src="js/disable-copyright.js"></script>
+<!-- <script type="text/javascript" src="js/disable-copyright.js"></script> -->
 <title>Chi tiết bài viết</title>
 <link rel="stylesheet" href="css/ClientStyle.css">
 <link rel="stylesheet"
@@ -28,20 +28,17 @@
 	<!-- Lấy dữ liệu từ server gửi về -->
 	<%
 		/* Bài viết được view */
-			BAIVIET baiviet = (BAIVIET) request.getAttribute("baiviet");
-			/* Top 10 bài viết đầu tiên được hiển thị */
-			ArrayList<BAIVIET> listbaiviet = (ArrayList<BAIVIET>) request.getAttribute("listbaiviet");
-			/* binh luan tiếng việt*/
-			ArrayList<BINHLUAN> blviet = baiviet.getBinhLuanVi();
-			/* bình luận tiếng nhật*/
-			ArrayList<BINHLUAN> blnhat = baiviet.getBinhLuanJa();
+		BAIVIET baiviet = (BAIVIET) request.getAttribute("baiviet");
+		/* Top 10 bài viết đầu tiên được hiển thị */
+		ArrayList<BAIVIET> listbaiviet = (ArrayList<BAIVIET>) request.getAttribute("listbaiviet");
+		/* binh luan tiếng việt*/
+		ArrayList<BINHLUAN> blviet = baiviet.getBinhLuanVi();
+		/* bình luận tiếng nhật*/
+		ArrayList<BINHLUAN> blnhat = baiviet.getBinhLuanJa();
 	%>
-	
+
 	<!-- Kết thúc quá trình lấy dữ liệu -->
 	<%@include file="header.jsp"%>
-	<% if(user!=null) { %>
-		<input type="hidden" id="tkDangNhap" value="<%= user.getHoTen() %>">
-	<% } %>
 	<div id="mainContent">
 		<!-- Quảng cáo lung tung -->
 		<div id="sahred">
@@ -55,6 +52,7 @@
 				data-href="http://webvietnhat-demo.jelastic.skali.net/"
 				data-layout="button_count"></div>
 		</div>
+		
 		<!-- hiển thị nội dung chính ở đây -->
 		<div class="col-sm-9 col-md-9" id="baiviet">
 			<h3>
@@ -119,13 +117,13 @@
 						<i class="fa fa-comments-o"></i> Gửi - コメント
 					</button>
 					<p id="anotherComments">
-						<span>Bình luận</span>
+						<span>Bình luận khác</span>
 					</p>
 
 					<div class="row" id="listblviet">
 						<%
 							i = 0;
-																										while(blviet != null && i<blviet.size()){
+																														while(blviet != null && i<blviet.size()){
 						%>
 						<div id="itemComment">
 							<i class="fa fa-user"></i> <em><%=blviet.get(i).getTaiKhoan().getHoTen()%></em>
@@ -143,7 +141,7 @@
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6" id="blnhat">
-					<strong id="selfComment"> Các comment tiêu biểu </strong>
+					<strong id="selfComment"> Bình luận </strong>
 					<div class="row">
 						<textarea rows="3" placeholder="Bình luận của bạn"
 							class="form-control" id="txtnhat"></textarea>
@@ -153,13 +151,13 @@
 						<i class="fa fa-comments-o"></i> Gửi - コメント
 					</button>
 					<p id="anotherComments">
-						<span>Bình luận</span>
+						<span>Bình luận khác</span>
 					</p>
 
 					<div class="row" id="listblnhat">
 						<%
 							i = 0;
-							while(blnhat != null && i<blnhat.size()){
+											while(blnhat != null && i<blnhat.size()){
 						%>
 						<div id="itemComment">
 
@@ -188,7 +186,7 @@
 					<%=baiviet.getNoiDungVi()%>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12" id="blviet">
-					<strong id="selfComment"> Các comment tiêu biểu </strong>
+					<strong id="selfComment"> Bình luận </strong>
 					<div class="row">
 						<textarea rows="3" placeholder="Bình luận của bạn"
 							class="form-control" id="txtviet"></textarea>
@@ -198,13 +196,13 @@
 						<i class="fa fa-comments-o"></i> Gửi - コメント
 					</button>
 					<p id="anotherComments">
-						<span>Bình luận</span>
+						<span>Bình luận khác</span>
 					</p>
 
 					<div class="row" id="listblviet">
 						<%
 							i = 0;
-																											while(blviet != null && i<blviet.size()){
+																															while(blviet != null && i<blviet.size()){
 						%>
 						<div id="itemComment">
 							<i class="fa fa-user"></i> <em><%=blviet.get(i).getTaiKhoan().getHoTen()%></em>
@@ -232,7 +230,7 @@
 					<%=baiviet.getNoiDungJa()%>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12" id="blnhat">
-					<strong id="selfComment"> Các comment tiêu biểu </strong>
+					<strong id="selfComment"> Bình luận </strong>
 					<button type="button" class="btn btn-link"
 						onclick="comentja('<%=baiviet.getIdBaiViet()%>');">
 						<i class="fa fa-comments-o"></i> Gửi - コメント
@@ -242,13 +240,13 @@
 							class="form-control" id="txtnhat"></textarea>
 					</div>
 					<p id="anotherComments">
-						<span>Bình luận</span>
+						<span>Bình luận khác</span>
 					</p>
 
 					<div class="row" id="listblnhat">
 						<%
 							i = 0;
-																											while(blnhat != null && i<blnhat.size()){
+																															while(blnhat != null && i<blnhat.size()){
 						%>
 						<div id="itemComment">
 							<i class="fa fa-user"></i> <em><%=blnhat.get(i).getTaiKhoan().getHoTen()%></em>
@@ -279,7 +277,7 @@
 				<strong>Danh sách bài viết liên quan</strong>
 				<%
 					i=0;
-											while(listbaiviet != null && i<listbaiviet.size()){
+													while(listbaiviet != null && i<listbaiviet.size()){
 				%>
 				<div class="row">
 					<!-- danh sách các bài viết trong nhóm -->
@@ -294,8 +292,8 @@
 				%>
 			</div>
 		</div>
-			<%@include file="sidebar.jsp"%>
-		</div>
+		<%@include file="sidebar.jsp"%>
+	</div>
 	<div class="clearfix"></div>
 
 	<%@include file="footer.jsp"%>
@@ -386,7 +384,7 @@
 <!-- Xử lý load lấy bình luận -->
 <script type="text/javascript">
 	function loadBinhLuan(id, ngonngu) {
-		if (ngonngu=='vi') {
+		if (ngonngu == 'vi') {
 			$.ajax({
 				url : "DataBinhLuanServlet", //file  
 				type : "POST", //phuong thức gưi
@@ -433,7 +431,7 @@
 	};
 	function comentvi(id) {
 		var bien = $("#tkDangNhap").val();
-		if (bien == null) {
+		if (bien == 'null') {
 			alert("Bạn phải đăng nhập, mới được bình luận.");
 		} else {
 			var txt = $("#txtviet").val();
@@ -451,13 +449,13 @@
 	};
 	function comentja(id) {
 		var bien = $("#tkDangNhap").val();
-		if (bien == null) {
+		if (bien == 'null') {
 			alert("Bạn phải đăng nhập, mới được bình luận.");
 		} else {
 			var txt = $("#txtnhat").val();
 			if (txt != "") {
 				var htm = "<i class='fa fa-user'></i> <em>" + bien
-				+ "</em> <p>" + txt + "</p>";
+						+ "</em> <p>" + txt + "</p>";
 				$("#listblnhat").append(htm);
 				$("#txtnhat").val("");
 				updatedatavi(id, 'ja', txt);
