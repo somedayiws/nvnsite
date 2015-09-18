@@ -20,9 +20,10 @@ public class BaiVietDAO {
 	public BAIVIET getBaiViet(String id) {
 		// TODO Auto-generated method stub
 		id = DinhDangSQL.FomatSQL(id);
-		ResultSet rs = db.getResultSet("select IdBaiViet, TenBaiVietVi, TenBaiVietJa, MoTaVi, MoTaJa, danhmuc.IdDanhMuc, TenDanhMucVi, TenDanhMucJa, HienThi, taikhoan.IdTaiKhoan, TenTaiKhoan, MatKhau, HoTen, DiaChi, DienThoai, Email, QuyenQuanTri, NoiDungVi, NoiDungJa, TrangThai, GhiChu, LienKet from baiviet inner join danhmuc on baiviet.IdDanhMuc=danhmuc.IdDanhMuc inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan where IdBaiViet='"+id+"'");
+		ResultSet rs = db.getResultSet("select IdBaiViet,TenBaiVietVi, TenBaiVietJa, MoTaVi, MoTaJa, danhmuc.IdDanhMuc, TenDanhMucVi, TenDanhMucJa, HienThi, taikhoan.IdTaiKhoan, TenTaiKhoan, MatKhau, HoTen, DiaChi, DienThoai, Email, QuyenQuanTri, NoiDungVi, NoiDungJa, TrangThai, GhiChu, LienKet, NgayDang, taikhoan.HoTen, LuotXem from baiviet inner join danhmuc on baiviet.IdDanhMuc=danhmuc.IdDanhMuc inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan where IdBaiViet='"+id+"'");
 		BAIVIET bv = null;
 		BinhLuanDAO bl = new BinhLuanDAO();
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		try {
 			if(rs.next()){
 				bv = new BAIVIET();
@@ -37,7 +38,12 @@ public class BaiVietDAO {
 				bv.setNoiDungJa(DinhDangSQL.DeFomatSQL(rs.getString("NoiDungJa")));
 				bv.setTrangThai(DinhDangSQL.DeFomatSQL(rs.getString("TrangThai")));
 				bv.setGhiChu(DinhDangSQL.DeFomatSQL(rs.getString("GhiChu")));
-				bv.setLienKet(DinhDangSQL.DeFomatSQL(rs.getString("LienKet")));
+				bv.setNgayDang(sdf.format(rs.getDate("NgayDang")));
+				TAIKHOAN tk = new TAIKHOAN();
+				tk.setHoTen(DinhDangSQL.DeFomatSQL(rs.getString("HoTen")));
+				bv.setTaiKhoan(tk);
+				bv.setLuotXem(rs.getInt("LuotXem"));
+
 				if(bv.getTrangThai().equals("OK"))
 					db.updateData("update baiviet set LuotXem = LuotXem + 1 where IdBaiViet=N'"+id+"'");
 				bv.setBinhLuanVi(bl.getListBinhLuan(id, "vi", "0"));

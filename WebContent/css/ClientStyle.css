@@ -1337,6 +1337,13 @@ form#seach {
 #listbaiviet .row {
 	margin: 8px 0px;
 }
+
+.infoDetail {
+	float: left;
+	margin: -0px 10px 15px 10px;
+	color: #555;
+	font-size: 13px;
+}
 /*End comment style*/
 
 /*List thread*/

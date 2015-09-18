@@ -28,13 +28,13 @@
 	<!-- Lấy dữ liệu từ server gửi về -->
 	<%
 		/* Bài viết được view */
-		BAIVIET baiviet = (BAIVIET) request.getAttribute("baiviet");
-		/* Top 10 bài viết đầu tiên được hiển thị */
-		ArrayList<BAIVIET> listbaiviet = (ArrayList<BAIVIET>) request.getAttribute("listbaiviet");
-		/* binh luan tiếng việt*/
-		ArrayList<BINHLUAN> blviet = baiviet.getBinhLuanVi();
-		/* bình luận tiếng nhật*/
-		ArrayList<BINHLUAN> blnhat = baiviet.getBinhLuanJa();
+			BAIVIET baiviet = (BAIVIET) request.getAttribute("baiviet");
+			/* Top 10 bài viết đầu tiên được hiển thị */
+			ArrayList<BAIVIET> listbaiviet = (ArrayList<BAIVIET>) request.getAttribute("listbaiviet");
+			/* binh luan tiếng việt*/
+			ArrayList<BINHLUAN> blviet = baiviet.getBinhLuanVi();
+			/* bình luận tiếng nhật*/
+			ArrayList<BINHLUAN> blnhat = baiviet.getBinhLuanJa();
 	%>
 
 	<!-- Kết thúc quá trình lấy dữ liệu -->
@@ -52,7 +52,7 @@
 				data-href="http://webvietnhat-demo.jelastic.skali.net/"
 				data-layout="button_count"></div>
 		</div>
-		
+
 		<!-- hiển thị nội dung chính ở đây -->
 		<div class="col-sm-9 col-md-9" id="baiviet">
 			<h3>
@@ -79,6 +79,13 @@
 					}
 				%>
 			</h3>
+			<div id="infoNews">
+				<div class="infoDetail"><i class="fa fa-user"></i> <%=baiviet.getTaiKhoan().getHoTen()%></div>
+				<div class="infoDetail"><i class="fa fa-calendar"></i> <%=baiviet.getNgayDang()%></div>
+				<div class="infoDetail"><i class="fa fa-eye"></i> <%=baiviet.getLuotXem()%></div>
+				<div id="socialLink"></div>
+			</div>
+			<div class="clearfix"></div>
 			<p>
 				<%
 					if(baiviet.getMoTaVi() != null ) {
@@ -123,7 +130,7 @@
 					<div class="row" id="listblviet">
 						<%
 							i = 0;
-																														while(blviet != null && i<blviet.size()){
+																																		while(blviet != null && i<blviet.size()){
 						%>
 						<div id="itemComment">
 							<i class="fa fa-user"></i> <em><%=blviet.get(i).getTaiKhoan().getHoTen()%></em>
@@ -157,7 +164,7 @@
 					<div class="row" id="listblnhat">
 						<%
 							i = 0;
-											while(blnhat != null && i<blnhat.size()){
+															while(blnhat != null && i<blnhat.size()){
 						%>
 						<div id="itemComment">
 
@@ -202,7 +209,7 @@
 					<div class="row" id="listblviet">
 						<%
 							i = 0;
-																															while(blviet != null && i<blviet.size()){
+																																			while(blviet != null && i<blviet.size()){
 						%>
 						<div id="itemComment">
 							<i class="fa fa-user"></i> <em><%=blviet.get(i).getTaiKhoan().getHoTen()%></em>
@@ -246,7 +253,7 @@
 					<div class="row" id="listblnhat">
 						<%
 							i = 0;
-																															while(blnhat != null && i<blnhat.size()){
+																																			while(blnhat != null && i<blnhat.size()){
 						%>
 						<div id="itemComment">
 							<i class="fa fa-user"></i> <em><%=blnhat.get(i).getTaiKhoan().getHoTen()%></em>
@@ -277,7 +284,7 @@
 				<strong>Danh sách bài viết liên quan</strong>
 				<%
 					i=0;
-													while(listbaiviet != null && i<listbaiviet.size()){
+															while(listbaiviet != null && i<listbaiviet.size()){
 				%>
 				<div class="row">
 					<!-- danh sách các bài viết trong nhóm -->
