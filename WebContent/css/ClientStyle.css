@@ -90,6 +90,20 @@ div#menu {
 	padding-bottom: 5px;
 }
 
+.col-sm-9 .danhmucx #titleDanhMuc:hover span {
+	color: #e32c22;
+}
+
+.col-sm-9 .danhmucx #titleDanhMuc a {
+	float: right;
+	font-size: 15px;
+	cursor: pointer;
+}
+
+.col-sm-9 .danhmucx #titleDanhMuc a i {
+	margin-left: 5px;
+}
+
 .col-sm-9 .danhmucx {
 	margin-top: 10px;
 }
@@ -434,10 +448,11 @@ form#fdangnhap {
 
 #sahred {
 	position: fixed;
-	top: 20%;
+	top: 30%;
 	left: 1%;
 	text-align: left;
 	width: 100px;
+	z-index: 9999;
 }
 
 #danhmuchot {
@@ -481,14 +496,6 @@ form#fdangnhap {
 	float: left;
 	width: 75%;
 	margin-left: 1%;
-}
-
-.thongtinthem {
-	width: 24%;
-	float: left;
-	font-size: 11px;
-	color: #020525;
-	padding: 0px 10px;
 }
 
 .thongtinthem embed {

@@ -130,9 +130,55 @@
 	#dynamicText #textdiv {
 		width: 1066px;
 	}
+	/*Item news style*/
+	.thongtinthem em {
+		float: left;
+		width: 100% !important;
+	}
+	.thongtinthem {
+		width: 24%;
+		float: left;
+		font-size: 12px;
+		color: #020525;
+		padding: 0px 10px;
+	}
+	.thongtinthem embed {
+		margin-bottom: 5px;
+	}
+	.thongtinthem strong {
+		float: left;
+		font-size: 13px;
+		margin: 5px 0px 0px 0px;
+		width: 100%;
+	}
+	.thongtinthem i {
+		margin-right: 5px;
+		margin-left: 5px;
+	}
+	/*End item news style*/
 }
 
 @media only screen and (max-width: 1024px) {
+	/*Item news style*/
+	.thongtinthem {
+		width: 24%;
+		float: left;
+		font-size: 12px;
+		color: #020525;
+		padding: 0px 10px;
+	}
+	.thongtinthem embed {
+		margin-bottom: 5px;
+	}
+	.thongtinthem strong {
+		font-size: 13px;
+		margin: 5px 0px;
+	}
+	.thongtinthem i {
+		margin-right: 5px;
+		margin-left: 5px;
+	}
+	/*End item news style*/
 	.khung {
 		background-color: red;
 	}
@@ -508,6 +554,9 @@
 		width: 100%;
 		text-align: center;
 	}
+	#sahred {
+		display: none;
+	}
 	/*advertisement*/
 	/*Statistic Style*/
 	#leftTopContent {
@@ -548,12 +597,39 @@
 	.khung {
 		background-color: yealow;
 	}
-	.thongtinthem {
-		width: 100% !important;
+	.danhmucx #titleDanhMuc strong span {
+		font-size: 15px !important;
+	}
+	.danhmucx #titleDanhMuc strong {
+		font-size: 15px !important;
+		padding: 11px 0px !important;
+	}
+	.danhmucx #titleDanhMuc i {
+		font-size: 15px !important;
+		padding: 8px 0px 8px 10px !important;
+	}
+	.thongtinthem em {
+		float: left;
+		margin: 0px 10px 0px 0px !important;
+		font-size: 13px !important;
+		color: #555;
 	}
 	.thongtinthem embed {
 		width: 20% !important;
 		float: left;
+		margin-bottom: 5px;
+	}
+	.thongtinthem strong {
+		float: left;
+		font-size: 13px !important;
+		margin: 0px 5px 0px 0px !important;
+		color: #555;
+	}
+	.thongtinthem {
+		width: 100% !important;
+	}
+	.thongtinthem i {
+		margin-bottom: 3px;
 	}
 	.motabai {
 		width: 100% !important;
@@ -561,17 +637,29 @@
 	.ancainay {
 		display: none;
 	}
+
 	/*Header style*/
 	#topmenu .nav {
 		font-size: 12px !important;
 	}
+
+	/*Hide UI*/
 	.maps {
 		width: 100% !important;
 		margin: 0px !important;
 		float: none !important;
+		display: none;
 	}
+	.facebookdiv {
+		display: none;
+	}
+	#AllPosts {
+		display: none;
+	}
+	/*End Hide UI*/
 }
 
+}
 @media only screen and (max-width: 360px) {
 }
 

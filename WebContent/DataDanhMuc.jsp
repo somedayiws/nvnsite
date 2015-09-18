@@ -49,10 +49,9 @@
 											<a
 												href="BaiVietServlet?id=<%=listbaiviet.get(j).getIdBaiViet()%>"
 												class="thongtinthem"> <embed
-													src="<%=listbaiviet.get(j).getLienKet()%>"><strong>Tác
-													giả : <%=listbaiviet.get(j).getTaiKhoan().getHoTen()%></strong><br>
-												<em> Ngày : <%=listbaiviet.get(j).getNgayDang()%><br>
-													View : <%=listbaiviet.get(j).getLuotXem()%>
+													src="<%=listbaiviet.get(j).getLienKet()%>"><strong><i class="fa fa-user"></i> <%=listbaiviet.get(j).getTaiKhoan().getHoTen()%></strong>
+												<em> <i class="fa fa-calendar"></i> <%=listbaiviet.get(j).getNgayDang()%></em>
+													<em><i class="fa fa-eye"></i> <%=listbaiviet.get(j).getLuotXem()%>
 											</em>
 											</a>
 											<div class="motabai">
