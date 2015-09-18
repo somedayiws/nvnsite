@@ -11,11 +11,16 @@
 	while(bluan != null && j<bluan.size()){
 		if(language.equals("vi")) {
 %>
+<div id="itemComment">
 	<i class="fa fa-user"></i> <em><%= bluan.get(j).getTaiKhoan().getHoTen() %></em>
 	<p><%= bluan.get(j).getPhanHoiVi() %></p>
+	</div>
 	<% } else { %>
+	<div id="itemComment">
 	<i class="fa fa-user"></i> <em><%= bluan.get(j).getTaiKhoan().getHoTen() %></em>
 	<p><%= bluan.get(j).getPhanHoiJa() %></p>
+	</div>
 <%
 	} j++; }
 %>
+</div>

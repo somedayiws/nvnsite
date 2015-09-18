@@ -40,8 +40,7 @@
 			%>
 			<input type="hidden" id="tkDangNhap" value="<%=user.getHoTen()%>">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="DangKyThanhVienServlet"><i class="fa fa-user"></i>
-						Quảng cáo - ログイン</a> |</li>
+				
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="CapNhatThongTinServlet">Chào <%=user.getTenTaiKhoan()%>
 						<i class="fa fa-cogs"> </i></a>
@@ -51,6 +50,8 @@
 						<li><a href="DangXuatServlet"><i class="fa fa-sign-out"></i>
 								Đăng xuất</a></li>
 					</ul></li>
+				<li><a href="DangKyThanhVienServlet"><i class="fa fa-user"></i>
+						Quảng cáo - ログイン</a> |</li>
 			</ul>
 			<%
 				} else {

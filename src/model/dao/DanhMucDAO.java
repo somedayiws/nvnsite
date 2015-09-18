@@ -35,6 +35,7 @@ public class DanhMucDAO {
 	public ArrayList<DANHMUC> getListDanhMuc(String vitri, String top) {
 		// TODO Auto-generated method stub
 		String sql = "select IdDanhMuc,TenDanhMucVi,TenDanhMucJa,ICon from danhmuc limit "+vitri+","+top;
+		System.out.println(sql);
 		ResultSet rs = db.getResultSet(sql);
 		ArrayList<DANHMUC> list = new ArrayList<DANHMUC>();
 		BaiVietDAO baiviet = new BaiVietDAO();

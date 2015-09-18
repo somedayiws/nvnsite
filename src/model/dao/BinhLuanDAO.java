@@ -18,11 +18,11 @@ public class BinhLuanDAO {
 		if(nn != null && nn.equals("ja")){
 			sql = "select PhanHoiJa, PhanHoiVi, taikhoan.IdTaiKhoan, TenTaiKhoan, MatKhau, HoTen, DiaChi, DienThoai, Email, QuyenQuanTri "
 					+ "from binhluan inner join taikhoan on binhluan.IdTaiKhoan=taikhoan.IdTaiKhoan where IdBaiViet='"+id+"' "
-					+ "and PhanHoiJa is not null limit "+vitri+",5";
+					+ "and PhanHoiJa is not null order by binhluan.IdComent desc limit "+vitri+",5";
 		}else {
 			sql = "select PhanHoiJa, PhanHoiVi, taikhoan.IdTaiKhoan, TenTaiKhoan, MatKhau, HoTen, DiaChi, DienThoai, Email, QuyenQuanTri "
 					+ "from binhluan inner join taikhoan on binhluan.IdTaiKhoan=taikhoan.IdTaiKhoan where IdBaiViet='"+id+"' "
-					+ "and PhanHoiVi is not null limit "+vitri+",5";
+					+ "and PhanHoiVi is not null order by binhluan.IdComent desc limit "+vitri+",5";
 		}
 		ResultSet rs = db.getResultSet(sql);
 		try {
@@ -32,6 +32,7 @@ public class BinhLuanDAO {
 				bl.setPhanHoiVi(DinhDangSQL.DeFomatSQL(rs.getString("PhanHoiVi")));
 				bl.setTaiKhoan(new TAIKHOAN(DinhDangSQL.DeFomatSQL(rs.getString("IdTaiKhoan")), DinhDangSQL.DeFomatSQL(rs.getString("TenTaiKhoan")), DinhDangSQL.DeFomatSQL(rs.getString("MatKhau")), DinhDangSQL.DeFomatSQL(rs.getString("HoTen")), DinhDangSQL.DeFomatSQL(rs.getString("DiaChi")), rs.getString("DienThoai"), DinhDangSQL.DeFomatSQL(rs.getString("Email")), DinhDangSQL.DeFomatSQL(rs.getString("QuyenQuanTri"))));
 				list.add(bl); 
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

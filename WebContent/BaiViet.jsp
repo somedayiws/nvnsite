@@ -385,13 +385,14 @@
 <script type="text/javascript">
 	function loadBinhLuan(id, ngonngu) {
 		if (ngonngu == 'vi') {
+			var nvitri = $("#listblviet").children().size();
 			$.ajax({
 				url : "DataBinhLuanServlet", //file  
 				type : "POST", //phuong thức gưi
 				data : {
 					idbaiviet : id,
 					ngonngu : ngonngu,
-					vitri : $("#listblviet").children().size()
+					vitri : nvitri
 				},//dữ liệu gửi
 				async : true, //
 				success : function(res) {

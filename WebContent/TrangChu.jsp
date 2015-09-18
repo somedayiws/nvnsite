@@ -289,7 +289,7 @@ body {
 								if(list.get(i).getBaiViets()!= null && list.get(i).getBaiViets().size()>0) {
 				%>
 
-				<div class="danhmucx">
+				<div class="danhmucx" id="<%=list.get(i).getIdDanhMuc().trim().substring(2)%>">
 					<p id="titleDanhMuc">
 						<strong
 							onclick="loadData('DanhSachBaiVietServlet','<%=list.get(i).getIdDanhMuc().trim()%>');">
@@ -433,6 +433,7 @@ body {
 						$(window)
 								.scroll(
 										function() {
+											var nbaiviet = parseInt($("#baiviet .danhmucx:last-child").attr("id"));
 											if (($(document).height()
 													- $(this).scrollTop() - $(
 													this).height()) < 10) {

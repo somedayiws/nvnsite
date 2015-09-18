@@ -259,8 +259,6 @@ a:hover, li:hover {
 	border-radius: 5px;
 	margin-top: 15px;
 	padding: 2px;
-	max-height: 700px;
-	overflow: auto;
 }
 
 #tuychonviet a, #tuychonnhat a {
@@ -1245,11 +1243,18 @@ form#seach {
 	border-radius: 0px !important;
 	padding: 5px 0px !important;
 	font-size: 15px;
+	color: #333 !important;
+}
+
+#selfComment {
+	font-size: 15px;
 }
 
 #anotherComments span {
 	padding-bottom: 6px;
 	border-bottom: 1px solid #45a3ea;
+	color: #333 !important;
+	font-size: 15px;
 }
 
 #blviet .form-control {
@@ -1288,6 +1293,11 @@ form#seach {
 #blviet .btn:hover {
 	text-decoration: none;
 	background: #4593ea;
+}
+
+#listblviet, #listblnhat {
+	overflow: auto;
+	max-height: 700px;
 }
 
 #listblviet #itemComment {
