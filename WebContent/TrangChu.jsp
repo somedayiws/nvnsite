@@ -54,7 +54,7 @@
 		}, 400);
 
 		//Call the gallery function to run the slideshow, 6000 = change to next image after 6 seconds
-		setInterval('gallery()', 6000);
+		setInterval('gallery()', 10000);
 
 	}
 
@@ -101,7 +101,7 @@
 		$('#gallery .caption').animate({
 			opacity : 0.7
 		}, 100).animate({
-			height : '100px'
+			height : '110px'
 		}, 500);
 
 		//Display the content
@@ -140,10 +140,11 @@ body {
 	z-index: 600;
 	background-color: #000;
 	color: #ffffff;
-	height: 100px;
+	height: 110px;
 	width: 100%;
 	position: absolute;
 	bottom: 0;
+	padding: 0px 2px;
 }
 
 #gallery .caption .content {
@@ -178,7 +179,7 @@ body {
 						<ul id="listhot">
 							<%
 								i=0;
-																											while(listdanhmuc != null && i<listdanhmuc.size()){
+								while(listdanhmuc != null && i<listdanhmuc.size()){
 							%>
 							<li><a
 								href="DanhSachBaiVietServlet?id=<%=listdanhmuc.get(i).getIdDanhMuc()%>"><i
@@ -190,25 +191,26 @@ body {
 							%>
 						</ul>
 					</div>
-<!-- 			Quảng cáo banner -->
-						<div class="adv300x250">
-							<img src="http://placehold.it/300x250">
-						</div>
-						<!-- 			Quảng cáo banner -->
+					<!-- 			Quảng cáo banner -->
+					<div class="adv300x250">
+						<img src="http://placehold.it/300x250">
+					</div>
+					<!-- 			Quảng cáo banner -->
 				</div>
 				<div class="col-sm-6 col-md-6">
 					<!-- slider -->
 					<div id="gallery">
 						<%
 							i=0;
-																							while(top != null && i<top.size()){
+																															while(top != null && i<top.size()){
 						%>
 
 						<a href="BaiVietServlet?id=<%=top.get(i).getIdBaiViet()%>"
 							class="show"> <img src="<%=top.get(i).getLienKet()%>"
 							alt="<%=top.get(i).getTenBaiVietVi()%>" title="" alt=""
-							rel="<h3><%=top.get(i).getTenBaiVietVi()%> </br> <%=top.get(i).getTenBaiVietJa()%></h3>
-							<%=top.get(i).getMoTaVi()%> </br> <%=top.get(i).getMoTaJa()%>" />
+							rel="<h3><%=top.get(i).getTenBaiVietVi()==null?"":top.get(i).getTenBaiVietVi()%> </br> <%=top.get(i).getTenBaiVietJa()==null?"":top.get(i).getTenBaiVietJa()%></h3>
+							<%=top.get(i).getMoTaVi()!=null ? (top.get(i).getMoTaVi().length()>90 ? (top.get(i).getMoTaVi().substring(0, 90)+"..."): top.get(i).getMoTaVi()):""%> 
+							</br><%=top.get(i).getMoTaJa() !=null ? (top.get(i).getMoTaJa().length()>90 ? (top.get(i).getMoTaJa().substring(0, 90)+"..."): top.get(i).getMoTaJa()): ""%>" />
 						</a>
 						<%
 							i++; }
@@ -220,13 +222,14 @@ body {
 					<div id="relativePost">
 						<%
 							i=0;
-																			while(top != null && i<top.size()  && i < 6){
+															while(top != null && i<top.size()  && i < 6){
 						%>
 						<div id="col-sm-6 col-md-6">
 							<div class="itemMini">
 								<a href="BaiVietServlet?id=<%=top.get(i).getIdBaiViet()%>">
-									<img src="<%=top.get(i).getLienKet()%>"> <strong><%=top.get(i).getTenBaiVietVi()%>
-										</br> <%=top.get(i).getTenBaiVietJa()%></strong>
+									<img src="<%=top.get(i).getLienKet()%>"> <strong>
+										<%=top.get(i).getMoTaVi()!=null ? (top.get(i).getMoTaVi().length()>90 ? (top.get(i).getMoTaVi().substring(0, 90)+"..."): top.get(i).getMoTaVi()):""%>
+										</br> <%=top.get(i).getMoTaJa() !=null ? (top.get(i).getMoTaJa().length()>90 ? (top.get(i).getMoTaJa().substring(0, 90)+"..."): top.get(i).getMoTaJa()): ""%></strong>
 								</a>
 							</div>
 						</div>
@@ -247,7 +250,7 @@ body {
 						<ul id="contentWeek">
 							<%
 								i=5;
-																		while(top != null && i<top.size()){
+																												while(top != null && i<top.size()){
 							%>
 							<li><a
 								href="BaiVietServlet?id=<%=top.get(i).getIdBaiViet()%>"><i
@@ -280,17 +283,31 @@ body {
 				<!-- Bắt đầu 1 danh mục -->
 				<%
 					i = 0;
-																											while(list != null && i<list.size()){
-																												if(list.get(i).getBaiViets()!= null && list.get(i).getBaiViets().size()>0) {
+							while(list != null && i<list.size()){
+								if(list.get(i).getBaiViets()!= null && list.get(i).getBaiViets().size()>0) {
 				%>
 
 				<div class="danhmucx">
 					<p id="titleDanhMuc">
 						<strong
-							onclick="loadData('DanhSachBaiVietServlet','<%=list.get(i).getIdDanhMuc().trim()%>');"><i
-							class="fa fa-star-o"></i> <span><%=list.get(i).getTenDanhMucVi()%></span>
-							- <%=list.get(i).getTenDanhMucJa()%></strong>
+							onclick="loadData('DanhSachBaiVietServlet','<%=list.get(i).getIdDanhMuc().trim()%>');">
+							<span id="iconImg">
+						<%
+							if(list.get(i).getIcon()!=null)
+																	{
+						%>
+								<img src="<%=list.get(i).getIcon()%>">
+								<%
+									} else {
+								%>
+								<i class="fa fa-star-o"></i>
+								<%
+									}
+								%>
+							</span>
+							<span><%=list.get(i).getTenDanhMucVi()%></span> - <%=list.get(i).getTenDanhMucJa()%></strong>
 					</p>
+					
 					<div class="row">
 						<div class="row">
 							<div id="wrapper_carousel" class="carousel slide"
@@ -298,8 +315,8 @@ body {
 								<div class="carousel-inner" role="listbox">
 									<%
 										ArrayList<BAIVIET> listbaiviet = list.get(i).getBaiViets();
-																																																																	int j=0;
-																																																																	if(listbaiviet != null && j<listbaiviet.size()){
+																																																																															int j=0;
+																																																																															if(listbaiviet != null && j<listbaiviet.size()){
 									%>
 									<div class="item active">
 										<div class="baivieti col-xs-12 col-sm-12 col-md-12">
@@ -332,9 +349,6 @@ body {
 												<%
 													}
 												%>
-												<a
-													href="BaiVietServlet?id=<%=listbaiviet.get(j).getIdBaiViet()%>"
-													class="xemthem">Xem thêm ...</a>
 											</div>
 										</div>
 									</div>
@@ -345,26 +359,21 @@ body {
 								</div>
 							</div>
 						</div>
-						<div class="col-xs-12 col-sm-12 col-md-12"
-							style="background-color: white;">
-							<em><i class="fa fa-list-ul"></i> Các bài viết liên quan -
-								関連</em>
-						</div>
-
 						<!-- danh sách bài viết mới -->
 						<div class="col-xs-12 col-sm-12 col-md-12"
 							style="background-color: white;" id="binhluan<%=i%>">
 							<%
 								j = 0;
-																																																		while(listbaiviet != null && j<listbaiviet.size()){
+																																																												while(listbaiviet != null && j<listbaiviet.size()){
 							%>
 							<div class="row">
 								<!-- danh sách các bài viết trong nhóm -->
-								<div class="col-xs-1 col-sm-1 col-md-1">
-									<img alt="Ảnh đại diện" src="images/baiviet.jpg"
-										style="width: 20px;">
+								<div class="col-xs-2 col-md-1">
+									<img alt="Ảnh đại diện"
+										src="<%=listbaiviet.get(j).getLienKet()%>"
+										style="width: 70px;">
 								</div>
-								<div class="col-xs-10 col-sm-11 col-md-11">
+								<div class="col-xs-10 col-md-11">
 									<a
 										href="BaiVietServlet?id=<%=listbaiviet.get(j).getIdBaiViet()%>">
 										<%=listbaiviet.get(j).getTenBaiVietVi()%><br><%=listbaiviet.get(j).getTenBaiVietJa()%>

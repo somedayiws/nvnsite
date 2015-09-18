@@ -42,20 +42,7 @@ input.error {
 }
 
 /* định dạng khung trong danh sách bài viết */
-.row .row {
-	border: 1px solid #EAEAF3;
-	margin: 5px;
-	border-radius: 5px; /* Bo góc */
-	-moz-border-radius: 5px; /* firefox */
-	-webkit-border-radius: 5px; /* chrome & safari */
-	-ms-border-radius: 5px; /* ie */
-	-o-border-radius: 5px; /* opera */
-}
 
-.row {
-	margin-left: 0px;
-	margin-right: 0px;
-}
 /* menu */
 a.glyphicon.glyphicon-home {
 	margin-top: 10px;
@@ -78,6 +65,19 @@ a.fa.fa-home.fa-2x {
 div#menu {
 	text-align: center;
 }
+/*item list Home*/
+#iconImg img {
+	width: 32px;
+	height: 28px;
+}
+
+#iconImg {
+	margin-right: 10px;
+}
+
+#iconImg i {
+	padding: 6px 0px 6px 7px !important;
+}
 
 .danhmucx {
 	min-width: 280px;
@@ -90,6 +90,39 @@ div#menu {
 	padding-bottom: 5px;
 }
 
+.col-sm-9 .danhmucx {
+	margin-top: 10px;
+}
+
+.col-sm-9 .danhmucx #titleDanhMuc {
+	padding: 5px;
+}
+
+.col-sm-9 .danhmucx #titleDanhMuc span {
+	background: white;
+	font-size: 18px;
+}
+
+.col-sm-9 .danhmucx #titleDanhMuc strong {
+	font-size: 18px;
+	background: white;
+}
+
+.danhmucx #titleDanhMuc strong i {
+	border-radius: 0px;
+	padding: 0px 15px 0px -10px !important;
+	color: #333;
+}
+
+#titleDanhMuc {
+	font-size: 18px;
+}
+
+.maps {
+	font-size: 20px;
+}
+
+/*item list Home*/
 #logo {
 	height: 180px;
 	width: 100%;
@@ -171,13 +204,17 @@ a:hover, li:hover {
 	padding-left: 20px;
 }
 
+.fa-4x {
+	font-size: 3em;
+}
+
 #them p #icon {
 	width: 45%;
 	float: left;
 }
 
 #them p #count {
-	font-size: 50px;
+	font-size: 30px;
 	text-align: center;
 	width: 45%;
 	float: left;
@@ -190,7 +227,7 @@ a:hover, li:hover {
 
 /* Chi tiết bài viết và bình luận*/
 #baiviet {
-overflow: hidden;
+	overflow: hidden;
 }
 
 #baiviet p {
@@ -453,6 +490,7 @@ form#fdangnhap {
 	float: left;
 	font-size: 11px;
 	color: #020525;
+	padding: 0px 10px;
 }
 
 .thongtinthem embed {
@@ -656,11 +694,15 @@ a.fa.fa-home.fa-2x {
 	border-radius: 0px;
 }
 
+.danhmucx #titleDanhMuc strong span {
+	color: #555
+}
+
 .danhmucx #titleDanhMuc strong {
 	cursor: pointer;
 	border-bottom: 1px solid #45a3ea;
 	border-radius: 0px;
-	padding: 12px 0px;
+	padding: 9px 0px;
 	margin: -10px;
 	font-size: 15px;
 	font-weight: bold;
@@ -669,30 +711,39 @@ a.fa.fa-home.fa-2x {
 	border-bottom: 1px solid #45a3ea;
 }
 
-.danhmucx #titleDanhMuc strong span {
-	color: #555
-}
-
-.danhmucx #titleDanhMuc strong i {
-	border-radius: 0px;
-	padding: 0px 15px 0px -10px !important;
-	color: #333;
-}
-
 #baiviet p {
-	border: 1px solid white;
-	padding: 10px;
-	border-radius: 10px;
+	border: none;
+	padding: 5px 0px;
 }
 
 .row .row {
-	border: none;
 	margin: 5px;
-	border-radius: 0px;
-	-moz-border-radius: 0px;
-	-webkit-border-radius: 0px;
-	-ms-border-radius: 0px;
-	-o-border-radius: 0px;
+	padding: 0px !important;
+	margin: 0px !important;
+}
+
+.row .col-xs-12 .row {
+	margin: 10px 0px !important;
+}
+
+.row .col-xs-2 {
+	padding: 0px;
+	overflow: hidden;
+}
+
+.row .col-xs-2 img {
+	width: 100% !important;
+	height: 100% !important;
+}
+
+.row {
+	margin-left: 0px;
+	margin-right: 0px;
+	font-size: 14px;
+}
+
+.motabai {
+	font-size: 14px !important;
 }
 /*End main item news*/
 
@@ -779,10 +830,6 @@ form#seach {
 	float: right;
 }
 
-#mainContent .col-sm-1.col-md-1 {
-	width: 0px;
-}
-
 #danhmuchot {
 	border: 1px solid #e0e0e0;
 	margin: 0px 0px;
@@ -860,13 +907,17 @@ form#seach {
 	overflow: hidden;
 }
 
+#gallery .caption {
+	width: 100% !important;
+}
+
 #gallery img {
 	width: inherit;
 	height: inherit;
 }
 
 #gallery a {
-	width: inherit;
+	width: 100%;
 	height: inherit;
 }
 
@@ -1319,4 +1370,25 @@ form#seach {
 	bottom: 10% !important;
 }
 
+/*item mini home*/
+.itemMini {
+	display: inline;
+	width: 100%;
+	float: left;
+	margin: 5px;
+}
+
+.itemMini strong {
+	font-weight: 500;
+	font-size: 13px;
+	float: left;
+	width: 82%;
+	padding: 0px 5px;
+}
+
+.itemMini img {
+	padding: 5px;
+	float: left;
+	width: 18% !important;
+}
 /*End style somedayiws*/

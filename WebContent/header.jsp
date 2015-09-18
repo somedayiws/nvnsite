@@ -37,15 +37,20 @@
 			%>
 			<input type="hidden" id="tkDangNhap" value="<%=user.getHoTen()%>">
 			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown"><a class="dropdown-toggle"
+				<li><a href="DangKyThanhVienServlet"><i class="fa fa-user"></i>
+						Quảng cáo - ログイン</a> |</li> 
+				<li class="dropdown">
+				<a class="dropdown-toggle"
 					data-toggle="dropdown" href="CapNhatThongTinServlet">Chào <%=user.getTenTaiKhoan()%>
-						<i class="fa fa-cogs"> </i></a>
-					<ul class="dropdown-menu">
+						<i class="fa fa-cogs"> </i>
+				</a>
+				<ul class="dropdown-menu">
 						<li><a href="TrangCaNhanServlet"><i
 								class="fa fa-info-circle"></i> Trang cá nhân</a></li>
 						<li><a href="DangXuatServlet"><i class="fa fa-sign-out"></i>
 								Đăng xuất</a></li>
-					</ul></li>
+				</ul>
+				</li>
 			</ul>
 			<%
 				} else {
@@ -53,6 +58,7 @@
 			<input type="hidden" id="tkDangNhap" value="null">
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="DangKyThanhVienServlet"><i class="fa fa-user"></i>
+						Quảng cáo - ログイン</a> | <a href="DangKyThanhVienServlet"><i class="fa fa-user"></i>
 						Đăng ký - ログイン</a> | <a data-toggle="modal" data-target="#mdangnhap"><i
 						class="fa fa-user"></i> Đăng nhập - ログインログイン</a></li>
 				<%
