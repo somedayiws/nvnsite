@@ -22,35 +22,33 @@
 			<!-- Lấy dữ liệu từ server gửi về -->
 			<%
 				/* Danh mục được hiển thị content */
-									ArrayList<DANHMUC> list = (ArrayList<DANHMUC>) request
+				ArrayList<DANHMUC> list = (ArrayList<DANHMUC>) request
 											.getAttribute("list");
-									/* Danh mục được hiển thị trong phần menu */
-									ArrayList<DANHMUC> listdanhmuc = (ArrayList<DANHMUC>) request
+				/* Danh mục được hiển thị trong phần menu */
+				ArrayList<DANHMUC> listdanhmuc = (ArrayList<DANHMUC>) request
 											.getAttribute("listdanhmuc");
-									/* Top 10 bài viết */
-									ArrayList<BAIVIET> top = (ArrayList<BAIVIET>) request
+				/* Top 10 bài viết */
+				ArrayList<BAIVIET> top = (ArrayList<BAIVIET>) request
 											.getAttribute("topbaiviet");
-									/* Lấy sesion người dùng */
-									TAIKHOAN user = (TAIKHOAN) request.getSession()
+				/* Top 10 bài viết moi */
+				ArrayList<BAIVIET> topmoi = (ArrayList<BAIVIET>) request
+											.getAttribute("topmoi");
+				/* Lấy sesion người dùng */
+				TAIKHOAN user = (TAIKHOAN) request.getSession()
 											.getAttribute("user");
-									if (user != null) {
+				if (user != null) {
 			%>
 			<input type="hidden" id="tkDangNhap" value="<%=user.getHoTen()%>">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="DangKyThanhVienServlet"><i class="fa fa-user"></i>
-						Quảng cáo - ログイン</a> |</li> 
-				<li class="dropdown">
-				<a class="dropdown-toggle"
+				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="CapNhatThongTinServlet">Chào <%=user.getTenTaiKhoan()%>
-						<i class="fa fa-cogs"> </i>
-				</a>
-				<ul class="dropdown-menu">
+						<i class="fa fa-cogs"> </i></a>
+					<ul class="dropdown-menu">
 						<li><a href="TrangCaNhanServlet"><i
 								class="fa fa-info-circle"></i> Trang cá nhân</a></li>
 						<li><a href="DangXuatServlet"><i class="fa fa-sign-out"></i>
 								Đăng xuất</a></li>
-				</ul>
-				</li>
+					</ul></li>
 			</ul>
 			<%
 				} else {
@@ -58,7 +56,6 @@
 			<input type="hidden" id="tkDangNhap" value="null">
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="DangKyThanhVienServlet"><i class="fa fa-user"></i>
-						Quảng cáo - ログイン</a> | <a href="DangKyThanhVienServlet"><i class="fa fa-user"></i>
 						Đăng ký - ログイン</a> | <a data-toggle="modal" data-target="#mdangnhap"><i
 						class="fa fa-user"></i> Đăng nhập - ログインログイン</a></li>
 				<%
@@ -86,10 +83,8 @@
 			action="TimKiemServlet" method="post">
 			<select name="categoryJa" class="form-control">
 				<option value="All" selected="selected">Tất cả</option>
-				<option value="DM01">テクノロジー</option>
-				<option value="DM02">生活</option>
-				<option value="DM03">テクニカル</option>
-				<option value="DM04">エンターテインメント</option>
+				<option value="ChuDe">Theo chủ đề</option>
+				<option value="NoiDung">Theo nội dung</option>
 			</select> <input type="text" class="form-control"
 				placeholder="Tìm kiếm - Nhật ngữ" name="txtFind">
 			<button type="submit" class="btn btn-success">

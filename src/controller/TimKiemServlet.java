@@ -31,6 +31,7 @@ public class TimKiemServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		String txtFind = request.getParameter("txtFind");
+		String theo = request.getParameter("categoryJa");
 		if(txtFind == null) txtFind="";
 		System.out.println(txtFind);
 		String vitri = request.getParameter("vitri");
@@ -38,12 +39,14 @@ public class TimKiemServlet extends HttpServlet {
 		DanhMucBO danhmuc = new DanhMucBO();
 		ArrayList<BAIVIET> listbaiviet = new ArrayList<BAIVIET>();
 		if(vitri != null && !"".equals(txtFind)){
-			listbaiviet = baiviet.getFind(txtFind, vitri, "10");
+			listbaiviet = baiviet.getFind(theo, txtFind, vitri, "10");
 		}else{
-			listbaiviet = baiviet.getFind(txtFind, "0", "10");
+			listbaiviet = baiviet.getFind(theo, txtFind, "0", "10");
 		}
 		ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc("");
-		ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet();
+		ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet("XemNhieu");
+		ArrayList<BAIVIET> topmoi = baiviet.getTopBaiViet("Moi");
+		request.setAttribute("topmoi", topmoi);
 		request.setAttribute("txtFind", txtFind);
 		request.setAttribute("listbaiviet", listbaiviet);
 		request.setAttribute("listdanhmuc", listdanhmuc);

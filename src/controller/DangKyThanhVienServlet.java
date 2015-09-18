@@ -41,10 +41,12 @@ public class DangKyThanhVienServlet extends HttpServlet {
 		//Danh mục hiển thị
 		ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc(txtFind);
 		//Danh sách bài viết host
-		ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet();
+		ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet("XemNhieu");
 		request.setAttribute("list", list);
 		request.setAttribute("listdanhmuc", listdanhmuc);
 		request.setAttribute("topbaiviet", topbaiviet);
+		ArrayList<BAIVIET> topmoi = baiviet.getTopBaiViet("Moi");
+		request.setAttribute("topmoi", topmoi);
 		if(submit == null){
 			request.setAttribute("loi", "");
 			request.getRequestDispatcher("DangKyThanhVien.jsp").forward(request, response);

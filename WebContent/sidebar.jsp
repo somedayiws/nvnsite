@@ -49,8 +49,8 @@
 				while (top != null && i < top.size()) {
 			%>
 			<li><a href="BaiVietServlet?id=<%=top.get(i).getIdBaiViet()%>"><i
-					class="fa fa-thumbs-o-up"></i> <%=top.get(i).getTenBaiVietVi()%> -
-					<%=top.get(i).getTenBaiVietJa()%></a></li>
+					class="fa fa-thumbs-o-up"></i> <%=top.get(i).getTenBaiVietVi()==null?"":top.get(i).getTenBaiVietVi()+"<br>"%>
+					<%=top.get(i).getTenBaiVietJa()==null?"":top.get(i).getTenBaiVietJa()%></a></li>
 			<%
 				i++;
 				}
@@ -58,12 +58,12 @@
 		</ul>
 		<ul id="contentMoiNhat" style="display: none;">
 			<%
-				i = 3;
-				while (top != null && i < top.size()) {
+				i = 0;
+				while (topmoi != null && i < topmoi.size()) {
 			%>
-			<li><a href="BaiVietServlet?id=<%=top.get(i).getIdBaiViet()%>"><i
-					class="fa fa-thumbs-o-up"></i> <%=top.get(i).getTenBaiVietVi()%> -
-					<%=top.get(i).getTenBaiVietJa()%></a></li>
+			<li><a href="BaiVietServlet?id=<%=topmoi.get(i).getIdBaiViet()%>"><i
+					class="fa fa-thumbs-o-up"></i> <%=topmoi.get(i).getTenBaiVietVi()==null?"":topmoi.get(i).getTenBaiVietVi()+"<br>"%>
+					<%=topmoi.get(i).getTenBaiVietJa()==null?"":topmoi.get(i).getTenBaiVietJa()%></a></li>
 			<%
 				i++;
 				}

@@ -84,7 +84,9 @@ public class TrangCaNhanServlet extends HttpServlet {
 			//Danh mục hiển thị
 			ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc("");
 			//Danh sách bài viết host
-			ArrayList<BAIVIET> topbaiviet = bv.getTopBaiViet();
+			ArrayList<BAIVIET> topbaiviet = bv.getTopBaiViet("XemNhieu");
+			ArrayList<BAIVIET> topmoi = bv.getTopBaiViet("Moi");
+			request.setAttribute("topmoi", topmoi);
 			String pageNav = bv.getMenuPhanTrang();
 			request.setAttribute("pageNav", pageNav);
 			request.setAttribute("dsbaidang", listBV);

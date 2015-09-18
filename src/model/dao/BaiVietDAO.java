@@ -189,25 +189,30 @@ public class BaiVietDAO {
 	 * Lấy danh sách 10 bài viết có lược view lớn nhất
 	 * return ArrayList<BAIVIET> or null
 	 */
-	public ArrayList<BAIVIET> getTopBaiViet() {
+	public ArrayList<BAIVIET> getTopBaiViet(String loai) {
 		// TODO Auto-generated method stub
 		ArrayList<BAIVIET> list = new ArrayList<BAIVIET>();
 		ResultSet rs = null;
-		String sql = "select IdBaiViet, TenBaiVietVi,MoTaVi, MoTaJa, TenBaiVietJa, danhmuc.IdDanhMuc, TenDanhMucVi, TenDanhMucJa, HienThi, taikhoan.IdTaiKhoan, TenTaiKhoan, MatKhau, HoTen, DiaChi, DienThoai, Email, QuyenQuanTri, NoiDungVi, NoiDungJa, TrangThai, GhiChu, LienKet from baiviet "
-					+ "inner join danhmuc on baiviet.IdDanhMuc=danhmuc.IdDanhMuc "
-					+ "inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan "
-					+ "order by LuotXem desc limit 10";
+		String sql = "";
+		if(loai.equals("Moi"))
+			sql = "select IdBaiViet, TenBaiVietVi, TenBaiVietJa from baiviet where TrangThai='OK' order by NgayDang desc limit 10";
+		else
+			sql = "select IdBaiViet, TenBaiVietVi, TenBaiVietJa from baiviet where TrangThai='OK' and (CURDATE()-NgayDang)<300 order by LuotXem desc limit 10";
 		rs = db.getResultSet(sql);
-		BinhLuanDAO bl = new BinhLuanDAO();
+//		BinhLuanDAO bl = new BinhLuanDAO();
 		try {
 			while(rs.next()){
-				String id = rs.getString("IdBaiViet");
-				BAIVIET bv = new BAIVIET(id, DinhDangSQL.DeFomatSQL(rs.getString("TenBaiVietVi")), DinhDangSQL.DeFomatSQL(rs.getString("TenBaiVietJa")), new DANHMUC(DinhDangSQL.DeFomatSQL(rs.getString("IdDanhMuc")), DinhDangSQL.DeFomatSQL(rs.getString("TenDanhMucVi")), DinhDangSQL.DeFomatSQL(rs.getString("TenDanhMucJa")), rs.getInt("HienThi")), new TAIKHOAN(DinhDangSQL.DeFomatSQL(rs.getString("IdTaiKhoan")), DinhDangSQL.DeFomatSQL(rs.getString("TenTaiKhoan")), DinhDangSQL.DeFomatSQL(rs.getString("MatKhau")), DinhDangSQL.DeFomatSQL(rs.getString("HoTen")), DinhDangSQL.DeFomatSQL(rs.getString("DiaChi")), DinhDangSQL.DeFomatSQL(rs.getString("DienThoai")), DinhDangSQL.DeFomatSQL(rs.getString("Email")), DinhDangSQL.DeFomatSQL(rs.getString("QuyenQuanTri"))), DinhDangSQL.DeFomatSQL(rs.getString("NoiDungVi")), DinhDangSQL.DeFomatSQL(rs.getString("NoiDungJa")), DinhDangSQL.DeFomatSQL(rs.getString("TrangThai")), DinhDangSQL.DeFomatSQL(rs.getString("GhiChu")));
-				bv.setBinhLuanVi(bl.getListBinhLuan(id, "vi", "0"));
-				bv.setBinhLuanVi(bl.getListBinhLuan(id, "ja", "0"));
-				bv.setLienKet(DinhDangSQL.DeFomatSQL(rs.getString("LienKet")));
-				bv.setMoTaVi(DinhDangSQL.DeFomatSQL(rs.getString("MoTaVi")));
-				bv.setMoTaJa(DinhDangSQL.DeFomatSQL(rs.getString("MoTaJa")));
+				BAIVIET bv = new BAIVIET();
+				bv.setIdBaiViet(DinhDangSQL.DeFomatSQL(rs.getString("IdBaiViet")));
+				bv.setTenBaiVietVi(DinhDangSQL.DeFomatSQL(rs.getString("TenBaiVietVi")));
+				bv.setTenBaiVietJa(DinhDangSQL.DeFomatSQL(rs.getString("TenBaiVietJa")));
+//				String id = rs.getString("IdBaiViet");
+//				BAIVIET bv = new BAIVIET(id, DinhDangSQL.DeFomatSQL(rs.getString("TenBaiVietVi")), DinhDangSQL.DeFomatSQL(rs.getString("TenBaiVietJa")), new DANHMUC(DinhDangSQL.DeFomatSQL(rs.getString("IdDanhMuc")), DinhDangSQL.DeFomatSQL(rs.getString("TenDanhMucVi")), DinhDangSQL.DeFomatSQL(rs.getString("TenDanhMucJa")), rs.getInt("HienThi")), new TAIKHOAN(DinhDangSQL.DeFomatSQL(rs.getString("IdTaiKhoan")), DinhDangSQL.DeFomatSQL(rs.getString("TenTaiKhoan")), DinhDangSQL.DeFomatSQL(rs.getString("MatKhau")), DinhDangSQL.DeFomatSQL(rs.getString("HoTen")), DinhDangSQL.DeFomatSQL(rs.getString("DiaChi")), DinhDangSQL.DeFomatSQL(rs.getString("DienThoai")), DinhDangSQL.DeFomatSQL(rs.getString("Email")), DinhDangSQL.DeFomatSQL(rs.getString("QuyenQuanTri"))), DinhDangSQL.DeFomatSQL(rs.getString("NoiDungVi")), DinhDangSQL.DeFomatSQL(rs.getString("NoiDungJa")), DinhDangSQL.DeFomatSQL(rs.getString("TrangThai")), DinhDangSQL.DeFomatSQL(rs.getString("GhiChu")));
+//				bv.setBinhLuanVi(bl.getListBinhLuan(id, "vi", "0"));
+//				bv.setBinhLuanVi(bl.getListBinhLuan(id, "ja", "0"));
+//				bv.setLienKet(DinhDangSQL.DeFomatSQL(rs.getString("LienKet")));
+//				bv.setMoTaVi(DinhDangSQL.DeFomatSQL(rs.getString("MoTaVi")));
+//				bv.setMoTaJa(DinhDangSQL.DeFomatSQL(rs.getString("MoTaJa")));
 				list.add(bv);
 			}
 			return list;
@@ -229,6 +234,58 @@ public class BaiVietDAO {
 				+ "where TrangThai=N'OK' and (TenBaiVietJa like N'%"+txtFind+"%' or TenBaiVietVi like N'%"+txtFind+"%'"
 				+ " or MotaJa like N'%"+txtFind+"%' or MotaVi like N'%"+txtFind+"%')"
 				+ "order by NgayDang desc, LuotXem desc limit " + vitri + ", " +top;
+		ResultSet rs = db.getResultSet(sql);
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		ArrayList<BAIVIET> list = new ArrayList<BAIVIET>();
+		try {
+			while(rs.next()){
+				BAIVIET bv = new BAIVIET();
+				bv.setIdBaiViet(DinhDangSQL.DeFomatSQL(rs.getString("IdBaiViet")));
+				bv.setTenBaiVietVi(DinhDangSQL.DeFomatSQL(rs.getString("TenBaiVietVi")));
+				bv.setTenBaiVietJa(DinhDangSQL.DeFomatSQL(rs.getString("TenBaiVietJa")));
+				bv.setMoTaVi(DinhDangSQL.DeFomatSQL(rs.getString("MoTaVi")));
+				bv.setMoTaJa(DinhDangSQL.DeFomatSQL(rs.getString("MoTaJa")));
+				bv.setNgayDang(sdf.format(rs.getDate("NgayDang")));
+				bv.setLienKet(DinhDangSQL.DeFomatSQL(rs.getString("LienKet")));
+				bv.setLuotXem(rs.getInt("LuotXem"));
+				TAIKHOAN tk = new TAIKHOAN();
+				tk.setHoTen(DinhDangSQL.DeFomatSQL(rs.getString("HoTen")));
+				bv.setTaiKhoan(tk);
+				list.add(bv);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return list;
+	}
+	
+	
+	public ArrayList<BAIVIET> getFind(String kieu, String txtFind, String vitri, String top) {
+		// TODO Auto-generated method stub
+		String sql = "";
+		if(kieu.equals("All")){
+			sql = "select IdBaiViet,TenBaiVietVi,TenBaiVietJa,MoTaVi,MoTaJa,NoiDungVi,NoiDungJa,NgayDang,Lienket,LuotXem,HoTen from baiviet "
+					+ "inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan "
+					+ "inner join danhmuc on baiviet.IdDanhMuc=danhmuc.IdDanhMuc "
+					+ "where TrangThai=N'OK' and (TenDanhMucVi like N'%"+txtFind+"%' or TenDanhMucJa like N'%"+txtFind+"%'"
+					+ " or TenBaiVietVi like N'%"+txtFind+"%' or TenBaiVietJa like N'%"+txtFind+"%'"
+					+ " or MotaVi like N'%"+txtFind+"%' or MotaJa like N'%"+txtFind+"%') "
+					+ "order by NgayDang desc, LuotXem desc limit " + vitri + ", " +top;
+		}else if(kieu.equals("ChuDe")){
+			sql = "select IdBaiViet,TenBaiVietVi,TenBaiVietJa,MoTaVi,MoTaJa,NoiDungVi,NoiDungJa,NgayDang,Lienket,LuotXem,HoTen from baiviet "
+					+ "inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan "
+                    + "inner join danhmuc on baiviet.IdDanhMuc=danhmuc.IdDanhMuc "
+					+ "where TrangThai=N'OK' and (TenDanhMucVi like N'%"+txtFind+"%' or TenDanhMucJa like N'%"+txtFind+"%' "
+					+ "or TenBaiVietVi like N'%"+txtFind+"%' or TenBaiVietJa like N'%"+txtFind+"%') "
+					+ "order by NgayDang desc, LuotXem desc limit " + vitri + ", " +top;
+		}else {
+			sql = "select IdBaiViet,TenBaiVietVi,TenBaiVietJa,MoTaVi,MoTaJa,NoiDungVi,NoiDungJa,NgayDang,Lienket,LuotXem,HoTen from baiviet "
+					+ "inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan "
+					+ "where TrangThai=N'OK' and (TenBaiVietJa like N'%"+txtFind+"%' or TenBaiVietVi like N'%"+txtFind+"%'"
+					+ " or MotaJa like N'%"+txtFind+"%' or MotaVi like N'%"+txtFind+"%')"
+					+ "order by NgayDang desc, LuotXem desc limit " + vitri + ", " +top;
+		}
 		ResultSet rs = db.getResultSet(sql);
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		ArrayList<BAIVIET> list = new ArrayList<BAIVIET>();

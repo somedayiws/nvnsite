@@ -61,7 +61,9 @@ public class DangNhapServlet extends HttpServlet {
 						//Danh mục hiển thị
 						ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc(txtFind);
 						//Danh sách bài viết host
-						ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet();
+						ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet("XemNhieu");
+						ArrayList<BAIVIET> topmoi = baiviet.getTopBaiViet("Moi");
+						request.setAttribute("topmoi", topmoi);
 						request.setAttribute("list", list);
 						request.setAttribute("listdanhmuc", listdanhmuc);
 						request.setAttribute("topbaiviet", topbaiviet);
@@ -78,7 +80,7 @@ public class DangNhapServlet extends HttpServlet {
 					//Danh mục hiển thị
 					ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc(txtFind);
 					//Danh sách bài viết host
-					ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet();
+					ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet("XemNhieu");
 					request.setAttribute("list", list);
 					request.setAttribute("listdanhmuc", listdanhmuc);
 					request.setAttribute("topbaiviet", topbaiviet);
@@ -95,7 +97,7 @@ public class DangNhapServlet extends HttpServlet {
 				//Danh mục hiển thị
 				ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc(txtFind);
 				//Danh sách bài viết host
-				ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet();
+				ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet("XemNhieu");
 				request.setAttribute("list", list);
 				request.setAttribute("listdanhmuc", listdanhmuc);
 				request.setAttribute("topbaiviet", topbaiviet);

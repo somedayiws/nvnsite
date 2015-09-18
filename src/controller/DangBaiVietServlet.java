@@ -50,9 +50,11 @@ public class DangBaiVietServlet extends HttpServlet {
 				DanhMucBO danhmuc = new DanhMucBO();
 				BaiVietBO baiviet = new BaiVietBO();
 				ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc("");
-				ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet();
+				ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet("XemNhieu");
+				ArrayList<BAIVIET> topmoi = baiviet.getTopBaiViet("Moi");
 				request.setAttribute("listdanhmuc", listdanhmuc);
 				request.setAttribute("topbaiviet", topbaiviet);
+				request.setAttribute("topmoi", topmoi);
 				request.getRequestDispatcher("DangBaiViet.jsp").forward(request, response);
 			} else {
 				FileItemFactory factory = new DiskFileItemFactory();

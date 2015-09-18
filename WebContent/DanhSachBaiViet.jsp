@@ -87,6 +87,9 @@
 			%>
 		</div>
 		<%@include file="sidebar.jsp"%>
+		<div class="clearfix"></div>
+			<br>
+			<div class="col-sm-10 col-md-12" align="center" id="load"></div>
 	</div>
 	<div class="clearfix"></div>
 	<%@include file="footer.jsp"%>
@@ -114,28 +117,17 @@
 															}, //dữ liệu gửi
 															async : true, //
 															beforeSend : function() {
-																$("#load")
-																		.html(
-																				"<i class='fa fa-refresh fa-2x fa-spin'></i>");
+																$("#load").html("<i class='fa fa-refresh fa-2x fa-spin'></i>");
 															},
-															success : function(
-																	res) {
-																$("#baiviet")
-																		.append(
-																				res);
-																nbaiviet = parseInt($(
-																		"#baiviet")
-																		.children()
-																		.size());
-																$("#load")
-																		.html(
-																				"");
+															success : function(res) {
+																$("#baiviet").append(res);
+																nbaiviet = parseInt($("#baiviet").children().size()-1);
+																alert("Xem : " + nbaiviet);
+																$("#load").html("");
 															},
 															error : function() {
 																alert('Có lỗi xảy ra');
-																$("#load")
-																		.html(
-																				"");
+																$("#load").html("");
 															}
 														});
 											}
@@ -232,6 +224,24 @@
 	function dichuyen(x) {
 		window.location.href = x;
 	};
+	function showMoiNhat() {
+		$('.xemnhieu').children('#contentMoiNhat').removeAttr('style');
+		$('.xemnhieu').children('#contentXemNhieu').attr('style',
+				'display:none;');
+		$('#titleTabBar').children('#pMoiNhat').attr('class',
+				'col-sm-6 col-md-6 active');
+		$('#titleTabBar').children('#pXemNhieu').attr('class',
+				'col-sm-6 col-md-6');
+	}
+	function showXemNhieu() {
+		$('.xemnhieu').children('#contentXemNhieu').removeAttr('style');
+		$('.xemnhieu').children('#contentMoiNhat').attr('style',
+				'display:none;');
+		$('#titleTabBar').children('#pMoiNhat').attr('class',
+				'col-sm-6 col-md-6');
+		$('#titleTabBar').children('#pXemNhieu').attr('class',
+				'col-sm-6 col-md-6 active');
+	}
 </script>
 <!-- check validate -->
 <script src="js/jquery.validate.js" type="text/javascript"></script>

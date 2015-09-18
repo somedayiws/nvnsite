@@ -254,8 +254,10 @@ body {
 							%>
 							<li><a
 								href="BaiVietServlet?id=<%=top.get(i).getIdBaiViet()%>"><i
-									class="fa fa-angle-double-right"></i> <%=top.get(i).getTenBaiVietVi()%>
-									- <%=top.get(i).getTenBaiVietJa()%> <i class="fa fa-eye"></i> <span><%=top.get(i).getLuotXem()%></span></a></li>
+									class="fa fa-angle-double-right"></i> <%=top.get(i).getTenBaiVietVi()==null?"":top.get(i).getTenBaiVietVi()%>
+									<%=(top.get(i).getTenBaiVietVi()!=null && top.get(i).getTenBaiVietJa()!=null)?"<br>":"" %>
+									<%=top.get(i).getTenBaiVietJa()==null?"":top.get(i).getTenBaiVietJa()%>
+									<i class="fa fa-eye"></i> <span><%=top.get(i).getLuotXem()%></span></a></li>
 							<%
 								i++; }
 							%>

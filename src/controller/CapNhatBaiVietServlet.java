@@ -51,11 +51,13 @@ public class CapNhatBaiVietServlet extends HttpServlet {
 					DanhMucBO danhmuc = new DanhMucBO();
 					BaiVietBO baiviet = new BaiVietBO();
 					ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc("");
-					ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet();
+					ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet("XemNhieu");
+					ArrayList<BAIVIET> topmoi = baiviet.getTopBaiViet("Moi");
 					BAIVIET bv = baiviet.getBaiViet(id);
 					request.setAttribute("baiviet", bv);
 					request.setAttribute("listdanhmuc", listdanhmuc);
 					request.setAttribute("topbaiviet", topbaiviet);
+					request.setAttribute("topmoi", topmoi);
 					request.getRequestDispatcher("CapNhatBaiViet.jsp").forward(request, response);
 				}else{
 					response.sendRedirect("TrangChuServlet");

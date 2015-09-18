@@ -61,9 +61,9 @@ public class BaiVietBO {
 	 * Lấy danh sách 10 bài viết có lược view lớn nhất
 	 * return ArrayList<BAIVIET> or null
 	 */
-	public ArrayList<BAIVIET> getTopBaiViet() {
+	public ArrayList<BAIVIET> getTopBaiViet(String loai) {
 		// TODO Auto-generated method stub
-		return baiviet.getTopBaiViet();
+		return baiviet.getTopBaiViet(loai);
 	}
 	/*
 	 * Dùng cho trang client
@@ -73,6 +73,10 @@ public class BaiVietBO {
 	public ArrayList<BAIVIET> getFind(String txtFind, String vitri, String top) {
 		// TODO Auto-generated method stub
 		return baiviet.getFind(txtFind, vitri, top);
+	}
+	public ArrayList<BAIVIET> getFind(String kieu, String txtFind, String vitri, String top) {
+		// TODO Auto-generated method stub
+		return baiviet.getFind(kieu, txtFind, vitri, top);
 	}
 	/*
 	 * Dùng cho trang cộng tác viên

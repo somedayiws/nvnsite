@@ -37,13 +37,16 @@ public class TrangChuServlet extends HttpServlet {
 		BaiVietBO baiviet = new BaiVietBO();
 		//Danh mục và bài viết tiêu biểu
 		ArrayList<DANHMUC> list = danhmuc.getListDanhMuc("0", "10");
+		request.setAttribute("list", list);
 		//Danh mục hiển thị
 		ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc(txtFind);
-		//Danh sách bài viết host
-		ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet();
-		request.setAttribute("list", list);
 		request.setAttribute("listdanhmuc", listdanhmuc);
+		//Danh sách bài viết hot
+		ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet("XemNhieu");
 		request.setAttribute("topbaiviet", topbaiviet);
+		//Danh sách bài viết moi
+		ArrayList<BAIVIET> topmoi = baiviet.getTopBaiViet("Moi");
+		request.setAttribute("topmoi", topmoi);
 		request.getRequestDispatcher("TrangChu.jsp").forward(request, response);
 	}
 }

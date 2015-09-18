@@ -35,7 +35,10 @@ public class BaiVietServlet extends HttpServlet {
 		DanhMucBO danhmuc = new DanhMucBO();
 		ArrayList<BAIVIET> listbaiviet = new ArrayList<BAIVIET>();
 		ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc("");
-		ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet();
+		ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet("XemNhieu");
+		//Danh sách bài viết moi
+		ArrayList<BAIVIET> topmoi = baiviet.getTopBaiViet("Moi");
+		
 		BAIVIET bviet = null;
 		if(id != null && !"".equals(id)){
 			bviet = baiviet.getBaiViet(id);
@@ -44,6 +47,7 @@ public class BaiVietServlet extends HttpServlet {
 			request.setAttribute("listbaiviet", listbaiviet);
 			request.setAttribute("listdanhmuc", listdanhmuc);
 			request.setAttribute("topbaiviet", topbaiviet);
+			request.setAttribute("topmoi", topmoi);
 			request.getRequestDispatcher("BaiViet.jsp").forward(request, response);
 		}else{
 			response.sendRedirect("TrangChuServlet");

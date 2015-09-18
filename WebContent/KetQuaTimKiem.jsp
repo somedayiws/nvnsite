@@ -240,6 +240,24 @@
 	function dichuyen(x){
 		window.location.href = x;
 	};
+	function showMoiNhat() {
+		$('.xemnhieu').children('#contentMoiNhat').removeAttr('style');
+		$('.xemnhieu').children('#contentXemNhieu').attr('style',
+				'display:none;');
+		$('#titleTabBar').children('#pMoiNhat').attr('class',
+				'col-sm-6 col-md-6 active');
+		$('#titleTabBar').children('#pXemNhieu').attr('class',
+				'col-sm-6 col-md-6');
+	}
+	function showXemNhieu() {
+		$('.xemnhieu').children('#contentXemNhieu').removeAttr('style');
+		$('.xemnhieu').children('#contentMoiNhat').attr('style',
+				'display:none;');
+		$('#titleTabBar').children('#pMoiNhat').attr('class',
+				'col-sm-6 col-md-6');
+		$('#titleTabBar').children('#pXemNhieu').attr('class',
+				'col-sm-6 col-md-6 active');
+	}
 </script>
 <!-- check validate -->
 <script src="js/jquery.validate.js" type="text/javascript"></script>
