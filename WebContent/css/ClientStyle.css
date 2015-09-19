@@ -1381,15 +1381,7 @@ form#seach {
 }
 /*End forgot password*/
 
-/*Advertisement style*/
-#adlarge {
-	padding: 25px 0px !important;
-}
 
-#adlarge {
-	padding: 25px 0px !important;
-}
-/*End advertisement*/
 #topcontrol {
 	bottom: 10% !important;
 }
@@ -1415,4 +1407,31 @@ form#seach {
 	float: left;
 	width: 18% !important;
 }
+
+/*Advertisement style*/
+.adv300x250 {
+	width: 300px;
+	height: 250px;
+	overflow: hidden;
+}
+
+.adv300x100 {
+	width: 300px;
+	height: 100px;
+	overflow: hidden;
+}
+
+.adv300x600 {
+	margin-top:10px;
+	width: 300px;
+	height: 600px;
+	overflow: hidden;
+}
+.adv728x90 {
+	margin-top: 25px;
+	width: 728px;
+	height: 90px;
+	overflow: hidden;
+}
+/*End advertisement style*/
 /*End style somedayiws*/

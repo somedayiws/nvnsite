@@ -587,10 +587,20 @@
 		overflow: hidden;
 	}
 	/*End statistic Style*/
+		/*Hide UI*/
 	.maps {
-		width: 45% !important;
-		margin: 8px !important;
+		width: 100% !important;
+		margin: 0px !important;
+		float: none !important;
+		display: none;
 	}
+	.facebookdiv {
+		display: none;
+	}
+	.adv300x600 {
+		display: none;
+	}
+	/*End Hide UI*/
 }
 
 @media only screen and (max-width: 480px) {
@@ -654,6 +664,9 @@
 		display: none;
 	}
 	#AllPosts {
+		display: none;
+	}
+	.adv300x600 {
 		display: none;
 	}
 	/*End Hide UI*/

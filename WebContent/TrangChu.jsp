@@ -2,7 +2,7 @@
 <%@page import="model.bean.BINHLUAN"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.bean.BAIVIET"%>
-<%@page import="model.bean.DANHMUC"%>
+<%@page import="model.bean.QUANGCAO"%>
 
 <%@page import="controller.SessionCounter"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -171,7 +171,12 @@ body {
 		<%@include file="header.jsp"%>
 		<div id="mainContent">
 			<!-- Quảng cáo lung tung -->
-
+	<!-- Lấy dữ liệu từ server gửi về -->
+			<%
+					/* Danh sách quảng cáo hiển thị trên trang */
+					ArrayList<QUANGCAO> listquangcao = (ArrayList<QUANGCAO>) request
+												.getAttribute("listquangcao");
+			%>
 			<div class="col-sm-12 col-md-12" id="topMainContent">
 				<div class="col-sm-3 col-md-3" id="leftTopContent">
 					<div id="danhmuchot" class="ancainay">
@@ -179,7 +184,7 @@ body {
 						<ul id="listhot">
 							<%
 								i=0;
-								while(listdanhmuc != null && i<listdanhmuc.size()){
+								while(listdanhmuc != null && i<listdanhmuc.size() && i<10){
 							%>
 							<li><a
 								href="DanhSachBaiVietServlet?id=<%=listdanhmuc.get(i).getIdDanhMuc()%>"><i
@@ -193,7 +198,7 @@ body {
 					</div>
 					<!-- 			Quảng cáo banner -->
 					<div class="adv300x250">
-						<img src="http://placehold.it/300x250">
+						<a href="<%=listquangcao.get(0).getLienKet()%>"><img src="<%=listquangcao.get(0).getHinhAnh()%>"></a>
 					</div>
 					<!-- 			Quảng cáo banner -->
 				</div>
@@ -250,7 +255,7 @@ body {
 						<ul id="contentWeek">
 							<%
 								i=5;
-																												while(top != null && i<top.size()){
+								while(top != null && i<top.size()){
 							%>
 							<li><a
 								href="BaiVietServlet?id=<%=top.get(i).getIdBaiViet()%>"><i
@@ -259,16 +264,17 @@ body {
 									<%=top.get(i).getTenBaiVietJa()==null?"":top.get(i).getTenBaiVietJa()%>
 									<i class="fa fa-eye"></i> <span><%=top.get(i).getLuotXem()%></span></a></li>
 							<%
+							
 								i++; }
 							%>
 						</ul>
 					</div>
 					<!-- 			Quảng cáo banner -->
 					<div class="adv300x250">
-						<img src="http://placehold.it/300x250">
+						<a href="<%=listquangcao.get(1).getLienKet()%>"><img src="<%=listquangcao.get(1).getHinhAnh()%>"></a>
 					</div>
-					<div class="adv300x250">
-						<img src="http://placehold.it/300x100">
+					<div class="adv300x100">
+						<a href="<%=listquangcao.get(2).getLienKet()%>"><img src="<%=listquangcao.get(2).getHinhAnh()%>"></a>
 					</div>
 					<!-- 			Quảng cáo banner -->
 
@@ -279,7 +285,7 @@ body {
 			<div class="col-sm-9 col-md-9" id="baiviet" style="font-size: 12px;">
 				<!-- 			Quảng cáo banner -->
 				<div id="adlarge" class="adv728x90">
-					<img src="http://placehold.it/728x90">
+						<a href="<%=listquangcao.get(3).getLienKet()%>"><img src="<%=listquangcao.get(3).getHinhAnh()%>"></a>
 				</div>
 				<!-- 				Hết nội dung quảng cáo  -->
 				<!-- Bắt đầu 1 danh mục -->
@@ -401,8 +407,8 @@ body {
 			<%@include file="sidebar.jsp"%>
 			<!-- 			Quảng cáo banner -->
 			<div class="col-sm-3 col-md-3">
-				<div class="adv300x250">
-					<img src="http://placehold.it/300x600">
+				<div class="adv300x600">
+						<a href="<%=listquangcao.get(5).getLienKet()%>"><img src="<%=listquangcao.get(5).getHinhAnh()%>"></a>
 				</div>
 			</div>
 			<!-- 			Quảng cáo banner -->
@@ -436,6 +442,7 @@ body {
 								.scroll(
 										function() {
 											var nbaiviet = parseInt($("#baiviet .danhmucx:last-child").attr("id"));
+											
 											if (($(document).height()
 													- $(this).scrollTop() - $(
 													this).height()) < 10) {
