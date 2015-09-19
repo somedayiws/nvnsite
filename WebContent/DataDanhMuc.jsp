@@ -32,6 +32,9 @@
 								%>
 							</span>
 							<span><%=list.get(i).getTenDanhMucVi()%></span> - <%=list.get(i).getTenDanhMucJa()%></strong>
+							<a id="AllPosts" href="DanhSachBaiVietServlet?id=<%=list.get(i).getIdDanhMuc().trim()%>">
+								Xem tất cả <i class="fa fa-chevron-right"></i>
+							</a>
 					</p>
 					
 					<div class="row">

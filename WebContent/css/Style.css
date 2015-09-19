@@ -21,8 +21,7 @@
 		height: 50px;
 	}
 	#headerTop #headerMain a span {
-		background-size: 280px 95px !important;
-		width: 280px !important;
+		background-size: auto 95px !important;
 		height: 105px !important;
 		background-position: center;
 		background-repeat: no-repeat;
@@ -55,8 +54,8 @@
 		height: 50px;
 	}
 	#headerTop #headerMain a span {
-		background-size: 280px 95px !important;
-		width: 280px !important;
+		background-size: 290px 80px !important;
+		width: 320px !important;
 		height: 105px !important;
 		background-position: center;
 		background-repeat: no-repeat;
@@ -192,8 +191,8 @@
 		height: 50px;
 	}
 	#headerTop #headerMain a span {
-		background-size: 280px 95px !important;
-		width: 280px !important;
+		background-size: 290px 80px !important;
+		width: 310px !important;
 		height: 105px !important;
 		background-position: center;
 		background-repeat: no-repeat;
@@ -216,6 +215,16 @@
 }
 
 @media only screen and (max-width: 800px) {
+	#headerTop #headerMain a span {
+		background-size: 215px 60px !important;
+		width: 250px !important;
+		height: 80px !important;
+		background-position: center;
+		background-repeat: no-repeat;
+	}
+	#headerTop #headerMain {
+		height: 80px;
+	}
 }
 
 @media only screen and (max-width: 780px) {
@@ -254,11 +263,11 @@
 	/*Search bar*/
 	/*Header style*/
 	#headerTop #headerMain a span {
-		background-size: 200px 70px !important;
+		background-size: 215px 60px !important;
 		width: 100% !important;
-		height: 70px !important;
-		background-repeat: no-repeat !important;
+		height: 80px !important;
 		background-position: center;
+		background-repeat: no-repeat;
 	}
 	#headerMain {
 		width: 100%;
@@ -408,16 +417,19 @@
 		margin: 5px !important;
 		float: left !important;
 	}
+	.adv300x250 {
+		width: 300px !important;
+	}
 }
 
 @media only screen and (max-width: 563px) {
 	/*Header style*/
 	#headerTop #headerMain a span {
-		background-size: 200px 70px !important;
+		background-size: 215px 60px !important;
 		width: 100% !important;
-		height: 70px !important;
-		background-repeat: no-repeat !important;
+		height: 80px !important;
 		background-position: center;
+		background-repeat: no-repeat;
 	}
 	#headerMain {
 		width: 100%;
@@ -520,7 +532,10 @@
 		height: auto;
 	}
 	.adv300x250 {
-		margin: 10px 0px;
+		margin: 10px auto;
+	}
+	.adv300x100 {
+		margin: 10px auto;
 	}
 	#topMainContent .col-sm-3, .col-sm-6 {
 		max-height: 1000px;
@@ -587,7 +602,7 @@
 		overflow: hidden;
 	}
 	/*End statistic Style*/
-		/*Hide UI*/
+	/*Hide UI*/
 	.maps {
 		width: 100% !important;
 		margin: 0px !important;
