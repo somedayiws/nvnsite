@@ -29,10 +29,15 @@
 	<%
 		/* Danh mục được hiển thị trong phần content */
 		ArrayList<BAIVIET> listbaiviet = (ArrayList<BAIVIET>)request.getAttribute("listbaiviet");
+		/* Lấy lại dữ liệu tìm kiếm */
+		String txtSearch = (String)request.getAttribute("txtFind");
+		String chon = (String)request.getAttribute("theo");
 	%>
 	<%@include file="header.jsp"%>
 	<div id="mainContent">
-
+		<!-- Tạo dữ liệu ẩn -->
+		<input type="hidden" id="txtSearch" value="<%= txtSearch%>">
+		<input type="hidden" id="chon" value="<%= chon%>">
 		<!-- Quảng cáo lung tung -->
 		<div id="sahred">
 			<g:plusone></g:plusone>
@@ -202,8 +207,7 @@
 </script>
 <!-- Ajax load bài viết -->
 <script language="JavaScript">
-	var nbaiviet = 10;
-	var id = $("#txtFind").val();
+	var nbaiviet = parseInt($("#baiviet").children().size()) - 1;
 	jQuery(document).ready(function($) {
 		$(window).scroll(function() {
 			if (($(document).height() - $(this).scrollTop() - $(this).height()) < 10) {
@@ -212,7 +216,8 @@
 					type : "POST", //phuong thức gưi
 					data : {
 						vitri : nbaiviet,
-						txtFind : id
+						txtFind : $("#txtSearch").val(),
+						chon : $("#chon").val()
 					}, //dữ liệu gửi
 					async : true, //
 					beforeSend : function() {
@@ -220,7 +225,7 @@
 					},
 					success : function(res) {
 						$("#baiviet").append(res);
-						nbaiviet = parseInt($("#baiviet").children().size());
+						nbaiviet = parseInt($("#baiviet").children().size()) - 1;
 						$("#load").html("");
 					},
 					error : function() {

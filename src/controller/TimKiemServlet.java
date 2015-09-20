@@ -47,6 +47,7 @@ public class TimKiemServlet extends HttpServlet {
 		ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet("XemNhieu");
 		ArrayList<BAIVIET> topmoi = baiviet.getTopBaiViet("Moi");
 		request.setAttribute("topmoi", topmoi);
+		request.setAttribute("theo", theo);
 		request.setAttribute("txtFind", txtFind);
 		request.setAttribute("listbaiviet", listbaiviet);
 		request.setAttribute("listdanhmuc", listdanhmuc);

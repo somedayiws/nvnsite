@@ -43,17 +43,17 @@ $(document).ready(function(){
    	 }
    });
     
-    $("#formSearchPost").submit(function(){
-    	var typeFind = $('#typeFind').val();
-    	var stringFind =$('#stringFind').val();
-    	if(typeFind!="IdDanhMuc" || typeFind!="IdTaiKhoan"){
-    		if(stringFind == ""){
-    			alert("Bạn phải nhập từ cần tìm - ");
-    			return false;
-    		}    		
-    	}    	
-    	return true;
-    });
+//     $("#formSearchPost").submit(function(){
+//     	var typeFind = $('#typeFind').val();
+//     	var stringFind =$('#stringFind').val();
+//     	if(typeFind!="IdDanhMuc" || typeFind!="IdTaiKhoan"){
+//     		if(stringFind == ""){
+//     			alert("Bạn phải nhập từ cần tìm - ");
+//     			return false;
+//     		}    		
+//     	}    	
+//     	return true;
+//     });
 });
 </script>
 
