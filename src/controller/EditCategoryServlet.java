@@ -130,7 +130,7 @@ public class EditCategoryServlet extends HttpServlet {
 						filename = itemName.substring(itemName
 								.lastIndexOf("\\") + 1);
 						System.out.println("filename: "+filename);
-						String realPath = getServletContext().getRealPath("/")+ "images\\" + filename;
+						String realPath = getServletContext().getRealPath("/")+ "images/icons/" + filename;
 						
 						System.out.println("realPath: "+realPath);
 						

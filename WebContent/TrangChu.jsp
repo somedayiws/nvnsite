@@ -307,7 +307,7 @@ body {
 							if(list.get(i).getIcon()!=null)
 																	{
 						%>
-								<img src="<%=list.get(i).getIcon()%>">
+								<img src="images/icons/<%=list.get(i).getIcon()%>">
 								<%
 									} else {
 								%>

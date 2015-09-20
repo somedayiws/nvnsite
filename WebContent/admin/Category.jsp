@@ -125,7 +125,7 @@
 								<div class="form-group">
 									<label>Icon <input type="file" id="Image" name="Image" onchange="xem(this,'fua');"/></label>
 									<p class="help-block">Chọn file .png, .jpg ...<br>
-										<img alt="Icon đại diện" src="../images/icondefault.png" id="fua" width="50px" height="50px">
+										<img alt="Icon đại diện" src="../images/icons/icondefault.png" id="fua" width="50px" height="50px">
 									</p>
 								</div>
 								<button type="submit" class="btn btn-success btn-md">Tạo danh mục</button>
@@ -261,12 +261,7 @@
 					<td><%=category_after_search[i]
 									.getTenDanhMucJa()%></td>
 					<td><%=category_after_search[i].getHienThi()%></td>
-					<td><img src="<%if(category.get(i).getIcon()==null){ %>
-						../images/icondefault.png
-					<%}else{ %>
-					../images/<%=category.get(i).getIcon()%>
-					<%}%>
-					" alt="image" width="50px" height="50px"></td>
+					<td><img src="../images/icons/<%if(category.get(i).getIcon()==null){ %>icondefault.png<%}else{ %><%=category.get(i).getIcon()%><%}%>" alt="image" width="50px" height="50px"></td>
 					<td><button type="button" class="btn btn-default"
 							data-toggle="modal"
 							data-target="#<%=category_after_search[i].getIdDanhMuc()%>">
@@ -325,12 +320,7 @@
 					<td><%=category.get(i).getTenDanhMucVi()%></td>
 					<td><%=category.get(i).getTenDanhMucJa()%></td>
 					<td><%=category.get(i).getHienThi()%></td>
-					<td><img src="<%if(category.get(i).getIcon()==null){ %>
-						../images/icondefault.png
-					<%}else{ %>
-					../images/<%=category.get(i).getIcon()%>
-					<%}%>
-					" alt="image" width="50px" height="50px"></td>
+					<td><img src="../images/icons/<%if(category.get(i).getIcon()==null){ %>icondefault.png<%}else{ %><%=category.get(i).getIcon()%><%}%>" alt="image" width="50px" height="50px"></td>
 					<td><button type="button" class="btn btn-default btn-sm"
 							data-toggle="modal"
 							data-target="#<%=category.get(i).getIdDanhMuc()%>">
@@ -424,12 +414,7 @@
 							<div class="form-group">					
 							<input type="file" class="Image" name="Image" onchange="xem(this,'fu<%=i%>');"/>
 							<p class="help-block">Chọn file .png, .jpg ...<br>
-							<img src="<%if(category.get(i).getIcon()==null){ %>
-									../images/icondefault.png
-									<%}else{ %>
-									../images/<%=category.get(i).getIcon()%>
-									<%}%>
-								" alt="image" id="fu<%=i%>" width="50px" height="50px">
+							<img src="../images/icons/<%if(category.get(i).getIcon()==null){ %>icondefault.png<%}else{ %><%=category.get(i).getIcon()%><%}%>" alt="image" id="fu<%=i%>" width="50px" height="50px">
 <%-- 							<img alt="Ảnh đại diện" src="../images/"<%=category.get(i).getIcon()%> id="fu2" width="50px" height="50px"> --%>
 							</p>
 						</div>

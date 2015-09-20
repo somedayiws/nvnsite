@@ -50,7 +50,7 @@ public class AdminEditPostsServlet extends HttpServlet {
 		String idaccount = request.getParameter("account");
 		String contentVi = request.getParameter("contentVi");
 		String contentJa = request.getParameter("contentJa");
-		String status = request.getParameter("status");
+		String status = request.getParameter("Status");
 		String note = request.getParameter("note");
 		String descriptionVi = request.getParameter("descriptionVi");
 		String descriptionJa = request.getParameter("descriptionJa");

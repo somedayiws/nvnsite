@@ -11,14 +11,14 @@ public class DataBaseDAO {
 
 	Connection con;
 	Statement stm;
-//	String userName = "root";
-//	String password = "LNCzvs13398";
-//	String url = "jdbc:mysql://mysql27527-vietnhat-demo.jelastic.skali.net/webvietnhat?useUnicode=true&characterEncoding=utf-8";
-//	
+	String userName = "root";
+	String password = "LNCzvs13398";
+	String url = "jdbc:mysql://mysql27527-vietnhat-demo.jelastic.skali.net/webvietnhat?useUnicode=true&characterEncoding=utf-8";
+	
 
-	String userName = "somedayiws";
-    String password = "zxcvbnm1233";
-    String url = "jdbc:mysql://127.0.0.1:3306/webvietnhat";
+//	String userName = "somedayiws";
+//    String password = "zxcvbnm1233";
+//    String url = "jdbc:mysql://127.0.0.1:3306/webvietnhat";
     
 	// Biến dùng cho menu
 	private String menuPhanTrang = "";

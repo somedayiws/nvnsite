@@ -95,6 +95,7 @@ public class DangBaiVietServlet extends HttpServlet {
 							filename = itemName.substring(itemName
 									.lastIndexOf("\\") + 1);
 							String realPath = getServletContext().getRealPath("/")+ "images/" + filename;
+							System.out.println("realPath new posts: "+realPath);
 							File savedFile = new File(realPath);
 							@SuppressWarnings("unused")
 							FileCleanerCleanup item2 = new FileCleanerCleanup();
