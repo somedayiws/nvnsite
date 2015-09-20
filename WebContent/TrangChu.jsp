@@ -176,9 +176,6 @@ body {
 					/* Danh sách quảng cáo hiển thị trên trang */
 					ArrayList<QUANGCAO> listquangcao = (ArrayList<QUANGCAO>) request
 												.getAttribute("listquangcao");
-					/* slide bài viết random list*/
-					ArrayList<BAIVIET> slidePosts = (ArrayList<BAIVIET>) request
-												.getAttribute("slidePosts");
 			%>
 			<div class="col-sm-12 col-md-12" id="topMainContent">
 				<div class="col-sm-3 col-md-3" id="leftTopContent">
@@ -210,15 +207,15 @@ body {
 					<div id="gallery">
 						<%
 							i=0;
-							while(slidePosts != null && i<slidePosts.size()){
+																															while(top != null && i<top.size()){
 						%>
 
-						<a href="BaiVietServlet?id=<%=slidePosts.get(i).getIdBaiViet()%>"
-							class="show"> <img src="<%=slidePosts.get(i).getLienKet()%>"
-							alt="<%=slidePosts.get(i).getTenBaiVietVi()%>" title="" alt=""
-							rel="<h3><%=slidePosts.get(i).getTenBaiVietVi()==null?"":slidePosts.get(i).getTenBaiVietVi()%> </br> <%=slidePosts.get(i).getTenBaiVietJa()==null?"":slidePosts.get(i).getTenBaiVietJa()%></h3>
-							<%=slidePosts.get(i).getMoTaVi()!=null ? (slidePosts.get(i).getMoTaVi().length()>90 ? (slidePosts.get(i).getMoTaVi().substring(0, 90)+"..."): slidePosts.get(i).getMoTaVi()):""%> 
-							</br><%=slidePosts.get(i).getMoTaJa() !=null ? (slidePosts.get(i).getMoTaJa().length()>90 ? (slidePosts.get(i).getMoTaJa().substring(0, 90)+"..."): slidePosts.get(i).getMoTaJa()): ""%>" />
+						<a href="BaiVietServlet?id=<%=top.get(i).getIdBaiViet()%>"
+							class="show"> <img src="<%=top.get(i).getLienKet()%>"
+							alt="<%=top.get(i).getTenBaiVietVi()%>" title="" alt=""
+							rel="<h3><%=top.get(i).getTenBaiVietVi()==null?"":top.get(i).getTenBaiVietVi()%> </br> <%=top.get(i).getTenBaiVietJa()==null?"":top.get(i).getTenBaiVietJa()%></h3>
+							<%=top.get(i).getMoTaVi()!=null ? (top.get(i).getMoTaVi().length()>90 ? (top.get(i).getMoTaVi().substring(0, 90)+"..."): top.get(i).getMoTaVi()):""%> 
+							</br><%=top.get(i).getMoTaJa() !=null ? (top.get(i).getMoTaJa().length()>90 ? (top.get(i).getMoTaJa().substring(0, 90)+"..."): top.get(i).getMoTaJa()): ""%>" />
 						</a>
 						<%
 							i++; }
@@ -230,14 +227,14 @@ body {
 					<div id="relativePost">
 						<%
 							i=0;
-							while(slidePosts != null && i<slidePosts.size()){
+															while(top != null && i<top.size()  && i < 6){
 						%>
 						<div id="col-sm-6 col-md-6">
 							<div class="itemMini">
-								<a href="BaiVietServlet?id=<%=slidePosts.get(i).getIdBaiViet()%>">
-									<img src="<%=slidePosts.get(i).getLienKet()%>"> <strong>
-										<%=slidePosts.get(i).getTenBaiVietVi()!=null ? (slidePosts.get(i).getTenBaiVietVi().length()>90 ? (slidePosts.get(i).getTenBaiVietVi().substring(0, 90)+"..."): slidePosts.get(i).getTenBaiVietVi()):""%>
-										</br> <%=slidePosts.get(i).getTenBaiVietJa() !=null ? (slidePosts.get(i).getTenBaiVietJa().length()>90 ? (slidePosts.get(i).getTenBaiVietJa().substring(0, 90)+"..."): slidePosts.get(i).getTenBaiVietJa()): ""%></strong>
+								<a href="BaiVietServlet?id=<%=top.get(i).getIdBaiViet()%>">
+									<img src="<%=top.get(i).getLienKet()%>"> <strong>
+										<%=top.get(i).getMoTaVi()!=null ? (top.get(i).getMoTaVi().length()>90 ? (top.get(i).getMoTaVi().substring(0, 90)+"..."): top.get(i).getMoTaVi()):""%>
+										</br> <%=top.get(i).getMoTaJa() !=null ? (top.get(i).getMoTaJa().length()>90 ? (top.get(i).getMoTaJa().substring(0, 90)+"..."): top.get(i).getMoTaJa()): ""%></strong>
 								</a>
 							</div>
 						</div>
@@ -257,7 +254,7 @@ body {
 						</div>
 						<ul id="contentWeek">
 							<%
-								i=0;
+								i=5;
 								while(top != null && i<top.size()){
 							%>
 							<li><a
