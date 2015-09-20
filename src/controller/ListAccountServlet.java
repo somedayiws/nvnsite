@@ -47,15 +47,11 @@ public class ListAccountServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		String result = (String) request.getAttribute("result");
+		String result_Restore = (String)request.getAttribute("result_Restore");
 		TAIKHOAN[] account = (TAIKHOAN[])request.getAttribute("account");
 		String button = (String)request.getAttribute("button");
 		String resultUpdate, resultDelete;
-
-		
-	
-		System.out.println("button: "+button);
-		System.out.println("account: "+account);
-		System.out.println("result: "+result);
+			
 		if (result != null) {
 			if (result.contains("Update")) {
 				if (result.contains("success")) {
@@ -65,6 +61,9 @@ public class ListAccountServlet extends HttpServlet {
 					resultUpdate = "Chỉnh sửa thất bại";
 				}
 				request.setAttribute("result", resultUpdate);
+			}
+			else if(result.contains("Phục hồi")){
+				request.setAttribute("result", result);
 			}
 			else
 			{
@@ -97,6 +96,7 @@ public class ListAccountServlet extends HttpServlet {
 		//System.out.println("Menu : " + pageNav);
 		request.setAttribute("account", account);
 		request.setAttribute("button", button);
+		request.setAttribute("result_Restore", result_Restore);
 		//request.setAttribute("totalPage",totalPage);
 		//request.setAttribute("currentPage", currentPage);
 		request.setAttribute("listAccount", listAccount);

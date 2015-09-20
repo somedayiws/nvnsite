@@ -46,6 +46,7 @@ public class ListCategoryServlet extends HttpServlet {
 		String resultInsert =(String)request.getAttribute("resultInsert");
 		String resultUpdate = (String)request.getAttribute("resultUpdate");
 		String resultDelete =(String)request.getAttribute("resultDelete");
+		String resultRestore = (String)request.getAttribute("result_Restore");
 		DANHMUC[] category_after_search = (DANHMUC[])request.getAttribute("category");
 		String button = (String)request.getAttribute("button");
 		
@@ -54,7 +55,7 @@ public class ListCategoryServlet extends HttpServlet {
 		
 		ListCategoryBO listCategory = new ListCategoryBO();
 		int page = 1;
-		listCategory.setMenu(3, 2);
+		listCategory.setMenu(10, 5);
 		try {
 			page = Integer.parseInt(request.getParameter("page"));
 		} catch (NumberFormatException e) {
@@ -79,6 +80,7 @@ public class ListCategoryServlet extends HttpServlet {
 		request.setAttribute("resultInsert", resultInsert);
 		request.setAttribute("resultUpdate", resultUpdate);
 		request.setAttribute("resultDelete", resultDelete);
+		request.setAttribute("resultRestore", resultRestore);
 		request.setAttribute("category_after_search", category_after_search);
 		request.setAttribute("button",button);
 		request.setAttribute("category", category);

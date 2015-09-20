@@ -37,21 +37,23 @@ public class ShowAdminEditPostsServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String idpost =request.getParameter("idPost");
 		
 		
-		doPost(request, response,idpost);
+		doPost(request, response);
 
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response,String idPost) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
+		String idpost =request.getParameter("idPost");
+		String from = request.getParameter("from");
 		
-		if(idPost==null){
+	
+		if(idpost==null){
 			response.sendRedirect("ListPostsServlet");
 		}
 		else{
@@ -61,13 +63,13 @@ public class ShowAdminEditPostsServlet extends HttpServlet {
 		 
 		ArrayList<DANHMUC> categorys = listCategory.getCategory(1);
 		TAIKHOAN[] account = listAccount.getDataAccountInfor(1);
-		BAIVIET post = editPosts.post(idPost);
+		BAIVIET post = editPosts.post(idpost);
 		
 //		System.out.println("id danh muc: "+post.getDanhMuc().getIdDanhMuc());
 		request.setAttribute("categorys", categorys);
 		request.setAttribute("account", account);
 		request.setAttribute("post", post);
-		
+		request.setAttribute("from", from);
 		RequestDispatcher requestDis_editPost = request.getRequestDispatcher("AdminEditPosts.jsp");
 		
 		requestDis_editPost.forward(request, response);

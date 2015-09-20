@@ -54,9 +54,8 @@ public class AdminCreateServet extends HttpServlet {
 		account.setEmail(email);
 		account.setTenTaiKhoan(username);
 		account.setMatKhau(password);
-		account.setQuyenQuanTri(typeUser);
-		if(!typeUser.equals("CTV")) account.setNgonNgu(null);
-		else account.setNgonNgu(language);
+		account.setQuyenQuanTri(typeUser);		
+		account.setNgonNgu(language);
 		account.setTinhTrang("Mới tạo");
 		
 		

@@ -86,7 +86,8 @@ public class RestoreDataDAO {
 		valueId = DinhDangSQL.FomatSQL(valueId);
 		nameTable = DinhDangSQL.FomatSQL(nameTable);
 		String sql_restore = "update "+nameTable+" set CoXoa = 0 where "+nameColumn+" = '"+valueId+"'";
-		//System.out.println("sql: "+sql_restore);
+		
+		System.out.println("sql: "+sql_restore);
 		return db.updateData(sql_restore);
 	}
 }

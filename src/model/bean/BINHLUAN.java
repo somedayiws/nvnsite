@@ -6,6 +6,13 @@ public class BINHLUAN {
 	TAIKHOAN TaiKhoan;
 	String PhanHoiVi;
 	String PhanHoiJa;
+	String NgayDang;
+	public String getNgayDang() {
+		return NgayDang;
+	}
+	public void setNgayDang(String ngayDang) {
+		NgayDang = ngayDang;
+	}
 	public int getIdComent() {
 		return IdComent;
 	}

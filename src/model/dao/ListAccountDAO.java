@@ -29,7 +29,7 @@ public class ListAccountDAO {
 		else{
 			sql_select_account = "SELECT * FROM taikhoan WHERE CoXoa = 0 limit "+start+","+limit+"";
 		}
-		System.out.println("sql_select_account: "+sql_select_account);
+	//	System.out.println("sql_select_account: "+sql_select_account);
 		if(sql_select_account==null){ return null;}
 		ResultSet result_select = db.getResultSet(sql_select_account);
 		try {

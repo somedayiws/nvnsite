@@ -177,9 +177,9 @@ public class CreateCategoryServlet extends HttpServlet {
 					}
 					else{
 						//Insert fail
-						request.setAttribute("error", "Insert fail.Please enter information again!");
+						request.setAttribute("resultInsert", "Insert fail");
 						RequestDispatcher requestDis_error = request
-								.getRequestDispatcher("Error.jsp");
+								.getRequestDispatcher("ListCategoryServlet");
 						requestDis_error.forward(request, response);
 					}
 				}

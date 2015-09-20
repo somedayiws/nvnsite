@@ -32,7 +32,7 @@ public class ListPostsDAO {
 
 			BAIVIET[] posts = new BAIVIET[numberOfPosts];
 			
-			String sql_select_posts = "SELECT * FROM baiviet WHERE CoXoa = 0";
+			String sql_select_posts = "SELECT * FROM baiviet WHERE CoXoa = 0 ORDER BY NgayDang DESC";
 			
 			db.createMenu("ListPostsServlet?", page, sql_select_posts);
 			
@@ -41,9 +41,9 @@ public class ListPostsDAO {
 				result_select = db.getResultSet(sql_select_posts + " limit "
 						+ (page - 1) * db.getNBangGhi() + ","
 						+ db.getNBangGhi());
-			System.out.println("sql: "+sql_select_posts + " limit "
-						+ (page - 1) * db.getNBangGhi() + ","
-						+ db.getNBangGhi());
+//			//System.out.println("sql: "+sql_select_posts + " limit "
+//						+ (page - 1) * db.getNBangGhi() + ","
+//						+ db.getNBangGhi());
 			} else {
 				result_select = db.getResultSet(sql_select_posts);
 			}

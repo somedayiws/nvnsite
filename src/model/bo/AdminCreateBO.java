@@ -63,7 +63,7 @@ public class AdminCreateBO {
 		/*if no have any Account in database*/
 		if(idAccount == null)
 		{
-			string_result = "TK01";
+			string_result = "TK000000001";						
 		}
 		else
 		{
@@ -76,13 +76,20 @@ public class AdminCreateBO {
 			{
 				int number_id = Integer.parseInt(strnumber);
 				number_id++;
-				if(number_id<10)
+				string_result = wordlock;
+				if(number_id<100000000)
 				{
-					string_result = wordlock+"0"+number_id;				
+					for(int j=0;j<(8-String.valueOf(number_id).length());j++){
+						string_result+="0";
+					}
+					string_result+=String.valueOf(number_id);				
 				}
 				else
 				{
-					string_result = wordlock+number_id;
+					string_result = wordlock+String.valueOf(number_id);
+				}
+				if(string_result.length()>11){
+					return null;
 				}
 			}
 			catch(NumberFormatException e)

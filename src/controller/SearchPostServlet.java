@@ -15,19 +15,19 @@ import model.bean.DANHMUC;
 import model.bean.TAIKHOAN;
 import model.bo.ListAccountBO;
 import model.bo.ListCategoryBO;
-import model.bo.ListPostsBO;
+import model.bo.SearchPostBO;
 
 /**
- * Servlet implementation class ListPostsServlet
+ * Servlet implementation class SearchPostServlet
  */
-@WebServlet("/admin/ListPostsServlet")
-public class ListPostsServlet extends HttpServlet {
+@WebServlet("/admin/SearchPostServlet")
+public class SearchPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListPostsServlet() {
+    public SearchPostServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,10 +37,7 @@ public class ListPostsServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-
 		doPost(request, response);
-		
 	}
 
 	/**
@@ -48,49 +45,61 @@ public class ListPostsServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 		request.setCharacterEncoding("UTF-8");
 		
-		//Nhận kết quả tìm kiếm từ SearchPostServlet
-//		ArrayList<BAIVIET> listposts = (ArrayList<BAIVIET>) request.getAttribute("posts");
-//		String pageNavSearch = (String) request.getAttribute("pageNav");
+		String stringFind;
+		//Lấy loại tìm kiếm và nội dung tìm kiếm từ form
+		String typeFind = request.getParameter("typeFind");
+		String stringFindText = request.getParameter("stringFind");
 		
-		//System.out.println("pageNavSearch: "+pageNavSearch);
 		
-		ListPostsBO listPost = new ListPostsBO();		
+		
+		String stringFindCategory = request.getParameter("stringFindCategory");
+		String stringFindAccount = request.getParameter("stringFindAccount");
+		
+		System.out.println("stringFindText: "+stringFindText);
+		System.out.println("stringFindCategory: "+stringFindCategory);
+		System.out.println("stringFindAccount: "+stringFindAccount);
+		if(stringFindCategory!=null && !stringFindCategory.equals("0")){
+			stringFind = stringFindCategory;
+		}
+		else if(stringFindAccount!=null && !stringFindAccount.equals("0")){
+			stringFind = stringFindAccount;
+		}
+		else{
+			stringFind = stringFindText;
+		}
+		SearchPostBO searchPostBo = new SearchPostBO();
 		ListAccountBO listaccount  = new ListAccountBO();	
-		ListCategoryBO listcategory = new ListCategoryBO();
+		ListCategoryBO listcategory = new ListCategoryBO();	
+		
 		int page = 1;
-		listPost.setMenu(10, 5);
+		searchPostBo.setMenu(10, 5);
 		try {
 			page = Integer.parseInt(request.getParameter("page"));
 		} catch (NumberFormatException e) {
 			page = 1;
 		}
-		BAIVIET[] posts = listPost.getPosts(page);
 		
-			
+	//	System.out.println("pageSearch: "+page);
+		ArrayList<BAIVIET> posts = searchPostBo.searchPost(typeFind, stringFind,page);
+		
+		//System.out.println("post[0]: "+posts.get(0).getIdBaiViet());
+		
+//		for(int i=0;i<posts.size();i++){
+//			System.out.println("post["+i+"]: "+posts.get(i).getIdBaiViet());
+//		}
 		TAIKHOAN[] account = listaccount.getDataAccountInfor(0,listaccount.totalRecord(),"all");
 		ArrayList<DANHMUC> category = listcategory.getCategory(-1);
-//		if(pageNavSearch==null){
-		String pageNav = listPost.getMenuPhanTrang();		
+		String pageNav = searchPostBo.getMenuPhanTrang();		
 		
 		
 		request.setAttribute("pageNav", pageNav);
-//		}else{
-//			request.setAttribute("pageNavSearch", pageNavSearch);
-//		}
-		
 		request.setAttribute("posts", posts);
 		request.setAttribute("account", account);
 		request.setAttribute("category", category);
-//		//gởi kết quả tìm kiếm
-//		request.setAttribute("listposts", listposts);
-		
-		
-		RequestDispatcher requestDis_posts = request.getRequestDispatcher("ListPosts.jsp");
-		requestDis_posts.forward(request, response);
-		
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("SearchPosts.jsp");
+		requestDispatcher.forward(request, response);
 	}
 
 }

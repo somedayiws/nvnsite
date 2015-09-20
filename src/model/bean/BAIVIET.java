@@ -19,6 +19,13 @@ public class BAIVIET {
 	int LuotXem;
 	String LienKet;
 	String NgayDang;
+	int GimTrangChu;
+	public int getGimTrangChu() {
+		return GimTrangChu;
+	}
+	public void setGimTrangChu(int gimTrangChu) {
+		GimTrangChu = gimTrangChu;
+	}
 	public int getLuotXem() {
 		return LuotXem;
 	}

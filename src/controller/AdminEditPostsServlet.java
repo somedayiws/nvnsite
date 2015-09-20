@@ -86,7 +86,7 @@ public class AdminEditPostsServlet extends HttpServlet {
 		else{
 			resultEdit = "Cập nhật thất bại - Update fail";
 		}
-		
+				
 		request.setAttribute("resultEdit", resultEdit);
 		RequestDispatcher requestDis_edit = request.getRequestDispatcher("ListPostsServlet");
 		requestDis_edit.forward(request, response);

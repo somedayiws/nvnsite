@@ -41,7 +41,7 @@ public class AdminDeletePostsServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		String idPost =  request.getParameter("Idposts");
-		
+				
 		String resultDelete;
 		AdminDeletePostsBO admindeletePost = new AdminDeletePostsBO();
 		
@@ -51,6 +51,7 @@ public class AdminDeletePostsServlet extends HttpServlet {
 		else{
 			resultDelete = "Xóa thất bại - Delete fail";
 		}
+				
 		request.setAttribute("resultDelete", resultDelete);
 		RequestDispatcher requestDis_delete = request.getRequestDispatcher("ListPostsServlet");
 		requestDis_delete.forward(request, response);

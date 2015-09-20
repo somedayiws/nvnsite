@@ -50,20 +50,23 @@ public class ShowRestoreServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response, String type, String result_Restore)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("type: " + type);
+		// TODO Auto-generated method stub		
 		RestoreDataBO restoredata = new RestoreDataBO();
 
+		
 		if (result_Restore != null) {
+			request.setAttribute("result_Restore", result_Restore);
+			RequestDispatcher requestDis = null;
 			if(result_Restore.contains("tài khoản")){
-			response.sendRedirect("ListAccountServlet");}
+				requestDis = request.getRequestDispatcher("ListAccountServlet");	
+			}
 			else if(result_Restore.contains("danh mục")){
-				response.sendRedirect("ListCategoryServlet");
+				requestDis = request.getRequestDispatcher("ListCategoryServlet");					
 			}
 			else if(result_Restore.contains("bài viết")){
-				response.sendRedirect("ListPostsServlet");
+				requestDis = request.getRequestDispatcher("ListPostsServlet");				
 			}
-			
+			requestDis.forward(request, response);
 		} else {
 			if (type.contains("account")) {
 				ArrayList<TAIKHOAN> listAccountDeleted = new ArrayList<TAIKHOAN>();

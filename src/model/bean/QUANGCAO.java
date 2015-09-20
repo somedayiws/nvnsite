@@ -6,6 +6,41 @@ public class QUANGCAO {
 	private String HinhAnh;
 	private int ViTri;
 	private int HienThi;
+	private int SoNgay;
+	private String DonViQuangCao;
+	public String getDonViQuangCao() {
+		return DonViQuangCao;
+	}
+	public void setDonViQuangCao(String donViQuangCao) {
+		DonViQuangCao = donViQuangCao;
+	}
+	public String getNgayDang() {
+		return NgayDang;
+	}
+	public void setNgayDang(String ngayDang) {
+		NgayDang = ngayDang;
+	}
+	public String getGiaQuangCao() {
+		return GiaQuangCao;
+	}
+	public void setGiaQuangCao(String giaQuangCao) {
+		GiaQuangCao = giaQuangCao;
+	}
+	public String getKichThuoc() {
+		return KichThuoc;
+	}
+	public void setKichThuoc(String kichThuoc) {
+		KichThuoc = kichThuoc;
+	}
+	private String NgayDang;
+	private String GiaQuangCao;
+	private String KichThuoc;
+	public int getSoNgay() {
+		return SoNgay;
+	}
+	public void setSoNgay(int soNgay) {
+		SoNgay = soNgay;
+	}
 	public int getIdQuangCao() {
 		return IdQuangCao;
 	}
