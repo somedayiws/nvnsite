@@ -12,7 +12,7 @@
 	src="../bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
 	href="./css/home.css">
-<title>Trang chủ Admin</title>
+<title>Trang chủ Admin - ホーム管理</title>
 </head>
 <%
 	//Check session exist
@@ -26,12 +26,8 @@
 		<%@include file="Menu.jsp"%>
 		<div class="col-md-4 col-md-offset-4" id = "divcontent">
 			<img src="../images/congthongtin.png" class=img-responsive alt="Cổng thông tin">
-			<marquee direction="left"><h2>Chào mừng bạn đến với trang Admin</h2></marquee>
-		</div>
-		<div id="divfooter" class="col-md-12">
-		<%@include file="footer.jsp"%>	
-		</div>
-
+			<marquee direction="left"><h2>Chào mừng bạn đến với trang Admin<br>歓迎へ管理者</h2></marquee>
+		</div>		
 	</div>
 	<%}else{%>
 			<h1>404 - Không tìm thấy trang</h1>

@@ -9,7 +9,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12" id="divheader">
-				<h1 style="">CỔNG THÔNG TIN VIỆT - NHẬT</h1>
+				<h1 style="">CỔNG THÔNG TIN VIỆT - NHẬT<br>日越ビジネス情報の架け橋</h1>
 			</div>
 		</div>
 	</div>

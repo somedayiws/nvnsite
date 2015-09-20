@@ -17,6 +17,7 @@
 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="../check_validate/formEdit.js"></script>
 <link rel="stylesheet" href="css/register.css">
+<link rel="stylesheet" href="css/editPost.css">
 <script src="../ckeditor/ckeditor.js"></script>
 <script src="../js/jquery-ui.js"></script>
 <title>Chỉnh sửa bài viết</title>
@@ -26,17 +27,12 @@
 	ArrayList<DANHMUC> categorys = (ArrayList<DANHMUC>) request.getAttribute("categorys");
 	TAIKHOAN[] account = (TAIKHOAN[]) request.getAttribute("account");
 	BAIVIET post = (BAIVIET) request.getAttribute("post");
-
+	String from = (String)request.getAttribute("from");
 	
+	System.out.println("from: "+from);
 	
 %>
-<script>
-	function checkData(){
-		var namePostVi = document.getElementById("namePostVi").value;
-		alert(namePostVi);
-		return false;
-	}
-</script>
+
 
 <body>
 	<div class="container-fluid">
@@ -44,17 +40,15 @@
 		<%@include file="Menu.jsp"%>
 
 		<!-- Content -->
-		<div style="margin-top: 10px">
+		<div id="divcontent">
 			<%
 				if (post != null) {
 			%>
-			<div class="col-md-8 col-md-offset-2">
-			
-			
+			<div class="col-md-8 col-md-offset-2 panel panel-primary">		
+			 	<div class="panel-heading">Chỉnh sửa bài viết</div>	
+			 	<div class="panel-body">
 				<form action="AdminEditPostsServlet" method="get" id="formAdminEditPost"
 					name="formAdminEditPost" onsubmit="return checkData()">
-
-
 					<!-- Id danh muc -->
 
 					<div class="form-group">
@@ -67,7 +61,7 @@
 						if (account != null) {
 					%>
 					
-						<label>Tên tài khoản - Username</label> <select name="account"
+						<label>Tên tài khoản - </label> <select name="account"
 							class="form-control">
 							<%
 								for (int i = 0; i < account.length; i++) {
@@ -105,14 +99,14 @@
 					
 					<!--Ghi chú  -->
 					<div class="form-group">
-						<label>Ghi chú - Note</label>
+						<label>Ghi chú - </label>
 						<textarea rows="10" cols="20" class="form-control" name="note" readonly="readonly"><%=post.getGhiChu() %></textarea>
 					</div>
 					<!-- Tên bai viet -->
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Tên bài viết(Việt Nam)<span class="rq"> *
+								<label>Tên bài viết(Tiếng Việt)<span class="rq"> *
 								</span>:
 								</label><input type="text" class="form-control" id="namePostVi"
 									maxlength="300" name="namePostVi"
@@ -121,7 +115,7 @@
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Name post(Japan)<span class="rq"> * </span>:
+								<label>Tên bài viết(Tiếng Nhật)<span class="rq"> * </span>:
 								</label><input type="text" class="form-control" id="namePostJa"
 									maxlength="300" name="namePostJa"
 									value="<%if (post.getTenBaiVietJa() != null) {%><%=post.getTenBaiVietJa()%><%}%>">
@@ -137,7 +131,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Danh mục Việt Nam<span class="rq"> * </span>
+								<label>Danh mục (Tiếng Việt)<span class="rq"> * </span>
 								</label> <select name="categoryVi" class="form-control">
 									<%
 										for (int i = 0; i < categorys.size(); i++) {
@@ -154,7 +148,7 @@
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Category Japan<span class="rq"> * </span>
+								<label>Danh mục (Tiếng Nhật)<span class="rq"> * </span>
 								</label> <select name="categoryJa" class="form-control">
 									<%
 										for (int i = 0; i < categorys.size(); i++) {
@@ -195,13 +189,13 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Nội dung Việt Nam</label>
+								<label>Nội dung (Tiếng Việt)</label>
 								<textarea id="contentVi" name="contentVi" class="ckeditor"><%=post.getNoiDungVi() %></textarea>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Content Japan</label>
+								<label>Nội dung (Tiếng Nhật)</label>
 								<textarea id="contentJa" name="contentJa" class="ckeditor"><%=post.getNoiDungJa() %></textarea>
 							</div>
 						</div>
@@ -213,13 +207,13 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Mô tả Việt Nam</label>
+								<label>Mô tả (Tiếng Việt)</label>
 								<textarea id="descriptionVi" name="descriptionVi" rows="5" cols="10" class="form-control"><%=post.getMoTaVi() %></textarea>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Description Japan</label>
+								<label>Mô tả (Tiếng Nhật)</label>
 								<textarea id="descriptionJa" name="descriptionJa" rows="5" cols="10" class="form-control"><%=post.getMoTaJa() %></textarea>
 							</div>
 						</div>
@@ -227,23 +221,26 @@
 					
 					<!-- Lượt xem -->
 					<div class="form-group">
-						<label>Lượt xem - View</label>
+						<label>Lượt xem - </label>
 						<input type="text" name="view" class="form-control" value="<%=post.getLuotXem()%>" readonly="readonly">
 					</div>
 					
 					<!-- Liên kết -->
 					<div class="form-group">
-						<label>Liên kết - Link</label>
+						<label>Liên kết - </label>
 						<input type="text" name="link" class="form-control" value="<%=post.getLienKet()%>" readonly="readonly">
 					</div>
 					
 					<!-- Ngày đăng -->
 					<div class="form-group">
-						<label>Ngày đăng - Date</label>
+						<label>Ngày đăng - </label>
 						<input type="text" name="date" class="form-control" value="<%=post.getNgayDang()%>" readonly="readonly">
 					</div>
 					
-					<button class="btn btn-primary">Chỉnh sửa - Edit</button>
+					<div class="col-md-6 col-md-offset-3 form-group">
+						<button class="btn btn-primary" type="submit">Chỉnh sửa - 編集</button>
+						<a href="<%if(from.equals("list")){%>ListPostsServlet<%}else{%>ShowDetailPostsServlet?id=<%=post.getIdBaiViet()%><%}%>"><button type="button" class="btn btn-default">Quay lại - バック</button></a>
+					</div>
 					
 
 				</form>
@@ -260,6 +257,7 @@
 				</div>
 			</div>
 			<%} %>
+			</div>
 		</div>
 
 	</div>

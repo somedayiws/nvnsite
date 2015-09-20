@@ -9,23 +9,5 @@ span{
 }
 #atag img {
 	width:120px;
-	height:50px;
-}
-
-.danhsach {
-    float: left;
-    width: 45%;
-    background-color: rgba(219, 219, 232, 0.59);
-    padding: 1%;
-    height: 520px;
-    overflow: auto;
-}
-.tuychon {
-    float: left;
-    margin-left: 1%;
-    width: 54%;
-}
-#anh {
-    height: 200px;
-    margin-bottom: 3px;
+	height:70px;
 }

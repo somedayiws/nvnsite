@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../check_validate/formEdit.js"></script>
 <link rel="stylesheet" href="css/register.css">
 <script type="text/javascript" src="../check_validate/checkCreate(Admin).js"></script>
-<script type="text/javascript" src="./js/createAccount.js"></script>
+<!-- <script type="text/javascript" src="./js/createAccount.js"></script> -->
 <title>Tạo tài khoản</title>
 </head>
 <body>
@@ -77,17 +77,17 @@
 						</div>
 						<div class="form-group">
 							<label>Quyền quản trị - ユーザーの種類</label> <select class="form-control"
-								name="typeUser" id ="typeUser" onchange="change(this.value)">
+								name="typeUser" id ="typeUser">
 								<option value="admin">Admin</option>
-								<option value="CTV">CTV</option>
-								<option value="User">User</option>
+								<option value="ctv">CTV</option>
+								<option value="user">User</option>
 							</select>
 						</div>
 						<div class="form-group" id="language">
 							<label>Ngôn ngữ - 言語</label> <select class="form-control"
 								name="language">
-								<option value="Tiếng việt">Tiếng Việt</option>
-								<option value="日本">日本</option>								
+								<option value="vi">Tiếng Việt</option>
+								<option value="ja">日本</option>								
 							</select>
 						</div>
 						<button type="submit" class="btn btn-primary btn-md">Tạo

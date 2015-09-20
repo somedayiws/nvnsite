@@ -1,0 +1,80 @@
+h3 {
+	text-align: center;
+}
+
+#ImageAccount {
+	position: relative;
+	height: 102px;
+}
+
+#ImageAccount img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 0;
+}
+
+#ImageAccount .details {
+	opacity: .9;
+	position: absolute;
+	top: 50;
+	left: 150;
+	z-index: 999;
+	-webkit-transform: scale(0);
+	-webkit-transition-timing-function: ease-out;
+	-webkit-transition-duration: 250ms;
+}
+
+#ImageAccount:hover .details {
+	-webkit-transform: scale(1);
+	-webkit-transition-timing-function: ease-out;
+	-webkit-transition-duration: 250ms;
+}
+.content{
+	border: 1px solid black;
+		-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+.content:hover{
+	box-shadow: 10px 10px 20px black;
+}
+#message{
+	border: 2px solid #505050;
+	border-radius:10px;
+	display: none;
+}
+#divInfor{
+	border: 2px solid black;
+	margin-top: 50%;
+	border-radius:20%;
+	text-align: center;	
+}
+#ContentVi{
+	padding-right: 0;
+}
+#btnVi{
+	float:right;
+	background-color:black;
+}
+#btnbackVi{
+	float:right;
+	background-color:black; 
+	display: none;
+}
+#ContentJa{
+	padding-right: 0;
+	height: 100%
+}
+#btnbackJa{
+	float:right;
+	background-color:black;
+	display: none;
+}
+#btnJa{
+	float:right;
+	background-color:black;
+}
+#pcomment{
+	margin-left: 5%;
+}

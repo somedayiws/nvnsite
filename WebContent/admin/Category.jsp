@@ -14,8 +14,10 @@
 	src="../bootstrap-3.3.5-dist/js/bootstrap.js"></script>
 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="../check_validate/formEdit.js"></script>
+<script type="text/javascript" src="js/category.js"></script>
 <link rel="stylesheet" href="css/register.css">
-<title>Danh mục</title>
+<link rel="stylesheet" href="css/category.css">
+<title>Quản lý danh mục</title>
 
 <%
 	//Receive inforrmation insert from Server
@@ -23,6 +25,7 @@
 
 	//Receive information list category
 	ArrayList<DANHMUC> category = (ArrayList<DANHMUC>) request.getAttribute("category");
+
 
 	//Receive result edit category
 	String resultUpdate = (String) request.getAttribute("resultUpdate");
@@ -41,76 +44,14 @@
 	
 	//Nhận lại kết quả khi thay đổi hiển thị
 	String resultChangeShowed =(String)request.getAttribute("resultChangeShowed");	
+	
+	//Nhận lại kết quả khi khôi phục dữ liệu
+	String resultRestore = (String)request.getAttribute("resultRestore");
 %>
 <script type="text/javascript">
 
-function xem(f,x){
-	var reader = new FileReader();
-	reader.onload = function (e) {
-		var img = document.getElementById(x);
-		img.src = e.target.result;
-		img.style.display = "inline";
-	};
-	reader.readAsDataURL(f.files[0]);
-}
-
-function check_Image(){
-	 var test_value = $(".Image").val();	
-	  var extension = test_value.split('.').pop().toLowerCase();
-		 
-	    if ($.inArray(extension, ['png', 'gif', 'jpeg', 'jpg']) == -1) {
-	      alert("File ảnh không hợp lệ!");
-	      return false;
-	    } else {
-	      alert("File ảnh hợp lệ!");
-	      return true;
-	    }
-}	
-
-	/*---------------Check validate form Insert---------------*/
-	function checkValidFormInsert() {		
-		var nameCategoryVi = document.getElementById("nameCategoryVi").value;
-		var nameCategoryJa = document.getElementById("nameCategoryJa").value;
-				
-		var c_value = 0;
-		
-		
-		//Kiểm tra định dạng ảnh
-		
-			    var test_value = $("#Image").val();
-			    var extension = test_value.split('.').pop().toLowerCase();
-			 
-			    
-			 
-			
-			
-			
-		if (nameCategoryVi == "" || nameCategoryJa == "") {
-
-			alert("Bạn phải nhập tên danh mục(vừa tiếng việt vừa tiếng nhật)");
-			return false;
-		}
-		for (var i = 0; i < document.formcreateCategory.display.length; i++) {
-			if (document.formcreateCategory.display[i].checked) {
-				c_value = 1;
-			}
-		}
-		if (c_value == 0) {
-			alert("Bạn phải chọn có hiển thị lên trang chủ hay không");
-			return false;
-		} 
-		if ($.inArray(extension, ['png', 'gif', 'jpeg', 'jpg']) == -1) {
-		      alert("File ảnh không hợp lệ!");
-		      return false;
-		 } 
-		return true;
-	}
-	/*------------------End check form insert---------------------*/
-	
 	/*------------------Check validate form edit-----------------*/
-	$(document).ready(function() {
-		
-		  
+	$(document).ready(function() {				  
 		<%if(category!=null){%>
 	for(var i=0;i<<%=category.size()%>
 	; i++) {
@@ -133,181 +74,133 @@ function check_Image(){
 	});
 	
 	/*------------------End check validate form edit-------------*/
-
-	/*----------------- Check validate form Search --------------*/
-	//Check validate
-	function checkValidate(typeFind, stringFind, lengthStringFind) {
-		if (stringFind == "") {
-			alert("Bạn phải nhập từ cần tìm");
-			return false;
-		}
-		if (stringFind.length > lengthStringFind) {
-			alert(typeFind + " tối đa " + lengthStringFind + " ký tự");
-			return false;
-		}
-		if (typeFind == "HienThi") {
-			if (!(stringFind == "1" || stringFind == "0")) {
-				alert(stringFind);
-				alert("Bạn phải nhập số 1(hiển thị) hoặc 0(không hiển thị)");
-				return false;
-			}
-		}
-		return true;
-	}
-
-	//Check form Search
-	function checkValidateSearch() {
-		var typeFind = document.getElementById("typeFind").value;
-		var stringFind = document.getElementById("stringFind").value;
-		var lengthStringFind;
-		if (typeFind == "IdDanhMuc")
-			lengthStringFind = 10;
-		else if (typeFind == "TenDanhMucVi")
-			lengthStringFind = 300;
-		else if (typeFind == "TenDanhMucJa")
-			lengthStringFind = 50;
-		else if (typeFind == "HienThi")
-			lengthStringFind = 10;
-		else
-			lengthStringFind = 100;
-		if (checkValidate(typeFind, stringFind, lengthStringFind)) {
-			return true;
-		}
-		return false;
-
-	}
-	/*----------------- End check validate form Search -----------*/
 </script>
 </head>
 
 <body>
 	<div class="container-fluid">
-	<%@include file="header_ver_1.jsp"%>
-	
-	<%@include file="Menu.jsp"%>
-			
-	
-		<div style="margin-top: 10px">
-		<div class="row">
-			<div class="col-md-2">				
-			</div>
-			<div class="col-md-8 panel panel-primary">
-			
-				<div class="panel-heading">Thêm danh mục</div>
-				<div class="panel-body">
-				<!-- Hiển thị kết quả thay đổi hiển thị -->
-				<%if(resultChangeShowed!=null){ %>				
-				<div class="alert alert-info">
-  					<strong>Thông báo!</strong><%=resultChangeShowed%>
-				</div>
-				<%} %>
+		<%@include file="header_ver_1.jsp"%>			
+		<%@include file="Menu.jsp"%>
+		<div id="divcontent">
+			<div class="row">			
+				<div class="col-md-8 col-md-offset-2 panel panel-primary">			
+					<div class="panel-heading">Thêm danh mục</div>
+						<div class="panel-body">
+								<!-- Hiển thị kết quả thay đổi hiển thị -->
+								<%if(resultChangeShowed!=null){ %>				
+								<div class="alert alert-info">
+				  					<strong>Thông báo!</strong><%=resultChangeShowed%>
+								</div>
+								<%} %>
 				
-					<form class="form-horizontal" name="formcreateCategory"
-						action="CreateCategoryServlet" method="post" enctype="multipart/form-data"
-						onsubmit="return checkValidFormInsert()">
-						<div class="form-group">
-							<label>Tên danh mục(Việt Nam)<span class="rq"> * </span>:
-							</label><input type="text" class="form-control" id="nameCategoryVi"
-								maxlength="15" name="nameCategoryVi">
-						</div>
-						<div class="form-group">
-							<label>Tên danh mục(Nhật Bản)<span class="rq"> * </span>:
-							</label><input type="text" class="form-control" id="nameCategoryJa"
-								maxlength="15" name="nameCategoryJa">
-						</div>
-						<%if(countCategoryShowed>=5){ %>
-						<div class="alert alert-danger">
-  							<strong>Cảnh báo!</strong>Số danh mục hiển thị lên thanh menu đã tối đa.
-  							Nếu muốn thay đổi thì nhấn vào <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalChangeShow">đây</button>
-						</div>
-						<%} %>						 
-							<label>Hiện thị lên thanh menu<span class="rq"> * </span>:
-							</label>					
-							<div class="radio-inline">
-								<label><input type="radio" id="display" name="display"
-									value="yes" <%if(countCategoryShowed >= 5){ %> disabled="disabled" <%} %>>Có</label>
-							</div>
-							<div class="radio-inline">
-								<label><input type="radio" id="display" name="display" 
-									value="no">Không</label>
-							</div>
-						
-						<div class="form-group">
-							<label>Icon</label> <input type="file" id="Image" name="Image" onchange="xem(this,'fua');"/>
-							<p class="help-block">Chọn file .png, .jpg ...<br>
-							<img alt="Ảnh đại diện" src="../images/icondefault.png" id="fua" width="50px" height="50px">
-				</p>
-						</div>
-						<button type="submit" class="btn btn-primary btn-md">Tạo
-							danh mục</button>
-					</form>
-				</div>
-
+							<form class="form-horizontal" name="formcreateCategory"
+									action="CreateCategoryServlet" method="post" enctype="multipart/form-data"
+									onsubmit="return checkValidFormInsert()">
+								<div class="form-group">
+									<label>Tên danh mục(Việt Nam)<span class="rq"> * </span></label>
+									<input type="text" class="form-control" id="nameCategoryVi"
+									maxlength="15" name="nameCategoryVi">
+								</div>
+								<div class="form-group">
+									<label>Tên danh mục(Nhật Bản)<span class="rq"> * </span></label>
+									<input type="text" class="form-control" id="nameCategoryJa"
+									maxlength="15" name="nameCategoryJa">
+								</div>
+									<%if(countCategoryShowed>=5){ %>
+									<div class="alert alert-danger">
+			  							<strong>Cảnh báo!</strong>Số danh mục hiển thị lên thanh menu đã tối đa.
+			  							Nếu muốn thay đổi thì nhấn vào <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalChangeShow">đây</button>
+									</div>
+									<%} %>						 
+								<label>Hiện thị lên thanh menu<span class="rq"> * </span></label>											
+								<div class="radio-inline">
+									<label><input type="radio" id="display" name="display"
+										value="yes" <%if(countCategoryShowed >= 5){ %> disabled="disabled" <%} %>>Có
+									</label>
+								</div>
+								<div class="radio-inline">
+									<label><input type="radio" id="display" name="display" 
+										value="no">Không</label>
+								</div>
+								<div class="form-group">
+									<label>Icon <input type="file" id="Image" name="Image" onchange="xem(this,'fua');"/></label>
+									<p class="help-block">Chọn file .png, .jpg ...<br>
+										<img alt="Icon đại diện" src="../images/icondefault.png" id="fua" width="50px" height="50px">
+									</p>
+								</div>
+								<button type="submit" class="btn btn-success btn-md">Tạo danh mục</button>
+							</form>
+					</div>
+				</div>			
 			</div>
-			<div class="col-md-2"></div>
-		</div>
+<!----------------------- Hiển thị kết quả  -------------------------->
 
-
-		<!-- Panel show result -->
 		<%
 			if (resultInsert != null) {
+				if(resultInsert.contains("success")){
 		%>
-		<div class="panel panel-info">
-			<div class="panel-heading">Thông báo</div>
-			<div class="panel-body">Thêm danh mục thành công</div>
-		</div>
+		
+			<div class="col-md-6 col-md-offset-3 alert alert-info">
+	<strong>Thông báo!</strong>Thêm danh mục thành công
+	</div>
+	
 		<%
+			}else{
+		%>
+		<div class="col-md-6 col-md-offset-3 alert alert-info">
+	<strong>Thông báo!</strong>Thêm danh mục thất bại
+	</div>
+		<%}
 			}
 			if (resultUpdate != null) {
-		%>
-		<div class="panel panel-info">
-			<div class="panel-heading">Thông báo</div>
-			<div class="panel-body">
-				<%
+		
 					if (resultUpdate.contains("success")) {
 				%>
-				Chỉnh sửa danh mục thành công
+				<div class="col-md-6 col-md-offset-3 alert alert-info">
+	<strong>Thông báo!</strong>Chỉnh sửa danh mục thành công
+	</div>
 				<%
 					} else {
 				%>
-				Chỉnh sửa danh mục thất bại
+				<div class="col-md-6 col-md-offset-3 alert alert-info">
+	<strong>Thông báo!</strong>Chỉnh sửa danh mục thất bại
+	</div>
 				<%
-					}
-				%>
-			</div>
-		</div>
-		<%
+					}	
 			}
-			if (resultDelete != null) {
-		%>
-		<div class="panel panel-info">
-			<div class="panel-heading">Thông báo</div>
-			<div class="panel-body">
-				<%
+			if (resultDelete != null) {		
 					if (resultDelete.contains("success")) {
-				%>
-				Xóa danh mục thành công
+		%>
+				<div class="col-md-6 col-md-offset-3 alert alert-info">
+	<strong>Thông báo!</strong>Xóa danh mục thành công
+	</div>
 				<%
 					} else {
 				%>
-				Xóa danh mục thất bại
+				<div class="col-md-6 col-md-offset-3 alert alert-info">
+	<strong>Thông báo!</strong>Xóa danh mục thất bại
+	</div>
 				<%
-					}
-				%>
-			</div>
-		</div>
+					}	
+			}
+			if(resultRestore!=null){
+				if(resultRestore.contains("success")){
+		%>
+		<div class="col-md-6 col-md-offset-3 alert alert-info">
+	<strong>Thông báo!</strong>Khôi phục danh mục thành công
+	</div>
+	<%}else{ %>
+	<div class="col-md-6 col-md-offset-3 alert alert-info">
+	<strong>Thông báo!</strong>Khôi phục danh mục thất bại
+	</div>
 		<%
 			}
-		%>
-		<!-- End panel result -->
-
-
-		<%
-			if (category != null) {
+			}
+			if (category.size() != 0) {
 		%>
 
 		<!----------------------- Form tìm kiếm ----------------------->
-		<div class="row">
+		<div class="col-md-10 col-md-offset-1">
 			<form action="SearchCategoryServlet" method="post"
 				onsubmit="return checkValidateSearch()">
 				<h4 class="col-sm-2">Tìm kiếm</h4>
@@ -325,12 +218,12 @@ function check_Image(){
 				</div>
 				<div class="col-sm-1 form-group">
 				<button type="submit" name="btnFind" value="Find"
-					class="btn btn-primary">Tìm kiếm</button>
+					class="btn btn-primary btn-sm">Tìm kiếm</button>
 					</div>
 				</form>
 					<div class="col-sm-1 form-group">
 				<a href="ShowRestoreServlet?type=category"><button type="submit" name="btnRestore" 
-					class="btn btn-primary">Khôi phục</button></a>
+					class="btn btn-primary btn-sm">Khôi phục</button></a>
 					</div>
 			
 		</div>
@@ -343,7 +236,7 @@ function check_Image(){
 					if (category_after_search != null) {
 						//Have result
 		%>
-		<div class="table-responsive">
+		<div class="col-md-10 col-md-offset-1 table-responsive">
 		<table class="table table-hover">
 			<thead>
 				<tr>
@@ -395,11 +288,9 @@ function check_Image(){
 		<%
 			} else {//No have result
 		%>
-		<div class="panel panel-info">
-			<div class="panel-heading">Thông báo</div>
-			<div class="panel-body">Danh mục cần tìm không có trong cơ sở
-				dữ liệu</div>
-		</div>
+		<div class="col-md-6 col-md-offset-3 alert alert-info">
+	<strong>Thông báo!</strong>Không có kết quả tìm kiếm
+	</div>
 
 		<%
 			}
@@ -409,7 +300,9 @@ function check_Image(){
 
 		<hr>
 		<!----------------------- Form list ------------------------ -->
-		<div class="table-responsive">
+		<div class="col-md-10 col-md-offset-1 table-responsive panel panel-primary">
+		<div class="panel-heading">Danh mục</div>
+		<div class="panel-body">
 		<table class="table table-hover">
 			<thead>
 				<tr>
@@ -438,12 +331,12 @@ function check_Image(){
 					../images/<%=category.get(i).getIcon()%>
 					<%}%>
 					" alt="image" width="50px" height="50px"></td>
-					<td><button type="button" class="btn btn-default"
+					<td><button type="button" class="btn btn-default btn-sm"
 							data-toggle="modal"
 							data-target="#<%=category.get(i).getIdDanhMuc()%>">
 							<span class="glyphicon glyphicon-pencil"></span> Chỉnh sửa
 						</button></td>
-					<td><button type="button" class="btn btn-default"
+					<td><button type="button" class="btn btn-default btn-sm"
 							data-toggle="modal"
 							data-target="#delete<%=category.get(i).getIdDanhMuc()%>">
 							<span class="glyphicon glyphicon-remove"></span> Xóa
@@ -455,20 +348,25 @@ function check_Image(){
 			%>
 
 		</table>
-		</div>
+		<div class="menuPhanTrang" id="page">
+		<%= request.getAttribute("pageNav") %>
+	</div>
+		
 		<%
 			} else {
 		%>
-		<div class="panel panel-info">
-			<div class="panel-heading">Danh mục</div>
-			<div class="panel-body">Không có danh mục nào trong CSDL<br>
-			<a href="ShowRestoreServlet?type=category"><button type="submit" name="btnRestore" 
-					class="btn btn-primary">Restore</button></a>
-					</div>
-		</div>
+		<div class="col-md-6 col-md-offset-3 alert alert-info">
+	<strong>Thông báo!</strong>Không có kết quả tìm kiếm
+	<a href="ShowRestoreServlet?type=category"><button type="submit" name="btnRestore" 
+					class="btn btn-primary btn-sm">Restore</button></a>
+	</div>
+			
+				
 		<%
 			}
 		%>
+		</div>
+		</div>
 		<!--------------------------------- End list category ------------------------ -->
 
 		<!-- Modal Edit -->
@@ -535,15 +433,14 @@ function check_Image(){
 <%-- 							<img alt="Ảnh đại diện" src="../images/"<%=category.get(i).getIcon()%> id="fu2" width="50px" height="50px"> --%>
 							</p>
 						</div>
-							<button type="submit" class="btn btn-success btn-lg" >Hoàn
+							<button type="submit" class="btn btn-success btn-sm" >Hoàn
 								thành</button>
-						</form>
-
-					</div>
-					<div class="modal-footer">
-						<button type="button" id="btn" class="btn btn-default"
+								<button type="button" id="btn" class="btn btn-default btn-sm" 
 							data-dismiss="modal">Quay lại</button>
-					</div>
+						</form>
+						
+
+					</div>					
 				</div>
 			</div>
 		</div>
@@ -571,14 +468,12 @@ function check_Image(){
 									class="form-control" name="IdDanhmuc"
 									value="<%=category.get(i).getIdDanhMuc()%>" readonly="readonly">
 							</div>
-							<button type="submit" class="btn btn-success btn-lg">Xóa</button>
+							<button type="submit" class="btn btn-success btn-sm">Xóa</button>
+							<button type="button" id="btn" class="btn btn-default btn-sm"
+							data-dismiss="modal">Quay lại</button>
 						</form>
 
-					</div>
-					<div class="modal-footer">
-						<button type="button" id="btn" class="btn btn-default"
-							data-dismiss="modal">Close</button>
-					</div>
+					</div>					
 				</div>
 			</div>
 		</div>
@@ -632,7 +527,7 @@ function check_Image(){
     		<%} %>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Quay lại</button>
         </div>
       </div>
       
@@ -642,11 +537,8 @@ function check_Image(){
 
 
 
-	</div>
-	
+	</div>	
 </div>
-<div class="menuPhanTrang">
-		<%= request.getAttribute("pageNav") %>
-	</div>
+
 </body>
 </html>

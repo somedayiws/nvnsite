@@ -15,6 +15,7 @@
 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="../check_validate/formEdit.js"></script>
 <link rel="stylesheet" href="css/register.css">
+<link rel="stylesheet" href="css/sendPost.css">
 <script type="text/javascript"
 	src="../check_validate/checkCreate(Admin).js"></script>
 <title>Chuyển bài viết</title>
@@ -46,7 +47,7 @@
 	<div class="container-fluid">
 		<%@include file="header_ver_1.jsp"%>
 		<%@include file="Menu.jsp"%>
-		<div style="margin-top: 10px">
+		<div id="content">
 		
 		
 		<!-- Hiển thị ngôn ngữ bài viết -->
@@ -170,12 +171,12 @@
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h3 class="modal-title">Message - メッセージ</h3>
+							<h3 class="modal-title">Lời nhắn - メッセージ</h3>
 
 						</div>
 
 
-						<div style="margin-left: 40px; margin-right: 40px">
+						<div id="message">
 							<form action="SendPostServlet" method="post">
 								<input type="text" class="form-control" name="idPost"
 									value="<%=idPost%>" readonly="readonly"> <input
@@ -186,20 +187,16 @@
 									value="<%=listAccount[i].getIdTaiKhoan()%>" readonly="readonly">
 
 								<div class="form-group">
-									<label>Message - メッセージ:</label>
+									<label>Lời nhắn - メッセージ:</label>
 									<textarea class="form-control" rows="5" id="mesage"
 										name="message"></textarea>
 								</div>
-								<button type="submit" class="btn btn-primary"
-									style="margin-left: 50%">Send - 送信</button>
+								<button type="submit" id ="btnSend" class="btn btn-primary btn-sm"
+									>Gởi bài - 送信</button>
+								<button type="button" class="btn btn-default"
+								data-dismiss="modal">Quay lại - </button>
 							</form>
 
-						</div>
-
-
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">Close</button>
 						</div>
 					</div>
 

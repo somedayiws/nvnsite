@@ -17,6 +17,7 @@
 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="../check_validate/formEdit.js"></script>
 <link rel="stylesheet" href="css/register.css">
+<link rel="stylesheet" href="css/restore.css">
 <script type="text/javascript"
 	src="../check_validate/checkCreate(Admin).js"></script>
 <title>Phục hồi baì viết</title>
@@ -37,7 +38,7 @@
 
 
 
-		<div style="margin-top: 10px">
+		<div id = "content">
 			<div class="col-md-6 col-md-offset-3">
 				<div class="table-responsive">
 					<table class="table table-hover table-condensed">
