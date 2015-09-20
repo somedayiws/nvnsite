@@ -201,9 +201,11 @@ public class BaiVietDAO {
 		ResultSet rs = null;
 		String sql = "";
 		if(loai.equals("Moi"))
-			sql = "select IdBaiViet, TenBaiVietVi, TenBaiVietJa from baiviet where TrangThai='OK' order by NgayDang desc limit 10";
-		else
-			sql = "select IdBaiViet, TenBaiVietVi, TenBaiVietJa from baiviet where TrangThai='OK' and (CURDATE()-NgayDang)<300 order by LuotXem desc limit 10";
+			sql = "select IdBaiViet, TenBaiVietVi, TenBaiVietJa,LienKet,MoTaVi,MoTaJa from baiviet where TrangThai='OK' order by NgayDang desc limit 10";
+		else if(loai.equals("XemNhieu"))
+			sql = "select IdBaiViet, TenBaiVietVi, TenBaiVietJa,LienKet,MoTaVi,MoTaJa from baiviet where TrangThai='OK' and (CURDATE()-NgayDang)<300 order by LuotXem desc limit 10";
+		else 
+			sql = "select IdBaiViet, TenBaiVietVi, TenBaiVietJa,LienKet,MoTaVi,MoTaJa from baiviet order by RAND() limit 6";
 		rs = db.getResultSet(sql);
 //		BinhLuanDAO bl = new BinhLuanDAO();
 		try {
@@ -216,9 +218,9 @@ public class BaiVietDAO {
 //				BAIVIET bv = new BAIVIET(id, DinhDangSQL.DeFomatSQL(rs.getString("TenBaiVietVi")), DinhDangSQL.DeFomatSQL(rs.getString("TenBaiVietJa")), new DANHMUC(DinhDangSQL.DeFomatSQL(rs.getString("IdDanhMuc")), DinhDangSQL.DeFomatSQL(rs.getString("TenDanhMucVi")), DinhDangSQL.DeFomatSQL(rs.getString("TenDanhMucJa")), rs.getInt("HienThi")), new TAIKHOAN(DinhDangSQL.DeFomatSQL(rs.getString("IdTaiKhoan")), DinhDangSQL.DeFomatSQL(rs.getString("TenTaiKhoan")), DinhDangSQL.DeFomatSQL(rs.getString("MatKhau")), DinhDangSQL.DeFomatSQL(rs.getString("HoTen")), DinhDangSQL.DeFomatSQL(rs.getString("DiaChi")), DinhDangSQL.DeFomatSQL(rs.getString("DienThoai")), DinhDangSQL.DeFomatSQL(rs.getString("Email")), DinhDangSQL.DeFomatSQL(rs.getString("QuyenQuanTri"))), DinhDangSQL.DeFomatSQL(rs.getString("NoiDungVi")), DinhDangSQL.DeFomatSQL(rs.getString("NoiDungJa")), DinhDangSQL.DeFomatSQL(rs.getString("TrangThai")), DinhDangSQL.DeFomatSQL(rs.getString("GhiChu")));
 //				bv.setBinhLuanVi(bl.getListBinhLuan(id, "vi", "0"));
 //				bv.setBinhLuanVi(bl.getListBinhLuan(id, "ja", "0"));
-//				bv.setLienKet(DinhDangSQL.DeFomatSQL(rs.getString("LienKet")));
-//				bv.setMoTaVi(DinhDangSQL.DeFomatSQL(rs.getString("MoTaVi")));
-//				bv.setMoTaJa(DinhDangSQL.DeFomatSQL(rs.getString("MoTaJa")));
+				bv.setLienKet(DinhDangSQL.DeFomatSQL(rs.getString("LienKet")));
+				bv.setMoTaVi(DinhDangSQL.DeFomatSQL(rs.getString("MoTaVi")));
+				bv.setMoTaJa(DinhDangSQL.DeFomatSQL(rs.getString("MoTaJa")));
 				list.add(bv);
 			}
 			return list;
