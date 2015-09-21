@@ -2,13 +2,14 @@
 	pageEncoding="UTF-8"%>
 
 <!-- Quảng cáo lung tung -->
+<div id="sidebar">
 <div class="col-sm-3 col-md-3">
 	<div class="maps">
-		<br> Bản đồ - 地図 - Việt Nam<br>
+		Bản đồ - 地図 - Việt Nam<br>
 		<div id="div_id1" style="height: 250px; width: 100%"></div>
 	</div>
 	<div class="maps">
-		<br> Bản đồ - 地図 - JaPan <br>
+		Bản đồ - 地図 - JaPan <br>
 		<div id="div_id2" style="height: 250px; width: 100%"></div>
 	</div>
 	<!-- 			Quảng cáo banner -->
@@ -86,4 +87,5 @@
 
 		</p>
 	</div>
+</div>
 </div>

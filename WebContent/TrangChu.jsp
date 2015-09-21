@@ -201,7 +201,9 @@ body {
 					</div>
 					<!-- 			Quảng cáo banner -->
 					<div class="adv300x250">
+					<div id="contentadv">
 						<a href="<%=listquangcao.get(0).getLienKet()%>"><img src="<%=listquangcao.get(0).getHinhAnh()%>"></a>
+					</div>
 					</div>
 					<!-- 			Quảng cáo banner -->
 				</div>
@@ -247,7 +249,7 @@ body {
 					</div>
 					<!-- /slider -->
 				</div>
-				<div class="col-sm-3 col-md-3">
+				<div class="col-sm-3 col-md-3" id="hotnews">
 					<div class="hotnewsinweek">
 						<div id="titlehotnews">
 							<p>
