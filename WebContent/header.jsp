@@ -150,7 +150,7 @@
 					class="fa fa-home fa-2x"></a></li>
 				<%
 					int i = 0;
-															while (listdanhmuc != null && i < listdanhmuc.size() && i < 8) {
+															while (listdanhmuc != null && i < listdanhmuc.size() && i < 7) {
 				%>
 				<li><a
 					href="DanhSachBaiVietServlet?id=<%=listdanhmuc.get(i).getIdDanhMuc()%>">

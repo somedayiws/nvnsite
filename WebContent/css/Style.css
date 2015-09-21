@@ -1,18 +1,4 @@
 @CHARSET "UTF-8";
-/*phablet style*/
-@media screen and (max-width: 599px) and (min-width: 481px) {
-	.khung {
-		background-color: black;
-		color: white;
-	}
-	.news-item.small {
-		margin: 0 0 0 0px;
-		float: right;
-	}
-	.news-item.large {
-		width: 100%;
-	}
-}
 /*mobile style*/
 @media only screen and (min-width: 1066px) {
 	/*Header style*/
@@ -253,18 +239,22 @@
 	#textdiv .col-sm-2 {
 		width: 150px;
 	}
+	.navbar li a {
+		padding: 5px 20px 5px 25px;
+		font-size: 15px;
+	}
 }
 
 @media only screen and (max-width: 970px) { /*Style 960px*/
 	#headerTop #headerMain a span {
-		background-size: 290px 80px;
-		width: 320px;
-		height: 105px;
+		background-size: 290px 75px;
+		width: 300px;
+		height: 100px;
 		background-position: center;
 		background-repeat: no-repeat;
 	}
 	#headerTop #headerMain {
-		height: 105px;
+		height: 95px;
 	}
 	.col-sm-9 {
 		width: 100%;
@@ -352,6 +342,9 @@
 		width: 900px;
 		margin: 0px auto !important;
 	}
+	.navbar li a {
+		padding: 5px 15px 5px 20px;
+	}
 }
 
 @media only screen and (max-width: 900px) {
@@ -384,6 +377,10 @@
 	}
 	#dynamicText {
 		width: 800px;
+	}
+	.navbar li a {
+		padding: 5px 15px 5px 17px;
+		font-size: 14px;
 	}
 }
 
@@ -418,9 +415,17 @@
 	#dynamicText {
 		width: 768px;
 	}
+	.navbar li a {
+		padding: 5px 15px 5px 17px;
+		font-size: 13px;
+	}
 }
 
 @media only screen and (max-width: 767px) {
+	.navbar li a {
+		padding: 5px 20px 5px 17px;
+		font-size: 15px;
+	}
 	/*Search bar*/
 	#login {
 		float: left;
@@ -616,6 +621,9 @@
 	.hotnewsinweek {
 		width: 43%;
 	}
+	#login .navbar-nav>li>a {
+		line-height: 15px;
+	}
 }
 
 @media only screen and (max-width: 563px) {
@@ -692,9 +700,9 @@
 	/*end tabbar style*/
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 479px) {
 	#gallery {
-		height: 290px;
+		height: 280px;
 	}
 	.danhmucx #titleDanhMuc strong span {
 		font-size: 15px;
@@ -722,6 +730,19 @@
 		margin: 0px 5px 0px 0px;
 	}
 	/*Header style*/
+	#login .navbar-nav>li>a {
+		font-size: 12px;
+		padding: 0px 2px 0px 2px;
+	}
+	.col-sm-9 .danhmucx #titleDanhMuc span {
+		font-size: 16px;
+	}
+	.col-sm-9 .danhmucx #titleDanhMuc strong {
+		font-size: 15px;
+	}
+	#iconImg i {
+		padding: 6px 0px 8px 7px !important;
+	}
 }
 
 }
