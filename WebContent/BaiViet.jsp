@@ -80,6 +80,7 @@
 				%>
 			</h3>
 			<div id="infoNews">
+				<div class="infoDetail" id="category"><a href="DanhSachBaiVietServlet?id=<%=baiviet.getDanhMuc().getIdDanhMuc()%>"> <%=baiviet.getDanhMuc().getTenDanhMucVi()+"-"+baiviet.getDanhMuc().getTenDanhMucJa()%></a></div>
 				<div class="infoDetail"><i class="fa fa-user"></i> <%=baiviet.getTaiKhoan().getHoTen()%></div>
 				<div class="infoDetail"><i class="fa fa-calendar"></i> <%=baiviet.getNgayDang()%></div>
 				<div class="infoDetail"><i class="fa fa-eye"></i> <%=baiviet.getLuotXem()%></div>
