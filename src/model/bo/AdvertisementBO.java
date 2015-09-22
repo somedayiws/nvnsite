@@ -15,9 +15,9 @@ public class AdvertisementBO {
 		advertisement.setMenu(nBangghi, ntrang);
 	}
 
-	public ArrayList<QUANGCAO> getAdvertisement(int page) {
+	public ArrayList<QUANGCAO> getAdvertisement(int page, boolean hthi) {
 		// TODO Auto-generated method stub
-		return advertisement.listAdv(page);
+		return advertisement.listAdv(page, hthi);
 	}
 
 }

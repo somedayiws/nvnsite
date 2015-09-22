@@ -115,4 +115,18 @@ public class QuangCaoDAO {
 		System.out.println("SQL : " + sql);
 		return db.updateData(sql);
 	}
+	
+	//Kiểm tra tồn tại của quảng cáo
+	public boolean KiemTraTonTai(int Vitri, int Page){
+		String sql = "select * from quangcao where HienThi='1' and ViTri='"+Vitri+"' and TrangHienThi='"+Page+"' and not DonViQuangCao=N'Mặt định'";
+		ResultSet rs = db.getResultSet(sql);
+		try {
+			while(rs.next()){
+				return true;
+			}
+		} catch (SQLException e) {
+			return true;
+		}
+		return true;
+	}
 }

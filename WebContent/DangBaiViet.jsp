@@ -27,7 +27,14 @@
 <link rel="stylesheet" href="css/ClientStyle.css">
 <link rel="stylesheet"
 	href="font-awesome-4.4.0/css/font-awesome.min.css">
-
+<style type="text/css">
+.modal-body img {
+    width: 100%;
+}
+.modal-content {
+    max-width: 100%;
+}
+</style>
 </head>
 
 <body onLoad="initialize()">
@@ -35,7 +42,7 @@
 	<div id="mainContent">
 		<!-- hiển thị nội dung chính ở đây -->
 		<div class="col-sm-9 col-md-9" id="baiviet">
-			<form action="DangBaiVietServlet" method="post" id="fdangnhap"
+			<form action="DangBaiVietServlet" method="post" id="fdangbai"
 				enctype="multipart/form-data">
 				<!-- hiển thị nội dung chính ở đây -->
 				<div class="form-group">
@@ -125,15 +132,37 @@
 								id="fu2">
 						</p>
 					</div>
+					<input type="hidden" id="dichbai" name="dichbai" value="khong">
+					<input type="hidden" id="dangbai" name="dangbai" value="Đăng bài -">
 					<div class="form-group">
-						<input type="submit" value="Lưu bài - " name="luubai"
-							class="btn btn-success" /> <input type="submit"
-							value="Đăng bài - " name="dangbai" class="btn btn-success"
-							onclick="return DichBai();" /> <input type="button"
-							value="Quay lại - " class="btn" onclick="history.go(-1);" />
+						<input type="submit" value="Lưu bài - " name="luubai" class="btn btn-success" />
+						<input type="button" value="Đăng bài - " name="dangbai" class="btn btn-success" data-toggle="modal" data-target="#xacnhandich"/> 
+						<input type="button" value="Quay lại - " class="btn" onclick="history.go(-1);" />
 					</div>
 				</div>
 			</form>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="xacnhandich" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Dịch bài viết song ngữ Việt-Nhật</h4>
+		      </div>
+		      <div class="modal-body">
+		      	Báo giá dịch thuật Việt-Nhật
+		      	<br>
+		      	<img alt="" src="images/Capture.PNG">
+		      	<br>
+		        Bạn có muốn dịch bài viết này không???
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="DichBai(false);">Không dịch</button>
+		        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="DichBai(true);">Dịch bài</button>
+		      </div>
+		    </div>
+		  </div>
 		</div>
 		<!-- Quảng cáo lung tung -->
 		<%@include file="sidebar.jsp"%>
@@ -152,8 +181,9 @@
 		};
 		reader.readAsDataURL(f.files[0]);
 	}
-	function DichBai() {
-		return confirm("Bạn có muốn dịch bài viết này không?");
+	function DichBai(x) {
+		if(x) $('#dichbai').val('dich');
+		$('#fdangbai').submit();
 	}
 </script>
 <!-- Google map -->
@@ -244,7 +274,7 @@
 <script src="js/jquery.validate.js" type="text/javascript"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("#fdangnhap").validate({
+		$("#fdangbai").validate({
 			rules : {
 				TieuDe : {
 					required : true

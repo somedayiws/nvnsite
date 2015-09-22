@@ -42,5 +42,7 @@ public class QuangCaoBO {
 		// TODO Auto-generated method stub
 		return quangcao.SuaQuangCao(id, company, dienthoai, email, link, page, position, numberOfDay, price, image, display);
 	}
-	
+	public boolean KiemTraTonTai(int Vitri, int Page){
+		return quangcao.KiemTraTonTai(Vitri, Page);
+	}
 }

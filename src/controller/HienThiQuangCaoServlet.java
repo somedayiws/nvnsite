@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.bean.QUANGCAO;
 import model.bo.QuangCaoBO;
 
 @WebServlet("/admin/HienThiQuangCaoServlet")
@@ -32,16 +33,21 @@ public class HienThiQuangCaoServlet extends HttpServlet {
 		
 		if(idQC!=null){
 			QuangCaoBO quangCaoBo = new QuangCaoBO();
-			if(quangCaoBo.HienThiQuangCao(idQC, hienthi)){
-				if(hienthi.equals("1"))
-					request.setAttribute("mes", "<div class='alert alert-success tbmeg' role='alert'>Gỡ bỏ thành công.</div>");
-				else
-					request.setAttribute("mes", "<div class='alert alert-success tbmeg' role='alert'>Đăng quảng cáo thành công.</div>");
-			}else{
-				if(hienthi.equals("1"))
-					request.setAttribute("mes", "<div class='alert alert-danger tbmeg' role='alert'>Gỡ bỏ không thành công.</div>");
-				else
-					request.setAttribute("mes", "<div class='alert alert-danger tbmeg' role='alert'>Đăng quảng cáo không thành công.</div>");
+			QUANGCAO qc = quangCaoBo.getQuangCao(idQC);
+			if(quangCaoBo.KiemTraTonTai(qc.getViTri(), qc.getTrangHienThi()) && hienthi.equals("0"))
+				request.setAttribute("mes", "<div class='alert alert-danger tbmeg' role='alert'>Vị trí đã tồn tại quảng cáo.</div>");
+			else {
+				if(quangCaoBo.HienThiQuangCao(idQC, hienthi)){
+					if(hienthi.equals("1"))
+						request.setAttribute("mes", "<div class='alert alert-success tbmeg' role='alert'>Gỡ bỏ thành công.</div>");
+					else
+						request.setAttribute("mes", "<div class='alert alert-success tbmeg' role='alert'>Đăng quảng cáo thành công.</div>");
+				}else{
+					if(hienthi.equals("1"))
+						request.setAttribute("mes", "<div class='alert alert-danger tbmeg' role='alert'>Gỡ bỏ không thành công.</div>");
+					else
+						request.setAttribute("mes", "<div class='alert alert-danger tbmeg' role='alert'>Đăng quảng cáo không thành công.</div>");
+				}
 			}
 		}else{
 			request.setAttribute("mes", "<div class='alert alert-warning tbmeg' role='alert'>Bạn không có thẩm quyền cho thao tác này.</div>");

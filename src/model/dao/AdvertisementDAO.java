@@ -10,9 +10,11 @@ public class AdvertisementDAO {
 	DataBaseDAO db = new DataBaseDAO();
 	
 	//Lấy danh sách các quảng cáo
-	public ArrayList<QUANGCAO> listAdv(int page){
+	public ArrayList<QUANGCAO> listAdv(int page, boolean hthi){
 		ArrayList<QUANGCAO> listAdvertise = new ArrayList<QUANGCAO>();
-		String sql_select_advertise = "SELECT * FROM quangcao";
+		String sql_select_advertise = "";
+		if(hthi) sql_select_advertise = "SELECT * FROM quangcao where HienThi='1'";
+		else sql_select_advertise = "SELECT * FROM quangcao where HienThi='0'";
 		db.createMenu("ListAdvertiseServlet?", page, sql_select_advertise);
 		ResultSet result_select = null;
 		if (page != -1) {
@@ -32,6 +34,7 @@ public class AdvertisementDAO {
 				advertise.setLienKet(DinhDangSQL.FomatSQL(result_select.getString("LienKet")));
 				advertise.setHinhAnh(DinhDangSQL.FomatSQL(result_select.getString("HinhAnh")));
 				advertise.setSoNgay(result_select.getInt("SoNgay"));
+				advertise.setNgayDang(result_select.getDate("NgayDang").toString());
 				listAdvertise.add(advertise);
 			}
 			return listAdvertise;
