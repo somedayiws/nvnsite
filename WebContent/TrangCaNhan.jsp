@@ -59,20 +59,20 @@
 		<!-- hiển thị nội dung chính ở đây -->
 		<div class="col-sm-9 col-md-9" id="baiviet" style="font-size: 12px;">
 			<center id="tieude">Thông tin cá nhân</center>
-			<%=(String)request.getAttribute("meg")%>
-			<form action="TrangCaNhanServlet" method="post" id="fdangnhap">
+			<%=(String)request.getAttribute("meg")==null?"":request.getAttribute("meg")%>
+			<form action="TrangCaNhanServlet" method="post" id="fcapnhat">
 				<div class="col-sm-6 col-md-6">
 					<label>Tài khoản</label> <input type="text" name="taikhoan"
 						readonly="readonly" class="form-control"
 						value="<%=user.getTenTaiKhoan()%>"> <label>Họ tên</label>
 					<input type="text" name="hoten" class="form-control"
-						value="<%=user.getHoTen()%>"> <label>Điện thoại</label> <input
+						value="<%=user.getHoTen()==null?"":user.getHoTen()%>"> <label>Điện thoại</label> <input
 						type="text" name="dienthoai" class="form-control"
-						value="<%=user.getDienThoai()%>"> <label>Địa chỉ</label> <input
+						value="<%=user.getDienThoai()==null?"":user.getDienThoai()%>"> <br><label>Địa chỉ</label> <input
 						type="text" name="diachi" class="form-control"
-						value="<%=user.getDiaChi()%>"> <label>Email</label> <input
+						value="<%=user.getDiaChi()==null?"":user.getDiaChi()%>"> <label>Email</label> <input
 						type="text" id="email" name="email" class="form-control"
-						value="<%=user.getEmail()%>">
+						value="<%=user.getEmail()==null?"":user.getEmail()%>">
 				</div>
 				<div class="col-sm-6 col-md-6">
 					<label>Mật khẩu mới</label> <input type="password" id="matkhau"
@@ -337,6 +337,38 @@
 				},
 				matkhau : {
 					required : "<br>Chưa nhập mật khẩu!"
+				}
+			},
+			submitHandler : function(form) {
+				form.submit();
+			}
+		});
+		/* Check đăng ký */
+		$("#fcapnhat").validate({
+			rules : {
+				matkhau : {
+					required : true
+				},
+				email : {
+					required : true,
+					email: true
+				},
+				dienthoai : {
+					digits : true,
+					minlength: 10
+				}
+			},
+			messages : {
+				matkhau : {
+					required : "Bạn chưa nhập mật khẩu!"
+				},
+				email : {
+					required : "Bạn chưa nhập email!",
+					email : "Không đúng định dạng email"
+				},
+				dienthoai : {
+					digits : "Nhập sai định dạng số điện thoại<br>",
+					minlength: "Chứa tối thiểu 10 chữ số"
 				}
 			},
 			submitHandler : function(form) {

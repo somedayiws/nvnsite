@@ -56,6 +56,9 @@ public class TrangChuServlet extends HttpServlet {
 		// Danh sách bài viết được ghim lên trang chủ
 		ArrayList<BAIVIET> slidePosts = baiviet.getTopBaiViet("slidePosts");
 		request.setAttribute("slidePosts", slidePosts);
+		// Danh sách bài viết được ghim lên trang chủ
+		ArrayList<BAIVIET> hotPosts = baiviet.getTopBaiViet("hotPosts");
+		request.setAttribute("hotPosts", hotPosts);
 		// Danh sách quảng cáo
 		ArrayList<QUANGCAO> listquangcao = quangCaoBO.getDanhSachQuangCao();
 		request.setAttribute("listquangcao", listquangcao);

@@ -17,15 +17,16 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li><a href="ShowHomeServlet"><span class="glyphicon glyphicon-home"></span>Trang chủ<br>ホーム</a></li>
-					<li><a href="ListAccountServlet"><span class="glyphicon glyphicon-user"></span>Quản lý người dùng<br>ユーザーの管理</a></li>
-					<li><a href="ListCategoryServlet"><span class="glyphicon glyphicon-list"></span>Quản lý danh mục<br>カテゴリを管理します</a></li>
-					<li><a href="ListPostsServlet"><span class="glyphicon glyphicon-list-alt"></span>Quản lý bài viết<br>投稿を管理します</a></li>
+				<li><a href="ShowHomeServlet"><span class="glyphicon glyphicon-home"></span>Trang chủ</a></li>
+					<li><a href="ListAccountServlet"><span class="glyphicon glyphicon-user"></span>Quản lý người dùng</a></li>
+					<li><a href="ListCategoryServlet"><span class="glyphicon glyphicon-list"></span>Quản lý danh mục</a></li>
+					<li><a href="ListPostsServlet"><span class="glyphicon glyphicon-list-alt"></span>Quản lý bài viết</a></li>
+					<li><a href="AdvertisementServlet"><span class="glyphicon glyphicon-list-alt"></span>Quản lý quảng cáo</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 		
 				<li><a href="LogoutServlet"><span class="glyphicon glyphicon-log-out"></span>
-						Đăng xuất<br>ログアウト</a></li>
+						Đăng xuất</a></li>
 				
 			</ul>
 		</div>

@@ -1,3 +1,32 @@
-#content{
-	margin-top: 10px;
+@CHARSET "UTF-8";
+
+.quangcao {
+    border-color: #337ab7;
+    margin-left: 0px;
+    margin-top: 5%;
+    width: 100%;
+}
+.them {
+    position: absolute;
+    margin-top: 5.4%;
+    margin-left: 83%;
+    background-color: brown;
+    z-index: 999;
+}
+.xoa, .sua {
+    width: 120px;
+}
+
+.tbmeg {
+    position: absolute;
+    margin-top: 0.5%;
+    width: 97.8%;
+}
+.khungTrai, .khungphai {
+    width: 48%;
+    float: left;
+    margin-right: 20px;
+}
+.khungquangcao {
+    padding: 10px;
 }

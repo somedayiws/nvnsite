@@ -3,6 +3,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.bean.BAIVIET"%>
 <%@page import="model.bean.DANHMUC"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Calendar"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -21,7 +23,10 @@
 		<div id="topmenu">
 			<!-- Lấy dữ liệu từ server gửi về -->
 			<%
-				/* Danh mục được hiển thị content */
+					Calendar cal = Calendar.getInstance();
+					SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+					String homedate = "Ngày "+cal.getTime().getDate()+" tháng "+(cal.getTime().getMonth() + 1)+" năm "+(cal.getTime().getYear()+1900);
+					/* Danh mục được hiển thị content */
 					ArrayList<DANHMUC> list = (ArrayList<DANHMUC>) request
 												.getAttribute("list");
 					/* Danh mục được hiển thị trong phần menu */
@@ -80,6 +85,7 @@
 			<script type="text/javascript"
 				src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 		</div>
+		<input type="hidden" id="dateComment" value=<%=sdf.format(cal.getTime()) %>>
 		<div class="clearfix"></div>
 		<!-- form tìm kiếm -->
 		<form id="seach" class="navbar-form navbar-right" role="search"
@@ -188,7 +194,7 @@
 <div id="dynamicText">
 	<div id="textdiv">
 		<span class="col-sm-2 col-md-2" id="datetime"><i
-			class="fa fa-clock-o"></i> Ngày 8 tháng 9 2015 </span> <span
+			class="fa fa-clock-o"></i> <%=homedate %> </span> <span
 			id="textcontent"> <marquee> Dòng chữ chạy tự động
 				nội dung web </marquee>
 		</span>

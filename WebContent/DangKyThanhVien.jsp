@@ -32,22 +32,23 @@
 		<!-- hiển thị nội dung chính ở đây -->
 		<div class="col-sm-9 col-md-9" id="baiviet" style="font-size: 12px;">
 			<center id="tieude">Đăng ký thành viên</center>
+			<%= request.getAttribute("loi")==null?"":request.getAttribute("loi") %>
 			<form id="khungdangky" action="DangKyThanhVienServlet" method="post">
 				<label class="form-label1">Thông tin tài khoản</label><br> <label
 					class="form-label">Tài khoản(*)</label> <input type="text"
 					name="taikhoan" class="form-control" placeholder="Tên tài khoản">
-				<label class="form-label">Mật khẩu(*)</label> <input type="password"
+				<br><label class="form-label">Mật khẩu(*)</label> <input type="password"
 					name="matkhau" class="form-control" placeholder="Mật khẩu của bạn">
 				<label class="form-label1">Thông tin cá nhân</label><br> <label
 					class="form-label">Họ và tên(*)</label> <input type="text"
 					name="hoten" class="form-control" placeholder="Họ tên đầy đủ">
-				<label class="form-label">Địa chỉ</label> <input type="text"
+				<br><label class="form-label">Địa chỉ</label> <input type="text"
 					name="diachi" class="form-control" placeholder="Địa chỉ"> <label
 					class="form-label">Điện thoại</label> <input type="text"
 					name="dienthoai" class="form-control"
 					placeholder="Điện thoại liên hệ"> <label class="form-label">Email(*)</label>
-				<input type="text" name="email" class="form-control"
-					placeholder="Email"> <label class="form-label">Ngôn
+				<br><input type="text" name="email" class="form-control"
+					placeholder="Email"> <br><label class="form-label">Ngôn
 					ngữ chính(*) </label> <input type="radio" name="ngonngu" value="vi"
 					checked="checked"> Tiếng Việt <input type="radio"
 					name="ngonngu" title="ja"> Tiếng Nhật <br> <input
@@ -143,46 +144,6 @@
 		s[0].parentNode.insertBefore(ga, s[0]);
 	})();
 </script>
-<!-- Ajax load danh mục -->
-<script type="text/javascript">
-	/* xem thêm các danh mục */
-	var nbaiviet = 10;
-	$(document)
-			.ready(
-					function() {
-						$("#xemtiep")
-								.click(
-										function() {
-											$
-													.ajax({
-														url : "DataDanhMucServlet", //file 
-														type : "POST", //phuong thức gưi
-														data : {
-															vitri : nbaiviet
-														}, //dữ liệu gửi
-														async : true, //
-														beforeSend : function() {
-															$("#load")
-																	.html(
-																			"<i class='fa fa-refresh fa-2x fa-spin'></i>");
-														},
-														success : function(res) {
-															$("#baiviet")
-																	.append(res);
-															nbaiviet = parseInt($(
-																	"#baiviet")
-																	.children()
-																	.size());
-															$("#load").html("");
-														},
-														error : function() {
-															alert('Có lỗi xảy ra');
-															$("#load").html("");
-														}
-													});
-										});
-					});
-</script>
 <!-- Chuyển hướng đến danh muc x -->
 <script type="text/javascript">
 	function loadData(trang, x) {
@@ -196,6 +157,7 @@
 <script src="js/jquery.validate.js" type="text/javascript"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		/* Check đăng nhập */
 		$("#fdangnhap").validate({
 			rules : {
 				taikhoan : {
@@ -211,6 +173,50 @@
 				},
 				matkhau : {
 					required : "<br>Chưa nhập mật khẩu!"
+				}
+			},
+			submitHandler : function(form) {
+				form.submit();
+			}
+		});
+		/* Check đăng ký */
+		$("#khungdangky").validate({
+			rules : {
+				taikhoan : {
+					required : true
+				},
+				matkhau : {
+					required : true
+				},
+				hoten : {
+					required : true
+				},
+				email : {
+					required : true,
+					email: true
+				},
+				dienthoai : {
+					digits : true,
+					minlength: 10
+				}
+			},
+			messages : {
+				taikhoan : {
+					required : "Bạn chưa nhập tên tài khoản!"
+				},
+				matkhau : {
+					required : "Bạn chưa nhập mật khẩu!"
+				},
+				hoten : {
+					required : "Bạn chưa nhập họ tên!"
+				},
+				email : {
+					required : "Bạn chưa nhập email!",
+					email : "Không đúng định dạng email"
+				},
+				dienthoai : {
+					digits : "Nhập sai định dạng số điện thoại<br>",
+					minlength: "Chứa tối thiểu 10 chữ số"
 				}
 			},
 			submitHandler : function(form) {

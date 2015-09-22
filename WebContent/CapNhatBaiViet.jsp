@@ -38,10 +38,8 @@
 
 	<%@include file="header.jsp"%>
 	<div id="mainContent">
-		<!-- Quảng cáo lung tung -->
-		<div class="col-sm-1 col-md-1"></div>
 		<!-- hiển thị nội dung chính ở đây -->
-		<div class="col-sm-8 col-md-8" id="baiviet">
+		<div class="col-sm-9 col-md-9" id="baiviet">
 			<form action="CapNhatBaiVietServlet" method="post"
 				enctype="multipart/form-data">
 				<!-- hiển thị nội dung chính ở đây -->

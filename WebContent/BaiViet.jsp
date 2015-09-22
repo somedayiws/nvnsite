@@ -133,7 +133,7 @@
 																																		while(blviet != null && i<blviet.size()){
 						%>
 						<div id="itemComment">
-							<i class="fa fa-user"></i> <em><%=blviet.get(i).getTaiKhoan().getHoTen()%></em>
+							<i class="fa fa-user"></i> <em><%=blviet.get(i).getTaiKhoan().getHoTen()%></em><span id="dateComment"><%=blviet.get(i).getNgayDang() %></span>
 							<p><%=blviet.get(i).getPhanHoiVi()%></p>
 						</div>
 						<%
@@ -168,7 +168,7 @@
 						%>
 						<div id="itemComment">
 
-							<i class="fa fa-user"></i> <em><%=blnhat.get(i).getTaiKhoan().getHoTen()%></em>
+							<i class="fa fa-user"></i> <em><%=blnhat.get(i).getTaiKhoan().getHoTen()%></em><span id="dateComment"><%=blnhat.get(i).getNgayDang() %></span>
 							<p><%=blnhat.get(i).getPhanHoiJa()%></p>
 						</div>
 						<%
@@ -212,7 +212,7 @@
 																																			while(blviet != null && i<blviet.size()){
 						%>
 						<div id="itemComment">
-							<i class="fa fa-user"></i> <em><%=blviet.get(i).getTaiKhoan().getHoTen()%></em>
+							<i class="fa fa-user"></i> <em><%=blviet.get(i).getTaiKhoan().getHoTen()%></em><span id="dateComment"><%=blviet.get(i).getNgayDang() %></span>
 							<p><%=blviet.get(i).getPhanHoiVi()%></p>
 						</div>
 						<%
@@ -256,7 +256,7 @@
 																																			while(blnhat != null && i<blnhat.size()){
 						%>
 						<div id="itemComment">
-							<i class="fa fa-user"></i> <em><%=blnhat.get(i).getTaiKhoan().getHoTen()%></em>
+							<i class="fa fa-user"></i> <em><%=blnhat.get(i).getTaiKhoan().getHoTen()%></em><span id="dateComment"><%=blnhat.get(i).getNgayDang() %></span>
 							<p><%=blnhat.get(i).getPhanHoiJa()%></p>
 						</div>
 						<%
@@ -439,14 +439,15 @@
 	};
 	function comentvi(id) {
 		var bien = $("#tkDangNhap").val();
+		var date = $("#dateComment").val();
 		if (bien == 'null') {
 			alert("Bạn phải đăng nhập, mới được bình luận.");
 		} else {
 			var txt = $("#txtviet").val();
 			if (txt != "") {
-				var htm = "<i class='fa fa-user'></i> <em>" + bien
-						+ "</em> <p>" + txt + "</p>";
-				$("#listblviet").append(htm);
+				var htm = "<div id='itemComment'><i class='fa fa-user'></i> <em>" + bien
+						+ "</em> <span id='dateComment'>"+date+"</span> <p>" + txt + "</p></div>";
+				$("#listblviet").prepend(htm);
 				$("#txtviet").val("");
 				updatedatavi(id, 'vi', txt);
 			} else {
@@ -462,9 +463,9 @@
 		} else {
 			var txt = $("#txtnhat").val();
 			if (txt != "") {
-				var htm = "<i class='fa fa-user'></i> <em>" + bien
-						+ "</em> <p>" + txt + "</p>";
-				$("#listblnhat").append(htm);
+				var htm = "<div id='itemComment'><i class='fa fa-user'></i> <em>" + bien
+						+ "</em> <span id='dateComment'>"+date+"</span> <p>" + txt + "</p></div>";
+				$("#listblnhat").prepend(htm);
 				$("#txtnhat").val("");
 				updatedatavi(id, 'ja', txt);
 			} else {

@@ -2,7 +2,6 @@ package model.bo;
 	
 import java.util.ArrayList;
 
-import model.bean.BAIVIET;
 import model.bean.QUANGCAO;
 import model.dao.QuangCaoDAO;
 
@@ -23,4 +22,25 @@ public class QuangCaoBO {
 	public ArrayList<QUANGCAO> getDanhSachQuangCao() {
 		return quangcao.getDanhSachQuangCao();
 	}
+	public boolean xoaQuangCao(String idQC) {
+		// TODO Auto-generated method stub
+		return quangcao.xoaQuangCao(idQC);
+	}
+	public boolean HienThiQuangCao(String idQC, String hienthi) {
+		// TODO Auto-generated method stub
+		return quangcao.HienThiQuangCao(idQC, hienthi);
+	}
+	public boolean ThemQuangCao(String company, String dienthoai, String email,
+			String link, String page, String position, String numberOfDay,
+			String price, String image, String display) {
+		// TODO Auto-generated method stub
+		return quangcao.ThemQuangCao(company, dienthoai, email, link, page, position, numberOfDay, price, image, display);
+	}
+	public boolean SuaQuangCao(String id, String company, String dienthoai,
+			String email, String link, String page, String position,
+			String numberOfDay, String price, String image, String display) {
+		// TODO Auto-generated method stub
+		return quangcao.SuaQuangCao(id, company, dienthoai, email, link, page, position, numberOfDay, price, image, display);
+	}
+	
 }

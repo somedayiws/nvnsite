@@ -179,6 +179,8 @@ body {
 					/* slide bài viết random list*/
 					ArrayList<BAIVIET> slidePosts = (ArrayList<BAIVIET>) request
 												.getAttribute("slidePosts");
+					ArrayList<BAIVIET> hotPosts = (ArrayList<BAIVIET>) request
+							.getAttribute("hotPosts");
 			%>
 			<div class="col-sm-12 col-md-12" id="topMainContent">
 				<div class="col-sm-3 col-md-3" id="leftTopContent">
@@ -260,14 +262,14 @@ body {
 						<ul id="contentWeek">
 							<%
 								i=0;
-								while(top != null && i<top.size() && i < 4){
+								while(hotPosts != null && i<hotPosts.size() && i < 4){
 							%>
 							<li><a
-								href="BaiVietServlet?id=<%=top.get(i).getIdBaiViet()%>"><i
-									class="fa fa-angle-double-right"></i> <%=top.get(i).getTenBaiVietVi()==null?"":top.get(i).getTenBaiVietVi()%>
-									<%=(top.get(i).getTenBaiVietVi()!=null && top.get(i).getTenBaiVietJa()!=null)?"<br>":"" %>
-									<%=top.get(i).getTenBaiVietJa()==null?"":top.get(i).getTenBaiVietJa()%>
-									<i class="fa fa-eye"></i> <span><%=top.get(i).getLuotXem()%></span></a></li>
+								href="BaiVietServlet?id=<%=hotPosts.get(i).getIdBaiViet()%>"><i
+									class="fa fa-angle-double-right"></i> <%=hotPosts.get(i).getTenBaiVietVi()==null?"":hotPosts.get(i).getTenBaiVietVi()%>
+									<%=(hotPosts.get(i).getTenBaiVietVi()!=null && hotPosts.get(i).getTenBaiVietJa()!=null)?"<br>":"" %>
+									<%=hotPosts.get(i).getTenBaiVietJa()==null?"":hotPosts.get(i).getTenBaiVietJa()%>
+									</a></li>
 							<%
 							
 								i++; }

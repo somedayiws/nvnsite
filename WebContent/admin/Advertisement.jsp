@@ -21,172 +21,6 @@
 	display: none;
 }
 </style>
-
-</head>
-<%
-	//Nhận danh sách quảng cáo
-	ArrayList<QUANGCAO> advertisement =(ArrayList<QUANGCAO>)request.getAttribute("advertisement");
-
-%>
-<body>
-		<div class="container-fluid">
-			<%@include file="header_ver_1.jsp"%>			
-			<%@include file="Menu.jsp"%>
-<!-------------------- Nội dung quản lý quảng cáo ------------------------>
-			<div id="content">
-	<!--------------------------- Tạo quảng cáo ---------------------------------------------------------->
-			
-				<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalCreate">Tạo quảng cáo - 広告を作成</button>
-
-				<!-- Modal -->
-				<div id="modalCreate" class="modal fade" role="dialog">
-  					<div class="modal-dialog">
-
-    			<!-- Modal content-->
-    				<div class="modal-content">
-					      <div class="modal-header">
-					        <button type="button" class="close" data-dismiss="modal">&times;</button>
-					        <h4 class="modal-title">Quảng cáo - 広告</h4>
-					      </div>
-					      <div class="modal-body">
-					        
-					        <form name="formCreateAdv" id = "formCreateAdv" action="AdvertisementServlet" method="post" enctype="multipart/form-data">
-					        	<!-- Đơn vị quảng cáo -->
-					        	<div class="form-group">
-					        		<label for="company">Đơn vị quảng cáo - 企業広告</label>
-					        		<input type="text"  class="form-control" name = "company" id ="company" maxlength="200">
-					        	</div>
-					        	<!-- Liên kết -->
-					        	<div class="form-group">
-					        		<label for="link">Link quảng cáo - リンク</label>
-					        		<input type="url" class="form-control" name="link" id="link">
-					        	</div>					        	
-					        	<!-- Trang hiển thị -->
-					        	<div class="form-group">
-								      <label for="page">Trang hiển thị - ページショー</label>
-								      <select class="form-control" id="page" name="page">
-								        <option value="1">Trang chủ - ホームページ</option>
-								        <option value="2">Trang khác - 別のページ</option>								       							      
-								      </select>
-								  </div>								
-								  <!-- Nếu là trang chủ thì có 7 vị trí, ngược lại là có 2 vị trí -->
-								  
-					        	<!-- Vị trí -->	
-					        		<!-- Vị trí trang chủ  -->				        	
-					        	<div class="form-group" id="advHomepage">
-								      <label for="postion">Vị trí - 位置</label>
-								      <select class="form-control" id="positionInHome" name="positionInHome">
-								        <option value="1">1</option>
-								        <option value="2">2</option>
-								        <option value="3">3</option>
-								        <option value="4">4</option>
-								        <option value="5">5</option>
-								        <option value="6">6</option>
-								      </select>
-								  </div>
-								  	<!-- Vị trí các trang khác -->
-								<div class="form-group" id="advNoHomepage">
-									<label for="postion">Vị trí - 位置</label>
-								      <select class="form-control" id="positionInNoHome" name="positionInNoHome">
-								        <option value="1">1</option>
-								        <option value="2">2</option>								       
-								      </select>
-								</div>
-					        	<!-- Hiển thị -->
-					        	<div class="form-group">
-						        	<label>Hiển thị - ディスプレイ</label>
-						        	<div class="radio">
-										  <label><input type="radio" name="display" id="display" checked="checked" value="1">Có - はい</label>
-									</div>
-									<div class="radio">
-									  <label><input type="radio" name="display" id="display" value="0">Không - いいえ</label>
-									</div>						        	
-								</div>
-								<!-- Ngày đăng -->
-								<div class="form-group">
-									<label>Ngày đăng - </label>
-									<input type="date" class="form-control" name="date">
-								</div>
-					        	<!-- Số ngày -->
-					        	<div class="form-group">
-					        		<label>Số ngày hiển thị - 一日数</label>
-					        		<input type="number" class="form-control" name="numberOfDay" id="numberOfDay">
-					        	</div>
-					        	<!-- Hình ảnh -->
-					        	<div class="form-group">
-									<label>Hình ảnh - 像 <input type="file" id="Image" name="Image" onchange="xem(this,'fua');"/></label>
-									<p class="help-block">Chọn file .png, .jpg ...<br>
-										<img alt="Icon đại diện" src="../images/icondefault.png" id="fua">
-									</p>
-								</div>
-								<!-- Kích thước -->
-								<div class="form-group">
-								      <label for="size">Kích thước - サイズ</label>
-								      <select class="form-control" id="size" name="size" disabled="disabled">
-								        <option value="1">320x250</option>
-								        <option value="2">728x90</option>
-								        <option value="3">300x150</option>									       							      
-								      </select>
-								  </div>
-								<!-- Giá quảng cáo -->
-								<div class="form-group">
-									<label for="price">Giá quảng cáo - 価格</label>
-									<input type="text" name="price" class="form-control" id="price">
-								</div>
-								<button class="btn btn-primary btn-sm" type="submit" id="createAdv" name="createAdv">Thêm quảng cáo - 広告を作成</button>
-					        </form>
-					        
-					      </div>
-					      <div class="modal-footer">
-					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					      </div>
-    				</div>
-
-  					</div>
-			</div>
-	
-	<!--------------------------- Hiển thị danh sách các quảng cáo trong cơ sở dữ liệu ------------------->
-				<div class="col-md-10 col-md-offset-2 panel panel-primary">
-					<div class="panel-heading">Danh sách quảng cáo - リスト広告</div>
-					<div class="panel-body">
-						<div class="table-responsive table-hover">
-							<table class="table">
-							<thead>
-								<tr>
-									<th>STT</th>
-									<th>Liên kết<br>リンク</th>
-									<th>Hình ảnh<br>像</th>
-									<th>Vị trí<br>位置</th>
-									<th>Hiển thị<br>ディスプレイ</th>
-									<th>Số ngày</th>
-									<th></th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-							<%if(advertisement!=null){
-							for(int i=0;i<advertisement.size();i++){ %>
-								<tr>
-									<td><%=advertisement.get(i).getIdQuangCao() %></td>
-									<td><%=advertisement.get(i).getLienKet() %></td>
-									<td><%=advertisement.get(i).getHinhAnh() %></td>
-									<td><%=advertisement.get(i).getViTri() %></td>
-									<td><%=advertisement.get(i).getHienThi() %></td>	
-									<td><%=advertisement.get(i).getSoNgay() %></td>	
-									<td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editAdvertiment">Chỉnh sửa - 編集</button></td>
-									<td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#deleteAdvertiment">Xóa - 削除します</button></td>							
-								</tr>
-							<%} %>
-							<%} %>
-							</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-				
-			</div>
-		</div>
-</body>
 <script type="text/javascript">
 $(document).ready(function(){       	                           
         $( "#page" ).change(function() {
@@ -358,16 +192,183 @@ $(document).ready(function(){
 //       			}
 //       		}
 //         	});
-        function xem(f,x){
-        	var reader = new FileReader();
-        	reader.onload = function (e) {
-        		var img = document.getElementById(x);
-        		img.src = e.target.result;
-        		img.style.display = "inline";
-        	};
-        	reader.readAsDataURL(f.files[0]);
-        }     
+//         function xem(f,x){
+//         	alert("message");
+//         	var reader = new FileReader();
+//         	reader.onload = function (e) {
+//         		var img = document.getElementById(x);
+//         		img.src = e.target.result;
+//         		img.style.display = "inline";
+//         	};
+//         	reader.readAsDataURL(f.files[0]);
+//         }     
+function xem(f,x){
+	var reader = new FileReader();
+	reader.onload = function (e) {
+		var img = document.getElementById(x);
+		img.src = e.target.result;
+		img.style.display = "inline";
+	};
+	reader.readAsDataURL(f.files[0]);
+}
            
 });
 </script>
+</head>
+<%
+	//Danh sách đăng ký
+	ArrayList<QUANGCAO> advertisement =(ArrayList<QUANGCAO>)request.getAttribute("listDangKy");
+	//Danh sách đang hiển thị
+	ArrayList<QUANGCAO> listHienThi =(ArrayList<QUANGCAO>)request.getAttribute("listHienThi");
+%>
+<body>
+		<div class="container-fluid">
+			<%@include file="header_ver_1.jsp"%>			
+			<%@include file="Menu.jsp"%>
+<!-------------------- Nội dung quản lý quảng cáo ------------------------>
+			<div id="content">
+	<!--------------------------- Tạo quảng cáo ---------------------------------------------------------->
+			
+				<button type="button" class="btn btn-primary btn-sm them" onclick="DieuHuong('ThemQuangCaoServlet');">Tạo quảng cáo - 広告を作成</button>
+		
+			<div class="col-md-10 col-md-offset-2 panel panel-primary quangcao">
+					<div class="panel-heading">Quảng cáo đang hiển thị - リスト広告</div>
+					<div class="panel-body">
+						<div class="table-responsive table-hover">
+							<table class="table">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Liên kết<br>リンク</th>
+									<th>Ngày đăng<br>像</th>
+									<th>Vị trí<br>位置</th>
+									<th>Số ngày</th>
+									<th class="sua"></th>
+									<th class="xoa"></th>
+								</tr>
+							</thead>
+							<tbody>
+							<%if(listHienThi!=null){
+							for(int i=0;i<listHienThi.size();i++){ %>
+								<tr>
+									<td><%=listHienThi.get(i).getIdQuangCao() %></td>
+									<td><%=listHienThi.get(i).getLienKet() %></td>
+									<td><%=listHienThi.get(i).getNgayDang() %></td>
+									<td><%=listHienThi.get(i).getViTri() %></td>
+									<td><%=listHienThi.get(i).getSoNgay() %></td>	
+									<td><button type="button" class="btn btn-primary btn-sm" onclick="HienThi('<%= listHienThi.get(i).getIdQuangCao() %>', '1');">Gỡ bỏ - 削除します</button></td>
+									<td><button type="button" class="btn btn-primary btn-sm" onclick="DieuHuong('CapNhatQuangCaoServlet?id=<%= listHienThi.get(i).getIdQuangCao() %>');">Chỉnh sửa - 編集</button></td>
+								</tr>
+							<%} %>
+							<%} %>
+							</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+	<!--------------------------- Hiển thị danh sách các quảng cáo trong cơ sở dữ liệu ------------------->
+				<%= request.getAttribute("mes")==null ? "" : request.getAttribute("mes") %>
+				<div class="col-md-10 col-md-offset-2 panel panel-primary quangcao">
+					<div class="panel-heading">Danh sách quảng cáo - リスト広告</div>
+					<div class="panel-body">
+						<div class="table-responsive table-hover">
+							<table class="table">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Liên kết<br>リンク</th>
+									<th>Ngày đăng<br>像</th>
+									<th>Vị trí<br>位置</th>
+									<th>Số ngày</th>
+									<th class="sua"></th>
+									<th class="sua"></th>
+									<th class="xoa"></th>
+								</tr>
+							</thead>
+							<tbody>
+							<%if(advertisement!=null){
+							for(int i=0;i<advertisement.size();i++){ %>
+								<tr>
+									<td><%=advertisement.get(i).getIdQuangCao() %></td>
+									<td><%=advertisement.get(i).getLienKet() %></td>
+									<td><%=advertisement.get(i).getNgayDang() %></td>
+									<td><%=advertisement.get(i).getViTri() %></td>
+									<td><%=advertisement.get(i).getSoNgay() %></td>	
+									<td><button type="button" class="btn btn-primary btn-sm" onclick="HienThi('<%= advertisement.get(i).getIdQuangCao() %>', '0')">Hiển thị - 削除します</button></td>	
+									<td><button type="button" class="btn btn-primary btn-sm" onclick="DieuHuong('CapNhatQuangCaoServlet?id=<%= advertisement.get(i).getIdQuangCao() %>');">Chỉnh sửa - 編集</button></td>
+									<td><button type="button" class="btn btn-primary btn-sm" onclick="XoaQC(<%= advertisement.get(i).getIdQuangCao() %>);">Xóa - 削除します</button></td>							
+								</tr>
+							<%} %>
+							<%} %>
+							</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<!-- Script xóa quảng cáo -->
+				<script type="text/javascript">
+					function XoaQC(x){
+						$("#idQC").text(x);
+						$("#idXoa").val(x);
+						$('#xoaQC').modal('show');
+					}
+					function HienThi(x, b){
+						if(b=='1')
+							$("#idQCgo").text("Bạn thật sự muốn gỡ bỏ quảng cáo " + x);
+						else
+							$("#idQCgo").text("Cho phép đăng quảng cáo " + x);
+						$("#idGo").val(x);
+						$("#hienthi").val(b);
+						$('#goQC').modal('show');
+					}
+					function DieuHuong(url){
+						window.location.href = url;
+					}
+				</script>
+				<!-- dialog xác nhận xóa dữ liệu -->
+				<form action="XoaQuangCaoServlet" method="post">
+				<div class="modal fade" id="xoaQC" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				        <h4 class="modal-title" id="myModalLabel">Xóa dữ liệu quảng cáo</h4>
+				      </div>
+				      <div class="modal-body">
+				        Bạn thật sự muốn xóa quảng cáo <label id="idQC"></label> ???
+				        <input type="hidden" name="idQC" id="idXoa">
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+				        <button type="submit" class="btn btn-primary">Xóa</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				</form>
+				<!-- dialog xác nhận xóa dữ liệu -->
+				<form action="HienThiQuangCaoServlet" method="post">
+				<div class="modal fade" id="goQC" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				        <h4 class="modal-title" id="myModalLabel">Quản lý hiện/ẩn quảng cáo</h4>
+				      </div>
+				      <div class="modal-body">
+				        <label id="idQCgo"></label> ???
+				        <input type="hidden" name="idQC" id="idGo">
+				        <input type="hidden" name="hienthi" id="hienthi">
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+				        <button type="submit" class="btn btn-primary">Chấp nhận</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				</form>
+			</div>
+		</div>
+</body>
 </html>

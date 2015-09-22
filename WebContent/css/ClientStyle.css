@@ -1380,8 +1380,6 @@ form#seach {
 	margin-top: 20px;
 }
 /*End forgot password*/
-
-
 #topcontrol {
 	bottom: 10% !important;
 }
@@ -1422,11 +1420,12 @@ form#seach {
 }
 
 .adv300x600 {
-	margin-top:10px;
+	margin-top: 10px;
 	width: 300px;
 	height: 600px;
 	overflow: hidden;
 }
+
 .adv728x90 {
 	margin-top: 25px;
 	width: 728px;
@@ -1434,4 +1433,14 @@ form#seach {
 	overflow: hidden;
 }
 /*End advertisement style*/
+#dateComment {
+	color: #333;
+	float: right;
+	padding-right: 10px;
+	font-size: 13px;
+}
+
+#contentWeek li {
+	margin: 5px 3px;
+}
 /*End style somedayiws*/

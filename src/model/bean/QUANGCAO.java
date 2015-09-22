@@ -8,6 +8,32 @@ public class QUANGCAO {
 	private int HienThi;
 	private int SoNgay;
 	private String DonViQuangCao;
+	private int TrangHienThi;
+	private String NgayDang;
+	private String GiaQuangCao;
+	private String KichThuoc;
+	private String DienThoai;
+	private String Email;
+	
+	
+	public int getTrangHienThi() {
+		return TrangHienThi;
+	}
+	public void setTrangHienThi(int trangHienThi) {
+		TrangHienThi = trangHienThi;
+	}
+	public String getDienThoai() {
+		return DienThoai;
+	}
+	public void setDienThoai(String dienThoai) {
+		DienThoai = dienThoai;
+	}
+	public String getEmail() {
+		return Email;
+	}
+	public void setEmail(String email) {
+		Email = email;
+	}
 	public String getDonViQuangCao() {
 		return DonViQuangCao;
 	}
@@ -32,9 +58,7 @@ public class QUANGCAO {
 	public void setKichThuoc(String kichThuoc) {
 		KichThuoc = kichThuoc;
 	}
-	private String NgayDang;
-	private String GiaQuangCao;
-	private String KichThuoc;
+	
 	public int getSoNgay() {
 		return SoNgay;
 	}

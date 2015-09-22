@@ -11,9 +11,9 @@ public class DataBaseDAO {
 
 	Connection con;
 	Statement stm;
-//	String userName = "root";
-//	String password = "LNCzvs13398";
-//	String url = "jdbc:mysql://mysql27527-vietnhat-demo.jelastic.skali.net/webvietnhat?useUnicode=true&characterEncoding=utf-8";
+//	String userName = "adminVgrgS7w";
+//	String password = "vQfYcj1EjDG_";
+//	String url = "jdbc:mysql://127.11.82.130:3306/vietnhat?useUnicode=true&characterEncoding=utf-8";
 	
 
 	String userName = "somedayiws";

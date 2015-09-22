@@ -12,12 +12,12 @@
 		if(language.equals("vi")) {
 %>
 <div id="itemComment">
-	<i class="fa fa-user"></i> <em><%= bluan.get(j).getTaiKhoan().getHoTen() %></em>
+	<i class="fa fa-user"></i> <em><%= bluan.get(j).getTaiKhoan().getHoTen() %></em><span id="dateComment"><%=bluan.get(j).getNgayDang() %></span>
 	<p><%= bluan.get(j).getPhanHoiVi() %></p>
 	</div>
 	<% } else { %>
 	<div id="itemComment">
-	<i class="fa fa-user"></i> <em><%= bluan.get(j).getTaiKhoan().getHoTen() %></em>
+	<i class="fa fa-user"></i> <em><%= bluan.get(j).getTaiKhoan().getHoTen() %></em><span id="dateComment"><%=bluan.get(j).getNgayDang() %></span>
 	<p><%= bluan.get(j).getPhanHoiJa() %></p>
 	</div>
 <%
