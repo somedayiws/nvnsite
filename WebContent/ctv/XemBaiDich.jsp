@@ -26,7 +26,7 @@
 <body>
 <div class="container">
 	<p>
-		<marquee> Trang cộng tác viên VIET-NHAT</marquee>
+		<marquee> Trang cộng tác viên VIET-NHAT - 越日協力者のホームページ </marquee>
 	</p>
 </div>
 	<!-- menu ngang -->
@@ -148,7 +148,7 @@
 			<% } %>
 		<% } %>
 		<div class="col-xs-12 col-sm-12 col-md-12">
-			<strong> Phản hồi bài dịch </strong>
+			<strong> Phản hồi bài dịch - 翻訳文書の返事 </strong>
 			<div class="row" id="listblviet">
 				<%= bviet.getGhiChu()==null ? "" : bviet.getGhiChu().replace("<strong>"+user.getIdTaiKhoan(), "<strong>Tôi") %>
 			</div>
@@ -159,10 +159,49 @@
 				<button type="button" class="btn btn-link" onclick="comentvi('<%= bviet.getIdBaiViet() %>');"><i class="fa fa-comments-o"></i> Bình luận - コメント</button>
 				<form action="XuLyBaiVietServlet" method="post">
 					<input type="hidden" name="chon" value="<%= bviet.getIdBaiViet() %>">
-					<button type="button" class="btn btn-primary btn-sm" id="lui" name="submit" value="lui" onclick="history.go(-1);">Quay lại</button>
-					<button type="submit" class="btn btn-warning btn-sm" id="huy" name="submit" value="huy" onclick="return confirm('Bài dịch sẽ được gửi với yêu cầu HỦY DỊCH lên Admin và điều sẽ ảnh hưởng xấu đến thành tích của bạn.\n\t Bạn thật sự muốn hủy bài dich?');">Hủy bài</button>
-			<button type="submit" class="btn btn-primary btn-sm" id="gui" name="submit" value="gui" onclick="return confirm('Bài dịch sẽ được gửi lên Admin để kiểm duyệt.\n\tBạn muốn gửi?');">Gửi bài</button>
-					<button type="button" class="btn btn-primary btn-sm" id="luu" onclick="loadData('DichBaiDichServlet','<%= bviet.getIdBaiViet() %>');">Dịch bài - </button>
+					<button type="button" class="btn btn-primary btn-sm" id="lui" name="submit" value="lui" onclick="history.go(-1);">Quay lại - 戻り</button>
+					<button type="button" id="huy" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#huybai">Hủy bài - 削除</button>
+					<button type="button" id="gui" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#guibai">Gửi bài - 送信</button>
+					<button type="button" class="btn btn-primary btn-sm" id="luu" onclick="loadData('DichBaiDichServlet','<%= bviet.getIdBaiViet() %>');">Dịch bài - 翻訳の文書 </button>
+				
+					<!-- dialog xác nhận hủy -->
+					<div class="modal fade" id="huybai" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							  <div class="modal-dialog">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+							        <h4 class="modal-title" id="myModalLabel">Hủy bài dịch</h4>
+							      </div>
+							      <div class="modal-body">
+							        Những bài dịch sẽ được gửi với yêu cầu HỦY DỊCH lên Admin và điều sẽ ảnh hưởng xấu đến thành tích của bạn.
+							        <br><label>Bạn thật sự muốn hủy bài dich?</label>
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
+							        <button type="submit" name="submit" value="huy" class="btn btn-primary">Có</button>
+							      </div>
+							    </div>
+							  </div>
+					</div>
+					<!-- dialog xác nhận gửi -->
+					<div class="modal fade" id="guibai" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							  <div class="modal-dialog">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+							        <h4 class="modal-title" id="myModalLabel">Gửi bài dịch</h4>
+							      </div>
+							      <div class="modal-body">
+							        Các bài dịch sẽ được gửi lên Admin để kiểm duyệt.
+									<br><label>Bạn muốn gửi?</label>
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
+							        <button type="submit" name="submit" value="gui" class="btn btn-primary">Có</button>
+							      </div>
+							    </div>
+							  </div>
+					</div>
 				</form>
 			</div>
 		</div>

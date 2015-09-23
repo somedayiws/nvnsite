@@ -26,7 +26,7 @@
 <body>
 <div class="container">
 	<p>
-		<marquee> Trang cộng tác viên VIET-NHAT</marquee>
+		<marquee> Trang cộng tác viên VIET-NHAT - 越日協力者のホームページ </marquee>
 	</p>
 </div>
 <!-- menu ngang -->
@@ -44,9 +44,48 @@
 	<div class="col-sm-10 col-md-10">
 	<strong> <%= ((String)request.getAttribute("meg"))==null ? "" : ((String)request.getAttribute("meg")) %> </strong><br>
 	<form action="XuLyBaiVietServlet" method="get">
-		<button type="submit" name="submit" class="btn btn-warning btn-sm" id="huy" value="huy" onclick="return confirm('Những bài dịch sẽ được gửi với yêu cầu HỦY DỊCH lên Admin và điều sẽ ảnh hưởng xấu đến thành tích của bạn.\n\t Bạn thật sự muốn hủy bài dich?');">Hủy bài - </button>
-		<button type="submit" name="submit" class="btn btn-primary btn-sm" id="gui" value="gui" onclick="return confirm('Các bài dịch sẽ được gửi lên Admin để kiểm duyệt.\n\tBạn muốn gửi?');">Gửi bài - </button>
-		<label>Danh sách bài mới chuyển đến</label>
+		<button type="button" id="huy" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#huybai">Hủy bài - 削除</button>
+		<button type="button" id="gui" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#guibai">Gửi bài - 送信</button>
+		<!-- dialog xác nhận hủy -->
+		<div class="modal fade" id="huybai" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				        <h4 class="modal-title" id="myModalLabel">Hủy bài dịch</h4>
+				      </div>
+				      <div class="modal-body">
+				        Những bài dịch sẽ được gửi với yêu cầu HỦY DỊCH lên Admin và điều sẽ ảnh hưởng xấu đến thành tích của bạn.
+				        <br><label>Bạn thật sự muốn hủy bài dich?</label>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
+				        <button type="submit" name="submit" value="huy" class="btn btn-primary">Có</button>
+				      </div>
+				    </div>
+				  </div>
+		</div>
+		<!-- dialog xác nhận gửi -->
+		<div class="modal fade" id="guibai" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				        <h4 class="modal-title" id="myModalLabel">Gửi bài dịch</h4>
+				      </div>
+				      <div class="modal-body">
+				        Các bài dịch sẽ được gửi lên Admin để kiểm duyệt.
+						<br><label>Bạn muốn gửi?</label>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
+				        <button type="submit" name="submit" value="gui" class="btn btn-primary">Có</button>
+				      </div>
+				    </div>
+				  </div>
+		</div>
+		
+		<label>Danh sách bài mới chuyển đến - 届いたばかり文書のリスト </label>
 		<table class="table table-hover">
 		  <tr id="tieude">
 		  	<td class="clid">ID</td>
@@ -84,7 +123,7 @@
 			  <% } %>
 		  <% i++; } %>
 		</table>
-		<label>Danh sách bài dịch đã quá hạn</label>
+		<label>Danh sách bài dịch đã quá hạn - 期限が過ぎた文書のリスト </label>
 		<table class="table table-hover">
 		  <tr id="tieude">
 		  	<td class="clid">ID</td>

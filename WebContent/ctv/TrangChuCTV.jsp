@@ -64,7 +64,7 @@ input.error {
 <body>
 <div class="container">
 	<p>
-		<marquee> Trang cộng tác viên VIET-NHAT</marquee>
+		<marquee> Trang cộng tác viên VIET-NHAT - 越日協力者のホームページ  </marquee>
 	</p>
 </div>
 	<!-- nội dung chính -->
