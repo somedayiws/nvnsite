@@ -25,6 +25,7 @@ import model.bean.DANHMUC;
 import model.bean.TAIKHOAN;
 import model.bo.BaiVietBO;
 import model.bo.DanhMucBO;
+import model.bo.TaiNguyenBO;
 
 @WebServlet("/DangBaiVietServlet")
 public class DangBaiVietServlet extends HttpServlet {
@@ -55,6 +56,15 @@ public class DangBaiVietServlet extends HttpServlet {
 				request.setAttribute("listdanhmuc", listdanhmuc);
 				request.setAttribute("topbaiviet", topbaiviet);
 				request.setAttribute("topmoi", topmoi);
+				TaiNguyenBO tainguyenBO = new TaiNguyenBO();
+				String sotu = tainguyenBO.getValue("SoTuDich");
+				String giaVN = tainguyenBO.getValue("ThanhTienVN");
+				String giaJA = tainguyenBO.getValue("ThanhTienJA");
+				String banggiadich = tainguyenBO.getValue("BangGiaDich");
+				request.setAttribute("sotu", sotu);
+				request.setAttribute("giaVN", giaVN);
+				request.setAttribute("giaJA", giaJA);
+				request.setAttribute("banggiadich", banggiadich);
 				request.getRequestDispatcher("DangBaiViet.jsp").forward(request, response);
 			} else {
 				FileItemFactory factory = new DiskFileItemFactory();
@@ -69,7 +79,7 @@ public class DangBaiVietServlet extends HttpServlet {
 				String TheLoai;
 				String NoiDung, NoiDungVi, NoiDungJa;
 				String HinhAnh;
-				String DangBai;
+				String DangBai, DichBai;
 				String ketqua = "";
 				String TaiKhoan = ((TAIKHOAN)request.getSession().getAttribute("user")).getIdTaiKhoan();
 				try {
@@ -95,7 +105,6 @@ public class DangBaiVietServlet extends HttpServlet {
 							filename = itemName.substring(itemName
 									.lastIndexOf("\\") + 1);
 							String realPath = getServletContext().getRealPath("/")+ "images/" + filename;
-							System.out.println("realPath new posts: "+realPath);
 							File savedFile = new File(realPath);
 							@SuppressWarnings("unused")
 							FileCleanerCleanup item2 = new FileCleanerCleanup();
@@ -110,6 +119,7 @@ public class DangBaiVietServlet extends HttpServlet {
 				ngonngu = (String) params.get("NgonNgu");
 				TheLoai = (String) params.get("TheLoai");
 				DangBai = (String) params.get("dangbai");
+				DichBai = (String) params.get("dichbai");
 				if(filename == null || filename.trim().equals("")) HinhAnh = "baiviet.jpg";
 				else HinhAnh = filename;
 				BaiVietBO baivietBO = new BaiVietBO();
@@ -118,7 +128,9 @@ public class DangBaiVietServlet extends HttpServlet {
 					MoTa = (String) params.get("MoTa");
 					NoiDung = (String) params.get("NoiDung");
 					if(DangBai != null) {
-						if(baivietBO.ThemBaiVietVi(TieuDe, MoTa, NoiDung, TheLoai, TaiKhoan, "images/" + HinhAnh, "MoiDang")) ketqua = "them-thanhcong";
+						if(DichBai!=null && DichBai.equals("khong")) DichBai = "KhongDich";
+						else DichBai = "MoiDang";
+						if(baivietBO.ThemBaiVietVi(TieuDe, MoTa, NoiDung, TheLoai, TaiKhoan, "images/" + HinhAnh, DichBai)) ketqua = "them-thanhcong";
 						else ketqua = "them-thatbai";
 					}
 					else {

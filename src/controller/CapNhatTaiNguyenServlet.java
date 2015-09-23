@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.bo.QuangCaoBO;
+import model.bo.TaiNguyenBO;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
@@ -42,6 +42,7 @@ public class CapNhatTaiNguyenServlet extends HttpServlet {
 		if (isMultipart) {
 			String Image, imagee;
 			String Image1, imagee1;
+			String SoTu, GiaVN, GiaJA;
 			
 			FileItemFactory factory = new DiskFileItemFactory();
 			ServletFileUpload upload = new ServletFileUpload(factory);
@@ -60,21 +61,20 @@ public class CapNhatTaiNguyenServlet extends HttpServlet {
 			Iterator iter = items.iterator();
 			@SuppressWarnings("rawtypes")
 			Hashtable params = new Hashtable();
-			String filename = null;
+			String filename[] = {"", ""} ;
+			int i=0;
 
 			while (iter.hasNext()) {
-
 				FileItem item = (FileItem) iter.next();
 				if (item.isFormField()) {
 					params.put(item.getFieldName(),item.getString("UTF-8"));
 				} else {
 					try {
 						String itemName = item.getName();
-						filename = itemName.substring(itemName.lastIndexOf("\\") + 1);
-						String realPath = getServletContext().getRealPath("/")+ "images/" + filename;
+						filename[i] = itemName.substring(itemName.lastIndexOf("\\") + 1);
+						String realPath = getServletContext().getRealPath("/")+ "images/tainguyen/" + filename[i];
 						File savedFile = new File(realPath);
-						savedFile.renameTo(new File(getServletContext().getRealPath("/")+ "images/" + "Capture.PNG"));
-						System.out.println("Xem : " + realPath);
+						System.out.println(realPath);
 						@SuppressWarnings("unused")
 						FileCleanerCleanup item2 = new FileCleanerCleanup();
 						// Upload file len server
@@ -83,14 +83,29 @@ public class CapNhatTaiNguyenServlet extends HttpServlet {
 						System.out.println("Lỗi ở đây");
 						e.printStackTrace();
 					}
-					break;
+					i++;
 				}
 			}
+			SoTu = (String) params.get("SoTuDich");
+			GiaVN = (String) params.get("ThanhTienVN");
+			GiaJA = (String) params.get("ThanhTienJA");
 			imagee = (String) params.get("Imagee");
-			if(filename == null || filename.trim().equals("")) Image = imagee;
-			else Image = "../images/" + filename;
+			imagee1 = (String) params.get("Imagee1");
 			
-			request.getRequestDispatcher("TaiNguyen.jsp").forward(request, response);
+			if(filename[0] == null || filename[0].trim().equals("")) Image = imagee;
+			else Image = "images/tainguyen/" + filename[0];
+			
+			if(filename[1] == null || filename[1].trim().equals("")) Image1 = imagee1;
+			else Image1 = "images/tainguyen/" + filename[1];
+			
+			TaiNguyenBO tn = new TaiNguyenBO();
+			if(tn.CapNhatTaiNguyen(SoTu, GiaVN, GiaJA, Image, Image1)){
+				request.setAttribute("mes", "<div class='alert alert-success tbmeg' role='alert'>Cập nhật thành công.</div>");
+			}else{
+				request.setAttribute("mes", "<div class='alert alert-danger tbmeg' role='alert'>Cập nhật không thành công.</div>");
+			}
+			
+			request.getRequestDispatcher("TaiNguyenServlet").forward(request, response);
 		}
 	}
 

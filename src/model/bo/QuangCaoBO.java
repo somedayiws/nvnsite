@@ -19,8 +19,8 @@ public class QuangCaoBO {
 	 * Lấy danh sách quảng cáo sắp xếp theo vị trí
 	 * return ArrayList<QUANGCAO>/null
 	 */
-	public ArrayList<QUANGCAO> getDanhSachQuangCao(int page) {
-		return quangcao.getDanhSachQuangCao(page);
+	public ArrayList<QUANGCAO> getDanhSachQuangCao() {
+		return quangcao.getDanhSachQuangCao();
 	}
 	public boolean xoaQuangCao(String idQC) {
 		// TODO Auto-generated method stub

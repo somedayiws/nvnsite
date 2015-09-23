@@ -39,6 +39,11 @@
 
 <body onLoad="initialize()">
 	<%@include file="header.jsp"%>
+	
+	<input type="hidden" id="sotu" value="<%= request.getAttribute("sotu") %>">
+	<input type="hidden" id="giavn" value="<%= request.getAttribute("giaVN") %>">
+	<input type="hidden" id="giaja" value="<%= request.getAttribute("giaJA") %>">
+	
 	<div id="mainContent">
 		<!-- hiển thị nội dung chính ở đây -->
 		<div class="col-sm-9 col-md-9" id="baiviet">
@@ -135,9 +140,9 @@
 					<input type="hidden" id="dichbai" name="dichbai" value="khong">
 					<input type="hidden" id="dangbai" name="dangbai" value="Đăng bài -">
 					<div class="form-group">
-						<input type="submit" value="Lưu bài - " name="luubai" class="btn btn-success" />
-						<input type="button" value="Đăng bài - " name="dangbai" class="btn btn-success" data-toggle="modal" data-target="#xacnhandich"/> 
-						<input type="button" value="Quay lại - " class="btn" onclick="history.go(-1);" />
+						<input type="submit" value="Lưu bài - 保存" name="luubai" class="btn btn-success" />
+						<input type="button" value="Đăng bài - ポスト" onclick="DichBai1();" name="dangbai" class="btn btn-success" data-toggle="modal" data-target="#xacnhandich"/> 
+						<input type="button" value="Quay lại - 戻り" class="btn" onclick="history.go(-1);" />
 					</div>
 				</div>
 			</form>
@@ -153,8 +158,9 @@
 		      <div class="modal-body">
 		      	Báo giá dịch thuật Việt-Nhật
 		      	<br>
-		      	<img alt="" src="images/Capture.PNG">
+		      	<img alt="" src="<%= request.getAttribute("banggiadich") %>">
 		      	<br>
+		      	<label id="thongbaodich">Dịch cái này mấy xxx đồng.</label>
 		        Bạn có muốn dịch bài viết này không???
 		      </div>
 		      <div class="modal-footer">
@@ -181,10 +187,21 @@
 		};
 		reader.readAsDataURL(f.files[0]);
 	}
+	
 	function DichBai(x) {
 		if(x) $('#dichbai').val('dich');
 		$('#fdangbai').submit();
 	}
+	
+	function DichBai1() {
+		var value = CKEDITOR.instances['NoiDung'].getData();
+		var donvi = $("#sotu").val();
+		var giavn = $("#giavn").val();
+		var giaja = $("#giaja").val();
+		/* alert("Xem : " + value.length); */
+		$("#thongbaodich").text("Giá của bài dịch này là " + (value.split(/[ .,?!]+/).length*giavn/donvi) + "VND(" + (value.split(/[ .,?!]+/).length*giaja/donvi) + "JPY)");
+	}
+	
 </script>
 <!-- Google map -->
 <script type="text/javascript"

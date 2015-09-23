@@ -15,12 +15,7 @@
 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 <link rel="stylesheet" href="css/register.css">
 <link rel="stylesheet" href="css/advertisement.css">
-<title>Thêm quảng cáo</title>
-<style type="text/css">
-#advNoHomepage {
-	display: none;
-}
-</style>
+<title>Cập nhật quảng cáo</title>
 <script type="text/javascript">
 	function view() {
 		var page = $('#url').val();
@@ -197,7 +192,7 @@
 
 					<!-- Vị trí -->
 					<!-- Vị trí trang chủ  -->
-					<div class="form-group" id="advHomepage">
+					<div class="form-group" id="advHomepage" <%= qc.getTrangHienThi() == 1 ? "" : "style='display: none;'" %>>
 						<label for="postion">Vị trí - 位置</label> <select
 							class="form-control" id="positionInHome" name="positionInHome">
 							<option value="1"
@@ -221,10 +216,9 @@
 						</select>
 					</div>
 					<!-- Vị trí các trang khác -->
-					<div class="form-group" id="advNoHomepage">
-						<label for="postion">Vị trí - 位置</label> <select
-							class="form-control" id="positionInNoHome"
-							name="positionInNoHome">
+					<div class="form-group" id="advNoHomepage" <%= qc.getTrangHienThi() == 1 ? "style='display: none;'" : "" %>>
+						<label for="postion">Vị trí - 位置</label>
+						<select class="form-control" id="positionInNoHome" name="positionInNoHome" disabled="disabled">
 							<option value="1"
 								<%=qc.getViTri() == 1 ? "selected='selected'" : ""%>>vị
 								trí 1</option>
@@ -288,7 +282,7 @@
 							value="<%=qc.getHinhAnh()%>">
 						<p class="help-block">
 							Chọn file .png, .jpg ...<br> <img alt="Icon đại diện"
-								src="../<%=qc.getHinhAnh().substring(0, 5).equals("image") ? "../"
+								src="<%=qc.getHinhAnh().substring(0, 5).equals("image") ? "../"
 					+ qc.getHinhAnh() : qc.getHinhAnh()%>"
 								id="xemUrl" height="150px">
 						</p>

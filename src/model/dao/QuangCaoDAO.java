@@ -50,11 +50,11 @@ public class QuangCaoDAO {
 	/*
 	 * Lấy danh sách quảng cáo sắp xếp theo vị trí return ArrayList<QUANGCAO>
 	 */
-	public ArrayList<QUANGCAO> getDanhSachQuangCao(int page) {
+	public ArrayList<QUANGCAO> getDanhSachQuangCao() {
 		// TODO Auto-generated method stub
 		ArrayList<QUANGCAO> list = new ArrayList<QUANGCAO>();
 		ResultSet rs = null;
-		String sql = "select IdQuangCao, LienKet, HinhAnh, ViTri from quangcao where HienThi = 1 and TrangHienThi = "+page+" order by ViTri asc";
+		String sql = "select IdQuangCao, LienKet, HinhAnh, ViTri from quangcao where HienThi = 1 order by ViTri asc";
 		rs = db.getResultSet(sql);
 		try {
 			while (rs.next()) {

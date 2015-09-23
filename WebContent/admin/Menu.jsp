@@ -22,6 +22,7 @@
 					<li><a href="ListCategoryServlet"><span class="glyphicon glyphicon-list"></span>Quản lý danh mục</a></li>
 					<li><a href="ListPostsServlet"><span class="glyphicon glyphicon-list-alt"></span>Quản lý bài viết</a></li>
 					<li><a href="AdvertisementServlet"><span class="glyphicon glyphicon-list-alt"></span>Quản lý quảng cáo</a></li>
+					<li><a href="TaiNguyenServlet"><span class="glyphicon glyphicon-list-alt"></span>Quản lý tài nguyên</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 		
