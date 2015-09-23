@@ -117,3 +117,44 @@ div#listblviet {
     margin-top: -2%;
     float: left;
 }
+.xem {
+	font-weight: bold;
+    width: 130px;
+    height: 40px;
+    background-color: #00FF1C;
+    margin-top: 5px;
+    border-radius: 19px;
+    padding: 11px;
+    float: left;
+}
+.xem1 {
+	font-weight: bold;
+    width: 130px;
+    height: 40px;
+    background-color: #FF4400;
+    margin-top: 5px;
+    border-radius: 19px;
+    padding: 11px;
+    float: left;
+}
+.xem2 {
+	font-weight: bold;
+    width: 194px;
+    height: 40px;
+    background-color: #FFF400;
+    margin-top: 5px;
+    border-radius: 19px;
+    padding: 11px;
+    float: left;
+    text-align: center;
+}
+.xemx {
+	font-weight: bold;
+    width: 64px;
+    height: 40px;
+    margin-top: 5px;
+    border-radius: 19px;
+    padding: 11px;
+    float: left;
+    text-align: center;
+}

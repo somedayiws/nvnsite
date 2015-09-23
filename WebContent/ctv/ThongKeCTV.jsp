@@ -27,3 +27,19 @@
 	href="DanhSachBaiDichServlet?view=qua-han"> <span
 		class="badge pull-right"><%= tre %></span> Bài đã quá hạn<br>期限が過ぎた文書 
 </a></li>
+
+<div class="xem">
+HOÀN THÀNH
+</div>
+<div class="xemx" style="background: #00FF1C">
+	<%= request.getAttribute("tongbvok") %>%
+</div>
+<div class="xem1">
+HỦY BỎ
+</div>
+<div class="xemx" style="background: #FF4400">
+	<%= request.getAttribute("tongbvhuy") %>%
+</div>
+<div class="xem2">
+	Số bài lỗi : <%= request.getAttribute("tongbvloi") %>
+</div>

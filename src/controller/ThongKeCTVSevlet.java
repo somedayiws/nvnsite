@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,10 +34,23 @@ public class ThongKeCTVSevlet extends HttpServlet {
 		String moi = bviet.getCountMoi(user.getIdTaiKhoan());
 		String dich = bviet.getCountDich(user.getIdTaiKhoan());
 		String tre = bviet.getCountTre(user.getIdTaiKhoan());
+		
+		int tongbv = bviet.TongBaiViet(user.getIdTaiKhoan(), "");
+		int tongbvok = bviet.TongBaiViet(user.getIdTaiKhoan(), "Ok");
+		int tongbvhuy = bviet.TongBaiViet(user.getIdTaiKhoan(), "HuyDich");
+		int tongbvloi = bviet.TongBaiViet(user.getIdTaiKhoan(), "LoiDich");
+		
+		DecimalFormat df = new DecimalFormat("0.00");
+		
 		request.setAttribute("all", all);
 		request.setAttribute("moi", moi);
 		request.setAttribute("dich", dich);
 		request.setAttribute("tre", tre);
+		
+		request.setAttribute("tongbvok", df.format(tongbvok*100.00/tongbv));
+		request.setAttribute("tongbvhuy", df.format(tongbvhuy*100.00/tongbv));
+		request.setAttribute("tongbvloi", tongbvloi);
+		
 		request.getRequestDispatcher("ThongKeCTV.jsp").forward(request, response);
 	}
 

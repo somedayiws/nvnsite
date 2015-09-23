@@ -232,4 +232,7 @@ public class BaiVietBO {
 		// TODO Auto-generated method stub
 		return baiviet.XoaBaiViet(id);
 	}
+	public int TongBaiViet(String tk, String trangthai){
+		return baiviet.TongBaiViet(tk, trangthai);
+	}
 }

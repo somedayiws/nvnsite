@@ -202,16 +202,14 @@ public class BaiVietDAO {
 		ResultSet rs = null;
 		String sql = "";
 		if(loai.equals("Moi"))
-			sql = "select IdBaiViet, TenBaiVietVi, TenBaiVietJa,LienKet,MoTaVi,MoTaJa , LuotXem, NgayDang from baiviet where TrangThai='OK' order by NgayDang desc limit 10";
+			sql = "select IdBaiViet, TenBaiVietVi, TenBaiVietJa,LienKet,MoTaVi,MoTaJa from baiviet where TrangThai='OK' order by NgayDang desc limit 10";
 		else if(loai.equals("XemNhieu"))
-			sql = "select IdBaiViet, TenBaiVietVi, TenBaiVietJa,LienKet,MoTaVi,MoTaJa , LuotXem, NgayDang from baiviet where TrangThai='OK' and (CURDATE()-NgayDang)<300 order by LuotXem desc limit 10";
-		else  if(loai.equals("slidePosts"))
-			sql = "select IdBaiViet, TenBaiVietVi, TenBaiVietJa,LienKet,MoTaVi,MoTaJa, LuotXem, NgayDang from baiviet where TrangThai='OK' and GimTrangChu = 1 order by RAND() limit 6";
+			sql = "select IdBaiViet, TenBaiVietVi, TenBaiVietJa,LienKet,MoTaVi,MoTaJa from baiviet where TrangThai='OK' and (CURDATE()-NgayDang)<300 order by LuotXem desc limit 10";
+		//select IdBaiViet, TenBaiVietVi, TenBaiVietJa,LienKet,MoTaVi,MoTaJa from baiviet where TrangThai='OK' and (CURDATE()-NgayDang)<30 order by LuotXem desc
 		else 
-			sql = "select IdBaiViet, TenBaiVietVi, TenBaiVietJa,LienKet,MoTaVi,MoTaJa, LuotXem, NgayDang from baiviet where TrangThai='OK' and (CURDATE()-NgayDang)<100 order by LuotXem desc limit 4";
+			sql = "select IdBaiViet, TenBaiVietVi, TenBaiVietJa,LienKet,MoTaVi,MoTaJa from baiviet order by RAND() limit 6";
 		rs = db.getResultSet(sql);
 //		BinhLuanDAO bl = new BinhLuanDAO();
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		try {
 			while(rs.next()){
 				BAIVIET bv = new BAIVIET();
@@ -225,8 +223,6 @@ public class BaiVietDAO {
 				bv.setLienKet(DinhDangSQL.DeFomatSQL(rs.getString("LienKet")));
 				bv.setMoTaVi(DinhDangSQL.DeFomatSQL(rs.getString("MoTaVi")));
 				bv.setMoTaJa(DinhDangSQL.DeFomatSQL(rs.getString("MoTaJa")));
-				bv.setLuotXem(rs.getInt("LuotXem"));
-				bv.setNgayDang(sdf.format(rs.getDate("NgayDang")));
 				list.add(bv);
 			}
 			return list;
@@ -626,5 +622,17 @@ public class BaiVietDAO {
 		// TODO Auto-generated method stub
 		String sql = "delete from baiviet where IdBaiViet=N'"+DinhDangSQL.FomatSQL(id)+"'";
 		return db.updateData(sql);
+	}
+	public int TongBaiViet(String tk, String trangthai) {
+		// TODO Auto-generated method stub
+		ResultSet rs = db.getResultSet("select count(*) from lichsu where IdTaiKhoan='"+tk+"'  and TrangThai like '%"+trangthai+"'");
+		try {
+			if(rs.next()){
+				return rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 }
