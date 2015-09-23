@@ -50,11 +50,11 @@ public class QuangCaoDAO {
 	/*
 	 * Lấy danh sách quảng cáo sắp xếp theo vị trí return ArrayList<QUANGCAO>
 	 */
-	public ArrayList<QUANGCAO> getDanhSachQuangCao() {
+	public ArrayList<QUANGCAO> getDanhSachQuangCao(int page) {
 		// TODO Auto-generated method stub
 		ArrayList<QUANGCAO> list = new ArrayList<QUANGCAO>();
 		ResultSet rs = null;
-		String sql = "select IdQuangCao, LienKet, HinhAnh, ViTri from quangcao where HienThi = 1 order by ViTri asc";
+		String sql = "select IdQuangCao, LienKet, HinhAnh, ViTri from quangcao where HienThi = 1 and TrangHienThi = "+page+" order by ViTri asc";
 		rs = db.getResultSet(sql);
 		try {
 			while (rs.next()) {
@@ -84,9 +84,17 @@ public class QuangCaoDAO {
 	public boolean HienThiQuangCao(String idQC, String hienthi) {
 		// TODO Auto-generated method stub
 		String sql = "";
-		if(hienthi.equals("1")) sql = "update quangcao set HienThi='0' where IdQuangCao='"+idQC+"'";
-		else sql = "update quangcao set HienThi='1' where IdQuangCao='"+idQC+"'";
-		return db.updateData(sql);
+		String sql2 = "";
+		QUANGCAO qc = getQuangCao(idQC);
+		if(hienthi.equals("1")){
+			sql = "update quangcao set HienThi='0'  where IdQuangCao='"+idQC+"'";
+			sql2 = "update quangcao set HienThi='1', NgayDang=CURDATE() where IdQuangCao='"+FindID(qc.getViTri(), qc.getTrangHienThi(), 0)+"'";
+		}
+		else {
+			sql = "update quangcao set HienThi='1', NgayDang=CURDATE() where IdQuangCao='"+idQC+"'";
+			sql2 = "update quangcao set HienThi='0' where IdQuangCao='"+FindID(qc.getViTri(), qc.getTrangHienThi(), 1)+"'";
+		}
+		return db.updateData(sql)&&db.updateData(sql2);
 	}
 
 	public boolean ThemQuangCao(String company, String dienthoai, String email,
@@ -105,11 +113,11 @@ public class QuangCaoDAO {
 
 	public boolean SuaQuangCao(String id, String company, String dienthoai,
 			String email, String link, String page, String position,
-			String numberOfDay, String price, String image, String display) {
+			String numberOfDay, String price, String image) {
 		// TODO Auto-generated method stub
 		String sql = "";
 		sql = "update quangcao set Lienket=N'"+link+"', HinhAnh=N'"+image+"', ViTri='"+position
-				+"', HienThi='"+display+"', SoNgay='"+numberOfDay+"', TrangHienThi='"+page
+				+"', SoNgay='"+numberOfDay+"', TrangHienThi='"+page
 				+"', DonViQuangCao=N'"+company+"', GiaQuangCao='"+price+"', KichThuoc='300x400', Email=N'"
 				+email+"', DienThoai='"+dienthoai+"' where IdQuangCao='"+id+"'";
 		System.out.println("SQL : " + sql);
@@ -125,8 +133,22 @@ public class QuangCaoDAO {
 				return true;
 			}
 		} catch (SQLException e) {
-			return true;
+			return false;
 		}
-		return true;
+		return false;
+	}
+	
+	//Lấy ID của quảng cáo mặt định đang ghim
+	public int FindID(int vitri, int page, int hienthi){
+		String sql = "select IdQuangCao from quangcao where HienThi='"+hienthi+"' and ViTri='"+vitri+"' and TrangHienThi='"+page+"' and DonViQuangCao='Mặt định'";
+		ResultSet rs = db.getResultSet(sql);
+		try {
+			while(rs.next()){
+				return rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			return -1;
+		}
+		return -1;
 	}
 }

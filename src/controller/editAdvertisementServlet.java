@@ -46,7 +46,6 @@ public class editAdvertisementServlet extends HttpServlet {
 			String link;
 			String page;
 			String position;
-			String display;
 			String numberOfDay;
 			String Image, imagee, ChonUrl;
 			String price;
@@ -80,7 +79,7 @@ public class editAdvertisementServlet extends HttpServlet {
 						String itemName = item.getName();
 						filename = itemName.substring(itemName
 								.lastIndexOf("\\") + 1);
-						String realPath = getServletContext().getRealPath("/")+ "images/" + filename;
+						String realPath = getServletContext().getRealPath("/")+ "images/quangcao/" + filename;
 						File savedFile = new File(realPath);
 						@SuppressWarnings("unused")
 						FileCleanerCleanup item2 = new FileCleanerCleanup();
@@ -104,21 +103,18 @@ public class editAdvertisementServlet extends HttpServlet {
 				position = (String) params.get("positionInHome");
 			else
 				position = (String) params.get("positionInNoHome");
-			display = (String) params.get("display");
-			if(display==null || !display.equals("on")) display = "0";
-			else display = "1";
 			numberOfDay = (String) params.get("numberOfDay");
 			price = (String) params.get("price");
 			ChonUrl = (String) params.get("ChonUrl");
 			if(ChonUrl.equals("1"))
 				if(filename == null || filename.trim().equals("")) Image = imagee;
-				else Image = "../images/" + filename;
+				else Image = "images/quangcao/" + filename;
 			else
 				Image = (String) params.get("Image1");
 			
 			//Thêm dữ liệu vào hệ thống
 			QuangCaoBO qcBO = new QuangCaoBO();
-			if(qcBO.SuaQuangCao(id, company, dienthoai, email, link, page, position, numberOfDay, price, Image, display)){
+			if(qcBO.SuaQuangCao(id, company, dienthoai, email, link, page, position, numberOfDay, price, Image)){
 				request.setAttribute("mes", "<div class='alert alert-success tbmeg' role='alert'>Cập nhật thành công.</div>");
 			}else{
 				request.setAttribute("mes", "<div class='alert alert-danger tbmeg' role='alert'>Cập nhật không thành công.</div>");

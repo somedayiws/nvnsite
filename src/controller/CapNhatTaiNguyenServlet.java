@@ -21,16 +21,15 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.FileCleanerCleanup;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-@WebServlet("/admin/AddAdvertisementServlet")
-public class AddAdvertisementServlet extends HttpServlet {
+@WebServlet("/admin/CapNhatTaiNguyenServlet")
+public class CapNhatTaiNguyenServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public AddAdvertisementServlet() {
+    public CapNhatTaiNguyenServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doPost(request, response);
 	}
 
@@ -38,19 +37,11 @@ public class AddAdvertisementServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
-		boolean isMultipart = ServletFileUpload
-				.isMultipartContent(request);
+		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 		
 		if (isMultipart) {
-		
-			String company, dienthoai, email;
-			String link;
-			String page;
-			String position;
-			String display;
-			String numberOfDay;
-			String Image, ChonUrl;
-			String price;
+			String Image, imagee;
+			String Image1, imagee1;
 			
 			FileItemFactory factory = new DiskFileItemFactory();
 			ServletFileUpload upload = new ServletFileUpload(factory);
@@ -79,47 +70,27 @@ public class AddAdvertisementServlet extends HttpServlet {
 				} else {
 					try {
 						String itemName = item.getName();
-						filename = itemName.substring(itemName
-								.lastIndexOf("\\") + 1);
-						String realPath = getServletContext().getRealPath("/")+ "images/quangcao/" + filename;
+						filename = itemName.substring(itemName.lastIndexOf("\\") + 1);
+						String realPath = getServletContext().getRealPath("/")+ "images/" + filename;
 						File savedFile = new File(realPath);
+						savedFile.renameTo(new File(getServletContext().getRealPath("/")+ "images/" + "Capture.PNG"));
+						System.out.println("Xem : " + realPath);
 						@SuppressWarnings("unused")
 						FileCleanerCleanup item2 = new FileCleanerCleanup();
-						// Upload file l�n server
+						// Upload file len server
 						item.write(savedFile);
 					} catch (Exception e) {
+						System.out.println("Lỗi ở đây");
 						e.printStackTrace();
 					}
+					break;
 				}
 			}
-			//Thông tin đối tác
-			company = (String) params.get("company");
-			dienthoai = (String) params.get("dienthoai");
-			email = (String) params.get("email");
-			//Thông tin quảng cáo
-			link = (String) params.get("link");		
-			page = (String) params.get("page");
-			if(page.equals("1"))
-				position = (String) params.get("positionInHome");
-			else
-				position = (String) params.get("positionInNoHome");
-			display = "0";
-			numberOfDay = (String) params.get("numberOfDay");
-			price = (String) params.get("price");
-			ChonUrl = (String) params.get("ChonUrl");
-			if(ChonUrl.equals("1"))
-				Image = "images/quangcao/" + filename;
-			else
-				Image = (String) params.get("Image1");
+			imagee = (String) params.get("Imagee");
+			if(filename == null || filename.trim().equals("")) Image = imagee;
+			else Image = "../images/" + filename;
 			
-			//Thêm dữ liệu vào hệ thống
-			QuangCaoBO qcBO = new QuangCaoBO();
-			if(qcBO.ThemQuangCao(company, dienthoai, email, link, page, position, numberOfDay, price, Image, display)){
-				request.setAttribute("mes", "<div class='alert alert-success tbmeg' role='alert'>Thêm thành công.</div>");
-			}else{
-				request.setAttribute("mes", "<div class='alert alert-danger tbmeg' role='alert'>Thêm không thành công.</div>");
-			}
-			request.getRequestDispatcher("AdvertisementServlet").forward(request, response);
+			request.getRequestDispatcher("TaiNguyen.jsp").forward(request, response);
 		}
 	}
 

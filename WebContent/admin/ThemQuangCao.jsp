@@ -211,11 +211,6 @@ $(document).ready(function(){
 							<option value="2">vị trí 2</option>
 						</select>
 					</div>
-					<!-- Hiển thị -->
-					<div class="form-group">
-						<label><input type="checkbox" name="display" id="display"
-							checked="checked"> Hiển thị - ディスプレイ</label>
-					</div>
 				</div>
 				<div class="khungphai">
 					<!-- Số ngày -->

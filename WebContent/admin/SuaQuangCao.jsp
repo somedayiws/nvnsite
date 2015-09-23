@@ -15,14 +15,14 @@
 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 <link rel="stylesheet" href="css/register.css">
 <link rel="stylesheet" href="css/advertisement.css">
-<title>Cập nhật quảng cáo</title>
+<title>Thêm quảng cáo</title>
 <style type="text/css">
 #advNoHomepage {
 	display: none;
 }
 </style>
 <script type="text/javascript">
-	function view(){
+	function view() {
 		var page = $('#url').val();
 		$("#xemUrl").attr('src', page);
 	}
@@ -35,102 +35,105 @@
 		};
 		reader.readAsDataURL(f.files[0]);
 	}
-$(document).ready(function(){       	                           
-        $( "#page" ).change(function() {
-        	 var page = $('#page').val();
-        	 if(page==1){
-        		 $("#advHomepage").show();
-        		 $("#advNoHomepage").hide();
-        	 }
-        	 else{
-        		 $("#advHomepage").hide();
-        		 $("#advNoHomepage").show();
-        	 }
-        });
-       
-        $( "#ChonUrl" ).change(function() {
-       	 var page = $('#ChonUrl').val();
-       	 if(page==1){
-       		 $("#maytinh").show();
-       		 $("#trenmang").hide();
-       	 }
-       	 else{
-       		 $("#maytinh").hide();
-       		 $("#trenmang").show();
-       	 }
-       });
-     $( "#formCreateAdv" ).validate({
-  rules: {
-	  company: {
-	      	required: true,        	    
-	    },
-	    dienthoai: {
-	      	required: true,        	    
-	    },
-	    email: {
-	      	required: true,        	    
-	    },
-    link: {
-      required: true,
-      url: true
-    },
-    page :{
-			required: true,
-		},
-		positionInHome:{
-			required: true,
-		},
-		positionInNoHome:{
-			required: true,
-		},	
-		date:{
-			 required: true,
-		      date: true
-		},
-		numberOfDay:{
-	    	required: true, 
-	    	range: [1, 100]
-	    },
-	    price:{
-	    	required: true, 
-	    }
-   },
-	  messages : {
-	company:{
-		required:"Phải nhập tên đơn vị quảng cáo - 会社の広告を入力してください",        			
-	},
-	dienthoai:{
-		required:"Phải nhập số điện thoại liên hệ - 会社の広告を入力してください",        			
-	},
-	email:{
-		required:"Phải nhập email liên hệ - 会社の広告を入力してください",        			
-	},
-	link: {
-		required: "Phải nhập link quảng cáo - リンク広告を入力してください",
-		url: "Link không hợp lệ - リンク無効"
-	},
-	page:{ 
-		required: "Phải chọn trang hiển thị - 選択ページの表示",        			        			
-	},
-	positionInHome:{
-		required: "Phải chọn vị trí hiển thị trên trang chủ - ホームページでの選択位置表示",        		
-	},
-	positionInNoHome:{
-		required: "Phải chọn vị trí hiển thị trên các trang khác - 別のページで選択位置表示", 
-	},	
-	date:{
-		required: "Phải nhập ngày đăng - 日付を入力します",
-		date: "Ngày không hợp lệ - 無効な日付"
-	},
-	numberOfDay:{
-		required: "Phải nhập số ngày hiển thị - 日付の数を入力します",
-		range: "Số ngày trong khoảng từ 1 đến 100 - 1から100までの値を入力してください。"
-	},
-	price:{
-		required: "Phải nhập giá quảng cáo - 価格広告を入力してください",
-	}
-}
-});
+	$(document)
+			.ready(
+					function() {
+						$("#page").change(function() {
+							var page = $('#page').val();
+							if (page == 1) {
+								$("#advHomepage").show();
+								$("#advNoHomepage").hide();
+							} else {
+								$("#advHomepage").hide();
+								$("#advNoHomepage").show();
+							}
+						});
+
+						$("#ChonUrl").change(function() {
+							var page = $('#ChonUrl').val();
+							if (page == 1) {
+								$("#maytinh").show();
+								$("#trenmang").hide();
+							} else {
+								$("#maytinh").hide();
+								$("#trenmang").show();
+							}
+						});
+						$("#formCreateAdv")
+								.validate(
+										{
+											rules : {
+												company : {
+													required : true,
+												},
+												dienthoai : {
+													required : true,
+												},
+												email : {
+													required : true,
+												},
+												link : {
+													required : true,
+													url : true
+												},
+												page : {
+													required : true,
+												},
+												positionInHome : {
+													required : true,
+												},
+												positionInNoHome : {
+													required : true,
+												},
+												date : {
+													required : true,
+													date : true
+												},
+												numberOfDay : {
+													required : true,
+													range : [ 1, 100 ]
+												},
+												price : {
+													required : true,
+												}
+											},
+											messages : {
+												company : {
+													required : "Phải nhập tên đơn vị quảng cáo - 会社の広告を入力してください",
+												},
+												dienthoai : {
+													required : "Phải nhập số điện thoại liên hệ - 会社の広告を入力してください",
+												},
+												email : {
+													required : "Phải nhập email liên hệ - 会社の広告を入力してください",
+												},
+												link : {
+													required : "Phải nhập link quảng cáo - リンク広告を入力してください",
+													url : "Link không hợp lệ - リンク無効"
+												},
+												page : {
+													required : "Phải chọn trang hiển thị - 選択ページの表示",
+												},
+												positionInHome : {
+													required : "Phải chọn vị trí hiển thị trên trang chủ - ホームページでの選択位置表示",
+												},
+												positionInNoHome : {
+													required : "Phải chọn vị trí hiển thị trên các trang khác - 別のページで選択位置表示",
+												},
+												date : {
+													required : "Phải nhập ngày đăng - 日付を入力します",
+													date : "Ngày không hợp lệ - 無効な日付"
+												},
+												numberOfDay : {
+													required : "Phải nhập số ngày hiển thị - 日付の数を入力します",
+													range : "Số ngày trong khoảng từ 1 đến 100 - 1から100までの値を入力してください。"
+												},
+												price : {
+													required : "Phải nhập giá quảng cáo - 価格広告を入力してください",
+												}
+											}
+										});
+					});
 </script>
 </head>
 <%
@@ -230,12 +233,6 @@ $(document).ready(function(){
 								trí 2</option>
 						</select>
 					</div>
-					<!-- Hiển thị -->
-					<div class="form-group">
-						<label><input type="checkbox" name="display" id="display"
-							<%=qc.getHienThi() == 1 ? "checked='checked'" : ""%>> Hiển
-							thị - ディスプレイ</label>
-					</div>
 				</div>
 				<div class="khungphai">
 					<!-- Số ngày -->
@@ -280,7 +277,9 @@ $(document).ready(function(){
 							name="Imagee" value="<%=qc.getHinhAnh()%>">
 						<p class="help-block">
 							Chọn file .png, .jpg ...<br> <img alt="Icon đại diện"
-								src="<%=qc.getHinhAnh()%>" id="fu2" height="150px">
+								src="<%=qc.getHinhAnh().substring(0, 5).equals("image") ? "../"
+					+ qc.getHinhAnh() : qc.getHinhAnh()%>"
+								id="fu2" height="150px">
 						</p>
 					</div>
 					<div class="form-group" id="trenmang" style="display: none;">
@@ -289,7 +288,9 @@ $(document).ready(function(){
 							value="<%=qc.getHinhAnh()%>">
 						<p class="help-block">
 							Chọn file .png, .jpg ...<br> <img alt="Icon đại diện"
-								src="<%=qc.getHinhAnh()%>" id="xemUrl" height="150px">
+								src="../<%=qc.getHinhAnh().substring(0, 5).equals("image") ? "../"
+					+ qc.getHinhAnh() : qc.getHinhAnh()%>"
+								id="xemUrl" height="150px">
 						</p>
 					</div>
 					<button class="btn btn-primary btn-sm" type="submit" id="createAdv"

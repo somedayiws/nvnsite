@@ -45,12 +45,12 @@ public class AdvertisementServlet extends HttpServlet {
 		} catch (NumberFormatException e) {
 			page = 1;
 		}
-//		ArrayList<QUANGCAO> listHienThi = listAdvertisement.getAdvertisement(page, true);
-//		ArrayList<QUANGCAO> listDangKy = listAdvertisement.getAdvertisement(page, false);
-//		String pageNav = listAdvertisement.getMenuPhanTrang();
-//		request.setAttribute("listHienThi", listHienThi);
-//		request.setAttribute("listDangKy", listDangKy);
-//		request.setAttribute("pageNav", pageNav);
+		ArrayList<QUANGCAO> listHienThi = listAdvertisement.getAdvertisement(page, true);
+		ArrayList<QUANGCAO> listDangKy = listAdvertisement.getAdvertisement(page, false);
+		String pageNav = listAdvertisement.getMenuPhanTrang();
+		request.setAttribute("listHienThi", listHienThi);
+		request.setAttribute("listDangKy", listDangKy);
+		request.setAttribute("pageNav", pageNav);
 		
 		RequestDispatcher requestDis = request.getRequestDispatcher("Advertisement.jsp");
 		requestDis.forward(request, response);
