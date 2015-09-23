@@ -173,8 +173,6 @@ body {
 			<!-- Quảng cáo lung tung -->
 	<!-- Lấy dữ liệu từ server gửi về -->
 			<%
-			
-			
 					/* Danh sách quảng cáo hiển thị trên trang */
 					ArrayList<QUANGCAO> listquangcao = (ArrayList<QUANGCAO>) request
 												.getAttribute("listquangcao");
