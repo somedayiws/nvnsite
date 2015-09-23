@@ -142,7 +142,9 @@ public class DangBaiVietServlet extends HttpServlet {
 					MoTa = (String) params.get("MoTa");
 					NoiDung = (String) params.get("NoiDung");
 					if(DangBai != null) {
-						if(baivietBO.ThemBaiVietJa(TieuDe, MoTa, NoiDung, TheLoai, TaiKhoan, "images/" + HinhAnh, "MoiDang")) ketqua = "them-thanhcong";
+						if(DichBai!=null && DichBai.equals("khong")) DichBai = "KhongDich";
+						else DichBai = "MoiDang";
+						if(baivietBO.ThemBaiVietJa(TieuDe, MoTa, NoiDung, TheLoai, TaiKhoan, "images/" + HinhAnh, DichBai)) ketqua = "them-thanhcong";
 						else ketqua = "them-thatbai";
 					}
 					else {
@@ -160,7 +162,9 @@ public class DangBaiVietServlet extends HttpServlet {
 					NoiDungJa = (String) params.get("NoiDungJa");
 					
 					if(DangBai != null) {
-						if(baivietBO.ThemBaiViet(TieuDeVi, MoTaVi, NoiDungVi, TieuDeJa, MoTaJa, NoiDungJa, TheLoai, TaiKhoan, "images/" + HinhAnh, "MoiDang")) ketqua = "them-thanhcong";
+						if(DichBai!=null && DichBai.equals("khong")) DichBai = "KhongDich";
+						else DichBai = "MoiDang";
+						if(baivietBO.ThemBaiViet(TieuDeVi, MoTaVi, NoiDungVi, TieuDeJa, MoTaJa, NoiDungJa, TheLoai, TaiKhoan, "images/" + HinhAnh, DichBai)) ketqua = "them-thanhcong";
 						else ketqua = "them-thatbai";
 					}
 					else baivietBO.ThemBaiViet(TieuDeVi, MoTaVi, NoiDungVi, TieuDeJa, MoTaJa, NoiDungJa, TheLoai, TaiKhoan, "images/" + HinhAnh, "SoanThao");

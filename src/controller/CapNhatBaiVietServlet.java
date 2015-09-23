@@ -18,6 +18,7 @@ import model.bean.DANHMUC;
 import model.bean.TAIKHOAN;
 import model.bo.BaiVietBO;
 import model.bo.DanhMucBO;
+import model.bo.TaiNguyenBO;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
@@ -54,6 +55,15 @@ public class CapNhatBaiVietServlet extends HttpServlet {
 					ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet("XemNhieu");
 					ArrayList<BAIVIET> topmoi = baiviet.getTopBaiViet("Moi");
 					BAIVIET bv = baiviet.getBaiViet(id);
+					TaiNguyenBO tainguyenBO = new TaiNguyenBO();
+					String sotu = tainguyenBO.getValue("SoTuDich");
+					String giaVN = tainguyenBO.getValue("ThanhTienVN");
+					String giaJA = tainguyenBO.getValue("ThanhTienJA");
+					String banggiadich = tainguyenBO.getValue("BangGiaDich");
+					request.setAttribute("sotu", sotu);
+					request.setAttribute("giaVN", giaVN);
+					request.setAttribute("giaJA", giaJA);
+					request.setAttribute("banggiadich", banggiadich);
 					request.setAttribute("baiviet", bv);
 					request.setAttribute("listdanhmuc", listdanhmuc);
 					request.setAttribute("topbaiviet", topbaiviet);
@@ -76,7 +86,7 @@ public class CapNhatBaiVietServlet extends HttpServlet {
 				String MoTa, MoTaVi, MoTaJa;
 				String TheLoai;
 				String NoiDung, NoiDungVi, NoiDungJa;
-				String DangBai;
+				String DangBai, DichBai;
 				@SuppressWarnings("unused")
 				String HinhAnh, linkan;
 				String TaiKhoan = ((TAIKHOAN)request.getSession().getAttribute("user")).getIdTaiKhoan();
@@ -111,7 +121,7 @@ public class CapNhatBaiVietServlet extends HttpServlet {
 							// Upload file l�n server
 							item.write(savedFile);
 						} catch (Exception e) {
-							e.printStackTrace();
+							System.out.println("Trùng file ban đầu.");
 						}
 					}
 				}
@@ -120,6 +130,8 @@ public class CapNhatBaiVietServlet extends HttpServlet {
 				TheLoai = (String) params.get("TheLoai");
 				linkan = (String) params.get("linkan");
 				DangBai = (String) params.get("DangBai");
+				DichBai = (String) params.get("dichbai");
+				
 				String ketqua = "";
 				if(filename == null || filename.trim().equals("")) HinhAnh = "baiviet.jpg";
 				else HinhAnh = filename;
@@ -132,7 +144,9 @@ public class CapNhatBaiVietServlet extends HttpServlet {
 //					baivietBO.CapNhatBaiVietVi(id, TieuDe, MoTa, NoiDung, TheLoai, TaiKhoan, "images/" + HinhAnh);
 					
 					if(DangBai != null){
-						if(baivietBO.CapNhatBaiVietVi(id, TieuDe, MoTa, NoiDung, TheLoai, TaiKhoan, "images/" + HinhAnh, "MoiDang")) ketqua="capnhat-thanhcong";
+						if(DichBai!=null && DichBai.equals("khong")) DichBai = "KhongDich";
+						else DichBai = "MoiDang";
+						if(baivietBO.CapNhatBaiVietVi(id, TieuDe, MoTa, NoiDung, TheLoai, TaiKhoan, "images/" + HinhAnh, DichBai)) ketqua="capnhat-thanhcong";
 						else ketqua="capnhat-thatbai";
 					}
 					else {
@@ -146,7 +160,9 @@ public class CapNhatBaiVietServlet extends HttpServlet {
 					NoiDung = (String) params.get("NoiDung");
 //					baivietBO.CapNhatBaiVietJa(id, TieuDe, MoTa, NoiDung, TheLoai, TaiKhoan, "images/" + HinhAnh);
 					if(DangBai != null) {
-						if(baivietBO.CapNhatBaiVietJa(id, TieuDe, MoTa, NoiDung, TheLoai, TaiKhoan, "images/" + HinhAnh, "MoiDang")) ketqua="capnhat-thanhcong";
+						if(DichBai!=null && DichBai.equals("khong")) DichBai = "KhongDich";
+						else DichBai = "MoiDang";
+						if(baivietBO.CapNhatBaiVietJa(id, TieuDe, MoTa, NoiDung, TheLoai, TaiKhoan, "images/" + HinhAnh, DichBai)) ketqua="capnhat-thanhcong";
 						else ketqua="capnhat-thatbai";
 					}
 					else {
@@ -166,7 +182,9 @@ public class CapNhatBaiVietServlet extends HttpServlet {
 //					baivietBO.CapNhatBaiViet(id, TieuDeVi, MoTaVi, NoiDungVi, TieuDeJa, MoTaJa, NoiDungJa, TheLoai, TaiKhoan, "images/" + HinhAnh);
 					
 					if(DangBai != null) {
-						if(baivietBO.CapNhatBaiViet(id, TieuDeVi, MoTaVi, NoiDungVi, TieuDeJa, MoTaJa, NoiDungJa, TheLoai, TaiKhoan, "images/" + HinhAnh, "MoiDang")) ketqua="capnhat-thanhcong";
+						if(DichBai!=null && DichBai.equals("khong")) DichBai = "KhongDich";
+						else DichBai = "MoiDang";
+						if(baivietBO.CapNhatBaiViet(id, TieuDeVi, MoTaVi, NoiDungVi, TieuDeJa, MoTaJa, NoiDungJa, TheLoai, TaiKhoan, "images/" + HinhAnh, DichBai)) ketqua="capnhat-thanhcong";
 						else ketqua="capnhat-thatbai";
 					}
 					else {
