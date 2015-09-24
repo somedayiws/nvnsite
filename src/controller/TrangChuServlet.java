@@ -60,7 +60,7 @@ public class TrangChuServlet extends HttpServlet {
 		ArrayList<BAIVIET> hotPosts = baiviet.getTopBaiViet("hotPosts");
 		request.setAttribute("hotPosts", hotPosts);
 		// Danh sách quảng cáo
-		ArrayList<QUANGCAO> listquangcao = quangCaoBO.getDanhSachQuangCao(1);
+		ArrayList<QUANGCAO> listquangcao = quangCaoBO.getDanhSachQuangCao((int)1);
 		request.setAttribute("listquangcao", listquangcao);
 		request.getRequestDispatcher("TrangChu.jsp").forward(request, response);
 	}

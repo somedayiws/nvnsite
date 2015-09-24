@@ -267,7 +267,7 @@
 		var giavn = $("#giavn").val();
 		var giaja = $("#giaja").val();
 		/* alert("Xem : " + value.length); */
-		$("#thongbaodich").text("Giá của bài dịch này là " + (value.split(/[ .,?!]+/).length*giavn/donvi) + "VND(" + (value.split(/[ .,?!]+/).length*giaja/donvi) + "JPY)");
+		$("#thongbaodich").text("Giá của bài dịch này là " + Math.ceil(value.split(/[ .,?!]+/).length*giavn/donvi) + "VND(" + Math.ceil(value.split(/[ .,?!]+/).length*giaja/donvi) + "JPY)");
 	}
 </script>
 <!-- Google map -->
