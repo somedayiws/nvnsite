@@ -143,8 +143,17 @@
 						<%
 							for (int i = 0; i < posts.getBinhLuanVi().size(); i++) {
 						%>
+						<div class="row">
+							<div class="col-md-10">
 						<label><span class="glyphicon glyphicon-comment"></span><%=posts.getBinhLuanVi().get(i).getTaiKhoan()
-								.getTenTaiKhoan()%></label>
+								.getTenTaiKhoan()%>								
+						</label>
+							</div>
+							<div class="col-md-2">
+								<label><span id="<%=posts.getBinhLuanVi().get(i).getIdComent() %>" class="glyphicon glyphicon-remove removeIcon"></span></label>
+							</div>
+						</div>						
+						<p><%=posts.getBinhLuanVi().get(i).getNgayDang()%></p>
 						<p class="pcomment"><%=posts.getBinhLuanVi().get(i).getPhanHoiVi()%></p>
 						<%
 							}
@@ -165,8 +174,16 @@
 						<%
 							for (int i = 0; i < posts.getBinhLuanJa().size(); i++) {
 						%>
+						<div class="row">
+						<div class="col-md-10">
 						<label><span class="glyphicon glyphicon-comment"></span><%=posts.getBinhLuanJa().get(i).getTaiKhoan()
 								.getTenTaiKhoan()%></label>
+						</div>
+						<div class="col-md-2">
+								<label><span id="<%=posts.getBinhLuanJa().get(i).getIdComent() %>" class="glyphicon glyphicon-remove removeIcon"></span></label>
+						</div>
+						</div>
+						<p><%=posts.getBinhLuanVi().get(i).getNgayDang()%></p>
 						<p class="pcomment"><%=posts.getBinhLuanJa().get(i).getPhanHoiJa()%></p>
 						<%
 							}
@@ -192,7 +209,30 @@
 			<!-- End show -->
 
 		</div>
-
+<div id="resultMessage" style="display:none;"></div>
 	</div>
+	
 </body>
+<script type="text/javascript">
+$(".removeIcon").click(function(){	
+		$.ajax({
+			url : "RemoveCommentSetvlet", //file 
+			type : "POST", //phuong thức gưi
+			data : {
+				id 	: this.id					
+			}, //dữ liệu gửi
+			async : true, //
+			success : function(res) {	
+				$("#resultMessage").html(res);
+				alert($("#resultMessage").children("#result").text());	
+				window.location = "ShowDetailPostsServlet?id=<%=posts.getIdBaiViet()%>"
+			},
+			error : function() {
+				alert('Có lỗi xảy ra');
+				$("#load").html("");
+			}
+		});	
+
+});
+</script>
 </html>

@@ -16,7 +16,7 @@ public class RestoreDataDAO {
 		
 		ArrayList<TAIKHOAN> listAccountDelete = new ArrayList<TAIKHOAN>();
 		
-		String sql_select_restore_account = "select IdTaiKhoan,TenTaiKhoan from taikhoan where CoXoa=1";
+		String sql_select_restore_account = "select IdTaiKhoan,TenTaiKhoan from taikhoan where CoXoa=1 AND TinhTrang<>'KhoaTK'";
 		ResultSet result_select_restore_account = db.getResultSet(sql_select_restore_account);
 		
 		try {

@@ -16,6 +16,15 @@
 <link rel="stylesheet" href="css/register.css">
 <link rel="stylesheet" href="css/listAccount.css">
 <title>Quản lý người dùng - ユーザーの管理</title>
+<script type="text/javascript">
+
+function delayer(){	
+    window.location = "ListAccountServlet"
+}
+
+</script>
+<style type="text/css">
+</style>
 </head>
 
 
@@ -26,7 +35,7 @@
 	TAIKHOAN[] account = (TAIKHOAN[])request.getAttribute("account");
 	String button = (String)request.getAttribute("button");		
 	//Nhận lại kết quả khôi phục
-	String result_Restore = (String)request.getAttribute("result_Restore");
+	String result_Restore = (String)request.getAttribute("result_Restore");	 
 %>
 <%if(listAccount!=null){ %>
 <script>
@@ -128,7 +137,7 @@ $(document).ready(function() {
 <%
 	}
 %>
-<body>
+<body onLoad="setTimeout('delayer()', 15000)">
 	<div class="container-fluid">
 		<%@include file="header_ver_1.jsp"%>
 		<%@include file="Menu.jsp"%>
@@ -199,7 +208,7 @@ $(document).ready(function() {
   					<div class="panel-heading">Kết quả - 結果</div>
   					<div class="panel-body">
 						<div class="table-responsive">
-							<table class="table table-hover table-condensed">
+							<table class="table table-hover table-condensed table-striped ">
 								<thead>
 									<tr>
 										<th>ID</th>
@@ -277,7 +286,8 @@ $(document).ready(function() {
 							<th>Tài khoản<br>ユーザ名</th>
 							<th>Phân quyền<br>タイプ</th>
 							<th>Ngôn ngữ<br>言語</th>
-							<th>Tình trạng<br>状態</th>
+<!-- 							<th>Tình trạng<br>状態</th> -->
+							<th></th>
 							<th></th>
 							<th></th>
 						</tr>
@@ -297,7 +307,8 @@ $(document).ready(function() {
 							<td><%=listAccount[i].getQuyenQuanTri()%></td>
 							<td><%=listAccount[i].getNgonNgu() %>								
 							</td>
-							<td><%=listAccount[i].getTinhTrang() %></td>
+<%-- 							<td><%=listAccount[i].getTinhTrang() %></td> --%>
+							<td><button type="button" <%if(listAccount[i].getQuyenQuanTri().equals("admin")){ %> disabled="disabled" <%} %> id="<%=listAccount[i].getIdTaiKhoan()%>" data-toggle="tooltip" title="Tình trạng: <%=listAccount[i].getTinhTrang() %>" class="btn btn-default btn-sm btnban" onclick="banAcc()"><span class="glyphicon glyphicon-lock"></span></button></td>
 							<td><button type="button" class="btn btn-default btn-sm"
 									data-toggle="modal"
 									data-target="#<%=listAccount[i].getIdTaiKhoan()%>">
@@ -317,6 +328,9 @@ $(document).ready(function() {
 					%>
 				</table>							
 			</div>
+			<div class="alert alert-info">
+			<strong>Tình trạng: </strong>Mới tạo(MoiTao) -> Cảnh cáo lần 1(CanhCao1) -> Cảnh cáo lần 2(CanhCao2) -> Cảnh cáo lần 3(CanhCao3) -> Khóa tài khoản(KhoaTK)
+			</div>	
 			<div id="divpage" class="menuPhanTrang">
 				<%= request.getAttribute("pageNav") %>
 			</div>
@@ -329,8 +343,9 @@ $(document).ready(function() {
 			<a href="CreateAccount.jsp"><button
 							class="btn btn-success">Tạo tài khoản<br>アカウントを作成する</button></a> <br>				
 			<a href="ShowRestoreServlet?type=account"><button class="btn btn-success">Khôi phục<br>リストア</button></a>
-		</div>	
 		</div>		
+		</div>
+		
 			<%
 				}
 				if (listAccount != null) {
@@ -458,8 +473,44 @@ $(document).ready(function() {
 				}
 				}
 			%>
-		</div>		
+		</div>
+		<div id="resultMessage" style="display:none;">
+</div>		
 	</div>
 	
 </body>
+<script type="text/javascript">
+	$(document).ready(function(){
+	    $('[data-toggle="tooltip"]').tooltip(); 	   
+	});
+	$(".btnban").click(function(){
+		var returnValue = confirm("Bạn có muốn thay đổi tình trạng người dùng hay không?"); 		  
+if(returnValue == true)
+    {
+       
+    
+			$.ajax({
+				url : "BanAccountServlet", //file 
+				type : "POST", //phuong thức gưi
+				data : {
+					id 	: this.id					
+				}, //dữ liệu gửi
+				async : true, //
+				success : function(res) {				
+					$("#resultMessage").html(res);
+					window.location = "ListAccountServlet"
+					alert($("#resultMessage").children("#result").text());					
+				},
+				error : function() {
+					alert('Có lỗi xảy ra');
+					$("#load").html("");
+				}
+			});	
+    }
+else{
+	window.location = "ListAccountServlet"
+}
+	});
+	
+	</script>
 </html>

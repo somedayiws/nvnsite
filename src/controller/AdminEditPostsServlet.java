@@ -57,9 +57,9 @@ public class AdminEditPostsServlet extends HttpServlet {
 		String view = request.getParameter("view");
 		String link = request.getParameter("link");
 		String date = request.getParameter("date");
+		String ghim = request.getParameter("ghim");
 		
-		
-		System.out.println("status: "+status);
+				
 		String resultEdit;
 		BAIVIET post = new BAIVIET();
 		
@@ -76,6 +76,7 @@ public class AdminEditPostsServlet extends HttpServlet {
 		post.setLuotXem(Integer.parseInt(view));
 		post.setLienKet(link);
 		post.setNgayDang(date);
+		post.setGimTrangChu(Integer.parseInt(ghim));
 		
 		/**update posts in database*/
 		AdminEditPostsBO adminEditPosts = new AdminEditPostsBO();

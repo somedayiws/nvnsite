@@ -46,6 +46,7 @@ $(document).ready(function(){
 //     $("#formSearchPost").submit(function(){
 //     	var typeFind = $('#typeFind').val();
 //     	var stringFind =$('#stringFind').val();
+//     	alert("typeFind: "+typeFind);    	
 //     	if(typeFind!="IdDanhMuc" || typeFind!="IdTaiKhoan"){
 //     		if(stringFind == ""){
 //     			alert("Bạn phải nhập từ cần tìm - ");

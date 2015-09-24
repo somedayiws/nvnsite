@@ -1,11 +1,13 @@
 package model.bo;
 
+import java.util.ArrayList;
+
 import model.bean.BAIVIET;
 import model.dao.ListPostsDAO;
 
 public class ListPostsBO {
 	ListPostsDAO listPosts = new ListPostsDAO();
-	public   BAIVIET[] getPosts(int page){
+	public  ArrayList<BAIVIET> getPosts(int page){
 		return listPosts.getDataPosts(page);
 	}
 	public String getMenuPhanTrang(){

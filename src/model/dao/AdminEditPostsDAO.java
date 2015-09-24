@@ -24,7 +24,7 @@ public class AdminEditPostsDAO {
 				+ post.getNoiDungJa() + "',TrangThai=N'" + post.getTrangThai() + "',GhiChu=N'"
 				+ post.getGhiChu() + "',MoTaVi=N'" + post.getMoTaVi() + "',MoTaJa=N'"
 				+ post.getMoTaJa() + "',LuotXem=N'" + post.getLuotXem() + "',LienKet='"
-				+ post.getLienKet() + "',NgayDang='" + post.getNgayDang() + "' where IdBaiViet = '"
+				+ post.getLienKet() + "',NgayDang='" + post.getNgayDang() + "',GimTrangChu='"+post.getGimTrangChu()+"' where IdBaiViet = '"
 				+ post.getIdBaiViet() + "' and CoXoa = '0'";
 		return db.updateData(sql_update_posts);
 	}

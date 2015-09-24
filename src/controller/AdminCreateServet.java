@@ -56,7 +56,7 @@ public class AdminCreateServet extends HttpServlet {
 		account.setMatKhau(password);
 		account.setQuyenQuanTri(typeUser);		
 		account.setNgonNgu(language);
-		account.setTinhTrang("Mới tạo");
+		account.setTinhTrang("MoiTao");
 		
 		
 		/** Check validate data and data exist in the system */

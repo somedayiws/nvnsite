@@ -1,6 +1,9 @@
 #divcontent{
 	margin-top: 10px;	
 }
+#Note{
+	float: left;
+}
 #divpage{
 	float: right;
 }

@@ -16,7 +16,7 @@ public class SearchPostDAO {
 	@SuppressWarnings("null")
 	public ArrayList<BAIVIET> searchPost(String typeFind,String stringFind,int page){
 		 
-		 String sql_Search = "SELECT IdBaiViet,TenBaiVietVi,TenBaiVietJa,IdDanhMuc,IdTaiKhoan,NgayDang,MotaVi,MotaJa,TrangThai FROM baiviet WHERE "+typeFind+" LIKE '%"+stringFind+"%' AND CoXoa = 0";
+		 String sql_Search = "SELECT IdBaiViet,TenBaiVietVi,TenBaiVietJa,IdDanhMuc,IdTaiKhoan,NgayDang,MotaVi,MotaJa,TrangThai FROM baiviet WHERE "+typeFind+" LIKE '%"+stringFind+"%' AND CoXoa = 0 ORDER BY NgayDang DESC";
 	
 	//	System.out.println("sql_Search: "+sql_Search);
 		db.createMenu("SearchPostServlet?typeFind="+typeFind+"&stringFind="+stringFind+"&", page, sql_Search);

@@ -56,14 +56,14 @@ public class ListAccountDAO {
 		}
 	}
 	
-	public TAIKHOAN getAccountbyId(String IdAccount){
+	public TAIKHOAN getAccountbyId(String IdAccount){		
 		TAIKHOAN accountById = new TAIKHOAN();
 		ResultSet result_select_AccountById  = null;
 		String sql_select_AccountById = "SELECT * FROM taikhoan WHERE IdTaiKhoan ='"+IdAccount+"' AND CoXoa = 0 ";
 		result_select_AccountById = db.getResultSet(sql_select_AccountById);
 		try {
 			while(result_select_AccountById.next()){
-				accountById.setIdTaiKhoan(IdAccount);
+				accountById.setIdTaiKhoan(IdAccount);				
 				accountById.setTenTaiKhoan(DinhDangSQL.DeFomatSQL(result_select_AccountById.getString("TenTaiKhoan")));
 				accountById.setMatKhau(DinhDangSQL.DeFomatSQL(result_select_AccountById.getString("MatKhau")));
 				accountById.setHoTen(DinhDangSQL.DeFomatSQL(result_select_AccountById.getString("HoTen")));				
@@ -178,6 +178,24 @@ public class ListAccountDAO {
 			}
 			System.out.println("leng " + listAccount.length);
 			return listAccount;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	
+	//Lấy trạng thái của tài khoản
+	public String getStatusAccount(String idAccount){
+		String sql_getStatusAccount = "SELECT TinhTrang FROM taikhoan WHERE IdTaiKhoan = '"+idAccount+"' AND CoXoa = 0 ";		
+		ResultSet result_getStatusAccount = db.getResultSet(sql_getStatusAccount);
+		String statusAccount = null;
+		try {
+			while(result_getStatusAccount.next()){
+				statusAccount = result_getStatusAccount.getString("TinhTrang");
+			}
+			return statusAccount;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -27,7 +27,7 @@ public class ShowAdminEditPostsDAO {
 
 	/** Get Posts by IdPost */
 	public BAIVIET getPostsById(String idPost) {
-		String sql_select_postsByid = "SELECT TenBaiVietVi,TenBaiVietJa,IdDanhMuc,IdTaiKhoan,NoiDungVi,NoiDungJa,TrangThai,GhiChu,MotaVi,MotaJa,LuotXem,Lienket,NgayDang from baiviet WHERE IdBaiViet='"
+		String sql_select_postsByid = "SELECT TenBaiVietVi,TenBaiVietJa,IdDanhMuc,IdTaiKhoan,NoiDungVi,NoiDungJa,TrangThai,GhiChu,MotaVi,MotaJa,LuotXem,Lienket,NgayDang,GimTrangChu from baiviet WHERE IdBaiViet='"
 				+ idPost + "' AND CoXoa=0";
 		ResultSet result_select_postsByid = db
 				.getResultSet(sql_select_postsByid);
@@ -61,8 +61,10 @@ public class ShowAdminEditPostsDAO {
 				post.setLuotXem(result_select_postsByid.getInt("LuotXem"));
 				post.setLienKet(DinhDangSQL.DeFomatSQL(result_select_postsByid.getString("LienKet")));
 				post.setNgayDang(DinhDangSQL.DeFomatSQL(result_select_postsByid.getString("NgayDang")));
+				post.setGimTrangChu(result_select_postsByid.getInt("GimTrangChu"));
 				post.setBinhLuanVi(comment.getCommentViById(idPost));
 				post.setBinhLuanJa(comment.getCommentJaById(idPost));
+				
 			}
 //			System.out.println("id: "+post.getIdBaiViet());
 //			System.out.println("id danh muc: "+post.getDanhMuc().getIdDanhMuc());

@@ -67,7 +67,7 @@ public class ListPostsServlet extends HttpServlet {
 		} catch (NumberFormatException e) {
 			page = 1;
 		}
-		BAIVIET[] posts = listPost.getPosts(page);
+		ArrayList<BAIVIET> posts = listPost.getPosts(page);
 		
 			
 		TAIKHOAN[] account = listaccount.getDataAccountInfor(0,listaccount.totalRecord(),"all");

@@ -7,7 +7,7 @@
 	content="text/html; charset=UTF-8; width=device-width; initial-scale=1">
 <link rel="stylesheet"
 	href="../bootstrap-3.3.5-dist/css/bootstrap.min.css">
-<script type="text/javascript" src="./jquery/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
 <script type="text/javascript"
 	src="../bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
@@ -26,13 +26,13 @@
 		<%@include file="Menu.jsp"%>
 		<div class="col-md-4 col-md-offset-4" id = "divcontent">
 			<img src="../images/congthongtin.png" class=img-responsive alt="Cổng thông tin">
-			<marquee direction="left"><h2>Chào mừng bạn đến với trang Admin<br>歓迎へ管理者</h2></marquee>
+			<marquee direction="left"><h2>Chào mừng bạn đến với trang Admin<br>管理者のホームページへようこそ</h2></marquee>
 		</div>		
 	</div>
 	<%}else{%>
 			<h1>404 - Không tìm thấy trang</h1>
 	<%}
 	%>
-	
+</div>
 </body>
 </html>

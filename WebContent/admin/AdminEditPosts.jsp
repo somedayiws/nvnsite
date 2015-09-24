@@ -29,7 +29,7 @@
 	BAIVIET post = (BAIVIET) request.getAttribute("post");
 	String from = (String)request.getAttribute("from");
 	
-	System.out.println("from: "+from);
+	//System.out.println("from: "+from);
 	
 %>
 
@@ -235,6 +235,14 @@
 					<div class="form-group">
 						<label>Ngày đăng - </label>
 						<input type="text" name="date" class="form-control" value="<%=post.getNgayDang()%>" readonly="readonly">
+					</div>
+					<!-- Ghim trang chủ -->
+					<div class="form-group">
+						<label>Ghim trang chủ - </label>
+						<select class="form-control" id="ghim" name="ghim">
+							<option value="1" <%if(post.getGimTrangChu()==1){ %> selected="selected" <%} %>>Ghim trang chủ</option>
+							<option value="0" <%if(post.getGimTrangChu()==0){ %> selected="selected" <%} %>>Không ghim trang chủ</option>									
+						</select>
 					</div>
 					
 					<div class="col-md-6 col-md-offset-3 form-group">

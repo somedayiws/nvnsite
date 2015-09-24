@@ -46,6 +46,7 @@ $(document).ready(function(){
 //     $("#formSearchPost").submit(function(){
 //     	var typeFind = $('#typeFind').val();
 //     	var stringFind =$('#stringFind').val();
+//     	alert("typeFind: "+typeFind);    	
 //     	if(typeFind!="IdDanhMuc" || typeFind!="IdTaiKhoan"){
 //     		if(stringFind == ""){
 //     			alert("Bạn phải nhập từ cần tìm - ");
@@ -60,7 +61,7 @@ $(document).ready(function(){
 </head>
 <%
 	//Receive data from server
-	BAIVIET[] posts = (BAIVIET[]) request.getAttribute("posts");	
+	ArrayList<BAIVIET> posts = (ArrayList<BAIVIET>) request.getAttribute("posts");	
 	TAIKHOAN[] account = (TAIKHOAN[]) request.getAttribute("account");
 	//Nhận kết quả xóa từ servlet AdminDeletePostsServlet
 	String resultDelete = (String) request.getAttribute("resultDelete");
@@ -95,7 +96,7 @@ $(document).ready(function(){
 			<%
 				}
 			%>
-			<div class="row">
+			<div class="khoiphuc">
 				<div id="btnRestore" class="col-md-1 form-group">
 					<a href="ShowRestoreServlet?type=posts"><button
 							class="btn btn-success btn-sm">Khôi phục</button></a>
@@ -103,7 +104,7 @@ $(document).ready(function(){
 			</div>
 			
 			<!----------------------- Form tìm kiếm ----------------------->
-		<div class="col-md-10 col-md-offset-1">
+		<div class="col-md-12 col-md-offset-1">
 			<form action="SearchPostServlet" method="get" id="formSearchPost">
 				<h4 class="col-sm-1">Tìm kiếm</h4>
 				<div class="col-sm-3 form-group">
@@ -167,12 +168,13 @@ $(document).ready(function(){
 				</form>								
 		</div>
 		<!----------------------- End form tìm kiếm ------------------->
-		
-			<!-- Show result all posts in database -->
+		<!-- ------------------------------------------------------- -->
+		<!-- ----------Show result all posts in database------------ -->
+		<!-- ------------------------------------------------------- -->
 			<%
 				if (posts != null) {
 			%>
-			<div class="col-md-10 col-md-offset-1 table-responsive panel panel-primary">
+			<div class="col-md-12 table-responsive panel panel-primary">
 			 <div class="panel-heading">Bài viết</div>
 			 <div class="panel-body">
 				<table class="table table-hover table-condensed">
@@ -192,29 +194,38 @@ $(document).ready(function(){
 					</thead>
 					<tbody>
 						<%
-							for (int i = 0; i < posts.length; i++) {
+							for (int i = 0; i < posts.size(); i++) {
 						%>
 						<tr>							
-							<td><%=posts[i].getIdBaiViet()%></td>
-							<td><%=posts[i].getTenBaiVietVi()%> - <%=posts[i].getTenBaiVietJa()%></td>
-							<td><%=posts[i].getDanhMuc().getTenDanhMucVi()%> - <%=posts[i].getDanhMuc().getTenDanhMucJa()%></td>
-							<td><%=posts[i].getTaiKhoan().getTenTaiKhoan()%></td>
-							<td><%=posts[i].getNgayDang()%></td>
-							<td><%=posts[i].getMoTaVi()%> - <%=posts[i].getMoTaJa()%></td>
-							<td><%=posts[i].getTrangThai()%></td>
+							<td><%=posts.get(i).getIdBaiViet()%></td>
+							<td><%=posts.get(i).getTenBaiVietVi()==null?"":posts.get(i).getTenBaiVietVi()%><%=posts.get(i).getTenBaiVietJa()==null?"":"<br>"+posts.get(i).getTenBaiVietJa()%></td>
+							<td><%=posts.get(i).getDanhMuc().getTenDanhMucVi()%> - <%=posts.get(i).getDanhMuc().getTenDanhMucJa()%></td>
+							<td><%=posts.get(i).getTaiKhoan().getTenTaiKhoan()%></td>
+							<td><%=posts.get(i).getNgayDang()%></td>
+							<td>
+							<!-- 
+							(slidePosts.get(i).getMoTaVi().length()>90 ? (slidePosts.get(i).getMoTaVi().substring(0, 90)+"..."): slidePosts.get(i).getMoTaVi())
+							 -->
+							<%=posts.get(i).getMoTaVi()==null?"":(posts.get(i).getMoTaVi().length()>90?(posts.get(i).getMoTaVi().substring(0, 90)+"..."):posts.get(i).getMoTaVi())%>
+							<%=posts.get(i).getMoTaJa()==null?"":"<br>"+(posts.get(i).getMoTaJa().length()>60?(posts.get(i).getMoTaJa().substring(0, 60)+"..."):posts.get(i).getMoTaJa())%>
+							</td>
+							<td>
+							<%=posts.get(i).getTrangThai().equals("MoiDang")?"Mới Đăng":posts.get(i).getTrangThai().equals("KhongDich")?"Không Dịch":posts.get(i).getTrangThai().equals("OK")?"Đã Post":posts.get(i).getTrangThai().equals("DangDich")?"Đang Dịch":"Xóa Bài"%>
+							</td>
+							<td><button type="button" id="<%=posts.get(i).getIdBaiViet()%>" class="btn btn-primary btn-sm btnbookmark"><span class="glyphicon glyphicon-bookmark"></span></button></td>
 							<td><a
-								href="ShowDetailPostsServlet?id=<%=posts[i].getIdBaiViet()%>" data-toggle="tooltip" title="Chi tiết - 詳細"><button
+								href="ShowDetailPostsServlet?id=<%=posts.get(i).getIdBaiViet()%>" data-toggle="tooltip" title="Chi tiết - 詳細"><button
 										type="button" class="btn btn-primary btn-sm">
 										<span class="glyphicon glyphicon-list-alt"></span>
 									</button> </a></td>
 							<td><a
-								href="<%if(posts[i].getTrangThai().contains("OK") || posts[i].getTrangThai().contains("DangDich") ){ %>#<%}else{ %> ./ShowAdminEditPostsServlet?idPost=<%=posts[i].getIdBaiViet()%>&from=list<%}%>" data-toggle="tooltip" title="Chỉnh sửa - 編集"><button
-										type="button" class="btn btn-primary btn-sm"<%if(posts[i].getTrangThai().contains("OK") || posts[i].getTrangThai().contains("DangDich")){ %> disabled="disabled" <%} %>>
+								href="<%if(posts.get(i).getTrangThai().contains("OK") || posts.get(i).getTrangThai().contains("DangDich") ){ %>#<%}else{ %> ./ShowAdminEditPostsServlet?idPost=<%=posts.get(i).getIdBaiViet()%>&from=list<%}%>" data-toggle="tooltip" title="Chỉnh sửa - 編集"><button
+										type="button" class="btn btn-primary btn-sm"<%if(posts.get(i).getTrangThai().contains("OK") || posts.get(i).getTrangThai().contains("DangDich")){ %> disabled="disabled" <%} %>>
 										<span class="glyphicon glyphicon-pencil"> </span> 
 									</button></a></td>
 							<td><a href="#" data-toggle="tooltip" title="Xóa - 削除"><button type="button" class="btn btn-primary btn-sm"
 									data-toggle="modal" 
-									data-target="#delete<%=posts[i].getIdBaiViet()%>">
+									data-target="#delete<%=posts.get(i).getIdBaiViet()%>">
 									<span class="glyphicon glyphicon-remove"></span> 
 								</button></a></td>
 						</tr>
@@ -241,11 +252,11 @@ $(document).ready(function(){
 			<!-- End show -->
 			<%
 				if (posts != null) {
-					for (int i = 0; i < posts.length; i++) {
+					for (int i = 0; i < posts.size(); i++) {
 			%>
 
 			<!-- Model Delete -->
-			<div class="modal fade" id="delete<%=posts[i].getIdBaiViet()%>">
+			<div class="modal fade" id="delete<%=posts.get(i).getIdBaiViet()%>">
 				<div class="modal-dialog">
 
 					<!-- Modal content-->
@@ -263,7 +274,7 @@ $(document).ready(function(){
 								<div class="form-group">
 									<label>ID Bài viết<span class="rq"> * </span>:
 									</label> <input type="text" class="form-control" maxlength="10"
-										name="Idposts" value="<%=posts[i].getIdBaiViet()%>"
+										name="Idposts" value="<%=posts.get(i).getIdBaiViet()%>"
 										readonly="readonly">
 								</div>
 								<button type="submit" class="btn btn-success btn-lg">Xóa</button>
@@ -284,7 +295,31 @@ $(document).ready(function(){
 				}
 			%>
 		</div>
+		<div id="resultMessage" style="display:none;">
 	</div>
 	
 </body>
+<script type="text/javascript">	
+	$(".btnbookmark").click(function(){
+		
+    
+			$.ajax({
+				url : "BookmarkInHomeServlet", //file 
+				type : "POST", //phuong thức gưi
+				data : {
+					id 	: this.id					
+				}, //dữ liệu gửi
+				async : true, //
+				success : function(res) {				
+					$("#resultMessage").html(res);					
+					alert($("#resultMessage").children("#result").text());					
+				},
+				error : function() {
+					alert('Có lỗi xảy ra');
+					$("#load").html("");
+				}
+			});	    
+	});
+	
+	</script>
 </html>

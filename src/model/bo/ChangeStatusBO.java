@@ -22,4 +22,24 @@ public class ChangeStatusBO {
 	public void updateStatusHistory(String status,String idPosts,String idAccount){
 		change.updateStatusHistory(status, idPosts, idAccount);
 	}
+	
+	//Thay đổi trạng thái tài khoản
+	public boolean changeStatusAccount(String idAccount, String statusChange){
+		return change.changeStatusAccount(idAccount, statusChange);
+	}
+	
+	//Đếm tra các bài viết đã ghim
+	public int numberOfPostsBookmark(){
+		return change.numberOfPostsBookmark();
+	} 
+	
+	//Thay đổi trạng thái ghim bài viết
+	public boolean changeBookmark(String idPost){
+		return change.changeBookmark(idPost);
+	}
+	
+	//Lấy trường GimTrangChu
+		public int getPostBookmarkById(String idPost){
+			return change.getPostBookmarkById(idPost);
+		}
 }

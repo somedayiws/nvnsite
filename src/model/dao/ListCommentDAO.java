@@ -14,7 +14,7 @@ public class ListCommentDAO {
 	public ArrayList<BINHLUAN> getCommentViById(String idPosts){
 	ArrayList<BINHLUAN> listcommentVi = new ArrayList<BINHLUAN>();
 	
-	String sql_select_CommentById_Vi = "SELECT IdComent,IdTaiKhoan,PhanHoiVi FROM binhluan WHERE IdBaiViet = '"+idPosts+"' AND CoXoa = 0";
+	String sql_select_CommentById_Vi = "SELECT IdComent,IdTaiKhoan,PhanHoiVi,NgayDang FROM binhluan WHERE IdBaiViet = '"+idPosts+"' AND CoXoa = 0";
 	ResultSet result_select_CommentViById = db.getResultSet(sql_select_CommentById_Vi);
 	String idAccount;
 	try {
@@ -25,7 +25,8 @@ public class ListCommentDAO {
 			idAccount = result_select_CommentViById.getString("IdTaiKhoan");			
 			comment.setTaiKhoan(account.getAccountbyId(idAccount));
 			
-			comment.setPhanHoiVi(DinhDangSQL.DeFomatSQL(result_select_CommentViById.getString("PhanHoiVi")));			
+			comment.setPhanHoiVi(DinhDangSQL.DeFomatSQL(result_select_CommentViById.getString("PhanHoiVi")));
+			comment.setNgayDang(result_select_CommentViById.getString("NgayDang"));
 			listcommentVi.add(comment);
 			
 		}
@@ -41,7 +42,7 @@ public class ListCommentDAO {
 	public ArrayList<BINHLUAN> getCommentJaById(String idPosts){
 	ArrayList<BINHLUAN> listcommentJa = new ArrayList<BINHLUAN>();
 	
-	String sql_select_CommentById_Ja = "SELECT IdComent,IdTaiKhoan,PhanHoiJa FROM binhluan WHERE IdBaiViet = '"+idPosts+"' AND CoXoa = 0";
+	String sql_select_CommentById_Ja = "SELECT IdComent,IdTaiKhoan,PhanHoiJa,NgayDang FROM binhluan WHERE IdBaiViet = '"+idPosts+"' AND CoXoa = 0";
 	ResultSet result_select_CommentJaById = db.getResultSet(sql_select_CommentById_Ja);
 	String idAccount;
 	try {
@@ -52,7 +53,8 @@ public class ListCommentDAO {
 			idAccount = result_select_CommentJaById.getString("IdTaiKhoan");			
 			comment.setTaiKhoan(account.getAccountbyId(idAccount));
 			
-			comment.setPhanHoiJa(DinhDangSQL.DeFomatSQL(result_select_CommentJaById.getString("PhanHoiJa")));				
+			comment.setPhanHoiJa(DinhDangSQL.DeFomatSQL(result_select_CommentJaById.getString("PhanHoiJa")));
+			comment.setNgayDang(result_select_CommentJaById.getString("NgayDang"));
 			listcommentJa.add(comment);
 			
 		}
@@ -63,9 +65,11 @@ public class ListCommentDAO {
 		return null;
 	}
 	}
-//	public static void main(String[] args) {
-//		for(int i=0;i<getCommentById("BV01").size();i++){
-//			System.out.println("ID: "+getCommentById("BV01").get(i).getIdComent());
-//		}
-//	}
+	
+	//Xóa bình luận
+	public boolean deleteComment(String idComment){
+		String sql_deleteComment = "DELETE FROM binhluan WHERE IdComent = '"+idComment+"'";
+		return db.updateData(sql_deleteComment);
+		
+	}
 }

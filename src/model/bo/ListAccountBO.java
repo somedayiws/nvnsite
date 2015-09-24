@@ -34,5 +34,10 @@ public class ListAccountBO {
 		return lisAccount.getDataAcountInfor(page);
 	}
 	
+	//Lấy trạng thái của tài khoản
+	public String getStatusAccount(String idAccount){
+		return lisAccount.getStatusAccount(idAccount);
+	}
+	
 
 }
