@@ -74,6 +74,33 @@ public class QuangCaoDAO {
 		}
 		return null;
 	}
+	/*
+	 * Lấy danh sách quảng cáo sắp xếp theo vị trí return ArrayList<QUANGCAO>
+	 */
+	public ArrayList<QUANGCAO> getDanhSachQuangCao(int page) {
+		// TODO Auto-generated method stub
+		ArrayList<QUANGCAO> list = new ArrayList<QUANGCAO>();
+		ResultSet rs = null;
+		String sql = "select IdQuangCao, LienKet, HinhAnh, ViTri from quangcao where HienThi = 1 and TrangHienThi="+page+" order by ViTri asc";
+		rs = db.getResultSet(sql);
+		try {
+			while (rs.next()) {
+				QUANGCAO qc = new QUANGCAO();
+				qc.setIdQuangCao(rs.getInt("IdQuangCao"));
+				qc.setLienKet(DinhDangSQL.DeFomatSQL(rs
+						.getString("LienKet")));
+				qc.setHinhAnh(DinhDangSQL.DeFomatSQL(rs
+						.getString("HinhAnh")));
+				qc.setViTri(rs.getInt("ViTri"));
+				list.add(qc);
+			}
+			return list;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public boolean xoaQuangCao(String idQC) {
 		// TODO Auto-generated method stub

@@ -415,7 +415,7 @@ body {
 			<!-- 			Quảng cáo banner -->
 			<div class="col-sm-3 col-md-3">
 				<div class="adv300x600">
-						<a href="<%=listquangcao.get(3).getLienKet()%>"><img src="<%=listquangcao.get(3).getHinhAnh()%>"></a>
+						<a href="<%=listquangcao.get(5).getLienKet()%>"><img src="<%=listquangcao.get(5).getHinhAnh()%>"></a>
 				</div>
 			</div>
 			<!-- 			Quảng cáo banner -->

@@ -122,7 +122,6 @@
 															success : function(res) {
 																$("#baiviet").append(res);
 																nbaiviet = parseInt($("#baiviet").children().size()-1);
-																alert("Xem : " + nbaiviet);
 																$("#load").html("");
 															},
 															error : function() {
