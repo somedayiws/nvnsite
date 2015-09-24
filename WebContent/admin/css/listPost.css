@@ -9,6 +9,8 @@
 }
 .khoiphuc {
     position: absolute;
-    margin-left: 81%;
     z-index: 999;
+    left: 0px!important;
+width: 100%;
+margin: 0px;
 }
