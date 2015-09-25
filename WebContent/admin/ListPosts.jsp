@@ -62,7 +62,7 @@ $(document).ready(function(){
 <%
 	//Receive data from server
 	ArrayList<BAIVIET> posts = (ArrayList<BAIVIET>) request.getAttribute("posts");	
-	TAIKHOAN[] account = (TAIKHOAN[]) request.getAttribute("account");
+	ArrayList<TAIKHOAN> accounts = (ArrayList<TAIKHOAN>) request.getAttribute("accounts");
 	//Nhận kết quả xóa từ servlet AdminDeletePostsServlet
 	String resultDelete = (String) request.getAttribute("resultDelete");
 	//Nhận kết quả khôi phục tu servlet showrestoreServlet
@@ -96,7 +96,7 @@ $(document).ready(function(){
 			<%
 				}
 			%>
-			<div class="khoiphuc">
+			<div class="row">
 				<div id="btnRestore" class="col-md-1 form-group">
 					<a href="ShowRestoreServlet?type=posts"><button
 							class="btn btn-success btn-sm">Khôi phục</button></a>
@@ -104,7 +104,7 @@ $(document).ready(function(){
 			</div>
 			
 			<!----------------------- Form tìm kiếm ----------------------->
-		<div class="col-md-12 col-md-offset-1">
+		<div class="col-md-10 col-md-offset-1">
 			<form action="SearchPostServlet" method="get" id="formSearchPost">
 				<h4 class="col-sm-1">Tìm kiếm</h4>
 				<div class="col-sm-3 form-group">
@@ -147,11 +147,11 @@ $(document).ready(function(){
 				</div>
 				
 					<div class="col-sm-5 form-group" id="typeAccount">
-					<%if(account!=null){ %>
+					<%if(accounts!=null){ %>
 					<select class="form-control" id="stringFind" name="stringFindAccount">
 						<option value="0" selected="selected" disabled="disabled">Chọn tài khoản - </option>
-						<%for(int i=0;i<account.length;i++){ %>
-							<option value="<%=account[i].getIdTaiKhoan()%>"><%=account[i].getTenTaiKhoan()%></option>
+						<%for(int i=0;i<accounts.size();i++){ %>
+							<option value="<%=accounts.get(i).getIdTaiKhoan()%>"><%=accounts.get(i).getTenTaiKhoan()%></option>
 						<%} %>
 													
 					</select>
@@ -174,7 +174,7 @@ $(document).ready(function(){
 			<%
 				if (posts != null) {
 			%>
-			<div class="col-md-12 table-responsive panel panel-primary">
+			<div class="col-md-10 col-md-offset-1 table-responsive panel panel-primary">
 			 <div class="panel-heading">Bài viết</div>
 			 <div class="panel-body">
 				<table class="table table-hover table-condensed">
@@ -198,20 +198,12 @@ $(document).ready(function(){
 						%>
 						<tr>							
 							<td><%=posts.get(i).getIdBaiViet()%></td>
-							<td><%=posts.get(i).getTenBaiVietVi()==null?"":posts.get(i).getTenBaiVietVi()%><%=posts.get(i).getTenBaiVietJa()==null?"":"<br>"+posts.get(i).getTenBaiVietJa()%></td>
+							<td><%=posts.get(i).getTenBaiVietVi()%> - <%=posts.get(i).getTenBaiVietJa()%></td>
 							<td><%=posts.get(i).getDanhMuc().getTenDanhMucVi()%> - <%=posts.get(i).getDanhMuc().getTenDanhMucJa()%></td>
 							<td><%=posts.get(i).getTaiKhoan().getTenTaiKhoan()%></td>
 							<td><%=posts.get(i).getNgayDang()%></td>
-							<td>
-							<!-- 
-							(slidePosts.get(i).getMoTaVi().length()>90 ? (slidePosts.get(i).getMoTaVi().substring(0, 90)+"..."): slidePosts.get(i).getMoTaVi())
-							 -->
-							<%=posts.get(i).getMoTaVi()==null?"":(posts.get(i).getMoTaVi().length()>90?(posts.get(i).getMoTaVi().substring(0, 90)+"..."):posts.get(i).getMoTaVi())%>
-							<%=posts.get(i).getMoTaJa()==null?"":"<br>"+(posts.get(i).getMoTaJa().length()>60?(posts.get(i).getMoTaJa().substring(0, 60)+"..."):posts.get(i).getMoTaJa())%>
-							</td>
-							<td>
-							<%=posts.get(i).getTrangThai().equals("MoiDang")?"Mới Đăng":posts.get(i).getTrangThai().equals("KhongDich")?"Không Dịch":posts.get(i).getTrangThai().equals("OK")?"Đã Post":posts.get(i).getTrangThai().equals("DangDich")?"Đang Dịch":"Xóa Bài"%>
-							</td>
+							<td><%=posts.get(i).getMoTaVi()%> - <%=posts.get(i).getMoTaJa()%></td>
+							<td><%=posts.get(i).getTrangThai()%></td>
 							<td><button type="button" id="<%=posts.get(i).getIdBaiViet()%>" class="btn btn-primary btn-sm btnbookmark"><span class="glyphicon glyphicon-bookmark"></span></button></td>
 							<td><a
 								href="ShowDetailPostsServlet?id=<%=posts.get(i).getIdBaiViet()%>" data-toggle="tooltip" title="Chi tiết - 詳細"><button
@@ -294,6 +286,7 @@ $(document).ready(function(){
 				}
 				}
 			%>
+		</div>
 		</div>
 		<div id="resultMessage" style="display:none;">
 	</div>

@@ -74,13 +74,13 @@ public class SendPostServlet extends HttpServlet {
 			
 			ListStatusHistoryBO listStatus = new ListStatusHistoryBO();
 			String status = listStatus.getStatus(idPost);
-			TAIKHOAN[] listAccount = listAcc.getDataAccountInfor(0,listAcc.totalRecord(),"CTV");
+			ArrayList<TAIKHOAN> listAccountCTV = listAcc.getDataAccountInfor(0,listAcc.totalRecord(),"CTV");
 			ArrayList<TAIKHOAN> listAccountByStatus = getAcc.listAccountByStatus("HuyDich");
 			
 			request.setAttribute("languagePost", languagePost);
 			request.setAttribute("listAccountByStatus", listAccountByStatus);
 			request.setAttribute("idPost", idPost);
-			request.setAttribute("listAccount", listAccount);
+			request.setAttribute("listAccountCTV", listAccountCTV);
 			request.setAttribute("status", status);
 			RequestDispatcher requestDis = request
 					.getRequestDispatcher("SendPost.jsp");

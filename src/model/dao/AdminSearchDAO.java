@@ -27,7 +27,7 @@ public class AdminSearchDAO {
 			TAIKHOAN[] account = new TAIKHOAN[numberOfAcc];
 		System.out.println("numberOfAcc: "+numberOfAcc);
 			String sql_select_account = "SELECT * FROM TAIKHOAN WHERE "
-					+ typeFind + "='" + stringFind + "' AND CoXoa = 0";
+					+ typeFind + "='" + stringFind + "' AND CoXoa = 0 ";
 			System.out.println("sql_select_account: "+sql_select_account);
 		ResultSet result_select = db.getResultSet(sql_select_account);		
 		while (result_select.next())

@@ -2,12 +2,14 @@ package model.bo;
 
 
 
+import java.util.ArrayList;
+
 import model.bean.TAIKHOAN;
 import model.dao.ListAccountDAO;
 
 public class ListAccountBO {
 	ListAccountDAO lisAccount  = new ListAccountDAO();
-	public TAIKHOAN[] getDataAccountInfor(int start,int limit,String status)
+	public ArrayList<TAIKHOAN> getDataAccountInfor(int start,int limit,String status)
 	{
 		
 		return lisAccount.getDataAcountInfor(start,limit,status);
@@ -29,7 +31,7 @@ public class ListAccountBO {
 		lisAccount.setMenu(nBangghi, ntrang);
 	}
 
-	public TAIKHOAN[] getDataAccountInfor(int page) {
+	public ArrayList<TAIKHOAN> getDataAccountInfor(int page) {
 		// TODO Auto-generated method stub
 		return lisAccount.getDataAcountInfor(page);
 	}

@@ -42,6 +42,8 @@ public class AdminEditServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		
+		String type = request.getParameter("type");
+		
 		String name = request.getParameter("name");
 		String adress = request.getParameter("adress");
 		String phone = request.getParameter("phone");
@@ -50,7 +52,11 @@ public class AdminEditServlet extends HttpServlet {
 		String typeUser = request.getParameter("typeUser");
 		String language = request.getParameter("language");
 		String status = request.getParameter("status");
-				
+		
+		System.out.println("type: "+type);
+		System.out.println("typeUser: "+typeUser);
+		System.out.println("language: "+language);
+		System.out.println("status: "+status);
 		
 		TAIKHOAN account = new TAIKHOAN();
 		AdminEditBO adminEdit = new AdminEditBO();
@@ -61,9 +67,8 @@ public class AdminEditServlet extends HttpServlet {
 		account.setDienThoai(phone);
 		account.setEmail(email);
 		account.setTenTaiKhoan(username);
-		account.setQuyenQuanTri(typeUser);
-		if(!typeUser.equals("CTV")) account.setNgonNgu(null);
-		else account.setNgonNgu(language);
+		account.setQuyenQuanTri(typeUser);		
+		account.setNgonNgu(language);
 		account.setTinhTrang(status);
 		
 		if(adminEdit.checkAccount(account))
@@ -72,18 +77,26 @@ public class AdminEditServlet extends HttpServlet {
 			if(adminEdit.updateAccount(account))
 			{
 				//Update success
-				resultSubmit = "Update success";
+				resultSubmit = "Cập nhật thành công";
 			}
 			else
 			{
 				//Update fail
-				resultSubmit = "Update fail";
+				resultSubmit = "Cập nhật thất bại";
 			
 			}
+			
 			request.setAttribute("result", resultSubmit);
-			RequestDispatcher requestDis_error = request
-					.getRequestDispatcher("ListAccountServlet");
-			requestDis_error.forward(request, response);
+			RequestDispatcher requestDispatcher = null;
+			if(type.equals("CTV")){
+				requestDispatcher = request
+					.getRequestDispatcher("CTVServlet");
+			}
+			else{
+				requestDispatcher = request
+						.getRequestDispatcher("ListAccountServlet");
+			}
+			requestDispatcher.forward(request, response);
 		}
 		else
 		{

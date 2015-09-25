@@ -89,14 +89,14 @@ public class SearchPostServlet extends HttpServlet {
 //		for(int i=0;i<posts.size();i++){
 //			System.out.println("post["+i+"]: "+posts.get(i).getIdBaiViet());
 //		}
-		TAIKHOAN[] account = listaccount.getDataAccountInfor(0,listaccount.totalRecord(),"all");
+		ArrayList<TAIKHOAN> accounts = listaccount.getDataAccountInfor(0,listaccount.totalRecord(),"all");
 		ArrayList<DANHMUC> category = listcategory.getCategory(-1);
 		String pageNav = searchPostBo.getMenuPhanTrang();		
 		
 		
 		request.setAttribute("pageNav", pageNav);
 		request.setAttribute("posts", posts);
-		request.setAttribute("account", account);
+		request.setAttribute("accounts", accounts);
 		request.setAttribute("category", category);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("SearchPosts.jsp");
 		requestDispatcher.forward(request, response);

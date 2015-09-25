@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -50,8 +51,8 @@ public class SendAgainServlet extends HttpServlet {
 		 request.setAttribute("idPost", idPost);
 		 request.setAttribute("accountErrorTranslate", accountErrorTranslate);
 		 ListAccountBO listAcc = new ListAccountBO();
-		 TAIKHOAN[] listAccount = listAcc.getDataAccountInfor(1);
-		 request.setAttribute("listAccount", listAccount);
+		 ArrayList<TAIKHOAN> accounts = listAcc.getDataAccountInfor(1);
+		 request.setAttribute("accounts", accounts);
 		 request.setAttribute("status", status);
 			RequestDispatcher requestDis = request
 					.getRequestDispatcher("SendPost.jsp");

@@ -70,7 +70,7 @@ public class ListPostsServlet extends HttpServlet {
 		ArrayList<BAIVIET> posts = listPost.getPosts(page);
 		
 			
-		TAIKHOAN[] account = listaccount.getDataAccountInfor(0,listaccount.totalRecord(),"all");
+		ArrayList<TAIKHOAN> accounts = listaccount.getDataAccountInfor(0,listaccount.totalRecord(),"all");
 		ArrayList<DANHMUC> category = listcategory.getCategory(-1);
 //		if(pageNavSearch==null){
 		String pageNav = listPost.getMenuPhanTrang();		
@@ -82,7 +82,7 @@ public class ListPostsServlet extends HttpServlet {
 //		}
 		
 		request.setAttribute("posts", posts);
-		request.setAttribute("account", account);
+		request.setAttribute("accounts", accounts);
 		request.setAttribute("category", category);
 //		//gởi kết quả tìm kiếm
 //		request.setAttribute("listposts", listposts);

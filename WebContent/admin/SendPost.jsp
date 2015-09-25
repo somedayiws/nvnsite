@@ -1,3 +1,4 @@
+<%@page import="com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array"%>
 <%@page import="model.bean.TAIKHOAN"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -25,7 +26,7 @@
 </head>
 <%
 	/**Receive data from server*/
-	TAIKHOAN[] listAccount = (TAIKHOAN[]) request.getAttribute("listAccount");
+	ArrayList<TAIKHOAN> listAccountCTV = (ArrayList<TAIKHOAN>) request.getAttribute("listAccountCTV");
 
 	
 
@@ -121,14 +122,14 @@
 						}
 					}
 					else{
-						if (listAccount != null) {													
-							for (int i = 0; i < listAccount.length; i++) {
+						if (listAccountCTV != null) {													
+							for (int i = 0; i < listAccountCTV.size(); i++) {
 					%>
 					<tr>
-						<td><%=listAccount[i].getIdTaiKhoan() %></td>
-						<td><%=listAccount[i].getTenTaiKhoan() %></td>
-						<td><%=listAccount[i].getEmail() %></td>
-						<td><%=listAccount[i].getNgonNgu() %></td>	
+						<td><%=listAccountCTV.get(i).getIdTaiKhoan() %></td>
+						<td><%=listAccountCTV.get(i).getTenTaiKhoan() %></td>
+						<td><%=listAccountCTV.get(i).getEmail() %></td>
+						<td><%=listAccountCTV.get(i).getNgonNgu() %></td>	
 						
 						<!-- Nếu ngôn ngữ bài viết là tiếng việt thì gợi ý ctv có ngôn ngữ là tiếng nhật nghĩa là không cho ctv có ngôn ngữ tiếng việt dịch
 							Nếu ngôn ngữ bài viết là tiếng nhật thì gợi ý ctv có ngôn ngữ là tiếng việt nghĩa là không cho ctv có ngôn ngữ tiếng nhật dịch
@@ -137,7 +138,7 @@
 						 <td><button class="btn btn-primary" data-toggle="modal" 
 						 <%if(languagePost == "1"){
 							 //Ngôn ngữ bài viết là tiếng việt							 
-								if(listAccount[i].getNgonNgu().equals("vi")){
+								if(listAccountCTV.get(i).getNgonNgu().equals("vi")){
 									//Ngôn ngữ ctv là tiếng việt							
 						%>
 								disabled="disabled"
@@ -145,12 +146,12 @@
 								
 						 } else if( languagePost == "2") {
 							//Ngôn ngữ bài viết là tiếng nhật
-								if(listAccount[i].getNgonNgu().equals("ja")){
+								if(listAccountCTV.get(i).getNgonNgu().equals("ja")){
 									//Ngôn ngữ ctv là tiếng nhật
 						%>
 							disabled="disabled"
 						<%}} %> 
-						data-target="#myModal<%=listAccount[i].getIdTaiKhoan()%>">Chuyển
+						data-target="#myModal<%=listAccountCTV.get(i).getIdTaiKhoan()%>">Chuyển
 								bài - 投稿を送信</button></td>
 					</tr>
 					<%}
@@ -161,8 +162,8 @@
 				</tbody>
 			</table>
 			<!-- Modal -->
-			<%for(int i=0;i<listAccount.length;i++){ %>
-			<div id="myModal<%=listAccount[i].getIdTaiKhoan()%>"
+			<%for(int i=0;i<listAccountCTV.size();i++){ %>
+			<div id="myModal<%=listAccountCTV.get(i).getIdTaiKhoan()%>"
 				class="modal fade" role="dialog">
 				<div class="modal-dialog">
 
@@ -183,8 +184,8 @@
 									type="text" class="form-control" placeholder="From - から: admin"
 									readonly="readonly"> <input type="text"
 									class="form-control" name="idAccount"
-									placeholder="To - まで: <%=listAccount[i].getTenTaiKhoan()%>"
-									value="<%=listAccount[i].getIdTaiKhoan()%>" readonly="readonly">
+									placeholder="To - まで: <%=listAccountCTV.get(i).getTenTaiKhoan()%>"
+									value="<%=listAccountCTV.get(i).getIdTaiKhoan()%>" readonly="readonly">
 
 								<div class="form-group">
 									<label>Lời nhắn - メッセージ:</label>

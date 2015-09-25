@@ -62,12 +62,12 @@ public class ShowAdminEditPostsServlet extends HttpServlet {
 		ShowAdminEditPostsBO editPosts = new ShowAdminEditPostsBO();
 		 
 		ArrayList<DANHMUC> categorys = listCategory.getCategory(1);
-		TAIKHOAN[] account = listAccount.getDataAccountInfor(1);
+		ArrayList<TAIKHOAN> accounts = listAccount.getDataAccountInfor(1);
 		BAIVIET post = editPosts.post(idpost);
 		
 //		System.out.println("id danh muc: "+post.getDanhMuc().getIdDanhMuc());
 		request.setAttribute("categorys", categorys);
-		request.setAttribute("account", account);
+		request.setAttribute("account", accounts);
 		request.setAttribute("post", post);
 		request.setAttribute("from", from);
 		RequestDispatcher requestDis_editPost = request.getRequestDispatcher("AdminEditPosts.jsp");

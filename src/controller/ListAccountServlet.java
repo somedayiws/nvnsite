@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -89,7 +90,7 @@ public class ListAccountServlet extends HttpServlet {
 		} catch (NumberFormatException e) {
 			page = 1;
 		}
-		TAIKHOAN[] listAccount = listAcc.getDataAccountInfor(page);
+		ArrayList<TAIKHOAN> accounts = listAcc.getDataAccountInfor(page);
 		//System.out.println("Leng contrller : " + listAccount.length);
 		String pageNav = listAcc.getMenuPhanTrang();
 		request.setAttribute("pageNav", pageNav);
@@ -99,7 +100,7 @@ public class ListAccountServlet extends HttpServlet {
 		request.setAttribute("result_Restore", result_Restore);
 		//request.setAttribute("totalPage",totalPage);
 		//request.setAttribute("currentPage", currentPage);
-		request.setAttribute("listAccount", listAccount);
+		request.setAttribute("accounts", accounts);
 		RequestDispatcher requestDis_result = request
 				.getRequestDispatcher("ListAccount.jsp");
 		requestDis_result.forward(request, response);

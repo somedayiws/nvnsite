@@ -177,7 +177,7 @@ $(document).ready(function() {
 								      				<span class="badge">Không tìm thấy</span>
 								      			<%}%>								      		
 								      		<%}else{ %>
-								      			 <div class="well">Không thể thống kê tài khoản user</div>
+								      			 <div class="well">Không thể thống kê tài khoản CTV</div>
 								      		<%} %>	
 								      		</div>
 								      		</div>

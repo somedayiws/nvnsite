@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="model.bean.TAIKHOAN"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -29,18 +30,17 @@ function delayer(){
 
 
 <%
-	TAIKHOAN[] listAccount = (TAIKHOAN[]) request.getAttribute("listAccount");
+	ArrayList<TAIKHOAN> accounts = (ArrayList<TAIKHOAN>) request.getAttribute("accounts");
 	String result = (String) request.getAttribute("result");
-	System.out.println("resultlistAcc: "+result);
-	TAIKHOAN[] account = (TAIKHOAN[])request.getAttribute("account");
+	ArrayList<TAIKHOAN> account = (ArrayList<TAIKHOAN>)request.getAttribute("accounts");
 	String button = (String)request.getAttribute("button");		
 	//Nhận lại kết quả khôi phục
 	String result_Restore = (String)request.getAttribute("result_Restore");	 
 %>
-<%if(listAccount!=null){ %>
+<%if(accounts!=null){ %>
 <script>
 $(document).ready(function() {	
-	for(var i=0;i<<%=listAccount.length%>
+	for(var i=0;i<<%=accounts.size()%>
 	; i++) {
 			var validator = $("#formedit" + i).validate({
 
@@ -99,8 +99,8 @@ $(document).ready(function() {
 			}
 		}
 		if (typeFind == "QuyenQuanTri") {
-			if (!(stringFind == "admin" || stringFind == "user" || stringFind == "CTV")) {
-				alert("Quyền quản trị phải là: admin, user, CTV - 管理者必見管理者、ユーザー、CTVです");
+			if (!(stringFind == "admin" || stringFind == "user")) {
+				alert("Quyền quản trị phải là: admin, user - 管理者必見管理者、ユーザー、CTVです");
 				return false;
 			}
 		}
@@ -163,7 +163,7 @@ $(document).ready(function() {
 					
 		
 			<%
-				if (listAccount != null) {
+				if (accounts != null) {
 			%>
 			<div class="col-md-10 col-md-offset-1">				
 				<form action="AdminSearchSevlet" method="post"
@@ -223,29 +223,29 @@ $(document).ready(function() {
 									</tr>
 								</thead>
 									<%
-										for (int i = 0; i < account.length; i++) {
+										for (int i = 0; i < accounts.size(); i++) {
 									%>
 								<tbody>
 									<tr>
-										<td><%=account[i].getIdTaiKhoan()%></td>
-										<td><%=account[i].getHoTen()%></td>
-										<td><%=account[i].getDiaChi()%></td>
-										<td><%=account[i].getDienThoai()%></td>
-										<td><%=account[i].getEmail()%></td>
-										<td><%=account[i].getTenTaiKhoan()%></td>
-										<td><%=account[i].getQuyenQuanTri()%></td>
+										<td><%=accounts.get(i).getIdTaiKhoan()%></td>
+										<td><%=accounts.get(i).getHoTen()%></td>
+										<td><%=accounts.get(i).getDiaChi()%></td>
+										<td><%=accounts.get(i).getDienThoai()%></td>
+										<td><%=accounts.get(i).getEmail()%></td>
+										<td><%=accounts.get(i).getTenTaiKhoan()%></td>
+										<td><%=accounts.get(i).getQuyenQuanTri()%></td>
 										<td><button type="button" class="btn btn-default btn-sm"
 											data-toggle="modal"
-											data-target="#<%=account[i].getIdTaiKhoan()%>">
+											data-target="#<%=accounts.get(i).getIdTaiKhoan()%>">
 											<span class="glyphicon glyphicon-pencil"></span> Chỉnh sửa<br>編集
 											</button>
 										</td>
 										<td><button type="button" class="btn btn-default btn-sm"
-											<%if(account[i].getQuyenQuanTri().equals("admin")){ %>
+											<%if(accounts.get(i).getQuyenQuanTri().equals("admin")){ %>
 												disabled="disabled"
 											<%} %>
 											data-toggle="modal"
-											data-target="#delete<%=account[i].getIdTaiKhoan()%>">
+											data-target="#delete<%=accounts.get(i).getIdTaiKhoan()%>">
 											<span class="glyphicon glyphicon-remove"></span> Xóa<br>デリート										
 											</button>
 										</td>
@@ -293,30 +293,30 @@ $(document).ready(function() {
 						</tr>
 					</thead>
 					<%
-						for (int i = 0; i < listAccount.length; i++) {
+						for (int i = 0; i < accounts.size(); i++) {
 					%>
 		
 					<tbody>
 						<tr>
-							<td><%=listAccount[i].getIdTaiKhoan()%></td>
-							<td><%=listAccount[i].getHoTen()%></td>
-							<td><%=listAccount[i].getDiaChi()%></td>
-							<td><%=listAccount[i].getDienThoai()%></td>
-							<td><%=listAccount[i].getEmail()%></td>
-							<td><%=listAccount[i].getTenTaiKhoan()%></td>
-							<td><%=listAccount[i].getQuyenQuanTri()%></td>
-							<td><%=listAccount[i].getNgonNgu() %>								
+							<td><%=accounts.get(i).getIdTaiKhoan()%></td>
+							<td><%=accounts.get(i).getHoTen()%></td>
+							<td><%=accounts.get(i).getDiaChi()%></td>
+							<td><%=accounts.get(i).getDienThoai()%></td>
+							<td><%=accounts.get(i).getEmail()%></td>
+							<td><%=accounts.get(i).getTenTaiKhoan()%></td>
+							<td><%=accounts.get(i).getQuyenQuanTri()%></td>
+							<td><%=accounts.get(i).getNgonNgu() %>								
 							</td>
-<%-- 							<td><%=listAccount[i].getTinhTrang() %></td> --%>
-							<td><button type="button" <%if(listAccount[i].getQuyenQuanTri().equals("admin")){ %> disabled="disabled" <%} %> id="<%=listAccount[i].getIdTaiKhoan()%>" data-toggle="tooltip" title="Tình trạng: <%=listAccount[i].getTinhTrang() %>" class="btn btn-default btn-sm btnban" onclick="banAcc()"><span class="glyphicon glyphicon-lock"></span></button></td>
+<%-- 							<td><%=accounts.get(i).getTinhTrang() %></td> --%>
+							<td><button type="button" <%if(accounts.get(i).getQuyenQuanTri().equals("admin")){ %> disabled="disabled" <%} %> id="<%=accounts.get(i).getIdTaiKhoan()%>" data-toggle="tooltip" title="Tình trạng: <%=accounts.get(i).getTinhTrang() %>" class="btn btn-default btn-sm btnban" onclick="banAcc()"><span class="glyphicon glyphicon-lock"></span></button></td>
 							<td><button type="button" class="btn btn-default btn-sm"
 									data-toggle="modal"
-									data-target="#<%=listAccount[i].getIdTaiKhoan()%>">
+									data-target="#<%=accounts.get(i).getIdTaiKhoan()%>">
 									<span class="glyphicon glyphicon-pencil"></span> Chỉnh sửa<br>編集
 								</button></td>
 							<td><button type="button" data-toggle="modal"
-									data-target="#delete<%=listAccount[i].getIdTaiKhoan()%>"
-									<%if (listAccount[i].getQuyenQuanTri().equals("admin")) {%>
+									data-target="#delete<%=accounts.get(i).getIdTaiKhoan()%>"
+									<%if (accounts.get(i).getQuyenQuanTri().equals("admin")) {%>
 									class="btn btn-default btn-sm disabled" <%} else {%>
 									class="btn btn-default btn-sm" <%}%>>
 									<span class="glyphicon glyphicon-remove"></span> Xóa<br>デリート
@@ -348,11 +348,11 @@ $(document).ready(function() {
 		
 			<%
 				}
-				if (listAccount != null) {
-					for (int i = 0; i < listAccount.length; i++) {
+				if (accounts != null) {
+					for (int i = 0; i < accounts.size(); i++) {
 			%>
 <!-------------------------- Modal chỉnh sửa--------------------------------->
-			<div class="modal fade" id="<%=listAccount[i].getIdTaiKhoan()%>">
+			<div class="modal fade" id="<%=accounts.get(i).getIdTaiKhoan()%>">
 				<div class="modal-dialog">
 
 					<!-- Modal content-->
@@ -364,51 +364,51 @@ $(document).ready(function() {
 						<div class="modal-body">
 
 							<form id="formedit<%=i%>" name="form_edit_admin"
-								action="AdminEditServlet" method="post">
+								action="AdminEditServlet?type=user" method="post">
 
 								<div class="form-group">
 									<label>Tên - 名前<span class="rq"> * </span>:
 									</label> <input class="form-control" maxlength="30" type="text"
-										name="name" id="name" value="<%=listAccount[i].getHoTen()%>">
+										name="name" id="name" value="<%=accounts.get(i).getHoTen()%>">
 
 								</div>
 								<div class="form-group">
 									<label>Địa chỉ - 住所<span class="rq"> * </span>:
 									</label> <input type="text" class="form-control" maxlength="100"
-										name="adress" value="<%=listAccount[i].getDiaChi()%>">
+										name="adress" value="<%=accounts.get(i).getDiaChi()%>">
 
 								</div>
 								<div class="form-group">
 									<label>Số điện thoại - 電話<span class="rq"> * </span>:
 									</label> <input type="text" class="form-control" maxlength="11"
-										name="phone" value="<%=listAccount[i].getDienThoai()%>">
+										name="phone" value="<%=accounts.get(i).getDienThoai()%>">
 								</div>
 								<div class="form-group">
 									<label>Email - Eメール<span class="rq"> * </span>:
 									</label> <input type="text" class="form-control" maxlength="30"
-										name="email" value="<%=listAccount[i].getEmail()%>"
+										name="email" value="<%=accounts.get(i).getEmail()%>"
 										readonly="readonly">
 								</div>
 								<div class="form-group">
 									<label>Tên tài khoản - ユーザ名<span class="rq"> * </span>:
 									</label> <input type="text" class="form-control" maxlength="20"
-										name="username" value="<%=listAccount[i].getTenTaiKhoan()%>"
+										name="username" value="<%=accounts.get(i).getTenTaiKhoan()%>"
 										readonly="readonly">
 								</div>
 								<div class="form-group">
 									<label>Quyền quản trị - タイプ:</label> <select class="form-control"
 										name="typeUser">
 										<option value="admin"
-											<%if (listAccount[i].getQuyenQuanTri().equals("admin")) {%>
+											<%if (accounts.get(i).getQuyenQuanTri().equals("admin")) {%>
 											selected="selected" <%}%> >Admin - 管理者</option>
 										<option value="user"
-											<%if (listAccount[i].getQuyenQuanTri().equals("user")) {%>
-											selected="selected" <%} if(listAccount[i].getQuyenQuanTri().equals("admin")){%>
+											<%if (accounts.get(i).getQuyenQuanTri().equals("user")) {%>
+											selected="selected" <%} if(accounts.get(i).getQuyenQuanTri().equals("admin")){%>
 											disabled="disabled"
 											<%}%>>User - ユーザー</option>
 										<option value="CTV"
-											<%if (listAccount[i].getQuyenQuanTri().equals("ctv")) {%>
-											selected="selected" <%} if(listAccount[i].getQuyenQuanTri().equals("admin")){%>
+											<%if (accounts.get(i).getQuyenQuanTri().equals("ctv")) {%>
+											selected="selected" <%} if(accounts.get(i).getQuyenQuanTri().equals("admin")){%>
 											disabled="disabled"
 											<%}%>>CTV</option>											
 									</select>
@@ -417,17 +417,17 @@ $(document).ready(function() {
 									<label>Ngôn ngữ - 言語</label> <select class="form-control"
 										name="language">
 										<option value="vj"
-											<%if (listAccount[i].getNgonNgu().equals("vi")) {%>
+											<%if (accounts.get(i).getNgonNgu().equals("vi")) {%>
 											selected="selected" <%}%> >Tiếng việt</option>
 										<option value="ja"
-											<%if (listAccount[i].getNgonNgu().equals("ja")) {%>
+											<%if (accounts.get(i).getNgonNgu().equals("ja")) {%>
 											selected="selected"<%} %>>日本</option>																		
 									</select>
 								</div>						
 									<div class="form-group">
 									<label>Tình trạng - 状態<span class="rq"> * </span>
 									</label> <input class="form-control" maxlength="30" type="text"
-										name="status"  value="<%=listAccount[i].getTinhTrang()%>" disabled="disabled">
+										name="status"  value="<%=accounts.get(i).getTinhTrang()%>" disabled="disabled">
 								</div>
 							
 								<button type="submit" class="btn btn-success btn-sm">Hoàn
@@ -442,7 +442,7 @@ $(document).ready(function() {
 			</div>
 <!------------------------------------ Modal xóa -------------------------------------->
 			<div class="modal fade"
-				id="delete<%=listAccount[i].getIdTaiKhoan()%>">
+				id="delete<%=accounts.get(i).getIdTaiKhoan()%>">
 				<div class="modal-dialog">
 
 					<!-- Modal content-->
@@ -458,7 +458,7 @@ $(document).ready(function() {
 								<div class="form-group">
 									<label>Tên tài khoản - ユーザ名<span class="rq"> * </span>:
 									</label> <input type="text" class="form-control" maxlength="20"
-										name="username" value="<%=listAccount[i].getTenTaiKhoan()%>"
+										name="username" value="<%=accounts.get(i).getTenTaiKhoan()%>"
 										readonly="readonly">
 								</div>
 								<button type="submit" class="btn btn-success btn-sm">Xóa - 削除します</button>

@@ -25,7 +25,7 @@
 <%
 	/**Reveice data from server*/
 	ArrayList<DANHMUC> categorys = (ArrayList<DANHMUC>) request.getAttribute("categorys");
-	TAIKHOAN[] account = (TAIKHOAN[]) request.getAttribute("account");
+	ArrayList<TAIKHOAN> accounts = (ArrayList<TAIKHOAN>) request.getAttribute("accounts");
 	BAIVIET post = (BAIVIET) request.getAttribute("post");
 	String from = (String)request.getAttribute("from");
 	
@@ -58,18 +58,18 @@
 					</div>
 					<!-- Tài khoản -->
 					<%
-						if (account != null) {
+						if (accounts != null) {
 					%>
 					
 						<label>Tên tài khoản - </label> <select name="account"
 							class="form-control">
 							<%
-								for (int i = 0; i < account.length; i++) {
+								for (int i = 0; i < accounts.size(); i++) {
 							%>
-							<option value="<%=account[i].getIdTaiKhoan()%>"
-								<%if (account[i].getIdTaiKhoan().equals(
+							<option value="<%=accounts.get(i).getIdTaiKhoan()%>"
+								<%if (accounts.get(i).getIdTaiKhoan().equals(
 								post.getTaiKhoan().getIdTaiKhoan())) {%>
-								selected="selected" <%}%>><%=account[i].getTenTaiKhoan()%></option>
+								selected="selected" <%}%>><%=accounts.get(i).getTenTaiKhoan()%></option>
 							<%
 								}
 							%>

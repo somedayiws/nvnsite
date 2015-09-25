@@ -145,12 +145,12 @@ public class StatisticalServlet extends HttpServlet {
 			if(btnStatistical!=null){
 				if (type.equals("TKPosts")){
 				resultStatisticPosts = "<strong>Tất cả bài viết:</strong> <span class='badge'>"+statisticalBo.countPosts(1, 2, dayStart, dayFinish)+"</span><br>"+
-						"<strong>Tất cả bài viết bị xóa:</strong> <span class='badge'>"+statisticalBo.countPosts(2, 2, dayStart, dayFinish)+"</span><br>"+
-						"<strong>Tất cả bài viết đăng lên trang chủ:</strong> <span class='badge'>"+statisticalBo.countPosts(3, 2, dayStart, dayFinish)+"</span><br>"+
-						"<strong>Tất cả bài viết mới đăng:</strong> <span class='badge'>"+statisticalBo.countPosts(4, 2, dayStart, dayFinish)+"</span><br>"+
-						"<strong>Tất cả bài viết đang dịch:</strong> <span class='badge'>"+statisticalBo.countPosts(5, 2, dayStart, dayFinish)+"</span><br>"+
-						"<strong>Tất cả bài viết tiếng việt:</strong> <span class='badge'>"+statisticalBo.countPosts(6, 2, dayStart, dayFinish)+"</span><br>"+
-						"<strong>Tất cả bài viết tiếng nhật:</strong> <span class='badge'>"+statisticalBo.countPosts(7, 2, dayStart, dayFinish)+"</span><br>";
+						"<strong>Số bài viết bị xóa:</strong> <span class='badge'>"+statisticalBo.countPosts(2, 2, dayStart, dayFinish)+"</span><br>"+
+						"<strong>Số bài viết đăng lên trang chủ:</strong> <span class='badge'>"+statisticalBo.countPosts(3, 2, dayStart, dayFinish)+"</span><br>"+
+						"<strong>Số bài viết mới đăng:</strong> <span class='badge'>"+statisticalBo.countPosts(4, 2, dayStart, dayFinish)+"</span><br>"+
+						"<strong>Số bài viết đang dịch:</strong> <span class='badge'>"+statisticalBo.countPosts(5, 2, dayStart, dayFinish)+"</span><br>"+
+						"<strong>Số bài viết tiếng việt:</strong> <span class='badge'>"+statisticalBo.countPosts(6, 2, dayStart, dayFinish)+"</span><br>"+
+						"<strong>Số bài viết tiếng nhật:</strong> <span class='badge'>"+statisticalBo.countPosts(7, 2, dayStart, dayFinish)+"</span><br>";
 				arrayNumberPost = statisticalBo.arrayNumber_Post;
 				for(int i=1;i<=3;i++){
 					listResultPost.add(statisticalBo.getPost(i, 1, null, null));
@@ -158,12 +158,12 @@ public class StatisticalServlet extends HttpServlet {
 				}
 				else if(type.equals("TKPost")){
 					resultStatisticPosts = "<strong>Tất cả bài viết:</strong> <span class='badge'>"+statisticalBo.countPosts(1, 1, null, null)+"</span><br>"+
-							"<strong>Tất cả bài viết bị xóa:</strong> <span class='badge'>"+statisticalBo.countPosts(2, 1, null, null)+"</span><br>"+
-							"<strong>Tất cả bài viết đăng lên trang chủ:</strong> <span class='badge'>"+statisticalBo.countPosts(3, 1, null, null)+"</span><br>"+
-							"<strong>Tất cả bài viết mới đăng:</strong> <span class='badge'>"+statisticalBo.countPosts(4, 1, null, null)+"</span><br>"+
-							"<strong>Tất cả bài viết đang dịch:</strong> <span class='badge'>"+statisticalBo.countPosts(5, 1, null, null)+"</span><br>"+
-							"<strong>Tất cả bài viết tiếng việt:</strong> <span class='badge'>"+statisticalBo.countPosts(6, 1, null, null)+"</span><br>"+
-							"<strong>Tất cả bài viết tiếng nhật:</strong> <span class='badge'>"+statisticalBo.countPosts(7, 1, null, null)+"</span><br>";
+							"<strong>Số bài viết bị xóa:</strong> <span class='badge'>"+statisticalBo.countPosts(2, 1, null, null)+"</span><br>"+
+							"<strong>Số bài viết đăng lên trang chủ:</strong> <span class='badge'>"+statisticalBo.countPosts(3, 1, null, null)+"</span><br>"+
+							"<strong>Số bài viết mới đăng:</strong> <span class='badge'>"+statisticalBo.countPosts(4, 1, null, null)+"</span><br>"+
+							"<strong>Số bài viết đang dịch:</strong> <span class='badge'>"+statisticalBo.countPosts(5, 1, null, null)+"</span><br>"+
+							"<strong>Số bài viết tiếng việt:</strong> <span class='badge'>"+statisticalBo.countPosts(6, 1, null, null)+"</span><br>"+
+							"<strong>Số bài viết tiếng nhật:</strong> <span class='badge'>"+statisticalBo.countPosts(7, 1, null, null)+"</span><br>";
 					arrayNumberPost = statisticalBo.arrayNumber_Post;
 					for(int i=1;i<=3;i++){
 						listResultPost.add(statisticalBo.getPost(i, 2, dayStart, dayFinish));
@@ -172,12 +172,12 @@ public class StatisticalServlet extends HttpServlet {
 				
 				else{
 					resultStatisticPosts = "<strong>Tất cả bài viết:</strong> <span class='badge'>"+statisticalBo.countPosts(1, 1, null, null)+"</span><br>"+
-							"<strong>Tất cả bài viết bị xóa:</strong> <span class='badge'>"+statisticalBo.countPosts(2, 1, null, null)+"</span><br>"+
-							"<strong>Tất cả bài viết đăng lên trang chủ:</strong> <span class='badge'>"+statisticalBo.countPosts(3, 1, null, null)+"</span><br>"+
-							"<strong>Tất cả bài viết mới đăng:</strong> <span class='badge'>"+statisticalBo.countPosts(4, 1, null, null)+"</span><br>"+
-							"<strong>Tất cả bài viết đang dịch:</strong> <span class='badge'>"+statisticalBo.countPosts(5, 1, null, null)+"</span><br>"+
-							"<strong>Tất cả bài viết tiếng việt:</strong> <span class='badge'>"+statisticalBo.countPosts(6, 1, null, null)+"</span><br>"+
-							"<strong>Tất cả bài viết tiếng nhật:</strong> <span class='badge'>"+statisticalBo.countPosts(7, 1, null, null)+"</span><br>";
+							"<strong>Số bài viết bị xóa:</strong> <span class='badge'>"+statisticalBo.countPosts(2, 1, null, null)+"</span><br>"+
+							"<strong>Số bài viết đăng lên trang chủ:</strong> <span class='badge'>"+statisticalBo.countPosts(3, 1, null, null)+"</span><br>"+
+							"<strong>Số bài viết mới đăng:</strong> <span class='badge'>"+statisticalBo.countPosts(4, 1, null, null)+"</span><br>"+
+							"<strong>Số bài viết đang dịch:</strong> <span class='badge'>"+statisticalBo.countPosts(5, 1, null, null)+"</span><br>"+
+							"<strong>Số bài viết tiếng việt:</strong> <span class='badge'>"+statisticalBo.countPosts(6, 1, null, null)+"</span><br>"+
+							"<strong>Số bài viết tiếng nhật:</strong> <span class='badge'>"+statisticalBo.countPosts(7, 1, null, null)+"</span><br>";
 					arrayNumberPost = statisticalBo.arrayNumber_Post;
 					for(int i=1;i<=3;i++){
 						listResultPost.add(statisticalBo.getPost(i, 1, null, null));
@@ -187,12 +187,12 @@ public class StatisticalServlet extends HttpServlet {
 			}
 			else{
 				resultStatisticPosts = "<strong>Tất cả bài viết:</strong> <span class='badge'>"+statisticalBo.countPosts(1, 1, null, null)+"</span><br>"+
-					"<strong>Tất cả bài viết bị xóa:</strong> <span class='badge'>"+statisticalBo.countPosts(2, 1, null, null)+"</span><br>"+
-					"<strong>Tất cả bài viết đăng lên trang chủ:</strong> <span class='badge'>"+statisticalBo.countPosts(3, 1, null, null)+"</span><br>"+
-					"<strong>Tất cả bài viết mới đăng:</strong> <span class='badge'>"+statisticalBo.countPosts(4, 1, null, null)+"</span><br>"+
-					"<strong>Tất cả bài viết đang dịch:</strong> <span class='badge'>"+statisticalBo.countPosts(5, 1, null, null)+"</span><br>"+
-					"<strong>Tất cả bài viết tiếng việt:</strong> <span class='badge'>"+statisticalBo.countPosts(6, 1, null, null)+"</span><br>"+
-					"<strong>Tất cả bài viết tiếng nhật:</strong> <span class='badge'>"+statisticalBo.countPosts(7, 1, null, null)+"</span><br>";
+					"<strong>Số bài viết bị xóa:</strong> <span class='badge'>"+statisticalBo.countPosts(2, 1, null, null)+"</span><br>"+
+					"<strong>Số bài viết đăng lên trang chủ:</strong> <span class='badge'>"+statisticalBo.countPosts(3, 1, null, null)+"</span><br>"+
+					"<strong>Số bài viết mới đăng:</strong> <span class='badge'>"+statisticalBo.countPosts(4, 1, null, null)+"</span><br>"+
+					"<strong>Số bài viết đang dịch:</strong> <span class='badge'>"+statisticalBo.countPosts(5, 1, null, null)+"</span><br>"+
+					"<strong>Số bài viết tiếng việt:</strong> <span class='badge'>"+statisticalBo.countPosts(6, 1, null, null)+"</span><br>"+
+					"<strong>Số bài viết tiếng nhật:</strong> <span class='badge'>"+statisticalBo.countPosts(7, 1, null, null)+"</span><br>";
 				arrayNumberPost = statisticalBo.arrayNumber_Post;
 				for(int i=1;i<=3;i++){
 					listResultPost.add(statisticalBo.getPost(i, 1, null, null));

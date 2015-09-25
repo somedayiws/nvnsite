@@ -62,7 +62,7 @@ $(document).ready(function(){
 	ArrayList<BAIVIET> listposts = (ArrayList<BAIVIET>) request.getAttribute("posts");
 //Lấy tất cả danh mục
 	ArrayList<DANHMUC> category =(ArrayList<DANHMUC>) request.getAttribute("category");
-	TAIKHOAN[] account = (TAIKHOAN[]) request.getAttribute("account");
+	ArrayList<TAIKHOAN> accounts = (ArrayList<TAIKHOAN>) request.getAttribute("account");
 %>
 </head>
 <body>
@@ -114,11 +114,11 @@ $(document).ready(function(){
 				</div>
 				
 					<div class="col-sm-5 form-group" id="typeAccount">
-					<%if(account!=null){ %>
+					<%if(accounts!=null){ %>
 					<select class="form-control" id="stringFind" name="stringFindAccount">
 						<option value="0" selected="selected" disabled="disabled">Chọn tài khoản - </option>
-						<%for(int i=0;i<account.length;i++){ %>
-							<option value="<%=account[i].getIdTaiKhoan()%>"><%=account[i].getTenTaiKhoan()%></option>
+						<%for(int i=0;i<accounts.size();i++){ %>
+							<option value="<%=accounts.get(i).getIdTaiKhoan()%>"><%=accounts.get(i).getTenTaiKhoan()%></option>
 						<%} %>
 													
 					</select>

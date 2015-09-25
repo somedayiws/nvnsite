@@ -86,6 +86,8 @@ public class ListPostsDAO {
 					post.setGimTrangChu(result_select.getInt("GimTrangChu"));
 					posts.add(post);
 				}
+				
+				System.out.println("size_post: "+posts.size());
 				return posts;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

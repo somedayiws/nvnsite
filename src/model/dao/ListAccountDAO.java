@@ -4,22 +4,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
+import java.util.ArrayList;
+
 import model.bean.TAIKHOAN;
 
 public class ListAccountDAO {
 	DataBaseDAO db = new DataBaseDAO();	
-	public TAIKHOAN[] getDataAcountInfor(int start,int limit,String status)	
+	public ArrayList<TAIKHOAN> getDataAcountInfor(int start,int limit,String status)	
 	{
-		int number_of_account = totalRecord(status);
-		
-		if(number_of_account == 0)
-		{
-			return null;
-		}
-		/**Create array of account*/
-		TAIKHOAN[] listAccount = new TAIKHOAN[number_of_account];
-		
-		int i = 0;
+//		int number_of_account = totalRecord(status);
+//		
+//		if(number_of_account == 0)
+//		{
+//			return null;
+//		}
+//		/**Create array of account*/
+//		TAIKHOAN[] listAccount = new TAIKHOAN[number_of_account];
+//		
+//		int i = 0;
 		String sql_select_account = null;
 		//Lấy các tài khoản CTV
 		if(status.equals("CTV")){
@@ -27,28 +29,30 @@ public class ListAccountDAO {
 		}
 		//Lấy tất cả tài khoản
 		else{
-			sql_select_account = "SELECT * FROM taikhoan WHERE CoXoa = 0 limit "+start+","+limit+"";
+			sql_select_account = "SELECT * FROM taikhoan WHERE CoXoa = 0 AND QuyenQuanTri != 'CTV' limit "+start+","+limit+"";
 		}
 	//	System.out.println("sql_select_account: "+sql_select_account);
-		if(sql_select_account==null){ return null;}
+		if(sql_select_account==null){ return null;} 
 		ResultSet result_select = db.getResultSet(sql_select_account);
+		ArrayList<TAIKHOAN> accounts = new ArrayList<TAIKHOAN>();
 		try {
 			while(result_select.next())
 			{
-				listAccount[i] = new TAIKHOAN();
-				listAccount[i].setIdTaiKhoan(DinhDangSQL.DeFomatSQL(result_select.getString("IdTaiKhoan")));
-				listAccount[i].setTenTaiKhoan(DinhDangSQL.DeFomatSQL(result_select.getString("TenTaiKhoan")));
-				listAccount[i].setMatKhau(DinhDangSQL.DeFomatSQL(result_select.getString("MatKhau")));
-				listAccount[i].setHoTen(DinhDangSQL.DeFomatSQL(result_select.getString("HoTen")));				
-				listAccount[i].setDiaChi(DinhDangSQL.DeFomatSQL(result_select.getString("DiaChi")));
-				listAccount[i].setDienThoai(DinhDangSQL.DeFomatSQL(result_select.getString("DienThoai")));
-				listAccount[i].setEmail(DinhDangSQL.DeFomatSQL(result_select.getString("Email")));
-				listAccount[i].setQuyenQuanTri(DinhDangSQL.DeFomatSQL(result_select.getString("QuyenQuanTri")));
-				listAccount[i].setNgonNgu(DinhDangSQL.DeFomatSQL(result_select.getString("NgonNgu")));
-				listAccount[i].setTinhTrang(DinhDangSQL.DeFomatSQL(result_select.getString("TinhTrang")));
-				i++;
+				TAIKHOAN account = new TAIKHOAN();
+				account = new TAIKHOAN();
+				account.setIdTaiKhoan(DinhDangSQL.DeFomatSQL(result_select.getString("IdTaiKhoan")));
+				account.setTenTaiKhoan(DinhDangSQL.DeFomatSQL(result_select.getString("TenTaiKhoan")));
+				account.setMatKhau(DinhDangSQL.DeFomatSQL(result_select.getString("MatKhau")));
+				account.setHoTen(DinhDangSQL.DeFomatSQL(result_select.getString("HoTen")));				
+				account.setDiaChi(DinhDangSQL.DeFomatSQL(result_select.getString("DiaChi")));
+				account.setDienThoai(DinhDangSQL.DeFomatSQL(result_select.getString("DienThoai")));
+				account.setEmail(DinhDangSQL.DeFomatSQL(result_select.getString("Email")));
+				account.setQuyenQuanTri(DinhDangSQL.DeFomatSQL(result_select.getString("QuyenQuanTri")));
+				account.setNgonNgu(DinhDangSQL.DeFomatSQL(result_select.getString("NgonNgu")));
+				account.setTinhTrang(DinhDangSQL.DeFomatSQL(result_select.getString("TinhTrang")));
+				accounts.add(account);
 			}
-			return listAccount;
+			return accounts;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -140,17 +144,9 @@ public class ListAccountDAO {
 		db.setMenu(nBangghi, ntrang);
 	}
 
-	public TAIKHOAN[] getDataAcountInfor(int page) {
+	public ArrayList<TAIKHOAN> getDataAcountInfor(int page) {
 		// TODO Auto-generated method stub
-		int number_of_account = totalRecord("all");
-		if(number_of_account == 0)
-		{
-			return null;
-		}
 		
-		if(number_of_account>db.getNBangGhi()) number_of_account = db.getNBangGhi();
-		
-		TAIKHOAN[] listAccount = new TAIKHOAN[number_of_account];
 		
 		int i = 0;
 		String sql_select_account = "SELECT * FROM taikhoan WHERE CoXoa = 0";
@@ -159,25 +155,24 @@ public class ListAccountDAO {
 		db.createMenu("ListAccountServlet?", page, sql_select_account);
 		System.out.println("sql : " + sql_select_account  + " limit " + (page-1)*db.getNBangGhi() +","+ db.getNBangGhi());
 		ResultSet result_select = db.getResultSet(sql_select_account  + " limit " + (page-1)*db.getNBangGhi() +","+ db.getNBangGhi());
-		
+		ArrayList<TAIKHOAN> accounts = new ArrayList<TAIKHOAN>();
 		try {
 			while(result_select.next())
 			{
-				listAccount[i] = new TAIKHOAN();
-				listAccount[i].setIdTaiKhoan(DinhDangSQL.DeFomatSQL(result_select.getString("IdTaiKhoan")));
-				listAccount[i].setTenTaiKhoan(DinhDangSQL.DeFomatSQL(result_select.getString("TenTaiKhoan")));
-				listAccount[i].setMatKhau(DinhDangSQL.DeFomatSQL(result_select.getString("MatKhau")));
-				listAccount[i].setHoTen(DinhDangSQL.DeFomatSQL(result_select.getString("HoTen")));				
-				listAccount[i].setDiaChi(DinhDangSQL.DeFomatSQL(result_select.getString("DiaChi")));
-				listAccount[i].setDienThoai(DinhDangSQL.DeFomatSQL(result_select.getString("DienThoai")));
-				listAccount[i].setEmail(DinhDangSQL.DeFomatSQL(result_select.getString("Email")));
-				listAccount[i].setQuyenQuanTri(DinhDangSQL.DeFomatSQL(result_select.getString("QuyenQuanTri")));
-				listAccount[i].setNgonNgu(DinhDangSQL.DeFomatSQL(result_select.getString("NgonNgu")));
-				listAccount[i].setTinhTrang(DinhDangSQL.DeFomatSQL(result_select.getString("TinhTrang")));
-				i++;
+				TAIKHOAN account = new TAIKHOAN();				
+				account.setIdTaiKhoan(DinhDangSQL.DeFomatSQL(result_select.getString("IdTaiKhoan")));
+				account.setTenTaiKhoan(DinhDangSQL.DeFomatSQL(result_select.getString("TenTaiKhoan")));
+				account.setMatKhau(DinhDangSQL.DeFomatSQL(result_select.getString("MatKhau")));
+				account.setHoTen(DinhDangSQL.DeFomatSQL(result_select.getString("HoTen")));				
+				account.setDiaChi(DinhDangSQL.DeFomatSQL(result_select.getString("DiaChi")));
+				account.setDienThoai(DinhDangSQL.DeFomatSQL(result_select.getString("DienThoai")));
+				account.setEmail(DinhDangSQL.DeFomatSQL(result_select.getString("Email")));
+				account.setQuyenQuanTri(DinhDangSQL.DeFomatSQL(result_select.getString("QuyenQuanTri")));
+				account.setNgonNgu(DinhDangSQL.DeFomatSQL(result_select.getString("NgonNgu")));
+				account.setTinhTrang(DinhDangSQL.DeFomatSQL(result_select.getString("TinhTrang")));
+				accounts.add(account);
 			}
-			System.out.println("leng " + listAccount.length);
-			return listAccount;
+			return accounts;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
