@@ -508,44 +508,6 @@ body {
 				'col-sm-6 col-md-6 active');
 	}
 </script>
-<!-- Google map -->
-<script type="text/javascript"
-	src="http://maps.googleapis.com/maps/api/js?sensor=false&language=vi"></script>
-<script type="text/javascript">
-	var map;
-	var map1;
-	function initialize() {
-		var myLatlng = new google.maps.LatLng(16.467800, 107.578983);
-		var myLatlng1 = new google.maps.LatLng(37.562170, 139.988980);
-		var myOptions = {
-			zoom : 4,
-			center : myLatlng,
-			mapTypeId : google.maps.MapTypeId.ROADMAP
-		}
-		var myOptions1 = {
-			zoom : 4,
-			center : myLatlng1,
-			mapTypeId : google.maps.MapTypeId.ROADMAP
-		}
-		map = new google.maps.Map(document.getElementById("div_id1"), myOptions);
-		map1 = new google.maps.Map(document.getElementById("div_id2"),
-				myOptions1);
-
-		var infowindow = new google.maps.InfoWindow({
-			content : "TP-Huế",
-			size : new google.maps.Size(100, 50),
-			position : myLatlng
-		});
-		var infowindow1 = new google.maps.InfoWindow({
-			content : "Home",
-			size : new google.maps.Size(100, 50),
-			position : myLatlng1
-		});
-		infowindow.open(map);
-		infowindow1.open(map1);
-
-	}
-</script>
 <!-- Google+ -->
 <script type="text/javascript"
 	src="https://apis.google.com/js/plusone.js"></script>
