@@ -169,6 +169,8 @@ function xem(f,x){
 					</div>
 				</div>
 	<!--------------------------- Hiển thị danh sách các quảng cáo trong cơ sở dữ liệu ------------------->
+				
+				
 				<%= request.getAttribute("mes")==null ? "" : request.getAttribute("mes") %>
 				<div class="col-md-10 col-md-offset-2 panel panel-primary quangcao">
 					<div class="panel-heading">Danh sách quảng cáo - リスト広告</div>
@@ -190,10 +192,10 @@ function xem(f,x){
 							for(int i=0;i<listAn.size();i++){ %>
 								<tr>
 									<td><%=listAn.get(i).getIdThongBao() %></td>
-									<td><%=listAn.get(i).getGuiDen()==null?"":listAn.get(i).getGuiDen().equals("DienDan")?"Diễn đàn JPVN.NET":listAn.get(i).getGuiDen() %></td>
+									<td><%=listAn.get(i).getGuiDen()==null?"":listAn.get(i).getGuiDen().equals("DienDan")?"Diễn đàn":listAn.get(i).getGuiDen() %></td>
 									<td><%=listAn.get(i).getNoiDung().length()>150?listAn.get(i).getNoiDung().substring(0, 150)+" ...":listAn.get(i).getNoiDung()%></td>
 									<td><%=listAn.get(i).getNgayDang() %></td>
-									<td><button type="button" class="btn btn-primary btn-sm" onclick="HienThi('<%= listAn.get(i).getIdThongBao() %>', '1');">Hiển thị - 削除します</button></td>
+									<td><button type="button" class="btn btn-primary btn-sm" onclick="HienThi('<%= listAn.get(i).getIdThongBao() %>', '0');">Hiển thị - 削除します</button></td>
 									<td><button type="button" class="btn btn-primary btn-sm" onclick="CapNhat('<%= listAn.get(i).getIdThongBao() %>');">Chi tiết - 編集</button></td>
 									<td><button type="button" class="btn btn-primary btn-sm" onclick="XoaQC(<%= listAn.get(i).getIdThongBao() %>);">Xóa - 削除します</button></td>
 								</tr>
@@ -213,9 +215,9 @@ function xem(f,x){
 					}
 					function HienThi(x, b){
 						if(b=='1')
-							$("#idQCgo").text("Bạn thật sự muốn gỡ bỏ quảng cáo " + x);
+							$("#idQCgo").text("Bạn thật sự muốn gỡ bỏ thông báo " + x);
 						else
-							$("#idQCgo").text("Cho phép đăng quảng cáo " + x);
+							$("#idQCgo").text("Cho phép đăng thông báo " + x);
 						$("#idGo").val(x);
 						$("#hienthi").val(b);
 						$('#goQC').modal('show');
@@ -235,7 +237,7 @@ function xem(f,x){
 							async : true, //
 							success : function(res) {
 								$("#noidungsua").html(res);
-								$("#xong").remoteAtrr("disabled");
+								$("#xong").removeAttr("disabled");
 							},
 							error : function() {
 								$("#noidungsua").html("<div class='alert alert-danger' role='alert'>Lỗi truy vấn dữ liệu từ Server!</div>");
@@ -303,11 +305,11 @@ function xem(f,x){
 				    <div class="modal-content">
 				      <div class="modal-header">
 				        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				        <h4 class="modal-title" id="myModalLabel">Xóa dữ liệu quảng cáo</h4>
+				        <h4 class="modal-title" id="myModalLabel">Xóa dữ liệu thông báo</h4>
 				      </div>
 				      <div class="modal-body">
-				        Bạn thật sự muốn xóa quảng cáo <label id="idQC"></label> ???
-				        <input type="hidden" name="idQC" id="idXoa">
+				        Bạn thật sự muốn xóa thông báo <label id="idQC"></label> ???
+				        <input type="hidden" name="id" id="idXoa">
 				      </div>
 				      <div class="modal-footer">
 				        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
@@ -324,11 +326,11 @@ function xem(f,x){
 				    <div class="modal-content">
 				      <div class="modal-header">
 				        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				        <h4 class="modal-title" id="myModalLabel">Quản lý hiện/ẩn quảng cáo</h4>
+				        <h4 class="modal-title" id="myModalLabel">Quản lý hiện/ẩn thông báo</h4>
 				      </div>
 				      <div class="modal-body">
 				        <label id="idQCgo"></label> ???
-				        <input type="hidden" name="idQC" id="idGo">
+				        <input type="hidden" name="id" id="idGo">
 				        <input type="hidden" name="hienthi" id="hienthi">
 				      </div>
 				      <div class="modal-footer">

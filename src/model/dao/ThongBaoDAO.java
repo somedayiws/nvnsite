@@ -2,7 +2,9 @@ package model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import model.bean.THONGBAO;
 
@@ -70,7 +72,6 @@ public class ThongBaoDAO {
 		// TODO Auto-generated method stub
 		String sql = "select * from thongbao where IdThongBao='"+id+"'";
 		ResultSet rs = db.getResultSet(sql);
-		ArrayList<THONGBAO> list = new ArrayList<THONGBAO>();
 		try {
 			if(rs.next()){
 				THONGBAO tb = new THONGBAO();
@@ -86,6 +87,34 @@ public class ThongBaoDAO {
 			System.out.println("Lỗi hệ truy vấn dữ liệu bảng thông báo!");
 		}
 		return null;
+	}
+
+	public boolean ThemThongBao(String tieude, String noidung, String guiden) {
+		// TODO Auto-generated method stub
+		Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String sql = "insert into thongbao(TieuDe, NoiDung, NgayDang, HienThi, GuiDen)"
+				+ " values (N'"+tieude+"', N'"+noidung+"', '"+sdf.format(cal.getTime())+"', '0', N'"+guiden+"')";
+		return db.updateData(sql);
+	}
+
+	public boolean SuaThongBao(String id, String tieude, String noidung,
+			String guiden) {
+		// TODO Auto-generated method stub
+		String sql = "update thongbao set TieuDe=N'"+tieude+"', NoiDung=N'"+noidung+"', GuiDen=N'"+guiden+"' where IdThongBao='"+id+"'";
+		return db.updateData(sql);
+	}
+
+	public boolean XoaThongBao(String id) {
+		// TODO Auto-generated method stub
+		String sql = "delete from thongbao where IdThongBao='"+id+"'";
+		return db.updateData(sql);
+	}
+
+	public boolean SuaThongBao(String id, String hienthi) {
+		// TODO Auto-generated method stub
+		String sql = "update thongbao set HienThi='"+(hienthi.equals("1")?"0":"1")+"' where IdThongBao='"+id+"'";
+		return db.updateData(sql);
 	}
 
 }

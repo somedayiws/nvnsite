@@ -24,4 +24,25 @@ public class ThongBaoBO {
 		return tb.getThongBao(id);
 	}
 
+	public boolean ThemThongBao(String tieude, String noidung, String guiden) {
+		// TODO Auto-generated method stub
+		return tb.ThemThongBao(tieude, noidung, guiden);
+	}
+
+	public boolean SuaThongBao(String id, String tieude, String noidung,
+			String guiden) {
+		// TODO Auto-generated method stub
+		return tb.SuaThongBao(id, tieude, noidung, guiden);
+	}
+
+	public boolean XoaThongBao(String id) {
+		// TODO Auto-generated method stub
+		return tb.XoaThongBao(id);
+	}
+
+	public boolean SuaThongBao(String id, String hienthi) {
+		// TODO Auto-generated method stub
+		return tb.SuaThongBao(id, hienthi);
+	}
+
 }
