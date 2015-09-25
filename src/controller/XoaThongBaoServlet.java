@@ -31,9 +31,9 @@ public class XoaThongBaoServlet extends HttpServlet {
 		String id = request.getParameter("id");
 		
 		if(tb.XoaThongBao(id)){
-			request.setAttribute("meg", "Xóa thông báo thành công.");
+			request.setAttribute("meg", "<div class='alert alert-success' role='alert'>Xóa thông báo thành công.</div>");
 		}else{
-			request.setAttribute("meg", "Xóa thông báo thất bại.");
+			request.setAttribute("meg", "<div class='alert alert-danger' role='alert'>Xóa thông báo thất bại.</div>");
 		}
 		
 		request.getRequestDispatcher("ThongBaoServlet").forward(request, response);

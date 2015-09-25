@@ -12,13 +12,22 @@ public class ThongBaoDAO {
 
 	DataBaseDAO db = new DataBaseDAO();
 	
-	public ArrayList<THONGBAO> getListHienThi(String den) {
+	public ArrayList<THONGBAO> getListHienThi(String den, String timtheo, String find) {
 		// TODO Auto-generated method stub
+		find = DinhDangSQL.FomatSQL(find);
 		String sql = "select * from thongbao where HienThi='1'";
 		if(den.equals("")){
-			sql = "select * from thongbao where HienThi='1'";
+			sql = "select * from thongbao where HienThi='1'"
+					+ (timtheo.equals("1")?" and (IdThongBao='"+find+"' or IdThongBao='"+find+"' or GuiDen like N'%"+find+"%' or NoiDung like N'%"+find+"%')":"")
+					+ (timtheo.equals("2")?" and IdThongBao='"+find+"'":"")
+					+ (timtheo.equals("3")?" and GuiDen like N'%"+find+"%'":"")
+					+ (timtheo.equals("4")?" and NoiDung like N'%"+find+"%'":"");
 		}else{
-			sql = "select * from thongbao where HienThi='1' and GuiDen like N'%'";
+			sql = "select * from thongbao where HienThi='1' and GuiDen like N'%'"
+					+ (timtheo.equals("1")?" and (IdThongBao='"+find+"' or IdThongBao='"+find+"' or GuiDen like N'%"+find+"%' or NoiDung like N'%"+find+"%')":"")
+					+ (timtheo.equals("2")?" and IdThongBao='"+find+"'":"")
+					+ (timtheo.equals("3")?" and GuiDen like N'%"+find+"%'":"")
+					+ (timtheo.equals("4")?" and NoiDung like N'%"+find+"%'":"");
 		}
 		ResultSet rs = db.getResultSet(sql);
 		ArrayList<THONGBAO> list = new ArrayList<THONGBAO>();
@@ -40,14 +49,28 @@ public class ThongBaoDAO {
 		return null;
 	}
 
-	public ArrayList<THONGBAO> getListKhongHienThi(String den, String page, String top) {
+	public ArrayList<THONGBAO> getListKhongHienThi(String den, String timtheo, String find, int page) {
 		// TODO Auto-generated method stub
-		String sql = "select * from thongbao where HienThi='0' limit " + Integer.parseInt(page)*Integer.parseInt(top) + ", " + top;
+		find = DinhDangSQL.FomatSQL(find);
+		String sql = "select * from thongbao where HienThi='0' "
+				+ (timtheo.equals("1")?" and (IdThongBao='"+find+"' or IdThongBao='"+find+"' or GuiDen like N'%"+find+"%' or NoiDung like N'%"+find+"%')":"")
+				+ (timtheo.equals("2")?" and IdThongBao='"+find+"'":"")
+				+ (timtheo.equals("3")?" and GuiDen like N'%"+find+"%'":"")
+				+ (timtheo.equals("4")?" and NoiDung like N'%"+find+"%'":"");
 		if(den.equals("")){
-			sql = "select * from thongbao where HienThi='0' limit " + Integer.parseInt(page)*Integer.parseInt(top) + ", " + top;
+			sql = "select * from thongbao where HienThi='0' "
+					+ (timtheo.equals("1")?" and (IdThongBao='"+find+"' or IdThongBao='"+find+"' or GuiDen like N'%"+find+"%' or NoiDung like N'%"+find+"%')":"")
+					+ (timtheo.equals("2")?" and IdThongBao='"+find+"'":"")
+					+ (timtheo.equals("3")?" and GuiDen like N'%"+find+"%'":"")
+					+ (timtheo.equals("4")?" and NoiDung like N'%"+find+"%'":"");
 		}else{
-			sql = "select * from thongbao where HienThi='0' and GuiDen like N'%' limit " + Integer.parseInt(page)*Integer.parseInt(top) + ", " + top;
+			sql = "select * from thongbao where HienThi='0' and GuiDen like N'%' "
+					+ (timtheo.equals("1")?" and (IdThongBao='"+find+"' or IdThongBao='"+find+"' or GuiDen like N'%"+find+"%' or NoiDung like N'%"+find+"%')":"")
+					+ (timtheo.equals("2")?" and IdThongBao='"+find+"'":"")
+					+ (timtheo.equals("3")?" and GuiDen like N'%"+find+"%'":"")
+					+ (timtheo.equals("4")?" and NoiDung like N'%"+find+"%'":"");
 		}
+		db.createMenu("ThongBaoServlet?", 1, sql);
 		ResultSet rs = db.getResultSet(sql);
 		ArrayList<THONGBAO> list = new ArrayList<THONGBAO>();
 		try {
@@ -70,6 +93,7 @@ public class ThongBaoDAO {
 
 	public THONGBAO getThongBao(String id) {
 		// TODO Auto-generated method stub
+		id = DinhDangSQL.FomatSQL(id);
 		String sql = "select * from thongbao where IdThongBao='"+id+"'";
 		ResultSet rs = db.getResultSet(sql);
 		try {
@@ -91,6 +115,9 @@ public class ThongBaoDAO {
 
 	public boolean ThemThongBao(String tieude, String noidung, String guiden) {
 		// TODO Auto-generated method stub
+		tieude = DinhDangSQL.FomatSQL(tieude);
+		noidung = DinhDangSQL.FomatSQL(noidung);
+		guiden = DinhDangSQL.FomatSQL(guiden);
 		Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String sql = "insert into thongbao(TieuDe, NoiDung, NgayDang, HienThi, GuiDen)"
@@ -101,6 +128,9 @@ public class ThongBaoDAO {
 	public boolean SuaThongBao(String id, String tieude, String noidung,
 			String guiden) {
 		// TODO Auto-generated method stub
+		tieude = DinhDangSQL.FomatSQL(tieude);
+		noidung = DinhDangSQL.FomatSQL(noidung);
+		guiden = DinhDangSQL.FomatSQL(guiden);
 		String sql = "update thongbao set TieuDe=N'"+tieude+"', NoiDung=N'"+noidung+"', GuiDen=N'"+guiden+"' where IdThongBao='"+id+"'";
 		return db.updateData(sql);
 	}
@@ -115,6 +145,15 @@ public class ThongBaoDAO {
 		// TODO Auto-generated method stub
 		String sql = "update thongbao set HienThi='"+(hienthi.equals("1")?"0":"1")+"' where IdThongBao='"+id+"'";
 		return db.updateData(sql);
+	}
+
+	public String getMenuPhanTrang(){
+		return db.getMenuPhanTrang();
+	}
+
+	public void setMenu(int nBangghi, int ntrang) {
+		// TODO Auto-generated method stub
+		db.setMenu(nBangghi, ntrang);
 	}
 
 }

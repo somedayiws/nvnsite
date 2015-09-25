@@ -9,14 +9,14 @@ public class ThongBaoBO {
 
 	ThongBaoDAO tb = new ThongBaoDAO();
 	
-	public ArrayList<THONGBAO> getListHienThi(String den) {
+	public ArrayList<THONGBAO> getListHienThi(String den, String timtheo, String find) {
 		// TODO Auto-generated method stub
-		return tb.getListHienThi(den);
+		return tb.getListHienThi(den, timtheo, find);
 	}
 
-	public ArrayList<THONGBAO> getListKhongHienThi(String den, String page, String top) {
+	public ArrayList<THONGBAO> getListKhongHienThi(String den, String timtheo, String find, int page) {
 		// TODO Auto-generated method stub
-		return tb.getListKhongHienThi(den, page, top);
+		return tb.getListKhongHienThi(den, timtheo, find, page);
 	}
 
 	public THONGBAO getThongBao(String id) {
@@ -43,6 +43,14 @@ public class ThongBaoBO {
 	public boolean SuaThongBao(String id, String hienthi) {
 		// TODO Auto-generated method stub
 		return tb.SuaThongBao(id, hienthi);
+	}
+
+	public String getMenuPhanTrang(){
+		return tb.getMenuPhanTrang();
+	}
+
+	public void setMenu(int nBangghi, int ntrang){
+		tb.setMenu(nBangghi, ntrang);
 	}
 
 }

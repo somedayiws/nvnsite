@@ -127,6 +127,7 @@ function xem(f,x){
 		<div class="container-fluid">
 			<%@include file="header_ver_1.jsp"%>			
 			<%@include file="Menu.jsp"%>
+			<%= request.getAttribute("meg")==null?"<div class='alert alert-success' role='alert'>Không có thông báo</div>":request.getAttribute("meg") %>
 <!-------------------- Nội dung quản lý quảng cáo ------------------------>
 			<div id="content">
 	<!--------------------------- Tạo quảng cáo ---------------------------------------------------------->

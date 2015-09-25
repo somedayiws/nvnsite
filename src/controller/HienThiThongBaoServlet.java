@@ -32,11 +32,11 @@ public class HienThiThongBaoServlet extends HttpServlet {
 		String hienthi = request.getParameter("hienthi");
 		
 		if(tb.SuaThongBao(id, hienthi)){
-			if(hienthi.equals("1")) request.setAttribute("meg", "Hiển thị thông báo thành công.");
-			else request.setAttribute("meg", "Gỡ bỏ thông báo thành công.");
+			if(hienthi.equals("1")) request.setAttribute("meg", "<div class='alert alert-success' role='alert'>Hiển thị thông báo thành công.</div>");
+			else request.setAttribute("meg", "<div class='alert alert-success' role='alert'>Gỡ bỏ thông báo thành công.</div>");
 		}else{
-			if(hienthi.equals("1")) request.setAttribute("meg", "Hiển thị thông báo thất bại.");
-			else request.setAttribute("meg", "Gỡ bỏ thông báo thất bại.");
+			if(hienthi.equals("1")) request.setAttribute("meg", "<div class='alert alert-danger' role='alert'>Hiển thị thông báo thất bại.</div>");
+			else request.setAttribute("meg", "<div class='alert alert-danger' role='alert'>Gỡ bỏ thông báo thất bại.</div>");
 		}
 		
 		request.getRequestDispatcher("ThongBaoServlet").forward(request, response);

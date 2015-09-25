@@ -29,8 +29,21 @@ public class ThongBaoServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		ThongBaoBO thongBaoBO = new ThongBaoBO();
-		ArrayList<THONGBAO> listhienthi = thongBaoBO.getListHienThi("");
-		ArrayList<THONGBAO> listan = thongBaoBO.getListKhongHienThi("", "0", "10");
+		String timtheo = request.getParameter("timtheo");
+		String txtFind = request.getParameter("txtFind");
+		if(txtFind==null) txtFind = "";
+		if(timtheo==null) timtheo = "1";
+		int page = 1;
+		thongBaoBO.setMenu(10, 10);
+		try {
+			page = Integer.parseInt(request.getParameter("page"));
+		} catch (NumberFormatException e) {
+			page = 1;
+		}
+		ArrayList<THONGBAO> listhienthi = thongBaoBO.getListHienThi("", timtheo, txtFind);
+		ArrayList<THONGBAO> listan = thongBaoBO.getListKhongHienThi("", timtheo, txtFind, page);
+		String pageNav = thongBaoBO.getMenuPhanTrang();
+		request.setAttribute("pageNav", pageNav);
 		request.setAttribute("listhienthi", listhienthi);
 		request.setAttribute("listan", listan);
 		request.getRequestDispatcher("ThongBao.jsp").forward(request, response);

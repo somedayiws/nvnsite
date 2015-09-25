@@ -34,9 +34,9 @@ public class SuaThongBaoServlet extends HttpServlet {
 		String guiden = request.getParameter("GuiDen");
 		
 		if(tb.SuaThongBao(id, tieude, noidung, guiden)){
-			request.setAttribute("meg", "Cập nhật thông báo thành công.");
+			request.setAttribute("meg", "<div class='alert alert-success' role='alert'>Cập nhật thông báo thành công.</div>");
 		}else{
-			request.setAttribute("meg", "Cập nhật thông báo thất bại.");
+			request.setAttribute("meg", "<div class='alert alert-danger' role='alert'>Cập nhật thông báo thất bại.</div>");
 		}
 		
 		request.getRequestDispatcher("ThongBaoServlet").forward(request, response);

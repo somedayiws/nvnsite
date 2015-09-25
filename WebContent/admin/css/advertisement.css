@@ -3,12 +3,12 @@
 .quangcao {
     border-color: #337ab7;
     margin-left: 0px;
-    margin-top: 5%;
+    margin-top: 1%;
     width: 100%;
 }
 .them {
     position: absolute;
-    margin-top: 5.4%;
+    margin-top: 1.4%;
     margin-left: 83%;
     background-color: brown;
     z-index: 999;
@@ -41,4 +41,12 @@ form#formCreateAdv111 {
     width: 1000px;
     margin-left: auto;
     margin-right: auto;
+}
+form#ftimkiem {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+div#page {
+    float: right;
+    margin-top: -2.5%;
 }
