@@ -41,32 +41,43 @@ public class BookmarkInHomeServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		
-		String id = request.getParameter("id");
+		String id = request.getParameter("id");		
+			
 		
 		//Đếm số bài viết đã ghim trong cơ sở dữ liệu
 		ChangeStatusBO changeStatusBo = new ChangeStatusBO();
 		
 		int numberOfPostBookmark = changeStatusBo.numberOfPostsBookmark();
 		String resultChangeStatusBookmark = null;
-		
+		int status = changeStatusBo.getPostBookmarkById(id);
 		if(numberOfPostBookmark<=20){
 			//thay đổi trường gim bài viết
 			if(changeStatusBo.changeBookmark(id)){
-				int bookmarkOfPost = changeStatusBo.getPostBookmarkById(id);
+				int bookmarkOfPost = status;
 				if(bookmarkOfPost==1){
-				resultChangeStatusBookmark = "Bài viết đã được ghim lên trang chủ - ";
+				resultChangeStatusBookmark = "Đã ghim - ";
 				}else{
-					resultChangeStatusBookmark = "Bài viết đã được gỡ bỏ gim lên trang chủ - ";
+					resultChangeStatusBookmark = "Chưa ghim - ";
 				}
 			}else{
 				resultChangeStatusBookmark = "Thay đổi thất bại - ";
 			}
 			
 		}else{
-			resultChangeStatusBookmark = "Số lượng bài viết đã tối đa, bạn cần thay đổi các bài đã ghim để ghim các bài khác - ";
+			if(status == 0){
+				resultChangeStatusBookmark = "Số lượng bài viết đã tối đa, bạn cần thay đổi các bài đã ghim để ghim các bài khác - ";				
+			}
+			else{
+				//thay đổi trường gim bài viết
+				if(changeStatusBo.changeBookmark(id)){					
+						resultChangeStatusBookmark = "Chưa ghim - ";					
+				}else{
+					resultChangeStatusBookmark = "Thay đổi thất bại - ";
+				}
+			}
 		}
 		request.setAttribute("result", resultChangeStatusBookmark);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("Message.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("MessagePost.jsp");
 		requestDispatcher.forward(request, response);
 	}
 

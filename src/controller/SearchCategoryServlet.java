@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -45,14 +46,23 @@ public class SearchCategoryServlet extends HttpServlet {
 		String typeFind = request.getParameter("typeFind");
 		String stringFind = request.getParameter("stringFind");
 		String btnFind = request.getParameter("btnFind");
-		
-		
-
 		SearchCategoryBO searchCategory = new SearchCategoryBO();
-		DANHMUC[] category = searchCategory.selectCategory(typeFind, stringFind);
+		int page = 1;
+		searchCategory.setMenu(10, 5);
+		try {
+			page = Integer.parseInt(request.getParameter("page"));
+		} catch (NumberFormatException e) {
+			page = 1;
+		}
 
 		
-		request.setAttribute("category", category);
+		ArrayList<DANHMUC> categorys = searchCategory.selectCategory(typeFind, stringFind,page);
+
+		String pageNav = searchCategory.getMenuPhanTrang();		
+		
+		
+		request.setAttribute("pageNavSearch", pageNav);
+		request.setAttribute("categorys", categorys);
 		request.setAttribute("button", btnFind);
 		RequestDispatcher requestDis_error = request
 				.getRequestDispatcher("ListCategoryServlet");

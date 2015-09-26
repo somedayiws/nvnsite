@@ -51,13 +51,12 @@ public class AdminEditServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String typeUser = request.getParameter("typeUser");
 		String language = request.getParameter("language");
-		String status = request.getParameter("status");
+		String status = request.getParameter("State");
 		
-		System.out.println("type: "+type);
-		System.out.println("typeUser: "+typeUser);
+		System.out.println("name: "+name);
+		System.out.println("username: "+username);
 		System.out.println("language: "+language);
-		System.out.println("status: "+status);
-		
+		System.out.println("StatusEdit: "+status);
 		TAIKHOAN account = new TAIKHOAN();
 		AdminEditBO adminEdit = new AdminEditBO();
 		String resultSubmit;
@@ -85,14 +84,18 @@ public class AdminEditServlet extends HttpServlet {
 				resultSubmit = "Cập nhật thất bại";
 			
 			}
-			
 			request.setAttribute("result", resultSubmit);
 			RequestDispatcher requestDispatcher = null;
 			if(type.equals("CTV")){
 				requestDispatcher = request
 					.getRequestDispatcher("CTVServlet");
 			}
-			else{
+			else if(type.equals("editProfile")){
+				requestDispatcher = request
+						.getRequestDispatcher("EditProfileServlet");
+			}
+			else
+			{
 				requestDispatcher = request
 						.getRequestDispatcher("ListAccountServlet");
 			}

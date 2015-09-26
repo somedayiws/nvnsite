@@ -31,7 +31,7 @@
 				<li><a href="StatisticalServlet"><span class="glyphicon glyphicon-signal"></span>Thống kê</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-		
+				<li><a href="EditProfileServlet"><span class="glyphicon glyphicon-credit-card"></span>Hồ sơ<br>-</a></li>
 				<li><a href="LogoutServlet"><span class="glyphicon glyphicon-log-out"></span>
 						Đăng xuất<br>ログアウト</a></li>
 				

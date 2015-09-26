@@ -42,6 +42,7 @@ public class RestoreServlet extends HttpServlet {
 		else if (idCategory != null)
 			id = idCategory;
 		else if(idPosts!=null) id = idPosts;
+		else id = idAccount;
 	
 		doPost(request, response, id);
 	}
@@ -55,31 +56,33 @@ public class RestoreServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
+		String screen =(String)request.getAttribute("screen");
 		RestoreDataBO restore = new RestoreDataBO();
 		String result_Restore = null;
 		if (valueId != null) {
-			if (valueId.contains("TK")) {
+			if (valueId.contains("US")) {
 				if (restore.restore("IdTaiKhoan", valueId, "taikhoan")) {
-					result_Restore = "Phục hồi tài khoản thành công - Restrore account success";
+					result_Restore = "Phục hồi tài khoản thành công - ";
 				} else {
-					result_Restore = "Phục hồi tài khoản thất bại - Restore account fail";
+					result_Restore = "Phục hồi tài khoản thất bại - ";
 				}
 			}
 			else if (valueId.contains("DM")) {
 				if (restore.restore("IdDanhMuc", valueId, "danhmuc")) {
-					result_Restore = "Phục hồi danh mục thành công - Restrore category success";
+					result_Restore = "Phục hồi danh mục thành công - ";
 				} else {
-					result_Restore = "Phục hồi danh mục thất bại - Restore category fail";
+					result_Restore = "Phục hồi danh mục thất bại - ";
 				}
 			}
 			else if (valueId.contains("BV")) {
 				if (restore.restore("IdBaiViet", valueId, "baiviet")) {
-					result_Restore = "Phục hồi bài viết thành công - Restrore posts success";
+					result_Restore = "Phục hồi bài viết thành công - ";
 				} else {
-					result_Restore = "Phục hồi bài viết thất bại - Restore posts fail";
+					result_Restore = "Phục hồi bài viết thất bại - ";
 				}
 			}
 		}
+		request.setAttribute("screen", screen);
 		request.setAttribute("result_Restore", result_Restore);
 		RequestDispatcher requestDis_restore = request
 				.getRequestDispatcher("ShowRestoreServlet");

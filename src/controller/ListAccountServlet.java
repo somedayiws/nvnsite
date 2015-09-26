@@ -49,13 +49,19 @@ public class ListAccountServlet extends HttpServlet {
 
 		String result = (String) request.getAttribute("result");
 		String result_Restore = (String)request.getAttribute("result_Restore");
-		TAIKHOAN[] account = (TAIKHOAN[])request.getAttribute("account");
+		
+		//Nhận kết quả tạo tài khoản từ AdminCreateServlet
+//		String result_create_Account = (String)request.getAttribute("result");
+		
+		//Nhận kết quả tìm kiếm
+		ArrayList<TAIKHOAN> account = (ArrayList<TAIKHOAN>)request.getAttribute("account");
+		String pageNavSearch = (String)request.getAttribute("pageNavSearch");
 		String button = (String)request.getAttribute("button");
-		String resultUpdate, resultDelete;
-			
+		
+		String resultUpdate, resultDelete,resultCreate;
 		if (result != null) {
-			if (result.contains("Update")) {
-				if (result.contains("success")) {
+			if (result.contains("Cập nhật")) {
+				if (result.contains("thành công")) {
 
 					resultUpdate = "Chỉnh sửa thành công";
 				} else {
@@ -66,6 +72,16 @@ public class ListAccountServlet extends HttpServlet {
 			else if(result.contains("Phục hồi")){
 				request.setAttribute("result", result);
 			}
+			else if(result.contains("account")){
+				
+				if(result.contains("exists")){
+					resultCreate = "Tài khoản đã tồn tại trong hệ thống";
+				}else{
+					resultCreate = "Tạo tài khoản thành công";
+				}
+				request.setAttribute("result", resultCreate);
+			}
+			
 			else
 			{
 				if (result.contains("success")) {
@@ -77,12 +93,22 @@ public class ListAccountServlet extends HttpServlet {
 				request.setAttribute("result", resultDelete);
 			}
 		}
-		//Paging page = new Paging();
-		//int currentPage = page.currentPage("", 1);
-	
+//		if(result_create_Account!=null){
+//			if(result_create_Account.contains("exists")){
+//				request.setAttribute("result_create_Account", "Tài khoản đã tồn tại trong hệ thống");
+//			}
+//			else{
+//				request.setAttribute("result_create_Account", "Tạo tài khoản thành công");
+//			}
+//		}
+		if(account!=null){
+			request.setAttribute("pageNavSearch", pageNavSearch);
+			request.setAttribute("account", account);
+			request.setAttribute("button", button);
+		}
+		else{
 		ListAccountBO listAcc = new ListAccountBO();
 		
-		//int totalPage = listAcc.totalRecord();
 		int page = 1;
 		listAcc.setMenu(10, 5);
 		try {
@@ -91,16 +117,13 @@ public class ListAccountServlet extends HttpServlet {
 			page = 1;
 		}
 		ArrayList<TAIKHOAN> accounts = listAcc.getDataAccountInfor(page);
-		//System.out.println("Leng contrller : " + listAccount.length);
 		String pageNav = listAcc.getMenuPhanTrang();
-		request.setAttribute("pageNav", pageNav);
-		//System.out.println("Menu : " + pageNav);
-		request.setAttribute("account", account);
-		request.setAttribute("button", button);
-		request.setAttribute("result_Restore", result_Restore);
-		//request.setAttribute("totalPage",totalPage);
-		//request.setAttribute("currentPage", currentPage);
+		
+		request.setAttribute("pageNav", pageNav);		
+		
 		request.setAttribute("accounts", accounts);
+		}
+		request.setAttribute("result_Restore", result_Restore);
 		RequestDispatcher requestDis_result = request
 				.getRequestDispatcher("ListAccount.jsp");
 		requestDis_result.forward(request, response);

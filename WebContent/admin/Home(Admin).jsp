@@ -1,3 +1,5 @@
+<%@page import="model.bean.BAIVIET"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -12,27 +14,187 @@
 	src="../bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
 	href="./css/home.css">
-<title>Trang chủ Admin - ホーム管理</title>
+<title>Trang chủ - ホーム</title>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();  
+});
+</script>
 </head>
 <%
 	//Check session exist
 	HttpSession session_user = request.getSession();
 	String username =(String)session_user.getAttribute("username");	
+	
+	//Nhận các bài viết mới nhất
+	ArrayList<BAIVIET> postsNew = (ArrayList<BAIVIET>) request.getAttribute("postsNew");
+	System.out.println("postsNew_size(): "+postsNew.size());
 %>
 <body>
 	<%if(username!=null){ %>
 	<div class="container-fluid" >
 		<%@include file="header_ver_1.jsp"%>	
 		<%@include file="Menu.jsp"%>
-		<div class="col-md-4 col-md-offset-4" id = "divcontent">
-			<img src="../images/congthongtin.png" class=img-responsive alt="Cổng thông tin">
-			<marquee direction="left"><h2>Chào mừng bạn đến với trang Admin<br>管理者のホームページへようこそ</h2></marquee>
-		</div>		
+		<div class="row">
+<!-- |--------------------------------------------------------------| -->
+<!-- |-------------------Hiển thị hình ảnh--------------------------| -->
+<!-- |--------------------------------------------------------------| -->		
+			<div class="col-md-4" style="margin-top: 300px">
+				<div class="col-md-10 col-md-offset-1">
+					<img src="../images/congthongtin.png" class=img-responsive alt="Cổng thông tin">
+					<marquee direction="left"><h2>Chào mừng bạn đến với trang Admin<br>管理者のホームページへようこそ</h2></marquee>
+				</div>
+			</div>
+<!-- |--------------------------------------------------------------| -->
+<!-- |-------------Hiển thị bài viết mới nhất- ---------------------| -->
+<!-- |--------------------------------------------------------------| -->				
+			<div class="col-md-8" style="margin-top: 100px">
+				<%if(postsNew!=null){ %>
+					<div class="col-md-10 col-md-offset-1 panel panel-primary">
+						<div class="panel-heading">Bài viết mới đăng</div>
+						<div class="panel-body">
+							<div class="table-responsive">
+							<table class="table table-hover table-condensed table-striped ">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Tên bài viết<br>名前</th>
+										<th>Danh mục<br>Eメール</th>
+										<th>Người đăng<br>ユーザ名</th>
+										<th>Ngày đăng<br>住所</th>
+										<th>Lượt xem<br>電話</th>																			
+										<th></th>
+										<th></th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<%for(int i=0;i<postsNew.size();i++){ %>
+										<tr>
+											<td><%=postsNew.get(i).getIdBaiViet() %></td>
+											<td><%=postsNew.get(i).getTenBaiVietVi()%> - <%=postsNew.get(i).getTenBaiVietJa()%></td>
+											<td><%=postsNew.get(i).getDanhMuc().getTenDanhMucVi()%> - <%=postsNew.get(i).getDanhMuc().getTenDanhMucJa()%></td>
+											<td><%=postsNew.get(i).getTaiKhoan().getTenTaiKhoan() %></td>
+											<td><%=postsNew.get(i).getNgayDang() %></td>
+											<td><%=postsNew.get(i).getLuotXem() %></td>
+											<td><button type="button"  id="<%=postsNew.get(i).getIdBaiViet()%>" class="btn btn-warning btn-sm btnbookmark" ><span class="glyphicon glyphicon-bookmark"></span></button>
+								<div id="resultMessage_<%=postsNew.get(i).getIdBaiViet()%>" class="divMessage" style="display:none;">									
+									<input type="text"  id="status" name="status" value="<%if(postsNew.get(i).getGimTrangChu()==1){%>Đã ghim<%}else {%>Chưa ghim<%} %>" disabled="disabled">									
+								</div>
+							</td>
+											<td><a
+												href="ShowDetailPostsServlet?id=<%=postsNew.get(i).getIdBaiViet()%>" data-toggle="tooltip" title="Chi tiết - 詳細"><button
+														type="button" class="btn btn-info btn-sm">
+														<span class="glyphicon glyphicon-list-alt"></span>
+													</button> </a></td>
+											<td><a
+												href="<%if(postsNew.get(i).getTrangThai().contains("OK") || postsNew.get(i).getTrangThai().contains("DangDich") ){ %>#<%}else{ %> ./ShowAdminEditPostsServlet?idPost=<%=postsNew.get(i).getIdBaiViet()%>&from=list<%}%>" data-toggle="tooltip" title="Chỉnh sửa - 編集"><button
+														type="button" class="btn btn-primary btn-sm"<%if(postsNew.get(i).getTrangThai().contains("OK") || postsNew.get(i).getTrangThai().contains("DangDich")){ %> disabled="disabled" <%} %>>
+														<span class="glyphicon glyphicon-pencil"> </span> 
+													</button></a></td>
+											<td><a href="#" data-toggle="tooltip" title="Xóa - 削除"><button type="button" class="btn btn-danger btn-sm"
+													data-toggle="modal" 
+													data-target="#delete<%=postsNew.get(i).getIdBaiViet()%>">
+													<span class="glyphicon glyphicon-remove"></span> 
+												</button></a></td>
+										</tr>
+									<%} %>
+								</tbody>
+							</table>
+							<div id="page" class="menuPhanTrang">
+								<%= request.getAttribute("pageNav") %>
+							</div>
+							</div>
+						</div>
+					</div>
+				<%} %>
+			</div>
+		</div>	
+			<%
+				if (postsNew != null) {
+					for (int i = 0; i < postsNew.size(); i++) {
+			%>
+
+<!-- |--------------------------------------------------------------| -->
+<!-- |-------------Modal xóa- ---------------------| -->
+<!-- |--------------------------------------------------------------| -->	
+			<div class="modal fade" id="delete<%=postsNew.get(i).getIdBaiViet()%>">
+				<div class="modal-dialog">
+
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Xóa bài viết(Admin)</h4>
+						</div>
+						<div class="modal-body">
+
+							<form name="form_delete_posts_admin"
+								action="AdminDeletePostsServlet" method="post">
+
+
+								<div class="form-group">
+									<label>ID Bài viết<span class="rq"> * </span>:
+									</label> <input type="text" class="form-control" maxlength="10"
+										name="Idposts" value="<%=postsNew.get(i).getIdBaiViet()%>"
+										readonly="readonly">
+								</div>
+								<button type="submit" class="btn btn-success btn-lg">Xóa</button>
+							</form>
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" id="btn" class="btn btn-default"
+								data-dismiss="modal">Quay lại</button>
+						</div>
+					</div>
+				</div>
+			</div>		
+			<%
+				}
+				}
+			%>	
+			<div id="resultMessage" style="display:none;"></div>
 	</div>
-	<%}else{%>
-			<h1>404 - Không tìm thấy trang</h1>
-	<%}
-	%>
-</div>
+	<%}else{
+		RequestDispatcher dispatcher = request.getRequestDispatcher("ShowloginAdmin");
+	    dispatcher.forward(request, response);
+	}%>				
 </body>
+<script type="text/javascript">	
+	$(".btnbookmark").click(function(){
+		var id = this.id;	
+		$("#resultMessage_"+id).hide();	
+			$.ajax({
+				url : "BookmarkInHomeServlet", //file 
+				type : "POST", //phuong thức gưi
+				data : {
+					id 	: this.id,
+				}, //dữ liệu gửi
+				async : true, //
+				success : function(res) {
+					if(res.indexOf("tối đa") > -1)
+					{
+						$("#resultMessage").html(res);
+						alert($('#resultMessage').children("#result").text());
+					}
+					else{
+						$("#resultMessage_"+id).html(res);
+						alert($('#status').val());
+					}
+														
+				},
+				error : function() {
+					alert('Không thể thay đổi để ghim lên trang chủ');
+					$("#load").html("");
+				}
+			});	    
+	});	
+	$(".btnbookmark").hover(function(){
+		var id = this.id;			
+			$("#resultMessage_"+id).show(1000);	
+			
+		
+	}); 
+	</script>
 </html>

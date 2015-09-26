@@ -47,23 +47,15 @@ public class ListCategoryServlet extends HttpServlet {
 		String resultUpdate = (String)request.getAttribute("resultUpdate");
 		String resultDelete =(String)request.getAttribute("resultDelete");
 		String resultRestore = (String)request.getAttribute("result_Restore");
-		DANHMUC[] category_after_search = (DANHMUC[])request.getAttribute("category");
+		ListCategoryBO listCategory = new ListCategoryBO();
+		
+		
+		ArrayList<DANHMUC> category_after_search = (ArrayList<DANHMUC>)request.getAttribute("categorys");
 		String button = (String)request.getAttribute("button");
+		String pageNavSearch = (String)request.getAttribute("pageNavSearch");
 		
 		//Nhận lại kết quả thay đổi hiển thị
 		String resultChangeShowed =(String)request.getAttribute("resultChangeShowed");
-		
-		ListCategoryBO listCategory = new ListCategoryBO();
-		int page = 1;
-		listCategory.setMenu(10, 5);
-		try {
-			page = Integer.parseInt(request.getParameter("page"));
-		} catch (NumberFormatException e) {
-			page = 1;
-		}
-		ArrayList<DANHMUC> category = listCategory.getCategory(page);
-		String pageNav = listCategory.getMenuPhanTrang();
-		
 		//đếm số danh mục được hiển thị trên thanh menu
 		int countCategoryShowed = listCategory.countCategoryShowed();
 		//Danh mục hiển thị lên thanh menu
@@ -76,14 +68,31 @@ public class ListCategoryServlet extends HttpServlet {
 		
 		//gởi kết quả thay đổi hiển thị
 		request.setAttribute("resultChangeShowed",resultChangeShowed);
-		request.setAttribute("pageNav", pageNav);		
+			
 		request.setAttribute("resultInsert", resultInsert);
 		request.setAttribute("resultUpdate", resultUpdate);
 		request.setAttribute("resultDelete", resultDelete);
 		request.setAttribute("resultRestore", resultRestore);
+		
+		if(category_after_search!=null){			
 		request.setAttribute("category_after_search", category_after_search);
 		request.setAttribute("button",button);
-		request.setAttribute("category", category);
+		request.setAttribute("pageNavSearch", pageNavSearch);
+		}else{
+			int page = 1;
+			listCategory.setMenu(10, 5);
+			try {
+				page = Integer.parseInt(request.getParameter("page"));
+			} catch (NumberFormatException e) {
+				page = 1;
+			}
+			ArrayList<DANHMUC> category = listCategory.getCategory(page);
+			String pageNav = listCategory.getMenuPhanTrang();
+			
+			request.setAttribute("category", category);
+			System.out.println("pageNav: "+pageNav);
+			request.setAttribute("pageNav", pageNav);	
+		}
 		RequestDispatcher requestDis_listCategory = request.getRequestDispatcher("Category.jsp");
 		requestDis_listCategory.forward(request, response);
 	}

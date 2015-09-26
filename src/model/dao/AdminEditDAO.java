@@ -14,7 +14,8 @@ public class AdminEditDAO {
 		account.setEmail(DinhDangSQL.FomatSQL(account.getEmail()));
 		account.setTenTaiKhoan(DinhDangSQL.FomatSQL(account.getTenTaiKhoan()));
 		account.setMatKhau(DinhDangSQL.FomatSQL(account.getMatKhau()));
-		
+		account.setNgonNgu(DinhDangSQL.FomatSQL(account.getNgonNgu()));
+		account.setTinhTrang(DinhDangSQL.DeFomatSQL(account.getTinhTrang()));
 		String sql_update_account = "UPDATE taikhoan SET HoTen = N'" + account.getHoTen()
 				+ "',DiaChi=N'" + account.getDiaChi() + "',DienThoai='"
 				+ account.getDienThoai() + "',Email='" + account.getEmail()

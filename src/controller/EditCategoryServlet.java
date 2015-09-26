@@ -156,6 +156,12 @@ public class EditCategoryServlet extends HttpServlet {
 			if(filename == null || filename.trim().equals("")) icon = imageIcon;
 			else icon = filename;
 			
+			System.out.println("IdCategory: "+IdCategory);
+			System.out.println("nameCategoryVi: "+nameCategoryVi);
+			System.out.println("nameCategoryJa: "+nameCategoryJa);
+			System.out.println("display: "+display);
+			System.out.println("imageIcon: "+imageIcon);
+			
 		}
 		int show;
 		String resultUpdate;

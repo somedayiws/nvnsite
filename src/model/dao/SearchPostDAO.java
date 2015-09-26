@@ -15,14 +15,24 @@ public class SearchPostDAO {
 	
 	@SuppressWarnings("null")
 	public ArrayList<BAIVIET> searchPost(String typeFind,String stringFind,int page){
-		 
-		 String sql_Search = "SELECT IdBaiViet,TenBaiVietVi,TenBaiVietJa,IdDanhMuc,IdTaiKhoan,NgayDang,MotaVi,MotaJa,TrangThai FROM baiviet WHERE "+typeFind+" LIKE '%"+stringFind+"%' AND CoXoa = 0 ORDER BY NgayDang DESC";
-	
-	//	System.out.println("sql_Search: "+sql_Search);
-		db.createMenu("SearchPostServlet?typeFind="+typeFind+"&stringFind="+stringFind+"&", page, sql_Search);
-	//	System.out.println("pageDAO: "+page);
-		
-		System.out.println("sqlSearch: "+sql_Search + " limit "
+		String sql_Search = null;		
+		if(typeFind.equals("LuotXem")){
+			if(stringFind.equals("1")){
+				//Sắp xếp lượt view tăng dần
+				sql_Search = "SELECT IdBaiViet,TenBaiVietVi,TenBaiVietJa,IdDanhMuc,IdTaiKhoan,NgayDang,MotaVi,MotaJa,TrangThai,LuotXem,GimTrangChu FROM baiviet WHERE CoXoa = 0 ORDER BY LuotXem  ASC";
+			}else{
+				//Sắp xếp lượt view giảm dần
+				sql_Search = "SELECT IdBaiViet,TenBaiVietVi,TenBaiVietJa,IdDanhMuc,IdTaiKhoan,NgayDang,MotaVi,MotaJa,TrangThai,LuotXem,GimTrangChu FROM baiviet WHERE CoXoa = 0 ORDER BY LuotXem  DESC";
+			}
+		}
+		else if(typeFind.equals("GimTrangChu")){
+			sql_Search = "SELECT IdBaiViet,TenBaiVietVi,TenBaiVietJa,IdDanhMuc,IdTaiKhoan,NgayDang,MotaVi,MotaJa,TrangThai,LuotXem,GimTrangChu FROM baiviet WHERE GimTrangChu = "+stringFind+" AND CoXoa = 0 ORDER BY NgayDang DESC";
+		}
+		else{
+			sql_Search = "SELECT IdBaiViet,TenBaiVietVi,TenBaiVietJa,IdDanhMuc,IdTaiKhoan,NgayDang,MotaVi,MotaJa,TrangThai,LuotXem,GimTrangChu FROM baiviet WHERE "+typeFind+" LIKE '%"+stringFind+"%' AND CoXoa = 0 ORDER BY NgayDang DESC";
+		}
+		db.createMenu("SearchPostServlet?typeFind="+typeFind+"&stringFind="+stringFind+"&", page, sql_Search);	
+		System.out.println("sql_select_category: "+sql_Search + " limit "
 				+ (page - 1) * db.getNBangGhi() + ","
 				+ db.getNBangGhi());
 		ResultSet resultSearch = db.getResultSet(sql_Search + " limit "
@@ -46,6 +56,8 @@ public class SearchPostDAO {
 				post.setMoTaVi(resultSearch.getString("MotaVi"));
 				post.setMoTaJa(resultSearch.getString("MotaJa"));
 				post.setTrangThai(resultSearch.getString("TrangThai"));
+				post.setLuotXem(resultSearch.getInt("LuotXem"));
+				post.setGimTrangChu(resultSearch.getInt("GimTrangChu"));
 				posts.add(post);
 			}
 			return posts;

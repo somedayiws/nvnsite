@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.bean.TAIKHOAN;
-import model.bo.AdminCreateBO;
 
 @WebServlet("/admin/AdminCreateServet")
 public class AdminCreateServet extends HttpServlet {
@@ -28,7 +27,10 @@ public class AdminCreateServet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
-
+		
+		String type = request.getParameter("type");
+		
+		
 		// Get data from Client
 		String name = request.getParameter("name");
 		String adress = request.getParameter("adress");
@@ -71,8 +73,16 @@ public class AdminCreateServet extends HttpServlet {
 			account.setIdTaiKhoan(adminCreate.id_Account_after_increase());
 			// insert
 			if (adminCreate.insertAccount(account)) {
-				resultSubmit = "Account of your inserted into database successfull";
-				response.sendRedirect("ListAccountServlet");
+				resultSubmit = "Create account success";				
+				request.setAttribute("result", resultSubmit);
+				RequestDispatcher dispatcher;
+				if(type.equals("CTV")){
+					dispatcher = request.getRequestDispatcher("CTVServlet");
+				}
+				else{
+					dispatcher = request.getRequestDispatcher("ListAccountServlet");
+				}
+				dispatcher.forward(request, response);
 			} else {
 
 				resultSubmit = "Insert failed";
@@ -88,8 +98,18 @@ public class AdminCreateServet extends HttpServlet {
 			resultSubmit = "Error: " + adminCreate.error;
 			if (resultSubmit != null
 					&& resultSubmit
-							.contains("User already exists int the system")) {
-				response.sendRedirect("ListAccountServlet");
+							.contains("account already exists int the system")) {
+				
+				request.setAttribute("result", resultSubmit);
+				RequestDispatcher dispatcher;
+				if(type.equals("CTV")){
+					dispatcher = request.getRequestDispatcher("CTVServlet");
+				}
+				else{
+					dispatcher = request.getRequestDispatcher("ListAccountServlet");
+				}
+				dispatcher.forward(request, response);
+				//response.sendRedirect("ListAccountServlet");
 			}
 			// if not exist
 			else {

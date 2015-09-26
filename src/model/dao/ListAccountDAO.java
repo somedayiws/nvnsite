@@ -12,16 +12,6 @@ public class ListAccountDAO {
 	DataBaseDAO db = new DataBaseDAO();	
 	public ArrayList<TAIKHOAN> getDataAcountInfor(int start,int limit,String status)	
 	{
-//		int number_of_account = totalRecord(status);
-//		
-//		if(number_of_account == 0)
-//		{
-//			return null;
-//		}
-//		/**Create array of account*/
-//		TAIKHOAN[] listAccount = new TAIKHOAN[number_of_account];
-//		
-//		int i = 0;
 		String sql_select_account = null;
 		//Lấy các tài khoản CTV
 		if(status.equals("CTV")){
@@ -29,10 +19,9 @@ public class ListAccountDAO {
 		}
 		//Lấy tất cả tài khoản
 		else{
-			sql_select_account = "SELECT * FROM taikhoan WHERE CoXoa = 0 AND QuyenQuanTri != 'CTV' limit "+start+","+limit+"";
+			sql_select_account = "SELECT * FROM taikhoan WHERE CoXoa = 0 AND QuyenQuanTri != 'ctv' limit "+start+","+limit+"";
 		}
-	//	System.out.println("sql_select_account: "+sql_select_account);
-		if(sql_select_account==null){ return null;} 
+		System.out.println("sql_select_account: "+sql_select_account);
 		ResultSet result_select = db.getResultSet(sql_select_account);
 		ArrayList<TAIKHOAN> accounts = new ArrayList<TAIKHOAN>();
 		try {
@@ -149,7 +138,7 @@ public class ListAccountDAO {
 		
 		
 		int i = 0;
-		String sql_select_account = "SELECT * FROM taikhoan WHERE CoXoa = 0";
+		String sql_select_account = "SELECT * FROM taikhoan WHERE CoXoa = 0 AND QuyenQuanTri != 'ctv'";
 		
 		//Tạo menu phân trang Url, page, sql
 		db.createMenu("ListAccountServlet?", page, sql_select_account);

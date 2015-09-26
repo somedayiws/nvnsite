@@ -26,6 +26,7 @@
 <%
 	/**Receive data from server*/
 	ArrayList<TAIKHOAN> listAccountDeleted = (ArrayList<TAIKHOAN>) request.getAttribute("listAccountDeleted");
+	String screen = (String)request.getAttribute("screen");
 %>
 <body>
 	<div class="container-fluid">
@@ -50,7 +51,7 @@
 								<td><%=listAccountDeleted.get(i).getIdTaiKhoan()%></td>
 								<td><%=listAccountDeleted.get(i).getTenTaiKhoan()%></td>
 								<td><a
-									href="RestoreServlet?idAccount=<%=listAccountDeleted.get(i).getIdTaiKhoan()%>"><button
+									href="RestoreServlet?idAccount=<%=listAccountDeleted.get(i).getIdTaiKhoan()%>&screen=C<%=screen%>"><button
 											type="button" class="btn btn-default">
 											<span class="glyphicon glyphicon-pencil"></span>Phục hồi
 										</button></a></td>

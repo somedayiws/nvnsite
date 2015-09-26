@@ -68,7 +68,7 @@ public class LoginServlet extends HttpServlet {
 				   System.out.println("user.getValue: "+user.getValue());
 				  
 				}
-				RequestDispatcher requestDis = request.getRequestDispatcher("Home(Admin).jsp");
+				RequestDispatcher requestDis = request.getRequestDispatcher("ShowHomeServlet");
 				requestDis.forward(request, response);
 			}
 			else{

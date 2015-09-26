@@ -11,46 +11,12 @@ public class ListCategoryDAO {
 
 	/** Get data Category */
 	public ArrayList<DANHMUC> getCategory(int page) {
-		/*int number_of_category = 0;
-		int i = 0;
-		int tmp = 1000;//biến để lưu lại số lượng record còn lại trong table
-		int count = 0;//biến đem số lần sử dụng hàm này
-		
-		 Count number of category 
-		String sql_count_category = "SELECT COUNT(*) AS NUMBER_OF_CATEGORY FROM danhmuc WHERE CoXoa = 0";
-		ResultSet result_count = db.getResultSet(sql_count_category);
-		try {
-			while (result_count.next()) {
-				number_of_category = result_count.getInt("NUMBER_OF_CATEGORY");
-			}
-			if (number_of_category == 0) {
-				return null;
-			}
-			
-			
-			if (number_of_category > db.getNBangGhi() && page != -1)
-			{
-				count++;
-				number_of_category = db.getNBangGhi();
-				tmp = number_of_category - db.getNBangGhi()*count;				
-			}
-			System.out.println("tmp: "+tmp);
-			if(tmp<db.getNBangGhi()) number_of_category = tmp;
-			
-		
-			
-			
-			DANHMUC[] category = new DANHMUC[number_of_category];*/
-		
 			ArrayList<DANHMUC> listCategory = new ArrayList<DANHMUC>();
 			/* Get category */
 			String sql_select_category = "SELECT * FROM danhmuc WHERE CoXoa = 0";
-			// ResultSet result_select = db.getResultSet(sql_select_category);
 
 			db.createMenu("ListCategoryServlet?", page, sql_select_category);
 
-			// System.out.println("sql : " + sql_select_account + " limit " +
-			// (page-1)*db.getNBangGhi() +","+ db.getNBangGhi());
 			ResultSet result_select = null;
 			if (page != -1) {
 				result_select = db.getResultSet(sql_select_category + " limit "

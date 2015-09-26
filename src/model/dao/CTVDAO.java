@@ -26,7 +26,7 @@ public class CTVDAO {
 	 */
 	
 	//Thông tin cộng tác viên
-	public ArrayList<CTV> getListCTV(){
+	public ArrayList<CTV> getListCTV(int page){
 		/*type:
 		 * 		1: Bài viết đã dịch
 		 * 		2: Bài viết đang dịch
@@ -36,8 +36,20 @@ public class CTVDAO {
 		 * 		6: Bài viết mới nhận
 		 * 
 		 * */
+	
 		String sql_getListCTV = "select IdTaiKhoan,TenTaiKhoan,HoTen,DiaChi,DienThoai,Email,NgonNgu,TinhTrang from taikhoan where QuyenQuanTri = 'ctv' and CoXoa = 0 ";
-		ResultSet result_getListCTV =  db.getResultSet(sql_getListCTV);
+		
+		
+		
+		db.createMenu("CTVServlet?", page, sql_getListCTV);
+		
+		System.out.println("sql_getListCTV: "+sql_getListCTV + " limit "
+				+ (page - 1) * db.getNBangGhi() + ","
+				+ db.getNBangGhi());
+		
+		ResultSet result_getListCTV =  db.getResultSet(sql_getListCTV + " limit "
+				+ (page - 1) * db.getNBangGhi() + ","
+				+ db.getNBangGhi());
 		ArrayList<CTV> listCTV = new ArrayList<CTV>();
 		String idCTV;
 		try {
@@ -57,24 +69,18 @@ public class CTVDAO {
 				ctv.setTaikhoan(account);
 				listCTV.add(ctv);
 			}
-			System.out.println("size_listCTV_1: "+listCTV.size());
 			for(int i=0;i<listCTV.size();i++){
 				System.out.println("i:"+i);
-				//CTV ctv = new CTV();
 				ArrayList<ArrayList<BAIVIET>> array_ListPost = new ArrayList<ArrayList<BAIVIET>>();
-				//int j;
 				for(int j=0;j<=5;j++){
 					
 					System.out.println("j:"+j);
 					ArrayList<BAIVIET> listPost = getPostTranslatedByCTV(j+1, listCTV.get(i).getTaikhoan().getIdTaiKhoan());
 					System.out.println("size_listPost:"+listPost.size());
 					array_ListPost.add(listPost);
-					System.out.println("size_array_ListPost:"+array_ListPost.size());
 				}
 				
-				//ctv.setArray_ListPost(array_ListPost);
 				listCTV.get(i).setArray_ListPost(array_ListPost);
-				System.out.println("size_listCTV_2: "+listCTV.size());
 			}
 			return listCTV;
 		} catch (SQLException e) {
@@ -136,5 +142,12 @@ public class CTVDAO {
 			e.printStackTrace();
 			return null;
 		}
-	} 
+	}
+	public String getMenuPhanTrang() {
+		return db.getMenuPhanTrang();
+	}
+
+	public void setMenu(int nBangghi, int ntrang) {
+		db.setMenu(nBangghi, ntrang);
+	}
 }

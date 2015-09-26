@@ -15,27 +15,10 @@ public class ListPostsDAO {
 	/** Get Data Post */
 
 	public ArrayList<BAIVIET> getDataPosts(int page) {
-
-		/** Count number records */
-//		int numberOfPosts = 0;
-//		String sql_count_posts = "SELECT COUNT(*) AS COUNTPOSTS FROM baiviet WHERE CoXoa = 0";
-//		ResultSet result_count = db.getResultSet(sql_count_posts);
-//		try {
-//			while (result_count.next()) {
-//				numberOfPosts = result_count.getInt("COUNTPOSTS");
-//			}
-//			System.out.println("number: "+numberOfPosts);
-//			if (numberOfPosts == 0)
-//				return null;
-//			
-//			if (numberOfPosts > db.getNBangGhi() && page != -1)
-//				numberOfPosts = db.getNBangGhi();
-//
-//			BAIVIET[] posts = new BAIVIET[numberOfPosts];
 		
 		ArrayList<BAIVIET> posts = new ArrayList<BAIVIET>();
 			
-			String sql_select_posts = "SELECT * FROM baiviet WHERE CoXoa = 0 ORDER BY NgayDang DESC";
+			String sql_select_posts = "SELECT * FROM baiviet WHERE CoXoa = 0 AND TrangThai <> 'SoanThao' ORDER BY NgayDang DESC";
 			
 			db.createMenu("ListPostsServlet?", page, sql_select_posts);
 			
@@ -44,13 +27,9 @@ public class ListPostsDAO {
 				result_select = db.getResultSet(sql_select_posts + " limit "
 						+ (page - 1) * db.getNBangGhi() + ","
 						+ db.getNBangGhi());
-			System.out.println("sql: "+sql_select_posts + " limit "
-						+ (page - 1) * db.getNBangGhi() + ","
-						+ db.getNBangGhi());
 			} else {
 				result_select = db.getResultSet(sql_select_posts);
 			}
-			//ResultSet result_select = db.getResultSet(sql_select_posts);
 
 			String IdPosts,IdCategory,IdAccount;
 			int i = 0;
@@ -94,8 +73,6 @@ public class ListPostsDAO {
 				e.printStackTrace();
 				return null;
 			}			
-		
-		
 
 	}
 	
@@ -147,4 +124,64 @@ public class ListPostsDAO {
 			return null;
 		}
 	}
+	
+	//Lấy các bài viết mới đăng 
+	public ArrayList<BAIVIET> getPostsNew(int page){
+		String sql_getPostsNew = "SELECT IdBaiViet,TenBaiVietVi,TenBaiVietJa,IdDanhMuc,IdTaiKhoan,NoiDungVi,NoiDungJa,GhiChu,MotaVi,MotaJa,TrangThai,LuotXem,Lienket,NgayDang,GimTrangChu FROM baiviet WHERE TrangThai = 'MoiDang' AND CoXoa = 0 ORDER BY NgayDang DESC";
+		
+		db.createMenu("ShowHomeServlet?", page, sql_getPostsNew);
+		
+		ResultSet result_getPostsNew = null;
+		if (page != -1) {
+			result_getPostsNew = db.getResultSet(sql_getPostsNew + " limit "
+					+ (page - 1) * db.getNBangGhi() + ","
+					+ db.getNBangGhi());
+		} else {
+			result_getPostsNew = db.getResultSet(sql_getPostsNew);
+		}
+
+		
+		result_getPostsNew = db.getResultSet(sql_getPostsNew);
+		ArrayList<BAIVIET> posts = new ArrayList<BAIVIET>();
+		String idCategory,idAccount;
+		try {
+			while(result_getPostsNew.next()){
+				BAIVIET post = new BAIVIET();
+				post.setIdBaiViet(DinhDangSQL.DeFomatSQL(result_getPostsNew.getString("IdBaiViet")));
+				post.setTenBaiVietVi(DinhDangSQL.DeFomatSQL(result_getPostsNew.getString("TenBaiVietVi")));
+				post.setTenBaiVietVi(DinhDangSQL.DeFomatSQL(result_getPostsNew.getString("TenBaiVietJa")));
+				
+				idCategory = DinhDangSQL.DeFomatSQL(result_getPostsNew.getString("IdDanhMuc"));
+				post.setDanhMuc(category.getCategorybyId(idCategory));
+				idAccount =  DinhDangSQL.DeFomatSQL(result_getPostsNew.getString("IdTaiKhoan"));
+				post.setTaiKhoan(account.getAccountbyId(idAccount));
+				
+				post.setNoiDungVi(DinhDangSQL.DeFomatSQL(result_getPostsNew.getString("NoiDungVi")));
+				post.setNoiDungJa(DinhDangSQL.DeFomatSQL(result_getPostsNew.getString("NoiDungJa")));
+				
+				post.setTrangThai(DinhDangSQL.DeFomatSQL(result_getPostsNew.getString("TrangThai")));
+				
+				post.setGhiChu(DinhDangSQL.DeFomatSQL(result_getPostsNew.getString("GhiChu")));
+				
+				post.setNoiDungVi(DinhDangSQL.DeFomatSQL(result_getPostsNew.getString("NoiDungVi")));
+				post.setNoiDungJa(DinhDangSQL.DeFomatSQL(result_getPostsNew.getString("NoiDungJa")));
+				
+				post.setLuotXem(result_getPostsNew.getInt("LuotXem"));
+				
+				post.setLienKet(DinhDangSQL.DeFomatSQL(result_getPostsNew.getString("LienKet")));
+				post.setNgayDang(DinhDangSQL.DeFomatSQL(result_getPostsNew.getString("NgayDang")));
+				
+				post.setGimTrangChu(result_getPostsNew.getInt("GimTrangChu"));
+				
+				posts.add(post);
+				
+			}
+			return posts;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 }

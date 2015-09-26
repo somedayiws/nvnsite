@@ -37,6 +37,8 @@ public class ShowCreateAccount extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String type = request.getParameter("type");
+		request.setAttribute("type", type);
 		RequestDispatcher requestDis = request.getRequestDispatcher("CreateAccount.jsp");
 		requestDis.forward(request, response);
 	}

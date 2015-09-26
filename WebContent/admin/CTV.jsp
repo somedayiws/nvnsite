@@ -20,7 +20,6 @@
 <%
 	ArrayList<CTV> ctv =(ArrayList<CTV>) request.getAttribute("ctv");
 	String result = (String)request.getAttribute("result");
-	
 %>
 </head>
 
@@ -29,14 +28,49 @@
 		<%@include file="header_ver_1.jsp"%>
 		<%@include file="Menu.jsp"%>
 		<div id="divcontent">
-<!---------------------- Liệt kê tất cả cộng tác viên và thông tin ------------------->
+			
+			 
 			<%if(result!=null){ %>
 				<div class="col-md-4 col-md-offset-4 alert alert-info">
-						  <strong>Thông báo - 情報!</strong><%=result %>
-						</div>
-			<%} %>
+					<strong>Thông báo - 情報!</strong><%=result %>
+				</div>
+			<%}
+			%>	
+			<div class="col-md-10 col-md-offset-1">				
+				<form action="AdminSearchSevlet" method="post"
+					onsubmit="return checkValidateSearch()">
+					<h4 class="col-md-2">Tìm kiếm - 検索</h4>
+					<div class="col-md-2 form-group">
+						<select class="form-control" id="typeFind" name="typeFind">
+							<option value="IdTaiKhoan">ID</option>
+							<option value="HoTen">Họ tên - 氏名</option>
+							<option value="DiaChi">Địa chỉ - 住所</option>
+							<option value="DienThoai">Địện thoại - 電話番号</option>
+							<option value="Email">Email - メール</option>
+							<option value="TenTaiKhoan">Tên tài khoản - ユーザー名</option>							
+						</select>
+					</div>
+					<div class="col-md-5 form-group">
+						<input type="text" class="form-control" id="stringFind"
+							name="stringFind">
+					</div>
+					<div class=" form-group">
+						<button type="submit" name="btnFind" value="Find"
+							class=" col-md-1 btn btn-primary btn-sm">Tìm kiếm<br>検索</button>
+					</div>
+				</form>
+				<div class="form-group">
+					<a href="ShowCreateAccount?type=CTV"><button class=" col-md-1 btn btn-success btn-sm">Tạo tài khoản<br>アカウントの作成
+							</button></a>
+				</div>
+				<div class="form-group">
+					<a href="ShowRestoreServlet?type=account&screen=CTV"><button class=" col-md-1 btn btn-success btn-sm">Khôi phục<br>回復
+					</button></a>
+				</div>
+			</div>
 					<%if(ctv!=null){ %>
-			<div class="col-md-10 col-md-offset-1 panel panel-primary">
+<!---------------------- Liệt kê tất cả cộng tác viên và thông tin ------------------->
+			<div class="col-md-12 panel panel-primary">
 			<div class="panel-heading">Danh sách Cộng tác viên - リストアカウント</div>
   			<div class="panel-body">
 			<div class="table-responsive">
@@ -92,7 +126,7 @@
 										System.out.println("client_size_getArray_ListPost().get(j).size(): "+ctv.get(i).getArray_ListPost().get(j).size());
 										if(ctv.get(i).getArray_ListPost().get(j)!=null){
 								%>
-								<td><%=ctv.get(i).getArray_ListPost().get(j).size()%> <%if(ctv.get(i).getArray_ListPost().get(j).size()!=0){ %><button type="button" class="btn btn-default btn-sm"
+								<td><%=ctv.get(i).getArray_ListPost().get(j).size()%><br> <%if(ctv.get(i).getArray_ListPost().get(j).size()!=0){ %><button type="button" class="btn btn-default btn-sm"
 									data-toggle="modal"
 									data-target="#modalListPosts<%=j%>">
 									<span class="glyphicon glyphicon-list-alt"></span></button><%} %></td>
@@ -123,6 +157,9 @@
 						}
 					%>
 				</table>
+				<div class="menuPhanTrang" style="float: right;">
+					<%= request.getAttribute("pageNav") %>
+				</div>
 			</div>
 					<%} %>
 		</div>
@@ -223,7 +260,7 @@
 						</div>
 						<div class="modal-body">
 
-							<form name="form_edit_admin" action="AdminDeleteServlet"
+							<form name="form_edit_admin" action="AdminDeleteServlet?type=CTV"
 								method="post">
 								<div class="form-group">
 									<label>Tên tài khoản - ユーザ名<span class="rq"> * </span>:

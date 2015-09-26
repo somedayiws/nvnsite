@@ -52,13 +52,14 @@ public class ShowRestoreServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub		
 		RestoreDataBO restoredata = new RestoreDataBO();
-
+		String screen = request.getParameter("screen");
+		
 		
 		if (result_Restore != null) {
 			request.setAttribute("result_Restore", result_Restore);
 			RequestDispatcher requestDis = null;
 			if(result_Restore.contains("tài khoản")){
-				requestDis = request.getRequestDispatcher("ListAccountServlet");	
+				requestDis = (screen.contains("CTV")) ? request.getRequestDispatcher("CTVServlet") : request.getRequestDispatcher("ListAccountServlet");				 
 			}
 			else if(result_Restore.contains("danh mục")){
 				requestDis = request.getRequestDispatcher("ListCategoryServlet");					
@@ -69,10 +70,13 @@ public class ShowRestoreServlet extends HttpServlet {
 			requestDis.forward(request, response);
 		} else {
 			if (type.contains("account")) {
+				
 				ArrayList<TAIKHOAN> listAccountDeleted = new ArrayList<TAIKHOAN>();
-				listAccountDeleted = restoredata.listAccountDeleted();
+				listAccountDeleted = restoredata.listAccountDeleted(screen);
 
+				request.setAttribute("screen", screen);
 				request.setAttribute("listAccountDeleted", listAccountDeleted);
+				
 				RequestDispatcher requestDis_restoreAccount = request
 						.getRequestDispatcher("RestoreAccount.jsp");
 				requestDis_restoreAccount.forward(request, response);
@@ -100,7 +104,7 @@ public class ShowRestoreServlet extends HttpServlet {
 
 			}
 			else{
-				response.sendRedirect("Home(Admin).jsp");
+				response.sendRedirect("ShowloginAdmin");
 			}
 
 		}

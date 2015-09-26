@@ -24,7 +24,6 @@
 <%
 	//Receive data from server
 	BAIVIET posts = (BAIVIET) request.getAttribute("post");
-	System.out.println("post.ID: "+posts.getIdBaiViet());
 	String result_Send = (String) request.getAttribute("result");
 	String status =(String)request.getAttribute("status");	
 %>
@@ -43,10 +42,12 @@
 			<div class="col-md-10 col-md-offset-1">
 				<div class="col-md-3">
 					<div id="divInfor">
-					<strong>User - ユーザー:<%=posts.getTaiKhoan().getTenTaiKhoan()%> 
+					<strong>User - ユーザー:<%=posts.getTaiKhoan().getTenTaiKhoan()%><br>
+							Email - :<%=posts.getTaiKhoan().getEmail() %> 
 									<br> ID:<%=posts.getIdBaiViet()%><br> Trạng thái -
 									状態:<%=posts.getTrangThai()%><br> Lượt xem - 見晴らし:<%=posts.getLuotXem()%><br>
 									Ngày đăng - 日付:<%=posts.getNgayDang()%><br>
+									<%if(posts.getGimTrangChu()==1){ %>Có<%}else{ %>Không<%} %> ghim lên trang chủ
 								</strong>
 					</div>
 				</div>

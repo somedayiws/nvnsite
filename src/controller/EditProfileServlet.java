@@ -8,20 +8,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import model.bo.AdminDeletePostsBO;
+import model.bean.TAIKHOAN;
+import model.bo.ListAccountBO;
 
 /**
- * Servlet implementation class AdminDeletePostsServlet
+ * Servlet implementation class EditProfileServlet
  */
-@WebServlet("/admin/AdminDeletePostsServlet")
-public class AdminDeletePostsServlet extends HttpServlet {
+@WebServlet("/admin/EditProfileServlet")
+public class EditProfileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminDeletePostsServlet() {
+    public EditProfileServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,21 +42,21 @@ public class AdminDeletePostsServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
-		String idPost =  request.getParameter("Idposts");
-				
-		String resultDelete;
-		AdminDeletePostsBO admindeletePost = new AdminDeletePostsBO();
 		
-		if(admindeletePost.deletePost(idPost)){
-			resultDelete = "Xóa bài viết thành công - ";
+		HttpSession session_user = request.getSession();
+		String username =(String)session_user.getAttribute("username");
+		
+		if(username!=null){
+				ListAccountBO listAccountBo = new ListAccountBO();
+				TAIKHOAN account = listAccountBo.getAccountbyUser(username);
+				request.setAttribute("result",(String)request.getAttribute("result"));
+				request.setAttribute("account", account);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("editProfile.jsp");
+			    dispatcher.forward(request, response);
+		}else{
+			RequestDispatcher dispatcher = request.getRequestDispatcher("ShowloginAdmin");
+		    dispatcher.forward(request, response);
 		}
-		else{
-			resultDelete = "Xóa bài viết thất bại - ";
-		}
-				
-		request.setAttribute("resultDelete", resultDelete);
-		RequestDispatcher requestDis_delete = request.getRequestDispatcher("ListPostsServlet");
-		requestDis_delete.forward(request, response);
 	}
 
 }

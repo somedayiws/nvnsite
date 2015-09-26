@@ -11,8 +11,8 @@ public class RestoreDataBO {
 	RestoreDataDAO restoredata = new RestoreDataDAO();
 	
 	/**List Accounts deleted*/
-	public ArrayList<TAIKHOAN> listAccountDeleted() {
-		return restoredata.listAccountDeleted();		
+	public ArrayList<TAIKHOAN> listAccountDeleted(String screen) {
+		return restoredata.listAccountDeleted(screen);		
 	}
 	/**List category delete*/
 	public ArrayList<DANHMUC> listCategoryDeleted() {

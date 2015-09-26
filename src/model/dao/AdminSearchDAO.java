@@ -2,6 +2,7 @@ package model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import model.bean.TAIKHOAN;
 
@@ -9,47 +10,50 @@ public class AdminSearchDAO {
 
 	DataBaseDAO db = new DataBaseDAO();
 
-	public TAIKHOAN[] searchAccount(String typeFind, String stringFind) {
+	public ArrayList<TAIKHOAN> searchAccount(String typeFind, String stringFind,int page) {
 		
 		typeFind = DinhDangSQL.FomatSQL(typeFind);
 		stringFind = DinhDangSQL.FomatSQL(stringFind);
-		int numberOfAcc = 0;
-		int i = 0;
-		String sql_count_account = "SELECT COUNT(*) AS NUMBER_OF_ACC FROM taikhoan WHERE "
-				+ typeFind + "='" + stringFind + "' AND CoXoa = 0";
-		System.out.println("sql_count_account: "+sql_count_account);
-		ResultSet result_count = db.getResultSet(sql_count_account);
-		try {
-			while (result_count.next()) {
-				numberOfAcc = result_count.getInt("NUMBER_OF_ACC");
-			}
-			if(numberOfAcc==0) return null;
-			TAIKHOAN[] account = new TAIKHOAN[numberOfAcc];
-		System.out.println("numberOfAcc: "+numberOfAcc);
-			String sql_select_account = "SELECT * FROM TAIKHOAN WHERE "
-					+ typeFind + "='" + stringFind + "' AND CoXoa = 0 ";
-			System.out.println("sql_select_account: "+sql_select_account);
-		ResultSet result_select = db.getResultSet(sql_select_account);		
-		while (result_select.next())
-		{
-			account[i] = new TAIKHOAN();
-			account[i].setIdTaiKhoan(DinhDangSQL.DeFomatSQL(result_select.getString("IdTaiKhoan")));
-			account[i].setTenTaiKhoan(DinhDangSQL.DeFomatSQL(result_select.getString("TenTaiKhoan")));
-			account[i].setHoTen(DinhDangSQL.DeFomatSQL(result_select.getString("HoTen")));
-			account[i].setDiaChi(DinhDangSQL.DeFomatSQL(result_select.getString("DiaChi")));
-			account[i].setDienThoai(DinhDangSQL.DeFomatSQL(result_select.getString("DienThoai")));
-			account[i].setEmail(DinhDangSQL.DeFomatSQL(result_select.getString("Email")));
-			account[i].setQuyenQuanTri(DinhDangSQL.DeFomatSQL(result_select.getString("QuyenQuanTri")));
-			i++;
-			
-		}
 		
-		return account;
+			ArrayList<TAIKHOAN> accounts = new ArrayList<TAIKHOAN>();
+			String sql_select_account = "SELECT IdTaiKhoan,TenTaiKhoan,HoTen,DiaChi,DienThoai,Email,QuyenQuanTri,NgonNgu,TinhTrang from taikhoan WHERE "+typeFind+" LIKE '%"+stringFind+"%' AND  CoXoa = 0 AND QuyenQuanTri != 'CTV' ORDER BY IdTaiKhoan DESC";
+			db.createMenu("AdminSearchSevlet?typeFind="+typeFind+"&stringFind="+stringFind+"&btnFind=Find&", page, sql_select_account);
+			System.out.println("result_select: "+sql_select_account + " limit "
+					+ (page - 1) * db.getNBangGhi() + ","
+					+ db.getNBangGhi());
+			ResultSet result_select =  db.getResultSet(sql_select_account + " limit "
+				+ (page - 1) * db.getNBangGhi() + ","
+				+ db.getNBangGhi());	
+			
+		try {
+			while(result_select.next())
+			{
+				TAIKHOAN account = new TAIKHOAN();
+				account = new TAIKHOAN();
+				account.setIdTaiKhoan(DinhDangSQL.DeFomatSQL(result_select.getString("IdTaiKhoan")));
+				account.setTenTaiKhoan(DinhDangSQL.DeFomatSQL(result_select.getString("TenTaiKhoan")));				
+				account.setHoTen(DinhDangSQL.DeFomatSQL(result_select.getString("HoTen")));				
+				account.setDiaChi(DinhDangSQL.DeFomatSQL(result_select.getString("DiaChi")));
+				account.setDienThoai(DinhDangSQL.DeFomatSQL(result_select.getString("DienThoai")));
+				account.setEmail(DinhDangSQL.DeFomatSQL(result_select.getString("Email")));
+				account.setQuyenQuanTri(DinhDangSQL.DeFomatSQL(result_select.getString("QuyenQuanTri")));
+				account.setNgonNgu(DinhDangSQL.DeFomatSQL(result_select.getString("NgonNgu")));
+				account.setTinhTrang(DinhDangSQL.DeFomatSQL(result_select.getString("TinhTrang")));
+				accounts.add(account);
+			}
+			return accounts;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
+	}
+	public String getMenuPhanTrang(){
+		return db.getMenuPhanTrang();
+	}
+	
+	public void setMenu(int nBangghi, int ntrang){
+		db.setMenu(nBangghi, ntrang);
 	}
 	
 }

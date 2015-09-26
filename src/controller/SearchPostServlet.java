@@ -51,20 +51,26 @@ public class SearchPostServlet extends HttpServlet {
 		//Lấy loại tìm kiếm và nội dung tìm kiếm từ form
 		String typeFind = request.getParameter("typeFind");
 		String stringFindText = request.getParameter("stringFind");
+		String stringFindDay = request.getParameter("stringFindDay");
 		
-		
+		//Nếu là lượt xem thì tìm theo cách nào
+		String stringFindView = request.getParameter("stringFindView");
 		
 		String stringFindCategory = request.getParameter("stringFindCategory");
 		String stringFindAccount = request.getParameter("stringFindAccount");
 		
-		System.out.println("stringFindText: "+stringFindText);
-		System.out.println("stringFindCategory: "+stringFindCategory);
-		System.out.println("stringFindAccount: "+stringFindAccount);
+		
 		if(stringFindCategory!=null && !stringFindCategory.equals("0")){
 			stringFind = stringFindCategory;
 		}
 		else if(stringFindAccount!=null && !stringFindAccount.equals("0")){
 			stringFind = stringFindAccount;
+		}
+		else if(stringFindView!=null && !stringFindView.equals("0")){
+			stringFind = stringFindView;
+		}
+		else if(stringFindDay!=null && !stringFindDay.equals("")){			
+			stringFind = stringFindDay;
 		}
 		else{
 			stringFind = stringFindText;

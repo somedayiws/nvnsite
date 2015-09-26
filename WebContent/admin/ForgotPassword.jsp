@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="css/register.css">
 <script type="text/javascript" src="js/forgotPassword.js"></script>
 
-<title>Khôi phục mật khẩu - パスワードを回復</title>
+<title>Khôi phục mật khẩu - パスワードの回復</title>
 </head>
 
 <%
@@ -28,11 +28,11 @@
 
  <div class="container">
     <div class="panel panel-primary" id="panel_forgotpassword" >
-      <div class="panel-heading">Khôi phục mật khẩu - パスワードを回復</div>
+      <div class="panel-heading">Khôi phục mật khẩu - パスワードの回復</div>
       <div class="panel-body">
       		<form action="AdminForgotPasswordServlet" method="post" id="form_register_and_restore">
       			<div class="form-group">
-						<label>Nhập lại email - 入力メール: </label> 
+						<label>Nhập lại email - メールの再入力: </label> 
 						<input type="text" class="form-control" name="email">
 				</div>
 				<button type="submit" name="btnSubmit" class="btn btn-success">Khôi phục - リストア</button>
@@ -43,7 +43,7 @@
 				<!-- Hiển thị kết quả khi khôi phục mật khẩu(không thành công)ở đây -->
 					<br>
 					<div class="alert alert-danger">
- 							 <strong>Lỗi - エラー!</strong> <%if(result.equals("1")){%>Lỗi trong quá trình cập nhật mật khẩu, vui lòng thử lại hoặc liên hệ với nhà cung cấp<%}else if(result.equals("2")){%>Email admin không có trong hệ thống, vui lòng liên hệ nhà cung cấp để được cấp Email<%}else{ %>Email không hợp lệ<%} %>
+ 							 <strong>Lỗi - エラ・ミース</strong> <%if(result.equals("1")){%>Lỗi trong quá trình cập nhật mật khẩu, vui lòng thử lại hoặc liên hệ với nhà cung cấp <br>パスワード入力のエラが発生するため、再入力し、提供会社へ連絡する。<%}else if(result.equals("2")){%>Email admin không có trong hệ thống, vui lòng liên hệ nhà cung cấp để được cấp Email<br>システムに管理者のメールが存しないため、提供会社に連絡する。<%}else{ %>Email không hợp lệ <br>メールが不適切です。<%} %>
 					</div>
 				<%} %>
       		

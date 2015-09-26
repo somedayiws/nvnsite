@@ -12,11 +12,12 @@ public class RestoreDataDAO {
 	DataBaseDAO db = new DataBaseDAO();
 	
 	/**List account deleted*/
-	public ArrayList<TAIKHOAN> listAccountDeleted() {
+	public ArrayList<TAIKHOAN> listAccountDeleted(String screen) {
 		
 		ArrayList<TAIKHOAN> listAccountDelete = new ArrayList<TAIKHOAN>();
-		
-		String sql_select_restore_account = "select IdTaiKhoan,TenTaiKhoan from taikhoan where CoXoa=1 AND TinhTrang<>'KhoaTK'";
+		String sql_select_restore_account;
+		if(screen.contains("CTV")) sql_select_restore_account = "select IdTaiKhoan,TenTaiKhoan from taikhoan where CoXoa=1 AND QuyenQuanTri = 'ctv' AND TinhTrang<>'KhoaTK'";
+		else sql_select_restore_account = "select IdTaiKhoan,TenTaiKhoan from taikhoan where CoXoa=1 AND TinhTrang<>'KhoaTK'";
 		ResultSet result_select_restore_account = db.getResultSet(sql_select_restore_account);
 		
 		try {

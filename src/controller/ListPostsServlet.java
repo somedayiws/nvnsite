@@ -51,11 +51,6 @@ public class ListPostsServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		//Nhận kết quả tìm kiếm từ SearchPostServlet
-//		ArrayList<BAIVIET> listposts = (ArrayList<BAIVIET>) request.getAttribute("posts");
-//		String pageNavSearch = (String) request.getAttribute("pageNav");
-		
-		//System.out.println("pageNavSearch: "+pageNavSearch);
 		
 		ListPostsBO listPost = new ListPostsBO();		
 		ListAccountBO listaccount  = new ListAccountBO();	
@@ -72,22 +67,13 @@ public class ListPostsServlet extends HttpServlet {
 			
 		ArrayList<TAIKHOAN> accounts = listaccount.getDataAccountInfor(0,listaccount.totalRecord(),"all");
 		ArrayList<DANHMUC> category = listcategory.getCategory(-1);
-//		if(pageNavSearch==null){
 		String pageNav = listPost.getMenuPhanTrang();		
 		
 		
 		request.setAttribute("pageNav", pageNav);
-//		}else{
-//			request.setAttribute("pageNavSearch", pageNavSearch);
-//		}
-		
 		request.setAttribute("posts", posts);
 		request.setAttribute("accounts", accounts);
 		request.setAttribute("category", category);
-//		//gởi kết quả tìm kiếm
-//		request.setAttribute("listposts", listposts);
-		
-		
 		RequestDispatcher requestDis_posts = request.getRequestDispatcher("ListPosts.jsp");
 		requestDis_posts.forward(request, response);
 		

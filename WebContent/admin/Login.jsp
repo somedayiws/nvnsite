@@ -28,23 +28,23 @@
              <!-- Hiển thị kết quả khi login thất bại -->
             <%if(result!=null){ %>
             	<div class="alert alert-danger">
-  					<strong>Lỗi - エラー!</strong> <%if(result.equals("1")){%>Tên đăng nhập và mật khẩu không hợp lệ - <%}else{ %>Tài khoản không tồn tại trong hệ thống - <%} %>
+  					<strong>Lỗi - エラー!</strong> <%if(result.equals("1")){%>Tên đăng nhập và mật khẩu không hợp lệ - ユーザー名およびパスワードが不適切です。<%}else{ %>Tài khoản không tồn tại trong hệ thống - アカウントはシステム上に存しない。<%} %>
 				</div>
             <%} %>
             <p id="profile-name" class="profile-name-card"></p>
             <form class="form-signin" action="LoginServlet" method="post" id="form_register_and_restore">
                 <span id="reauth-email" class="reauth-email"></span>
-                <input type="text" id="inputEmail" name="username" class="form-control" placeholder="Tên đăng nhập - ユーザ名" required autofocus>
+                <input type="text" id="inputEmail" name="username" class="form-control" placeholder="Tên đăng nhập - ユーザー名" required autofocus>
                 <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Mật khẩu - パスワード" required>
                 <div id="remember" class="checkbox">
                     <label>
-                        <input type="checkbox" name="remember-me" value="remember-me"> Ghi nhớ - 私を覚えてますか
+                        <input type="checkbox" name="remember-me" value="remember-me"> Ghi nhớ - メーモ
                     </label>
                 </div>
                 <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Đăng nhập - ログイン</button>
             </form><!-- /form -->
             <a href="ShowForgotPassword" class="forgot-password">
-               Quyên mật khẩu - パスワードを忘れましたか
+               Quyên mật khẩu - パスワードが忘れた。
             </a>
            
         </div><!-- /card-container -->               

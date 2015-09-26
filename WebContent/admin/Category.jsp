@@ -17,7 +17,7 @@
 <script type="text/javascript" src="js/category.js"></script>
 <link rel="stylesheet" href="css/register.css">
 <link rel="stylesheet" href="css/category.css">
-<title>Quản lý danh mục</title>
+<title>Quản lý danh mục - 項目の管理</title>
 
 <%
 	//Receive inforrmation insert from Server
@@ -34,11 +34,13 @@
 	String resultDelete = (String) request.getAttribute("resultDelete");
 	
 	//Receive result search category
-	DANHMUC[] category_after_search = (DANHMUC[])request.getAttribute("category_after_search");
+	ArrayList<DANHMUC> category_after_search = (ArrayList<DANHMUC>)request.getAttribute("category_after_search");
 	String button = (String)request.getAttribute("button");
+	String pageNavSearch = (String)request.getAttribute("pageNavSearch");
 	
 	//Nhận lại số danh mục được hiển thị lên thanh menu
-	int countCategoryShowed = (Integer)request.getAttribute("countCategoryShowed");	
+	int countCategoryShowed = (Integer)request.getAttribute("countCategoryShowed");
+	System.out.println("countCategoryShowed: "+countCategoryShowed);
 	//Nhận lại các danh mục được hiển thị
 	ArrayList<DANHMUC> listCategoryShowed = (ArrayList<DANHMUC>)request.getAttribute("listCategoryShowed");
 	
@@ -63,8 +65,8 @@
 					nameCategoryJa : "required",
 				},
 				messages : {
-					nameCategoryVi : "Hãy nhập tên danh mục tiếng việt",
-					nameCategoryJa : "Hãy nhập tên danh mục tiếng nhật",
+					nameCategoryVi : "Hãy nhập tên danh mục tiếng việt - ベトナム語で項目を入力下さい。",
+					nameCategoryJa : "Hãy nhập tên danh mục tiếng nhật - 日本語で項目を入力下さい。",
 				},
 				
 			});
@@ -84,7 +86,7 @@
 		<div id="divcontent">
 			<div class="row">			
 				<div class="col-md-8 col-md-offset-2 panel panel-primary">			
-					<div class="panel-heading">Thêm danh mục</div>
+					<div class="panel-heading">Thêm danh mục - 項目の作成</div>
 						<div class="panel-body">
 								<!-- Hiển thị kết quả thay đổi hiển thị -->
 								<%if(resultChangeShowed!=null){ %>				
@@ -97,30 +99,30 @@
 									action="CreateCategoryServlet" method="post" enctype="multipart/form-data"
 									onsubmit="return checkValidFormInsert()">
 								<div class="form-group">
-									<label>Tên danh mục(Việt Nam)<span class="rq"> * </span></label>
+									<label>Tên danh mục(Việt Nam) - ベトナム語（項目名）<span class="rq"> * </span></label>
 									<input type="text" class="form-control" id="nameCategoryVi"
 									maxlength="15" name="nameCategoryVi">
 								</div>
 								<div class="form-group">
-									<label>Tên danh mục(Nhật Bản)<span class="rq"> * </span></label>
+									<label>Tên danh mục(Nhật Bản) - 日本語（項目名）<span class="rq"> * </span></label>
 									<input type="text" class="form-control" id="nameCategoryJa"
 									maxlength="15" name="nameCategoryJa">
 								</div>
-									<%if(countCategoryShowed>=5){ %>
+									<%if(countCategoryShowed>=8){ %>
 									<div class="alert alert-danger">
 			  							<strong>Cảnh báo!</strong>Số danh mục hiển thị lên thanh menu đã tối đa.
 			  							Nếu muốn thay đổi thì nhấn vào <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalChangeShow">đây</button>
 									</div>
 									<%} %>						 
-								<label>Hiện thị lên thanh menu<span class="rq"> * </span></label>											
+								<label>Hiện thị lên thanh menu - メニューに表示する<span class="rq"> * </span></label>											
 								<div class="radio-inline">
 									<label><input type="radio" id="display" name="display"
-										value="yes" <%if(countCategoryShowed >= 5){ %> disabled="disabled" <%} %>>Có
+										value="yes" <%if(countCategoryShowed >= 8){ %> readonly="readonly" <%} %>>Có - 有
 									</label>
 								</div>
 								<div class="radio-inline">
 									<label><input type="radio" id="display" name="display" 
-										value="no">Không</label>
+										value="no">Không - 無</label>
 								</div>
 								<div class="form-group">
 									<label>Icon <input type="file" id="Image" name="Image" onchange="xem(this,'fua');"/></label>
@@ -128,7 +130,7 @@
 										<img alt="Icon đại diện" src="../images/icons/icondefault.png" id="fua" width="50px" height="50px">
 									</p>
 								</div>
-								<button type="submit" class="btn btn-success btn-md">Tạo danh mục</button>
+								<button type="submit" class="btn btn-success btn-md">Tạo danh mục - 項目の作成</button>
 							</form>
 					</div>
 				</div>			
@@ -141,7 +143,7 @@
 		%>
 		
 			<div class="col-md-6 col-md-offset-3 alert alert-info">
-	<strong>Thông báo!</strong>Thêm danh mục thành công
+	<strong>Thông báo!</strong>Thêm danh mục thành công - 項目の追加ができた。
 	</div>
 	
 		<%
@@ -157,13 +159,13 @@
 					if (resultUpdate.contains("success")) {
 				%>
 				<div class="col-md-6 col-md-offset-3 alert alert-info">
-	<strong>Thông báo!</strong>Chỉnh sửa danh mục thành công
+	<strong>Thông báo!</strong>Chỉnh sửa danh mục thành công - 項目の修正ができた。
 	</div>
 				<%
 					} else {
 				%>
 				<div class="col-md-6 col-md-offset-3 alert alert-info">
-	<strong>Thông báo!</strong>Chỉnh sửa danh mục thất bại
+	<strong>Thông báo!</strong>Chỉnh sửa danh mục thất bại - 項目の修正がまだできない
 	</div>
 				<%
 					}	
@@ -172,13 +174,13 @@
 					if (resultDelete.contains("success")) {
 		%>
 				<div class="col-md-6 col-md-offset-3 alert alert-info">
-	<strong>Thông báo!</strong>Xóa danh mục thành công
+	<strong>Thông báo!</strong>Xóa danh mục thành công - 項目の削除ができた
 	</div>
 				<%
 					} else {
 				%>
 				<div class="col-md-6 col-md-offset-3 alert alert-info">
-	<strong>Thông báo!</strong>Xóa danh mục thất bại
+	<strong>Thông báo!</strong>Xóa danh mục thất bại - 項目の削除がまだできない
 	</div>
 				<%
 					}	
@@ -196,20 +198,20 @@
 		<%
 			}
 			}
-			if (category.size() != 0) {
+			
 		%>
 
 		<!----------------------- Form tìm kiếm ----------------------->
 		<div class="col-md-10 col-md-offset-1">
 			<form action="SearchCategoryServlet" method="post"
 				onsubmit="return checkValidateSearch()">
-				<h4 class="col-sm-2">Tìm kiếm</h4>
+				<h4 class="col-sm-2">Tìm kiếm - 検索</h4>
 				<div class="col-sm-2 form-group">
 					<select class="form-control" id="typeFind" name="typeFind">
 						<option value="IdDanhMuc">ID</option>
-						<option value="TenDanhMucVi">Tên - Tiếng Việt</option>
-						<option value="TenDanhMucJa">Tên - Tiếng Nhật</option>
-						<option value="HienThi">Hiển thị(1: có,0: không)</option>
+						<option value="TenDanhMucVi">Tên - Tiếng Việt <br>氏名-ベトナム語</option>
+						<option value="TenDanhMucJa">Tên - Tiếng Nhật <br> 氏名-日本語</option>
+						<option value="HienThi">Hiển thị(1: có,0: không)<br>表示（1：有、０：無）</option>
 					</select>
 				</div>
 				<div class="col-sm-5 form-group">
@@ -218,21 +220,24 @@
 				</div>
 				<div class="col-sm-1 form-group">
 				<button type="submit" name="btnFind" value="Find"
-					class="btn btn-primary btn-sm">Tìm kiếm</button>
+					class="btn btn-primary btn-sm">Tìm kiếm<br>検索</button>
 					</div>
 				</form>
 					<div class="col-sm-1 form-group">
 				<a href="ShowRestoreServlet?type=category"><button type="submit" name="btnRestore" 
-					class="btn btn-primary btn-sm">Khôi phục</button></a>
+					class="btn btn-success btn-sm">Khôi phục<br>回復</button></a>
 					</div>
 			
 		</div>
 		<!----------------------- End form tìm kiếm ---------------- -->
 
-
+	<%
+			if (button != null) {
+				
+			%>
 		<!-- Show result Search -->
 		<%
-			if (button != null) {//Press button Search
+			//Press button Search
 					if (category_after_search != null) {
 						//Have result
 		%>
@@ -241,9 +246,9 @@
 			<thead>
 				<tr>
 					<th>ID</th>
-					<th>Tên danh mục(Việt Nam)</th>
-					<th>Tên danh mục(Nhật Bản)</th>
-					<th>Hiển thị(1: có,0:không)</th>
+					<th>Tên danh mục(Việt Nam)<br>ベトナム語（項目名）</th>
+					<th>Tên danh mục(Nhật Bản)<br>日本語（項目名）</th>
+					<th>Hiển thị(1: có,0:không)<br>表示（1：有、０：無）</th>
 					<th>File ảnh</th>
 					<th></th>
 					<th></th>
@@ -251,26 +256,25 @@
 			</thead>
 
 			<%
-				for (int i = 0; i < category_after_search.length; i++) {
+				for (int i = 0; i < category_after_search.size(); i++) {
+					System.out.println("TenDanhMucJa: "+category_after_search.get(i).getTenDanhMucJa());
 			%>
 			<tbody>
 				<tr>
-					<td><%=category_after_search[i].getIdDanhMuc()%></td>
-					<td><%=category_after_search[i]
-									.getTenDanhMucVi()%></td>
-					<td><%=category_after_search[i]
-									.getTenDanhMucJa()%></td>
-					<td><%=category_after_search[i].getHienThi()%></td>
-					<td><img src="../images/icons/<%if(category.get(i).getIcon()==null){ %>icondefault.png<%}else{ %><%=category.get(i).getIcon()%><%}%>" alt="image" width="50px" height="50px"></td>
-					<td><button type="button" class="btn btn-default"
+					<td><%=category_after_search.get(i).getIdDanhMuc()%></td>
+					<td><%=category_after_search.get(i).getTenDanhMucVi()%></td>
+					<td><%=category_after_search.get(i).getTenDanhMucJa()%></td>
+					<td><%=category_after_search.get(i).getHienThi()%></td>
+					<td><img src="../images/icons/<%if(category_after_search.get(i).getIcon()==null){ %>icondefault.png<%}else{ %><%=category_after_search.get(i).getIcon()%><%}%>" alt="image" width="50px" height="50px"></td>
+					<td><button type="button" class="btn btn-primary"
 							data-toggle="modal"
-							data-target="#<%=category_after_search[i].getIdDanhMuc()%>">
-							<span class="glyphicon glyphicon-pencil"></span> Chỉnh sửa
+							data-target="#modal_Search_<%=category_after_search.get(i).getIdDanhMuc()%>">
+							<span class="glyphicon glyphicon-pencil"></span>Chỉnh sửa<br>修正
 						</button></td>
-					<td><button type="button" class="btn btn-default"
+					<td><button type="button" class="btn btn-danger"
 							data-toggle="modal"
-							data-target="#delete<%=category_after_search[i].getIdDanhMuc()%>">
-							<span class="glyphicon glyphicon-remove"></span> Xóa
+							data-target="#delete_Search_<%=category_after_search.get(i).getIdDanhMuc()%>">
+							<span class="glyphicon glyphicon-remove"></span>Xóa<br>削除
 						</button></td>
 				</tr>
 			</tbody>
@@ -279,32 +283,138 @@
 			%>
 
 		</table>
+		<%if(pageNavSearch!=null){ %>
+		<div class="menuPhanTrang" id="page">
+		<%= pageNavSearch %>		
+	</div>
+	<%} %>
 		</div>
 		<%
-			} else {//No have result
+				for (int i = 0; i < category_after_search.size(); i++) {
 		%>
-		<div class="col-md-6 col-md-offset-3 alert alert-info">
-	<strong>Thông báo!</strong>Không có kết quả tìm kiếm
-	</div>
+<!-- Modal Edit Search -->
+		<div class="modal fade" id="modal_Search_<%=category_after_search.get(i).getIdDanhMuc()%>">
+			<div class="modal-dialog">
 
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Chỉnh sửa danh mục(Admin) - 項目の修正（管理者）</h4>
+					</div>
+					<div class="modal-body">
+
+						<form id="formedit<%=i%>" name="form_edit_Category"
+							action="EditCategoryServlet" method="post" enctype="multipart/form-data">
+							<div class="form-group">
+								<label>ID<span class="rq"> * </span>:
+								</label> <input class="form-control" maxlength="300" type="text"
+									name="idCategory" id="idCategory"
+									value="<%=category_after_search.get(i).getIdDanhMuc()%>" readonly="readonly">
+							</div>
+							<div class="form-group">
+								<label>Tên danh mục(Việt Nam) - ベトナム語（項目名<span class="rq"> *
+								</span>:
+								</label> <input class="form-control" maxlength="300" type="text"
+									name="nameCategoryVi" id="nameCategoryVi"
+									value="<%=category_after_search.get(i).getTenDanhMucVi()%>">
+							</div>
+							<div class="form-group">
+								<label>Tên danh mục(Nhật Bản) - 日本語（項目名）<span class="rq"> *
+								</span>:
+								</label> <input type="text" class="form-control" maxlength="300"
+									name="nameCategoryJa" id="nameCategoryJa"
+									value="<%=category_after_search.get(i).getTenDanhMucJa()%>">
+							</div>
+
+							<div class="form-group">
+								<label>Hiển thị lên thanh menu - メニューに表示する。: </label> <select
+									class="form-control" name="display">
+									<option value="yes" <%if (category_after_search.get(i).getHienThi() == 1) {%>
+										selected="selected" <%} if(listCategoryShowed.size()>=8){%> readonly="readonly" <%} %>>Có - 有</option>
+									<option value="no" <%if (category_after_search.get(i).getHienThi() == 0) {%>
+										selected="selected" <%}%>>Không - 無</option>
+								</select>
+							</div>							
+							<div class="form-group">
+								<label>Icon: </label>	
+								<input type="text" class ="form-control col-md-4" name="ImageIcon" value="<%=category_after_search.get(i).getIcon()%>" readonly="readonly">
+							</div>
+							<div class="form-group">					
+							<input type="file" class="Image" name="Image" onchange="xem(this,'fu<%=i%>');"/>
+							<p class="help-block">Chọn file .png, .jpg ...<br>
+							<img src="../images/icons/<%if(category_after_search.get(i).getIcon()==null){ %>icondefault.png<%}else{ %><%=category_after_search.get(i).getIcon()%><%}%>" alt="image" id="fu<%=i%>" width="50px" height="50px">
+<%-- 							<img alt="Ảnh đại diện" src="../images/"<%=category_after_search.get(i).getIcon()%> id="fu2" width="50px" height="50px"> --%>
+							</p>
+						</div>
+							<button type="submit" class="btn btn-success btn-sm" >Hoàn
+								thành - 完成</button>
+								<button type="button" id="btn" class="btn btn-default btn-sm" 
+							data-dismiss="modal">Quay lại - 戻り</button>
+						</form>
+						
+
+					</div>					
+				</div>
+			</div>
+		</div>
+		<!-- End modal edit -->
+
+
+		<!-- Modal Delete -->
+		<div class="modal fade" id="delete_Search_<%=category_after_search.get(i).getIdDanhMuc()%>">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Xóa danh mục(Admin) - 項目の削除（管理者）</h4>
+					</div>
+					<div class="modal-body">
+
+						<form name="form_delete_category" action="DeleteCategoryServlet"
+							method="post">
+
+
+							<div class="form-group">
+								<label>ID: </label> <input type="text"
+									class="form-control" name="IdDanhmuc"
+									value="<%=category_after_search.get(i).getIdDanhMuc()%>" readonly="readonly">
+							</div>
+							<button type="submit" class="btn btn-success btn-sm">Xóa - 削除</button>
+							<button type="button" id="btn" class="btn btn-default btn-sm"
+							data-dismiss="modal">Quay lại - 戻り</button>
+						</form>
+
+					</div>					
+				</div>
+			</div>
+		</div>
+
+
+		<!-- End modal delete -->
+		<!-- End Show result Search -->
 		<%
 			}
-				}
+			}
+			}
+				else{
 		%>
-		<!-- End Show result Search -->
-
+		
+		<%if (category  != null) { %>
 		<hr>
 		<!----------------------- Form list ------------------------ -->
-		<div class="col-md-10 col-md-offset-1 table-responsive panel panel-primary">
-		<div class="panel-heading">Danh mục</div>
+		<div class="col-md-12 table-responsive panel panel-primary">
+		<div class="panel-heading">Danh mục - 項目</div>
 		<div class="panel-body">
 		<table class="table table-hover">
 			<thead>
 				<tr>
 					<th>ID</th>
-					<th>Tên danh mục(Việt Nam)</th>
-					<th>Tên danh mục(Nhật Bản)</th>
-					<th>Hiển thị(1: có,0:không)</th>	
+					<th>Tên danh mục(Việt Nam)<br>ベトナム語（項目名）</th>
+					<th>Tên danh mục(Nhật Bản)<br>日本語（項目名）</th>
+					<th>Hiển thị(1: có,0:không)<br>表示（1：有、０：無）</th>	
 					<th>File ảnh</th>				
 					<th></th>
 					<th></th>
@@ -321,15 +431,15 @@
 					<td><%=category.get(i).getTenDanhMucJa()%></td>
 					<td><%=category.get(i).getHienThi()%></td>
 					<td><img src="../images/icons/<%if(category.get(i).getIcon()==null){ %>icondefault.png<%}else{ %><%=category.get(i).getIcon()%><%}%>" alt="image" width="50px" height="50px"></td>
-					<td><button type="button" class="btn btn-default btn-sm"
+					<td><button type="button" class="btn btn-primary btn-sm"
 							data-toggle="modal"
 							data-target="#<%=category.get(i).getIdDanhMuc()%>">
-							<span class="glyphicon glyphicon-pencil"></span> Chỉnh sửa
+							<span class="glyphicon glyphicon-pencil"></span>Chỉnh sửa<br>修正
 						</button></td>
-					<td><button type="button" class="btn btn-default btn-sm"
+					<td><button type="button" class="btn btn-danger btn-sm"
 							data-toggle="modal"
 							data-target="#delete<%=category.get(i).getIdDanhMuc()%>">
-							<span class="glyphicon glyphicon-remove"></span> Xóa
+							<span class="glyphicon glyphicon-remove"></span>Xóa<br>削除
 						</button></td>
 				</tr>
 			</tbody>
@@ -338,30 +448,16 @@
 			%>
 
 		</table>
+		
+		</div>
 		<div class="menuPhanTrang" id="page">
 		<%= request.getAttribute("pageNav") %>
-	</div>
-		
-		<%
-			} else {
-		%>
-		<div class="col-md-6 col-md-offset-3 alert alert-info">
-	<strong>Thông báo!</strong>Không có kết quả tìm kiếm
-	<a href="ShowRestoreServlet?type=category"><button type="submit" name="btnRestore" 
-					class="btn btn-primary btn-sm">Restore</button></a>
-	</div>
-			
-				
-		<%
-			}
-		%>
 		</div>
 		</div>
 		<!--------------------------------- End list category ------------------------ -->
 
 		<!-- Modal Edit -->
 		<%
-			if (category != null) {
 				for (int i = 0; i < category.size(); i++) {
 		%>
 		<div class="modal fade" id="<%=category.get(i).getIdDanhMuc()%>">
@@ -371,27 +467,27 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">Chỉnh sửa danh mục(Admin)</h4>
+						<h4 class="modal-title">Chỉnh sửa danh mục(Admin) - 項目の修正（管理者）</h4>
 					</div>
 					<div class="modal-body">
 
 						<form id="formedit<%=i%>" name="form_edit_Category"
 							action="EditCategoryServlet" method="post" enctype="multipart/form-data">
 							<div class="form-group">
-								<label>ID danh mục<span class="rq"> * </span>:
+								<label>ID<span class="rq"> * </span>:
 								</label> <input class="form-control" maxlength="300" type="text"
 									name="idCategory" id="idCategory"
 									value="<%=category.get(i).getIdDanhMuc()%>" readonly="readonly">
 							</div>
 							<div class="form-group">
-								<label>Tên danh mục(Việt Nam)<span class="rq"> *
+								<label>Tên danh mục(Việt Nam) - ベトナム語（項目名<span class="rq"> *
 								</span>:
 								</label> <input class="form-control" maxlength="300" type="text"
 									name="nameCategoryVi" id="nameCategoryVi"
 									value="<%=category.get(i).getTenDanhMucVi()%>">
 							</div>
 							<div class="form-group">
-								<label>Tên danh mục(Nhật Bản)<span class="rq"> *
+								<label>Tên danh mục(Nhật Bản) - 日本語（項目名）<span class="rq"> *
 								</span>:
 								</label> <input type="text" class="form-control" maxlength="300"
 									name="nameCategoryJa" id="nameCategoryJa"
@@ -399,17 +495,17 @@
 							</div>
 
 							<div class="form-group">
-								<label>Hiển thị lên trang chủ:</label> <select
+								<label>Hiển thị lên thanh menu - メニューに表示する。: </label> <select
 									class="form-control" name="display">
 									<option value="yes" <%if (category.get(i).getHienThi() == 1) {%>
-										selected="selected" <%} if(countCategoryShowed>=5){%> disabled="disabled" <%} %>>Có</option>
+										selected="selected" <%} if(countCategoryShowed>=5){%> readonly="readonly" <%} %>>Có - 有</option>
 									<option value="no" <%if (category.get(i).getHienThi() == 0) {%>
-										selected="selected" <%}%>>Không</option>
+										selected="selected" <%}%>>Không - 無</option>
 								</select>
 							</div>							
 							<div class="form-group">
 								<label>Icon: </label>	
-								<input type="text" class ="form-control col-md-4" name="ImageIcon" value="<%=category.get(i).getIcon()%>" disabled="disabled">
+								<input type="text" class ="form-control col-md-4" name="ImageIcon" value="<%=category.get(i).getIcon()%>" readonly="readonly">
 							</div>
 							<div class="form-group">					
 							<input type="file" class="Image" name="Image" onchange="xem(this,'fu<%=i%>');"/>
@@ -419,9 +515,9 @@
 							</p>
 						</div>
 							<button type="submit" class="btn btn-success btn-sm" >Hoàn
-								thành</button>
+								thành - 完成</button>
 								<button type="button" id="btn" class="btn btn-default btn-sm" 
-							data-dismiss="modal">Quay lại</button>
+							data-dismiss="modal">Quay lại - 戻り</button>
 						</form>
 						
 
@@ -440,7 +536,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">Xóa danh mục(Admin)</h4>
+						<h4 class="modal-title">Xóa danh mục(Admin) - 項目の削除（管理者）</h4>
 					</div>
 					<div class="modal-body">
 
@@ -449,13 +545,13 @@
 
 
 							<div class="form-group">
-								<label>ID danh mục: </label> <input type="text"
+								<label>ID: </label> <input type="text"
 									class="form-control" name="IdDanhmuc"
 									value="<%=category.get(i).getIdDanhMuc()%>" readonly="readonly">
 							</div>
-							<button type="submit" class="btn btn-success btn-sm">Xóa</button>
+							<button type="submit" class="btn btn-success btn-sm">Xóa - 削除</button>
 							<button type="button" id="btn" class="btn btn-default btn-sm"
-							data-dismiss="modal">Quay lại</button>
+							data-dismiss="modal">Quay lại - 戻り</button>
 						</form>
 
 					</div>					
@@ -507,18 +603,15 @@
     		</table>
     		<%}else{ %>
     			<div class="alert alert-danger">
-  					<strong>Cảnh báo!</strong>Bị lỗi trong quá trình lấy dữ liệu. Vui lòng liên hệ với nhà phát triển phần mềm để sửa lỗi này
+  					<strong>Cảnh báo!</strong>Không có danh mục nào được hiển thị lên thanh menu
 				</div>
-    		<%} %>
+    		<%}} %>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Quay lại</button>
-        </div>
+        
       </div>
       
     </div>
   </div>
-
 
 
 

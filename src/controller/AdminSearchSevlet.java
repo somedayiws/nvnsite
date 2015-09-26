@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -49,12 +50,23 @@ public class AdminSearchSevlet extends HttpServlet {
 		String typeFind = request.getParameter("typeFind");
 		String stringFind = request.getParameter("stringFind");
 		String btnFind = request.getParameter("btnFind");
-		
-		
-
 		AdminSearchBO adminSearch = new AdminSearchBO();
-		TAIKHOAN[] account = adminSearch.selectAccount(typeFind, stringFind);
-	
+		int page = 1;
+		adminSearch.setMenu(10, 5);
+		try {
+			page = Integer.parseInt(request.getParameter("page"));
+		} catch (NumberFormatException e) {
+			page = 1;
+		}
+
+		
+		ArrayList<TAIKHOAN> account = adminSearch.selectAccount(typeFind, stringFind,page);
+		
+		
+		String pageNav = adminSearch.getMenuPhanTrang();		
+		
+		
+		request.setAttribute("pageNavSearch", pageNav);
 		request.setAttribute("account", account);
 		request.setAttribute("button", btnFind);
 		RequestDispatcher requestDis_error = request

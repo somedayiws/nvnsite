@@ -41,6 +41,8 @@ public class AdminDeleteServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		
+		String type = request.getParameter("type");
+		
 		String resultSubmit;
 		String username = request.getParameter("username");
 		
@@ -53,12 +55,17 @@ public class AdminDeleteServlet extends HttpServlet {
 		}
 		else {
 			//delete fail
-			resultSubmit = "Delete success";
+			resultSubmit = "Delete fail";
 		}
+		RequestDispatcher dispatcher;
 		request.setAttribute("result", resultSubmit);
-		RequestDispatcher requestDis_error = request
-				.getRequestDispatcher("ListAccountServlet");
-		requestDis_error.forward(request, response);
+		if(type.equals("CTV")){
+			dispatcher = request.getRequestDispatcher("CTVServlet");
+		}
+		else{
+			dispatcher = request.getRequestDispatcher("ListAccountServlet");
+		}
+		dispatcher.forward(request, response);
 	}
 
 }

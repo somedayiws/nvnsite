@@ -14,7 +14,7 @@
 <!--  				alt="Logo Việt - Nhật" src="../images/logo_VN.jpg" width="100%" height="100px"></a>				 -->
 						
 							
-					<h1 style="">CỔNG THÔNG TIN VIỆT - NHẬT<br>日越ビジネス情報の架け橋</h1>
+					<h1 style="">CỔNG THÔNG TIN VIỆT - NHẬT<br>日越ビジネス情報の窓口</h1>
 							
 			</div>
 		</div>
