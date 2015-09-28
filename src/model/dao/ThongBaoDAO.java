@@ -12,6 +12,30 @@ public class ThongBaoDAO {
 
 	DataBaseDAO db = new DataBaseDAO();
 	
+	public ArrayList<THONGBAO> getListThongBao(String den, int page) {
+		// TODO Auto-generated method stub
+		String sql = "select * from thongbao where "+den+" order by HienThi desc, NgayDang desc ";
+		db.createMenu("TBDenToiServlet?", 1, sql);
+		ResultSet rs = db.getResultSet(sql);
+		ArrayList<THONGBAO> list = new ArrayList<THONGBAO>();
+		try {
+			while(rs.next()){
+				THONGBAO tb = new THONGBAO();
+				tb.setIdThongBao(rs.getInt("IdThongBao"));
+				tb.setTieuDe(DinhDangSQL.DeFomatSQL(rs.getString("TieuDe")));
+				tb.setNoiDung(DinhDangSQL.DeFomatSQL(rs.getString("NoiDung")));
+				tb.setHienThi(1);
+				tb.setNgayDang(DinhDangSQL.DeFomatSQL(rs.getString("NgayDang")));
+				tb.setGuiDen(DinhDangSQL.DeFomatSQL(rs.getString("GuiDen")));
+				list.add(tb);
+			}
+			return list;
+		} catch (SQLException e) {
+			System.out.println("Lỗi hệ truy vấn dữ liệu bảng thông báo!");
+		}
+		return null;
+	}
+	
 	public ArrayList<THONGBAO> getListHienThi(String den, String timtheo, String find) {
 		// TODO Auto-generated method stub
 		find = DinhDangSQL.FomatSQL(find);
@@ -147,6 +171,19 @@ public class ThongBaoDAO {
 		return db.updateData(sql);
 	}
 
+	public int CheckMail(String idtaikhoan, String tentaikhoan){
+		String sql = "select count(*) from thongbao where GuiDen like N'"+idtaikhoan+"' or GuiDen like N'"+tentaikhoan+"' and HienThi='1'";
+		ResultSet rs = db.getResultSet(sql);
+		try {
+			if(rs.next()){
+				return rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			System.out.println("Lỗi truy vấn csdl");
+		}
+		return 0;
+	}
+	
 	public String getMenuPhanTrang(){
 		return db.getMenuPhanTrang();
 	}
@@ -155,5 +192,4 @@ public class ThongBaoDAO {
 		// TODO Auto-generated method stub
 		db.setMenu(nBangghi, ntrang);
 	}
-
 }

@@ -9,6 +9,11 @@ public class ThongBaoBO {
 
 	ThongBaoDAO tb = new ThongBaoDAO();
 	
+	public ArrayList<THONGBAO> getListThongBao(String den,int page) {
+		// TODO Auto-generated method stub
+		return tb.getListThongBao(den, page);
+	}
+	
 	public ArrayList<THONGBAO> getListHienThi(String den, String timtheo, String find) {
 		// TODO Auto-generated method stub
 		return tb.getListHienThi(den, timtheo, find);
@@ -45,6 +50,10 @@ public class ThongBaoBO {
 		return tb.SuaThongBao(id, hienthi);
 	}
 
+	public int CheckMail(String idtaikhoan, String tentaikhoan){
+		return tb.CheckMail(idtaikhoan, tentaikhoan);
+	}
+	
 	public String getMenuPhanTrang(){
 		return tb.getMenuPhanTrang();
 	}
