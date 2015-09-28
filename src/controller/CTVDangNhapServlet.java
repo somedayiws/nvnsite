@@ -45,15 +45,15 @@ public class CTVDangNhapServlet extends HttpServlet {
 						// Điều hướng đến trang khác mà không cần gửi dữ liệu
 						response.sendRedirect("TrangChuCTVServlet");
 					} else {
-						request.setAttribute("meg", "Tên đăng nhập hoặc mật khẩu không chính xác!");
+						request.setAttribute("meg", "Tên đăng nhập hoặc mật khẩu không chính xác!<br>ユーザー名またログインが不正確です。");
 						request.getRequestDispatcher("TrangChuCTV.jsp").forward(request, response);
 					}
 				} else {
-					request.setAttribute("meg", "Không thể để trống trường mật khẩu!");
+					request.setAttribute("meg", "Không thể để trống trường mật khẩu!<br>パスワードをすべて書き込んでください。");
 					request.getRequestDispatcher("TrangChuCTV.jsp").forward(request, response);
 				}
 			} else {
-				request.setAttribute("meg", "Không thể để trống trường tài khoản!");
+				request.setAttribute("meg", "Không thể để trống trường tài khoản!<br>アカウントをすべて書き込んでください。");
 				request.getRequestDispatcher("TrangChuCTV.jsp").forward(request, response);
 			}
 		} else {

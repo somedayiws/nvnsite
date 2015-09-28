@@ -44,23 +44,24 @@ public class CTVResetMatKhauServlet extends HttpServlet {
 			if(tk != null){
 				String email = tk.getEmail();
 				tk.setMatKhau(RandomPassword.password());
-				String tieude = "Reset mật khẩu tài khoản cộng tác viên";
-				String noidung = "Chào " + tk.getHoTen() + "\nĐây là thông tin tài khoản của bạn sau khi reset\n Tài khoản : " 
-				+ tk.getTenTaiKhoan() + "\n Mật khẩu : " + tk.getMatKhau() + "\n Vui lòng đăng nhập sớm và cập nhật lại mật khẩu của bạn.\n Cám ơn nhiều!";
+				String tieude = "Reset mật khẩu tài khoản cộng tác viên - 協力者のパスワードをリセットする。";
+				String noidung = "\nĐây là thông tin tài khoản của bạn sau khi reset\n Tài khoản : " 
+				+ tk.getTenTaiKhoan() + "\n Mật khẩu : " + tk.getMatKhau() + "これはアカウントがリセットされた後、あなたのアカウントです。: "+tk.getTenTaiKhoan()+" パスワード : "+tk.getMatKhau()+"早めにアクセスください。" 
+				+"\n Vui lòng đăng nhập sớm và cập nhật lại mật khẩu của bạn.\n新たなパスワードをログイン下さい。\n Cám ơn nhiều!\nありがとう";
 				ctv.UpdateThongTin(tk);
 				String resultMessage = "";
 				try {
 		            EmailUtility.sendEmail(host, port, user, pass, email, tieude,noidung);
-		            resultMessage = "<div class='alert alert-success' role='alert'><p>Đã reset mật khẩu xong. Vui lòng vào mail kiểm tra lại. Cám ơn!</p></div>";
+		            resultMessage = "<div class='alert alert-success' role='alert'><p>Đã reset mật khẩu xong. Vui lòng vào mail kiểm tra lại. Cám ơn!<br>パスワードがリセットできた。メールで改めて確認ください。ありがとう</p></div>";
 		        } catch (Exception ex) {
 		            ex.printStackTrace();
-		            resultMessage = "<div class='alert alert-danger' role='alert'><p>Tài khoản không tồn tại. Vui lòng kiểm tra lại." + ex.getMessage() + "</p></div>";
+		            resultMessage = "<div class='alert alert-danger' role='alert'><p>Tài khoản không tồn tại. Vui lòng kiểm tra lại.<br>アカウントを存しない。改めて確認ください。</p></div>";
 		        } finally {
 		            request.setAttribute("meg", resultMessage);
 		            request.getRequestDispatcher("ResetMatKhau.jsp").forward(request, response);
 		        }
 			}else{
-				request.setAttribute("meg", "<div class='alert alert-danger' role='alert'><p>Tài khoản không tồn tại. Vui lòng kiểm tra lại.</p></div>");
+				request.setAttribute("meg", "<div class='alert alert-danger' role='alert'><p>Tài khoản không tồn tại. Vui lòng kiểm tra lại.<br>アカウントを存しない。改めて確認ください。</p></div>");
 	            request.getRequestDispatcher("ResetMatKhau.jsp").forward(request, response);
 			}
 		}else{

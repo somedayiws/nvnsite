@@ -32,8 +32,10 @@ public class XoaBaiVietServlet extends HttpServlet {
 		String id = request.getParameter("id");
 		if(id!=null){
 			BaiVietBO baiviet = new BaiVietBO();
-			baiviet.XoaBaiViet(id);
-			response.sendRedirect("TrangCaNhanServlet");
+			if(baiviet.XoaBaiViet(id))
+				response.sendRedirect("TrangCaNhanServlet?xuly=xoa-thanhcong");
+			else
+				response.sendRedirect("TrangCaNhanServlet?xuly=xoa-thatbai");
 		}else{
 			response.sendRedirect("TrangChuServlet");
 		}
