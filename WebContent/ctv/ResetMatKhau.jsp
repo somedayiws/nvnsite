@@ -32,7 +32,7 @@ input.error {
 <body>
 <div class="container">
 	<p>
-		<marquee> Trang cộng tác viên VIET-NHAT</marquee>
+		<marquee>Trang cộng tác viên VIET-NHAT</marquee>
 	</p>
 </div>
 	<!-- nội dung chính -->
@@ -44,7 +44,7 @@ input.error {
 			<%= request.getAttribute("meg")==null ? "<div class='alert alert-info' role='alert'><p>Hãy nhập tài khoản cộng tác viên của bạn bên dưới và click vào button \"Lấy mật khẩu - ログイン\". Kiểm tra lại email của bạn đã đăng ký với chúng tôi để lấy lại mật khẩu. Cám ơn!</p></div>" : request.getAttribute("meg") %>
 			<div class="row">
 				<label><i class="fa fa-user"></i> Tài khoản - アカウント </label>
-				<input type="text" name="taikhoan" placeholder="Tài khoản cộng tác viên" class="form-control">
+				<input type="text" name="taikhoan" placeholder="Tài khoản cộng tác viên - 協力者のアカウント" class="form-control">
 			</div>
 			<div class="row">
 				<button type="reset" class="btn btn-warning btn-sm" id="huy"><i class="fa fa-eraser"></i> Nhập lại - </button>
@@ -68,7 +68,7 @@ input.error {
 											},
 											messages : {
 												taikhoan : {
-													required : "<br>Chưa nhập tài khoản cần reset"
+													required : "<br>Chưa nhập tài khoản cần reset<br>リセットする必要なアカウントをまだ入力しない。"
 												}
 											},
 											submitHandler : function(form) {

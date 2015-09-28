@@ -64,7 +64,7 @@ input.error {
 		<input type="text" name="diachi" class="form-control" value="<%= user.getDiaChi() %>">
 		Email
 		<input type="text" name="email" class="form-control" value="<%= user.getEmail() %>">
-		Mật khẩu mới
+		Mật khẩu mới - 新しいパスワード
 		<input type="password" name="matkhau" class="form-control" value="<%= user.getMatKhau() %>">
 		<button type="submit" class="btn btn-primary btn-sm" id="gui">Cập nhật</button>
 	</form>
@@ -91,13 +91,13 @@ input.error {
 											},
 											messages : {
 												hoten : {
-													required : "<br>Không được để trống trường này!"
+													required : "<br>Không được để trống trường này!<br>アカウントをすべて書き込んでください。"
 												},
 												matkhau : {
-													required : "<br>Không được để trống trường này!"
+													required : "<br>Không được để trống trường này!<br>アカウントをすべて書き込んでください。"
 												},
 												email : {
-													required : "<br>Không được để trống trường này!"
+													required : "<br>Không được để trống trường này!<br>アカウントをすべて書き込んでください。"
 												}
 											},
 											submitHandler : function(form) {

@@ -52,15 +52,15 @@
 				    <div class="modal-content">
 				      <div class="modal-header">
 				        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				        <h4 class="modal-title" id="myModalLabel">Hủy bài dịch</h4>
+				        <h4 class="modal-title" id="myModalLabel">Hủy bài dịch-翻訳の記事を削除うする</h4>
 				      </div>
 				      <div class="modal-body">
 				        Những bài dịch sẽ được gửi với yêu cầu HỦY DỊCH lên Admin và điều sẽ ảnh hưởng xấu đến thành tích của bạn.
 				        <br><label>Bạn thật sự muốn hủy bài dich?</label>
 				      </div>
 				      <div class="modal-footer">
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
-				        <button type="submit" name="submit" value="huy" class="btn btn-primary">Có</button>
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Không-いいえ</button>
+				        <button type="submit" name="submit" value="huy" class="btn btn-primary">Có-はい</button>
 				      </div>
 				    </div>
 				  </div>
@@ -71,15 +71,15 @@
 				    <div class="modal-content">
 				      <div class="modal-header">
 				        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				        <h4 class="modal-title" id="myModalLabel">Gửi bài dịch</h4>
+				        <h4 class="modal-title" id="myModalLabel">Gửi bài dịch-記事を送信する</h4>
 				      </div>
 				      <div class="modal-body">
-				        Các bài dịch sẽ được gửi lên Admin để kiểm duyệt.
-						<br><label>Bạn muốn gửi?</label>
+				        Các bài dịch sẽ được gửi lên Admin để kiểm duyệt.<br>翻訳の記事は管理者がチェックされる。
+						<br><label>Bạn muốn gửi?<br>本当に送信したい？</label>
 				      </div>
 				      <div class="modal-footer">
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
-				        <button type="submit" name="submit" value="gui" class="btn btn-primary">Có</button>
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Không-いいえ</button>
+				        <button type="submit" name="submit" value="gui" class="btn btn-primary">Có-はい</button>
 				      </div>
 				    </div>
 				  </div>

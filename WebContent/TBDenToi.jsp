@@ -1,3 +1,4 @@
+<%@page import="model.bean.THONGBAO"%>
 <%@page import="model.bean.TAIKHOAN"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.bean.BAIVIET"%>
@@ -25,13 +26,13 @@
 	href="font-awesome-4.4.0/css/font-awesome.min.css">
 <!-- Google+ -->
 <link rel="canonical" href="http://webvietnhat-demo.jelastic.skali.net/" />
-<title>Trang cá nhân - 個人ホーム</title>
+<title>Tin nhắn từ diễn đàn - 個人ホーム</title>
 </head>
 <body onLoad="initialize()">
 	<!-- Lấy dữ liệu từ server gửi về -->
 	<%
 		/* Danh sách bài đã đăng */
-		ArrayList<BAIVIET> listbaidang = (ArrayList<BAIVIET>)request.getAttribute("dsbaidang");
+		ArrayList<THONGBAO> listbaidang = (ArrayList<THONGBAO>)request.getAttribute("list");
 		/* Thông báo báo lỗi */
 		String hthi = request.getParameter("xuly");
 		if(hthi!=null && hthi.equals("capnhat-thanhcong")) hthi = "<div class='alert alert-success' role='alert'>Cập nhật bài viết thành công.<br>記事をアップデートすることができた。</div>";
@@ -58,103 +59,21 @@
 		</div>
 		<!-- hiển thị nội dung chính ở đây -->
 		<div class="col-sm-9 col-md-9" id="baiviet" style="font-size: 12px;">
-			<center id="tieude">Thông tin cá nhân</center>
-			<%=(String)request.getAttribute("meg")==null?"":request.getAttribute("meg")%>
-			<form action="TrangCaNhanServlet" method="post" id="fcapnhat">
-				<div class="col-sm-6 col-md-6">
-					<label>Tài khoản</label> <input type="text" name="taikhoan"
-						readonly="readonly" class="form-control"
-						value="<%=user.getTenTaiKhoan()%>"> <label>Họ tên</label>
-					<input type="text" name="hoten" class="form-control"
-						value="<%=user.getHoTen()==null?"":user.getHoTen()%>"> <label>Điện thoại</label> <input
-						type="text" name="dienthoai" class="form-control"
-						value="<%=user.getDienThoai()==null?"":user.getDienThoai()%>"> <br><label>Địa chỉ</label> <input
-						type="text" name="diachi" class="form-control"
-						value="<%=user.getDiaChi()==null?"":user.getDiaChi()%>"> <label>Email</label> <input
-						type="text" id="email" name="email" class="form-control"
-						value="<%=user.getEmail()==null?"":user.getEmail()%>">
-				</div>
-				<div class="col-sm-6 col-md-6">
-					<label>Mật khẩu mới</label> <input type="password" id="matkhau"
-						name="matkhau" class="form-control" value="<%=user.getMatKhau()%>">
-					<br> <label>Nhập mã xác nhận bên dưới</label>
-					<%
-						/* ReCaptcha c = ReCaptchaFactory.newReCaptcha("6LcUfwsTAAAAAJvWq__-nMqX8qhBymgzfztk342-",
-												                                        "6LcUfwsTAAAAAA3VD4c_O4wK66-0AxVccisDCx8m", false); */
-												    ReCaptcha c = ReCaptchaFactory.newReCaptcha("6LeIbgwTAAAAAAYPvXYIKDhW1WKhm1ItqgzLa5Ma",
-														                                        "6LeIbgwTAAAAAOPCOI-VANpsDzAl_bMsS8e10NIV", false);
-												    out.print(c.createRecaptchaHtml(null, null));
-					%>
-					<button type="submit" class="btn btn-primary row" id="btnSubmit">Cập
-						nhật thông tin cá nhân<br>個人情報をアップデートする</button>
-				</div>
-			</form>
-			<div style="clear: both;"></div>
 			<center id="tieude">Các bài viết đã đăng - 投資された記事です</center>
 			<%=hthi == null || hthi.equals("") ? "" : hthi%>
 			<table class="table table-hover">
 				<tr id="tieude1">
 					<td class="cltde">Tiêu Đề - タイトル</td>
 					<td class="clmta">Ngày - 概要</td>
-					<td class="ttrang"></td>
-					<td class="cllxem"><i class="fa fa-globe"></i></td>
-					<td class="clvd"></td>
 				</tr>
 				<%
 					i = 0;
-										  		while(listbaidang != null && i<listbaidang.size()) {
-										  			if(user != null && user.getNgonNgu().equals("vi")) {
+					while(listbaidang != null && i<listbaidang.size()) {
 				%>
 				<tr class="noidung">
-					<td><%=listbaidang.get(i).getTenBaiVietVi()==null ? "" : listbaidang.get(i).getTenBaiVietVi()+"<br>"%><%=listbaidang.get(i).getTenBaiVietJa()==null ? "" : listbaidang.get(i).getTenBaiVietJa()%></td>
+					<td><%=listbaidang.get(i).getTieuDe()==null ? "" : listbaidang.get(i).getTieuDe() %></td>
 					<td><%=listbaidang.get(i).getNgayDang()%></td>
-					<td><%=listbaidang.get(i).getTrangThai()%></td>
-					<td><%=listbaidang.get(i).getLuotXem()%></td>
-					<td class="ctv-chon">
-						<%
-							if(listbaidang.get(i).getTrangThai().equals("Đã đăng<br>既設")||listbaidang.get(i).getTrangThai().equals("Đang duyệt<br>バロース")) {
-						%> <a
-						href="BaiVietServlet?id=<%=listbaidang.get(i).getIdBaiViet()%>"><i
-							class="fa fa-eye-slash"> Xem-書評</i></a> <%
- 	} else {
- %> <a
-						href="CapNhatBaiVietServlet?id=<%=listbaidang.get(i).getIdBaiViet()%>"><i
-							class="fa fa-eye-slash"> Sửa-修正</i></a> <a
-						href="XoaBaiVietServlet?id=<%=listbaidang.get(i).getIdBaiViet()%>"><i
-							class="fa fa-eye-slash"> Xóa-イレーズ</i></a> <%-- <%= list.get(i).getTrangThai()%> --%>
-						<%
-							}
-						%>
-					</td>
 				</tr>
-				<%
-					} else {
-				%>
-				<tr class="noidung">
-					<td><%=listbaidang.get(i).getTenBaiVietJa()==null ? "" : listbaidang.get(i).getTenBaiVietJa()+"<br>"%><%=listbaidang.get(i).getTenBaiVietVi()==null ? "" : listbaidang.get(i).getTenBaiVietVi()%></td>
-					<td><%=listbaidang.get(i).getNgayDang()%></td>
-					<td><%=listbaidang.get(i).getTrangThai()%></td>
-					<td><%=listbaidang.get(i).getLuotXem()%></td>
-					<td class="ctv-chon">
-						<%
-							if(listbaidang.get(i).getTrangThai().equals("Đã đăng<br>既設")||listbaidang.get(i).getTrangThai().equals("Đang duyệt<br>バロース")) {
-						%> <a
-						href="BaiVietServlet?id=<%=listbaidang.get(i).getIdBaiViet()%>"><i
-							class="fa fa-eye-slash"> Xem-書評</i></a> <%
- 	} else {
- %> <a
-						href="CapNhatBaiVietServlet?id=<%=listbaidang.get(i).getIdBaiViet()%>"><i
-							class="fa fa-eye-slash"> Sửa-修正</i></a> <a
-						href="XoaBaiVietServlet?id=<%=listbaidang.get(i).getIdBaiViet()%>"><i
-							class="fa fa-eye-slash"> Xóa-イレーズ</i></a> <%-- <%= list.get(i).getTrangThai()%> --%>
-						<%
-							}
-						%>
-					</td>
-				</tr>
-				<%
-					}
-				%>
 				<%
 					i++; }
 				%>

@@ -36,12 +36,12 @@
 		TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("user");
 		ArrayList<BAIVIET> list = (ArrayList<BAIVIET>)request.getAttribute("listbaiviet");
 		String tbao = request.getParameter("xuly");
-		if(tbao!=null && tbao.equals("luu-thanhcong")) tbao = "<div class='alert alert-success' role='alert'>Lưu bài dịch thành công.</div>";
-		else if(tbao!=null && tbao.equals("gui-thanhcong")) tbao = "<div class='alert alert-success' role='alert'>Gửi bài dịch thành công.</div>";
-		else if(tbao!=null && tbao.equals("huy-thanhcong")) tbao = "<div class='alert alert-success' role='alert'>Hủy bài dịch thành công.</div>";
-		else if(tbao!=null && tbao.equals("luu-thatbai")) tbao = "<div class='alert alert-danger' role='alert'>Lưu bài dịch thất bại!</div>";
-		else if(tbao!=null && tbao.equals("gui-thatbai")) tbao = "<div class='alert alert-danger' role='alert'>Gửi bài dịch thất bại!</div>";
-		else if(tbao!=null && tbao.equals("huy-thatbai")) tbao = "<div class='alert alert-danger' role='alert'>Hủy bài dịch thất bại!</div>";
+		if(tbao!=null && tbao.equals("luu-thanhcong")) tbao = "<div class='alert alert-success' role='alert'>Lưu bài dịch thành công.<br>翻訳の記事が保存できた。</div>";
+		else if(tbao!=null && tbao.equals("gui-thanhcong")) tbao = "<div class='alert alert-success' role='alert'>Gửi bài dịch thành công.<br>翻訳の記事が送信できた。</div>";
+		else if(tbao!=null && tbao.equals("huy-thanhcong")) tbao = "<div class='alert alert-success' role='alert'>Hủy bài dịch thành công.<br>翻訳の記事が削除できた。</div>";
+		else if(tbao!=null && tbao.equals("luu-thatbai")) tbao = "<div class='alert alert-danger' role='alert'>Lưu bài dịch thất bại.<br>翻訳の記事が保存できない。</div>";
+		else if(tbao!=null && tbao.equals("gui-thatbai")) tbao = "<div class='alert alert-danger' role='alert'>Gửi bài dịch thất bại.<br>翻訳の記事が送信できない。</div>";
+		else if(tbao!=null && tbao.equals("huy-thatbai")) tbao = "<div class='alert alert-danger' role='alert'>Hủy bài dịch thất bại.<br>翻訳の記事が削除できない。</div>";
 	%>
 	<!-- nội dung chính -->
 	<div class="col-sm-2 col-md-2">
@@ -74,7 +74,7 @@
 				  	<td><input type="checkbox" name="chon" value="<%= list.get(i).getIdBaiViet() %>"></td>
 				  	<td class="ctv-chon">
 				  		<a href="XemBaiDichServlet?id=<%= list.get(i).getIdBaiViet() %>"><i class="fa fa-eye-slash"> Xem</i></a>
-				  		- <a href="DichBaiDichServlet?id=<%= list.get(i).getIdBaiViet() %>"><i class="fa fa-pencil-square-o"> Dich</i></a>
+				  		- <a href="DichBaiDichServlet?id=<%= list.get(i).getIdBaiViet() %>"><i class="fa fa-pencil-square-o">Dich</i></a>
 				  	</td>
 				  </tr>
 			  <% } else { %>
@@ -106,15 +106,15 @@
 				    <div class="modal-content">
 				      <div class="modal-header">
 				        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				        <h4 class="modal-title" id="myModalLabel">Hủy bài dịch</h4>
+				        <h4 class="modal-title" id="myModalLabel">Hủy bài dịch-翻訳の記事を削除うする</h4>
 				      </div>
 				      <div class="modal-body">
 				        Những bài dịch sẽ được gửi với yêu cầu HỦY DỊCH lên Admin và điều sẽ ảnh hưởng xấu đến thành tích của bạn.
 				        <br><label>Bạn thật sự muốn hủy bài dich?</label>
 				      </div>
 				      <div class="modal-footer">
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
-				        <button type="submit" name="submit" value="huy" class="btn btn-primary">Có</button>
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Không-いいえ</button>
+				        <button type="submit" name="submit" value="huy" class="btn btn-primary">Có-はい</button>
 				      </div>
 				    </div>
 				  </div>
@@ -125,15 +125,15 @@
 				    <div class="modal-content">
 				      <div class="modal-header">
 				        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				        <h4 class="modal-title" id="myModalLabel">Gửi bài dịch</h4>
+				        <h4 class="modal-title" id="myModalLabel">Gửi bài dịch-記事を送信する</h4>
 				      </div>
 				      <div class="modal-body">
-				        Các bài dịch sẽ được gửi lên Admin để kiểm duyệt.
-						<br><label>Bạn muốn gửi?</label>
+				        Các bài dịch sẽ được gửi lên Admin để kiểm duyệt.<br>翻訳の記事は管理者がチェックされる。
+						<br><label>Bạn muốn gửi?<br>本当に送信したい？</label>
 				      </div>
 				      <div class="modal-footer">
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
-				        <button type="submit" name="submit" value="gui" class="btn btn-primary">Có</button>
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Không-いいえ</button>
+				        <button type="submit" name="submit" value="gui" class="btn btn-primary">Có-はい</button>
 				      </div>
 				    </div>
 				  </div>

@@ -11,7 +11,26 @@
 <link rel="stylesheet" href="css/Style.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="text/javascript" src="js/back-to-top.js"></script>
-
+<script type="text/javascript">
+$(document).ready(function() {
+	$.ajax({
+		url : "CheckEmailServlet",
+		type : "post",
+		success : function(result) {
+			$("#checkmail").html(result);
+		}
+	});
+	var refreshId = setInterval(function() {
+		$.ajax({
+			url : "CheckEmailServlet",
+			type : "post",
+			success : function(result) {
+				$("#checkmail").html(result);
+			}
+		});
+	}, 15000);
+});
+</script>
 <div id="headerTop">
 	<div id="headerMain">
 		<!-- logo đại diện -->
@@ -55,7 +74,8 @@
 						<li><a href="DangXuatServlet"><i class="fa fa-sign-out"></i>
 								Đăng xuất</a></li>
 					</ul></li>
-				<li><a href="DangKyThanhVienServlet"><i class="fa fa-user"></i>
+				<li><div id="checkmail"></div></li>
+				<li><a href="BangGiaServlet"><i class="fa fa-user"></i>
 						Quảng cáo - ログイン</a> |</li>
 			</ul>
 			<%
@@ -63,7 +83,7 @@
 			%>
 			<input type="hidden" id="tkDangNhap" value="null">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="DangKyThanhVienServlet"><i class="fa fa-user"></i>
+				<li><a href="BangGiaServlet"><i class="fa fa-user"></i>
 						Quảng cáo - ログイン</a> | <a href="DangKyThanhVienServlet"><i class="fa fa-user"></i>Đăng ký - ログイン</a> | <a data-toggle="modal" data-target="#mdangnhap"><i
 						class="fa fa-user"></i> Đăng nhập - ログインログイン</a></li>
 				<%
@@ -156,7 +176,7 @@
 					class="fa fa-home fa-2x"></a></li>
 				<%
 					int i = 0;
-															while (listdanhmuc != null && i < listdanhmuc.size() && i < 7) {
+					while (listdanhmuc != null && i < listdanhmuc.size() && i < 7) {
 				%>
 				<li><a
 					href="DanhSachBaiVietServlet?id=<%=listdanhmuc.get(i).getIdDanhMuc()%>">

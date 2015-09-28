@@ -11,7 +11,7 @@
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/jquery-2.1.0.min.js"></script>
 <script src="../js/jquery.lazyload.js"></script>
-<title>Trang chủ</title>
+<title>Đăng nhập - ログイン</title>
 <!--auto combobox -->
 <script src="../js/magicsuggest-min.js"></script>
 <link rel="stylesheet" href="css/CongtacvienStyle.css">
@@ -35,7 +35,7 @@
 											},
 											messages : {
 												taikhoan : {
-													required : "<br>Chưa nhập tên tài khoản"
+													required : "<br>Chưa nhập tên tài khoản<br>"
 												},
 												matkhau : {
 													required : "<br>Chưa nhập mật khẩu!"
@@ -72,7 +72,7 @@ input.error {
 		<img alt="Cộng tác viên Việt - Nhât" src="../images/logoctv.jpg">
 		<form class="panel-login" action="CTVDangNhapServlet" method="post" id="fdangnhap">
 			<i class="fa fa-pinterest-p fa-2x"></i>
-			<label>Đăng Nhập Tài Khoản</label>
+			<label>Đăng Nhập Tài Khoản<br>アカウントのログイン</label>
 			<div class="row">
 				<p class="loi"><%= (String)request.getAttribute("meg") %></p>
 			</div>
@@ -85,10 +85,10 @@ input.error {
 				<input type="password" name="matkhau" placeholder="Mật khẩu" class="form-control">
 			</div>
 			<div class="row">
-				<i class="fa fa-frown-o"></i> <a href="CTVResetMatKhauServlet"> Quên mật khẩu !!!</a>
+				<i class="fa fa-frown-o"></i> <a href="CTVResetMatKhauServlet"> Quên mật khẩu<br>パスワードを忘れた。!!!</a>
 			</div>
 			<div class="row">
-				<button type="reset" class="btn btn-warning btn-sm" id="huy"><i class="fa fa-eraser"></i> Reset - </button>
+				<button type="reset" class="btn btn-warning btn-sm" id="huy"><i class="fa fa-eraser"></i> Reset - リセット</button>
 				<button type="submit" name="submit" value="congtacvien" class="btn btn-primary btn-sm" id="gui"><i class="fa fa-sign-in"></i> Đăng nhập - ログイン</button>
 			</div>
 		</form>

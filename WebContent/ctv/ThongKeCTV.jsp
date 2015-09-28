@@ -29,17 +29,17 @@
 </a></li>
 
 <div class="xem">
-HOÀN THÀNH
+Tiến độ - 完成
 </div>
 <div class="xemx" style="background: #00FF1C">
 	<%= request.getAttribute("tongbvok") %>%
 </div>
 <div class="xem1">
-HỦY BỎ
+Hủy bỏ - 削除
 </div>
 <div class="xemx" style="background: #FF4400">
 	<%= request.getAttribute("tongbvhuy") %>%
 </div>
 <div class="xem2">
-	Số bài lỗi : <%= request.getAttribute("tongbvloi") %>
+	Bài lỗi - : <%= request.getAttribute("tongbvloi") %>
 </div>

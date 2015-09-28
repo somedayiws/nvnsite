@@ -14,7 +14,7 @@
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/jquery-2.1.0.min.js"></script>
 <script src="../js/jquery.lazyload.js"></script>
-<title>Dịch bài</title>
+<title>Dịch bài - 翻訳</title>
 <!--auto combobox -->
 <script src="../js/magicsuggest-min.js"></script>
 <link rel="stylesheet" href="css/CongtacvienStyle.css">
@@ -43,9 +43,9 @@
 		<%@include file="files/thongke.jsp" %>
 		<strong id="tke"><i class="fa fa-info-circle"></i> Thông tin</strong><br>
 		<div class="info">
-			<label>Mã bài viết : <%= bviet.getIdBaiViet() %></label><br>
-			<label>Tình trạng : <%= request.getAttribute("TinhTrang") %></label><br>
-			<label>Ngày gửi : <%= request.getAttribute("NgayGui") %></label>
+			<label>Mã bài viết - ID : <%= bviet.getIdBaiViet() %></label><br>
+			<label>Tình trạng - 状況 : <%= request.getAttribute("TinhTrang") %></label><br>
+			<label>Ngày gửi - 送信の日 : <%= request.getAttribute("NgayGui") %></label>
 		</div>
 	</div>
 	<div class="col-sm-10 col-md-10">
@@ -130,15 +130,15 @@
 				    <div class="modal-content">
 				      <div class="modal-header">
 				        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				        <h4 class="modal-title" id="myModalLabel">Hủy bài dịch</h4>
+				        <h4 class="modal-title" id="myModalLabel">Hủy bài dịch-翻訳の記事を削除うする</h4>
 				      </div>
 				      <div class="modal-body">
 				        Những bài dịch sẽ được gửi với yêu cầu HỦY DỊCH lên Admin và điều sẽ ảnh hưởng xấu đến thành tích của bạn.
 				        <br><label>Bạn thật sự muốn hủy bài dich?</label>
 				      </div>
 				      <div class="modal-footer">
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
-				        <button type="submit" name="submit" value="huy" class="btn btn-primary">Có</button>
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Không-いいえ</button>
+				        <button type="submit" name="submit" value="huy" class="btn btn-primary">Có-はい</button>
 				      </div>
 				    </div>
 				  </div>
@@ -149,15 +149,15 @@
 				    <div class="modal-content">
 				      <div class="modal-header">
 				        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				        <h4 class="modal-title" id="myModalLabel">Gửi bài dịch</h4>
+				        <h4 class="modal-title" id="myModalLabel">Gửi bài dịch-記事を送信する</h4>
 				      </div>
 				      <div class="modal-body">
-				        Các bài dịch sẽ được gửi lên Admin để kiểm duyệt.
-						<br><label>Bạn muốn gửi?</label>
+				        Các bài dịch sẽ được gửi lên Admin để kiểm duyệt.<br>翻訳の記事は管理者がチェックされる。
+						<br><label>Bạn muốn gửi?<br>本当に送信したい？</label>
 				      </div>
 				      <div class="modal-footer">
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
-				        <button type="submit" name="submit" value="gui" class="btn btn-primary">Có</button>
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Không-いいえ</button>
+				        <button type="submit" name="submit" value="gui" class="btn btn-primary">Có-はい</button>
 				      </div>
 				    </div>
 				  </div>
@@ -181,7 +181,7 @@
 			$("#txtviet").val("");
 			updatedatavi(id, htm.replace("Tôi", $("#iduser").val()));
 		}else{
-			alert("Bạn chưa nhập bình luận của mình.");
+			alert("Bạn chưa nhập bình luận của mình.\nコメントをまだ記入しない。");
 		}
 		$("#txtviet").val("");
 	};
