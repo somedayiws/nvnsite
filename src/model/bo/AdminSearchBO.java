@@ -7,8 +7,8 @@ import model.dao.AdminSearchDAO;
 
 public class AdminSearchBO {
 	AdminSearchDAO adminSearch = new AdminSearchDAO();
-	public ArrayList<TAIKHOAN> selectAccount(String typeFind, String stringFind,int page){
-		return adminSearch.searchAccount(typeFind, stringFind,page);
+	public ArrayList<TAIKHOAN> selectAccount(String typeFind, String stringFind,int page,String type){
+		return adminSearch.searchAccount(typeFind, stringFind,page,type);
 	}
 	public String getMenuPhanTrang(){
 		return adminSearch.getMenuPhanTrang();

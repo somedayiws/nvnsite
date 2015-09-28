@@ -55,7 +55,10 @@ public class ChangeStatusDAO {
 	
 	//Lấy trường GimTrangChu
 	public int getPostBookmarkById(String idPost){
+		
 		String sql_getPostBookmarkById = "SELECT GimTrangChu FROM baiviet WHERE IdBaiViet ='"+idPost+"' AND CoXoa = 0";
+		
+		System.out.println("sql_getPostBookmarkById: "+sql_getPostBookmarkById);
 		ResultSet result_getPostBookmarkById = db.getResultSet(sql_getPostBookmarkById);
 		
 		int bookmark = 0 ;
@@ -73,8 +76,9 @@ public class ChangeStatusDAO {
 	}
 	
 	//Thay đổi trạng thái ghim bài viết
-	public boolean changeBookmark(String idPost){
-		String sql_changeBookmark = "UPDATE baiviet SET GimTrangChu = NOT GimTrangChu WHERE IdBaiViet = '"+idPost+"'";
+	public boolean changeBookmark(String idPost,int status){
+		String sql_changeBookmark = "UPDATE baiviet SET GimTrangChu = NOT '"+status+"' WHERE IdBaiViet = '"+idPost+"'";
+		System.out.println("sql_changeBookmark: "+sql_changeBookmark);
 		return db.updateData(sql_changeBookmark);
 	}
 }

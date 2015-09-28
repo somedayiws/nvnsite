@@ -50,10 +50,16 @@ public class BookmarkInHomeServlet extends HttpServlet {
 		int numberOfPostBookmark = changeStatusBo.numberOfPostsBookmark();
 		String resultChangeStatusBookmark = null;
 		int status = changeStatusBo.getPostBookmarkById(id);
+		
+		System.out.println("status: "+status);
+		
 		if(numberOfPostBookmark<=20){
 			//thay đổi trường gim bài viết
-			if(changeStatusBo.changeBookmark(id)){
-				int bookmarkOfPost = status;
+			if(changeStatusBo.changeBookmark(id,status)){
+				int bookmarkOfPost = changeStatusBo.getPostBookmarkById(id);
+				
+				System.out.println("bookmarkOfPost: "+bookmarkOfPost);
+				
 				if(bookmarkOfPost==1){
 				resultChangeStatusBookmark = "Đã ghim - ";
 				}else{
@@ -69,13 +75,14 @@ public class BookmarkInHomeServlet extends HttpServlet {
 			}
 			else{
 				//thay đổi trường gim bài viết
-				if(changeStatusBo.changeBookmark(id)){					
+				if(changeStatusBo.changeBookmark(id,status)){					
 						resultChangeStatusBookmark = "Chưa ghim - ";					
 				}else{
 					resultChangeStatusBookmark = "Thay đổi thất bại - ";
 				}
 			}
 		}
+		request.setAttribute("id", id);
 		request.setAttribute("result", resultChangeStatusBookmark);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("MessagePost.jsp");
 		requestDispatcher.forward(request, response);

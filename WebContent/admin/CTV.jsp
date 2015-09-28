@@ -37,7 +37,7 @@
 			<%}
 			%>	
 			<div class="col-md-10 col-md-offset-1">				
-				<form action="AdminSearchSevlet" method="post"
+				<form action="CTVServlet" method="post"
 					onsubmit="return checkValidateSearch()">
 					<h4 class="col-md-2">Tìm kiếm - 検索</h4>
 					<div class="col-md-2 form-group">
@@ -47,7 +47,8 @@
 							<option value="DiaChi">Địa chỉ - 住所</option>
 							<option value="DienThoai">Địện thoại - 電話番号</option>
 							<option value="Email">Email - メール</option>
-							<option value="TenTaiKhoan">Tên tài khoản - ユーザー名</option>							
+							<option value="TenTaiKhoan">Tên tài khoản - ユーザー名</option>		
+							<option value="NgonNgu">Ngôn ngữ - 言語</option>					
 						</select>
 					</div>
 					<div class="col-md-5 form-group">
@@ -85,12 +86,12 @@
 							<th>Tài khoản<br>ユーザ名</th>
 							<th>Phân quyền<br>タイプ</th>
 							<th>Ngôn ngữ<br>言語</th>
-							<th>Bài đã dịch<br>....</th>		
-							<th>Bài đang dịch<br>....</th>						
-							<th>Bài đã gởi<br>....</th>
-							<th>Bài bị lỗi<br>....</th>
-							<th>Bài đã hủy<br>....</th>
-							<th>Bài mới nhận<br>....</th>		
+							<th><span class="glyphicon glyphicon-sort">Bài đã dịch<br>....</span></th>		
+							<th><span class="glyphicon glyphicon-sort">Bài đang dịch<br>....</span></th>						
+							<th><span class="glyphicon glyphicon-sort">Bài đã gởi<br>....</span></th>
+							<th><span class="glyphicon glyphicon-sort">Bài bị lỗi<br>....</span></th>
+							<th><span class="glyphicon glyphicon-sort">Bài đã hủy<br>....</span></th>
+							<th><span class="glyphicon glyphicon-sort">Bài mới nhận<br>....</span></th>		
 							<th></th>
 							<th></th>
 						</tr>

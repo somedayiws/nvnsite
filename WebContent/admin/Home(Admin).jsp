@@ -15,11 +15,6 @@
 <link rel="stylesheet"
 	href="./css/home.css">
 <title>Trang chủ - ホーム</title>
-<script type="text/javascript">
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();  
-});
-</script>
 </head>
 <%
 	//Check session exist
@@ -77,10 +72,20 @@ $(document).ready(function(){
 											<td><%=postsNew.get(i).getTaiKhoan().getTenTaiKhoan() %></td>
 											<td><%=postsNew.get(i).getNgayDang() %></td>
 											<td><%=postsNew.get(i).getLuotXem() %></td>
-											<td><button type="button"  id="<%=postsNew.get(i).getIdBaiViet()%>" class="btn btn-warning btn-sm btnbookmark" ><span class="glyphicon glyphicon-bookmark"></span></button>
-								<div id="resultMessage_<%=postsNew.get(i).getIdBaiViet()%>" class="divMessage" style="display:none;">									
-									<input type="text"  id="status" name="status" value="<%if(postsNew.get(i).getGimTrangChu()==1){%>Đã ghim<%}else {%>Chưa ghim<%} %>" disabled="disabled">									
-								</div>
+											<td>
+								<div id="resultMessage_<%=postsNew.get(i).getIdBaiViet()%>">
+									<button type="button" id="<%=postsNew.get(i).getIdBaiViet()%>"
+											data-toggle="tooltip"
+											<%if(postsNew.get(i).getGimTrangChu()==1) {%>
+											title="Đã ghim"
+											<% }else{%>title="Chưa ghim"<%}%>
+											<%if (postsNew.get(i).getGimTrangChu()==1) { %>
+											class="btn btn-warning btn-sm btnbookmark" <%}else {%>
+											class="btn btn-primary btn-sm btnbookmark" <%}%>
+											onclick="changeBookmark('<%=postsNew.get(i).getIdBaiViet()%>')">
+											<span class="glyphicon glyphicon-bookmark"></span>
+										</button>
+								</div>	
 							</td>
 											<td><a
 												href="ShowDetailPostsServlet?id=<%=postsNew.get(i).getIdBaiViet()%>" data-toggle="tooltip" title="Chi tiết - 詳細"><button
@@ -162,25 +167,22 @@ $(document).ready(function(){
 	}%>				
 </body>
 <script type="text/javascript">	
-	$(".btnbookmark").click(function(){
-		var id = this.id;	
-		$("#resultMessage_"+id).hide();	
+
+	function changeBookmark(idPost){
 			$.ajax({
 				url : "BookmarkInHomeServlet", //file 
 				type : "POST", //phuong thức gưi
 				data : {
-					id 	: this.id,
+					id 	: idPost
 				}, //dữ liệu gửi
 				async : true, //
 				success : function(res) {
 					if(res.indexOf("tối đa") > -1)
 					{
 						$("#resultMessage").html(res);
-						alert($('#resultMessage').children("#result").text());
 					}
 					else{
-						$("#resultMessage_"+id).html(res);
-						alert($('#status').val());
+						$("#resultMessage_"+idPost).html(res);
 					}
 														
 				},
@@ -189,12 +191,6 @@ $(document).ready(function(){
 					$("#load").html("");
 				}
 			});	    
-	});	
-	$(".btnbookmark").hover(function(){
-		var id = this.id;			
-			$("#resultMessage_"+id).show(1000);	
-			
-		
-	}); 
+	}
 	</script>
 </html>

@@ -47,6 +47,8 @@ public class AdminSearchSevlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 
+		String type = request.getParameter("type");
+		
 		String typeFind = request.getParameter("typeFind");
 		String stringFind = request.getParameter("stringFind");
 		String btnFind = request.getParameter("btnFind");
@@ -60,7 +62,7 @@ public class AdminSearchSevlet extends HttpServlet {
 		}
 
 		
-		ArrayList<TAIKHOAN> account = adminSearch.selectAccount(typeFind, stringFind,page);
+		ArrayList<TAIKHOAN> account = adminSearch.selectAccount(typeFind, stringFind,page,type);
 		
 		
 		String pageNav = adminSearch.getMenuPhanTrang();		
@@ -69,9 +71,16 @@ public class AdminSearchSevlet extends HttpServlet {
 		request.setAttribute("pageNavSearch", pageNav);
 		request.setAttribute("account", account);
 		request.setAttribute("button", btnFind);
-		RequestDispatcher requestDis_error = request
+		RequestDispatcher dispatcher;
+		if(type.equals("CTV"))
+		{
+			dispatcher = request
+					.getRequestDispatcher("CTVServlet");
+		}else{
+		dispatcher= request
 				.getRequestDispatcher("ListAccountServlet");
-		requestDis_error.forward(request, response);
+		}
+		dispatcher.forward(request, response);
 	}
 
 }

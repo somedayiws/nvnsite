@@ -34,8 +34,8 @@ public class ChangeStatusBO {
 	} 
 	
 	//Thay đổi trạng thái ghim bài viết
-	public boolean changeBookmark(String idPost){
-		return change.changeBookmark(idPost);
+	public boolean changeBookmark(String idPost,int status){
+		return change.changeBookmark(idPost,status);
 	}
 	
 	//Lấy trường GimTrangChu

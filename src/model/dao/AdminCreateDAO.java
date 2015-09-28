@@ -42,7 +42,7 @@ public class AdminCreateDAO {
 	/** Get id of account last */
 	public String getId_Acc_last() {
 		String id_Account_last = null;
-		String sql_select_id_account = "SELECT * FROM TAIKHOAN WHERE CoXoa = 0";
+		String sql_select_id_account = "SELECT * FROM TAIKHOAN";
 		ResultSet resultset_id_account = db.getResultSet(sql_select_id_account);
 		try {
 			resultset_id_account.last();

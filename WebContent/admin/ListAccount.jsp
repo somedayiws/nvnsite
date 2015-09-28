@@ -45,32 +45,34 @@ function delayer(){
 $(document).ready(function() {	
 	for(var i=0;i<<%=accounts.size()%>
 	; i++) {
-			var validator = $("#formedit" + i).validate({
+							var validator = $("#formedit" + i)
+									.validate(
+											{
 
-				rules : {
-					name : "required",
-					adress : "required",
-					phone : {
-						required : true,
-						digits : true,
-						minlength : 10,
-					},
+												rules : {
+													name : "required",
+													adress : "required",
+													phone : {
+														required : true,
+														digits : true,
+														minlength : 10,
+													},
 
-				},
-				messages : {
-					name : "Hãy nhập tên đầy đủ - お客様の氏名を入力下さい。",
-					adress : "Hãy nhập địa chỉ - お客様の住所を入力下さい。",
-					phone : {
-						required : "Hãy nhập số điện thoại - お客様の電話番号を入力下さい。",
-						digits : "Số điện thoại phải là số - 電話番号は必ず？",
-						minlength : "Số điện thoại ít nhất 10 ký tự - 電話番号は最低に10数字です。"
-					},
+												},
+												messages : {
+													name : "Hãy nhập tên đầy đủ - お客様の氏名を入力下さい。",
+													adress : "Hãy nhập địa chỉ - お客様の住所を入力下さい。",
+													phone : {
+														required : "Hãy nhập số điện thoại - お客様の電話番号を入力下さい。",
+														digits : "Số điện thoại phải là số - 電話番号は必ず？",
+														minlength : "Số điện thoại ít nhất 10 ký tự - 電話番号は最低に10数字です。"
+													},
 
-				},
+												},
 
-			});
-		}
-	});
+											});
+						}
+					});
 	function checkValidate(typeFind, stringFind, lengthStringFind) {
 		if (stringFind == "") {
 			alert("Bạn phải nhập từ cần tìm - 検索したい言葉を入力ください。");
@@ -140,33 +142,33 @@ $(document).ready(function() {
 <%
 	}
 %>
-<body >
+<body>
 	<div class="container-fluid">
 		<%@include file="header_ver_1.jsp"%>
 		<%@include file="Menu.jsp"%>
-		<div id="divcontent">	
-		<div class="row">
-		<%
-			//Hiển thị kết quả chỉnh sửa và xóa, tạo tài khoản
-				if (result != null) {
-			%>
-						<div class="col-md-4 col-md-offset-4 alert alert-info">
-						  <strong>Thông báo - 情報!</strong><%=result %>
-						</div>
-			<%
-				}
-			//Hiển thị kết quả khôi phục
-			if(result_Restore!=null){
+		<div id="divcontent">
+			<div class="row">
+				<%
+					//Hiển thị kết quả chỉnh sửa và xóa, tạo tài khoản
+												if (result != null) {
 				%>
 				<div class="col-md-4 col-md-offset-4 alert alert-info">
-					  <strong>Thông báo - 情報!</strong><%=result_Restore %>
+					<strong>Thông báo - 情報!</strong><%=result%>
 				</div>
-			<%
-			}
-			%>
-			</div>		
-			<div class="row">				
-				<form action="AdminSearchSevlet" method="post"
+				<%
+					}
+											//Hiển thị kết quả khôi phục
+											if(result_Restore!=null){
+				%>
+				<div class="col-md-4 col-md-offset-4 alert alert-info">
+					<strong>Thông báo - 情報!</strong><%=result_Restore%>
+				</div>
+				<%
+					}
+				%>
+			</div>
+			<div class="row">
+				<form action="AdminSearchSevlet?type=User" method="post"
 					onsubmit="return checkValidateSearch()">
 					<h4 class="col-md-2">Tìm kiếm - 検索</h4>
 					<div class="col-md-2 form-group">
@@ -186,102 +188,123 @@ $(document).ready(function() {
 					</div>
 					<div class=" form-group">
 						<button type="submit" name="btnFind" value="Find"
-							class=" col-md-1 btn btn-primary btn-sm">Tìm kiếm<br>検索</button>
+							class=" col-md-1 btn btn-primary btn-sm">
+							Tìm kiếm<br>検索
+						</button>
 					</div>
 				</form>
 				<div class="form-group">
-					<a href="ShowCreateAccount?type=user"><button class=" col-md-1 btn btn-success btn-sm">Tạo tài khoản<br>アカウントの作成
-							</button></a>
+					<a href="ShowCreateAccount?type=user"><button
+							class=" col-md-1 btn btn-success btn-sm">
+							Tạo tài khoản<br>アカウントの作成
+						</button></a>
 				</div>
 				<div class="form-group">
-					<a href="ShowRestoreServlet?type=account&screen=User"><button class=" col-md-1 btn btn-success btn-sm">Khôi phục<br>回復
-					</button></a>
+					<a href="ShowRestoreServlet?type=account&screen=User"><button
+							class=" col-md-1 btn btn-success btn-sm">
+							Khôi phục<br>回復
+						</button></a>
 				</div>
 			</div>
 			<%
-			if (button != null) {
-				
+				if (button != null) {
 			%>
-		
-			
-<!--*********************** Hiển thị kết quả ******************************** -->
+
+
+			<!--*********************** Hiển thị kết quả ******************************** -->
 			<%
-				
-					if (account != null) {
+				if (account != null) {
 			%>
-				<div class="col-md-10 col-md-offset-1 panel panel-default">
-  					<div class="panel-heading">Kết quả - 結果</div>
-  					<div class="panel-body">
-						<div class="table-responsive">
-							<table class="table table-hover table-condensed table-striped ">
-								<thead>
-									<tr>
-										<th>ID</th>
-										<th>Họ tên<br>氏名</th>
-										<th>Địa chỉ<br>住所</th>
-										<th>Điện thoại<br>電話番号</th>
-										<th>Email<br>メール</th>
-										<th>Tài khoản<br>ユーザー名</th>
-										<th>Phân quyền<br>管理者の権利</th>
-										<th></th>
-										<th></th>
-									</tr>
-								</thead>
-									<%
-										for (int i = 0; i < account.size(); i++) {
-									%>
-								<tbody>
-									<tr>
-										<td><%=account.get(i).getIdTaiKhoan()%></td>
-										<td><%=account.get(i).getHoTen()%></td>
-										<td><%=account.get(i).getDiaChi()%></td>
-										<td><%=account.get(i).getDienThoai()%></td>
-										<td><%=account.get(i).getEmail()%></td>
-										<td><%=account.get(i).getTenTaiKhoan()%></td>
-										<td><%=account.get(i).getQuyenQuanTri()%></td>
-											<td><button type="button" <%if(account.get(i).getQuyenQuanTri().equals("admin")){ %> disabled="disabled" <%} %> id="<%=account.get(i).getIdTaiKhoan()%>" data-toggle="tooltip" title="Tình trạng: <%=account.get(i).getTinhTrang() %>" class="btn btn-warning btn-sm btnban" onclick="banAcc()"><span class="glyphicon glyphicon-lock"></span></button></td>
-										<td><button type="button" class="btn btn-primary btn-sm"
+			<div class="col-md-10 col-md-offset-1 panel panel-default">
+				<div class="panel-heading">Kết quả - 結果</div>
+				<div class="panel-body">
+					<div class="table-responsive">
+						<table class="table table-hover table-condensed table-striped ">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Họ tên<br>氏名
+									</th>
+									<th>Địa chỉ<br>住所
+									</th>
+									<th>Điện thoại<br>電話番号
+									</th>
+									<th>Email<br>メール
+									</th>
+									<th>Tài khoản<br>ユーザー名
+									</th>
+									<th>Phân quyền<br>管理者の権利
+									</th>
+									<th></th>
+									<th></th>
+								</tr>
+							</thead>
+							<%
+								for (int i = 0; i < account.size(); i++) {
+							%>
+							<tbody>
+								<tr>
+									<td><%=account.get(i).getIdTaiKhoan()%></td>
+									<td><%=account.get(i).getHoTen()%></td>
+									<td><%=account.get(i).getDiaChi()%></td>
+									<td><%=account.get(i).getDienThoai()%></td>
+									<td><%=account.get(i).getEmail()%></td>
+									<td><%=account.get(i).getTenTaiKhoan()%></td>
+									<td><%=account.get(i).getNgonNgu().equals("vi") ?"Việt Nam":"Nhật Bản"%></td>
+									<td><%=account.get(i).getTinhTrang().equals("MoiTao")? "Mới tạo" : (account.get(i).getTinhTrang().equals("CanhCao1")) ? "Cảnh cáo lần 1" : (account.get(i).getTinhTrang().equals("CanhCao2")) ? "Cảnh cáo lần 2" : (account.get(i).getTinhTrang().equals("CanhCao3")) ? "Cảnh cáo lần 3" : (account.get(i).getTinhTrang().equals("KhoaTK") )? "Khóa tài khoản" : "Mới tạo"%></td>
+									<td><button type="button"
+											<%if(account.get(i).getQuyenQuanTri().equals("admin")){%>
+											disabled="disabled" <%}%>
+											id="<%=account.get(i).getIdTaiKhoan()%>"
+											data-toggle="tooltip"
+											title="Tình trạng: <%=account.get(i).getTinhTrang()%>"
+											class="btn btn-warning btn-sm btnban" onclick="banAcc()">
+											<span class="glyphicon glyphicon-lock"></span>
+										</button></td>
+									<td><button type="button" class="btn btn-primary btn-sm"
 											data-toggle="modal"
 											data-target="#modal_Search_<%=account.get(i).getIdTaiKhoan()%>">
 											<span class="glyphicon glyphicon-pencil"></span> Chỉnh sửa<br>修正
-											</button>
-										</td>
-										<td><button type="button" class="btn btn-danger btn-sm"
-											<%if(account.get(i).getQuyenQuanTri().equals("admin")){ %>
-												disabled="disabled"
-											<%} %>
-											data-toggle="modal"
+										</button></td>
+									<td><button type="button" class="btn btn-danger btn-sm"
+											<%if(account.get(i).getQuyenQuanTri().equals("admin")){%>
+											disabled="disabled" <%}%> data-toggle="modal"
 											data-target="#delete_Search<%=account.get(i).getIdTaiKhoan()%>">
-											<span class="glyphicon glyphicon-remove"></span> Xóa<br>削除										
-											</button>
-										</td>
-									</tr>
-								</tbody>							
-									<%
-										}
-									%>
-							</table>
-						</div>
+											<span class="glyphicon glyphicon-remove"></span> Xóa<br>削除
+										</button></td>
+								</tr>
+							</tbody>
+							<%
+								}
+							%>
+						</table>
 					</div>
-					<%if(pageNavSearch!=null){ %>
-					<div id="divpage" class="menuPhanTrang">
-						<%= pageNavSearch %>
-					</div>
-					<%} %>
 				</div>
-				
-				<%				
-					for (int i = 0; i < account.size(); i++) {
+				<%
+					if(pageNavSearch!=null){
+				%>
+				<div id="divpage" class="menuPhanTrang">
+					<%=pageNavSearch%>
+				</div>
+				<%
+					}
+				%>
+			</div>
+
+			<%
+				for (int i = 0; i < account.size(); i++) {
 			%>
-<!-------------------------- Modal chỉnh sửa--------------------------------->
-			<div class="modal fade" id="modal_Search_<%=account.get(i).getIdTaiKhoan()%>">
+			<!-------------------------- Modal chỉnh sửa--------------------------------->
+			<div class="modal fade"
+				id="modal_Search_<%=account.get(i).getIdTaiKhoan()%>">
 				<div class="modal-dialog">
 
 					<!-- Modal content-->
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title">Chỉnh sửa tài khoản(Admin) - アカウントの修正（管理者）</h4>
+							<h4 class="modal-title">Chỉnh sửa tài khoản(Admin) -
+								アカウントの修正（管理者）</h4>
 						</div>
 						<div class="modal-body">
 
@@ -312,57 +335,60 @@ $(document).ready(function() {
 										readonly="readonly">
 								</div>
 								<div class="form-group">
-									<label>Tên tài khoản - ユーザー名<span class="rq"> * </span>:
+									<label>Tên tài khoản - ユーザー名<span class="rq"> *
+									</span>:
 									</label> <input type="text" class="form-control" maxlength="20"
 										name="username" value="<%=account.get(i).getTenTaiKhoan()%>"
 										readonly="readonly">
 								</div>
 								<div class="form-group">
-									<label>Quyền quản trị - 管理者の権利:</label> <select class="form-control"
-										name="typeUser">
+									<label>Quyền quản trị - 管理者の権利:</label> <select
+										class="form-control" name="typeUser">
 										<option value="admin"
 											<%if (account.get(i).getQuyenQuanTri().equals("admin")) {%>
-											selected="selected" <%}%> >Admin - 管理者</option>
+											selected="selected" <%}%>>Admin - 管理者</option>
 										<option value="user"
 											<%if (account.get(i).getQuyenQuanTri().equals("user")) {%>
-											selected="selected" <%} if(account.get(i).getQuyenQuanTri().equals("admin")){%>
-											disabled="disabled"
-											<%}%>>User - ユーザー</option>
+											selected="selected"
+											<%} if(account.get(i).getQuyenQuanTri().equals("admin")){%>
+											disabled="disabled" <%}%>>User - ユーザー</option>
 										<option value="CTV"
 											<%if (account.get(i).getQuyenQuanTri().equals("ctv")) {%>
-											selected="selected" <%} if(account.get(i).getQuyenQuanTri().equals("admin")){%>
-											disabled="disabled"
-											<%}%>>CTV - 協力者</option>											
+											selected="selected"
+											<%} if(account.get(i).getQuyenQuanTri().equals("admin")){%>
+											disabled="disabled" <%}%>>CTV - 協力者</option>
 									</select>
-								</div>								
+								</div>
 								<div class="form-group">
 									<label>Ngôn ngữ - 言語</label> <select class="form-control"
 										name="language">
-										<option value="vj"
+										<option value="vi"
 											<%if (account.get(i).getNgonNgu().equals("vi")) {%>
-											selected="selected" <%}%> >Tiếng việt</option>
+											selected="selected" <%}%>>Tiếng việt</option>
 										<option value="ja"
 											<%if (account.get(i).getNgonNgu().equals("ja")) {%>
-											selected="selected"<%} %>>日本</option>																		
+											selected="selected" <%}%>>日本</option>
 									</select>
-								</div>						
-									<div class="form-group">
+								</div>
+								<div class="form-group">
 									<label>Tình trạng - 状況<span class="rq"> * </span>
 									</label> <input class="form-control" maxlength="30" type="text"
-										name="State"  value="<%=account.get(i).getTinhTrang()%>" readonly="readonly">
+										name="State" value="<%=account.get(i).getTinhTrang()%>"
+										readonly="readonly">
 								</div>
-							
+
 								<button type="submit" class="btn btn-success btn-sm">Hoàn
 									thành - 完成</button>
-								<button type="button" id="btn" class="btn btn-default btn-sm btn_modal"
-								data-dismiss="modal">Quay lại - 戻り </button>
+								<button type="button" id="btn"
+									class="btn btn-default btn-sm btn_modal" data-dismiss="modal">Quay
+									lại - 戻り</button>
 							</form>
 
-						</div>						
+						</div>
 					</div>
 				</div>
 			</div>
-<!------------------------------------ Modal xóa -------------------------------------->
+			<!------------------------------------ Modal xóa -------------------------------------->
 			<div class="modal fade"
 				id="delete_Search<%=account.get(i).getIdTaiKhoan()%>">
 				<div class="modal-dialog">
@@ -375,272 +401,301 @@ $(document).ready(function() {
 						</div>
 						<div class="modal-body">
 
-							<form name="form_edit_admin" action="AdminDeleteServlet?type=user"
-								method="post">
+							<form name="form_edit_admin"
+								action="AdminDeleteServlet?type=user" method="post">
 								<div class="form-group">
-									<label>Tên tài khoản - ユーザー名<span class="rq"> * </span>:
+									<label>Tên tài khoản - ユーザー名<span class="rq"> *
+									</span>:
 									</label> <input type="text" class="form-control" maxlength="20"
 										name="username" value="<%=account.get(i).getTenTaiKhoan()%>"
 										readonly="readonly">
 								</div>
-								<button type="submit" class="btn btn-success btn-sm">Xóa - 削除</button>
-								<button type="button" id="btn" class="btn btn-default btn-sm btn_modal"
-								data-dismiss="modal">Quay lại - 戻り</button>
+								<button type="submit" class="btn btn-success btn-sm">Xóa
+									- 削除</button>
+								<button type="button" id="btn"
+									class="btn btn-default btn-sm btn_modal" data-dismiss="modal">Quay
+									lại - 戻り</button>
 							</form>
-						</div>						
+						</div>
 					</div>
 				</div>
-			</div>		
+			</div>
 			<%
-					
-				
 				}
 			%>
-				
-				
-				
-				
+
+
+
+
 			<%
 				}
-					//Khi không tìm thấy kết quả nào
-					else{
-			%>			
-						<div class="col-md-6 col-md-offset-3 alert alert-info">
-						  <strong>Thông báo - お知らせ</strong> Không tìm thấy kết quả nào - データベースにアカウントを存しません。
-						</div>
+									//Khi không tìm thấy kết quả nào
+									else{
+			%>
+			<div class="col-md-6 col-md-offset-3 alert alert-info">
+				<strong>Thông báo - お知らせ</strong> Không tìm thấy kết quả nào -
+				データベースにアカウントを存しません。
+			</div>
 			<%
-					}
-				}else{
-					if (accounts != null) {
-			%>			
-<!-- ********************Hiển thị danh sách người dùng******************************************* -->
-		<div class="col-md-12 panel panel-primary">
-			<div class="panel-heading">Danh sách người dùng - リストアカウント</div>
-  			<div class="panel-body">
-			<div class="table-responsive">
-				<table class=" table table-hover">
-					<thead>
-						<tr>
-							<th>ID</th>
-							<th>Họ tên<br>氏名</th>
-							<th>Địa chỉ<br>住所</th>
-							<th>Điện thoại<br>電話番号</th>
-							<th>Email<br>メール</th>
-							<th>Tài khoản<br>ユーザー名</th>
-							<th>Phân quyền<br>管理者の権利</th>
-							<th>Ngôn ngữ<br>言語</th>
-							<th>Tình trạng<br>状態</th>
-							<th></th>
-							<th></th>
-							<th></th>
-						</tr>
-					</thead>
+				}
+								}else{
+									if (accounts != null) {
+			%>
+			<!-- ********************Hiển thị danh sách người dùng******************************************* -->
+			<div class="col-md-12 panel panel-primary">
+				<div class="panel-heading">Danh sách người dùng - リストアカウント</div>
+				<div class="panel-body">
+					<div class="table-responsive">
+						<table class=" table table-hover">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Họ tên<br>氏名
+									</th>
+									<th>Địa chỉ<br>住所
+									</th>
+									<th>Điện thoại<br>電話番号
+									</th>
+									<th>Email<br>メール
+									</th>
+									<th>Tài khoản<br>ユーザー名
+									</th>
+									<th>Phân quyền<br>管理者の権利
+									</th>
+									<th>Ngôn ngữ<br>言語
+									</th>
+									<th>Tình trạng<br>状態
+									</th>
+									<th></th>
+									<th></th>
+									<th></th>
+								</tr>
+							</thead>
+							<%
+								for (int i = 0; i < accounts.size(); i++) {
+							%>
+
+							<tbody>
+								<tr>
+									<td><%=accounts.get(i).getIdTaiKhoan()%></td>
+									<td><%=accounts.get(i).getHoTen()%></td>
+									<td><%=accounts.get(i).getDiaChi()%></td>
+									<td><%=accounts.get(i).getDienThoai()%></td>
+									<td><%=accounts.get(i).getEmail()%></td>
+									<td><%=accounts.get(i).getTenTaiKhoan()%></td>
+									<td><%=accounts.get(i).getQuyenQuanTri()%></td>
+									<td><%=accounts.get(i).getNgonNgu().equals("vi") ?"Việt Nam":"Nhật Bản"%></td>
+									<td><%=accounts.get(i).getTinhTrang().equals("MoiTao")? "Mới tạo" : (accounts.get(i).getTinhTrang().equals("CanhCao1")) ? "Cảnh cáo lần 1" : (accounts.get(i).getTinhTrang().equals("CanhCao2")) ? "Cảnh cáo lần 2" : (accounts.get(i).getTinhTrang().equals("CanhCao3")) ? "Cảnh cáo lần 3" : (accounts.get(i).getTinhTrang().equals("KhoaTK") )? "Khóa tài khoản" : "Mới tạo"%></td>
+									<td><button type="button"
+											<%if(accounts.get(i).getQuyenQuanTri().equals("admin")){%>
+											disabled="disabled" <%}%>
+											id="<%=accounts.get(i).getIdTaiKhoan()%>"
+											data-toggle="tooltip"
+											title="Tình trạng: <%=accounts.get(i).getTinhTrang()%>"
+											class="btn btn-warning btn-sm btnban" onclick="banAcc()">
+											<span class="glyphicon glyphicon-lock"></span>
+										</button></td>
+									<td><button type="button" class="btn btn-primary btn-sm"
+											data-toggle="modal"
+											data-target="#edit_<%=accounts.get(i).getIdTaiKhoan()%>">
+											<span class="glyphicon glyphicon-pencil"></span> Chỉnh sửa<br>修正
+										</button></td>
+									<td><button type="button" data-toggle="modal"
+											data-target="#delete_<%=accounts.get(i).getIdTaiKhoan()%>"
+											<%if (accounts.get(i).getQuyenQuanTri().equals("admin")) {%>
+											class="btn btn-danger btn-sm disabled" <%} else {%>
+											class="btn btn-danger btn-sm" <%}%>>
+											<span class="glyphicon glyphicon-remove"></span>Xóa<br>削除
+										</button></td>
+								</tr>
+							</tbody>
+							<%
+								}
+							%>
+						</table>
+					</div>
+					<div class="alert alert-info">
+						<strong>Tình trạng: </strong>Mới tạo(MoiTao) -> Cảnh cáo lần
+						1(CanhCao1) -> Cảnh cáo lần 2(CanhCao2) -> Cảnh cáo lần
+						3(CanhCao3) -> Khóa tài khoản(KhoaTK)
+					</div>
+					<div id="divpage" class="menuPhanTrang">
+						<%=request.getAttribute("pageNav")%>
+					</div>
 					<%
 						for (int i = 0; i < accounts.size(); i++) {
 					%>
-		
-					<tbody>
-						<tr>
-							<td><%=accounts.get(i).getIdTaiKhoan()%></td>
-							<td><%=accounts.get(i).getHoTen()%></td>
-							<td><%=accounts.get(i).getDiaChi()%></td>
-							<td><%=accounts.get(i).getDienThoai()%></td>
-							<td><%=accounts.get(i).getEmail()%></td>
-							<td><%=accounts.get(i).getTenTaiKhoan()%></td>
-							<td><%=accounts.get(i).getQuyenQuanTri()%></td>
-							<td><%=accounts.get(i).getNgonNgu() %></td>
-							<td><%=accounts.get(i).getTinhTrang() %></td>
-							<td><button type="button" <%if(accounts.get(i).getQuyenQuanTri().equals("admin")){ %> disabled="disabled" <%} %> id="<%=accounts.get(i).getIdTaiKhoan()%>" data-toggle="tooltip" title="Tình trạng: <%=accounts.get(i).getTinhTrang() %>" class="btn btn-warning btn-sm btnban" onclick="banAcc()"><span class="glyphicon glyphicon-lock"></span></button></td>
-							<td><button type="button" class="btn btn-primary btn-sm"
-									data-toggle="modal"
-									data-target="#edit_<%=accounts.get(i).getIdTaiKhoan()%>">
-									<span class="glyphicon glyphicon-pencil"></span> Chỉnh sửa<br>修正
-								</button></td>
-							<td><button type="button" data-toggle="modal"
-									data-target="#delete_<%=accounts.get(i).getIdTaiKhoan()%>"
-									<%if (accounts.get(i).getQuyenQuanTri().equals("admin")) {%>
-									class="btn btn-danger btn-sm disabled" <%} else {%>
-									class="btn btn-danger btn-sm" <%}%>>
-									<span class="glyphicon glyphicon-remove"></span>Xóa<br>削除
-								</button></td>
-						</tr>
-					</tbody>
+					<!-------------------------- Modal chỉnh sửa--------------------------------->
+					<div class="modal fade"
+						id="edit_<%=accounts.get(i).getIdTaiKhoan()%>">
+						<div class="modal-dialog">
+
+							<!-- Modal content-->
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Chỉnh sửa tài khoản(Admin) -
+										アカウントの修正（管理者）</h4>
+								</div>
+								<div class="modal-body">
+
+									<form id="formedit<%=i%>" name="form_edit_admin"
+										action="AdminEditServlet?type=user" method="post">
+
+										<div class="form-group">
+											<label>Tên - 氏名<span class="rq"> * </span>:
+											</label> <input class="form-control" maxlength="30" type="text"
+												name="name" id="name"
+												value="<%=accounts.get(i).getHoTen()%>">
+
+										</div>
+										<div class="form-group">
+											<label>Địa chỉ - 住所<span class="rq"> * </span>:
+											</label> <input type="text" class="form-control" maxlength="100"
+												name="adress" value="<%=accounts.get(i).getDiaChi()%>">
+
+										</div>
+										<div class="form-group">
+											<label>Số điện thoại - 電話番号<span class="rq"> *
+											</span>:
+											</label> <input type="text" class="form-control" maxlength="11"
+												name="phone" value="<%=accounts.get(i).getDienThoai()%>">
+										</div>
+										<div class="form-group">
+											<label>Email - メール<span class="rq"> * </span>:
+											</label> <input type="text" class="form-control" maxlength="30"
+												name="email" value="<%=accounts.get(i).getEmail()%>"
+												readonly="readonly">
+										</div>
+										<div class="form-group">
+											<label>Tên tài khoản - ユーザー名<span class="rq">
+													* </span>:
+											</label> <input type="text" class="form-control" maxlength="20"
+												name="username"
+												value="<%=accounts.get(i).getTenTaiKhoan()%>"
+												readonly="readonly">
+										</div>
+										<div class="form-group">
+											<label>Quyền quản trị - 管理者の権利:</label> <select
+												class="form-control" name="typeUser">
+												<option value="admin"
+													<%if (accounts.get(i).getQuyenQuanTri().equals("admin")) {%>
+													selected="selected" <%}%>>Admin - 管理者</option>
+												<option value="user"
+													<%if (accounts.get(i).getQuyenQuanTri().equals("user")) {%>
+													selected="selected"
+													<%} if(accounts.get(i).getQuyenQuanTri().equals("admin")){%>
+													disabled="disabled" <%}%>>User - ユーザー</option>
+												<option value="CTV"
+													<%if (accounts.get(i).getQuyenQuanTri().equals("ctv")) {%>
+													selected="selected"
+													<%} if(accounts.get(i).getQuyenQuanTri().equals("admin")){%>
+													disabled="disabled" <%}%>>CTV - 協力者</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<label>Ngôn ngữ - 言語</label> <select class="form-control"
+												name="language">
+												<option value="vi"
+													<%if (accounts.get(i).getNgonNgu().equals("vi")) {%>
+													selected="selected" <%}%>>Tiếng việt</option>
+												<option value="ja"
+													<%if (accounts.get(i).getNgonNgu().equals("ja")) {%>
+													selected="selected" <%}%>>日本</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<label>Tình trạng - 状況<span class="rq"> * </span>
+											</label> <input class="form-control" type="text" name="State"
+												value="<%=accounts.get(i).getTinhTrang()%>"
+												readonly="readonly">
+										</div>
+
+										<button type="submit" class="btn btn-success btn-sm">Hoàn
+											thành - 完成</button>
+										<button type="button" id="btn"
+											class="btn btn-default btn-sm btn_modal" data-dismiss="modal">Quay
+											lại - 戻り</button>
+									</form>
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<!------------------------------------ Modal xóa -------------------------------------->
+					<div class="modal fade"
+						id="delete_<%=accounts.get(i).getIdTaiKhoan()%>">
+						<div class="modal-dialog">
+
+							<!-- Modal content-->
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Xóa tài khoản - アカウントの削除</h4>
+								</div>
+								<div class="modal-body">
+
+									<form name="form_edit_admin"
+										action="AdminDeleteServlet?type=user" method="post">
+										<div class="form-group">
+											<label>Tên tài khoản - ユーザー名<span class="rq">
+													* </span>:
+											</label> <input type="text" class="form-control" maxlength="20"
+												name="username"
+												value="<%=accounts.get(i).getTenTaiKhoan()%>"
+												readonly="readonly">
+										</div>
+										<button type="submit" class="btn btn-success btn-sm">Xóa
+											- 削除</button>
+										<button type="button" id="btn"
+											class="btn btn-default btn-sm btn_modal" data-dismiss="modal">Quay
+											lại - 戻り</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
 					<%
-						}
+						}	
+																}
+																}
 					%>
-				</table>							
-			</div>
-			<div class="alert alert-info">
-			<strong>Tình trạng: </strong>Mới tạo(MoiTao) -> Cảnh cáo lần 1(CanhCao1) -> Cảnh cáo lần 2(CanhCao2) -> Cảnh cáo lần 3(CanhCao3) -> Khóa tài khoản(KhoaTK)
-			</div>	
-			<div id="divpage" class="menuPhanTrang">
-				<%= request.getAttribute("pageNav") %>
-			</div>
-			<%
-				
-					for (int i = 0; i < accounts.size(); i++) {
-			%>
-<!-------------------------- Modal chỉnh sửa--------------------------------->
-			<div class="modal fade" id="edit_<%=accounts.get(i).getIdTaiKhoan()%>">
-				<div class="modal-dialog">
-
-					<!-- Modal content-->
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title">Chỉnh sửa tài khoản(Admin) - アカウントの修正（管理者）</h4>
-						</div>
-						<div class="modal-body">
-
-							<form id="formedit<%=i%>" name="form_edit_admin"
-								action="AdminEditServlet?type=user" method="post">
-
-								<div class="form-group">
-									<label>Tên - 氏名<span class="rq"> * </span>:
-									</label> <input class="form-control" maxlength="30" type="text"
-										name="name" id="name" value="<%=accounts.get(i).getHoTen()%>">
-
-								</div>
-								<div class="form-group">
-									<label>Địa chỉ - 住所<span class="rq"> * </span>:
-									</label> <input type="text" class="form-control" maxlength="100"
-										name="adress" value="<%=accounts.get(i).getDiaChi()%>">
-
-								</div>
-								<div class="form-group">
-									<label>Số điện thoại - 電話番号<span class="rq"> * </span>:
-									</label> <input type="text" class="form-control" maxlength="11"
-										name="phone" value="<%=accounts.get(i).getDienThoai()%>">
-								</div>
-								<div class="form-group">
-									<label>Email - メール<span class="rq"> * </span>:
-									</label> <input type="text" class="form-control" maxlength="30"
-										name="email" value="<%=accounts.get(i).getEmail()%>"
-										readonly="readonly">
-								</div>
-								<div class="form-group">
-									<label>Tên tài khoản - ユーザー名<span class="rq"> * </span>:
-									</label> <input type="text" class="form-control" maxlength="20"
-										name="username" value="<%=accounts.get(i).getTenTaiKhoan()%>"
-										readonly="readonly">
-								</div>
-								<div class="form-group">
-									<label>Quyền quản trị - 管理者の権利:</label> <select class="form-control"
-										name="typeUser">
-										<option value="admin"
-											<%if (accounts.get(i).getQuyenQuanTri().equals("admin")) {%>
-											selected="selected" <%}%> >Admin - 管理者</option>
-										<option value="user"
-											<%if (accounts.get(i).getQuyenQuanTri().equals("user")) {%>
-											selected="selected" <%} if(accounts.get(i).getQuyenQuanTri().equals("admin")){%>
-											disabled="disabled"
-											<%}%>>User - ユーザー</option>
-										<option value="CTV"
-											<%if (accounts.get(i).getQuyenQuanTri().equals("ctv")) {%>
-											selected="selected" <%} if(accounts.get(i).getQuyenQuanTri().equals("admin")){%>
-											disabled="disabled"
-											<%}%>>CTV - 協力者</option>											
-									</select>
-								</div>								
-								<div class="form-group">
-									<label>Ngôn ngữ - 言語</label> <select class="form-control"
-										name="language">
-										<option value="vj"
-											<%if (accounts.get(i).getNgonNgu().equals("vi")) {%>
-											selected="selected" <%}%> >Tiếng việt</option>
-										<option value="ja"
-											<%if (accounts.get(i).getNgonNgu().equals("ja")) {%>
-											selected="selected"<%} %>>日本</option>																		
-									</select>
-								</div>						
-								<div class="form-group">
-									<label>Tình trạng - 状況<span class="rq"> * </span>
-									</label>
-									 <input class="form-control" type="text" name="State"  value="<%=accounts.get(i).getTinhTrang()%>" readonly="readonly">
-								</div>
-							
-								<button type="submit" class="btn btn-success btn-sm">Hoàn
-									thành - 完成</button>
-								<button type="button" id="btn" class="btn btn-default btn-sm btn_modal"
-								data-dismiss="modal">Quay lại - 戻り </button>
-							</form>
-
-						</div>						
-					</div>
 				</div>
+				<div id="resultMessage" style="display: none;"></div>
 			</div>
-<!------------------------------------ Modal xóa -------------------------------------->
-			<div class="modal fade"
-				id="delete_<%=accounts.get(i).getIdTaiKhoan()%>">
-				<div class="modal-dialog">
-
-					<!-- Modal content-->
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title">Xóa tài khoản - アカウントの削除</h4>
-						</div>
-						<div class="modal-body">
-
-							<form name="form_edit_admin" action="AdminDeleteServlet?type=user"
-								method="post">
-								<div class="form-group">
-									<label>Tên tài khoản - ユーザー名<span class="rq"> * </span>:
-									</label> <input type="text" class="form-control" maxlength="20"
-										name="username" value="<%=accounts.get(i).getTenTaiKhoan()%>"
-										readonly="readonly">
-								</div>
-								<button type="submit" class="btn btn-success btn-sm">Xóa - 削除</button>
-								<button type="button" id="btn" class="btn btn-default btn-sm btn_modal"
-								data-dismiss="modal">Quay lại - 戻り</button>
-							</form>
-						</div>						
-					</div>
-				</div>
-			</div>		
-			<%
-					}	
-				}
-				}
-			%>
 		</div>
-		<div id="resultMessage" style="display:none;"></div>
-		</div>
-		</div>		
 	</div>
-	
+
 </body>
 <script type="text/javascript">
-	$(document).ready(function(){
-	    $('[data-toggle="tooltip"]').tooltip(); 	   
+	$(document).ready(function() {
+		$('[data-toggle="tooltip"]').tooltip();
 	});
-	$(".btnban").click(function(){
-		var returnValue = confirm("Bạn có muốn thay đổi tình trạng người dùng hay không?"); 		  
-if(returnValue == true)
-    {
-       
-    
-			$.ajax({
-				url : "BanAccountServlet", //file 
-				type : "POST", //phuong thức gưi
-				data : {
-					id 	: this.id					
-				}, //dữ liệu gửi
-				async : true, //
-				success : function(res) {				
-					$("#resultMessage").html(res);
-					window.location = "ListAccountServlet"										
-				},
-				error : function() {
-					alert('Không thể thay đổi tình trạng');
-					$("#load").html("");
-				}
-			});	
-    }
-else{
-	window.location = "ListAccountServlet"
-}
-	});
-	
-	</script>
+	$(".btnban")
+			.click(
+					function() {
+						var returnValue = confirm("Bạn có muốn thay đổi tình trạng người dùng hay không?");
+						if (returnValue == true) {
+
+							$.ajax({
+								url : "BanAccountServlet", //file 
+								type : "POST", //phuong thức gưi
+								data : {
+									id : this.id
+								}, //dữ liệu gửi
+								async : true, //
+								success : function(res) {
+									$("#resultMessage").html(res);
+									window.location = "ListAccountServlet"
+								},
+								error : function() {
+									alert('Không thể thay đổi tình trạng');
+									$("#load").html("");
+								}
+							});
+						} else {
+							window.location = "ListAccountServlet"
+						}
+					});
+</script>
 </html>

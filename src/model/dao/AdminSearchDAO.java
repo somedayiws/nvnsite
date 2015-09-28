@@ -10,13 +10,19 @@ public class AdminSearchDAO {
 
 	DataBaseDAO db = new DataBaseDAO();
 
-	public ArrayList<TAIKHOAN> searchAccount(String typeFind, String stringFind,int page) {
+	public ArrayList<TAIKHOAN> searchAccount(String typeFind, String stringFind,int page,String type) {
 		
 		typeFind = DinhDangSQL.FomatSQL(typeFind);
 		stringFind = DinhDangSQL.FomatSQL(stringFind);
 		
 			ArrayList<TAIKHOAN> accounts = new ArrayList<TAIKHOAN>();
-			String sql_select_account = "SELECT IdTaiKhoan,TenTaiKhoan,HoTen,DiaChi,DienThoai,Email,QuyenQuanTri,NgonNgu,TinhTrang from taikhoan WHERE "+typeFind+" LIKE '%"+stringFind+"%' AND  CoXoa = 0 AND QuyenQuanTri != 'CTV' ORDER BY IdTaiKhoan DESC";
+			String sql_select_account;
+			if(type.equals("CTV")){
+				sql_select_account = "SELECT IdTaiKhoan,TenTaiKhoan,HoTen,DiaChi,DienThoai,Email,QuyenQuanTri,NgonNgu,TinhTrang from taikhoan WHERE "+typeFind+" LIKE '%"+stringFind+"%' AND  CoXoa = 0 AND QuyenQuanTri == 'CTV' ORDER BY IdTaiKhoan DESC";
+			}
+			else{
+				sql_select_account = "SELECT IdTaiKhoan,TenTaiKhoan,HoTen,DiaChi,DienThoai,Email,QuyenQuanTri,NgonNgu,TinhTrang from taikhoan WHERE "+typeFind+" LIKE '%"+stringFind+"%' AND  CoXoa = 0 AND QuyenQuanTri != 'CTV' ORDER BY IdTaiKhoan DESC";
+			}
 			db.createMenu("AdminSearchSevlet?typeFind="+typeFind+"&stringFind="+stringFind+"&btnFind=Find&", page, sql_select_account);
 			System.out.println("result_select: "+sql_select_account + " limit "
 					+ (page - 1) * db.getNBangGhi() + ","

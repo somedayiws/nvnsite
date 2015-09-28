@@ -11,8 +11,8 @@ public class CTVBO {
 	CTVDAO ctvDao = new CTVDAO();
 	
 	//Thông tin cộng tác viên
-		public ArrayList<CTV> getListCTV(int page){
-			return ctvDao.getListCTV(page);
+		public ArrayList<CTV> getListCTV(int page,String typeFind,String stringFind){
+			return ctvDao.getListCTV(page,typeFind,stringFind);
 		}
 	//Lấy các thông tin khác liên quan đên cộng tác viên
 		public ArrayList<BAIVIET> getPostTranslatedByCTV(int typeGet,String idCTV){

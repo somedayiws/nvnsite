@@ -26,7 +26,7 @@ public class CTVDAO {
 	 */
 	
 	//Thông tin cộng tác viên
-	public ArrayList<CTV> getListCTV(int page){
+	public ArrayList<CTV> getListCTV(int page,String typeFind, String stringFind){
 		/*type:
 		 * 		1: Bài viết đã dịch
 		 * 		2: Bài viết đang dịch
@@ -36,10 +36,16 @@ public class CTVDAO {
 		 * 		6: Bài viết mới nhận
 		 * 
 		 * */
-	
-		String sql_getListCTV = "select IdTaiKhoan,TenTaiKhoan,HoTen,DiaChi,DienThoai,Email,NgonNgu,TinhTrang from taikhoan where QuyenQuanTri = 'ctv' and CoXoa = 0 ";
+		String sql_getListCTV;
+		System.out.println("type: "+typeFind);
+		if(typeFind ==null){
+			sql_getListCTV = "select IdTaiKhoan,TenTaiKhoan,HoTen,DiaChi,DienThoai,Email,NgonNgu,TinhTrang from taikhoan where QuyenQuanTri = 'ctv' and CoXoa = 0 ";
+		}
+		else{
+			sql_getListCTV = "select IdTaiKhoan,TenTaiKhoan,HoTen,DiaChi,DienThoai,Email,NgonNgu,TinhTrang from taikhoan where "+typeFind+" LIKE '%"+stringFind+"%' and QuyenQuanTri = 'ctv' and CoXoa = 0 ";
+		}
 		
-		
+		System.out.println("sql_: "+sql_getListCTV);
 		
 		db.createMenu("CTVServlet?", page, sql_getListCTV);
 		
@@ -70,13 +76,13 @@ public class CTVDAO {
 				listCTV.add(ctv);
 			}
 			for(int i=0;i<listCTV.size();i++){
-				System.out.println("i:"+i);
+//				System.out.println("i:"+i);
 				ArrayList<ArrayList<BAIVIET>> array_ListPost = new ArrayList<ArrayList<BAIVIET>>();
 				for(int j=0;j<=5;j++){
 					
-					System.out.println("j:"+j);
+//					System.out.println("j:"+j);
 					ArrayList<BAIVIET> listPost = getPostTranslatedByCTV(j+1, listCTV.get(i).getTaikhoan().getIdTaiKhoan());
-					System.out.println("size_listPost:"+listPost.size());
+//					System.out.println("size_listPost:"+listPost.size());
 					array_ListPost.add(listPost);
 				}
 				
@@ -142,7 +148,11 @@ public class CTVDAO {
 			e.printStackTrace();
 			return null;
 		}
+		
 	}
+//	public ArrayList<CTV> getCTVSearch(TAIKHOAN ctv,String page){
+//		
+//	}
 	public String getMenuPhanTrang() {
 		return db.getMenuPhanTrang();
 	}
