@@ -34,7 +34,8 @@ public class DanhMucDAO {
 	
 	public ArrayList<DANHMUC> getListDanhMuc(String vitri, String top) {
 		// TODO Auto-generated method stub
-		String sql = "select IdDanhMuc,TenDanhMucVi,TenDanhMucJa from danhmuc limit "+vitri+","+top;
+		String sql = "select IdDanhMuc,TenDanhMucVi,TenDanhMucJa,ICon from danhmuc limit "+vitri+","+top;
+		System.out.println(sql);
 		ResultSet rs = db.getResultSet(sql);
 		ArrayList<DANHMUC> list = new ArrayList<DANHMUC>();
 		BaiVietDAO baiviet = new BaiVietDAO();
@@ -45,6 +46,7 @@ public class DanhMucDAO {
 				dm.setIdDanhMuc(id);
 				dm.setTenDanhMucVi(DinhDangSQL.DeFomatSQL(rs.getString("TenDanhMucVi")));
 				dm.setTenDanhMucJa(DinhDangSQL.DeFomatSQL(rs.getString("TenDanhMucJa")));
+				dm.setIcon(DinhDangSQL.DeFomatSQL(rs.getString("ICon")));
 				dm.setBaiViets(baiviet.getListBaiViet(id, "0", "4"));
 				list.add(dm);
 			}

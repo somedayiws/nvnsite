@@ -101,11 +101,12 @@
 				</select>
 			</div>
 			<div class="col-md-6">
-				<input type="text" name="txtFind" class="form-control" placeholder="Nội dung cần tìm ...">
+				<input type="text" name="txtFind" class="form-control"
+					placeholder="Nội dung cần tìm ...">
 			</div>
 			<input type="submit" value="Tìm kiếm" class="btn btn-primary">
 		</form>
-		<%= request.getAttribute("meg")==null?"":request.getAttribute("meg") %>
+		<%=request.getAttribute("meg")==null?"":request.getAttribute("meg")%>
 		<!-------------------- Nội dung quản lý quảng cáo ------------------------>
 		<div id="content">
 			<!--------------------------- Tạo quảng cáo ---------------------------------------------------------->
@@ -114,7 +115,7 @@
 				báo - 広告を作成</button>
 
 			<div class="col-md-10 col-md-offset-2 panel panel-primary quangcao">
-				<div class="panel-heading">Quảng cáo đang hiển thị - リスト広告</div>
+				<div class="panel-heading">Thông báo đang hiển thị - リスト広告</div>
 				<div class="panel-body">
 					<div class="table-responsive table-hover">
 						<table class="table">
@@ -134,7 +135,7 @@
 							<tbody>
 								<%
 									if(listHienThi!=null){
-																																											for(int i=0;i<listHienThi.size();i++){
+																																																							for(int i=0;i<listHienThi.size();i++){
 								%>
 								<tr>
 									<td><%=listHienThi.get(i).getIdThongBao()%></td>
@@ -167,7 +168,7 @@
 
 			<%=request.getAttribute("mes")==null ? "" : request.getAttribute("mes")%>
 			<div class="col-md-10 col-md-offset-2 panel panel-primary quangcao">
-				<div class="panel-heading">Danh sách quảng cáo - リスト広告</div>
+				<div class="panel-heading">Danh sách thông báo - リスト広告</div>
 				<div class="panel-body">
 					<div class="table-responsive table-hover">
 						<table class="table">
@@ -187,7 +188,7 @@
 							<tbody>
 								<%
 									if(listAn!=null){
-																																											for(int i=0;i<listAn.size();i++){
+																																																							for(int i=0;i<listAn.size();i++){
 								%>
 								<tr>
 									<td><%=listAn.get(i).getIdThongBao()%></td>
@@ -283,10 +284,32 @@
 										class="form-control"></textarea>
 								</div>
 								<div class="form-group">
-									<label for="company"> Gửi đến - 企業広告</label> <input type="text"
-										class="form-control" name="GuiDen" maxlength="200">
+									<label for="company"> Gửi đến - 企業広告</label> <select
+										class="form-control" id="typeSend" name="typeSend"
+										onchange="chonGui()">
+										<option value="DienDan">Toàn diễn đàn</option>
+										<option value="TenThanhVien">Thành viên</option>
+									</select>
 								</div>
-								
+								<div class="form-group" style="display: none;" id="GuiDenForm">
+									<label for="company"> Tên thành viên - 企業広告</label>
+									<input type="text" class="form-control" name="GuiDen"
+										 maxlength="200" value="DienDan" id="GuiDen">
+								</div>
+								<script>
+function chonGui(){
+	if($('#typeSend').val() == "DienDan"){
+		alert("toan dien dan1");
+		$('#GuiDenForm').attr("style","display: none;");
+	 	$('#GuiDen').val("DienDan");
+	}
+	else{
+		alert("toan dien dan2");
+		$('#GuiDen').val("");
+		$('#GuiDenForm').removeAttr("style");
+	}
+}
+</script>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default"
@@ -311,7 +334,10 @@
 									Cập nhật thông báo <label id="idTBSua"></label>
 								</h4>
 							</div>
-							<div class="modal-body" id="noidungsua"></div>
+							<div class="modal-body" id="noidungsua">
+							
+							
+							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default"
 									data-dismiss="modal">Hủy</button>
