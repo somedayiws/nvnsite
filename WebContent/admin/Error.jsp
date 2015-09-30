@@ -1,17 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<meta http-equiv="Content-Type" name="viewport"
+	content="text/html; charset=UTF-8; width=device-width; initial-scale=1">
+<link rel="stylesheet"
+	href="../bootstrap-3.3.5-dist/css/bootstrap.min.css">
+<script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript"
+	src="../bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+
+<title>Lỗi - ホーム</title>
 </head>
 <%
 String error = (String)request.getAttribute("error");
 %>
 <body>
 <%if(error!=null){ %>
-	<%=error %>
+<div class="alert alert-danger">
+  <strong>Lỗi</strong> <%=error %>
+</div>
+	
 <%} %>
 </body>
 </html>

@@ -136,18 +136,12 @@
 			</div>
 			<%
 				}
-			%>
-			<div class="row">
-				<div id="btnRestore" class="col-md-1 form-group">
-					<a href="ShowRestoreServlet?type=posts"><button
-							class="btn btn-success btn-sm">Khôi phục - 回復</button></a>
-				</div>
-			</div>
+			%>			
 
 			<!----------------------- Form tìm kiếm ----------------------->
-			<div class="col-md-10 col-md-offset-1">
+			<div class="row">
 				<form action="SearchPostServlet" method="get" id="formSearchPost">
-					<h4 class="col-sm-1">Tìm kiếm - 検索</h4>
+					<h4 class="col-sm-2">Tìm kiếm - 検索</h4>
 					<div class="col-sm-3 form-group">
 						<select class="form-control" id="typeFind" name="typeFind">
 							<option value="IdBaiViet">ID</option>
@@ -169,11 +163,11 @@
 							<option value="GimTrangChu">Bài viết đã Ghim / -</option>
 						</select>
 					</div>
-					<div class="col-sm-5 form-group" id="typeDifference">
+					<div class="col-sm-4 form-group" id="typeDifference">
 						<input type="text" class="form-control" id="stringFind"
 							name="stringFind">
 					</div>
-					<div class="col-sm-5 form-group" id="typeView">
+					<div class="col-sm-4 form-group" id="typeView">
 						<select class="form-control" id="stringFindView"
 							name="stringFindView">
 							<option value="0" selected="selected" disabled="disabled">Chọn
@@ -182,12 +176,12 @@
 							<option value="2">Giảm dần</option>
 						</select>
 					</div>
-					<div class="col-sm-5 form-group" id="typeDay">
+					<div class="col-sm-4 form-group" id="typeDay">
 						<input type="date" class="form-control" id="stringFindDay"
 							name="stringFindDay">
 					</div>
 
-					<div class="col-sm-5 form-group" id="typeCategory">
+					<div class="col-sm-4 form-group" id="typeCategory">
 						<%if(category!=null){ %>
 						<select class="form-control" id="stringFind"
 							name="stringFindCategory">
@@ -208,7 +202,7 @@
 						<%} %>
 					</div>
 
-					<div class="col-sm-5 form-group" id="typeAccount">
+					<div class="col-sm-4 form-group" id="typeAccount">
 						<%if(accounts!=null){ %>
 						<select class="form-control" id="stringFind"
 							name="stringFindAccount">
@@ -230,6 +224,10 @@
 						<button type="submit" name="btnFind" value="Find"
 							class="btn btn-primary btn-sm">Tìm kiếm - 検索</button>
 					</div>
+						<div class="col-md-1 form-group">
+					<a href="ShowRestoreServlet?type=posts"><button
+							class="btn btn-success btn-sm">Khôi phục - 回復</button></a>
+				</div>
 				</form>
 			</div>
 			<!----------------------- End form tìm kiếm ------------------->
@@ -269,12 +267,59 @@
 						%>
 							<tr>
 								<td><%=posts.get(i).getIdBaiViet()%></td>
-								<td><%=posts.get(i).getTenBaiVietVi()%> - <%=posts.get(i).getTenBaiVietJa()%></td>
+								
+								<td>
+												<%if(posts.get(i).getTenBaiVietVi()== null && posts.get(i).getTenBaiVietJa()==null){ %>
+													<span class="label label-default">Không có tên bài viết</span>
+												<%}else{ %>
+													<%if(posts.get(i).getTenBaiVietVi()!= null){%>
+														<%=posts.get(i).getTenBaiVietVi()%> 
+													<%}else{ %>
+														<span class="label label-success">Không có tên tiếng việt</span>
+													<%} %>
+														- 
+													<%if(posts.get(i).getTenBaiVietJa()!= null){%>
+														<%=posts.get(i).getTenBaiVietJa()%> 
+													<%}else{ %>
+														<span class="label label-success">Không có tên tiếng nhật</span>
+													<%}
+												} %>
+								</td>
+								
 								<td><%=posts.get(i).getDanhMuc().getTenDanhMucVi()%> - <%=posts.get(i).getDanhMuc().getTenDanhMucJa()%></td>
 								<td><%=posts.get(i).getTaiKhoan().getTenTaiKhoan()%></td>
 								<td><%=posts.get(i).getNgayDang()%></td>
-								<td><%=posts.get(i).getMoTaVi()%> - <%=posts.get(i).getMoTaJa()%></td>
-								<td><%=posts.get(i).getTrangThai()%></td>
+								<td>
+									<%if(posts.get(i).getMoTaVi() == null && posts.get(i).getMoTaJa() == null){ %>
+										<span class="label label-default">Không có mô tả</span>
+									<%}else{ %>
+										<%if(posts.get(i).getMoTaVi() != null ){ %>
+											<%=posts.get(i).getMoTaVi()%> 
+										<%}else{ %>
+											<span class="label label-success">Không có mô tả tiếng việt</span>
+										<%} %>
+										-
+										<%if(posts.get(i).getMoTaJa() != null ){  %>
+											<%=posts.get(i).getMoTaJa()%>
+										<%}else{ %>
+											<span class="label label-success">Không có mô tả tiếng nhật</span>
+										<%}} %>
+									 
+								</td>
+								<td>
+									<%if(posts.get(i).getTrangThai().equals("MoiDang")){ %>
+										Mới đăng - 
+									<%}else if(posts.get(i).getTrangThai().equals("DangDich")) {%>
+										Đang dịch - 
+									<%}else if(posts.get(i).getTrangThai().equals("OK")){ %>
+										Đã duyệt - 
+									<%}else{ %>
+										Trạng thái khác - ...<br>
+										<%=posts.get(i).getTrangThai()%>
+									<%} %>
+								
+									
+								</td>
 								<td>
 									<div id="resultMessage_<%=posts.get(i).getIdBaiViet()%>">
 										<button type="button" id="<%=posts.get(i).getIdBaiViet()%>"

@@ -86,12 +86,12 @@
 							<th>Tài khoản<br>ユーザ名</th>
 							<th>Phân quyền<br>タイプ</th>
 							<th>Ngôn ngữ<br>言語</th>
-							<th><span class="glyphicon glyphicon-sort">Bài đã dịch<br>....</span></th>		
-							<th><span class="glyphicon glyphicon-sort">Bài đang dịch<br>....</span></th>						
-							<th><span class="glyphicon glyphicon-sort">Bài đã gởi<br>....</span></th>
-							<th><span class="glyphicon glyphicon-sort">Bài bị lỗi<br>....</span></th>
-							<th><span class="glyphicon glyphicon-sort">Bài đã hủy<br>....</span></th>
-							<th><span class="glyphicon glyphicon-sort">Bài mới nhận<br>....</span></th>		
+							<th>Bài đã dịch<br>...</th>		
+							<th>Bài đang dịch<br>....</th>						
+							<th>Bài đã gởi<br>....</th>
+							<th>Bài bị lỗi<br>....</th>
+							<th>Bài đã hủy<br>....</th>
+							<th>Bài mới nhận<br>....</th>		
 							<th></th>
 							<th></th>
 						</tr>
@@ -328,15 +328,47 @@
 										<tbody>
 											<%for(int k = 0; k<ctv.get(i).getArray_ListPost().get(j).size(); k++){ %>
 												<tr>
-													<td><%=ctv.get(i).getArray_ListPost().get(j).get(k).getIdBaiViet() %></td>
-													<td><%=ctv.get(i).getArray_ListPost().get(j).get(k).getTenBaiVietVi() %> - 
-														<%=ctv.get(i).getArray_ListPost().get(j).get(k).getTenBaiVietJa() %>
+													<td><%=ctv.get(i).getArray_ListPost().get(j).get(k).getIdBaiViet() %></td>													
+													<td>
+												<%if(ctv.get(i).getArray_ListPost().get(j).get(k).getTenBaiVietVi()== null && ctv.get(i).getArray_ListPost().get(j).get(k).getTenBaiVietJa()==null){ %>
+													<span class="label label-default">Không có tên bài viết</span>
+												<%}else{ %>
+													<%if(ctv.get(i).getArray_ListPost().get(j).get(k).getTenBaiVietVi()!= null){%>
+														<%=ctv.get(i).getArray_ListPost().get(j).get(k).getTenBaiVietVi()%> 
+													<%}else{ %>
+														<span class="label label-success">Không có tên tiếng việt</span>
+													<%} %>
+														- 
+													<%if(ctv.get(i).getArray_ListPost().get(j).get(k).getTenBaiVietJa()!= null){%>
+														<%=ctv.get(i).getArray_ListPost().get(j).get(k).getTenBaiVietJa()%> 
+													<%}else{ %>
+														<span class="label label-success">Không có tên tiếng nhật</span>
+													<%}
+												} %>
+								</td>
+													<td>
+														<%=ctv.get(i).getArray_ListPost().get(j).get(k).getDanhMuc().getTenDanhMucVi() %> - 
+														<%=ctv.get(i).getArray_ListPost().get(j).get(k).getDanhMuc().getTenDanhMucJa() %>
 													</td>
 													<td><%=ctv.get(i).getArray_ListPost().get(j).get(k).getTaiKhoan().getTenTaiKhoan()%></td>
 													<td><%=ctv.get(i).getArray_ListPost().get(j).get(k).getNgayDang() %></td>
-													<td><%=ctv.get(i).getArray_ListPost().get(j).get(k).getMoTaVi() %> - 
-														<%=ctv.get(i).getArray_ListPost().get(j).get(k).getMoTaJa() %>
-													</td>
+													<td>
+									<%if(ctv.get(i).getArray_ListPost().get(j).get(k).getMoTaVi() == null && ctv.get(i).getArray_ListPost().get(j).get(k).getMoTaJa() == null){ %>
+										<span class="label label-default">Không có mô tả</span>
+									<%}else{ %>
+										<%if(ctv.get(i).getArray_ListPost().get(j).get(k).getMoTaVi() != null ){ %>
+											<%=ctv.get(i).getArray_ListPost().get(j).get(k).getMoTaVi()%> 
+										<%}else{ %>
+											<span class="label label-success">Không có mô tả tiếng việt</span>
+										<%} %>
+										-
+										<%if(ctv.get(i).getArray_ListPost().get(j).get(k).getMoTaJa() != null ){  %>
+											<%=ctv.get(i).getArray_ListPost().get(j).get(k).getMoTaJa()%>
+										<%}else{ %>
+											<span class="label label-success">Không có mô tả tiếng nhật</span>
+										<%}} %>
+									 
+								</td>
 													<td><a href="ShowDetailPostsServlet?id=<%=ctv.get(i).getArray_ListPost().get(j).get(k).getIdBaiViet()%>">
 															<button type="button" class="btn btn-primary btn-sm">Chi tiết - </button>
 														</a>

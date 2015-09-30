@@ -23,7 +23,6 @@
 	
 	//Nhận các bài viết mới nhất
 	ArrayList<BAIVIET> postsNew = (ArrayList<BAIVIET>) request.getAttribute("postsNew");
-	System.out.println("postsNew_size(): "+postsNew.size());
 %>
 <body>
 	<%if(username!=null){ %>
@@ -34,7 +33,7 @@
 <!-- |--------------------------------------------------------------| -->
 <!-- |-------------------Hiển thị hình ảnh--------------------------| -->
 <!-- |--------------------------------------------------------------| -->		
-			<div class="col-md-4" style="margin-top: 300px">
+			<div class="col-md-3" style="margin-top: 300px">
 				<div class="col-md-10 col-md-offset-1">
 					<img src="../images/congthongtin.png" class=img-responsive alt="Cổng thông tin">
 					<marquee direction="left"><h2>Chào mừng bạn đến với trang Admin<br>管理者のホームページへようこそ</h2></marquee>
@@ -43,31 +42,48 @@
 <!-- |--------------------------------------------------------------| -->
 <!-- |-------------Hiển thị bài viết mới nhất- ---------------------| -->
 <!-- |--------------------------------------------------------------| -->				
-			<div class="col-md-8" style="margin-top: 100px">
+			<div class="col-md-9" style="margin-top: 100px">
 				<%if(postsNew!=null){ %>
 					<div class="col-md-10 col-md-offset-1 panel panel-primary">
-						<div class="panel-heading">Bài viết mới đăng</div>
+						<div class="panel-heading">Bài viết mới đăng - </div>
 						<div class="panel-body">
 							<div class="table-responsive">
 							<table class="table table-hover table-condensed table-striped ">
 								<thead>
 									<tr>
 										<th>ID</th>
-										<th>Tên bài viết<br>名前</th>
-										<th>Danh mục<br>Eメール</th>
-										<th>Người đăng<br>ユーザ名</th>
-										<th>Ngày đăng<br>住所</th>
-										<th>Lượt xem<br>電話</th>																			
+										<th>Tên bài viết<br>記事名</th>
+										<th>Danh mục<br>項目</th>
+										<th>Người đăng<br>ユーザー名</th>
+										<th>Ngày đăng<br>掲載の日付</th>
+										<th>Lượt xem<br>観覧回数</th>																			
 										<th></th>
 										<th></th>
 										<th></th>
 									</tr>
 								</thead>
 								<tbody>
-									<%for(int i=0;i<postsNew.size();i++){ %>
+									<%for(int i=0;i<postsNew.size();i++){
+									%>
 										<tr>
 											<td><%=postsNew.get(i).getIdBaiViet() %></td>
-											<td><%=postsNew.get(i).getTenBaiVietVi()%> - <%=postsNew.get(i).getTenBaiVietJa()%></td>
+											<td>
+												<%if(postsNew.get(i).getTenBaiVietVi()== null && postsNew.get(i).getTenBaiVietJa()==null){ %>
+													<span class="label label-default">Không có tên bài viết</span>
+												<%}else{ %>
+													<%if(postsNew.get(i).getTenBaiVietVi()!= null){%>
+														<%=postsNew.get(i).getTenBaiVietVi()%> 
+													<%}else{ %>
+														<span class="label label-success">Không có tên tiếng việt</span>
+													<%} %>
+														- 
+													<%if(postsNew.get(i).getTenBaiVietJa()!= null){%>
+														<%=postsNew.get(i).getTenBaiVietJa()%> 
+													<%}else{ %>
+														<span class="label label-success">Không có tên tiếng nhật</span>
+													<%}
+												} %>
+											</td>
 											<td><%=postsNew.get(i).getDanhMuc().getTenDanhMucVi()%> - <%=postsNew.get(i).getDanhMuc().getTenDanhMucJa()%></td>
 											<td><%=postsNew.get(i).getTaiKhoan().getTenTaiKhoan() %></td>
 											<td><%=postsNew.get(i).getNgayDang() %></td>

@@ -55,7 +55,8 @@
 						    <input type="text" class="form-control" id="username" name="username" value="<%=username%>" disabled="disabled">
 						  </div>
 						  <div class="form-group">
-						    <label for="pwd">Mật khẩu <a href="#"><button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span></button></a></label>						    
+						    <label for="pwd">Mật khẩu <a href="#"><button class="btn btn-primary btn-sm" data-toggle="modal"
+					data-target="#changePass"><span class="glyphicon glyphicon-pencil"></span></button></a></label>						    
 							    <input type="text" class="form-control" id="pwd" name="password" value="<%=account.getMatKhau()%>" disabled="disabled" >
 							    						    
 						  </div>						 						  
@@ -86,7 +87,7 @@
 					</div>			
 				</div>			
 					<button class="col-md-4 col-md-offset-4 col-xs-12 btn btn-primary" data-toggle="modal"
-					data-target="#modelEditAccountAdmin">Chỉnh sửa</button>				
+					data-target="#modalEditAccountAdmin">Chỉnh sửa</button>				
 			</div>
 			<%}else{ %>
 				<div class="alert alert-danger">
@@ -95,9 +96,9 @@
 			<%} %>
 		</div>
 <!-- |--------------------------------------------------------------| -->
-<!-- |------------------------Thông tin cá nhân---------------------| -->
+<!-- |------------------------Modal chỉnh sửa-----------------------| -->
 <!-- |--------------------------------------------------------------| -->
-		<div class="modal fade" id="modelEditAccountAdmin">
+		<div class="modal fade" id="modalEditAccountAdmin">
 				<div class="modal-dialog">
 
 					<!-- Modal content-->
@@ -173,7 +174,41 @@
 					</div>
 				</div>
 			</div>
-	</div>
+<!-- |--------------------------------------------------------------| -->
+<!-- |----------------Modal thay đổi mật khẩu-----------------------| -->
+<!-- |--------------------------------------------------------------| -->
+
+<div id="changePass" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Thay đổi mật khẩu</h4>
+      </div>
+      <div class="modal-body">
+       		<form action="ChangePassServlet" method="post" id="formChangePass">
+       			<div class="form-group">
+				  <label for="pwd">Mật khẩu cũ:</label>
+				  <input type="password" class="form-control" id="pwd" name="password">
+				</div>
+       			<div class="form-group">
+				  <label for="pwdnew">Mật khẩu mới:</label>
+				  <input type="password" class="form-control" id="pwd_new" name="password_new">
+				</div>
+       			<div class="form-group">
+				  <label for="re_pwd">Nhập lại mật khẩu:</label>
+				  <input type="password" class="form-control" id="re_pwd" name="re_password">
+				</div>
+				<button type="submit" name="changePass"  class="btn btn-primary btn-block">Hoàn thành</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+       		</form> 
+      </div>      
+    </div>
+
+  </div>
+</div>
 	<%}else{ 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("ShowloginAdmin");
 	    dispatcher.forward(request, response);
@@ -183,4 +218,25 @@
 
 
 </body>
+<script type="text/javascript">
+	$('#"formChangePass"').submit(function(){
+		var password = $('#pwd').val();
+		var password_new = $('#pwd_new').val();
+		var password_repeater = $('#re_pwd').val();
+		var regex = new RegExp("^[a-zA-Z0-9]+$");
+		
+		if(password == "" || password_new == ""){
+			alert("Bạn phải nhập mật khẩu");
+			return false;
+		}
+		if(regex.test(password) || regex.test(password_new)){
+			alert("Mật khẩu không được chứa ký tự đặc biệt");
+			return false;
+		}	
+		if(password_new != password_repeater){
+			alert("Mật khẩu lặp lại không đúng");
+			return false;
+		}
+	});
+</script>
 </html>

@@ -108,7 +108,7 @@
 									<input type="text" class="form-control" id="nameCategoryJa"
 									maxlength="15" name="nameCategoryJa">
 								</div>
-									<%if(countCategoryShowed>=8){ %>
+									<%if(countCategoryShowed>7){ %>
 									<div class="alert alert-danger">
 			  							<strong>Cảnh báo!</strong>Số danh mục hiển thị lên thanh menu đã tối đa.
 			  							Nếu muốn thay đổi thì nhấn vào <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalChangeShow">đây</button>
@@ -117,7 +117,7 @@
 								<label>Hiện thị lên thanh menu - メニューに表示する<span class="rq"> * </span></label>											
 								<div class="radio-inline">
 									<label><input type="radio" id="display" name="display"
-										value="yes" <%if(countCategoryShowed >= 8){ %> readonly="readonly" <%} %>>Có - 有
+										value="yes" <%if(countCategoryShowed >7){ %> readonly="readonly" <%} %>>Có - 有
 									</label>
 								</div>
 								<div class="radio-inline">
@@ -394,11 +394,59 @@
 
 
 		<!-- End modal delete -->
+		
+		<!-- Model thay đổi hiện lên thanh menu -->
+<div class="modal fade" id="modalChangeShow" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Danh mục được hiển thị</h4>
+        </div>
+        <div class="modal-body">
+        <%	if(listCategoryShowed!=null){ %>
+         	<table class="table table-condensed">
+    			<thead>
+				      <tr>
+				        <th>ID</th>
+				        <th>Tên danh mục(VN)</th>
+				        <th>Tên danh mục(JA)</th>
+				        <td></td>
+				      </tr>
+    			</thead>
+    			<tbody>
+    			<%
+    		
+    			for(int j=0;j<listCategoryShowed.size();j++){ %>
+				      <tr>
+				        <td><%=listCategoryShowed.get(j).getIdDanhMuc()%></td>
+				        <td><%=listCategoryShowed.get(j).getTenDanhMucVi() %></td>
+				        <td><%=listCategoryShowed.get(j).getTenDanhMucJa() %></td>
+				        <td>
+				        	<a href="EditCategoryServlet?id=<%=listCategoryShowed.get(j).getIdDanhMuc()%>"><button class="btnChange btn btn-primary btn-sm" >Thay đổi</button></a>
+				        </td>
+				      </tr>
+				  <%} %>
+				</tbody>
+    		</table>
+    		<%}else{ %>
+    			<div class="alert alert-danger">
+  					<strong>Cảnh báo!</strong>Không có danh mục nào được hiển thị lên thanh menu
+				</div>
+    		<%}} %>
+        </div>
+        
+      </div>
+      
+    </div>
+  </div>
 		<!-- End Show result Search -->
 		<%
 			}
 			}
-			}
+			
 				else{
 		%>
 		

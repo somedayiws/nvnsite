@@ -13,7 +13,7 @@ public class ListCategoryDAO {
 	public ArrayList<DANHMUC> getCategory(int page) {
 			ArrayList<DANHMUC> listCategory = new ArrayList<DANHMUC>();
 			/* Get category */
-			String sql_select_category = "SELECT * FROM danhmuc WHERE CoXoa = 0";
+			String sql_select_category = "SELECT * FROM danhmuc WHERE CoXoa = 0 ORDER BY IdDanhMuc DESC";
 
 			db.createMenu("ListCategoryServlet?", page, sql_select_category);
 

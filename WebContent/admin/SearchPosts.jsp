@@ -20,8 +20,7 @@
 <link rel="stylesheet" href="css/listPost.css">
 <title>Tìm kiếm bài viết</title>
 <script>
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();   
+$(document).ready(function(){      
     $('#typeCategory').hide();
     $('#typeAccount').hide();
     $('#typeView').hide();
@@ -209,18 +208,73 @@ $(document).ready(function(){
 						<%for(int i=0;i<listposts.size();i++){ %>
 							<tr>
 								<td><%=listposts.get(i).getIdBaiViet() %></td>
-								<td><%=listposts.get(i).getTenBaiVietVi()%>- <%=listposts.get(i).getTenBaiVietJa() %></td>
+								<td>
+												<%if(listposts.get(i).getTenBaiVietVi()== null && listposts.get(i).getTenBaiVietJa()==null){ %>
+													<span class="label label-default">Không có tên bài viết</span>
+												<%}else{ %>
+													<%if(listposts.get(i).getTenBaiVietVi()!= null){%>
+														<%=listposts.get(i).getTenBaiVietVi()%> 
+													<%}else{ %>
+														<span class="label label-success">Không có tiếng việt</span>
+													<%} %>
+														- 
+													<%if(listposts.get(i).getTenBaiVietJa()!= null){%>
+														<%=listposts.get(i).getTenBaiVietJa()%> 
+													<%}else{ %>
+														<span class="label label-success">Không có tiếng nhật</span>
+													<%}
+												} %>
+											</td>
 								<td><%=listposts.get(i).getDanhMuc().getTenDanhMucVi()%> - <%=listposts.get(i).getDanhMuc().getTenDanhMucJa()%></td>
 								<td><%=listposts.get(i).getTaiKhoan().getTenTaiKhoan() %></td>
 								<td><%=listposts.get(i).getNgayDang()%></td>
-								<td><%=listposts.get(i).getMoTaVi() %> - <%=listposts.get(i).getMoTaJa() %></td>
-								<td><%=listposts.get(i).getTrangThai() %></td>
+								<td>
+									<%if(listposts.get(i).getMoTaVi() == null && listposts.get(i).getMoTaJa() == null){ %>
+										<span class="label label-default">Không có mô tả</span>
+									<%}else{ %>
+										<%if(listposts.get(i).getMoTaVi() != null ){ %>
+											<%=listposts.get(i).getMoTaVi()%> 
+										<%}else{ %>
+											<span class="label label-success">Không có mô tả tiếng việt</span>
+										<%} %>
+										-
+										<%if(listposts.get(i).getMoTaJa() != null ){  %>
+											<%=listposts.get(i).getMoTaJa()%>
+										<%}else{ %>
+											<span class="label label-success">Không có mô tả tiếng nhật</span>
+										<%}} %>
+									 
+								</td>
+									<td>
+									<%if(listposts.get(i).getTrangThai().equals("MoiDang")){ %>
+										Mới đăng - 
+									<%}else if(listposts.get(i).getTrangThai().equals("DangDich")) {%>
+										Đang dịch - 
+									<%}else if(listposts.get(i).getTrangThai().equals("OK")){ %>
+										Đã duyệt - 
+									<%}else{ %>
+										Trạng thái khác - ...<br>
+										<%=listposts.get(i).getTrangThai()%>
+									<%} %>
+								
+									
+								</td>
 								<td><%=listposts.get(i).getLuotXem() %></td>
-								<td><button type="button"  id="<%=listposts.get(i).getIdBaiViet()%>" class="btn btn-primary btn-sm btnbookmark" ><span class="glyphicon glyphicon-bookmark"></span></button>
-								<div id="resultMessage_<%=listposts.get(i).getIdBaiViet()%>" class="divMessage" style="display:none;">									
-									<input type="text"  id="status" name="status" value="<%if(listposts.get(i).getGimTrangChu()==1){%>Đã ghim<%}else {%>Chưa ghim<%} %>" disabled="disabled">									
-								</div>
-							</td>
+								<td>
+									<div id="resultMessage_<%=listposts.get(i).getIdBaiViet()%>">
+										<button type="button" id="<%=listposts.get(i).getIdBaiViet()%>"
+											data-toggle="tooltip"
+											<%if(listposts.get(i).getGimTrangChu()==1) {%>
+											title="Đã ghim"
+											<% }else{%>title="Chưa ghim"<%}%>
+											<%if (listposts.get(i).getGimTrangChu()==1) { %>
+											class="btn btn-warning btn-sm btnbookmark" <%}else {%>
+											class="btn btn-primary btn-sm btnbookmark" <%}%>
+											onclick="changeBookmark('<%=listposts.get(i).getIdBaiViet()%>')">
+											<span class="glyphicon glyphicon-bookmark"></span>
+										</button>
+									</div>
+								</td>
 								<td><a
 								href="ShowDetailPostsServlet?id=<%=listposts.get(i).getIdBaiViet()%>" data-toggle="tooltip" title="Chi tiết - 詳細"><button
 										type="button" class="btn btn-primary btn-sm">
@@ -256,40 +310,28 @@ $(document).ready(function(){
 	</div>
 </div>
 </body>
-<script type="text/javascript">	
-	$(".btnbookmark").click(function(){
-		var id = this.id;	
-		$("#resultMessage_"+id).hide();	
-			$.ajax({
-				url : "BookmarkInHomeServlet", //file 
-				type : "POST", //phuong thức gưi
-				data : {
-					id 	: this.id,
-				}, //dữ liệu gửi
-				async : true, //
-				success : function(res) {
-					if(res.indexOf("tối đa") > -1)
-					{
-						$("#resultMessage").html(res);
-						alert($('#resultMessage').children("#result").text());
-					}
-					else{
-						$("#resultMessage_"+id).html(res);
-						alert($('#status').val());
-					}
-														
-				},
-				error : function() {
-					alert('Không thể thay đổi để ghim lên trang chủ');
-					$("#load").html("");
+<script type="text/javascript">
+	function changeBookmark(idPost) {
+		$.ajax({
+			url : "BookmarkInHomeServlet", //file 
+			type : "POST", //phuong thức gưi
+			data : {
+				id : idPost
+			}, //dữ liệu gửi
+			async : true, //
+			success : function(res) {
+				if (res.indexOf("tối đa") > -1) {
+					$("#resultMessage").html(res);
+				} else {
+					$("#resultMessage_" + idPost).html(res);
 				}
-			});	    
-	});	
-	$(".btnbookmark").hover(function(){
-		var id = this.id;			
-			$("#resultMessage_"+id).show(1000);	
-			
-		
-	}); 
-	</script>
+
+			},
+			error : function() {
+				alert('Không thể thay đổi để ghim lên trang chủ');
+				$("#load").html("");
+			}
+		});
+	}
+</script>
 </html>

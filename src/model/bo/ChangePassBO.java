@@ -36,9 +36,9 @@ public class ChangePassBO {
 	}
 	
 	/**Update password*/
-	public boolean UpdatePass(String password_new,String password)
+	public boolean UpdatePass(String password_new,String username)
 	{
-		return changepass.updatePass(password_new,password);
+		return changepass.updatePass(password_new,username);
 	}
 
 }
