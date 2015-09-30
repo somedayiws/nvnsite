@@ -52,7 +52,7 @@ input.error {
 		<%@include file="files/thongke.jsp" %>
 	</div>
 	<div class="col-sm-10 col-md-10">
-	<form action="CapNhatThongTinServlet" method="post" id="fdangnhap">
+	<form action="CapNhatThongTinServlet" method="post" id="fcapnhat">
 		<%= (String)request.getAttribute("meg") %>
 		Tài khoản
 		<input type="text" name="taikhoan" readonly="readonly" class="form-control" value="<%= user.getTenTaiKhoan() %>">
@@ -72,39 +72,35 @@ input.error {
 </body>
 <script src="../js/jquery.validate.js" type="text/javascript"></script>
 <script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
-						$("#fdangnhap")
-								.validate(
-										{
-											rules : {
-												hoten : {
-													required : true
-												},
-												matkhau : {
-													required : true
-												},
-												email : {
-													required : true
-												}
-											},
-											messages : {
-												hoten : {
-													required : "<br>Không được để trống trường này!<br>アカウントをすべて書き込んでください。"
-												},
-												matkhau : {
-													required : "<br>Không được để trống trường này!<br>アカウントをすべて書き込んでください。"
-												},
-												email : {
-													required : "<br>Không được để trống trường này!<br>アカウントをすべて書き込んでください。"
-												}
-											},
-											submitHandler : function(form) {
-															form.submit();
-											}
-										});
-					});
+	$(document).ready(function() {
+		$("#fcapnhat").validate({		
+			rules : {
+				hoten : {
+					required : true
+				},
+				matkhau : {
+					required : true
+				},
+				email : {
+					required : true
+				}
+			},
+			messages : {
+				hoten : {
+					required : "<br>Không được để trống trường này!<br>アカウントをすべて書き込んでください。"
+				},
+				matkhau : {
+					required : "<br>Không được để trống trường này!<br>アカウントをすべて書き込んでください。"
+				},
+				email : {
+					required : "<br>Không được để trống trường này!<br>アカウントをすべて書き込んでください。"
+				}
+			},
+			submitHandler : function(form) {
+				form.submit();
+			}
+		});
+	});
 </script>
 <!-- kết thúc -->
 </html>

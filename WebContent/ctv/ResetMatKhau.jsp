@@ -38,7 +38,7 @@ input.error {
 	<!-- nội dung chính -->
 	<div class="manhinh">
 		<img alt="Cộng tác viên Việt - Nhât" src="../images/logoctv.jpg">
-		<form class="panel-login" action="CTVResetMatKhauServlet" method="post" id="fdangnhap">
+		<form class="panel-login" action="CTVResetMatKhauServlet" method="post" id="freset">
 			<i class="fa fa-pinterest-p fa-2x"></i>
 			<label>Thông tin tài khoản</label>
 			<%= request.getAttribute("meg")==null ? "<div class='alert alert-info' role='alert'><p>Hãy nhập tài khoản cộng tác viên của bạn bên dưới và click vào button \"Lấy mật khẩu - ログイン\". Kiểm tra lại email của bạn đã đăng ký với chúng tôi để lấy lại mật khẩu. Cám ơn!</p></div>" : request.getAttribute("meg") %>
@@ -55,26 +55,22 @@ input.error {
 </body>
 <script src="../js/jquery.validate.js" type="text/javascript"></script>
 <script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
-						$("#fdangnhap")
-								.validate(
-										{
-											rules : {
-												taikhoan : {
-													required : true
-												}
-											},
-											messages : {
-												taikhoan : {
-													required : "<br>Chưa nhập tài khoản cần reset<br>リセットする必要なアカウントをまだ入力しない。"
-												}
-											},
-											submitHandler : function(form) {
-															form.submit();
-											}
-										});
-					});
+	$(document).ready(function() {
+		$("#freset").validate( {
+			rules : {
+				taikhoan : {
+					required : true
+				}
+			},
+			messages : {
+				taikhoan : {
+					required : "<br>Chưa nhập tài khoản cần reset<br>リセットする必要なアカウントをまだ入力しない。"
+				}
+			},
+			submitHandler : function(form) {
+				form.submit();
+			}
+		});
+	});
 </script>
 </html>

@@ -12,42 +12,8 @@
 <script src="../js/jquery-2.1.0.min.js"></script>
 <script src="../js/jquery.lazyload.js"></script>
 <title>Đăng nhập - ログイン</title>
-<!--auto combobox -->
-<script src="../js/magicsuggest-min.js"></script>
 <link rel="stylesheet" href="css/CongtacvienStyle.css">
 <link rel="stylesheet" href="../font-awesome-4.4.0/css/font-awesome.min.css">
-
-<script src="../js/jquery.validate.js" type="text/javascript"></script>
-<script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
-						$("#fdangnhap")
-								.validate(
-										{
-											rules : {
-												taikhoan : {
-													required : true
-												},
-												matkhau : {
-													required : true
-												}
-											},
-											messages : {
-												taikhoan : {
-													required : "<br>Chưa nhập tên tài khoản<br>"
-												},
-												matkhau : {
-													required : "<br>Chưa nhập mật khẩu!"
-												}
-											},
-											submitHandler : function(form) {
-															form.submit();
-											}
-										});
-					});
-</script>
-<!-- kết thúc -->
 <style type="text/css">
 label.error {
 	color: #FF0000 !important;
@@ -74,7 +40,7 @@ input.error {
 			<i class="fa fa-pinterest-p fa-2x"></i>
 			<label>Đăng Nhập Tài Khoản<br>アカウントのログイン</label>
 			<div class="row">
-				<p class="loi"><%= (String)request.getAttribute("meg") %></p>
+				<p class="loi"><%= request.getAttribute("meg")==null?"":request.getAttribute("meg") %></p>
 			</div>
 			<div class="row">
 				<label><i class="fa fa-user"></i> Tài khoản - アカウント </label>
@@ -94,4 +60,31 @@ input.error {
 		</form>
 	</div>
 </body>
+<!-- Check validate đăng nhập -->
+<script src="../js/jquery.validate.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#fdangnhap").validate({
+			rules : {
+				taikhoan : {
+					required : true
+				},
+				matkhau : {
+					required : true
+				}
+			},
+			messages : {
+				taikhoan : {
+					required : "<br>Chưa nhập tên tài khoản<br>"
+				},
+				matkhau : {
+					required : "<br>Chưa nhập mật khẩu!"
+				}
+			},
+			submitHandler : function(form) {
+				form.submit();
+			}
+		});
+	});
+</script>
 </html>

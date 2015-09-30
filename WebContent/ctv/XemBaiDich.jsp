@@ -128,7 +128,7 @@
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6">
 					<strong>Mô tả - 概要</strong>
-					<p><%= bviet.getMoTaVi() %>"></p>
+					<p><%= bviet.getMoTaVi() %></p>
 			</div>
 			</div>
 			<div class="row cot1">
@@ -206,6 +206,7 @@
 			</div>
 		</div>
 	</div>
+	
 </body>
 <!-- Chuyển hướng đến danh muc x -->
 <script type="text/javascript">
@@ -223,7 +224,7 @@
 			$("#txtviet").val("");
 			updatedatavi(id, htm.replace("Tôi", $("#iduser").val()));
 		}else{
-			alert("Bạn chưa nhập bình luận của mình.<br>コメントをまだ記入しない。");
+			alert("Bạn chưa nhập bình luận của mình.\nコメントをまだ記入しない。");
 		}
 		$("#txtviet").val("");
 	};

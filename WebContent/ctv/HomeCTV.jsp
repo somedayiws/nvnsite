@@ -164,37 +164,6 @@
 	</form>
 	</div>
 </body>
-<!-- Validate -->
-<script src="../js/jquery.validate.js" type="text/javascript"></script>
-<script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
-						$("#fdangnhap")
-								.validate(
-										{
-											rules : {
-												taikhoan : {
-													required : true
-												},
-												matkhau : {
-													required : true
-												}
-											},
-											messages : {
-												taikhoan : {
-													required : "<br>Chưa nhập tên tài khoản"
-												},
-												matkhau : {
-													required : "<br>Chưa nhập mật khẩu!"
-												}
-											},
-											submitHandler : function(form) {
-															form.submit();
-											}
-										});
-					});
-</script>
 <!-- Phản hồi -->
 <script lang="javascript">
 	(function() {

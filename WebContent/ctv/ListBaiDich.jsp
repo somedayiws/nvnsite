@@ -52,6 +52,7 @@
 	<%= ((String)request.getAttribute("meg"))==null ? "" : ((String)request.getAttribute("meg")) %>
 	
 	<%= (tbao == null || tbao.equals("")) ? "" : tbao %>
+	
 	<form action="XuLyBaiVietServlet" method="post">
 		<label>Danh sách bài viết - 文書のリスト</label>
 		<table class="table table-hover dulieu">
