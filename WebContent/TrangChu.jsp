@@ -15,99 +15,36 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Thư viện cho menu -->
 <link rel="stylesheet" href="bootstrap-3.3.5-dist/css/bootstrap.min.css">
-<script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery-2.1.0.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-
 		//Execute the slideShow
 		slideShow();
-
 	});
-
 	function slideShow() {
-
 		//Set the opacity of all images to 0
 		$('#gallery a').css({
 			opacity : 0.0
 		});
-
 		//Get the first image and display it (set it to full opacity)
 		$('#gallery a:first').css({
 			opacity : 1.0
 		});
-
 		//Set the caption background to semi-transparent
 		$('#gallery .caption').css({
 			opacity : 0.7
 		});
-
 		//Resize the width of the caption according to the image width
 		$('#gallery .caption').css({
 			width : $('#gallery a').find('img').css('width')
 		});
-
 		//Get the caption of the first image from REL attribute and display it
 		$('#gallery .content').html(
 				$('#gallery a:first').find('img').attr('rel')).animate({
 			opacity : 0.7
 		}, 400);
-
 		//Call the gallery function to run the slideshow, 6000 = change to next image after 6 seconds
-		setInterval('gallery()', 10000);
-
-	}
-
-	function gallery() {
-
-		//if no IMGs have the show class, grab the first image
-		var current = ($('#gallery a.show') ? $('#gallery a.show')
-				: $('#gallery a:first'));
-
-		//Get next image, if it reached the end of the slideshow, rotate it back to the first image
-		var next = ((current.next().length) ? ((current.next()
-				.hasClass('caption')) ? $('#gallery a:first') : current.next())
-				: $('#gallery a:first'));
-
-		//Get next image caption
-		var caption = next.find('img').attr('rel');
-
-		//Set the fade in effect for the next image, show class has higher z-index
-		next.css({
-			opacity : 0.0
-		}).addClass('show').animate({
-			opacity : 1.0
-		}, 1000);
-
-		//Hide the current image
-		current.animate({
-			opacity : 0.0
-		}, 1000).removeClass('show');
-
-		//Set the opacity to 0 and height to 1px
-		$('#gallery .caption').animate({
-			opacity : 0.0
-		}, {
-			queue : false,
-			duration : 0
-		}).animate({
-			height : '1px'
-		}, {
-			queue : true,
-			duration : 300
-		});
-
-		//Animate the caption, opacity to 0.7 and heigth to 100px, a slide up effect
-		$('#gallery .caption').animate({
-			opacity : 0.7
-		}, 100).animate({
-			height : '110px'
-		}, 500);
-
-		//Display the content
-		$('#gallery .content').html(caption);
-
 	}
 </script>
 <style type="text/css">
@@ -158,7 +95,6 @@ body {
 	color: #1DCCEF;
 }
 </style>
-
 <script src="js/jquery.lazyload.js"></script>
 <title>Trang Chủ</title>
 <link rel="stylesheet" href="css/ClientStyle.css">
@@ -171,17 +107,21 @@ body {
 	<div id="wrapper">
 		<%@include file="header.jsp"%>
 		<div id="mainContent">
-			<!-- Quảng cáo lung tung -->
 			<!-- Lấy dữ liệu từ server gửi về -->
 			<%
 				/* Danh sách quảng cáo hiển thị trên trang */
-														ArrayList<QUANGCAO> listquangcao = (ArrayList<QUANGCAO>) request
-																					.getAttribute("listquangcao");
-														/* slide bài viết random list*/
-														ArrayList<BAIVIET> slidePosts = (ArrayList<BAIVIET>) request
-																					.getAttribute("slidePosts");
-														ArrayList<BAIVIET> hotPosts = (ArrayList<BAIVIET>) request
-																.getAttribute("hotPosts");
+				ArrayList<QUANGCAO> listquangcao = (ArrayList<QUANGCAO>) request
+						.getAttribute("listquangcao");
+				/* slide bài viết random list */
+				ArrayList<BAIVIET> slidePosts = (ArrayList<BAIVIET>) request
+						.getAttribute("slidePosts");
+				ArrayList<BAIVIET> hotPosts = (ArrayList<BAIVIET>) request
+						.getAttribute("hotPosts");
+				/* Top 10 bài viết moi */
+				ArrayList<BAIVIET> topmoi = (ArrayList<BAIVIET>) request
+						.getAttribute("topmoi");
+				ArrayList<THONGBAO> listthongbao = (ArrayList<THONGBAO>) request
+						.getAttribute("listthongbao");
 			%>
 			<div class="col-sm-12 col-md-12" id="topMainContent">
 				<div class="col-sm-3 col-md-3" id="leftTopContent">
@@ -190,7 +130,7 @@ body {
 						<ul id="listhot">
 							<%
 								i=0;
-																																																					while(listdanhmuc != null && i<listdanhmuc.size() && i<10){
+								while(listdanhmuc != null && i<listdanhmuc.size() && i<10){
 							%>
 							<li><a
 								href="DanhSachBaiVietServlet?id=<%=listdanhmuc.get(i).getIdDanhMuc()%>"><i
@@ -214,9 +154,8 @@ body {
 					<div id="gallery">
 						<%
 							i=0;
-																																											while(slidePosts != null && i<slidePosts.size()){
+							while(slidePosts != null && i<slidePosts.size()){
 						%>
-
 						<a href="BaiVietServlet?id=<%=slidePosts.get(i).getIdBaiViet()%>"
 							class="show"> <img src="<%=slidePosts.get(i).getLienKet()%>"
 							alt="<%=slidePosts.get(i).getTenBaiVietVi()%>" title="" alt=""
@@ -234,7 +173,7 @@ body {
 					<div id="relativePost">
 						<%
 							i=0;
-																																											while(slidePosts != null && i<slidePosts.size()){
+							while(slidePosts != null && i<slidePosts.size()){
 						%>
 						<div id="col-sm-6 col-md-6">
 							<div class="itemMini">
@@ -263,7 +202,7 @@ body {
 						<ul id="contentWeek">
 							<%
 								i=0;
-																																																					while(hotPosts != null && i<hotPosts.size() && i < 4){
+								while(hotPosts != null && i<hotPosts.size() && i < 4){
 							%>
 							<li><a
 								href="BaiVietServlet?id=<%=hotPosts.get(i).getIdBaiViet()%>"><i
@@ -301,8 +240,8 @@ body {
 				<!-- Bắt đầu 1 danh mục -->
 				<%
 					i = 0;
-																									while(list != null && i<list.size()){
-																										if(list.get(i).getBaiViets()!= null && list.get(i).getBaiViets().size()>0) {
+					while(list != null && i<list.size()){
+						if(list.get(i).getBaiViets()!= null && list.get(i).getBaiViets().size()>0) {
 				%>
 
 				<div class="danhmucx"
@@ -311,13 +250,13 @@ body {
 						<strong
 							onclick="loadData('DanhSachBaiVietServlet','<%=list.get(i).getIdDanhMuc().trim()%>');">
 							<span id="iconImg"> <%
- 	if(list.get(i).getIcon()!=null)
-         															{
- %> <img src="images/icons/<%=list.get(i).getIcon()%>"> <%
- 	} else {
- %> <i class="fa fa-star-o"></i> <%
- 	}
- %>
+								 	if(list.get(i).getIcon()!=null)
+									{
+								 %> <img src="images/icons/<%=list.get(i).getIcon()%>"> <%
+								 	} else {
+								 %> <i class="fa fa-star-o"></i> <%
+								 	}
+								 %>
 						</span> <span><%=list.get(i).getTenDanhMucVi()%></span> - <%=list.get(i).getTenDanhMucJa()%></strong>
 						<a id="AllPosts"
 							href="DanhSachBaiVietServlet?id=<%=list.get(i).getIdDanhMuc().trim()%>">
@@ -333,7 +272,7 @@ body {
 									<%
 										ArrayList<BAIVIET> listbaiviet = list.get(i).getBaiViets();
 										int j=0;
-										if(listbaiviet != null && j<listbaiviet.size()){
+											if(listbaiviet != null && j<listbaiviet.size()){
 									%>
 									<div class="item active">
 										<div class="baivieti col-xs-12 col-sm-12 col-md-12">
@@ -380,7 +319,7 @@ body {
 							style="background-color: white;" id="binhluan<%=i%>">
 							<%
 								j = 0;
-																																																																																																									while(listbaiviet != null && j<listbaiviet.size()){
+								while(listbaiviet != null && j<listbaiviet.size()){
 							%>
 							<div class="row">
 								<!-- danh sách các bài viết trong nhóm -->
@@ -410,7 +349,79 @@ body {
 			</div>
 			<!-- 			Quảng cáo banner -->
 			<!-- sidebar -->
-			<%@include file="sidebar.jsp"%>
+			<div class="col-sm-3 col-md-3">
+				<!-- Quảng cáo lung tung -->
+				<div id="sidebar">
+					<div class="sidebar-item">
+						<div id="title-item">
+							<i class="fa fa-bell-o"></i> THÔNG BÁO
+						</div>
+						<div id="content-item">
+							<div class="item-style">
+								<%
+									int l = 0;
+									while (listthongbao != null && l < listthongbao.size()) {
+								%>
+								<p>
+									<a
+										href="ChiTietThongBaoServlet?id=<%=listthongbao.get(l).getIdThongBao()%>">
+										<i class="fa fa-angle-double-right"></i> <%=listthongbao.get(l).getTieuDe()%>
+									</a>
+								</p>
+								<%
+									l++;
+									}
+								%>
+							</div>
+						</div>
+					</div>
+					<div class="xemnhieu">
+						<div id="titleTabBar">
+							<div class="col-sm-6 col-md-6 active" id="pMoiNhat">
+								<p>Mới nhất</p>
+								<p>人気の動画</p>
+							</div>
+						</div>
+						<ul id="contentMoiNhat">
+							<%
+								l = 0;
+																												while (topmoi != null && l < topmoi.size()) {
+							%>
+							<li><a
+								href="BaiVietServlet?id=<%=topmoi.get(l).getIdBaiViet()%>"><i
+									class="fa fa-thumbs-o-up"></i> <%=topmoi.get(l).getTenBaiVietVi() == null ? "" : topmoi
+						.get(l).getTenBaiVietVi() + "<br>"%> <%=topmoi.get(l).getTenBaiVietJa() == null ? "" : topmoi
+						.get(l).getTenBaiVietJa()%></a></li>
+							<%
+								l++;
+																												}
+							%>
+						</ul>
+					</div>
+					<div id="them">
+						<%
+							SessionCounter counter = (SessionCounter) session
+																																		.getAttribute("counter");
+																																request.getRemoteAddr();
+						%>
+						<p>
+							<span id="icon"><i class="fa fa-users fa-4x"></i> <br>
+								Views - 履歴</span><span id="count"><%=counter.getActiveView()%></span>
+						</p>
+						<p>
+							<span id="icon"><i class="fa fa-globe fa-4x"></i> <br>Online
+								- 直結</span><span id="count"><%=counter.getActiveSessionNumber()%></span>
+
+						</p>
+					</div>
+					<!-- 			Quảng cáo banner -->
+					<div class="adv300x250">
+						<a href="<%=listquangcao.get(4).getLienKet()%>"><img
+							src="<%=listquangcao.get(4).getHinhAnh()%>"></a>
+					</div>
+					<!-- 			Quảng cáo banner -->
+				</div>
+			</div>
 			<div class="col-sm-3 col-md-3">
 				<div class="sidebar-item">
 					<div id="title-item">NHÀ TÀI TRỢ</div>
@@ -491,7 +502,8 @@ body {
 															async : true, //
 															beforeSend : function() {
 																$("#load")
-																		.html("<i class='fa fa-refresh fa-2x fa-spin'></i>");
+																		.html(
+																				"<i class='fa fa-refresh fa-2x fa-spin'></i>");
 															},
 															success : function(
 																	res) {

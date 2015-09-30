@@ -26,6 +26,7 @@
 <title>Đăng ký thành viên</title>
 </head>
 <body onLoad="initialize()">
+	<div id="wrapper">
 	<%@include file="header.jsp"%>
 	<div id="mainContent">
 		<!-- Quảng cáo lung tung -->
@@ -60,6 +61,7 @@
 	</div>
 	<div class="clearfix"></div>
 	<%@include file="footer.jsp"%>
+	</div>
 </body>
 <!-- Các đoạn script để đây -->
 <!-- Google map -->

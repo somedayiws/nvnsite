@@ -43,6 +43,7 @@
 			else if(hthi!=null && hthi.equals("them-thatbai")) hthi = "<div class='alert alert-danger' role='alert'>Đăng bài viết thất bại.<br>記事を投稿することができない。</div>";
 			else if(hthi!=null && hthi.equals("loi-he-thong")) hthi = "<div class='alert alert-danger' role='alert'>Lỗi hệ thống. Vui lòng reset lại trang(Ctrl+F5).<br>システムのエラです。ホームページを改めてリセットして下さい(Ctrl+F5)。</div>";
 	%>
+	<div id="wrapper">
 	<%@include file="header.jsp"%>
 	<div id="mainContent">
 
@@ -89,6 +90,7 @@
 	</div>
 	<div class="clearfix"></div>
 	<%@include file="footer.jsp"%>
+	</div>
 </body>
 <!-- Các đoạn script để đây -->
 <!-- Google map -->

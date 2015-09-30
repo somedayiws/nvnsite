@@ -27,40 +27,46 @@
 <body onLoad="initialize()">
 	<!-- Lấy dữ liệu từ server gửi về -->
 	<%
-			/* Top 10 bài viết đầu tiên được hiển thị */
-			ArrayList<BAIVIET> listbaiviet = (ArrayList<BAIVIET>) request.getAttribute("listbaiviet");
+		/* Top 10 bài viết đầu tiên được hiển thị */
+		ArrayList<BAIVIET> listbaiviet = (ArrayList<BAIVIET>) request.getAttribute("listbaiviet");
 	%>
 
 	<!-- Kết thúc quá trình lấy dữ liệu -->
-	<%@include file="header.jsp"%>
-	<div id="mainContent">
-		<!-- Quảng cáo lung tung -->
-		<div id="sahred">
-			<g:plusone></g:plusone>
+	<div id="wrapper">
+		<%@include file="header.jsp"%>
+		<div id="mainContent">
+			<!-- Quảng cáo lung tung -->
+			<div id="sahred">
+				<g:plusone></g:plusone>
 
-			<a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+				<a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
 
-			<div id="fb-root"></div>
-			<!-- Your share button code -->
-			<div class="fb-share-button"
-				data-href="http://webvietnhat-demo.jelastic.skali.net/"
-				data-layout="button_count"></div>
+				<div id="fb-root"></div>
+				<!-- Your share button code -->
+				<div class="fb-share-button"
+					data-href="http://webvietnhat-demo.jelastic.skali.net/"
+					data-layout="button_count"></div>
+			</div>
+
+			<!-- hiển thị nội dung chính ở đây -->
+			<div class="col-sm-9 col-md-9" id="baiviet">
+				<center>
+					<h3>Bảng giá dịch vụ</h3>
+				</center>
+				<label class="nhan">1. Bảng giá dịch vụ dịch thuật</label> <img
+					class="imggia" alt="Bảng giá dịch vụ dịch thuật"
+					src="<%=request.getAttribute("giadich")==null?"images/tainguyen/Capture2.PNG":request.getAttribute("giadich")%>">
+				<br> <label class="nhan">2. Bảng giá dịch vụ quảng cáo</label>
+				<img class="imggia" alt="Bảng giá dịch vụ quảng cáo"
+					src="<%=request.getAttribute("giaquangcao")==null?"images/tainguyen/Capture1.PNG":request.getAttribute("giaquangcao")%>">
+			</div>
+
+			<%@include file="sidebar.jsp"%>
 		</div>
+		<div class="clearfix"></div>
 
-		<!-- hiển thị nội dung chính ở đây -->
-		<div class="col-sm-9 col-md-9" id="baiviet">
-			<center><h3>Bảng giá dịch vụ</h3></center>
-			<label class="nhan">1. Bảng giá dịch vụ dịch thuật</label>
-			<img class="imggia" alt="Bảng giá dịch vụ dịch thuật" src="<%= request.getAttribute("giadich")==null?"images/tainguyen/Capture2.PNG":request.getAttribute("giadich") %>">
-			<br><label class="nhan">2. Bảng giá dịch vụ quảng cáo</label>
-			<img class="imggia" alt="Bảng giá dịch vụ quảng cáo" src="<%= request.getAttribute("giaquangcao")==null?"images/tainguyen/Capture1.PNG":request.getAttribute("giaquangcao") %>">
-		</div>
-		
-		<%@include file="sidebar.jsp"%>
+		<%@include file="footer.jsp"%>
 	</div>
-	<div class="clearfix"></div>
-
-	<%@include file="footer.jsp"%>
 </body>
 <!-- Script ở đây -->
 <!-- Google map -->
@@ -202,8 +208,11 @@
 		} else {
 			var txt = $("#txtviet").val();
 			if (txt != "") {
-				var htm = "<div id='itemComment'><i class='fa fa-user'></i> <em>" + bien
-						+ "</em> <span id='dateComment'>"+date+"</span> <p>" + txt + "</p></div>";
+				var htm = "<div id='itemComment'><i class='fa fa-user'></i> <em>"
+						+ bien
+						+ "</em> <span id='dateComment'>"
+						+ date
+						+ "</span> <p>" + txt + "</p></div>";
 				$("#listblviet").prepend(htm);
 				$("#txtviet").val("");
 				updatedatavi(id, 'vi', txt);
@@ -220,8 +229,11 @@
 		} else {
 			var txt = $("#txtnhat").val();
 			if (txt != "") {
-				var htm = "<div id='itemComment'><i class='fa fa-user'></i> <em>" + bien
-						+ "</em> <span id='dateComment'>"+date+"</span> <p>" + txt + "</p></div>";
+				var htm = "<div id='itemComment'><i class='fa fa-user'></i> <em>"
+						+ bien
+						+ "</em> <span id='dateComment'>"
+						+ date
+						+ "</span> <p>" + txt + "</p></div>";
 				$("#listblnhat").prepend(htm);
 				$("#txtnhat").val("");
 				updatedatavi(id, 'ja', txt);

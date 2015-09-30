@@ -38,6 +38,7 @@
 </head>
 
 <body onLoad="initialize()">
+	<div id="wrapper">
 	<%@include file="header.jsp"%>
 	
 	<input type="hidden" id="sotu" value="<%= request.getAttribute("sotu") %>">
@@ -175,6 +176,7 @@
 	</div>
 	<div class="clearfix"></div>
 	<%@include file="footer.jsp"%>
+	</div>
 </body>
 <!-- Script ở đây -->
 <script type="text/javascript">

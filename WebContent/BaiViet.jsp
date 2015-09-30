@@ -36,7 +36,7 @@
 			/* bình luận tiếng nhật*/
 			ArrayList<BINHLUAN> blnhat = baiviet.getBinhLuanJa();
 	%>
-
+	<div id="wrapper">
 	<!-- Kết thúc quá trình lấy dữ liệu -->
 	<%@include file="header.jsp"%>
 	<div id="mainContent">
@@ -52,7 +52,6 @@
 				data-href="http://webvietnhat-demo.jelastic.skali.net/"
 				data-layout="button_count"></div>
 		</div>
-
 		<!-- hiển thị nội dung chính ở đây -->
 		<div class="col-sm-9 col-md-9" id="baiviet">
 			<h3>
@@ -301,10 +300,11 @@
 			</div>
 		</div>
 		<%@include file="sidebar.jsp"%>
-	</div>
+		</div>
 	<div class="clearfix"></div>
 
 	<%@include file="footer.jsp"%>
+	</div>
 </body>
 <!-- Script ở đây -->
 <!-- Google map -->

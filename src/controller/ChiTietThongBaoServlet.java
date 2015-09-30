@@ -74,7 +74,7 @@ public class ChiTietThongBaoServlet extends HttpServlet {
 		request.setAttribute("listdanhmuc", listdanhmuc);
 		request.setAttribute("topbaiviet", topbaiviet);
 		THONGBAO thongbao = tb.getThongBao(id);
-		if(thongbao !=null){
+		if(thongbao !=null && (!thongbao.getGuiDen().equals("DienDan"))){
 			tb.setViewed(id);
 		}
 		request.setAttribute("thongbao", thongbao);

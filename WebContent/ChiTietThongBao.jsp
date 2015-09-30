@@ -34,6 +34,7 @@
 		/* Danh sách bài đã đăng */
 			THONGBAO thongbao = (THONGBAO)request.getAttribute("thongbao");
 	%>
+	<div id="wrapper">
 	<%@include file="header.jsp"%>
 	<div id="mainContent">
 
@@ -50,6 +51,8 @@
 		</div>
 		<!-- hiển thị nội dung chính ở đây -->
 		<div class="col-sm-9 col-md-9" id="baiviet" style="font-size: 12px;">
+		<div class='alert alert-success' role='alert'>Ghi chú: Mọi vấn đề về thông báo các bạn vui lòng thông tin qua chúng tôi bằng cách click vào "Vui lòng để lại lời nhắn" bên dưới. Hoặc gửi mail thông qua thông tin liên hệ bên dưới. Xin cảm ơn!
+		</div>
 			<center id="tieude"><%=thongbao.getTieuDe() %></center>
 			<div id="infoThongBao">
 			<span id="dateThongBao"><%=thongbao.getNgayDang() %></span>
@@ -64,6 +67,7 @@
 	</div>
 	<div class="clearfix"></div>
 	<%@include file="footer.jsp"%>
+	</div>
 </body>
 <!-- Các đoạn script để đây -->
 <!-- Google map -->

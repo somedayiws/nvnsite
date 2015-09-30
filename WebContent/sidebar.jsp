@@ -3,6 +3,7 @@
 <%@page import="model.bean.THONGBAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.bean.BAIVIET"%>
+<%@page import="model.bean.QUANGCAO"%>
 <%@page import="controller.SessionCounter"%>
 <%
 	/* Top 10 bài viết moi */
@@ -10,6 +11,9 @@
 			.getAttribute("topmoi");
 	ArrayList<THONGBAO> listthongbao = (ArrayList<THONGBAO>) request
 			.getAttribute("listthongbao");
+	/* Danh sách quảng cáo hiển thị trên trang */
+	ArrayList<QUANGCAO> listquangcao = (ArrayList<QUANGCAO>) request
+					.getAttribute("listquangcao");
 %>
 <div class="col-sm-3 col-md-3">
 	<!-- Quảng cáo lung tung -->
@@ -76,7 +80,8 @@
 		</div>
 		<!-- 			Quảng cáo banner -->
 		<div class="adv300x250">
-			<img src="http://placehold.it/300x250">
+			<a href="<%=listquangcao.get(0).getLienKet()%>"><img
+						src="<%=listquangcao.get(0).getHinhAnh()%>"></a>
 		</div>
 		<!-- 			Quảng cáo banner -->
 	</div>

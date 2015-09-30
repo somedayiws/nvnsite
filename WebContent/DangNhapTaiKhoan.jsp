@@ -25,6 +25,7 @@
 <title>Đăng nhập</title>
 </head>
 <body onLoad="initialize()">
+	<div id="wrapper">
 	<%@include file="header.jsp"%>
 	<div id="mainContent">
 		<!-- hiển thị nội dung chính ở đây -->
@@ -66,6 +67,7 @@
 	</div>
 	<div class="clearfix"></div>
 	<%@include file="footer.jsp"%>
+	</div>
 </body>
 <!-- Các đoạn script để đây -->
 <!-- Google map -->

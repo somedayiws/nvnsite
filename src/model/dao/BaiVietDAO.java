@@ -207,7 +207,7 @@ public class BaiVietDAO {
 			sql = "select IdBaiViet, TenBaiVietVi, TenBaiVietJa,LienKet,MoTaVi,MoTaJa from baiviet where TrangThai='OK' and (CURDATE()-NgayDang)<300 order by LuotXem desc limit 10";
 		//select IdBaiViet, TenBaiVietVi, TenBaiVietJa,LienKet,MoTaVi,MoTaJa from baiviet where TrangThai='OK' and (CURDATE()-NgayDang)<30 order by LuotXem desc
 		else 
-			sql = "select IdBaiViet, TenBaiVietVi, TenBaiVietJa,LienKet,MoTaVi,MoTaJa from baiviet order by RAND() limit 6";
+			sql = "select IdBaiViet, TenBaiVietVi, TenBaiVietJa,LienKet,MoTaVi,MoTaJa from baiviet order by RAND() limit 5";
 		rs = db.getResultSet(sql);
 //		BinhLuanDAO bl = new BinhLuanDAO();
 		try {

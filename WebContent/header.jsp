@@ -6,6 +6,8 @@
 
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
+<%@page import="java.util.TimeZone"%>
+
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -32,6 +34,7 @@ $(document).ready(function() {
 	}, 30000);
 });
 </script>
+<div id=fullHeader>
 <div id="headerTop">
 	<div id="headerMain">
 		<!-- logo đại diện -->
@@ -44,8 +47,9 @@ $(document).ready(function() {
 			<!-- Lấy dữ liệu từ server gửi về -->
 			<%
 					Calendar cal = Calendar.getInstance();
-					SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-					String homedate = "Ngày "+cal.getTime().getDate()+" tháng "+(cal.getTime().getMonth() + 1)+" năm "+(cal.getTime().getYear()+1900);
+					SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy z");
+					sdf.setTimeZone(TimeZone.getTimeZone("GMT+7"));
+					String homedate = sdf.format(cal.getTime());
 					/* Danh mục được hiển thị content */
 					ArrayList<DANHMUC> list = (ArrayList<DANHMUC>) request
 												.getAttribute("list");
@@ -207,6 +211,7 @@ $(document).ready(function() {
 		</div>
 	</div>
 </nav>
+</div>
 <div id="dynamicText">
 	<div id="textdiv">
 		<span class="col-sm-2 col-md-2" id="datetime"><i

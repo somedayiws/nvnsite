@@ -33,6 +33,7 @@
 		String txtSearch = (String)request.getAttribute("txtFind");
 		String chon = (String)request.getAttribute("theo");
 	%>
+	<div id="wrapper">
 	<%@include file="header.jsp"%>
 	<div id="mainContent">
 		<!-- Tạo dữ liệu ẩn -->
@@ -109,6 +110,7 @@
 	<div class="col-sm-10 col-md-12" align="center" id="load"></div>
 	<div class="clearfix"></div>
 	<%@include file="footer.jsp"%>
+	</div>
 </body>
 <!-- Script ở đây -->
 <!-- Google map -->

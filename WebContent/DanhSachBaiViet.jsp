@@ -27,6 +27,7 @@
 
 </head>
 <body onLoad="initialize()">
+	<div id="wrapper">
 	<%@include file="header.jsp"%>
 	<div id="mainContent">
 
@@ -93,6 +94,7 @@
 	</div>
 	<div class="clearfix"></div>
 	<%@include file="footer.jsp"%>
+	</div>
 </body>
 <!-- Các đoạn script ở đây -->
 <script language="JavaScript">
