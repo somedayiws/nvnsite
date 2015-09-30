@@ -62,4 +62,8 @@ public class ThongBaoBO {
 		tb.setMenu(nBangghi, ntrang);
 	}
 
+	public void setViewed(String id) {
+		tb.setViewed(id);
+	}
+
 }

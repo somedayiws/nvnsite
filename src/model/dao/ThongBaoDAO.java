@@ -24,7 +24,7 @@ public class ThongBaoDAO {
 				tb.setIdThongBao(rs.getInt("IdThongBao"));
 				tb.setTieuDe(DinhDangSQL.DeFomatSQL(rs.getString("TieuDe")));
 				tb.setNoiDung(DinhDangSQL.DeFomatSQL(rs.getString("NoiDung")));
-				tb.setHienThi(1);
+				tb.setHienThi(rs.getInt("HienThi"));
 				tb.setNgayDang(DinhDangSQL.DeFomatSQL(rs.getString("NgayDang")));
 				tb.setGuiDen(DinhDangSQL.DeFomatSQL(rs.getString("GuiDen")));
 				list.add(tb);
@@ -61,7 +61,7 @@ public class ThongBaoDAO {
 				tb.setIdThongBao(rs.getInt("IdThongBao"));
 				tb.setTieuDe(DinhDangSQL.DeFomatSQL(rs.getString("TieuDe")));
 				tb.setNoiDung(DinhDangSQL.DeFomatSQL(rs.getString("NoiDung")));
-				tb.setHienThi(1);
+				tb.setHienThi(rs.getInt("HienThi"));
 				tb.setNgayDang(DinhDangSQL.DeFomatSQL(rs.getString("NgayDang")));
 				tb.setGuiDen(DinhDangSQL.DeFomatSQL(rs.getString("GuiDen")));
 				list.add(tb);
@@ -76,19 +76,19 @@ public class ThongBaoDAO {
 	public ArrayList<THONGBAO> getListKhongHienThi(String den, String timtheo, String find, int page) {
 		// TODO Auto-generated method stub
 		find = DinhDangSQL.FomatSQL(find);
-		String sql = "select * from thongbao where HienThi='0' "
+		String sql = "select * from thongbao where HienThi != '1' "
 				+ (timtheo.equals("1")?" and (IdThongBao='"+find+"' or IdThongBao='"+find+"' or GuiDen like N'%"+find+"%' or NoiDung like N'%"+find+"%')":"")
 				+ (timtheo.equals("2")?" and IdThongBao='"+find+"'":"")
 				+ (timtheo.equals("3")?" and GuiDen like N'%"+find+"%'":"")
 				+ (timtheo.equals("4")?" and NoiDung like N'%"+find+"%'":"");
 		if(den.equals("")){
-			sql = "select * from thongbao where HienThi='0' "
+			sql = "select * from thongbao where HienThi != '1' "
 					+ (timtheo.equals("1")?" and (IdThongBao='"+find+"' or IdThongBao='"+find+"' or GuiDen like N'%"+find+"%' or NoiDung like N'%"+find+"%')":"")
 					+ (timtheo.equals("2")?" and IdThongBao='"+find+"'":"")
 					+ (timtheo.equals("3")?" and GuiDen like N'%"+find+"%'":"")
 					+ (timtheo.equals("4")?" and NoiDung like N'%"+find+"%'":"");
 		}else{
-			sql = "select * from thongbao where HienThi='0' and GuiDen like N'%' "
+			sql = "select * from thongbao where HienThi != '1' and GuiDen like N'%' "
 					+ (timtheo.equals("1")?" and (IdThongBao='"+find+"' or IdThongBao='"+find+"' or GuiDen like N'%"+find+"%' or NoiDung like N'%"+find+"%')":"")
 					+ (timtheo.equals("2")?" and IdThongBao='"+find+"'":"")
 					+ (timtheo.equals("3")?" and GuiDen like N'%"+find+"%'":"")
@@ -103,7 +103,7 @@ public class ThongBaoDAO {
 				tb.setIdThongBao(rs.getInt("IdThongBao"));
 				tb.setTieuDe(DinhDangSQL.DeFomatSQL(rs.getString("TieuDe")));
 				tb.setNoiDung(DinhDangSQL.DeFomatSQL(rs.getString("NoiDung")));
-				tb.setHienThi(1);
+				tb.setHienThi(rs.getInt("HienThi"));
 				tb.setNgayDang(DinhDangSQL.DeFomatSQL(rs.getString("NgayDang")));
 				tb.setGuiDen(DinhDangSQL.DeFomatSQL(rs.getString("GuiDen")));
 				list.add(tb);
@@ -126,7 +126,7 @@ public class ThongBaoDAO {
 				tb.setIdThongBao(rs.getInt("IdThongBao"));
 				tb.setTieuDe(DinhDangSQL.DeFomatSQL(rs.getString("TieuDe")));
 				tb.setNoiDung(DinhDangSQL.DeFomatSQL(rs.getString("NoiDung")));
-				tb.setHienThi(1);
+				tb.setHienThi(rs.getInt("HienThi"));
 				tb.setNgayDang(DinhDangSQL.DeFomatSQL(rs.getString("NgayDang")));
 				tb.setGuiDen(DinhDangSQL.DeFomatSQL(rs.getString("GuiDen")));
 				return tb;
@@ -191,5 +191,10 @@ public class ThongBaoDAO {
 	public void setMenu(int nBangghi, int ntrang) {
 		// TODO Auto-generated method stub
 		db.setMenu(nBangghi, ntrang);
+	}
+
+	public void setViewed(String id) {
+		String sql = "update thongbao set HienThi='-1' where IdThongBao='"+id+"'";
+		db.updateData(sql);		
 	}
 }

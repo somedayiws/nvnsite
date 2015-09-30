@@ -11,8 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.bean.BAIVIET;
 import model.bean.DANHMUC;
+import model.bean.QUANGCAO;
+import model.bean.THONGBAO;
 import model.bo.BaiVietBO;
 import model.bo.DanhMucBO;
+import model.bo.QuangCaoBO;
+import model.bo.ThongBaoBO;
 
 @WebServlet("/DanhSachBaiVietServlet")
 public class DanhSachBaiVietServlet extends HttpServlet {
@@ -45,6 +49,17 @@ public class DanhSachBaiVietServlet extends HttpServlet {
 			request.setAttribute("listbaiviet", listbaiviet);
 			request.setAttribute("listdanhmuc", listdanhmuc);
 			request.setAttribute("topbaiviet", topbaiviet);
+			
+			// List thông báo
+			ThongBaoBO thongBaoBO = new ThongBaoBO();
+			ArrayList<THONGBAO> listthongbao = thongBaoBO.getListHienThi("","1", "DienDan");
+			request.setAttribute("listthongbao", listthongbao);
+
+			// Danh sách quảng cáo
+			QuangCaoBO quangCaoBO = new QuangCaoBO();
+			ArrayList<QUANGCAO> listquangcao = quangCaoBO.getDanhSachQuangCao((int) 2);
+			request.setAttribute("listquangcao", listquangcao);
+			
 			request.getRequestDispatcher("DanhSachBaiViet.jsp").forward(request, response);
 		}else{
 			response.sendRedirect("TrangChuServlet");

@@ -3,6 +3,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.bean.BAIVIET"%>
 <%@page import="model.bean.QUANGCAO"%>
+<%@page import="model.bean.THONGBAO"%>
 
 <%@page import="controller.SessionCounter"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -171,16 +172,16 @@ body {
 		<%@include file="header.jsp"%>
 		<div id="mainContent">
 			<!-- Quảng cáo lung tung -->
-	<!-- Lấy dữ liệu từ server gửi về -->
+			<!-- Lấy dữ liệu từ server gửi về -->
 			<%
-					/* Danh sách quảng cáo hiển thị trên trang */
-					ArrayList<QUANGCAO> listquangcao = (ArrayList<QUANGCAO>) request
-												.getAttribute("listquangcao");
-					/* slide bài viết random list*/
-					ArrayList<BAIVIET> slidePosts = (ArrayList<BAIVIET>) request
-												.getAttribute("slidePosts");
-					ArrayList<BAIVIET> hotPosts = (ArrayList<BAIVIET>) request
-							.getAttribute("hotPosts");
+				/* Danh sách quảng cáo hiển thị trên trang */
+														ArrayList<QUANGCAO> listquangcao = (ArrayList<QUANGCAO>) request
+																					.getAttribute("listquangcao");
+														/* slide bài viết random list*/
+														ArrayList<BAIVIET> slidePosts = (ArrayList<BAIVIET>) request
+																					.getAttribute("slidePosts");
+														ArrayList<BAIVIET> hotPosts = (ArrayList<BAIVIET>) request
+																.getAttribute("hotPosts");
 			%>
 			<div class="col-sm-12 col-md-12" id="topMainContent">
 				<div class="col-sm-3 col-md-3" id="leftTopContent">
@@ -189,7 +190,7 @@ body {
 						<ul id="listhot">
 							<%
 								i=0;
-								while(listdanhmuc != null && i<listdanhmuc.size() && i<10){
+																																																					while(listdanhmuc != null && i<listdanhmuc.size() && i<10){
 							%>
 							<li><a
 								href="DanhSachBaiVietServlet?id=<%=listdanhmuc.get(i).getIdDanhMuc()%>"><i
@@ -203,9 +204,8 @@ body {
 					</div>
 					<!-- 			Quảng cáo banner -->
 					<div class="adv300x250">
-					<div id="contentadv">
-						<a href="<%=listquangcao.get(0).getLienKet()%>"><img src="<%=listquangcao.get(0).getHinhAnh()%>"></a>
-					</div>
+						<a href="<%=listquangcao.get(0).getLienKet()%>"><img
+							src="<%=listquangcao.get(0).getHinhAnh()%>"></a>
 					</div>
 					<!-- 			Quảng cáo banner -->
 				</div>
@@ -214,7 +214,7 @@ body {
 					<div id="gallery">
 						<%
 							i=0;
-							while(slidePosts != null && i<slidePosts.size()){
+																																											while(slidePosts != null && i<slidePosts.size()){
 						%>
 
 						<a href="BaiVietServlet?id=<%=slidePosts.get(i).getIdBaiViet()%>"
@@ -234,11 +234,12 @@ body {
 					<div id="relativePost">
 						<%
 							i=0;
-							while(slidePosts != null && i<slidePosts.size()){
+																																											while(slidePosts != null && i<slidePosts.size()){
 						%>
 						<div id="col-sm-6 col-md-6">
 							<div class="itemMini">
-								<a href="BaiVietServlet?id=<%=slidePosts.get(i).getIdBaiViet()%>">
+								<a
+									href="BaiVietServlet?id=<%=slidePosts.get(i).getIdBaiViet()%>">
 									<img src="<%=slidePosts.get(i).getLienKet()%>"> <strong>
 										<%=slidePosts.get(i).getTenBaiVietVi()!=null ? (slidePosts.get(i).getTenBaiVietVi().length()>90 ? (slidePosts.get(i).getTenBaiVietVi().substring(0, 90)+"..."): slidePosts.get(i).getTenBaiVietVi()):""%>
 										</br> <%=slidePosts.get(i).getTenBaiVietJa() !=null ? (slidePosts.get(i).getTenBaiVietJa().length()>90 ? (slidePosts.get(i).getTenBaiVietJa().substring(0, 90)+"..."): slidePosts.get(i).getTenBaiVietJa()): ""%></strong>
@@ -262,26 +263,27 @@ body {
 						<ul id="contentWeek">
 							<%
 								i=0;
-								while(hotPosts != null && i<hotPosts.size() && i < 4){
+																																																					while(hotPosts != null && i<hotPosts.size() && i < 4){
 							%>
 							<li><a
 								href="BaiVietServlet?id=<%=hotPosts.get(i).getIdBaiViet()%>"><i
 									class="fa fa-angle-double-right"></i> <%=hotPosts.get(i).getTenBaiVietVi()==null?"":hotPosts.get(i).getTenBaiVietVi()%>
-									<%=(hotPosts.get(i).getTenBaiVietVi()!=null && hotPosts.get(i).getTenBaiVietJa()!=null)?"<br>":"" %>
+									<%=(hotPosts.get(i).getTenBaiVietVi()!=null && hotPosts.get(i).getTenBaiVietJa()!=null)?"<br>":""%>
 									<%=hotPosts.get(i).getTenBaiVietJa()==null?"":hotPosts.get(i).getTenBaiVietJa()%>
-									</a></li>
+							</a></li>
 							<%
-							
 								i++; }
 							%>
 						</ul>
 					</div>
 					<!-- 			Quảng cáo banner -->
 					<div class="adv300x250">
-						<a href="<%=listquangcao.get(1).getLienKet()%>"><img src="<%=listquangcao.get(1).getHinhAnh()%>"></a>
+						<a href="<%=listquangcao.get(1).getLienKet()%>"><img
+							src="<%=listquangcao.get(1).getHinhAnh()%>"></a>
 					</div>
 					<div class="adv300x100">
-						<a href="<%=listquangcao.get(2).getLienKet()%>"><img src="<%=listquangcao.get(2).getHinhAnh()%>"></a>
+						<a href="<%=listquangcao.get(2).getLienKet()%>"><img
+							src="<%=listquangcao.get(2).getHinhAnh()%>"></a>
 					</div>
 					<!-- 			Quảng cáo banner -->
 
@@ -292,40 +294,37 @@ body {
 			<div class="col-sm-9 col-md-9" id="baiviet" style="font-size: 12px;">
 				<!-- 			Quảng cáo banner -->
 				<div id="adlarge" class="adv728x90">
-						<a href="<%=listquangcao.get(3).getLienKet()%>"><img src="<%=listquangcao.get(3).getHinhAnh()%>"></a>
+					<a href="<%=listquangcao.get(3).getLienKet()%>"><img
+						src="<%=listquangcao.get(3).getHinhAnh()%>"></a>
 				</div>
 				<!-- 				Hết nội dung quảng cáo  -->
 				<!-- Bắt đầu 1 danh mục -->
 				<%
 					i = 0;
-							while(list != null && i<list.size()){
-								if(list.get(i).getBaiViets()!= null && list.get(i).getBaiViets().size()>0) {
+																									while(list != null && i<list.size()){
+																										if(list.get(i).getBaiViets()!= null && list.get(i).getBaiViets().size()>0) {
 				%>
 
-				<div class="danhmucx" id="<%=list.get(i).getIdDanhMuc().trim().substring(2)%>">
+				<div class="danhmucx"
+					id="<%=list.get(i).getIdDanhMuc().trim().substring(2)%>">
 					<p id="titleDanhMuc">
 						<strong
 							onclick="loadData('DanhSachBaiVietServlet','<%=list.get(i).getIdDanhMuc().trim()%>');">
-							<span id="iconImg">
-						<%
-							if(list.get(i).getIcon()!=null)
-																	{
-						%>
-								<img src="images/icons/<%=list.get(i).getIcon()%>">
-								<%
-									} else {
-								%>
-								<i class="fa fa-star-o"></i>
-								<%
-									}
-								%>
-							</span>
-							<span><%=list.get(i).getTenDanhMucVi()%></span> - <%=list.get(i).getTenDanhMucJa()%></strong>
-							<a id="AllPosts" href="DanhSachBaiVietServlet?id=<%=list.get(i).getIdDanhMuc().trim()%>">
-								Xem tất cả <i class="fa fa-chevron-right"></i>
-							</a>
+							<span id="iconImg"> <%
+ 	if(list.get(i).getIcon()!=null)
+         															{
+ %> <img src="images/icons/<%=list.get(i).getIcon()%>"> <%
+ 	} else {
+ %> <i class="fa fa-star-o"></i> <%
+ 	}
+ %>
+						</span> <span><%=list.get(i).getTenDanhMucVi()%></span> - <%=list.get(i).getTenDanhMucJa()%></strong>
+						<a id="AllPosts"
+							href="DanhSachBaiVietServlet?id=<%=list.get(i).getIdDanhMuc().trim()%>">
+							Xem tất cả <i class="fa fa-chevron-right"></i>
+						</a>
 					</p>
-					
+
 					<div class="row">
 						<div class="row">
 							<div id="wrapper_carousel" class="carousel slide"
@@ -333,17 +332,18 @@ body {
 								<div class="carousel-inner" role="listbox">
 									<%
 										ArrayList<BAIVIET> listbaiviet = list.get(i).getBaiViets();
-																																																																															int j=0;
-																																																																															if(listbaiviet != null && j<listbaiviet.size()){
+										int j=0;
+										if(listbaiviet != null && j<listbaiviet.size()){
 									%>
 									<div class="item active">
 										<div class="baivieti col-xs-12 col-sm-12 col-md-12">
 											<a
 												href="BaiVietServlet?id=<%=listbaiviet.get(j).getIdBaiViet()%>"
-												class="thongtinthem"> <embed
-													src="<%=listbaiviet.get(j).getLienKet()%>"><strong><i class="fa fa-user"></i> <%=listbaiviet.get(j).getTaiKhoan().getHoTen()%></strong>
+												class="thongtinthem"> <img
+												src="<%=listbaiviet.get(j).getLienKet()%>"><strong><i
+													class="fa fa-user"></i> <%=listbaiviet.get(j).getTaiKhoan().getHoTen()%></strong>
 												<em> <i class="fa fa-calendar"></i> <%=listbaiviet.get(j).getNgayDang()%></em>
-													<em><i class="fa fa-eye"></i> <%=listbaiviet.get(j).getLuotXem()%>
+												<em><i class="fa fa-eye"></i> <%=listbaiviet.get(j).getLuotXem()%>
 											</em>
 											</a>
 											<div class="motabai">
@@ -372,7 +372,6 @@ body {
 									<%
 										j++; }
 									%>
-
 								</div>
 							</div>
 						</div>
@@ -381,7 +380,7 @@ body {
 							style="background-color: white;" id="binhluan<%=i%>">
 							<%
 								j = 0;
-																																																												while(listbaiviet != null && j<listbaiviet.size()){
+																																																																																																									while(listbaiviet != null && j<listbaiviet.size()){
 							%>
 							<div class="row">
 								<!-- danh sách các bài viết trong nhóm -->
@@ -409,13 +408,40 @@ body {
 					} i++; }
 				%>
 			</div>
-
+			<!-- 			Quảng cáo banner -->
 			<!-- sidebar -->
 			<%@include file="sidebar.jsp"%>
-			<!-- 			Quảng cáo banner -->
 			<div class="col-sm-3 col-md-3">
+				<div class="sidebar-item">
+					<div id="title-item">NHÀ TÀI TRỢ</div>
+					<div id="content-item">
+						<div class="item-style">
+							<p>
+								<a href="#"> <img src="http://placehold.it/400x100">
+								</a>
+							</p>
+							<p>
+								<a href="#"> <img src="http://placehold.it/400x100">
+								</a>
+							</p>
+							<p>
+								<a href="#"> <img src="http://placehold.it/400x100">
+								</a>
+							</p>
+							<p>
+								<a href="#"> <img src="http://placehold.it/400x100">
+								</a>
+							</p>
+							<p>
+								<a href="#"> <img src="http://placehold.it/400x100">
+								</a>
+							</p>
+						</div>
+					</div>
+				</div>
 				<div class="adv300x600">
-						<a href="<%=listquangcao.get(5).getLienKet()%>"><img src="<%=listquangcao.get(5).getHinhAnh()%>"></a>
+					<a href="<%=listquangcao.get(5).getLienKet()%>"><img
+						src="<%=listquangcao.get(5).getHinhAnh()%>"></a>
 				</div>
 			</div>
 			<!-- 			Quảng cáo banner -->
@@ -448,8 +474,10 @@ body {
 						$(window)
 								.scroll(
 										function() {
-											var nbaiviet = parseInt($("#baiviet .danhmucx:last-child").attr("id"));
-											
+											var nbaiviet = parseInt($(
+													"#baiviet .danhmucx:last-child")
+													.attr("id"));
+
 											if (($(document).height()
 													- $(this).scrollTop() - $(
 													this).height()) < 10) {
@@ -463,8 +491,7 @@ body {
 															async : true, //
 															beforeSend : function() {
 																$("#load")
-																		.html(
-																				"<i class='fa fa-refresh fa-2x fa-spin'></i>");
+																		.html("<i class='fa fa-refresh fa-2x fa-spin'></i>");
 															},
 															success : function(
 																	res) {
@@ -489,24 +516,6 @@ body {
 											}
 										});
 					});
-	function showMoiNhat() {
-		$('.xemnhieu').children('#contentMoiNhat').removeAttr('style');
-		$('.xemnhieu').children('#contentXemNhieu').attr('style',
-				'display:none;');
-		$('#titleTabBar').children('#pMoiNhat').attr('class',
-				'col-sm-6 col-md-6 active');
-		$('#titleTabBar').children('#pXemNhieu').attr('class',
-				'col-sm-6 col-md-6');
-	}
-	function showXemNhieu() {
-		$('.xemnhieu').children('#contentXemNhieu').removeAttr('style');
-		$('.xemnhieu').children('#contentMoiNhat').attr('style',
-				'display:none;');
-		$('#titleTabBar').children('#pMoiNhat').attr('class',
-				'col-sm-6 col-md-6');
-		$('#titleTabBar').children('#pXemNhieu').attr('class',
-				'col-sm-6 col-md-6 active');
-	}
 </script>
 <!-- Google+ -->
 <script type="text/javascript"

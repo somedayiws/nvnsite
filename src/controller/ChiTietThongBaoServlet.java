@@ -19,42 +19,48 @@ import model.bo.DanhMucBO;
 import model.bo.QuangCaoBO;
 import model.bo.ThongBaoBO;
 
-@WebServlet("/TBDenToiServlet")
-public class TBDenToiServlet extends HttpServlet {
+/**
+ * Servlet implementation class ChiTietThongBaoServlet
+ */
+@WebServlet("/ChiTietThongBaoServlet")
+public class ChiTietThongBaoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public TBDenToiServlet() {
-        super();
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ChiTietThongBaoServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		BaiVietBO bv = new BaiVietBO();
 		DanhMucBO danhmuc = new DanhMucBO();
 		ThongBaoBO tb = new ThongBaoBO();
-		int page = 1;
+		String id = request.getParameter("id");
 		bv.setMenu(10, 10);
-		try {
-			page = Integer.parseInt(request.getParameter("page"));
-		} catch (NumberFormatException e) {
-			page = 1;
-		}
-		TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("user");
-		//Danh mục hiển thị
+		TAIKHOAN user = (TAIKHOAN) request.getSession().getAttribute("user");
+		// Danh mục hiển thị
 		ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc("");
-		//Danh sách bài viết host
+		// Danh sách bài viết host
 		ArrayList<BAIVIET> topbaiviet = bv.getTopBaiViet("XemNhieu");
 		ArrayList<BAIVIET> topmoi = bv.getTopBaiViet("Moi");
-		ArrayList<THONGBAO> list = tb.getListThongBao(" GuiDen like N'"+user.getIdTaiKhoan()+"' or GuiDen like N'"+user.getTenTaiKhoan()+"' " , page);
-		request.setAttribute("topmoi", topmoi);
-		String pageNav = bv.getMenuPhanTrang();
-		
 		// List thông báo
 		ThongBaoBO thongBaoBO = new ThongBaoBO();
 		ArrayList<THONGBAO> listthongbao = thongBaoBO.getListHienThi("", "1","DienDan");
@@ -64,12 +70,15 @@ public class TBDenToiServlet extends HttpServlet {
 		QuangCaoBO quangCaoBO = new QuangCaoBO();
 		ArrayList<QUANGCAO> listquangcao = quangCaoBO.getDanhSachQuangCao((int) 2);
 		request.setAttribute("listquangcao", listquangcao);
-		
-		request.setAttribute("pageNav", pageNav);
+		request.setAttribute("topmoi", topmoi);
 		request.setAttribute("listdanhmuc", listdanhmuc);
 		request.setAttribute("topbaiviet", topbaiviet);
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("TBDenToi.jsp").forward(request, response);
+		THONGBAO thongbao = tb.getThongBao(id);
+		if(thongbao !=null){
+			tb.setViewed(id);
+		}
+		request.setAttribute("thongbao", thongbao);
+		request.getRequestDispatcher("ChiTietThongBao.jsp").forward(request, response);
 	}
 
 }

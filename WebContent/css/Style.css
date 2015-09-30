@@ -95,7 +95,7 @@
 		color: #020525;
 		padding: 0px 10px;
 	}
-	.thongtinthem embed {
+	.thongtinthem img {
 		margin-bottom: 5px;
 	}
 	.thongtinthem strong {
@@ -159,10 +159,6 @@
 		margin-top: 10px;
 		border-top: 1px dotted #bbb;
 	}
-	.col-sm-3 {
-		width: 300px;
-		overflow: hidden;
-	}
 	.col-sm-3 #contentadv {
 		width: 280px !important;
 		height: 100% !important;
@@ -170,6 +166,10 @@
 	}
 	#hotnews {
 		
+	}
+	.col-sm-3 {
+		width: 300px;
+		overflow: hidden;
 	}
 	.col-sm-9 {
 		width: 670px;
@@ -222,7 +222,7 @@
 		color: #020525;
 		padding: 0px 10px;
 	}
-	.thongtinthem embed {
+	.thongtinthem img {
 		margin-bottom: 5px;
 	}
 	.thongtinthem strong {
@@ -257,7 +257,7 @@
 		height: 95px;
 	}
 	.col-sm-9 {
-		width: 100%;
+		width: 570px;
 	}
 	.thongtinthem {
 		width: 30%;
@@ -267,32 +267,6 @@
 	}
 	#baiviet .baivieti {
 		padding: 0px !important;
-	}
-	#them p {
-		float: left;
-		width: 50% !important;
-		padding-top: 0px !important;
-		border-right: 1px dotted #ccc;
-		border-top: transparent !important;
-		margin: 5px 0px -5px 0px;
-	}
-	#them p:last-child {
-		border-right: transparent;
-	}
-	#them p {
-		padding-left: 5px;
-	}
-	#them p #icon {
-		width: 30%;
-	}
-	#them p #count {
-		font-size: 30px;
-		width: 70%;
-	}
-	#them {
-		overflow: hidden;
-		width: 880px;
-		padding: 10px 200px;
 	}
 	#dynamicText #textdiv #textcontent {
 		margin: 0px -12px 0px 5px;
@@ -314,13 +288,17 @@
 		width: 580px;
 		float: left;
 		overflow: inherit;
-		overflow:
+		overflow: hidden;
+	}
+	#sidebar {
+		width: 320px;;
+		overflow: hidden;
 	}
 	#sidebar .adv300x250 {
 		display: none;
 	}
 	.adv300x600 {
-		padding-top: 24px !important;
+		padding-top: 0px !important;
 	}
 	#leftTopContent {
 		display: none;
@@ -348,6 +326,38 @@
 }
 
 @media only screen and (max-width: 900px) {
+	.col-sm-3 {
+		width: 100%;
+	}
+	.col-sm-9 {
+		width: 100%;
+	}
+	#them p {
+		float: left;
+		width: 50% !important;
+		padding-top: 0px !important;
+		border-right: 1px dotted #ccc;
+		border-top: transparent !important;
+		margin: 5px 0px -5px 0px;
+	}
+	#them p:last-child {
+		border-right: transparent;
+	}
+	#them p {
+		padding-left: 5px;
+	}
+	#them p #icon {
+		width: 30%;
+	}
+	#them p #count {
+		font-size: 30px;
+		width: 70%;
+	}
+	#them {
+		overflow: hidden;
+		width: 880px;
+		padding: 10px 200px;
+	}
 	#headerTop #headerMain a span {
 		background-size: 215px 60px;
 		width: 200px;
@@ -382,9 +392,20 @@
 		padding: 5px 15px 5px 17px;
 		font-size: 14px;
 	}
+	#sidebar {
+		width: 100% !important;
+	}
+	.sidebar-item #content-item {
+		width: 60%;
+		float: left;
+	}
 }
 
 @media only screen and (max-width: 799px) {
+	.sidebar-item #content-item {
+		width: 55%;
+		float: left;
+	}
 	#headerTop #headerMain a span {
 		background-size: 190px 55px;
 		width: 170px;
@@ -422,6 +443,10 @@
 }
 
 @media only screen and (max-width: 767px) {
+	.sidebar-item #content-item {
+		width: 70%;
+		float: left;
+	}
 	.navbar li a {
 		padding: 5px 20px 5px 17px;
 		font-size: 15px;
@@ -534,6 +559,10 @@
 }
 
 @media only screen and (max-width: 719px) {
+	.sidebar-item #content-item {
+		width: 100%;
+		float: left;
+	}
 	#them {
 		width: 605px;
 		padding: 10px 50px;
@@ -674,7 +703,7 @@
 		color: #555;
 		width: auto;
 	}
-	.thongtinthem embed {
+	.thongtinthem img {
 		width: 25%;
 		float: left;
 		margin-bottom: 5px;
@@ -722,7 +751,7 @@
 		margin: 0px 10px 0px 0px;
 		font-size: 13px;
 	}
-	.thongtinthem embed {
+	.thongtinthem img {
 		width: 25%;
 	}
 	.thongtinthem strong {

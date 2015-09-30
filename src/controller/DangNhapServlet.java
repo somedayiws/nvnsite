@@ -11,10 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.bean.BAIVIET;
 import model.bean.DANHMUC;
+import model.bean.QUANGCAO;
 import model.bean.TAIKHOAN;
+import model.bean.THONGBAO;
 import model.bo.BaiVietBO;
 import model.bo.DanhMucBO;
+import model.bo.QuangCaoBO;
 import model.bo.TaiKhoanBO;
+import model.bo.ThongBaoBO;
 import model.bo.ValidateBO;
 
 @WebServlet("/DangNhapServlet")
@@ -63,6 +67,17 @@ public class DangNhapServlet extends HttpServlet {
 						//Danh sách bài viết host
 						ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet("XemNhieu");
 						ArrayList<BAIVIET> topmoi = baiviet.getTopBaiViet("Moi");
+						
+						// List thông báo
+						ThongBaoBO thongBaoBO = new ThongBaoBO();
+						ArrayList<THONGBAO> listthongbao = thongBaoBO.getListHienThi("", "1","DienDan");
+						request.setAttribute("listthongbao", listthongbao);
+						
+						// Danh sách quảng cáo
+						QuangCaoBO quangCaoBO = new QuangCaoBO();
+						ArrayList<QUANGCAO> listquangcao = quangCaoBO.getDanhSachQuangCao((int) 2);
+						request.setAttribute("listquangcao", listquangcao);
+						
 						request.setAttribute("topmoi", topmoi);
 						request.setAttribute("list", list);
 						request.setAttribute("listdanhmuc", listdanhmuc);

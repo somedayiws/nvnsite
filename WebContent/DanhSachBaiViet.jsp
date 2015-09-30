@@ -52,7 +52,7 @@
 			%>
 			<div class="baivieti col-xs-12 col-sm-12 col-md-12">
 				<a href="BaiVietServlet?id=<%=listbaiviet.get(i).getIdBaiViet()%>"
-					class="thongtinthem"> <embed
+					class="thongtinthem"> <img
 						src="<%=listbaiviet.get(i).getLienKet()%>"><strong>Tác
 						giả : <%=listbaiviet.get(i).getTaiKhoan().getHoTen()%></strong><br> <em>
 						Ngày : <%=listbaiviet.get(i).getNgayDang()%><br> View : <%=listbaiviet.get(i).getLuotXem()%>

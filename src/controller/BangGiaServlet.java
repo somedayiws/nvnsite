@@ -11,9 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.bean.BAIVIET;
 import model.bean.DANHMUC;
+import model.bean.QUANGCAO;
+import model.bean.THONGBAO;
 import model.bo.BaiVietBO;
 import model.bo.DanhMucBO;
+import model.bo.QuangCaoBO;
 import model.bo.TaiNguyenBO;
+import model.bo.ThongBaoBO;
 
 @WebServlet("/BangGiaServlet")
 public class BangGiaServlet extends HttpServlet {
@@ -42,6 +46,17 @@ public class BangGiaServlet extends HttpServlet {
 		request.setAttribute("topmoi", topmoi);
 		request.setAttribute("giadich", tainguyen.getValue("BangGiaDich"));
 		request.setAttribute("giaquangcao", tainguyen.getValue("BangGiaQuangCao"));
+		
+		// List thông báo
+		ThongBaoBO thongBaoBO = new ThongBaoBO();
+		ArrayList<THONGBAO> listthongbao = thongBaoBO.getListHienThi("", "1",  "DienDan");
+		request.setAttribute("listthongbao", listthongbao);
+
+		// Danh sách quảng cáo
+		QuangCaoBO quangCaoBO = new QuangCaoBO();
+		ArrayList<QUANGCAO> listquangcao = quangCaoBO.getDanhSachQuangCao((int) 2);
+		request.setAttribute("listquangcao", listquangcao);
+		
 		request.getRequestDispatcher("BangGia.jsp").forward(request, response);
 	}
 

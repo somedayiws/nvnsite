@@ -498,7 +498,7 @@ form#fdangnhap {
 	margin-left: 1%;
 }
 
-.thongtinthem embed {
+.thongtinthem img {
 	width: 100%;
 }
 
@@ -804,6 +804,19 @@ a {
 
 form#seach {
 	margin-right: 0%;
+}
+
+#login .navbar-nav>li>a #countMail {
+	background: #c9302c;
+	padding: 0px 6px;
+	border-radius: 15px;
+	font-size: 12px;
+	font-weight: bold;
+	margin-left: -2px;
+}
+
+#login .navbar-nav>li>a i {
+	font-size: 16px;
 }
 
 #login .nav.navbar-nav.navbar-right {
@@ -1445,6 +1458,43 @@ form#seach {
 }
 /*End style somedayiws*/
 img.imggia {
-    width: 100%;
-    margin-bottom: 20px;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+#tableThongBao {
+	border: 1px solid #eee;
+}
+
+#tableThongBao .active td a {
+	color: #333;
+	font-weight: 500;
+}
+
+#tieude1 {
+	background-color: rgb(69, 163, 234);
+}
+
+.sidebar-item {
+	margin: 10px 0px;
+}
+
+.sidebar-item #title-item {
+	font-size: 18px;
+	padding: 5px 10px;
+	font-weight: bold;
+	border-bottom: 1px solid #45a3ea;
+}
+
+.sidebar-item #content-item .item-style {
+	overflow: hidden;
+}
+
+.sidebar-item #content-item .item-style img {
+	width: 100%;
+}
+
+.sidebar-item #content-item {
+	padding: 5px 10px;
+	overflow: hidden;
 }

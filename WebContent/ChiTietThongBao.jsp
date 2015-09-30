@@ -1,13 +1,16 @@
+<%@page import="model.bean.THONGBAO"%>
 <%@page import="model.bean.TAIKHOAN"%>
-<%@page import="model.bean.BINHLUAN"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.bean.BAIVIET"%>
 <%@page import="model.bean.DANHMUC"%>
 
+<%@ page import="net.tanesha.recaptcha.ReCaptcha"%>
+<%@ page import="net.tanesha.recaptcha.ReCaptchaFactory"%>
+<%@page import="controller.SessionCounter"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@page import="controller.SessionCounter"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,49 +21,44 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery-2.1.0.min.js"></script>
 <script src="js/jquery.lazyload.js"></script>
-<link rel="stylesheet" href="css/Style.css">
 <link rel="stylesheet" href="css/ClientStyle.css">
 <link rel="stylesheet"
 	href="font-awesome-4.4.0/css/font-awesome.min.css">
-<title>Đăng nhập</title>
+<!-- Google+ -->
+<link rel="canonical" href="http://webvietnhat-demo.jelastic.skali.net/" />
+<title>Tin nhắn từ diễn đàn - 個人ホーム</title>
 </head>
 <body onLoad="initialize()">
+	<!-- Lấy dữ liệu từ server gửi về -->
+	<%
+		/* Danh sách bài đã đăng */
+			THONGBAO thongbao = (THONGBAO)request.getAttribute("thongbao");
+	%>
 	<%@include file="header.jsp"%>
 	<div id="mainContent">
+
+		<div id="sahred">
+			<g:plusone></g:plusone>
+
+			<a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+
+			<div id="fb-root"></div>
+			<!-- Your share button code -->
+			<div class="fb-share-button"
+				data-href="http://webvietnhat-demo.jelastic.skali.net/"
+				data-layout="button_count"></div>
+		</div>
 		<!-- hiển thị nội dung chính ở đây -->
 		<div class="col-sm-9 col-md-9" id="baiviet" style="font-size: 12px;">
-
-			<form action="DangNhapServlet" method="post" id="fdangnhap">
-				<div class="login">
-					<div>
-						<h3 class="modal-title" id="myModalLabel">Đăng nhập - ログイン</h3>
-					</div>
-					<div class="loi">
-						<%=request.getAttribute("loi")==null?"":request.getAttribute("loi")%>
-					</div>
-					<p>
-						<%=request.getAttribute("tbao")==null?"":request.getAttribute("tbao")%>
-					</p>
-					<div class="modal-body">
-						<div class="row">
-							<strong>Tài khoản - アカウント</strong> <input name="taikhoan"
-								type="text" placeholder="Tài khoản" class="form-control">
-						</div>
-						<div class="row">
-							<strong>Mật khẩu - パスワード</strong> <input name="matkhau"
-								type="password" placeholder="Tài khoản" class="form-control">
-						</div>
-						<a href="DangKyThanhVienServlet"><i class="fa fa-user-plus"></i>
-							Đăng ký - 新規取得</a> <br> <a href="QuenMatKhauServlet"><i
-							class="fa fa-user-plus"></i> Quên mật khẩu - 新規取得</a>
-					</div>
-					<div class="modal-footer">
-						<button name="xuly" name="submit" value="TrangChu"
-							class="btn btn-primary btn-sm">Đăng nhập - ログイン</button>
-					</div>
-				</div>
-			</form>
-
+			<center id="tieude"><%=thongbao.getTieuDe() %></center>
+			<div id="infoThongBao">
+			<span id="dateThongBao"><%=thongbao.getNgayDang() %></span>
+			</div>
+			<div id="contentThongBao">
+			<%=thongbao.getNoiDung() %>
+			</div>
+			<div id="nav-button">
+			</div>
 		</div>
 		<%@include file="sidebar.jsp"%>
 	</div>
@@ -150,6 +148,46 @@
 		s[0].parentNode.insertBefore(ga, s[0]);
 	})();
 </script>
+<!-- Ajax load danh mục -->
+<script type="text/javascript">
+	/* xem thêm các danh mục */
+	var nbaiviet = 10;
+	$(document)
+			.ready(
+					function() {
+						$("#xemtiep")
+								.click(
+										function() {
+											$
+													.ajax({
+														url : "DataDanhMucServlet", //file 
+														type : "POST", //phuong thức gưi
+														data : {
+															vitri : nbaiviet
+														}, //dữ liệu gửi
+														async : true, //
+														beforeSend : function() {
+															$("#load")
+																	.html(
+																			"<i class='fa fa-refresh fa-2x fa-spin'></i>");
+														},
+														success : function(res) {
+															$("#baiviet")
+																	.append(res);
+															nbaiviet = parseInt($(
+																	"#baiviet")
+																	.children()
+																	.size());
+															$("#load").html("");
+														},
+														error : function() {
+															alert('Có lỗi xảy ra\nエラが発生した。');
+															$("#load").html("");
+														}
+													});
+										});
+					});
+</script>
 <!-- Chuyển hướng đến danh muc x -->
 <script type="text/javascript">
 	function loadData(trang, x) {
@@ -158,26 +196,55 @@
 	function dichuyen(x) {
 		window.location.href = x;
 	};
+	function showMoiNhat() {
+		$('.xemnhieu').children('#contentMoiNhat').removeAttr('style');
+		$('.xemnhieu').children('#contentXemNhieu').attr('style',
+				'display:none;');
+		$('#titleTabBar').children('#pMoiNhat').attr('class',
+				'col-sm-6 col-md-6 active');
+		$('#titleTabBar').children('#pXemNhieu').attr('class',
+				'col-sm-6 col-md-6');
+	}
+	function showXemNhieu() {
+		$('.xemnhieu').children('#contentXemNhieu').removeAttr('style');
+		$('.xemnhieu').children('#contentMoiNhat').attr('style',
+				'display:none;');
+		$('#titleTabBar').children('#pMoiNhat').attr('class',
+				'col-sm-6 col-md-6');
+		$('#titleTabBar').children('#pXemNhieu').attr('class',
+				'col-sm-6 col-md-6 active');
+	}
 </script>
 <!-- check validate -->
 <script src="js/jquery.validate.js" type="text/javascript"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("#fdangnhap").validate({
+		/* Check đăng ký */
+		$("#fcapnhat").validate({
 			rules : {
-				taikhoan : {
-					required : true
-				},
 				matkhau : {
 					required : true
+				},
+				email : {
+					required : true,
+					email : true
+				},
+				dienthoai : {
+					digits : true,
+					minlength : 10
 				}
 			},
 			messages : {
-				taikhoan : {
-					required : "<br>Chưa nhập tên tài khoản"
-				},
 				matkhau : {
-					required : "<br>Chưa nhập mật khẩu!"
+					required : "Bạn chưa nhập mật khẩu!<br>"
+				},
+				email : {
+					required : "Bạn chưa nhập email!",
+					email : "Không đúng định dạng email"
+				},
+				dienthoai : {
+					digits : "Nhập sai định dạng số điện thoại<br>",
+					minlength : "Chứa tối thiểu 10 chữ số"
 				}
 			},
 			submitHandler : function(form) {

@@ -3,6 +3,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.bean.BAIVIET"%>
 <%@page import="model.bean.DANHMUC"%>
+
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
 
@@ -28,7 +29,7 @@ $(document).ready(function() {
 				$("#checkmail").html(result);
 			}
 		});
-	}, 15000);
+	}, 30000);
 });
 </script>
 <div id="headerTop">
@@ -51,15 +52,10 @@ $(document).ready(function() {
 					/* Danh mục được hiển thị trong phần menu */
 					ArrayList<DANHMUC> listdanhmuc = (ArrayList<DANHMUC>) request
 												.getAttribute("listdanhmuc");
-					/* Top 10 bài viết */
-					ArrayList<BAIVIET> top = (ArrayList<BAIVIET>) request
-												.getAttribute("topbaiviet");
-					/* Top 10 bài viết moi */
-					ArrayList<BAIVIET> topmoi = (ArrayList<BAIVIET>) request
-												.getAttribute("topmoi");
 					/* Lấy sesion người dùng */
 					TAIKHOAN user = (TAIKHOAN) request.getSession()
 												.getAttribute("user");
+					
 					if (user != null) {
 			%>
 			<input type="hidden" id="tkDangNhap" value="<%=user.getHoTen()%>">
@@ -67,15 +63,15 @@ $(document).ready(function() {
 				
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="CapNhatThongTinServlet">Chào <%=user.getTenTaiKhoan()%>
-						<i class="fa fa-cogs"> </i></a>
+						</a>
 					<ul class="dropdown-menu">
 						<li><a href="TrangCaNhanServlet"><i
 								class="fa fa-info-circle"></i> Trang cá nhân</a></li>
 						<li><a href="DangXuatServlet"><i class="fa fa-sign-out"></i>
 								Đăng xuất</a></li>
 					</ul></li>
-				<li><div id="checkmail"></div></li>
-				<li><a href="BangGiaServlet"><i class="fa fa-user"></i>
+				<li id="checkmail"></li>
+				<li><a href="BangGiaServlet">
 						Quảng cáo - ログイン</a> |</li>
 			</ul>
 			<%
@@ -83,9 +79,9 @@ $(document).ready(function() {
 			%>
 			<input type="hidden" id="tkDangNhap" value="null">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="BangGiaServlet"><i class="fa fa-user"></i>
-						Quảng cáo - ログイン</a> | <a href="DangKyThanhVienServlet"><i class="fa fa-user"></i>Đăng ký - ログイン</a> | <a data-toggle="modal" data-target="#mdangnhap"><i
-						class="fa fa-user"></i> Đăng nhập - ログインログイン</a></li>
+				<li><a href="BangGiaServlet">
+						Quảng cáo - ログイン</a> | <a href="DangKyThanhVienServlet">Đăng ký - ログイン</a> | 
+						<a data-toggle="modal" data-target="#mdangnhap"> Đăng nhập - ログインログイン</a></li>
 				<%
 					}
 				%>

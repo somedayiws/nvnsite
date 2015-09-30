@@ -22,10 +22,14 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import model.bean.BAIVIET;
 import model.bean.DANHMUC;
+import model.bean.QUANGCAO;
 import model.bean.TAIKHOAN;
+import model.bean.THONGBAO;
 import model.bo.BaiVietBO;
 import model.bo.DanhMucBO;
+import model.bo.QuangCaoBO;
 import model.bo.TaiNguyenBO;
+import model.bo.ThongBaoBO;
 
 @WebServlet("/DangBaiVietServlet")
 public class DangBaiVietServlet extends HttpServlet {
@@ -56,6 +60,17 @@ public class DangBaiVietServlet extends HttpServlet {
 				request.setAttribute("listdanhmuc", listdanhmuc);
 				request.setAttribute("topbaiviet", topbaiviet);
 				request.setAttribute("topmoi", topmoi);
+				
+				// List thông báo
+				ThongBaoBO thongBaoBO = new ThongBaoBO();
+				ArrayList<THONGBAO> listthongbao = thongBaoBO.getListHienThi("","1", "DienDan");
+				request.setAttribute("listthongbao", listthongbao);
+
+				// Danh sách quảng cáo
+				QuangCaoBO quangCaoBO = new QuangCaoBO();
+				ArrayList<QUANGCAO> listquangcao = quangCaoBO.getDanhSachQuangCao((int) 2);
+				request.setAttribute("listquangcao", listquangcao);
+				
 				TaiNguyenBO tainguyenBO = new TaiNguyenBO();
 				String sotu = tainguyenBO.getValue("SoTuDich");
 				String giaVN = tainguyenBO.getValue("ThanhTienVN");

@@ -12,11 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.bean.BAIVIET;
 import model.bean.DANHMUC;
+import model.bean.QUANGCAO;
 import model.bean.TAIKHOAN;
+import model.bean.THONGBAO;
 import model.bo.BaiVietBO;
 import model.bo.DanhMucBO;
 import model.bo.EmailUtility;
+import model.bo.QuangCaoBO;
 import model.bo.TaiKhoanBO;
+import model.bo.ThongBaoBO;
 
 /**
  * Servlet implementation class QuenMatKhauServlet
@@ -51,6 +55,17 @@ public class QuenMatKhauServlet extends HttpServlet {
 		request.setAttribute("topbaiviet", topbaiviet);
 		ArrayList<BAIVIET> topmoi = baiviet.getTopBaiViet("Moi");
 		request.setAttribute("topmoi", topmoi);
+		
+		// List thông báo
+		ThongBaoBO thongBaoBO = new ThongBaoBO();
+		ArrayList<THONGBAO> listthongbao = thongBaoBO.getListHienThi("", "1","DienDan");
+		request.setAttribute("listthongbao", listthongbao);
+
+		// Danh sách quảng cáo
+		QuangCaoBO quangCaoBO = new QuangCaoBO();
+		ArrayList<QUANGCAO> listquangcao = quangCaoBO.getDanhSachQuangCao((int) 2);
+		request.setAttribute("listquangcao", listquangcao);
+		
 		if(taikhoan != null){
 			ServletContext context = getServletContext();
 			

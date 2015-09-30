@@ -13,10 +13,14 @@ import net.tanesha.recaptcha.ReCaptchaImpl;
 import net.tanesha.recaptcha.ReCaptchaResponse;
 import model.bean.BAIVIET;
 import model.bean.DANHMUC;
+import model.bean.QUANGCAO;
 import model.bean.TAIKHOAN;
+import model.bean.THONGBAO;
 import model.bo.BaiVietBO;
 import model.bo.DanhMucBO;
+import model.bo.QuangCaoBO;
 import model.bo.TaiKhoanBO;
+import model.bo.ThongBaoBO;
 
 @WebServlet("/TrangCaNhanServlet")
 public class TrangCaNhanServlet extends HttpServlet {
@@ -86,6 +90,17 @@ public class TrangCaNhanServlet extends HttpServlet {
 			//Danh sách bài viết host
 			ArrayList<BAIVIET> topbaiviet = bv.getTopBaiViet("XemNhieu");
 			ArrayList<BAIVIET> topmoi = bv.getTopBaiViet("Moi");
+			
+			// List thông báo
+			ThongBaoBO thongBaoBO = new ThongBaoBO();
+			ArrayList<THONGBAO> listthongbao = thongBaoBO.getListHienThi("","1", "DienDan");
+			request.setAttribute("listthongbao", listthongbao);
+
+			// Danh sách quảng cáo
+			QuangCaoBO quangCaoBO = new QuangCaoBO();
+			ArrayList<QUANGCAO> listquangcao = quangCaoBO.getDanhSachQuangCao((int) 2);
+			request.setAttribute("listquangcao", listquangcao);
+			
 			request.setAttribute("topmoi", topmoi);
 			String pageNav = bv.getMenuPhanTrang();
 			request.setAttribute("pageNav", pageNav);

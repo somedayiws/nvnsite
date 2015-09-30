@@ -32,16 +32,16 @@
 	<!-- Lấy dữ liệu từ server gửi về -->
 	<%
 		/* Danh sách bài đã đăng */
-		ArrayList<THONGBAO> listbaidang = (ArrayList<THONGBAO>)request.getAttribute("list");
-		/* Thông báo báo lỗi */
-		String hthi = request.getParameter("xuly");
-		if(hthi!=null && hthi.equals("capnhat-thanhcong")) hthi = "<div class='alert alert-success' role='alert'>Cập nhật bài viết thành công.<br>記事をアップデートすることができた。</div>";
-		else if(hthi!=null && hthi.equals("capnhat-thatbai")) hthi = "<div class='alert alert-danger' role='alert'>Cập nhật bài viết thất bại.<br>記事をアップデートすることができない。</div>";
-		else if(hthi!=null && hthi.equals("xoa-thanhcong")) hthi = "<div class='alert alert-success' role='alert'>Xóa bài viết thành công.<br>記事を削除することができた。</div>";
-		else if(hthi!=null && hthi.equals("xoa-thatbai")) hthi = "<div class='alert alert-danger' role='alert'>Xóa bài viết thất bại.<br>記事を削除することができない。</div>";
-		else if(hthi!=null && hthi.equals("them-thanhcong")) hthi = "<div class='alert alert-success' role='alert'>Đăng bài viết thành công.<br>記事を投稿することができた。</div>";
-		else if(hthi!=null && hthi.equals("them-thatbai")) hthi = "<div class='alert alert-danger' role='alert'>Đăng bài viết thất bại.<br>記事を投稿することができない。</div>";
-		else if(hthi!=null && hthi.equals("loi-he-thong")) hthi = "<div class='alert alert-danger' role='alert'>Lỗi hệ thống. Vui lòng reset lại trang(Ctrl+F5).<br>システムのエラです。ホームページを改めてリセットして下さい(Ctrl+F5)。</div>";
+			ArrayList<THONGBAO> listbaidang = (ArrayList<THONGBAO>)request.getAttribute("list");
+			/* Thông báo báo lỗi */
+			String hthi = request.getParameter("xuly");
+			if(hthi!=null && hthi.equals("capnhat-thanhcong")) hthi = "<div class='alert alert-success' role='alert'>Cập nhật bài viết thành công.<br>記事をアップデートすることができた。</div>";
+			else if(hthi!=null && hthi.equals("capnhat-thatbai")) hthi = "<div class='alert alert-danger' role='alert'>Cập nhật bài viết thất bại.<br>記事をアップデートすることができない。</div>";
+			else if(hthi!=null && hthi.equals("xoa-thanhcong")) hthi = "<div class='alert alert-success' role='alert'>Xóa bài viết thành công.<br>記事を削除することができた。</div>";
+			else if(hthi!=null && hthi.equals("xoa-thatbai")) hthi = "<div class='alert alert-danger' role='alert'>Xóa bài viết thất bại.<br>記事を削除することができない。</div>";
+			else if(hthi!=null && hthi.equals("them-thanhcong")) hthi = "<div class='alert alert-success' role='alert'>Đăng bài viết thành công.<br>記事を投稿することができた。</div>";
+			else if(hthi!=null && hthi.equals("them-thatbai")) hthi = "<div class='alert alert-danger' role='alert'>Đăng bài viết thất bại.<br>記事を投稿することができない。</div>";
+			else if(hthi!=null && hthi.equals("loi-he-thong")) hthi = "<div class='alert alert-danger' role='alert'>Lỗi hệ thống. Vui lòng reset lại trang(Ctrl+F5).<br>システムのエラです。ホームページを改めてリセットして下さい(Ctrl+F5)。</div>";
 	%>
 	<%@include file="header.jsp"%>
 	<div id="mainContent">
@@ -59,9 +59,9 @@
 		</div>
 		<!-- hiển thị nội dung chính ở đây -->
 		<div class="col-sm-9 col-md-9" id="baiviet" style="font-size: 12px;">
-			<center id="tieude">Các bài viết đã đăng - 投資された記事です</center>
+			<center id="tieude"> Thông báo từ diễn đàn - </center>
 			<%=hthi == null || hthi.equals("") ? "" : hthi%>
-			<table class="table table-hover">
+			<table class="table table-hover" id="tableThongBao">
 				<tr id="tieude1">
 					<td class="cltde">Tiêu Đề - タイトル</td>
 					<td class="clmta">Ngày - 概要</td>
@@ -70,9 +70,12 @@
 					i = 0;
 					while(listbaidang != null && i<listbaidang.size()) {
 				%>
-				<tr class="noidung">
-					<td><%=listbaidang.get(i).getTieuDe()==null ? "" : listbaidang.get(i).getTieuDe() %></td>
-					<td><%=listbaidang.get(i).getNgayDang()%></td>
+				<tr
+					class="<%=listbaidang.get(i).getHienThi() == 1?"active":"non-Active"%>">
+					<td><a
+						href="ChiTietThongBaoServlet?id=<%=listbaidang.get(i).getIdThongBao()%>"><%=listbaidang.get(i).getTieuDe()==null ? "" : listbaidang.get(i).getTieuDe()%></a></td>
+					<td><a
+						href="ChiTietThongBaoServlet?id=<%=listbaidang.get(i).getIdThongBao()%>"><%=listbaidang.get(i).getNgayDang()%></a></td>
 				</tr>
 				<%
 					i++; }
@@ -249,11 +252,11 @@
 				},
 				email : {
 					required : true,
-					email: true
+					email : true
 				},
 				dienthoai : {
 					digits : true,
-					minlength: 10
+					minlength : 10
 				}
 			},
 			messages : {
@@ -266,7 +269,7 @@
 				},
 				dienthoai : {
 					digits : "Nhập sai định dạng số điện thoại<br>",
-					minlength: "Chứa tối thiểu 10 chữ số"
+					minlength : "Chứa tối thiểu 10 chữ số"
 				}
 			},
 			submitHandler : function(form) {
