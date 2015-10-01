@@ -119,7 +119,7 @@ div#listblviet {
 }
 .xem {
 	font-weight: bold;
-    width: 130px;
+    width: 194px;
     height: 40px;
     background-color: #00FF1C;
     margin-top: 5px;
@@ -129,7 +129,7 @@ div#listblviet {
 }
 .xem1 {
 	font-weight: bold;
-    width: 130px;
+    width: 194px;
     height: 40px;
     background-color: #FF4400;
     margin-top: 5px;
@@ -148,16 +148,7 @@ div#listblviet {
     float: left;
     text-align: center;
 }
-.xemx {
-	font-weight: bold;
-    width: 64px;
-    height: 40px;
-    margin-top: 5px;
-    border-radius: 19px;
-    padding: 11px;
-    float: left;
-    text-align: center;
-}
+
 .col-sm-10 {
 	margin-bottom: 40px!important;
 	overflow: hidden;

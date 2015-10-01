@@ -46,6 +46,11 @@
 	<!-- nội dung chính -->
 	<div class="col-sm-2 col-md-2">
 		<%@include file="files/thongke.jsp" %>
+		
+		<div class="xem">Tiến độ -  : <%= request.getAttribute("tongbvok") %>%</div>
+		<div class="xem1">Hủy bỏ - 削除 : <%= request.getAttribute("tongbvhuy") %>%</div>
+		<div class="xem2">Bài lỗi - : <%= request.getAttribute("tongbvloi") %></div>
+		
 	</div>
 	<div class="col-sm-10 col-md-10">
 	

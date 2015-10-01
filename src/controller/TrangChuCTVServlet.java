@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -39,6 +40,18 @@ public class TrangChuCTVServlet extends HttpServlet {
 			ArrayList<BAIVIET> listtre = baiviet.getListPhanCong(user.getIdTaiKhoan(), "qua-han", 1);
 			request.setAttribute("listmoi", listmoi);
 			request.setAttribute("listtre", listtre);
+			
+			int tongbv = baiviet.TongBaiViet(user.getIdTaiKhoan(), "");
+			int tongbvok = baiviet.TongBaiViet(user.getIdTaiKhoan(), "Ok");
+			int tongbvhuy = baiviet.TongBaiViet(user.getIdTaiKhoan(), "HuyDich");
+			int tongbvloi = baiviet.TongBaiViet(user.getIdTaiKhoan(), "LoiDich");
+			
+			DecimalFormat df = new DecimalFormat("0.00");
+			
+			request.setAttribute("tongbvok", df.format(tongbvok*100.00/tongbv));
+			request.setAttribute("tongbvhuy", df.format(tongbvhuy*100.00/tongbv));
+			request.setAttribute("tongbvloi", tongbvloi);
+			
 			request.getRequestDispatcher("HomeCTV.jsp").forward(request, response);
 		}
 	}

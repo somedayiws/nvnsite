@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.bean.TAIKHOAN;
+import model.bo.BaiVietBO;
 import model.bo.TaiKhoanBO;
 
 @WebServlet("/ctv/CapNhatThongTinServlet")
@@ -51,6 +53,20 @@ public class CapNhatThongTinServlet extends HttpServlet {
 				request.setAttribute("meg", "<div class='alert alert-success' role='alert'><p>Chào bạn " + user.getHoTen() + ", Chúc bạn một ngày làm việc vui vẻ.</p>"
 						+ "<br><p>"+user.getHoTen()+" 様に良い日々を迎えるように</p></div>");
 			}
+
+			BaiVietBO baiviet = new BaiVietBO();
+			
+			int tongbv = baiviet.TongBaiViet(user.getIdTaiKhoan(), "");
+			int tongbvok = baiviet.TongBaiViet(user.getIdTaiKhoan(), "Ok");
+			int tongbvhuy = baiviet.TongBaiViet(user.getIdTaiKhoan(), "HuyDich");
+			int tongbvloi = baiviet.TongBaiViet(user.getIdTaiKhoan(), "LoiDich");
+			
+			DecimalFormat df = new DecimalFormat("0.00");
+			
+			request.setAttribute("tongbvok", df.format(tongbvok*100.00/tongbv));
+			request.setAttribute("tongbvhuy", df.format(tongbvhuy*100.00/tongbv));
+			request.setAttribute("tongbvloi", tongbvloi);
+			
 			request.getRequestDispatcher("ThongTinCTV.jsp").forward(request, response);
 		}else{
 			response.sendRedirect("TrangChuCTVServlet");

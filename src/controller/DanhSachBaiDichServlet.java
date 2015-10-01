@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -53,6 +54,18 @@ public class DanhSachBaiDichServlet extends HttpServlet {
 			String pageNav = baiviet.getMenuPhanTrang();
 			request.setAttribute("pageNav", pageNav);
 			request.setAttribute("listbaiviet", listbaiviet);
+
+			int tongbv = baiviet.TongBaiViet(user.getIdTaiKhoan(), "");
+			int tongbvok = baiviet.TongBaiViet(user.getIdTaiKhoan(), "Ok");
+			int tongbvhuy = baiviet.TongBaiViet(user.getIdTaiKhoan(), "HuyDich");
+			int tongbvloi = baiviet.TongBaiViet(user.getIdTaiKhoan(), "LoiDich");
+			
+			DecimalFormat df = new DecimalFormat("0.00");
+			
+			request.setAttribute("tongbvok", df.format(tongbvok*100.00/tongbv));
+			request.setAttribute("tongbvhuy", df.format(tongbvhuy*100.00/tongbv));
+			request.setAttribute("tongbvloi", tongbvloi);
+			
 			request.getRequestDispatcher("ListBaiDich.jsp").forward(request, response);
 		}else{
 			response.sendRedirect("TrangChuCTVServlet");

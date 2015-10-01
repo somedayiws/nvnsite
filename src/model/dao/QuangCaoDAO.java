@@ -133,7 +133,7 @@ public class QuangCaoDAO {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		sql = "insert into quangcao(Lienket, HinhAnh, ViTri, HienThi, SoNgay, TrangHienThi, DonViQuangCao, NgayDang, GiaQuangCao, KichThuoc, Email, DienThoai) values (N'"
 				+ link + "', N'"+image+"', '"+position+"', '"+display+"', '"+numberOfDay+"', '"+page+"', N'"
-				+ company+ "', '"+sdf.format(cal.getTime())+"', '"+price+"', '300x400', '"+email+"', '"+dienthoai+"')";
+				+ company+ "', '"+sdf.format(cal.getTime())+"', '"+price+"', '"+getKichThuoc(page, position)+"', '"+email+"', '"+dienthoai+"')";
 		System.out.println("SQL : " + sql);
 		return db.updateData(sql);
 	}
@@ -145,15 +145,27 @@ public class QuangCaoDAO {
 		String sql = "";
 		sql = "update quangcao set Lienket=N'"+link+"', HinhAnh=N'"+image+"', ViTri='"+position
 				+"', SoNgay='"+numberOfDay+"', TrangHienThi='"+page
-				+"', DonViQuangCao=N'"+company+"', GiaQuangCao='"+price+"', KichThuoc='300x400', Email=N'"
+				+"', DonViQuangCao=N'"+company+"', GiaQuangCao='"+price+"', KichThuoc='"+getKichThuoc(page, position)+"', Email=N'"
 				+email+"', DienThoai='"+dienthoai+"' where IdQuangCao='"+id+"'";
 		System.out.println("SQL : " + sql);
 		return db.updateData(sql);
 	}
 	
+	//Kích thước quảng cáo
+	public String getKichThuoc(String page, String vitri){
+		if(page.equals("1")){
+			if(vitri.equals("3")) return "300x100";
+			else if(vitri.equals("4")) return "728x90";
+			else if(vitri.equals("6")) return "300x600";
+			else return "300x250";
+		}
+		else if(page.equals("2")) return "300x250";
+		return "400x100";
+	}
+	
 	//Kiểm tra tồn tại của quảng cáo
 	public boolean KiemTraTonTai(int Vitri, int Page){
-		String sql = "select * from quangcao where HienThi='1' and ViTri='"+Vitri+"' and TrangHienThi='"+Page+"' and not DonViQuangCao=N'Mặt định'";
+		String sql = "select * from quangcao where HienThi='1' and ViTri='"+Vitri+"' and TrangHienThi='"+Page+"' and not DonViQuangCao=N'Mặc định'";
 		ResultSet rs = db.getResultSet(sql);
 		try {
 			while(rs.next()){
@@ -167,7 +179,7 @@ public class QuangCaoDAO {
 	
 	//Lấy ID của quảng cáo mặt định đang ghim
 	public int FindID(int vitri, int page, int hienthi){
-		String sql = "select IdQuangCao from quangcao where HienThi='"+hienthi+"' and ViTri='"+vitri+"' and TrangHienThi='"+page+"' and DonViQuangCao='Mặt định'";
+		String sql = "select IdQuangCao from quangcao where HienThi='"+hienthi+"' and ViTri='"+vitri+"' and TrangHienThi='"+page+"' and DonViQuangCao='Mặc định'";
 		ResultSet rs = db.getResultSet(sql);
 		try {
 			while(rs.next()){
