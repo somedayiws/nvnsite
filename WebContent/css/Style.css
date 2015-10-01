@@ -109,6 +109,9 @@
 		margin-left: 5px;
 	}
 	/*End item news style*/
+	#contentFooter {
+		width: 1066px;
+	}
 }
 
 @media only screen and (max-width: 1065px) {
@@ -243,6 +246,15 @@
 		padding: 5px 20px 5px 25px;
 		font-size: 15px;
 	}
+	#contentFooter .infoContent {
+		min-width: 220px;
+	}
+	#connect {
+		width: 390px;
+	}
+	#contentFooter {
+		width: 960px;
+	}
 }
 
 @media only screen and (max-width: 970px) { /*Style 960px*/
@@ -323,6 +335,12 @@
 	.navbar li a {
 		padding: 5px 15px 5px 20px;
 	}
+	#connect {
+		width: 305px;
+	}
+	#contentFooter {
+		width: 880px;
+	}
 }
 
 @media only screen and (max-width: 900px) {
@@ -399,6 +417,12 @@
 		width: 60%;
 		float: left;
 	}
+	#contentFooter .infoContent {
+		min-width: 130px;
+	}
+	#contentFooter {
+		width: 790px;
+	}
 }
 
 @media only screen and (max-width: 799px) {
@@ -439,6 +463,12 @@
 	.navbar li a {
 		padding: 5px 15px 5px 17px;
 		font-size: 13px;
+	}
+	#connect {
+		width: 275px;
+	}
+	#contentFooter {
+		width: 755px;
 	}
 }
 
@@ -556,6 +586,13 @@
 	#sahred {
 		display: none;
 	}
+	#connect {
+		width: 225px;
+	}
+	#contentFooter {
+		height: 240px;
+		width: 705px;
+	}
 }
 
 @media only screen and (max-width: 719px) {
@@ -589,6 +626,16 @@
 	}
 	.adv728x90 {
 		display: none;
+	}
+	#connect {
+		width: 100%;
+	}
+	#contentFooter .infoContent {
+		min-width: 45%;
+	}
+	#contentFooter {
+		height: 100%;
+		width: 100%;
 	}
 }
 
@@ -631,6 +678,22 @@
 	}
 	#topmenu .nav {
 		font-size: 14px;
+	}
+	#connect {
+		width: 95%;
+	}
+	#about {
+		width: 55%;
+	}
+	#link {
+		width: 35%;
+	}
+	#contentFooter .infoContent {
+		min-width: 10%;
+	}
+	#contentFooter {
+		height: 100%;
+		width: 97%;
 	}
 }
 
@@ -727,6 +790,15 @@
 		width: 50%;
 	}
 	/*end tabbar style*/
+	#leftFooter {
+		display: none;
+	}
+	#contentFooter .infoContent {
+		margin: 10px;
+	}
+	#contentFooter .infoContent p {
+		margin: 5px 0px;
+	}
 }
 
 @media only screen and (max-width: 479px) {
@@ -772,9 +844,14 @@
 	#iconImg i {
 		padding: 6px 0px 8px 7px !important;
 	}
+	#about {
+		width: 95%;
+	}
+	#link {
+		width: 95%;
+	}
 }
 
-}
 @media only screen and (max-width: 360px) {
 }
 

@@ -779,6 +779,7 @@ a {
 
 #footer #wFooter {
 	padding: 10px 5px;
+	overflow: hidden;
 	border-bottom: 1px dotted #eee;
 }
 
@@ -799,12 +800,6 @@ a {
 	color: white;
 }
 
-#footer #contentFooter {
-	height: 220px;
-	overflow: hidden;
-	width: 100%;
-}
-
 #footer #wFooter #rightFooter a i {
 	background: #1e87c0;
 	padding: 3px;
@@ -816,17 +811,6 @@ a {
 	font-size: 14px;
 }
 
-#contentFooter {
-	width: 1066px !important;
-	margin: 0px auto !important;
-}
-
-#contentFooter .infoContent {
-	float: left;
-	margin: 10px;
-	min-width: 300px;
-}
-
 #contentFooter .infoContent #titleContent {
 	font-weight: bold;
 	font-family: arial;
@@ -834,10 +818,6 @@ a {
 	width: 100%;
 	border-bottom: 1px solid;
 	margin-bottom: 10px;
-}
-
-#connect {
-	width: 405px !important;
 }
 
 #linkconnect a {
@@ -864,6 +844,25 @@ a {
 
 #linkconnect a #googlediv {
 	background-image: url('../images/icons/google.png');
+}
+
+#footer #contentFooter {
+	overflow: hidden;
+}
+
+#contentFooter {
+	width: 1066px;
+	margin: 0px auto !important;
+}
+
+#contentFooter .infoContent {
+	float: left;
+	margin: 10px;
+	min-width: 300px;
+}
+
+#connect {
+	width: 405px;
 }
 /*footer style*/
 .container-fluid .navbar-nav>li>a {
