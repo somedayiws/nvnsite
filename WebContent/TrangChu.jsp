@@ -15,6 +15,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Thư viện cho menu -->
 <link rel="stylesheet" href="bootstrap-3.3.5-dist/css/bootstrap.min.css">
+<script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery-2.1.0.min.js"></script>
 <script type="text/javascript">
@@ -279,7 +280,7 @@ body {
 											<a
 												href="BaiVietServlet?id=<%=listbaiviet.get(j).getIdBaiViet()%>"
 												class="thongtinthem"> <img
-												src="<%=listbaiviet.get(j).getLienKet()%>"><strong><i
+												src="<%=listbaiviet.get(j).getLienKet()==null?"images/baiviet.jpg":listbaiviet.get(j).getLienKet()%>"><strong><i
 													class="fa fa-user"></i> <%=listbaiviet.get(j).getTaiKhoan().getHoTen()%></strong>
 												<em> <i class="fa fa-calendar"></i> <%=listbaiviet.get(j).getNgayDang()%></em>
 												<em><i class="fa fa-eye"></i> <%=listbaiviet.get(j).getLuotXem()%>
@@ -288,7 +289,8 @@ body {
 											<div class="motabai">
 												<a
 													href="BaiVietServlet?id=<%=listbaiviet.get(j).getIdBaiViet()%>">
-													<%=listbaiviet.get(j).getTenBaiVietVi()%> <br> <%=listbaiviet.get(j).getTenBaiVietJa()%>
+													<%=listbaiviet.get(j).getTenBaiVietVi()==null?"":listbaiviet.get(j).getTenBaiVietVi()%> 
+													<%=listbaiviet.get(j).getTenBaiVietJa()==null?"":"<br>"+listbaiviet.get(j).getTenBaiVietJa()%>
 												</a>
 												<p>
 													<%
@@ -325,13 +327,14 @@ body {
 								<!-- danh sách các bài viết trong nhóm -->
 								<div class="col-xs-2 col-md-1">
 									<img alt="Ảnh đại diện"
-										src="<%=listbaiviet.get(j).getLienKet()%>"
+										src="<%=listbaiviet.get(j).getLienKet()==null?"images/baiviet.jpg":listbaiviet.get(j).getLienKet()%>"
 										style="width: 70px;">
 								</div>
 								<div class="col-xs-10 col-md-11">
 									<a
 										href="BaiVietServlet?id=<%=listbaiviet.get(j).getIdBaiViet()%>">
-										<%=listbaiviet.get(j).getTenBaiVietVi()%><br><%=listbaiviet.get(j).getTenBaiVietJa()%>
+										<%=listbaiviet.get(j).getTenBaiVietVi()==null?"":listbaiviet.get(j).getTenBaiVietVi()%> 
+										<%=listbaiviet.get(j).getTenBaiVietJa()==null?"":"<br>"+listbaiviet.get(j).getTenBaiVietJa()%>
 									</a>
 								</div>
 							</div>
@@ -385,7 +388,7 @@ body {
 						<ul id="contentMoiNhat">
 							<%
 								l = 0;
-																												while (topmoi != null && l < topmoi.size()) {
+								while (topmoi != null && l < topmoi.size()) {
 							%>
 							<li><a
 								href="BaiVietServlet?id=<%=topmoi.get(l).getIdBaiViet()%>"><i

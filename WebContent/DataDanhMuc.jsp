@@ -7,8 +7,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <%
-	ArrayList<DANHMUC> list = (ArrayList<DANHMUC>) request
-			.getAttribute("list");
+	ArrayList<DANHMUC> list = (ArrayList<DANHMUC>) request.getAttribute("list");
 	int i = 0;
 	while (list != null && i < list.size()) {
 		if (list.get(i).getBaiViets() != null
@@ -49,7 +48,7 @@
 							<a
 								href="BaiVietServlet?id=<%=listbaiviet.get(j).getIdBaiViet()%>"
 								class="thongtinthem"> <img
-								src="<%=listbaiviet.get(j).getLienKet()%>"><strong><i
+								src="<%=listbaiviet.get(j).getLienKet()==null?"images/baiviet.jpg":listbaiviet.get(j).getLienKet()%>"><strong><i
 									class="fa fa-user"></i> <%=listbaiviet.get(j).getTaiKhoan().getHoTen()%></strong>
 								<em> <i class="fa fa-calendar"></i> <%=listbaiviet.get(j).getNgayDang()%></em>
 								<em><i class="fa fa-eye"></i> <%=listbaiviet.get(j).getLuotXem()%>
@@ -58,7 +57,8 @@
 							<div class="motabai">
 								<a
 									href="BaiVietServlet?id=<%=listbaiviet.get(j).getIdBaiViet()%>">
-									<%=listbaiviet.get(j).getTenBaiVietVi()%> <br> <%=listbaiviet.get(j).getTenBaiVietJa()%>
+									<%=listbaiviet.get(j).getTenBaiVietVi()==null?"":listbaiviet.get(j).getTenBaiVietVi()%> 
+									<%=listbaiviet.get(j).getTenBaiVietJa()==null?"":"<br>"+listbaiviet.get(j).getTenBaiVietJa()%>
 								</a>
 								<p>
 									<%
@@ -100,12 +100,13 @@
 			<div class="row">
 				<!-- danh sách các bài viết trong nhóm -->
 				<div class="col-xs-2 col-md-1">
-					<img alt="Ảnh đại diện" src="<%=listbaiviet.get(j).getLienKet()%>"
+					<img alt="Ảnh đại diện" src="<%=listbaiviet.get(j).getLienKet()==null?"images/baiviet.jpg":listbaiviet.get(j).getLienKet()%>"
 						style="width: 70px;">
 				</div>
 				<div class="col-xs-10 col-md-11">
 					<a href="BaiVietServlet?id=<%=listbaiviet.get(j).getIdBaiViet()%>">
-						<%=listbaiviet.get(j).getTenBaiVietVi()%><br><%=listbaiviet.get(j).getTenBaiVietJa()%>
+						<%=listbaiviet.get(j).getTenBaiVietVi()==null?"":listbaiviet.get(j).getTenBaiVietVi()%> 
+						<%=listbaiviet.get(j).getTenBaiVietJa()==null?"":"<br>"+listbaiviet.get(j).getTenBaiVietJa()%>
 					</a>
 				</div>
 			</div>

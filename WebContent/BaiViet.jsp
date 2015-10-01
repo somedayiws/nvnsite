@@ -66,7 +66,7 @@
 				<%
 					if(baiviet.getTenBaiVietVi() != null && baiviet.getTenBaiVietJa() != null) {
 				%>
-				-
+				<br>
 				<%
 					}
 				%>
@@ -164,7 +164,7 @@
 					<div class="row" id="listblnhat">
 						<%
 							i = 0;
-															while(blnhat != null && i<blnhat.size()){
+							while(blnhat != null && i<blnhat.size()){
 						%>
 						<div id="itemComment">
 
@@ -284,7 +284,7 @@
 				<strong>Danh sách bài viết liên quan</strong>
 				<%
 					i=0;
-															while(listbaiviet != null && i<listbaiviet.size()){
+					while(listbaiviet != null && i<listbaiviet.size()){
 				%>
 				<div class="row">
 					<!-- danh sách các bài viết trong nhóm -->
