@@ -38,8 +38,7 @@ public class TrangChuServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		String txtFind = (String) request.getAttribute("txtFind");
-		if (txtFind == null)
-			txtFind = "";
+		if (txtFind == null) txtFind = "";
 		DanhMucBO danhmuc = new DanhMucBO();
 		BaiVietBO baiviet = new BaiVietBO();
 		QuangCaoBO quangCaoBO = new QuangCaoBO();
@@ -63,8 +62,6 @@ public class TrangChuServlet extends HttpServlet {
 		request.setAttribute("hotPosts", hotPosts);
 		// Danh sách quảng cáo
 		ArrayList<QUANGCAO> listquangcao = quangCaoBO.getDanhSachQuangCao((int) 1);
-
-		request.setAttribute("hotPosts", hotPosts);
 		request.setAttribute("listquangcao", listquangcao);
 		ThongBaoBO thongBaoBO = new ThongBaoBO();
 		// List thông báo
