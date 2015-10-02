@@ -48,9 +48,14 @@ h3 {
 	border: 2px solid black;
 	margin-top: 50%;
 	border-radius:5%;
-	text-align: center;	
+	border-left: 10px solid black;
+    padding: 20px;
+}
+h2{	
+	border-bottom: 2px solid green;
 }
 #ContentVi{
+	overflow: scroll;
 	padding-right: 0;
 }
 #btnVi{
@@ -63,6 +68,7 @@ h3 {
 	display: none;
 }
 #ContentJa{
+	overflow: scroll;
 	padding-right: 0;
 	height: 100%
 }
@@ -77,4 +83,7 @@ h3 {
 }
 .pcomment{
 	margin-left: 5%;
+}
+#resultMessage{
+	display:none;
 }

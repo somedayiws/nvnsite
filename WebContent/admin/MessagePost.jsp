@@ -3,9 +3,6 @@
 <%
 	String id = (String) request.getAttribute("id");
 	String result = (String) request.getAttribute("result");
-
-	System.out.println("id: " + id);
-	System.out.println("result: " + result);
 %>
 <button type="button" id="<%=id%>" <%if (result.contains("Đã ghim")) {%>
 	class="btn btn-warning btn-sm btnbookmark" <%} else {%>

@@ -48,8 +48,6 @@ public class ShowDetailPostsServlet extends HttpServlet {
 			
 			String status = listStatus.getStatus(idPost);
 
-			// System.out.println("id danh muc: "+post.getDanhMuc().getIdDanhMuc());
-			
 			BAIVIET post = editPosts.post(idPost);
 			
 			request.setAttribute("post", post);
@@ -70,8 +68,6 @@ public class ShowDetailPostsServlet extends HttpServlet {
 			HttpServletResponse response, String idPost,String result)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("iddetailPost: "+idPost);
-		System.out.println("resultDetailPost: "+result);
 		request.setCharacterEncoding("UTF-8");
 
 		

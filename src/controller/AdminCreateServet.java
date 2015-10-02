@@ -109,7 +109,6 @@ public class AdminCreateServet extends HttpServlet {
 					dispatcher = request.getRequestDispatcher("ListAccountServlet");
 				}
 				dispatcher.forward(request, response);
-				//response.sendRedirect("ListAccountServlet");
 			}
 			// if not exist
 			else {

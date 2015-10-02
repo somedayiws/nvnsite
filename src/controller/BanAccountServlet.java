@@ -85,16 +85,6 @@ public class BanAccountServlet extends HttpServlet {
 		else if(statusAccount.equals(CanhCao3)) statusChange = KhoaTK;
 		else if(statusAccount.equals(KhoaTK))	statusChange = DaKhoa;
 		else									statusChange	= null;
-//		switch(statusAccount){
-//			case MoiTao		: statusChange	= CanhCao1;
-//			case CanhCao1	: statusChange	= CanhCao2;
-//			case CanhCao2	: statusChange	= CanhCao3;
-//			case CanhCao3	: statusChange	= KhoaTK;
-//			case KhoaTK		: statusChange	= DaKhoa;
-//			default			: statusChange	= null;
-//		}
-//		System.out.println("statusChange: "+statusChange);
-//		System.out.println("T/F: "+statusChange.equals(DaKhoa));
 		/*Thay đổi trạng thái tài khoản*/
 		 
 		if(statusChange!=null)
@@ -103,7 +93,7 @@ public class BanAccountServlet extends HttpServlet {
 				ChangeStatusBO changeStatusBo = new ChangeStatusBO();
 				
 				if(changeStatusBo.changeStatusAccount(id, statusChange)){
-					resultChangeStatusAccount = "Thay đổi thành công.Tài khoản "+id+" đã bị "+statusChange;
+					resultChangeStatusAccount = "Thay đổi thành công";
 				}
 				else{
 					resultChangeStatusAccount = "Lỗi thay đổi trạng thái";
@@ -115,8 +105,10 @@ public class BanAccountServlet extends HttpServlet {
 		}else{
 			resultChangeStatusAccount = "Lỗi trạng thái không hợp lệ";
 		}
-		request.setAttribute("result", resultChangeStatusAccount);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("Message.jsp");
+		request.setAttribute("result", statusChange);
+		request.setAttribute("notice", resultChangeStatusAccount);
+		request.setAttribute("id", id);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("MessageAccount.jsp");
 		requestDispatcher.forward(request, response);
 		
 	}

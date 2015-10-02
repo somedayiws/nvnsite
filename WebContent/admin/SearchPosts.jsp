@@ -213,18 +213,16 @@ $(document).ready(function(){
 													<span class="label label-default">Không có tên bài viết</span>
 												<%}else{ %>
 													<%if(listposts.get(i).getTenBaiVietVi()!= null){%>
-														<%=listposts.get(i).getTenBaiVietVi()%> 
-													<%}else{ %>
-														<span class="label label-success">Không có tiếng việt</span>
+														<p><%=listposts.get(i).getTenBaiVietVi()%></p> 
 													<%} %>
-														- 
+														 
 													<%if(listposts.get(i).getTenBaiVietJa()!= null){%>
 														<%=listposts.get(i).getTenBaiVietJa()%> 
-													<%}else{ %>
-														<span class="label label-success">Không có tiếng nhật</span>
-													<%}
+													<%} %>
+														
+													<%
 												} %>
-											</td>
+								</td>
 								<td><%=listposts.get(i).getDanhMuc().getTenDanhMucVi()%> - <%=listposts.get(i).getDanhMuc().getTenDanhMucJa()%></td>
 								<td><%=listposts.get(i).getTaiKhoan().getTenTaiKhoan() %></td>
 								<td><%=listposts.get(i).getNgayDang()%></td>
@@ -233,16 +231,12 @@ $(document).ready(function(){
 										<span class="label label-default">Không có mô tả</span>
 									<%}else{ %>
 										<%if(listposts.get(i).getMoTaVi() != null ){ %>
-											<%=listposts.get(i).getMoTaVi()%> 
-										<%}else{ %>
-											<span class="label label-success">Không có mô tả tiếng việt</span>
-										<%} %>
-										-
+											<p><%=listposts.get(i).getMoTaVi()%></p> 
+										<%}%>
+										
 										<%if(listposts.get(i).getMoTaJa() != null ){  %>
-											<%=listposts.get(i).getMoTaJa()%>
-										<%}else{ %>
-											<span class="label label-success">Không có mô tả tiếng nhật</span>
-										<%}} %>
+											<p><%=listposts.get(i).getMoTaJa()%></p>
+										<%}}%>
 									 
 								</td>
 									<td>
@@ -252,8 +246,9 @@ $(document).ready(function(){
 										Đang dịch - 
 									<%}else if(listposts.get(i).getTrangThai().equals("OK")){ %>
 										Đã duyệt - 
+									<%}else if(listposts.get(i).getTrangThai().equals("KhongDich")){ %>
+										Không dịch - 
 									<%}else{ %>
-										Trạng thái khác - ...<br>
 										<%=listposts.get(i).getTrangThai()%>
 									<%} %>
 								

@@ -52,6 +52,7 @@ public class ShowAdminEditPostsServlet extends HttpServlet {
 		String idpost =request.getParameter("idPost");
 		String from = request.getParameter("from");
 		
+		String resultEdit =(String)request.getAttribute("resultEdit");
 	
 		if(idpost==null){
 			response.sendRedirect("ListPostsServlet");
@@ -62,14 +63,14 @@ public class ShowAdminEditPostsServlet extends HttpServlet {
 		ShowAdminEditPostsBO editPosts = new ShowAdminEditPostsBO();
 		 
 		ArrayList<DANHMUC> categorys = listCategory.getCategory(1);
-		ArrayList<TAIKHOAN> accounts = listAccount.getDataAccountInfor(1);
+		ArrayList<TAIKHOAN> accounts = listAccount.getDataAccountInfor(-1);
 		BAIVIET post = editPosts.post(idpost);
 		
-//		System.out.println("id danh muc: "+post.getDanhMuc().getIdDanhMuc());
 		request.setAttribute("categorys", categorys);
-		request.setAttribute("account", accounts);
+		request.setAttribute("accounts", accounts);
 		request.setAttribute("post", post);
 		request.setAttribute("from", from);
+		request.setAttribute("resultEdit", resultEdit);
 		RequestDispatcher requestDis_editPost = request.getRequestDispatcher("AdminEditPosts.jsp");
 		
 		requestDis_editPost.forward(request, response);

@@ -49,10 +49,6 @@ public class ListAccountServlet extends HttpServlet {
 
 		String result = (String) request.getAttribute("result");
 		String result_Restore = (String)request.getAttribute("result_Restore");
-		
-		//Nhận kết quả tạo tài khoản từ AdminCreateServlet
-//		String result_create_Account = (String)request.getAttribute("result");
-		
 		//Nhận kết quả tìm kiếm
 		ArrayList<TAIKHOAN> account = (ArrayList<TAIKHOAN>)request.getAttribute("account");
 		String pageNavSearch = (String)request.getAttribute("pageNavSearch");
@@ -62,7 +58,6 @@ public class ListAccountServlet extends HttpServlet {
 		if (result != null) {
 			if (result.contains("Cập nhật")) {
 				if (result.contains("thành công")) {
-
 					resultUpdate = "Chỉnh sửa thành công";
 				} else {
 					resultUpdate = "Chỉnh sửa thất bại";
@@ -81,11 +76,9 @@ public class ListAccountServlet extends HttpServlet {
 				}
 				request.setAttribute("result", resultCreate);
 			}
-			
 			else
 			{
 				if (result.contains("success")) {
-
 					resultDelete= "Xóa tài khoản thành công";
 				} else {
 					resultDelete = "Xóa tài khoản thất bại";
@@ -93,14 +86,6 @@ public class ListAccountServlet extends HttpServlet {
 				request.setAttribute("result", resultDelete);
 			}
 		}
-//		if(result_create_Account!=null){
-//			if(result_create_Account.contains("exists")){
-//				request.setAttribute("result_create_Account", "Tài khoản đã tồn tại trong hệ thống");
-//			}
-//			else{
-//				request.setAttribute("result_create_Account", "Tạo tài khoản thành công");
-//			}
-//		}
 		if(account!=null){
 			request.setAttribute("pageNavSearch", pageNavSearch);
 			request.setAttribute("account", account);
@@ -127,7 +112,5 @@ public class ListAccountServlet extends HttpServlet {
 		RequestDispatcher requestDis_result = request
 				.getRequestDispatcher("ListAccount.jsp");
 		requestDis_result.forward(request, response);
-
 	}
-
 }

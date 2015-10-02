@@ -201,8 +201,7 @@
 				  <label for="re_pwd">Nhập lại mật khẩu:</label>
 				  <input type="password" class="form-control" id="re_pwd" name="re_password">
 				</div>
-				<button type="submit" name="changePass"  class="btn btn-primary btn-block">Hoàn thành</button>
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="submit" name="changePass"  class="btn btn-primary btn-block">Hoàn thành</button>				
        		</form> 
       </div>      
     </div>

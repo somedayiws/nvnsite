@@ -45,29 +45,15 @@ public class CTVServlet extends HttpServlet {
 		
 		//Nhận kết quả tạo tài khoản từ AdminCreateServlet,AdminDeleteServlet,AdminEditServlet
 		String result = (String)request.getAttribute("result");
-		
-		//Nhận kết quả tìm kiếm từ AdminSearchServlet
-//		request.setAttribute("pageNavSearch", pageNav);
-//		request.setAttribute("account", account);
-//		request.setAttribute("button", btnFind);
-
-		//String pageNavSearch = (String)request.getAttribute("pageNavSearch");
-//		String account = (String)request.getAttribute("account");
 		String button = request.getParameter("btnFind");
 		String typeFind = request.getParameter("typeFind");
 		String stringFind = request.getParameter("stringFind");
 		
-		System.out.println("typeFindServlet: "+typeFind);
-		System.out.println("stringFindServlet: "+stringFind);
-		System.out.println("button: "+button);
-		
 		String result_Restore = (String)request.getAttribute("result_Restore");
 		if(result!=null)
 		{
-			
 			 if(result.contains("Delete success")) result = "Xóa cộng tác viên thành công - ";
-			else if(result.contains("Delete fail")) result = "Xóa cộng tác viên thất bại - ";
-			
+			 else if(result.contains("Delete fail")) result = "Xóa cộng tác viên thất bại - ";
 		}
 		if(result_Restore!=null) result = result_Restore;
 		

@@ -45,51 +45,35 @@ public class AdminEditPostsServlet extends HttpServlet {
 		String namePostVi = request.getParameter("namePostVi");
 		String namePostJa = request.getParameter("namePostJa");
 		String idcategory_Vi = request.getParameter("categoryVi");
-		@SuppressWarnings("unused")
+		
 		String idcategory_Ja = request.getParameter("categoryJa");
 		String idaccount = request.getParameter("account");
 		String contentVi = request.getParameter("contentVi");
 		String contentJa = request.getParameter("contentJa");
-		String status = request.getParameter("Status");
-		String note = request.getParameter("note");
 		String descriptionVi = request.getParameter("descriptionVi");
 		String descriptionJa = request.getParameter("descriptionJa");
-		String view = request.getParameter("view");
-		String link = request.getParameter("link");
-		String date = request.getParameter("date");
-		String ghim = request.getParameter("ghim");
 		
-				
 		String resultEdit;
 		BAIVIET post = new BAIVIET();
-		
 		
 		post.setIdBaiViet(idPost);
 		post.setTenBaiVietVi(namePostVi);
 		post.setTenBaiVietJa(namePostJa);
 		post.setNoiDungVi(contentVi);
 		post.setNoiDungJa(contentJa);
-		post.setTrangThai(status);
-		post.setGhiChu(note);
 		post.setMoTaVi(descriptionVi);
 		post.setMoTaJa(descriptionJa);
-		post.setLuotXem(Integer.parseInt(view));
-		post.setLienKet(link);
-		post.setNgayDang(date);
-		post.setGimTrangChu(Integer.parseInt(ghim));
-		
 		/**update posts in database*/
 		AdminEditPostsBO adminEditPosts = new AdminEditPostsBO();
 		
 		if(adminEditPosts.updatePost(post, idcategory_Vi, idaccount)){
-			resultEdit = "Cập nhật thành công - Update Success";
+			resultEdit = "Chỉnh sửa bài viết thành công - Update Success";
 		}
 		else{
-			resultEdit = "Cập nhật thất bại - Update fail";
+			resultEdit = "Chỉnh sửa bài viết thất bại - Update fail";
 		}
-				
 		request.setAttribute("resultEdit", resultEdit);
-		RequestDispatcher requestDis_edit = request.getRequestDispatcher("ListPostsServlet");
+		RequestDispatcher requestDis_edit = request.getRequestDispatcher("ShowAdminEditPostsServlet?idPost="+idPost+"&from=detail");
 		requestDis_edit.forward(request, response);
 		
 	

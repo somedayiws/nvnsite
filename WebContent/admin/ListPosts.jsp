@@ -273,16 +273,14 @@
 													<span class="label label-default">Không có tên bài viết</span>
 												<%}else{ %>
 													<%if(posts.get(i).getTenBaiVietVi()!= null){%>
-														<%=posts.get(i).getTenBaiVietVi()%> 
-													<%}else{ %>
-														<span class="label label-success">Không có tên tiếng việt</span>
+														<p><%=posts.get(i).getTenBaiVietVi()%></p> 
 													<%} %>
-														- 
+														 
 													<%if(posts.get(i).getTenBaiVietJa()!= null){%>
 														<%=posts.get(i).getTenBaiVietJa()%> 
-													<%}else{ %>
-														<span class="label label-success">Không có tên tiếng nhật</span>
-													<%}
+													<%} %>
+														
+													<%
 												} %>
 								</td>
 								
@@ -294,16 +292,12 @@
 										<span class="label label-default">Không có mô tả</span>
 									<%}else{ %>
 										<%if(posts.get(i).getMoTaVi() != null ){ %>
-											<%=posts.get(i).getMoTaVi()%> 
-										<%}else{ %>
-											<span class="label label-success">Không có mô tả tiếng việt</span>
-										<%} %>
-										-
+											<p><%=posts.get(i).getMoTaVi()%></p> 
+										<%}%>
+										
 										<%if(posts.get(i).getMoTaJa() != null ){  %>
-											<%=posts.get(i).getMoTaJa()%>
-										<%}else{ %>
-											<span class="label label-success">Không có mô tả tiếng nhật</span>
-										<%}} %>
+											<p><%=posts.get(i).getMoTaJa()%></p>
+										<%}}%>
 									 
 								</td>
 								<td>
@@ -313,12 +307,13 @@
 										Đang dịch - 
 									<%}else if(posts.get(i).getTrangThai().equals("OK")){ %>
 										Đã duyệt - 
+									<%}else if(posts.get(i).getTrangThai().equals("KhongDich")){ %>
+										Không dịch - 
+									<%}else if(posts.get(i).getTrangThai().equals("XoaBai")){ %>
+										Xóa bài - 
 									<%}else{ %>
-										Trạng thái khác - ...<br>
 										<%=posts.get(i).getTrangThai()%>
 									<%} %>
-								
-									
 								</td>
 								<td>
 									<div id="resultMessage_<%=posts.get(i).getIdBaiViet()%>">

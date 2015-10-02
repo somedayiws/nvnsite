@@ -4,3 +4,15 @@
 #page{
 	float:right;
 }
+#resultMessage{
+	display:none;
+}
+#div_show_image{
+	margin-top: 300px;
+}
+#div_show_post_new{
+	margin-top: 100px;
+}
+
+
+
