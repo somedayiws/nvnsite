@@ -13,20 +13,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Thư viện cho menu -->
-<link rel="stylesheet" href="bootstrap-3.3.5-dist/css/bootstrap.min.css">
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery-2.1.0.min.js"></script>
-<script src="js/jquery.lazyload.js"></script>
 <title>Đăng bài viết</title>
 <!--auto combobox -->
 <script src="js/magicsuggest-min.js"></script>
 <link rel="stylesheet" href="css/magicsuggest-min.css">
 <!-- ck -->
 <script src="ckeditor/ckeditor.js"></script>
-<link rel="stylesheet" href="css/ClientStyle.css">
-<link rel="stylesheet"
-	href="font-awesome-4.4.0/css/font-awesome.min.css">
 <style type="text/css">
 .modal-body img {
     width: 100%;
@@ -205,62 +197,7 @@
 	}
 	
 </script>
-<!-- Google map -->
-<script type="text/javascript"
-	src="http://maps.googleapis.com/maps/api/js?sensor=false&language=vi"></script>
-<script type="text/javascript">
-	var map;
-	var map1;
-	function initialize() {
-		$('.dangu').hide();
-		$('.donngu').show();
-		var myLatlng = new google.maps.LatLng(16.467800, 107.578983);
-		var myLatlng1 = new google.maps.LatLng(37.562170, 139.988980);
-		var myOptions = {
-			zoom : 4,
-			center : myLatlng,
-			mapTypeId : google.maps.MapTypeId.ROADMAP
-		}
-		var myOptions1 = {
-			zoom : 4,
-			center : myLatlng1,
-			mapTypeId : google.maps.MapTypeId.ROADMAP
-		}
-		map = new google.maps.Map(document.getElementById("div_id1"), myOptions);
-		map1 = new google.maps.Map(document.getElementById("div_id2"),
-				myOptions1);
-
-		var infowindow = new google.maps.InfoWindow({
-			content : "TP-Huế",
-			size : new google.maps.Size(100, 50),
-			position : myLatlng
-		});
-		var infowindow1 = new google.maps.InfoWindow({
-			content : "Home",
-			size : new google.maps.Size(100, 50),
-			position : myLatlng1
-		});
-		infowindow.open(map);
-		infowindow1.open(map1);
-
-	}
-</script>
 <!-- Hộp thoại phản hồi -->
-<!-- <script lang="javascript">
-	(function() {
-		var _h1 = document.getElementsByTagName('title')[0] || false;
-		var product_name = '';
-		if (_h1) {
-			product_name = _h1.textContent || _h1.innerText;
-		}
-		var ga = document.createElement('script');
-		ga.type = 'text/javascript';
-		ga.src = '//live.vnpgroup.net/js/web_client_box.php?hash=f6fdedfea03ad1bcd7118f3fed15d856&data=eyJzc29faWQiOjEzNDI2MjcsImhhc2giOiIzMzRmODIxY2QwNmFiNTM4ZTBkOTMzNzM2ZDA2ZThlMSJ9&pname='
-				+ product_name;
-		var s = document.getElementsByTagName('script');
-		s[0].parentNode.insertBefore(ga, s[0]);
-	})();
-</script> -->
 <script lang="javascript">
 	(function() {
 		var _h1 = document.getElementsByTagName('title')[0] || false;
@@ -270,7 +207,7 @@
 		}
 		var ga = document.createElement('script');
 		ga.type = 'text/javascript';
-		ga.src = '//live.vnpgroup.net/js/web_client_box.php?hash=57f198fbced364bace74f3bb8ff5a8e4&data=eyJzc29faWQiOjMwNjkyNzMsImhhc2giOiIzM2NiZTM2NWE5MDY2MmUyZjM5NGI5MWJkNDJjNzRjMiJ9&pname='
+		ga.src = '//live.vnpgroup.net/js/web_client_box.php?hash=f6fdedfea03ad1bcd7118f3fed15d856&data=eyJzc29faWQiOjEzNDI2MjcsImhhc2giOiIzMzRmODIxY2QwNmFiNTM4ZTBkOTMzNzM2ZDA2ZThlMSJ9&pname='
 				+ product_name;
 		var s = document.getElementsByTagName('script');
 		s[0].parentNode.insertBefore(ga, s[0]);

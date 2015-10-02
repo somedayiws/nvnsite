@@ -13,16 +13,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Thư viện cho menu -->
-<link rel="stylesheet" href="bootstrap-3.3.5-dist/css/bootstrap.min.css">
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery-2.1.0.min.js"></script>
-<script src="js/jquery.lazyload.js"></script>
-<!-- <script type="text/javascript" src="js/disable-copyright.js"></script> -->
-<title>Chi tiết bài viết</title>
-<link rel="stylesheet" href="css/ClientStyle.css">
-<link rel="stylesheet"
-	href="font-awesome-4.4.0/css/font-awesome.min.css">
+<title>Bảng giá quảng cáo</title>
 </head>
 <body onLoad="initialize()">
 	<!-- Lấy dữ liệu từ server gửi về -->
@@ -69,44 +60,6 @@
 	</div>
 </body>
 <!-- Script ở đây -->
-<!-- Google map -->
-<script type="text/javascript"
-	src="http://maps.googleapis.com/maps/api/js?sensor=false&language=vi"></script>
-<script type="text/javascript">
-	var map;
-	var map1;
-	function initialize() {
-		var myLatlng = new google.maps.LatLng(16.467800, 107.578983);
-		var myLatlng1 = new google.maps.LatLng(37.562170, 139.988980);
-		var myOptions = {
-			zoom : 4,
-			center : myLatlng,
-			mapTypeId : google.maps.MapTypeId.ROADMAP
-		}
-		var myOptions1 = {
-			zoom : 4,
-			center : myLatlng1,
-			mapTypeId : google.maps.MapTypeId.ROADMAP
-		}
-		map = new google.maps.Map(document.getElementById("div_id1"), myOptions);
-		map1 = new google.maps.Map(document.getElementById("div_id2"),
-				myOptions1);
-
-		var infowindow = new google.maps.InfoWindow({
-			content : "TP-Huế",
-			size : new google.maps.Size(100, 50),
-			position : myLatlng
-		});
-		var infowindow1 = new google.maps.InfoWindow({
-			content : "Home",
-			size : new google.maps.Size(100, 50),
-			position : myLatlng1
-		});
-		infowindow.open(map);
-		infowindow1.open(map1);
-
-	}
-</script>
 <!-- Google+ -->
 <script type="text/javascript"
 	src="https://apis.google.com/js/plusone.js"></script>
@@ -150,129 +103,6 @@
 		var s = document.getElementsByTagName('script');
 		s[0].parentNode.insertBefore(ga, s[0]);
 	})();
-</script>
-<!-- Xử lý load lấy bình luận -->
-<script type="text/javascript">
-	function loadBinhLuan(id, ngonngu) {
-		if (ngonngu == 'vi') {
-			var nvitri = $("#listblviet").children().size();
-			$.ajax({
-				url : "DataBinhLuanServlet", //file  
-				type : "POST", //phuong thức gưi
-				data : {
-					idbaiviet : id,
-					ngonngu : ngonngu,
-					vitri : nvitri
-				},//dữ liệu gửi
-				async : true, //
-				success : function(res) {
-					$("#listblviet").append(res);
-				},
-				error : function() {
-					alert('Có lỗi xảy ra');
-				}
-			});
-		} else {
-			$.ajax({
-				url : "DataBinhLuanServlet", //file 
-				type : "POST", //phuong thức gưi
-				data : {
-					idbaiviet : id,
-					ngonngu : ngonngu,
-					vitri : $("#listblnhat").children().size()
-				},//dữ liệu gửi
-				async : true, //
-				success : function(res) {
-					$("#listblnhat").append(res);
-				},
-				error : function() {
-					alert('Có lỗi xảy ra');
-				}
-			});
-		}
-	}
-</script>
-<!-- Chuyển hướng đến danh muc x -->
-<script type="text/javascript">
-	function loadData(trang, x) {
-		window.location.href = trang + "?id=" + x;
-	};
-	function dichuyen(x) {
-		window.location.href = x;
-	};
-	function comentvi(id) {
-		var bien = $("#tkDangNhap").val();
-		var date = $("#dateComment").val();
-		if (bien == 'null') {
-			alert("Bạn phải đăng nhập, mới được bình luận.");
-		} else {
-			var txt = $("#txtviet").val();
-			if (txt != "") {
-				var htm = "<div id='itemComment'><i class='fa fa-user'></i> <em>"
-						+ bien
-						+ "</em> <span id='dateComment'>"
-						+ date
-						+ "</span> <p>" + txt + "</p></div>";
-				$("#listblviet").prepend(htm);
-				$("#txtviet").val("");
-				updatedatavi(id, 'vi', txt);
-			} else {
-				alert("Bạn chưa nhập bình luận của mình.");
-			}
-		}
-		$("#txtviet").val("");
-	};
-	function comentja(id) {
-		var bien = $("#tkDangNhap").val();
-		if (bien == 'null') {
-			alert("Bạn phải đăng nhập, mới được bình luận.");
-		} else {
-			var txt = $("#txtnhat").val();
-			if (txt != "") {
-				var htm = "<div id='itemComment'><i class='fa fa-user'></i> <em>"
-						+ bien
-						+ "</em> <span id='dateComment'>"
-						+ date
-						+ "</span> <p>" + txt + "</p></div>";
-				$("#listblnhat").prepend(htm);
-				$("#txtnhat").val("");
-				updatedatavi(id, 'ja', txt);
-			} else {
-				alert("Bạn chưa nhập bình luận của mình.");
-			}
-		}
-		$("#txtnhat").val("");
-	};
-	function updatedatavi(id, laguage, bluan) {
-		$.ajax({
-			url : "UpDateDataBinhLuan", //file 
-			type : "POST", //phuong thức gưi
-			data : {
-				idbaiviet : id,
-				ngonngu : laguage,
-				binhluan : bluan
-			}, //dữ liệu gửi
-			async : true
-		});
-	};
-	function showMoiNhat() {
-		$('.xemnhieu').children('#contentMoiNhat').removeAttr('style');
-		$('.xemnhieu').children('#contentXemNhieu').attr('style',
-				'display:none;');
-		$('#titleTabBar').children('#pMoiNhat').attr('class',
-				'col-sm-6 col-md-6 active');
-		$('#titleTabBar').children('#pXemNhieu').attr('class',
-				'col-sm-6 col-md-6');
-	}
-	function showXemNhieu() {
-		$('.xemnhieu').children('#contentXemNhieu').removeAttr('style');
-		$('.xemnhieu').children('#contentMoiNhat').attr('style',
-				'display:none;');
-		$('#titleTabBar').children('#pMoiNhat').attr('class',
-				'col-sm-6 col-md-6');
-		$('#titleTabBar').children('#pXemNhieu').attr('class',
-				'col-sm-6 col-md-6 active');
-	}
 </script>
 <!-- check validate -->
 <script src="js/jquery.validate.js" type="text/javascript"></script>
