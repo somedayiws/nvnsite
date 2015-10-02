@@ -1659,3 +1659,8 @@ img.imggia {
 	border-top: 1px solid #e32c22;
 }
 /*New style*/
+#load {
+	position: fixed;
+	top: 40%;
+	right: 0%;
+}

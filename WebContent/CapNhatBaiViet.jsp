@@ -14,10 +14,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Thư viện cho menu -->
 <title>Cập nhật bài viết</title>
-<!--auto combobox -->
-<script src="js/magicsuggest-min.js"></script>
-<link rel="stylesheet" href="css/magicsuggest-min.css">
-<!-- ck -->
 <script src="ckeditor/ckeditor.js"></script>
 <style type="text/css">
 .modal-body img {
@@ -310,6 +306,9 @@
 			$('.donngu').show();
 		}
 	}
+	function dichuyen(x) {
+		window.location.href = x;
+	};
 </script>
 <!-- check validate -->
 <script src="js/jquery.validate.js" type="text/javascript"></script>
