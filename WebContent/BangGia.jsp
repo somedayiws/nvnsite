@@ -131,4 +131,10 @@
 		});
 	});
 </script>
+<!-- Chuyển hướng đến danh muc x -->
+<script type="text/javascript">
+	function dichuyen(x) {
+		window.location.href = x;
+	};
+</script>
 </html>

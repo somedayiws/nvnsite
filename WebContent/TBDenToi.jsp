@@ -22,8 +22,7 @@
 <script src="js/jquery-2.1.0.min.js"></script>
 <script src="js/jquery.lazyload.js"></script>
 <link rel="stylesheet" href="css/ClientStyle.css">
-<link rel="stylesheet"
-	href="font-awesome-4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="font-awesome-4.4.0/css/font-awesome.min.css">
 <!-- Google+ -->
 <link rel="canonical" href="http://webvietnhat-demo.jelastic.skali.net/" />
 <title>Tin nhắn từ diễn đàn - 個人ホーム</title>

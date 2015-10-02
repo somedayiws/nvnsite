@@ -106,4 +106,13 @@
 		s[0].parentNode.insertBefore(ga, s[0]);
 	})();
 </script>
+<!-- Chuyển hướng đến danh muc x -->
+<script type="text/javascript">
+	function loadData(trang, x) {
+		window.location.href = trang + "?id=" + x;
+	};
+	function dichuyen(x) {
+		window.location.href = x;
+	};
+</script>
 </html>
