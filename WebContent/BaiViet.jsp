@@ -242,14 +242,14 @@
 					</div>
 					<div class="col-xs-12 col-sm-12 col-md-12" id="blnhat">
 						<strong id="selfComment"> Bình luận </strong>
-						<button type="button" class="btn btn-link"
-							onclick="comentja('<%=baiviet.getIdBaiViet()%>');">
-							<i class="fa fa-comments-o"></i> Gửi - コメント
-						</button>
 						<div class="row">
 							<textarea rows="3" placeholder="Bình luận của bạn"
 								class="form-control" id="txtnhat"></textarea>
 						</div>
+						<button type="button" class="btn btn-link"
+							onclick="comentja('<%=baiviet.getIdBaiViet()%>');">
+							<i class="fa fa-comments-o"></i> Gửi - コメント
+						</button>
 						<p id="anotherComments">
 							<span>Bình luận khác</span>
 						</p>
@@ -378,13 +378,14 @@
 				}
 			});
 		} else {
+			var nvitri = $("#listblnhat").children().size();
 			$.ajax({
 				url : "DataBinhLuanServlet", //file 
 				type : "POST", //phuong thức gưi
 				data : {
 					idbaiviet : id,
 					ngonngu : ngonngu,
-					vitri : $("#listblnhat").children().size()
+					vitri : nvitri
 				},//dữ liệu gửi
 				async : true, //
 				success : function(res) {
@@ -429,6 +430,7 @@
 	};
 	function comentja(id) {
 		var bien = $("#tkDangNhap").val();
+		var date = $("#dateComment").val();
 		if (bien == 'null') {
 			alert("Bạn phải đăng nhập, mới được bình luận.");
 		} else {

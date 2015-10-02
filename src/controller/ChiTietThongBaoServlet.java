@@ -59,7 +59,6 @@ public class ChiTietThongBaoServlet extends HttpServlet {
 		// Danh mục hiển thị
 		ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc("");
 		// Danh sách bài viết host
-		ArrayList<BAIVIET> topbaiviet = bv.getTopBaiViet("XemNhieu");
 		ArrayList<BAIVIET> topmoi = bv.getTopBaiViet("Moi");
 		// List thông báo
 		ThongBaoBO thongBaoBO = new ThongBaoBO();
@@ -72,7 +71,6 @@ public class ChiTietThongBaoServlet extends HttpServlet {
 		request.setAttribute("listquangcao", listquangcao);
 		request.setAttribute("topmoi", topmoi);
 		request.setAttribute("listdanhmuc", listdanhmuc);
-		request.setAttribute("topbaiviet", topbaiviet);
 		THONGBAO thongbao = tb.getThongBao(id);
 		if(thongbao !=null && (!thongbao.getGuiDen().equals("DienDan"))){
 			tb.setViewed(id);

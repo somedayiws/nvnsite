@@ -39,10 +39,8 @@ public class BangGiaServlet extends HttpServlet {
 		DanhMucBO danhmuc = new DanhMucBO();
 		TaiNguyenBO tainguyen = new TaiNguyenBO();
 		ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc("");
-		ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet("XemNhieu");
 		ArrayList<BAIVIET> topmoi = baiviet.getTopBaiViet("Moi");
 		request.setAttribute("listdanhmuc", listdanhmuc);
-		request.setAttribute("topbaiviet", topbaiviet);
 		request.setAttribute("topmoi", topmoi);
 		request.setAttribute("giadich", tainguyen.getValue("BangGiaDich"));
 		request.setAttribute("giaquangcao", tainguyen.getValue("BangGiaQuangCao"));

@@ -49,7 +49,6 @@ public class TBDenToiServlet extends HttpServlet {
 		//Danh mục hiển thị
 		ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc("");
 		//Danh sách bài viết host
-		ArrayList<BAIVIET> topbaiviet = bv.getTopBaiViet("XemNhieu");
 		ArrayList<BAIVIET> topmoi = bv.getTopBaiViet("Moi");
 		ArrayList<THONGBAO> list = tb.getListThongBao(" GuiDen like N'"+user.getIdTaiKhoan()+"' or GuiDen like N'"+user.getTenTaiKhoan()+"' " , page);
 		request.setAttribute("topmoi", topmoi);
@@ -67,7 +66,6 @@ public class TBDenToiServlet extends HttpServlet {
 		
 		request.setAttribute("pageNav", pageNav);
 		request.setAttribute("listdanhmuc", listdanhmuc);
-		request.setAttribute("topbaiviet", topbaiviet);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("TBDenToi.jsp").forward(request, response);
 	}

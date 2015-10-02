@@ -41,14 +41,12 @@ public class DanhSachBaiVietServlet extends HttpServlet {
 		if(id != null && !"".equals(id)){
 			listbaiviet = baiviet.getDanhSachBaiViet(id, 0, "10");
 			ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc("");
-			ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet("XemNhieu");
 			ArrayList<BAIVIET> topmoi = baiviet.getTopBaiViet("Moi");
 			request.setAttribute("topmoi", topmoi);
 			DANHMUC dmchon = danhmuc.getDanhMuc(id);
 			request.setAttribute("danhmuc", dmchon);
 			request.setAttribute("listbaiviet", listbaiviet);
 			request.setAttribute("listdanhmuc", listdanhmuc);
-			request.setAttribute("topbaiviet", topbaiviet);
 			
 			// List thông báo
 			ThongBaoBO thongBaoBO = new ThongBaoBO();

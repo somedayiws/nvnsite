@@ -41,7 +41,6 @@ public class BaiVietServlet extends HttpServlet {
 		DanhMucBO danhmuc = new DanhMucBO();
 		ArrayList<BAIVIET> listbaiviet = new ArrayList<BAIVIET>();
 		ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc("");
-		ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet("XemNhieu");
 		// Danh sách bài viết moi
 		ArrayList<BAIVIET> topmoi = baiviet.getTopBaiViet("Moi");
 
@@ -53,7 +52,6 @@ public class BaiVietServlet extends HttpServlet {
 			request.setAttribute("baiviet", bviet);
 			request.setAttribute("listbaiviet", listbaiviet);
 			request.setAttribute("listdanhmuc", listdanhmuc);
-			request.setAttribute("topbaiviet", topbaiviet);
 			request.setAttribute("topmoi", topmoi);
 
 			// List thông báo

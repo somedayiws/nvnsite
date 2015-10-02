@@ -825,7 +825,7 @@ a {
 }
 
 #linkconnect a span {
-	background: red;
+	border: 1px solid #45a3ea;
 	width: 40px;
 	height: 40px;
 	display: inline-block;

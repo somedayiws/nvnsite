@@ -65,7 +65,6 @@ public class DangNhapServlet extends HttpServlet {
 						//Danh mục hiển thị
 						ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc(txtFind);
 						//Danh sách bài viết host
-						ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet("XemNhieu");
 						ArrayList<BAIVIET> topmoi = baiviet.getTopBaiViet("Moi");
 						
 						// List thông báo
@@ -81,7 +80,6 @@ public class DangNhapServlet extends HttpServlet {
 						request.setAttribute("topmoi", topmoi);
 						request.setAttribute("list", list);
 						request.setAttribute("listdanhmuc", listdanhmuc);
-						request.setAttribute("topbaiviet", topbaiviet);
 						request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Tên đăng nhập hoặc mật khẩu không chính xác.</p></div>");
 						request.getRequestDispatcher("DangNhapTaiKhoan.jsp").forward(request, response);
 					}

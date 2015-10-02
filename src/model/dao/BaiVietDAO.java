@@ -203,11 +203,10 @@ public class BaiVietDAO {
 		String sql = "";
 		if(loai.equals("Moi"))
 			sql = "select IdBaiViet, TenBaiVietVi, TenBaiVietJa,LienKet,MoTaVi,MoTaJa from baiviet where TrangThai='OK' order by NgayDang desc limit 10";
-		else if(loai.equals("XemNhieu"))
-			sql = "select IdBaiViet, TenBaiVietVi, TenBaiVietJa,LienKet,MoTaVi,MoTaJa from baiviet where TrangThai='OK' and (CURDATE()-NgayDang)<300 order by LuotXem desc limit 10";
-		//select IdBaiViet, TenBaiVietVi, TenBaiVietJa,LienKet,MoTaVi,MoTaJa from baiviet where TrangThai='OK' and (CURDATE()-NgayDang)<30 order by LuotXem desc
-		else 
-			sql = "select IdBaiViet, TenBaiVietVi, TenBaiVietJa,LienKet,MoTaVi,MoTaJa from baiviet order by RAND() limit 5";
+		else if(loai.equals("hotPosts"))
+			sql = "select baiviet.IdBaiViet, TenBaiVietVi, TenBaiVietJa,LienKet,MoTaVi,MoTaJa, test.sobinhluan, baiviet.LuotXem from baiviet left join (select binhluan.IdBaiViet, count(*) as sobinhluan from binhluan group by binhluan.IdBaiViet order by sobinhluan desc) as test on test.IdBaiViet = baiviet.IdBaiViet where (DATE_SUB(CURDATE(),INTERVAL 14 DAY)) <= baiviet.NgayDang and baiviet.TrangThai = 'OK' order by test.sobinhluan desc, baiviet.LuotXem desc limit 4";
+		else if(loai.equals("slidePosts"))
+			sql = "select baiviet.IdBaiViet, TenBaiVietVi, TenBaiVietJa,LienKet,MoTaVi,MoTaJa from baiviet where baiviet.GimTrangChu = '1' and baiviet.TrangThai = 'OK' order by RAND() limit 5";
 		rs = db.getResultSet(sql);
 //		BinhLuanDAO bl = new BinhLuanDAO();
 		try {

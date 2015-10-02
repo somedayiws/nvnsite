@@ -88,7 +88,6 @@ public class TrangCaNhanServlet extends HttpServlet {
 			//Danh mục hiển thị
 			ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc("");
 			//Danh sách bài viết host
-			ArrayList<BAIVIET> topbaiviet = bv.getTopBaiViet("XemNhieu");
 			ArrayList<BAIVIET> topmoi = bv.getTopBaiViet("Moi");
 			
 			// List thông báo
@@ -106,7 +105,6 @@ public class TrangCaNhanServlet extends HttpServlet {
 			request.setAttribute("pageNav", pageNav);
 			request.setAttribute("dsbaidang", listBV);
 			request.setAttribute("listdanhmuc", listdanhmuc);
-			request.setAttribute("topbaiviet", topbaiviet);
 			request.getRequestDispatcher("TrangCaNhan.jsp").forward(request, response);
 		}else{
 			response.sendRedirect("TrangChuServlet");

@@ -133,15 +133,17 @@ public class ListPostsDAO {
 		
 		ResultSet result_getPostsNew = null;
 		if (page != -1) {
+			System.out.println("sql = " + sql_getPostsNew + " limit "
+					+ (page - 1) * db.getNBangGhi() + ","
+					+ db.getNBangGhi());
 			result_getPostsNew = db.getResultSet(sql_getPostsNew + " limit "
 					+ (page - 1) * db.getNBangGhi() + ","
 					+ db.getNBangGhi());
+			
 		} else {
 			result_getPostsNew = db.getResultSet(sql_getPostsNew);
 		}
 
-		
-		result_getPostsNew = db.getResultSet(sql_getPostsNew);
 		ArrayList<BAIVIET> posts = new ArrayList<BAIVIET>();
 		String idCategory,idAccount;
 		try {
@@ -149,8 +151,7 @@ public class ListPostsDAO {
 				BAIVIET post = new BAIVIET();
 				post.setIdBaiViet(DinhDangSQL.DeFomatSQL(result_getPostsNew.getString("IdBaiViet")));
 				post.setTenBaiVietVi(DinhDangSQL.DeFomatSQL(result_getPostsNew.getString("TenBaiVietVi")));
-				post.setTenBaiVietVi(DinhDangSQL.DeFomatSQL(result_getPostsNew.getString("TenBaiVietJa")));
-				
+				post.setTenBaiVietJa(DinhDangSQL.DeFomatSQL(result_getPostsNew.getString("TenBaiVietJa")));
 				idCategory = DinhDangSQL.DeFomatSQL(result_getPostsNew.getString("IdDanhMuc"));
 				post.setDanhMuc(category.getCategorybyId(idCategory));
 				idAccount =  DinhDangSQL.DeFomatSQL(result_getPostsNew.getString("IdTaiKhoan"));

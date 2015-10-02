@@ -48,7 +48,6 @@ public class TimKiemServlet extends HttpServlet {
 			listbaiviet = baiviet.getFind(theo, txtFind, "0", "10");
 		}
 		ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc("");
-		ArrayList<BAIVIET> topbaiviet = baiviet.getTopBaiViet("XemNhieu");
 		ArrayList<BAIVIET> topmoi = baiviet.getTopBaiViet("Moi");
 		
 		// List thông báo
@@ -66,7 +65,6 @@ public class TimKiemServlet extends HttpServlet {
 		request.setAttribute("txtFind", txtFind);
 		request.setAttribute("listbaiviet", listbaiviet);
 		request.setAttribute("listdanhmuc", listdanhmuc);
-		request.setAttribute("topbaiviet", topbaiviet);
 		request.getRequestDispatcher("KetQuaTimKiem.jsp").forward(request, response);
 	}
 
