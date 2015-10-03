@@ -56,7 +56,7 @@ public class DanhSachBaiDichServlet extends HttpServlet {
 			request.setAttribute("listbaiviet", listbaiviet);
 
 			int tongbv = baiviet.TongBaiViet(user.getIdTaiKhoan(), "");
-			int tongbvok = baiviet.TongBaiViet(user.getIdTaiKhoan(), "Ok");
+			int tongbvok = baiviet.TongBaiViet(user.getIdTaiKhoan(), "DaDich");
 			int tongbvhuy = baiviet.TongBaiViet(user.getIdTaiKhoan(), "HuyDich");
 			int tongbvloi = baiviet.TongBaiViet(user.getIdTaiKhoan(), "LoiDich");
 			

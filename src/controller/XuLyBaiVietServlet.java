@@ -36,11 +36,11 @@ public class XuLyBaiVietServlet extends HttpServlet {
 			for(int i=0; i<fruits.length; i++)
 			{
 				if(submit.equals("gui")){
-					bviet.CapNhatBaiViet(fruits[i], "Ok", user.getIdTaiKhoan());
-					request.setAttribute("meg", "<div class='alert alert-success' role='alert'>Đã gửi bài cho admin.</div>");
+					bviet.CapNhatBaiViet(fruits[i], "DaDich", user.getIdTaiKhoan());
+					request.setAttribute("meg", "<div class='alert alert-success' role='alert'>Gửi bài dịch thành công.<br>翻訳の記事が送信できた。</div>");
 				}else{
 					bviet.CapNhatBaiViet(fruits[i], "HuyDich", user.getIdTaiKhoan());
-					request.setAttribute("meg", "<div class='alert alert-success' role='alert'>Đã hủy bài không mong muốn.</div>");
+					request.setAttribute("meg", "<div class='alert alert-success' role='alert'>Hủy bài dịch thành công.<br>翻訳の記事が削除できた。</div>");
 				}
 			}
 		}else{
