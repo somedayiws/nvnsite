@@ -14,11 +14,24 @@ public class ListPostsDAO {
 
 	/** Get Data Post */
 
-	public ArrayList<BAIVIET> getDataPosts(int page) {
+	public ArrayList<BAIVIET> getDataPosts(int page, String chon) {
 		
 		ArrayList<BAIVIET> posts = new ArrayList<BAIVIET>();
 			
 			String sql_select_posts = "SELECT * FROM baiviet WHERE CoXoa = 0 AND TrangThai <> 'SoanThao' ORDER BY NgayDang DESC";
+			
+			if(chon.equals("dadich")){
+				sql_select_posts = "select baiviet.IdBaiViet, TenBaiVietVi, TenBaiVietJa, IdDanhMuc, baiviet.IdTaiKhoan, NoiDungVi, NoiDungJa, baiviet.TrangThai, GhiChu, MotaVi, MotaJa, LuotXem, Lienket, NgayDang, GimTrangChu"
+						+ " from baiviet inner join lichsu on baiviet.IdBaiViet=lichsu.IdBaiViet where CoXoa = 0 and baiviet.TrangThai='DangDich' and lichsu.TrangThai='DaDich' order by NgayDang desc, baiviet.IdTaiKhoan desc";
+			}else if(chon.equals("huydich")){
+				sql_select_posts = "select baiviet.IdBaiViet, TenBaiVietVi, TenBaiVietJa, IdDanhMuc, baiviet.IdTaiKhoan, NoiDungVi, NoiDungJa, baiviet.TrangThai, GhiChu, MotaVi, MotaJa, LuotXem, Lienket, NgayDang, GimTrangChu"
+						+ " from baiviet inner join lichsu on baiviet.IdBaiViet=lichsu.IdBaiViet where CoXoa = 0 and baiviet.TrangThai='DangDich' and lichsu.TrangThai='HuyDich' order by NgayDang desc, baiviet.IdTaiKhoan desc";
+			}else if(chon.equals("moidang")){
+				sql_select_posts = "select * from baiviet where (TrangThai='MoiDang' or TrangThai='KhongDich') and CoXoa = 0 order by NgayDang desc, IdTaiKhoan desc";
+			}else if(chon.equals("dadang")){
+				sql_select_posts = "select * from baiviet where TrangThai='OK' and CoXoa = 0 order by NgayDang desc, IdTaiKhoan desc";
+			}
+			
 			
 			db.createMenu("ListPostsServlet?", page, sql_select_posts);
 			

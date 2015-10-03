@@ -7,8 +7,8 @@ import model.dao.ListPostsDAO;
 
 public class ListPostsBO {
 	ListPostsDAO listPosts = new ListPostsDAO();
-	public  ArrayList<BAIVIET> getPosts(int page){
-		return listPosts.getDataPosts(page);
+	public  ArrayList<BAIVIET> getPosts(int page, String chon){
+		return listPosts.getDataPosts(page, chon);
 	}
 	public String getMenuPhanTrang(){
 		return listPosts.getMenuPhanTrang();

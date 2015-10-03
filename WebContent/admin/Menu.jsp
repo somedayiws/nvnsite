@@ -32,8 +32,22 @@
 						</ul></li>
 					<li><a href="ListCategoryServlet"><span
 							class="glyphicon glyphicon-list"></span>QL danh mục</a></li>
-					<li><a href="ListPostsServlet"><span
-							class="glyphicon glyphicon-list-alt"></span>QL bài viết</a></li>
+							
+					<li class="dropdown"><a class="dropdown-toggle"
+						data-toggle="dropdown" href="DanhSachBaiDichServlet?view=all"><span
+							class="glyphicon glyphicon-list-alt"></span>QL bài viết
+							<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="ListPostsServlet?view=moidang">DS Bài mới</a></li>
+							<li><a href="ListPostsServlet?view=dadich">DS Bài đã dịch</a></li>
+							<li><a href="ListPostsServlet?view=huydich">DS Bài hủy dịch</a></li>
+							<li><a href="ListPostsServlet?view=dadang">DS Bài đã post</a></li>
+							<li><a href="ListPostsServlet?view=all">Tất cả bài viết</a></li>
+						</ul></li>		
+							
+							
+					<!-- <li><a href="ListPostsServlet"><span
+							class="glyphicon glyphicon-list-alt"></span>QL bài viết</a></li> -->
 					<li><a href="ThongBaoServlet"><span
 							class="glyphicon glyphicon-bullhorn"></span>QL thông báo</a></li>
 					<li><a href="AdvertisementServlet"><span

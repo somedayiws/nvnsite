@@ -53,7 +53,7 @@
 										<th>Người đăng<br>ユーザー名</th>
 										<th>Ngày đăng<br>掲載の日付</th>
 										<th>Lượt xem<br> 観覧回数</th>																			
-										<th></th>
+										<!-- <th></th> -->
 										<th></th>
 										<th></th>
 										<th></th>
@@ -81,7 +81,7 @@
 											<td><%=postsNew.get(i).getTaiKhoan().getTenTaiKhoan() %></td>
 											<td><%=postsNew.get(i).getNgayDang() %></td>
 											<td><%=postsNew.get(i).getLuotXem() %></td>
-											<td>
+											<%-- <td>
 												<div id="resultMessage_<%=postsNew.get(i).getIdBaiViet()%>">
 													<button type="button" id="<%=postsNew.get(i).getIdBaiViet()%>"
 														data-toggle="tooltip"
@@ -95,7 +95,7 @@
 														<span class="glyphicon glyphicon-bookmark"></span>
 													</button>
 												</div>	
-											</td>
+											</td> --%>
 											<td><a href="ShowDetailPostsServlet?id=<%=postsNew.get(i).getIdBaiViet()%>" data-toggle="tooltip" title="Chi tiết - 詳細">
 													<button type="button" class="btn btn-info btn-sm">
 														<span class="glyphicon glyphicon-list-alt"></span>
