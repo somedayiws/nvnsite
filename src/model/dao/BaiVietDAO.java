@@ -332,7 +332,7 @@ public class BaiVietDAO {
 		String sql = "select baiviet.IdBaiViet, TenBaiVietVi, TenBaiVietJa, MotaVi, MotaJa, NoiDungVi, NoiDungJa, GhiChu from baiviet "
 				+ "inner join lichsu on baiviet.IdBaiViet = lichsu.IdBaiViet "
 				+ "where (lichsu.TrangThai = N'ChuyenDich' or lichsu.TrangThai = N'DangDich' or lichsu.TrangThai = N'LoiDich' "
-				+ "or lichsu.TrangThai = N'DaDich') and lichsu.IdTaiKhoan = N'"+idTaiKhoan+"'";
+				+ ") and lichsu.IdTaiKhoan = N'"+idTaiKhoan+"'";
 		
 		//Tạo menu phân trang Url, page, sql
 		db.createMenu("DanhSachBaiDichServlet?view=all&", page, sql);
@@ -414,8 +414,8 @@ public class BaiVietDAO {
 		if(view.equals("qua-han")){
 			sql = "select baiviet.IdBaiViet, TenBaiVietVi, TenBaiVietJa, MotaVi, MotaJa, NoiDungVi, NoiDungJa, GhiChu from baiviet "
 					+ "inner join lichsu on baiviet.IdBaiViet = lichsu.IdBaiViet "
-					+ "where (lichsu.TrangThai = N'ChuyenDich' or lichsu.TrangThai = N'DangDich' or lichsu.TrangThai = N'LoiDich' "
-					+ "or lichsu.TrangThai = N'DaDich') and CURDATE()-ThoiGian>3  and lichsu.IdTaiKhoan = N'"+idTaiKhoan+"'";
+					+ "where (lichsu.TrangThai = N'ChuyenDich' or lichsu.TrangThai = N'DangDich' or lichsu.TrangThai = N'LoiDich'"
+					+ ") and CURDATE()-ThoiGian>3  and lichsu.IdTaiKhoan = N'"+idTaiKhoan+"'";
 		}else if(view.equals("moi")){
 			sql = "select baiviet.IdBaiViet, TenBaiVietVi, TenBaiVietJa, MotaVi, MotaJa, NoiDungVi, NoiDungJa, GhiChu from baiviet "
 					+ "inner join lichsu on baiviet.IdBaiViet = lichsu.IdBaiViet "
@@ -424,8 +424,8 @@ public class BaiVietDAO {
 		}else{
 			sql = "select baiviet.IdBaiViet, TenBaiVietVi, TenBaiVietJa, MotaVi, MotaJa, NoiDungVi, NoiDungJa, GhiChu from baiviet "
 					+ "inner join lichsu on baiviet.IdBaiViet = lichsu.IdBaiViet "
-					+ "where (lichsu.TrangThai = N'DangDich' "
-					+ "or lichsu.TrangThai = N'DaDich') and lichsu.IdTaiKhoan = N'"+idTaiKhoan+"'";
+					+ "where (lichsu.TrangThai = N'DangDich'"
+					+ ") and lichsu.IdTaiKhoan = N'"+idTaiKhoan+"'";
 		}
 		//Tạo menu phân trang Url, page, sql
 		db.createMenu("DanhSachBaiDichServlet?view="+view+"&", page, sql);
@@ -472,13 +472,13 @@ public class BaiVietDAO {
 		taikhoan = DinhDangSQL.FomatSQL(taikhoan);
 		String sql = "";
 		if(chon.equals("all")){
-			sql = "select count(*) as dem from lichsu where (TrangThai = N'ChuyenDich' or TrangThai = N'DangDich' or TrangThai = N'LoiDich' or TrangThai = N'DaDich') and IdTaiKhoan = N'"+taikhoan+"'";
+			sql = "select count(*) as dem from lichsu where (TrangThai = N'ChuyenDich' or TrangThai = N'DangDich' or TrangThai = N'LoiDich') and IdTaiKhoan = N'"+taikhoan+"'";
 		}else if(chon.equals("moi")){
 			sql = "select count(*) as dem from lichsu where (TrangThai = N'ChuyenDich' or TrangThai = N'LoiDich') and IdTaiKhoan = N'"+taikhoan+"'";
 		}else if(chon.equals("dich")){
-			sql = "select count(*) as dem from lichsu where (TrangThai = N'DangDich' or TrangThai = N'DaDich') and IdTaiKhoan = N'"+taikhoan+"'";
+			sql = "select count(*) as dem from lichsu where (TrangThai = N'DangDich') and IdTaiKhoan = N'"+taikhoan+"'";
 		}else{
-			sql = "select count(*) as dem from lichsu where (TrangThai = N'ChuyenDich' or TrangThai = N'DangDich' or TrangThai = N'LoiDich' or TrangThai = N'DaDich') and CURDATE()-ThoiGian>3 and IdTaiKhoan = N'"+taikhoan+"'";
+			sql = "select count(*) as dem from lichsu where (TrangThai = N'ChuyenDich' or TrangThai = N'DangDich' or TrangThai = N'LoiDich') and CURDATE()-ThoiGian>3 and IdTaiKhoan = N'"+taikhoan+"'";
 		}
 		ResultSet rs = db.getResultSet(sql);
 		try {

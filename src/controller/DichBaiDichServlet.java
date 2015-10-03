@@ -51,7 +51,7 @@ public class DichBaiDichServlet extends HttpServlet {
 					if(baiviet.CapNhatBaiViet(id, tieude, mota, noidung, "DangDich", user.getNgonNgu(), user.getIdTaiKhoan())) kqua="?xuly=luu-thanhcong";
 					else kqua="?xuly=luu-thatbai";
 				}else if(submit.equals("gui")){
-					if(baiviet.CapNhatBaiViet(id, tieude, mota, noidung, "Ok", user.getNgonNgu(), user.getIdTaiKhoan())) kqua="?xuly=gui-thanhcong";
+					if(baiviet.CapNhatBaiViet(id, tieude, mota, noidung, "DaDich", user.getNgonNgu(), user.getIdTaiKhoan())) kqua="?xuly=gui-thanhcong";
 					else kqua="?xuly=gui-thatbai";
 				}else if(submit.equals("huy")){
 					if(baiviet.CapNhatBaiViet(id, "HuyDich", user.getIdTaiKhoan())) kqua="?xuly=huy-thanhcong";

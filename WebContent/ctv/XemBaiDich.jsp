@@ -41,12 +41,15 @@
 		<%@include file="files/thongke.jsp" %>
 		<strong id="tke"><i class="fa fa-info-circle"></i> Thông tin</strong>
 		<div class="info">
-			<label>Mã bài viết : <%= bviet.getIdBaiViet() %></label>
-			<label>Tình trạng : <%= request.getAttribute("TinhTrang") %></label>
-			<label>Ngày gửi : <%= request.getAttribute("NgayGui") %></label>
+			<label>ID : <%= bviet.getIdBaiViet() %></label>
+			<label><i class="fa fa-file-text-o"></i> : <%= request.getAttribute("TinhTrang") %></label>
+			<label><i class="fa fa-calendar"></i> : <%= request.getAttribute("NgayGui") %></label>
 		</div>
 	</div>
 	<div class="col-sm-10 col-md-10">
+		<div class="title-page">
+			Chi tiết bài viết - 
+		</div>
 		<input type="hidden" id="iduser" name="iduser" value="<%= user.getIdTaiKhoan() %>">
 		<!-- ngôn ngữ chính của ctv là tiếng việt -->
 		<% if(user.getNgonNgu().equals("Viet")) { %>
@@ -147,7 +150,7 @@
 			</div>
 			<% } %>
 		<% } %>
-		<div class="col-xs-12 col-sm-12 col-md-12">
+		<div class="col-xs-12 col-sm-12 col-md-12 khungbinhluan">
 			<strong> Phản hồi bài dịch - 翻訳文書の返事 </strong>
 			<div class="row" id="listblviet">
 				<%= bviet.getGhiChu()==null ? "" : bviet.getGhiChu().replace("<strong>"+user.getIdTaiKhoan(), "<strong>Tôi") %>
@@ -170,11 +173,11 @@
 							    <div class="modal-content">
 							      <div class="modal-header">
 							        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-							        <h4 class="modal-title" id="myModalLabel">Hủy bài dịch<br>翻訳の記事を削除うする。</h4>
+							        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-exclamation-triangle"></i> Hủy bài dịch - 翻訳の記事を削除うする。</h4>
 							      </div>
 							      <div class="modal-body">
 							        Những bài dịch sẽ được gửi với yêu cầu HỦY DỊCH lên Admin và điều sẽ ảnh hưởng xấu đến thành tích của bạn.
-							        <br><label>Bạn thật sự muốn hủy bài dich?<br>本当に記事を削除したい？</label>
+							        <br><strong>Bạn thật sự muốn hủy bài dich?<br>本当に記事を削除したい？</strong>
 							      </div>
 							      <div class="modal-footer">
 							        <button type="button" class="btn btn-default" data-dismiss="modal">Không-いいえ</button>
@@ -193,7 +196,7 @@
 							      </div>
 							      <div class="modal-body">
 							        Các bài dịch sẽ được gửi lên Admin để kiểm duyệt.<br>翻訳の記事は管理者がチェックされる。
-									<br><label>Bạn muốn gửi(本当に送信したい)?</label>
+									<br><strong>Bạn muốn gửi(本当に送信したい)?</strong>
 							      </div>
 							      <div class="modal-footer">
 							        <button type="button" class="btn btn-default" data-dismiss="modal">Không-いいえ</button>

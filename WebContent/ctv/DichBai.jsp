@@ -43,12 +43,15 @@
 		<%@include file="files/thongke.jsp" %>
 		<strong id="tke"><i class="fa fa-info-circle"></i> Thông tin</strong><br>
 		<div class="info">
-			<label>Mã bài viết - ID : <%= bviet.getIdBaiViet() %></label><br>
-			<label>Tình trạng - 状況 : <%= request.getAttribute("TinhTrang") %></label><br>
-			<label>Ngày gửi - 送信の日 : <%= request.getAttribute("NgayGui") %></label>
+			<label> ID : <%= bviet.getIdBaiViet() %></label><br>
+			<label><i class="fa fa-file-text-o"></i> : <%= request.getAttribute("TinhTrang") %></label><br>
+			<label><i class="fa fa-calendar"></i> : <%= request.getAttribute("NgayGui") %></label>
 		</div>
 	</div>
 	<div class="col-sm-10 col-md-10">
+	<div class="title-page">
+		Dịch bài - 翻訳
+	</div>
 	<form action="DichBaiDichServlet" method="post">
 		<input type="hidden" name="id" value="<%= request.getParameter("id") %>">
 		<input type="hidden" id="iduser" name="iduser" value="<%= user.getIdTaiKhoan() %>">
@@ -110,7 +113,7 @@
 					<div id="ndviet"><textarea id="NoiDung" name="noidung" class="ckeditor"><%= bviet.getNoiDungVi()==null ? "" : bviet.getNoiDungVi() %></textarea></div>
 			</div>
 		<% } %>
-		<div class="col-xs-12 col-sm-12 col-md-12">
+		<div class="col-xs-12 col-sm-12 col-md-12 khungbinhluan">
 			<strong> Phản hồi bài dịch - 翻訳文書の返事 </strong>
 			<div class="row" id="listblviet">
 				<%= bviet.getGhiChu()==null ? "" : bviet.getGhiChu().replace("<strong>"+user.getIdTaiKhoan(), "<strong>Tôi") %>
@@ -130,11 +133,11 @@
 				    <div class="modal-content">
 				      <div class="modal-header">
 				        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				        <h4 class="modal-title" id="myModalLabel">Hủy bài dịch-翻訳の記事を削除うする</h4>
+				        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-exclamation-triangle"></i> Hủy bài dịch - 翻訳の記事を削除うする</h4>
 				      </div>
 				      <div class="modal-body">
 				        Những bài dịch sẽ được gửi với yêu cầu HỦY DỊCH lên Admin và điều sẽ ảnh hưởng xấu đến thành tích của bạn.
-				        <br><label>Bạn thật sự muốn hủy bài dich?</label>
+				        <br><strong>Bạn thật sự muốn hủy bài dich?</strong>
 				      </div>
 				      <div class="modal-footer">
 				        <button type="button" class="btn btn-default" data-dismiss="modal">Không-いいえ</button>
@@ -149,11 +152,11 @@
 				    <div class="modal-content">
 				      <div class="modal-header">
 				        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				        <h4 class="modal-title" id="myModalLabel">Gửi bài dịch-記事を送信する</h4>
+				        <h4 class="modal-title" id="myModalLabel">Gửi bài dịch - 記事を送信する</h4>
 				      </div>
 				      <div class="modal-body">
 				        Các bài dịch sẽ được gửi lên Admin để kiểm duyệt.<br>翻訳の記事は管理者がチェックされる。
-						<br><label>Bạn muốn gửi?<br>本当に送信したい？</label>
+						<br><strong>Bạn muốn gửi?<br>本当に送信したい？</strong>
 				      </div>
 				      <div class="modal-footer">
 				        <button type="button" class="btn btn-default" data-dismiss="modal">Không-いいえ</button>

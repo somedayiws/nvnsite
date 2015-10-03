@@ -10,13 +10,15 @@
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="TrangChuCTVServlet">VIET-NHAT</a>
+			<a class="navbar-brand" href="TrangChuCTVServlet">
+				<img alt="Việt - Nhật" src="../images/trangchu/logo2.png" style="width: 200px; height: 50px; background-color: white; margin-top: -2%;">
+			</a>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="TrangChuCTVServlet">Home - ホーム</a></li>
+				<li class="active"><a href="TrangChuCTVServlet"><i class="fa fa-home"></i> ホーム<br>Trang Chủ</a></li>
 				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="DanhSachBaiDichServlet?view=all">Danh sách bài dịch - 翻訳文書のリスト <span class="caret"></span></a>
+					data-toggle="dropdown" href="DanhSachBaiDichServlet?view=all"><i class="fa fa-list-ul"></i> 翻訳文書のリスト<br>Danh sách bài dịch<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="DanhSachBaiDichServlet?view=all">Tất cả bài viết - 全てニュース・文書 </a></li>
 						<li><a href="DanhSachBaiDichServlet?view=moi">Bài mới nhận - 届いたばかり文書ーニュース</a></li>
