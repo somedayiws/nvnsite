@@ -41,13 +41,13 @@ input.error {
 		<form class="panel-login" action="CTVResetMatKhauServlet" method="post" id="freset">
 			<i class="fa fa-pinterest-p fa-2x"></i>
 			<label>Thông tin tài khoản</label>
-			<%= request.getAttribute("meg")==null ? "<div class='alert alert-info' role='alert'><p>Hãy nhập tài khoản cộng tác viên của bạn bên dưới và click vào button \"Lấy mật khẩu - ログイン\". Kiểm tra lại email của bạn đã đăng ký với chúng tôi để lấy lại mật khẩu. Cám ơn!</p></div>" : request.getAttribute("meg") %>
+			<%= request.getAttribute("meg")==null ? "<div class='alert alert-info' role='alert'><p>Hãy nhập tài khoản cộng tác viên của bạn bên dưới và click vào button \"Lấy mật khẩu - ログイン\". Kiểm tra lại email của bạn đã đăng ký với chúng tôi để lấy lại mật khẩu. Cám ơn!<br>以下のボタンをクリックし、協力者のアカウントを入力してください。パスワードを収得し、ログイン\"。パスワードを収得するため、申請されたメールを改めて確認して下さい。ありがとう。</p></div>" : request.getAttribute("meg") %>
 			<div class="row">
 				<label><i class="fa fa-user"></i> Tài khoản - アカウント </label>
 				<input type="text" name="taikhoan" placeholder="Tài khoản cộng tác viên - 協力者のアカウント" class="form-control">
 			</div>
 			<div class="row">
-				<button type="reset" class="btn btn-warning btn-sm" id="huy"><i class="fa fa-eraser"></i> Nhập lại - </button>
+				<button type="reset" class="btn btn-warning btn-sm" id="huy"><i class="fa fa-eraser"></i> Reset - リセット</button>
 				<button type="submit" name="submit" value="congtacvien" class="btn btn-primary btn-sm" id="gui"><i class="fa fa-sign-in"></i> Lấy mật khẩu - ログイン</button>
 			</div>
 		</form>

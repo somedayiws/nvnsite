@@ -40,7 +40,7 @@
 							</div>
 							<div class="row">
 								<strong>Mật khẩu - パスワード</strong> <input name="matkhau"
-									type="password" placeholder="Tài khoản" class="form-control">
+									type="password" placeholder="Mật khẩu" class="form-control">
 							</div>
 							<a href="DangKyThanhVienServlet"><i class="fa fa-user-plus"></i>
 								Đăng ký - 新規取得</a> <br> <a href="QuenMatKhauServlet"><i
