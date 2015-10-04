@@ -36,7 +36,7 @@ public class XuLyBaiVietServlet extends HttpServlet {
 			for(int i=0; i<fruits.length; i++)
 			{
 				if(submit.equals("gui")){
-					bviet.CapNhatBaiViet(fruits[i], "DaDich", user.getIdTaiKhoan());
+					bviet.CapNhatBaiViet(fruits[i], "DangBai", user.getIdTaiKhoan());
 					request.setAttribute("meg", "<div class='alert alert-success' role='alert'>Gửi bài dịch thành công.<br>翻訳の記事が送信できた。</div>");
 				}else{
 					bviet.CapNhatBaiViet(fruits[i], "HuyDich", user.getIdTaiKhoan());

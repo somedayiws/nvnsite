@@ -62,7 +62,7 @@
 							class="form-control"></textarea>
 					</div>
 				</div>
-				<div class="dangu">
+				<div class="dangu" style="display: none;">
 					<div class="col-sm-6 col-md-6 tviet">
 						<div class="form-group">
 							<label>Tiêu đề</label> <input id="TieuDeVi" name="TieuDeVi"
@@ -107,7 +107,7 @@
 						<textarea id="NoiDung" name="NoiDung" class="ckeditor"></textarea>
 					</div>
 				</div>
-				<div class="dangu">
+				<div class="dangu" style="display: none;">
 					<div class="col-sm-6 col-md-6 tviet">
 						<div class="form-group">
 							<label>Nội dung</label>
@@ -130,7 +130,7 @@
 								id="fu2">
 						</p>
 					</div>
-					<input type="hidden" id="dichbai" name="dichbai" value="khong">
+					<input type="hidden" id="dichbai" name="dichbai" value="luu">
 					<input type="hidden" id="dangbai" name="dangbai" value="Đăng bài -">
 					<div class="form-group">
 						<input type="submit" value="Lưu bài - 保存" name="luubai" class="btn btn-success" />
@@ -184,6 +184,7 @@
 	
 	function DichBai(x) {
 		if(x) $('#dichbai').val('dich');
+		else $('#dichbai').val('khong');
 		$('#fdangbai').submit();
 	}
 	
