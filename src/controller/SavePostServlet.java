@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.bean.BAIVIET;
 import model.bean.TAIKHOAN;
+import model.bo.AdminEditPostsBO;
 import model.bo.ChangeStatusBO;
 import model.bo.ListAccountBO;
 import model.bo.ShowAdminEditPostsBO;
@@ -37,10 +40,29 @@ public class SavePostServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String idPost = request.getParameter("idPost");
+		doPost(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
+		BAIVIET post =(BAIVIET) request.getAttribute("post");
+		
+		String resultSave;
+		AdminEditPostsBO adminEditPostBo = new AdminEditPostsBO();
+		if(adminEditPostBo.updatePost_Translated(post)){
+			resultSave = "Lưu bài viết thành công - ";
+		}
+		else{
+			resultSave = "Lưu bài viết thất bại - ";
+		}
+		
 		ShowAdminEditPostsBO checkID = new ShowAdminEditPostsBO();
 		ChangeStatusBO updateStatus = new ChangeStatusBO();
-		if(idPost!=null && checkID.checkExist_Post(idPost)){
+		if(post.getIdBaiViet()!=null && checkID.checkExist_Post(post.getIdBaiViet())){
 			HttpSession session = request.getSession();
 			String username = (String)session.getAttribute("username");
 			
@@ -50,19 +72,16 @@ public class SavePostServlet extends HttpServlet {
 			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		       //get current date time with Date()
 		       Date date = new Date();
-			updateStatus.changeStatusHistory("DangDich", idPost, account.getIdTaiKhoan(),date);
-			response.sendRedirect("ShowDetailPostsServlet?id="+idPost);
+			updateStatus.changeStatusHistory("DangDich", post.getIdBaiViet(), account.getIdTaiKhoan(),date);
+			updateStatus.changeStatusPost("DangDich", post.getIdBaiViet(), "Đang dịch");
+			request.setAttribute("resultSave", resultSave);
+			request.setAttribute("idPost", post.getIdBaiViet());
+			RequestDispatcher dispatcher = request.getRequestDispatcher("ShowDetailPostsServlet");
+			dispatcher.forward(request, response);
 			
 		}else{
 			response.sendRedirect("Error.jsp");
 		}
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 }

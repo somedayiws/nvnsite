@@ -24,11 +24,15 @@
 </script>
 </head>
 <%
+//Check session exist
+		HttpSession session_user = request.getSession();
+		String username =(String)session_user.getAttribute("username");	
 	/**Receive data from server*/
 	ArrayList<TAIKHOAN> listAccountDeleted = (ArrayList<TAIKHOAN>) request.getAttribute("listAccountDeleted");
 	String screen = (String)request.getAttribute("screen");
 %>
 <body>
+<%if(username!=null){ %>
 	<div class="container-fluid">
 		<%@include file="header_ver_1.jsp"%>
 		<%@include file="Menu.jsp"%>
@@ -51,7 +55,7 @@
 								<td><%=listAccountDeleted.get(i).getIdTaiKhoan()%></td>
 								<td><%=listAccountDeleted.get(i).getTenTaiKhoan()%></td>
 								<td><a
-									href="RestoreServlet?idAccount=<%=listAccountDeleted.get(i).getIdTaiKhoan()%>&screen=C<%=screen%>"><button
+									href="RestoreServlet?idAccount=<%=listAccountDeleted.get(i).getIdTaiKhoan()%>&type=account&screen=<%=screen%>"><button
 											type="button" class="btn btn-default">
 											<span class="glyphicon glyphicon-pencil"></span>Phục hồi
 										</button></a></td>
@@ -67,6 +71,9 @@
 			</div>
 		</div>
 	</div>
-
+<%}else{
+		RequestDispatcher dispatcher = request.getRequestDispatcher("ShowloginAdmin");
+	    dispatcher.forward(request, response);
+	}%>	
 </body>
 </html>

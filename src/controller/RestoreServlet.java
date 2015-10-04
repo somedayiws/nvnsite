@@ -60,7 +60,7 @@ public class RestoreServlet extends HttpServlet {
 		RestoreDataBO restore = new RestoreDataBO();
 		String result_Restore = null;
 		if (valueId != null) {
-			if (valueId.contains("US")) {
+			if (valueId.contains("TK")) {
 				if (restore.restore("IdTaiKhoan", valueId, "taikhoan")) {
 					result_Restore = "Phục hồi tài khoản thành công - ";
 				} else {

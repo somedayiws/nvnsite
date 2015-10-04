@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.bean.BAIVIET;
 import model.bean.DANHMUC;
@@ -51,14 +52,15 @@ public class ListPostsServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
+		//Check session exist
+				HttpSession session_user = request.getSession();
+				String username =(String)session_user.getAttribute("username");	
+			
+				if(username!=null){
 		
 		ListPostsBO listPost = new ListPostsBO();		
 		ListAccountBO listaccount  = new ListAccountBO();	
 		ListCategoryBO listcategory = new ListCategoryBO();
-		
-		String chon = request.getParameter("view");
-		if(chon==null) chon = "all";
-		
 		int page = 1;
 		listPost.setMenu(10, 5);
 		try {
@@ -66,7 +68,7 @@ public class ListPostsServlet extends HttpServlet {
 		} catch (NumberFormatException e) {
 			page = 1;
 		}
-		ArrayList<BAIVIET> posts = listPost.getPosts(page, chon);
+		ArrayList<BAIVIET> posts = listPost.getPosts(page);
 		
 			
 		ArrayList<TAIKHOAN> accounts = listaccount.getDataAccountInfor(0,listaccount.totalRecord(),"all");
@@ -82,5 +84,9 @@ public class ListPostsServlet extends HttpServlet {
 		requestDis_posts.forward(request, response);
 		
 	}
-
+				else{
+					RequestDispatcher requestDis_posts = request.getRequestDispatcher("Login.jsp");
+					requestDis_posts.forward(request, response);
+				}		
+	}
 }

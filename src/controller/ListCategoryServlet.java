@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.bean.DANHMUC;
 import model.bo.ListCategoryBO;
@@ -42,6 +43,12 @@ public class ListCategoryServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
+		
+		//Check session exist
+				HttpSession session_user = request.getSession();
+				String username =(String)session_user.getAttribute("username");	
+			
+				if(username!=null){
 		
 		String resultInsert =(String)request.getAttribute("resultInsert");
 		String resultUpdate = (String)request.getAttribute("resultUpdate");
@@ -95,6 +102,10 @@ public class ListCategoryServlet extends HttpServlet {
 		}
 		RequestDispatcher requestDis_listCategory = request.getRequestDispatcher("Category.jsp");
 		requestDis_listCategory.forward(request, response);
+	}else{
+		RequestDispatcher requestDis_listCategory = request.getRequestDispatcher("Login.jsp");
+		requestDis_listCategory.forward(request, response);
 	}
-
+	}
+	
 }

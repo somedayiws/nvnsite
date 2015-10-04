@@ -5,13 +5,35 @@
 	float:right;
 }
 #resultMessage{
-	display:none;
+	display: none;
 }
 #div_show_image{
-	margin-top: 300px;
+	margin-top: 200px;
 }
 #div_show_post_new{
 	margin-top: 100px;
+}
+.btn_action{
+	margin: 50px auto;
+}
+span {
+	margin: 5px;
+}
+#title{
+	box-shadow: 5px 5px 40px black;
+}
+p{
+	min-height: 80px;
+}
+
+@media ( max-width :768px) {
+	#div_show_image{
+		display: none;
+	}
+	marquee{
+		width:0;
+	}
+	
 }
 
 

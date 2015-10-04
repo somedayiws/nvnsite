@@ -18,8 +18,11 @@
 <link rel="stylesheet" href="css/register.css">
 <link rel="stylesheet" href="css/category.css">
 <title>Quản lý danh mục - 項目の管理</title>
-
 <%
+	//Check session exist
+		HttpSession session_user = request.getSession();
+		String username =(String)session_user.getAttribute("username");	
+		
 	//Receive inforrmation insert from Server
 	String resultInsert = (String) request.getAttribute("resultInsert");
 
@@ -50,36 +53,10 @@
 	//Nhận lại kết quả khi khôi phục dữ liệu
 	String resultRestore = (String)request.getAttribute("resultRestore");
 %>
-<script type="text/javascript">
-
-	/*------------------Check validate form edit-----------------*/
-	$(document).ready(function() {				  
-		<%if(category!=null){%>
-	for(var i=0;i<<%=category.size()%>
-	; i++) {
-		
-			var validator = $("#formedit" + i).validate({
-
-				rules : {
-					nameCategoryVi : "required",
-					nameCategoryJa : "required",
-				},
-				messages : {
-					nameCategoryVi : "Hãy nhập tên danh mục tiếng việt - ベトナム語で項目を入力下さい。",
-					nameCategoryJa : "Hãy nhập tên danh mục tiếng nhật - 日本語で項目を入力下さい。",
-				},
-				
-			});
-			
-		}
-	<%}%>
-	});
-	
-	/*------------------End check validate form edit-------------*/
-</script>
 </head>
 
 <body>
+	<%if(username!=null){ %>
 	<div class="container-fluid">
 		<%@include file="header_ver_1.jsp"%>			
 		<%@include file="Menu.jsp"%>
@@ -125,8 +102,8 @@
 										value="no">Không - 無</label>
 								</div>
 								<div class="form-group">
-									<label>Icon <input type="file" id="Image" name="Image" onchange="xem(this,'fua');"/></label>
-									<p class="help-block">Chọn file .png, .jpg ...<br>
+									<label>Icon -  <input type="file" id="Image" name="Image" onchange="xem(this,'fua');"/></label>
+									<p class="help-block">Chọn tập tin có đuôi là .png, .jpg, .gif, .jpeg<br>
 										<img alt="Icon đại diện" src="../images/icons/icondefault.png" id="fua" width="50px" height="50px">
 									</p>
 								</div>
@@ -189,7 +166,7 @@
 				if(resultRestore.contains("success")){
 		%>
 		<div class="col-md-6 col-md-offset-3 alert alert-info">
-	<strong>Thông báo!</strong>Khôi phục danh mục thành công
+	<strong>Thông báo!</strong>Khôi phục danh mục thành công - 
 	</div>
 	<%}else{ %>
 	<div class="col-md-6 col-md-offset-3 alert alert-info">
@@ -219,13 +196,16 @@
 						name="stringFind">
 				</div>
 				<div class="col-sm-1 form-group">
-				<button type="submit" name="btnFind" value="Find"
-					class="btn btn-primary btn-sm">Tìm kiếm<br>検索</button>
-					</div>
+					<button type="submit" name="btnFind" value="Find"
+						class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="bottom" title="Tìm kiếm - 検索">
+						<span class="glyphicon glyphicon-search"></span>
+					</button>
+				</div>
 				</form>
 					<div class="col-sm-1 form-group">
 				<a href="ShowRestoreServlet?type=category"><button type="submit" name="btnRestore" 
-					class="btn btn-success btn-sm">Khôi phục<br>回復</button></a>
+					class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="bottom" title="Khôi phục - 回復">
+					<span class="glyphicon glyphicon-share-alt"></span></button></a>
 					</div>
 			
 		</div>
@@ -665,6 +645,36 @@
 
 	</div>	
 </div>
-
+	<%}else{
+		RequestDispatcher dispatcher = request.getRequestDispatcher("ShowloginAdmin");
+	    dispatcher.forward(request, response);
+	}%>	
 </body>
+<script type="text/javascript">
+
+	/*------------------Check validate form edit-----------------*/
+	$(document).ready(function() {				  
+		<%if(category!=null){%>
+	for(var i=0;i<<%=category.size()%>
+	; i++) {
+		
+			var validator = $("#formedit" + i).validate({
+
+				rules : {
+					nameCategoryVi : "required",
+					nameCategoryJa : "required",
+				},
+				messages : {
+					nameCategoryVi : "Hãy nhập tên danh mục tiếng việt - ベトナム語で項目を入力下さい。",
+					nameCategoryJa : "Hãy nhập tên danh mục tiếng nhật - 日本語で項目を入力下さい。",
+				},
+				
+			});
+			
+		}
+	<%}%>
+	});
+	
+	/*------------------End check validate form edit-------------*/
+</script>
 </html>

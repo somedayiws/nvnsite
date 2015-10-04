@@ -10,8 +10,8 @@ public class GetAccountBO {
 	public ArrayList<TAIKHOAN> listAccountByStatus(String status){
 		return getAcc.getAccountByStatus(status);
 	}
-	public TAIKHOAN getAccErrorTranslate(String status){
-		return getAcc.getAccErrorTranslate(status);
+	public TAIKHOAN getAccErrorTranslate(String idPost){
+		return getAcc.getAccErrorTranslate(idPost);
 	}
 
 }

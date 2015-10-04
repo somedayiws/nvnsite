@@ -260,7 +260,7 @@ public class StatisticalDAO {
 			else sql_count = "SELECT  count(IdBaiViet) as idnumber FROM baiviet where CoXoa = 0";
 		}
 		
-		else if (type == 1) {
+		else if (type == 2) {
 			if(by == 2) sql_count = "SELECT  count(IdBaiViet) as idnumber FROM baiviet where NgayDang >= '"+dayStart+"' AND NgayDang <= '"+dayFinish+"' AND CoXoa = 1";
 			else sql_count = "SELECT  count(IdBaiViet) as idnumber FROM baiviet where CoXoa = 1";
 		}

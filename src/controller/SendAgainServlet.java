@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.bean.LICHSU;
 import model.bean.TAIKHOAN;
 import model.bo.ChangeStatusBO;
 import model.bo.GetAccountBO;
@@ -38,16 +39,21 @@ public class SendAgainServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		String idPost = request.getParameter("idPost");
+		System.out.println("idPost: "+idPost);
 		GetAccountBO getAcc = new GetAccountBO();
-		TAIKHOAN accountErrorTranslate = getAcc.getAccErrorTranslate("DaDich");
+		TAIKHOAN accountErrorTranslate = getAcc.getAccErrorTranslate(idPost);
 		
 		ChangeStatusBO changeStatus = new ChangeStatusBO();
 		
 		
 		changeStatus.updateStatusHistory("LoiDich", idPost, accountErrorTranslate.getIdTaiKhoan());
 		
-		 ListStatusHistoryBO listStatus = new ListStatusHistoryBO();
-			String status = listStatus.getStatus(idPost);
+		request.setAttribute("accountErrorTranslate", accountErrorTranslate);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("SendPostServlet");
+		dispatcher.forward(request, response);
+		 /*ListStatusHistoryBO listStatus = new ListStatusHistoryBO();
+		 LICHSU history = listStatus.getStatus(idPost);
+			String status = history.getTrangThai();
 		 request.setAttribute("idPost", idPost);
 		 request.setAttribute("accountErrorTranslate", accountErrorTranslate);
 		 ListAccountBO listAcc = new ListAccountBO();
@@ -56,7 +62,7 @@ public class SendAgainServlet extends HttpServlet {
 		 request.setAttribute("status", status);
 			RequestDispatcher requestDis = request
 					.getRequestDispatcher("SendPost.jsp");
-			requestDis.forward(request, response);
+			requestDis.forward(request, response);*/
 	}
 
 	/**

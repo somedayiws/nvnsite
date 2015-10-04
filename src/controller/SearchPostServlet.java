@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.bean.BAIVIET;
 import model.bean.DANHMUC;
@@ -46,7 +47,11 @@ public class SearchPostServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
-		
+		//Check session exist
+				HttpSession session_user = request.getSession();
+				String username =(String)session_user.getAttribute("username");	
+			
+				if(username!=null){
 		String stringFind;
 		//Lấy loại tìm kiếm và nội dung tìm kiếm từ form
 		String typeFind = request.getParameter("typeFind");
@@ -106,6 +111,10 @@ public class SearchPostServlet extends HttpServlet {
 		request.setAttribute("category", category);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("SearchPosts.jsp");
 		requestDispatcher.forward(request, response);
+	}else{
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("Login.jsp");
+		requestDispatcher.forward(request, response);
+	}
 	}
 
 }

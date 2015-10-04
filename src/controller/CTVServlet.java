@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.bean.CTV;
 import model.bo.CTVBO;
@@ -43,6 +44,11 @@ public class CTVServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		
+		//Check session exist
+				HttpSession session_user = request.getSession();
+				String username =(String)session_user.getAttribute("username");	
+			
+				if(username!=null){
 		//Nhận kết quả tạo tài khoản từ AdminCreateServlet,AdminDeleteServlet,AdminEditServlet
 		String result = (String)request.getAttribute("result");
 		String button = request.getParameter("btnFind");
@@ -84,6 +90,10 @@ public class CTVServlet extends HttpServlet {
 		request.setAttribute("result", result);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("CTV.jsp");
 		requestDispatcher.forward(request, response);
+	}else{
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("Login.jsp");
+		requestDispatcher.forward(request, response);
 	}
-
+	}
+	
 }

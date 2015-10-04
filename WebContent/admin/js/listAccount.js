@@ -100,3 +100,6 @@ function checkValidateSearch() {
 	return false;
 
 }
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});

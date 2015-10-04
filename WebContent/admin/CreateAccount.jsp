@@ -10,10 +10,14 @@
 <link rel="stylesheet" href="css/createAccount.css">
 <title>Tạo tài khoản - アカウントの作成</title>
 <%
+//Check session exist
+		HttpSession session_user = request.getSession();
+		String username =(String)session_user.getAttribute("username");	
 	String type = (String)request.getAttribute("type");
 %>
 </head>
 <body>
+	<%if(username!=null){ %>
 	<div class="container-fluid">
 		<%@include file="header_ver_1.jsp"%>				
 		<%@include file="Menu.jsp"%>		
@@ -96,6 +100,10 @@
 			<%} %>
 		</div>
 	</div>
+	<%}else{
+		RequestDispatcher dispatcher = request.getRequestDispatcher("ShowloginAdmin");
+	    dispatcher.forward(request, response);
+	}%>	
 </body>
 <!-- _____________________________________JS______________________________ -->
 <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>

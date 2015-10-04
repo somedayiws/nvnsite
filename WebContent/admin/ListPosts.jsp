@@ -99,6 +99,9 @@
 
 </head>
 <%
+//Check session exist
+		HttpSession session_user = request.getSession();
+		String username =(String)session_user.getAttribute("username");
 	//Receive data from server
 	ArrayList<BAIVIET> posts = (ArrayList<BAIVIET>) request.getAttribute("posts");	
 	ArrayList<TAIKHOAN> accounts = (ArrayList<TAIKHOAN>) request.getAttribute("accounts");
@@ -112,12 +115,13 @@
 %>
 
 <body>
+<%if(username!=null){ %>
 	<div class="container-fluid">
 		<%@include file="header_ver_1.jsp"%>
 		<%@include file="Menu.jsp"%>
 
 		<div id="divcontent">
-
+			<div class="row">
 			<!-- Show result Delete posts -->
 			<%
 				if (resultDelete != null) {
@@ -137,7 +141,7 @@
 			<%
 				}
 			%>			
-
+</div>
 			<!----------------------- Form tìm kiếm ----------------------->
 			<div class="row">
 				<form action="SearchPostServlet" method="get" id="formSearchPost">
@@ -224,11 +228,12 @@
 						<button type="submit" name="btnFind" value="Find"
 							class="btn btn-primary btn-sm">Tìm kiếm - 検索</button>
 					</div>
+				</form>
 						<div class="col-md-1 form-group">
 					<a href="ShowRestoreServlet?type=posts"><button
 							class="btn btn-success btn-sm">Khôi phục - 回復</button></a>
 				</div>
-				</form>
+				
 			</div>
 			<!----------------------- End form tìm kiếm ------------------->
 			<!-- ------------------------------------------------------- -->
@@ -400,7 +405,7 @@
 										name="Idposts" value="<%=posts.get(i).getIdBaiViet()%>"
 										readonly="readonly">
 								</div>
-								<button type="submit" class="btn btn-success btn-lg">Xóa
+								<button type="submit" class="btn btn-success btn-sm">Xóa
 									- 削除</button>
 								<button type="button" id="btn" class="btn btn-default"
 									data-dismiss="modal">Quay lại - 戻り</button>
@@ -419,7 +424,10 @@
 		</div>
 	</div>
 	<div id="resultMessage" style="display: none;"></div>
-
+<%}else{
+		RequestDispatcher dispatcher = request.getRequestDispatcher("ShowloginAdmin");
+	    dispatcher.forward(request, response);
+	}%>	
 </body>
 <script type="text/javascript">
 	function changeBookmark(idPost) {
@@ -433,6 +441,7 @@
 			success : function(res) {
 				if (res.indexOf("tối đa") > -1) {
 					$("#resultMessage").html(res);
+					alert($("#resultMessage").children("#result").text());
 				} else {
 					$("#resultMessage_" + idPost).html(res);
 				}

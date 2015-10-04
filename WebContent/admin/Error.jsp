@@ -14,14 +14,26 @@
 <title>Lỗi - ホーム</title>
 </head>
 <%
+//Check session exist
+		HttpSession session_user = request.getSession();
+		String username =(String)session_user.getAttribute("username");	
 String error = (String)request.getAttribute("error");
 %>
 <body>
-<%if(error!=null){ %>
-<div class="alert alert-danger">
-  <strong>Lỗi</strong> <%=error %>
-</div>
-	
-<%} %>
+<%if(username!=null){ %>
+	<div class="container-fluid">
+		<%@include file="header_ver_1.jsp"%>				
+		<%@include file="Menu.jsp"%>
+		<%if(error!=null){ %>
+		<div class="alert alert-danger">
+		  <strong>Lỗi</strong> <%=error %>
+		</div>
+			
+		<%} %>
+	</div>
+<%}else{
+		RequestDispatcher dispatcher = request.getRequestDispatcher("ShowloginAdmin");
+	    dispatcher.forward(request, response);
+	}%>	
 </body>
 </html>

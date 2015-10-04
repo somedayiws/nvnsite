@@ -7,22 +7,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" name="viewport"
-	content="text/html; charset=UTF-8; width=device-width; initial-scale=1">
-<link rel="stylesheet"
-	href="../bootstrap-3.3.5-dist/css/bootstrap.min.css">
-<script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
-<script type="text/javascript"
-	src="../bootstrap-3.3.5-dist/js/bootstrap.js"></script>
-<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="../check_validate/formEdit.js"></script>
-<link rel="stylesheet" href="css/register.css">
+<meta http-equiv="Content-Type" name="viewport" content="text/html; charset=UTF-8; width=device-width; initial-scale=1">
+<!-- _______________________CSS_________________________________________ -->
+<link rel="stylesheet" href="../bootstrap-3.3.5-dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/editPost.css">
-<script src="../ckeditor/ckeditor.js"></script>
-<script src="../js/jquery-ui.js"></script>
-<title>Chỉnh sửa bài viết - 管理者は記事を修正する。</title>
+<title>Chỉnh sửa bài viết - 記事の修正</title>
 </head>
 <%
+//Check session exist
+		HttpSession session_user = request.getSession();
+		String username =(String)session_user.getAttribute("username");	
+	
+		
 	/**Reveice data from server*/
 	ArrayList<DANHMUC> categorys = (ArrayList<DANHMUC>) request.getAttribute("categorys");
 	ArrayList<TAIKHOAN> accounts = (ArrayList<TAIKHOAN>) request.getAttribute("accounts");
@@ -31,9 +27,8 @@
 	//Lấy kết quả chỉnh sửa từ ShowAdminEditPost
 	String resultEdit = (String)request.getAttribute("resultEdit");
 %>
-
-
 <body>
+<%if(username!=null){ %>
 	<div class="container-fluid">
 		<%@include file="header_ver_1.jsp"%>
 		<%@include file="Menu.jsp"%>
@@ -257,5 +252,16 @@
 			</div>
 		</div>
 	</div>
+	<%}else{
+		RequestDispatcher dispatcher = request.getRequestDispatcher("ShowloginAdmin");
+	    dispatcher.forward(request, response);
+	}%>	
 </body>
+<!-- __________________________________JS_________________________________ -->
+<script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../bootstrap-3.3.5-dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="../check_validate/formEdit.js"></script>
+<script src="../ckeditor/ckeditor.js"></script>
+<script src="../js/jquery-ui.js"></script>
 </html>

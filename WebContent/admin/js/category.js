@@ -103,3 +103,6 @@ function check_Image(){
 
 	}
 	/*----------------- End check validate form Search -----------*/
+	$(document).ready(function(){
+	    $('[data-toggle="tooltip"]').tooltip(); 
+	});

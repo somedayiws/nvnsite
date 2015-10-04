@@ -29,14 +29,16 @@ public class ShowAdminEditPostsDAO {
 	public BAIVIET getPostsById(String idPost) {
 		String sql_select_postsByid = "SELECT TenBaiVietVi,TenBaiVietJa,IdDanhMuc,IdTaiKhoan,NoiDungVi,NoiDungJa,TrangThai,GhiChu,MotaVi,MotaJa,LuotXem,Lienket,NgayDang,GimTrangChu from baiviet WHERE IdBaiViet='"
 				+ idPost + "' AND CoXoa=0";
+		System.out.println("sql_select_postsByid: "+sql_select_postsByid);
 		ResultSet result_select_postsByid = db
 				.getResultSet(sql_select_postsByid);
 	
 		ListCategoryDAO listcategory = new ListCategoryDAO();
 		ListAccountDAO listAccount = new ListAccountDAO();
 		ListCommentDAO comment = new ListCommentDAO();
+		BAIVIET post = new BAIVIET();
 		try {
-			BAIVIET post = new BAIVIET();
+			
 			while (result_select_postsByid.next()) {
 				post.setIdBaiViet(idPost);
 				post.setTenBaiVietVi(DinhDangSQL.DeFomatSQL(result_select_postsByid
@@ -66,6 +68,7 @@ public class ShowAdminEditPostsDAO {
 				post.setBinhLuanJa(comment.getCommentJaById(idPost));
 				
 			}
+			System.out.println("ID: "+post.getIdBaiViet());
 //			System.out.println("id: "+post.getIdBaiViet());
 //			System.out.println("id danh muc: "+post.getDanhMuc().getIdDanhMuc());
 			return post;

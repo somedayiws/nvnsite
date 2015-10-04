@@ -12,8 +12,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.bean.BAIVIET;
+import model.bean.LICHSU;
 import model.bean.TAIKHOAN;
 import model.bo.ChangeStatusBO;
 import model.bo.GetAccountBO;
@@ -44,8 +46,14 @@ public class SendPostServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
-		String idPost = request.getParameter("idPost");
 		
+		//Check session exist
+				HttpSession session_user = request.getSession();
+				String username =(String)session_user.getAttribute("username");	
+			
+				if(username!=null){
+		String idPost = request.getParameter("idPost");
+		TAIKHOAN accountErrorTranslate = (TAIKHOAN)request.getAttribute("accountErrorTranslate");
 		/**
 		 * Biến để lưu ngôn ngữ bài viết
 		 * 0 : Song ngữ
@@ -61,24 +69,33 @@ public class SendPostServlet extends HttpServlet {
 			//Xác định ngôn ngữ của bài viết
 			ShowAdminEditPostsBO getPost = new ShowAdminEditPostsBO();
 			BAIVIET post = getPost.post(idPost);
-											
-			if(post.getTenBaiVietJa().equals("null") && post.getMoTaJa().equals("null") && post.getNoiDungJa().equals("null")){
+			
+			if(post.getTenBaiVietJa()!=null &&  post.getMoTaJa()!=null  && post.getNoiDungJa()!=null){
 				//Bài viết là tiếng việt
 				languagePost = "1";
 			}
-			if(post.getTenBaiVietVi().equals("null") && post.getMoTaVi().equals("null") && post.getNoiDungVi().equals("null")){
+			if(post.getTenBaiVietVi()!=null &&  post.getMoTaVi()!=null  && post.getNoiDungVi()!=null){
 				//Bài viết là tiếng nhật
 				languagePost = "2";
 			}
 			
 			
 			ListStatusHistoryBO listStatus = new ListStatusHistoryBO();
-			String status = listStatus.getStatus(idPost);
+			LICHSU history = listStatus.getStatus(idPost);
+			String status = history.getTrangThai();
 			ArrayList<TAIKHOAN> listAccountCTV = listAcc.getDataAccountInfor(0,listAcc.totalRecord(),"CTV");
-			ArrayList<TAIKHOAN> listAccountByStatus = getAcc.listAccountByStatus("HuyDich");
+			
+			if(history!=null && history.getTaikhoan()!=null){
+				ArrayList<TAIKHOAN> listAccountByStatus = getAcc.listAccountByStatus(history.getTaikhoan().getIdTaiKhoan());
+				request.setAttribute("listAccountByStatus", listAccountByStatus);
+			}
+		/*	if(history!=null && history.getTaikhoan()!=null && history.getTrangThai().contains("LoiDich")){ 
+				TAIKHOAN accountErrorTranslate = history.getTaikhoan();
+				request.setAttribute("accountErrorTranslate", accountErrorTranslate);
+			}*/
 			
 			request.setAttribute("languagePost", languagePost);
-			request.setAttribute("listAccountByStatus", listAccountByStatus);
+			request.setAttribute("accountErrorTranslate", accountErrorTranslate);
 			request.setAttribute("idPost", idPost);
 			request.setAttribute("listAccountCTV", listAccountCTV);
 			request.setAttribute("status", status);
@@ -86,7 +103,11 @@ public class SendPostServlet extends HttpServlet {
 					.getRequestDispatcher("SendPost.jsp");
 			requestDis.forward(request, response);
 	
-			
+				}else{
+					RequestDispatcher requestDis = request
+							.getRequestDispatcher("Login.jsp");
+					requestDis.forward(request, response);
+				}	
 	
 	}
 
@@ -101,17 +122,16 @@ public class SendPostServlet extends HttpServlet {
 		String idPost = request.getParameter("idPost");
 		String idAccount = request.getParameter("idAccount");
 		String message = request.getParameter("message");
-		
-		System.out.println("idPost: "+idPost);
-		System.out.println("idAccount: "+idAccount);
 		 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 	       //get current date time with Date()
 	       Date date = new Date();
-	       System.out.println("date: "+dateFormat.format(date));
 		ChangeStatusBO changestatus = new ChangeStatusBO();
 		changestatus.changeStatusHistory("ChuyenDich", idPost,idAccount,date);
 		changestatus.changeStatusPost("DangDich", idPost,message);
-		response.sendRedirect("ShowDetailPostsServlet?id="+idPost);
+		request.setAttribute("resultSend", "Bài viết đã được chuyển cho cộng tác viên");
+		request.setAttribute("idPost", idPost);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("ShowDetailPostsServlet");
+		dispatcher.forward(request, response);
 
 	}
 

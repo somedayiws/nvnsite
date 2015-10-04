@@ -76,17 +76,15 @@ public class CTVDAO {
 				listCTV.add(ctv);
 			}
 			for(int i=0;i<listCTV.size();i++){
-//				System.out.println("i:"+i);
 				ArrayList<ArrayList<BAIVIET>> array_ListPost = new ArrayList<ArrayList<BAIVIET>>();
 				for(int j=0;j<=5;j++){
 					
-//					System.out.println("j:"+j);
 					ArrayList<BAIVIET> listPost = getPostTranslatedByCTV(j+1, listCTV.get(i).getTaikhoan().getIdTaiKhoan());
-//					System.out.println("size_listPost:"+listPost.size());
 					array_ListPost.add(listPost);
 				}
 				
 				listCTV.get(i).setArray_ListPost(array_ListPost);
+				listCTV.get(i).setNumberPosts(countPostOfCTV(listCTV.get(i).getTaikhoan().getIdTaiKhoan()));
 			}
 			return listCTV;
 		} catch (SQLException e) {
@@ -126,7 +124,7 @@ public class CTVDAO {
 			sql_get = "select IdBaiViet from lichsu where TrangThai = 'HuyDich' and IdTaiKhoan ='"+idCTV+"'";	
 			break;
 		case 6:
-			sql_get = "select IdBaiViet from lichsu where TrangThai = 'ChuyenBai' and IdTaiKhoan ='"+idCTV+"'";	
+			sql_get = "select IdBaiViet from lichsu where TrangThai = 'ChuyenDich' and IdTaiKhoan ='"+idCTV+"'";	
 			break;
 		default:
 			sql_get = "select IdBaiViet from lichsu where TrangThai = 'DaDich' and IdTaiKhoan ='"+idCTV+"'";
@@ -150,9 +148,23 @@ public class CTVDAO {
 		}
 		
 	}
-//	public ArrayList<CTV> getCTVSearch(TAIKHOAN ctv,String page){
-//		
-//	}
+	
+	//lấy tổng tất cả các bài viết liên quan đến cộng tác viên
+	public int countPostOfCTV(String idCTV){
+		String sql_countPostOfCTV = "select count(IdBaiViet) as number from lichsu where IdTaiKhoan = '"+idCTV+"'";
+		ResultSet result_countPostOfCTV = db.getResultSet(sql_countPostOfCTV);
+		int numberPosts = 0;
+		try {
+			while(result_countPostOfCTV.next()){
+				numberPosts = result_countPostOfCTV.getInt("number");
+			}
+			return numberPosts;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0;
+		}
+	}
 	public String getMenuPhanTrang() {
 		return db.getMenuPhanTrang();
 	}

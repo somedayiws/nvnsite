@@ -8,8 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.bean.BAIVIET;
+import model.bean.LICHSU;
 import model.bo.ListStatusHistoryBO;
 import model.bo.ShowAdminEditPostsBO;
 
@@ -35,8 +37,32 @@ public class ShowDetailPostsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		doPost(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
-		String idPost = request.getParameter("id");		
+		
+		//Check session exist
+				HttpSession session_user = request.getSession();
+				String username =(String)session_user.getAttribute("username");	
+			
+				if(username!=null){
+		
+		String idPost = request.getParameter("id");
+		String id =(String)request.getAttribute("idPost");
+		String resultTranslate =(String)request.getAttribute("resultTranslate");
+		String resultSave = (String)request.getAttribute("resultSave");
+		String resultSend =(String)request.getAttribute("resultSend");
+		
+		if(id!=null) idPost = id;
 		if (idPost == null) {
 			response.sendRedirect("ListPostsServlet");
 		} else {
@@ -46,31 +72,26 @@ public class ShowDetailPostsServlet extends HttpServlet {
 			ListStatusHistoryBO listStatus = new ListStatusHistoryBO();
 			
 			
-			String status = listStatus.getStatus(idPost);
+//			String status = listStatus.getStatus(idPost).getTrangThai();
+			
+			LICHSU history = listStatus.getStatus(idPost);
 
 			BAIVIET post = editPosts.post(idPost);
-			
+			request.setAttribute("resultSend", resultSend);
+			request.setAttribute("resultSave", resultSave);
+			request.setAttribute("resultTranslate", resultTranslate);
 			request.setAttribute("post", post);
-			request.setAttribute("status", status);
+			request.setAttribute("history", history);
 			RequestDispatcher requestDis_editPost = request
 					.getRequestDispatcher("DetailPosts.jsp");
 
 			requestDis_editPost.forward(request, response);
 
 		}
+	}else{
+		RequestDispatcher dispatcher = request.getRequestDispatcher("Login.jsp");
+		dispatcher.forward(request, response);
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response, String idPost,String result)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.setCharacterEncoding("UTF-8");
-
-		
 	}
 
 }

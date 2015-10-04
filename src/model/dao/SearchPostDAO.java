@@ -19,17 +19,17 @@ public class SearchPostDAO {
 		if(typeFind.equals("LuotXem")){
 			if(stringFind.equals("1")){
 				//Sắp xếp lượt view tăng dần
-				sql_Search = "SELECT IdBaiViet,TenBaiVietVi,TenBaiVietJa,IdDanhMuc,IdTaiKhoan,NgayDang,MotaVi,MotaJa,TrangThai,LuotXem,GimTrangChu FROM baiviet WHERE CoXoa = 0 ORDER BY LuotXem  ASC";
+				sql_Search = "SELECT IdBaiViet,TenBaiVietVi,TenBaiVietJa,IdDanhMuc,IdTaiKhoan,NgayDang,MotaVi,MotaJa,TrangThai,LuotXem,GimTrangChu FROM baiviet WHERE CoXoa = 0 and TrangThai!='SoanThao' ORDER BY LuotXem  ASC";
 			}else{
 				//Sắp xếp lượt view giảm dần
-				sql_Search = "SELECT IdBaiViet,TenBaiVietVi,TenBaiVietJa,IdDanhMuc,IdTaiKhoan,NgayDang,MotaVi,MotaJa,TrangThai,LuotXem,GimTrangChu FROM baiviet WHERE CoXoa = 0 ORDER BY LuotXem  DESC";
+				sql_Search = "SELECT IdBaiViet,TenBaiVietVi,TenBaiVietJa,IdDanhMuc,IdTaiKhoan,NgayDang,MotaVi,MotaJa,TrangThai,LuotXem,GimTrangChu FROM baiviet WHERE CoXoa = 0 and TrangThai!='SoanThao' ORDER BY LuotXem  DESC";
 			}
 		}
 		else if(typeFind.equals("GimTrangChu")){
-			sql_Search = "SELECT IdBaiViet,TenBaiVietVi,TenBaiVietJa,IdDanhMuc,IdTaiKhoan,NgayDang,MotaVi,MotaJa,TrangThai,LuotXem,GimTrangChu FROM baiviet WHERE GimTrangChu = "+stringFind+" AND CoXoa = 0 ORDER BY NgayDang DESC";
+			sql_Search = "SELECT IdBaiViet,TenBaiVietVi,TenBaiVietJa,IdDanhMuc,IdTaiKhoan,NgayDang,MotaVi,MotaJa,TrangThai,LuotXem,GimTrangChu FROM baiviet WHERE GimTrangChu = "+stringFind+" AND CoXoa = 0 and TrangThai!='SoanThao' ORDER BY NgayDang DESC";
 		}
 		else{
-			sql_Search = "SELECT IdBaiViet,TenBaiVietVi,TenBaiVietJa,IdDanhMuc,IdTaiKhoan,NgayDang,MotaVi,MotaJa,TrangThai,LuotXem,GimTrangChu FROM baiviet WHERE "+typeFind+" LIKE '%"+stringFind+"%' AND CoXoa = 0 ORDER BY NgayDang DESC";
+			sql_Search = "SELECT IdBaiViet,TenBaiVietVi,TenBaiVietJa,IdDanhMuc,IdTaiKhoan,NgayDang,MotaVi,MotaJa,TrangThai,LuotXem,GimTrangChu FROM baiviet WHERE "+typeFind+" LIKE '%"+stringFind+"%' AND CoXoa = 0 and TrangThai!='SoanThao' ORDER BY NgayDang DESC";
 		}
 		db.createMenu("SearchPostServlet?typeFind="+typeFind+"&stringFind="+stringFind+"&", page, sql_Search);	
 		System.out.println("sql_select_category: "+sql_Search + " limit "

@@ -1,3 +1,4 @@
+<%@page import="model.bean.LICHSU"%>
 <%@page import="model.bean.TAIKHOAN"%>
 <%@page import="model.bean.DANHMUC"%>
 <%@page import="model.bean.BAIVIET"%>
@@ -12,15 +13,30 @@
 <link rel="stylesheet" href="../bootstrap-3.3.5-dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/register.css">
 <link rel="stylesheet" href="css/detailPost.css">
-<title>Chi tiết bài viết</title>
+<title>Chi tiết bài viết - </title>
 </head>
 <%
+//Check session exist
+		HttpSession session_user = request.getSession();
+		String username =(String)session_user.getAttribute("username");	
+		
 	//Receive data from server
 	BAIVIET posts = (BAIVIET) request.getAttribute("post");
-	String result_Send = (String) request.getAttribute("result");
-	String status =(String)request.getAttribute("status");	
+	
+	LICHSU history =(LICHSU)request.getAttribute("history");
+	
+	
+	//Nhận lại kết quả dịch
+	String resultTranslate = (String)request.getAttribute("resultTranslate");
+	//Nhận lại kết quả duyệt bài
+	String resultOK = (String)request.getAttribute("resultOK");
+	//Nhận lại kết quả lưu bài viết
+	String resultSave = (String)request.getAttribute("resultSave");
+	//Nhận kết quả khi gởi bài viết
+	String resultSend = (String)request.getAttribute("resultSend");
 %>
 <body>
+	<%if(username!=null){ %>
 	<div class="container-fluid">
 		<%@include file="header_ver_1.jsp"%>
 		<%@include file="Menu.jsp"%>
@@ -32,59 +48,88 @@
 			<div class="col-md-10 col-md-offset-1">
 				<div class="col-md-4">
 					<div id="divInfor">
-							<h2>Thông tin bài viết<br>..................</h2>
+					<h2>Thông tin bài viết<br>..................</h2>
+							
+							
 							<strong>User - ユーザー:</strong> 		<%=posts.getTaiKhoan().getTenTaiKhoan()%><br>
 							<strong>Email - メール : </strong> 		<%=posts.getTaiKhoan().getEmail() %><br> 
 							<strong>ID:</strong>    				<%=posts.getIdBaiViet()%><br>
-							<strong>Trạng thái - 状態:</strong>     	<%=posts.getTrangThai()%><br>
+							<strong>Trạng thái - 状態:</strong><%if(posts.getTrangThai().equals("OK")){ %><span class="label label-danger"><%}else if(posts.getTrangThai().equals("DangDich")){%><span class="label label-warning"><%}else if(posts.getTrangThai().equals("MoiDang")){%><span class="label label-primary"><%}else{%><span class="label label-default"><%}%><%=posts.getTrangThai()%></span><br>
 							<strong>Lượt xem - 観覧回数:</strong>   	<%=posts.getLuotXem()%><br>
 							<strong>Ngày đăng - 掲載の日付:</strong> <%=posts.getNgayDang()%><br>
 							<strong><%if(posts.getGimTrangChu()==1){ %>Có<%}else{ %>Không<%} %> ghim lên trang chủ</strong>
-							
+							<%if(posts.getTrangThai().contains("DangDich")){ %>
+							<img src="../images/logoctv_left.jpg" class="img-responsive"  alt="CTV" width="250" height="200" data-toggle="tooltip" data-placement="bottom" title="Tôi là <%if(history!=null&&history.getTaikhoan()!=null){ %><%=history.getTaikhoan().getHoTen()%><%} %>,tôi sẽ dịch bài viết này">
+							<%} %>							
 					</div>
+					
 				</div>
 				<div class="col-md-8 " id="content" style="margin-top: 5%">
+				
+<!-------------------------------- Hiển thị kết quả và các nút nhấn --------------------------------->
 					<div class="col-md-12 ">
-					<%if(status!=null && status.equals("DangBai")){ %>
-						<div class="panel panel-primary">
-     						 <div class="panel-heading">Thông báo - お知らせ</div>
-      						<div class="panel-body">Bài đăng đã dịch, chờ duyệt</div>
-    					</div>
-    				<%} %>
-						<a href=" <%if((posts.getTrangThai().equals("DangDich")||posts.getTrangThai().equals("KhongDich")|| posts.getTrangThai().equals("SoanThao") || posts.getTrangThai().equals("OK")) || (status!=null && !status.equals("HuyDich"))){ %>#<%}else{ %>SendPostServlet?idPost=<%=posts.getIdBaiViet()%>&status=<%=posts.getTrangThai()%><%}%>">
+					
+		
+						<a href=" <%if((posts.getTrangThai().contains("DangDich") && (history.getTrangThai()!=null && !history.getTrangThai().contains("HuyDich")))||posts.getTrangThai().contains("KhongDich")|| posts.getTrangThai().contains("SoanThao") || posts.getTrangThai().contains("OK")){ %>#<%}else{ %>SendPostServlet?idPost=<%=posts.getIdBaiViet()%>&status=<%=posts.getTrangThai()%><%}%>">
 						<button
-								class="btn btn-primary btn-sm" <%if((posts.getTrangThai().equals("DangDich")||posts.getTrangThai().equals("KhongDich")|| posts.getTrangThai().equals("SoanThao") || posts.getTrangThai().equals("OK")) || (status!=null && !status.equals("HuyDich"))){ %> disabled="disabled" <%} %>><span class="glyphicon glyphicon-send"></span> Chuyển bài</button>
+								class="btn btn-primary btn-sm" <%if((posts.getTrangThai().contains("DangDich") && (history.getTrangThai()!=null && !history.getTrangThai().contains("HuyDich")))||posts.getTrangThai().contains("KhongDich")|| posts.getTrangThai().contains("SoanThao") || posts.getTrangThai().contains("OK")){ %> disabled="disabled" <%} %>><span class="glyphicon glyphicon-send"></span> Chuyển bài</button>
 						</a> 
 						<a
-							href="<%if(posts.getTrangThai().equals("OK") || posts.getTrangThai().equals("DangDich") || posts.getTrangThai().equals("SoanThao")){ %>#<%}else{%>ShowAdminEditPostsServlet?idPost=<%=posts.getIdBaiViet()%>&from=detail<%}%>"><button <%if(posts.getTrangThai().equals("OK") || posts.getTrangThai().equals("DangDich") || posts.getTrangThai().equals("SoanThao")){ %> disabled="disabled"  <%} %>
+							href="<%if(posts.getTrangThai().contains("OK") || posts.getTrangThai().contains("DangDich") || posts.getTrangThai().contains("SoanThao")){ %>#<%}else{%>ShowAdminEditPostsServlet?idPost=<%=posts.getIdBaiViet()%>&from=detail<%}%>"><button <%if(posts.getTrangThai().contains("OK") || posts.getTrangThai().contains("DangDich") || posts.getTrangThai().contains("SoanThao")){ %> disabled="disabled"  <%} %>
 								class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Chỉnh sửa - 修正</button>
 						</a>
 						<a
-							href="<%if(posts.getTrangThai().equals("OK")|| posts.getTrangThai().equals("DangDich") || posts.getTrangThai().equals("SoanThao")){ %>#<%}else{ %>TranslateServlet?idPost=<%=posts.getIdBaiViet()%><%}%>"><button <%if(posts.getTrangThai().equals("OK")|| posts.getTrangThai().equals("DangDich") || posts.getTrangThai().equals("SoanThao")){ %> disabled="disabled"  <%} %>
+							href="<%if(posts.getTrangThai().contains("OK")|| ( posts.getTrangThai().contains("DangDich")&& (history.getTrangThai()!=null && !history.getTrangThai().contains("DangDich"))) || posts.getTrangThai().contains("SoanThao")){ %>#<%}else{ %>TranslateServlet?idPost=<%=posts.getIdBaiViet()%><%}%>"><button <%if(posts.getTrangThai().contains("OK")|| ( posts.getTrangThai().contains("DangDich")&& (history.getTrangThai()!=null && !history.getTrangThai().contains("DangDich"))) || posts.getTrangThai().contains("SoanThao")){ %> disabled="disabled"  <%} %>
 								class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-subtitles"></span> Dịch bài - </button>
 						</a>
 						<a
-							href="<%if(posts.getTrangThai().equals("OK")){ %>#<%}else{%>UploadPostServlet?idPost=<%=posts.getIdBaiViet()%><%}%>"><button <%if(posts.getTrangThai().equals("OK")){ %> disabled="disabled"  <%}%>
-								class="btn btn-primary btn-sm <%if(status!=null && status.equals("Ok")){ %> btn_animation <%} %>"><span class="glyphicon glyphicon-pushpin" ></span>Duyệt bài - </button>
+							href="<%if(posts.getTrangThai().contains("OK")){ %>#<%}else{%>UploadPostServlet?idPost=<%=posts.getIdBaiViet()%><%}%>&type=detail&btn=btnDetail"><button <%if(posts.getTrangThai().contains("OK")|| (posts.getTrangThai().contains("DangDich")&& (history.getTrangThai()!=null && !history.getTrangThai().contains("DangBai")))){ %> disabled="disabled"  <%}%>
+								class="btn btn-success btn-sm <%if(history.getTrangThai()!=null && history.getTrangThai().contains("Ok")){ %> btn_animation <%} %>"><span class="glyphicon glyphicon-pushpin" ></span>Duyệt bài - </button>
 						</a>
 						<a href="ListPostsServlet"><button class="btn btn-primary btn-sm "><span class="glyphicon glyphicon-share-alt"></span>Quay lại - 戻り</button></a>
 					</div>
 					<br>
 					<hr>
-					<%
-						if (result_Send != null) {
-								if (result_Send.contains("Admin đã chuyển")) {
-					%>
-					<div class="panel panel-info">
-						<div class="panel-heading">Thông báo - お知らせ</div>
-						<div class="panel-body">
-							Đã chuyển thành công - <br>
+					
+					<!-- Hiển thị kết quả -->
+						
+						<%if(history.getTrangThai()!=null && history.getTrangThai().contains("DangBai")&&!posts.getTrangThai().equals("OK")){%>
+						<div class="panel panel-primary">
+     						 <div class="panel-heading">Thông báo - お知らせ</div>
+      						<div class="panel-body">
+      							<p>Bài đăng đã dịch, chờ duyệt</p>
+      							<a href="UploadPostServlet?idPost=<%=posts.getIdBaiViet()%>&type=detail&btn=btnDetail"><button class="btn btn-success btn-sm"><span class="glyphicon glyphicon-pushpin" ></span>Duyệt bài</button></a>
+      							<a href="SendAgainServlet?idPost=<%=posts.getIdBaiViet()%>"><button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-share-alt"></span>Gởi lại - </button></a>
+      						</div>
+    					</div>
+    				<%} %>
+    				<%if(history.getTrangThai()!=null && history.getTrangThai().contains("HuyDich")&&!posts.getTrangThai().equals("OK")){%>
+						<div class="panel panel-primary">
+     						 <div class="panel-heading">Thông báo - お知らせ</div>
+      						<div class="panel-body">Bài đăng đã được hủy bởi <%=history.getTaikhoan().getHoTen() %></div>
+    					</div>
+    				<%} %>
+    				<%if(resultTranslate!=null){ %>
+    					<div class="alert alert-info">
+							<strong>Thông báo - 情報</strong><%=resultTranslate%> 
 						</div>
-					</div>
-					<%
-						}
-							}
-					%>
+    				<%} %>
+    				<%if(resultOK!=null){ %>	
+    					<div class="alert alert-info">
+							<strong>Thông báo - 情報</strong><%=resultOK%>
+						</div>
+					<%} %>
+					<%if(resultSave!=null){ %>
+						<div class="alert alert-info">
+							<strong>Thông báo - 情報</strong><%=resultSave%>
+						</div>
+					<%} %>
+					<%if(resultSend!=null){ %>
+						<div class="alert alert-info">
+							<strong>Thông báo - 情報</strong><%=resultSend%> <%=history.getTaikhoan().getHoTen() %>
+						</div>
+					<%} %>
+    				<!-- --------------------- -->
 					<div id="ContentVi" class="col-md-6 content">
 					<button id="btnVi" class="btn btn-primary"><span class="glyphicon glyphicon-fast-forward"></span></button>
 					<button id="btnbackVi" class="btn btn-primary"><span class="glyphicon glyphicon-fast-backward"></span></button>
@@ -167,6 +212,10 @@
 		</div>
 	<div id="resultMessage"></div>
 	</div>
+	<%}else{
+		RequestDispatcher dispatcher = request.getRequestDispatcher("ShowloginAdmin");
+	    dispatcher.forward(request, response);
+	}%>	
 </body>
 <!-- _______________________________________JS___________________________________ -->
 <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
@@ -174,4 +223,8 @@
 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="../check_validate/formEdit.js"></script>
 <script type="text/javascript" src="js/detailPost.js"></script>
-</html>
+</html><script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
+</script>

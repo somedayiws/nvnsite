@@ -32,6 +32,9 @@ $(document).ready(function() {
 </script>
 </head>
 <%
+//Check session exist
+		HttpSession session_user = request.getSession();
+		String username =(String)session_user.getAttribute("username");	
 	//Nhận lại thống kê bài viết
 	String resultStatisticUsers =(String) request.getAttribute("resultStatisticUsers");
 	ArrayList<TAIKHOAN> listResultAccount =(ArrayList<TAIKHOAN>)request.getAttribute("listResultAccount");
@@ -48,6 +51,7 @@ $(document).ready(function() {
 	ArrayList<String> arrayNumberPost = (ArrayList<String>)request.getAttribute("arrayNumberPost");
 %>
 <body>
+<%if(username!=null){ %>
 	<div class="container-fluid" >
 		<%@include file="header_ver_1.jsp"%>	
 		<%@include file="Menu.jsp"%>
@@ -514,7 +518,11 @@ $(document).ready(function() {
 </div>
 			</div>
 		
-		</div>		
+		</div>	
+		<%}else{
+		RequestDispatcher dispatcher = request.getRequestDispatcher("ShowloginAdmin");
+	    dispatcher.forward(request, response);
+	}%>		
 </body>
 
 </html>

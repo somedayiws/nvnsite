@@ -25,10 +25,14 @@
 </script>
 </head>
 <%
+//Check session exist
+		HttpSession session_user = request.getSession();
+		String username =(String)session_user.getAttribute("username");	
 	/**Receive data from server*/
 	ArrayList<DANHMUC> list_CategoryDeleted = (ArrayList<DANHMUC>)request.getAttribute("listCategoryDeleted");
 %>
 <body>
+<%if(username!=null){ %>
 	<div class="container-fluid">
 		<%@include file="header_ver_1.jsp"%>
 
@@ -72,6 +76,9 @@
 			</div>
 		</div>
 	</div>
-
+<%}else{
+		RequestDispatcher dispatcher = request.getRequestDispatcher("ShowloginAdmin");
+	    dispatcher.forward(request, response);
+	}%>	
 </body>
 </html>

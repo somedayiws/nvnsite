@@ -13,11 +13,16 @@
 <link rel="stylesheet" href="css/listAccount.css">
 <title>Quản lý cộng tác viên - ユーザーの管理</title>
 <%
+
+//Check session exist
+		HttpSession session_user = request.getSession();
+		String username =(String)session_user.getAttribute("username");
 	ArrayList<CTV> ctv =(ArrayList<CTV>) request.getAttribute("ctv");
 	String result = (String)request.getAttribute("result");
 %>
 </head>
 <body>
+<%if(username!=null){ %>
 	<div class="container-fluid">
 		<%@include file="header_ver_1.jsp"%>
 		<%@include file="Menu.jsp"%>
@@ -76,8 +81,8 @@
 							<th>Điện thoại<br>電話番号</th>
 							<th>Email<br>メール</th>
 							<th>Tài khoản<br>ユーザー名</th>
-							<th>Phân quyền<br>管理者の権利</th>
 							<th>Ngôn ngữ<br>言語</th>
+							<th>Tổng số bài viết<br>.....</th>
 							<th>Bài đã dịch<br>...</th>		
 							<th>Bài đang dịch<br>....</th>						
 							<th>Bài đã gởi<br>....</th>
@@ -101,11 +106,10 @@
 								<td><%=ctv.get(i).getTaikhoan().getDienThoai()%></td>
 								<td><%=ctv.get(i).getTaikhoan().getEmail()%></td>
 								<td><%=ctv.get(i).getTaikhoan().getTenTaiKhoan()%></td>
-								<td>ctv</td>
-								<td><%=ctv.get(i).getTaikhoan().getNgonNgu() %></td>
+								<td><%=ctv.get(i).getTaikhoan().getNgonNgu().equals("vi") ?"Việt Nam - ":"Nhật Bản - "%></td>
+								<td><%=ctv.get(i).getNumberPosts() %></td>
 							<%} %>
 							<%if(ctv.get(i).getArray_ListPost()!=null ){
-								System.out.println("client_size_getArray_ListPost().size(): "+ctv.get(i).getArray_ListPost().size());
 									for(int j = 0;j<ctv.get(i).getArray_ListPost().size();j++)
 									{
 										/* 	0: Bài viết đã dịch
@@ -121,7 +125,7 @@
 								%>
 								<td><%=ctv.get(i).getArray_ListPost().get(j).size()%><br> <%if(ctv.get(i).getArray_ListPost().get(j).size()!=0){ %><button type="button" class="btn btn-default btn-sm"
 									data-toggle="modal"
-									data-target="#modalListPosts<%=j%>">
+									data-target="#modalListPosts_<%=i%>_<%=j%>">
 									<span class="glyphicon glyphicon-list-alt"></span></button><%} %></td>
 								<%
 											}else{
@@ -141,9 +145,11 @@
 									data-target="#<%if(ctv.get(i).getTaikhoan()!=null){ %><%=ctv.get(i).getTaikhoan().getIdTaiKhoan()%><% }%>">
 									<span class="glyphicon glyphicon-pencil"></span>Chỉnh sửa<br>修正
 								</button></td>
-							<td><button class="btn btn-default btn-sm" type="button" data-toggle="modal" data-target="#delete<%if(ctv.get(i).getTaikhoan()!=null){ %><%=ctv.get(i).getTaikhoan().getIdTaiKhoan()%><% }%>">
+							<td>
+								<button class="btn btn-default btn-sm" type="button" data-toggle="modal" <%if(ctv.get(i).getNumberPosts()!=0){%> disabled="disabled" <% }%> data-target="#delete<%if(ctv.get(i).getTaikhoan()!=null){ %><%=ctv.get(i).getTaikhoan().getIdTaiKhoan()%><% }%>">
 									<span class="glyphicon glyphicon-remove"></span>Xóa<br>削除
-								</button></td>
+								</button>
+							</td>
 						</tr>
 					</tbody>
 					<%
@@ -213,7 +219,7 @@
 								<div class="form-group">
 									<label>Ngôn ngữ - 言語</label> <select class="form-control"
 										name="language">
-										<option value="vj"
+										<option value="vi"
 											<%if (ctv.get(i).getTaikhoan().getNgonNgu().equals("vi")) {%>
 											selected="selected" <%}%> >Tiếng việt - ベトナム語</option>
 										<option value="ja"
@@ -251,7 +257,7 @@
 						<div class="modal-body">
 
 							<form name="form_edit_admin" action="AdminDeleteServlet?type=CTV"
-								method="post">
+								method="post"">
 								<div class="form-group">
 									<label>Tên tài khoản - ユーザー名<span class="rq"> * </span>:
 									</label> <input type="text" class="form-control" maxlength="20"
@@ -284,10 +290,10 @@
 						5: Bài viết mới nhận
 					
 					*/
-					if(ctv.get(i).getArray_ListPost().get(j)!=null){
+					if(ctv.get(i).getArray_ListPost().get(j)!=null){		
 		%>
 			<div class="modal fade"
-				id="modalListPosts<%=j%>">
+				id="modalListPosts_<%=i %>_<%=j%>">
 				<div class="modal-dialog">
 
 					<!-- Modal content-->
@@ -306,13 +312,13 @@
 												<th>Tên bài viết<br>記事名</th>
 												<th>Danh mục<br> 項目</th>
 												<th>Người đăng<br> ユーザー</th>
-												<th>Ngày đăng<br> 掲載の日付</th>
-												<th>Mô tả<br> 説明</th>
+												<th>Ngày đăng<br> 掲載の日付</th>											
 												<th></th>
 											</tr>
 										</thead>
 										<tbody>
-											<%for(int k = 0; k<ctv.get(i).getArray_ListPost().get(j).size(); k++){ %>
+											<%for(int k = 0; k<ctv.get(i).getArray_ListPost().get(j).size(); k++){
+											%>
 												<tr>
 													<td><%=ctv.get(i).getArray_ListPost().get(j).get(k).getIdBaiViet() %></td>													
 													<td>
@@ -333,18 +339,6 @@
 													</td>
 													<td><%=ctv.get(i).getArray_ListPost().get(j).get(k).getTaiKhoan().getTenTaiKhoan()%></td>
 													<td><%=ctv.get(i).getArray_ListPost().get(j).get(k).getNgayDang() %></td>
-													<td>
-									<%if(ctv.get(i).getArray_ListPost().get(j).get(k).getMoTaVi() == null && ctv.get(i).getArray_ListPost().get(j).get(k).getMoTaJa() == null){ %>
-										<span class="label label-default">Không có mô tả - </span>
-									<%}else{ %>
-										<%if(ctv.get(i).getArray_ListPost().get(j).get(k).getMoTaVi() != null ){ %>
-											<p><%=ctv.get(i).getArray_ListPost().get(j).get(k).getMoTaVi()%></p> 
-										<%}%>
-										<%if(ctv.get(i).getArray_ListPost().get(j).get(k).getMoTaJa() != null ){  %>
-											<p><%=ctv.get(i).getArray_ListPost().get(j).get(k).getMoTaJa()%></p>
-										<%}} %>
-									 
-								</td>
 													<td><a href="ShowDetailPostsServlet?id=<%=ctv.get(i).getArray_ListPost().get(j).get(k).getIdBaiViet()%>">
 															<button type="button" class="btn btn-primary btn-sm">Chi tiết - 詳細</button>
 														</a>
@@ -365,6 +359,10 @@
 					}%>
 		</div>
 	</div>	
+	<%}else{
+		RequestDispatcher dispatcher = request.getRequestDispatcher("ShowloginAdmin");
+	    dispatcher.forward(request, response);
+	}%>	
 </body>
 <%if(ctv!=null){%>
 <script>

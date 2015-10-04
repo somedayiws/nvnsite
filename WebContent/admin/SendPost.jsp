@@ -25,6 +25,9 @@
 </script>
 </head>
 <%
+//Check session exist
+		HttpSession session_user = request.getSession();
+		String username =(String)session_user.getAttribute("username");	
 	/**Receive data from server*/
 	ArrayList<TAIKHOAN> listAccountCTV = (ArrayList<TAIKHOAN>) request.getAttribute("listAccountCTV");
 
@@ -45,6 +48,7 @@
 	
 %>
 <body>
+<%if(username!=null){ %>
 	<div class="container-fluid">
 		<%@include file="header_ver_1.jsp"%>
 		<%@include file="Menu.jsp"%>
@@ -53,13 +57,13 @@
 		
 		<!-- Hiển thị ngôn ngữ bài viết -->
 		
-		
-			<label>Ngôn ngữ bài viết - </label>
-			<%if(languagePost == "1"){ %><h3>Tiếng việt -</h3> 
-			<%}else if(languagePost == "2") {%><h3>Tiếng nhật -</h3>
-			<%}else{ %><h3> Song ngữ -</h3> <%} %>
-		
-		
+		<div style="text-align: center;">
+			<h3>Ngôn ngữ bài viết - 
+			<%if(languagePost == "1"){ %><span class="label label-success">Tiếng việt - </span>
+			<%}else if(languagePost == "2") {%><span class="label label-success">Tiếng nhật -</span>
+			<%}else{ %><span class="label label-success">Song ngữ -</span> <%} %></h3>
+		</div>
+		<div class="table-responsive">
 		<table class="table table-hover">
 				<thead>
 					<tr>
@@ -161,6 +165,7 @@
 
 				</tbody>
 			</table>
+			</div>
 			<!-- Modal -->
 			<%for(int i=0;i<listAccountCTV.size();i++){ %>
 			<div id="myModal<%=listAccountCTV.get(i).getIdTaiKhoan()%>"
@@ -206,6 +211,9 @@
 			<%} %>
 		</div>
 	</div>
-
+<%}else{
+		RequestDispatcher dispatcher = request.getRequestDispatcher("ShowloginAdmin");
+	    dispatcher.forward(request, response);
+	}%>	
 </body>
 </html>

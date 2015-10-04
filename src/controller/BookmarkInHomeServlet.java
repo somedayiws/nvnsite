@@ -51,14 +51,10 @@ public class BookmarkInHomeServlet extends HttpServlet {
 		String resultChangeStatusBookmark = null;
 		int status = changeStatusBo.getPostBookmarkById(id);
 		
-		System.out.println("status: "+status);
-		
 		if(numberOfPostBookmark<=20){
 			//thay đổi trường gim bài viết
 			if(changeStatusBo.changeBookmark(id,status)){
 				int bookmarkOfPost = changeStatusBo.getPostBookmarkById(id);
-				
-				System.out.println("bookmarkOfPost: "+bookmarkOfPost);
 				
 				if(bookmarkOfPost==1){
 				resultChangeStatusBookmark = "Đã ghim - ";

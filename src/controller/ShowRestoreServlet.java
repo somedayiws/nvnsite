@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.bean.BAIVIET;
 import model.bean.DANHMUC;
@@ -51,6 +52,11 @@ public class ShowRestoreServlet extends HttpServlet {
 			HttpServletResponse response, String type, String result_Restore)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub		
+		
+		//Check session exist
+				HttpSession session_user = request.getSession();
+				String username =(String)session_user.getAttribute("username");	
+		if(username!=null){
 		RestoreDataBO restoredata = new RestoreDataBO();
 		String screen = request.getParameter("screen");
 		
@@ -108,6 +114,12 @@ public class ShowRestoreServlet extends HttpServlet {
 			}
 
 		}
+	}else{
+		RequestDispatcher requestDis_restoreAccount = request
+				.getRequestDispatcher("Login.jsp");
+		requestDis_restoreAccount.forward(request, response);
+
+	}
 	}
 
 }

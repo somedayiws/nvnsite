@@ -10,4 +10,12 @@ public class AdminEditPostsBO {
 	public boolean updatePost(BAIVIET post, String idCategory, String idAccount) {
 		return adminEditPost.updatePost(post, idCategory, idAccount);
 	}
+	/*
+	 * 
+	 * Update post in database when admin translated post
+	 * 
+	 * */
+	public boolean updatePost_Translated(BAIVIET post){
+		return adminEditPost.updatePost_Translated(post);
+	}
 }

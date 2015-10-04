@@ -1,10 +1,11 @@
 package model.bo;
 
+import model.bean.LICHSU;
 import model.dao.ListStatusHistoryDAO;
 
 public class ListStatusHistoryBO {
 	ListStatusHistoryDAO liststatus = new ListStatusHistoryDAO();
-	public String getStatus(String idPost){
+	public LICHSU getStatus(String idPost){
 		return liststatus.getStatusHistory(idPost);
 	}
 

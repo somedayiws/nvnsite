@@ -48,7 +48,6 @@ public class LoginServlet extends HttpServlet {
 		String remember_me = request.getParameter("remember-me");
 		String result=null;
 		
-		System.out.println("remember-me: "+remember_me);
 		LoginBO checkLogin = new LoginBO();
 		if(checkLogin.checkValidate(username, password)){
 			if(checkLogin.checkLogin(username, password)){

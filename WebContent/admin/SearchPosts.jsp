@@ -20,171 +20,196 @@
 <link rel="stylesheet" href="css/listPost.css">
 <title>Tìm kiếm bài viết</title>
 <script>
-$(document).ready(function(){      
-    $('#typeCategory').hide();
-    $('#typeAccount').hide();
-    $('#typeView').hide();
-    $('#typeDay').hide();
-    
-    $( "#typeFind" ).change(function() {
-   	 var typeFind = $('#typeFind').val();
-   	 if(typeFind=="IdDanhMuc"){
-   		 $("#typeCategory").show();
-   		 $("#typeDifference").hide();
-   		$('#typeAccount').hide();
-   		 $('#typeDay').hide();
-   	 }
-   	 else if(typeFind=="IdTaiKhoan"){
-   		$('#typeAccount').show();
-   	 	$("#typeCategory").hide();
-   	 	$("#typeDifference").hide();
-   	 	$('#typeDay').hide();
-   	 }
-   	 else if(typeFind=="GimTrangChu"){
-    		alert("Nhập số 1 để xem bài viết đã ghim. Nhập số 0 để xem bài viết chưa ghim");
-    		$("#typeCategory").hide();
-      		 $("#typeDifference").show();
-      		$('#typeAccount').hide();
-      		$('#typeView').hide();
-      		 $('#typeDay').hide();
-    	 }
-	 else if(typeFind=="LuotXem"){
- 		$('#typeView').show();
- 		 $("#typeCategory").hide();
- 		$("#typeDifference").hide();
-   		$('#typeAccount').hide();
-   	 $('#typeDay').hide();
- 	 }
-	 else if(typeFind=="NgayDang"){
-		 $('#typeDay').show();
-		 $("#typeCategory").hide();
-   		 $("#typeDifference").hide();
-   		$('#typeAccount').hide();
-   		$('#typeView').hide();
-	 }
-   	 else{
-   		 $("#typeCategory").hide();
-   		 $("#typeDifference").show();
-   		$('#typeAccount').hide();
-   		$('#typeView').hide();
-   		 $('#typeDay').hide();
-   	 }
-   });
-   $('#formSearchPost').submit(function(){
-	   var typeFind = $('#typeFind').val();
-	   var stringFindDay = $('#stringFindDay').val();
-	   var stringFindView = $('#stringFindView').val();
-	   
-	   if(typeFind=="GimTrangChu"){
-		   if(stringFindView!="1" && stringFindView!="0" ){
-			   alert("Bạn phải nhập 1(xem bài viết đã ghim) hoặc 0(bài viết chưa ghim)");
-			   return false;
-		   }
-	   }
-	   if(typeFind=="NgayDang"){
-		   var regDay =/^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/;
-		   if(!regDay.test(stringFindDay)){
-			   alert("Ngày đăng không hợp lệ. Ngày đăng có dạng MM/DD/YYYY");
-			   return false;
-		   }
-	   }
-	   return true;
-   });	     
-});
+	$(document)
+			.ready(
+					function() {						
+						$('#typeCategory').hide();
+						$('#typeAccount').hide();
+						$('#typeView').hide();
+						$('#typeDay').hide();
+
+						$("#typeFind")
+								.change(
+										function() {
+											var typeFind = $('#typeFind').val();
+											if (typeFind == "IdDanhMuc") {
+												$("#typeCategory").show();
+												$("#typeDifference").hide();
+												$('#typeAccount').hide();
+												$('#typeDay').hide();
+											} else if (typeFind == "IdTaiKhoan") {
+												$('#typeAccount').show();
+												$("#typeCategory").hide();
+												$("#typeDifference").hide();
+												$('#typeDay').hide();
+											} else if (typeFind == "GimTrangChu") {
+												alert("Nhập số 1 để xem bài viết đã ghim. Nhập số 0 để xem bài viết chưa ghim");
+												$("#typeCategory").hide();
+												$("#typeDifference").show();
+												$('#typeAccount').hide();
+												$('#typeView').hide();
+												$('#typeDay').hide();
+											} else if (typeFind == "LuotXem") {
+												$('#typeView').show();
+												$("#typeCategory").hide();
+												$("#typeDifference").hide();
+												$('#typeAccount').hide();
+												$('#typeDay').hide();
+											} else if (typeFind == "NgayDang") {
+												$('#typeDay').show();
+												$("#typeCategory").hide();
+												$("#typeDifference").hide();
+												$('#typeAccount').hide();
+												$('#typeView').hide();
+											} else {
+												$("#typeCategory").hide();
+												$("#typeDifference").show();
+												$('#typeAccount').hide();
+												$('#typeView').hide();
+												$('#typeDay').hide();
+											}
+										});
+						$('#formSearchPost')
+								.submit(
+										function() {
+											var typeFind = $('#typeFind').val();
+											var stringFindDay = $(
+													'#stringFindDay').val();
+											var stringFind = $('#stringFind')
+													.val();
+
+											if (typeFind == "GimTrangChu") {
+												if (stringFind != "1"
+														&& stringFind != "0") {
+													alert("Bạn phải nhập 1(xem bài viết đã ghim) hoặc 0(bài viết chưa ghim)");
+													return false;
+												}
+											}
+											if (typeFind == "NgayDang") {
+												var regDay = /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/;
+												if (!regDay.test(stringFindDay)) {
+													alert("Ngày đăng không hợp lệ. Ngày đăng có dạng MM/DD/YYYY");
+													return false;
+												}
+											}
+											return true;
+										});
+					});
 </script>
 <%
+//Check session exist
+		HttpSession session_user = request.getSession();
+		String username =(String)session_user.getAttribute("username");	
 //Nhận kết quả tìm kiếm
 	ArrayList<BAIVIET> listposts = (ArrayList<BAIVIET>) request.getAttribute("posts");
 //Lấy tất cả danh mục
-	ArrayList<DANHMUC> category =(ArrayList<DANHMUC>) request.getAttribute("category");
-	ArrayList<TAIKHOAN> accounts = (ArrayList<TAIKHOAN>) request.getAttribute("account");
+	ArrayList<DANHMUC> category =(ArrayList<DANHMUC>) request.getAttribute("category");	//Receive data from server
+	ArrayList<TAIKHOAN> accounts = (ArrayList<TAIKHOAN>) request.getAttribute("accounts");
 %>
 </head>
 <body>
+<%if(username!=null){ %>
 <div class="container-fluid">
 		<%@include file="header_ver_1.jsp"%>
 		<%@include file="Menu.jsp"%>
 		<div id="divcontent">
-		<!----------------------- Form tìm kiếm ----------------------->
-		<div class="col-md-10 col-md-offset-1">
-			<form action="SearchPostServlet" method="get" id="formSearchPost">
-				<h4 class="col-sm-1">Tìm kiếm - 検索</h4>
-				<div class="col-sm-3 form-group">
-					<select class="form-control" id="typeFind" name="typeFind">
-						<option value="IdBaiViet">ID</option>
-						<option value="TenBaiVietVi">Tên bài viết - Tiếng Việt / 記事名 - ベトナム語</option>
-						<option value="TenBaiVietJa">Tên bài viết - Tiếng Nhật / 記事名 - 日本語</option>
-						<option value="IdDanhMuc">Danh mục / 項目</option>
-						<option value="IdTaiKhoan">Tài khoản /ユーザー名</option>
-						<option value="NoiDungVi">Nội dung - Tiếng Việt/内容  - ベトナム語</option>
-						<option value="NoiDungJa">Nội dung - Tiếng Nhật/内容 - 日本語</option>
-						<option value="TrangThai">Trạng thái / 状態</option>
-						<option value="GhiChu">Ghi chú / メーモ</option>
-						<option value="MoTaVi">Mô tả - Tiếng Việt / 説明 - ベトナム語</option>
-						<option value="MoTaJa">Mô tả - Tiếng Nhật / 説明 - 日本語</option>
-						<option value="LuotXem">Lượt xem / 観覧回数</option>						
-						<option value="NgayDang">Ngày đăng / 掲載の日付</option>
-						<option value="GimTrangChu">Bài viết đã Ghim / -</option>											
-					</select>
-				</div>				
-				<div class="col-sm-5 form-group" id="typeDifference">
-					<input type="text" class="form-control" id="stringFind"
-						name="stringFind">
-				</div>
-				<div class="col-sm-5 form-group" id="typeView">
-					<select class="form-control" id="stringFindView" name="stringFindView">
-						<option value="0" selected="selected" disabled="disabled">Chọn lượt xem - </option>
-						<option value="1">Tăng dần</option>
-						<option value="2">Giảm dần</option>
-					</select>
-				</div>
-				<div class="col-sm-5 form-group" id="typeDay">
-					<input type="date" class="form-control" id="stringFindDay"
-						name="stringFindDay">
-				</div>
-				
-				<div class="col-sm-5 form-group" id="typeCategory">
-					<%if(category!=null){ %>
-					<select class="form-control" id="stringFind" name="stringFindCategory">
-							<option value="0" selected="selected" disabled="disabled">Chọn danh mục - </option>
-						<%for(int i=0;i<category.size();i++){ %>
-							<option value="<%=category.get(i).getIdDanhMuc()%>"><%=category.get(i).getTenDanhMucVi()%> - <%=category.get(i).getTenDanhMucJa()%></option>
-						<%} %>
-													
-					</select>
-					<%}else{ %>
-						<div class="alert alert-info">
-  							<strong>Thông báo - お知らせ</strong> Không có danh mục nào trong cơ sở dữ liệu - データベースに全ての項目を存しない。
-						</div>
-					<%} %>
-				</div>
-				
-					<div class="col-sm-5 form-group" id="typeAccount">
-					<%if(accounts!=null){ %>
-					<select class="form-control" id="stringFind" name="stringFindAccount">
-						<option value="0" selected="selected" disabled="disabled">Chọn tài khoản - </option>
-						<%for(int i=0;i<accounts.size();i++){ %>
-							<option value="<%=accounts.get(i).getIdTaiKhoan()%>"><%=accounts.get(i).getTenTaiKhoan()%></option>
-						<%} %>
-													
-					</select>
-					<%}else{ %>
-						<div class="alert alert-info">
-  							<strong>Thông báo - お知らせ</strong> Không có tài khoản nào trong cơ sở dữ liệu - データベースにアカウントを存しません。
-						</div>
-					<%} %>
-				</div>
-				<div class="col-sm-1 form-group">
-				<button type="submit" name="btnFind" value="Find"
-					class="btn btn-primary btn-sm">Tìm kiếm - 検索</button>
+			<!----------------------- Form tìm kiếm ----------------------->
+			<div class="row">
+				<form action="SearchPostServlet" method="get" id="formSearchPost">
+					<h4 class="col-sm-2">Tìm kiếm - 検索</h4>
+					<div class="col-sm-3 form-group">
+						<select class="form-control" id="typeFind" name="typeFind">
+							<option value="IdBaiViet">ID</option>
+							<option value="TenBaiVietVi">Tên bài viết - Tiếng Việt /
+								記事名 - ベトナム語</option>
+							<option value="TenBaiVietJa">Tên bài viết - Tiếng Nhật /
+								記事名 - 日本語</option>
+							<option value="IdDanhMuc">Danh mục / 項目</option>
+							<option value="IdTaiKhoan">Tài khoản /ユーザー名</option>
+							<option value="NoiDungVi">Nội dung - Tiếng Việt/内容 -
+								ベトナム語</option>
+							<option value="NoiDungJa">Nội dung - Tiếng Nhật/内容 - 日本語</option>
+							<option value="TrangThai">Trạng thái / 状態</option>
+							<option value="GhiChu">Ghi chú / メーモ</option>
+							<option value="MoTaVi">Mô tả - Tiếng Việt / 説明 - ベトナム語</option>
+							<option value="MoTaJa">Mô tả - Tiếng Nhật / 説明 - 日本語</option>
+							<option value="LuotXem">Lượt xem / 観覧回数</option>
+							<option value="NgayDang">Ngày đăng / 掲載の日付</option>
+							<option value="GimTrangChu">Bài viết đã Ghim / -</option>
+						</select>
 					</div>
-				</form>								
-		</div>
-		<!----------------------- End form tìm kiếm ------------------->
+					<div class="col-sm-4 form-group" id="typeDifference">
+						<input type="text" class="form-control" id="stringFind"
+							name="stringFind">
+					</div>
+					<div class="col-sm-4 form-group" id="typeView">
+						<select class="form-control" id="stringFindView"
+							name="stringFindView">
+							<option value="0" selected="selected" disabled="disabled">Chọn
+								lượt xem -</option>
+							<option value="1">Tăng dần</option>
+							<option value="2">Giảm dần</option>
+						</select>
+					</div>
+					<div class="col-sm-4 form-group" id="typeDay">
+						<input type="date" class="form-control" id="stringFindDay"
+							name="stringFindDay">
+					</div>
+
+					<div class="col-sm-4 form-group" id="typeCategory">
+						<%if(category!=null){ %>
+						<select class="form-control" id="stringFind"
+							name="stringFindCategory">
+							<option value="0" selected="selected" disabled="disabled">Chọn
+								danh mục -</option>
+							<%for(int i=0;i<category.size();i++){ %>
+							<option value="<%=category.get(i).getIdDanhMuc()%>"><%=category.get(i).getTenDanhMucVi()%>
+								-
+								<%=category.get(i).getTenDanhMucJa()%></option>
+							<%} %>
+
+						</select>
+						<%}else{ %>
+						<div class="alert alert-info">
+							<strong>Thông báo - お知らせ</strong> Không có danh mục nào trong cơ
+							sở dữ liệu - データベースに全ての項目を存しない。
+						</div>
+						<%} %>
+					</div>
+
+					<div class="col-sm-4 form-group" id="typeAccount">
+						<%if(accounts!=null){ %>
+						<select class="form-control" id="stringFind"
+							name="stringFindAccount">
+							<option value="0" selected="selected" disabled="disabled">Chọn
+								tài khoản -</option>
+							<%for(int i=0;i<accounts.size();i++){ %>
+							<option value="<%=accounts.get(i).getIdTaiKhoan()%>"><%=accounts.get(i).getTenTaiKhoan()%></option>
+							<%} %>
+
+						</select>
+						<%}else{ %>
+						<div class="alert alert-info">
+							<strong>Thông báo - お知らせ</strong> Không có tài khoản nào trong cơ
+							sở dữ liệu - データベースにアカウントを存しません。
+						</div>
+						<%} %>
+					</div>
+					<div class="col-sm-1 form-group">
+						<button type="submit" name="btnFind" value="Find"
+							class="btn btn-primary btn-sm">Tìm kiếm - 検索</button>
+					</div>
+						<div class="col-md-1 form-group">
+					<a href="ShowRestoreServlet?type=posts"><button
+							class="btn btn-success btn-sm">Khôi phục - 回復</button></a>
+				</div>
+				</form>
+			</div>
+			<!----------------------- End form tìm kiếm ------------------->
 		<!----------------------- Hiển thị kết quả tìm kiếm ----------->
 		
 			<%if(listposts!=null){ %>
-				<div class="col-md-10 col-md-offset-1 table-responsive panel panel-primary">
+				<div class="table-responsive panel panel-primary">
 			 <div class="panel-heading">Bài viết</div>
 			 <div class="panel-body">
 				<table class="table table-hover table-condensed">
@@ -207,7 +232,8 @@ $(document).ready(function(){
 					<tbody>
 						<%for(int i=0;i<listposts.size();i++){ %>
 							<tr>
-								<td><%=listposts.get(i).getIdBaiViet() %></td>
+								<td><%=listposts.get(i).getIdBaiViet()%></td>
+								
 								<td>
 												<%if(listposts.get(i).getTenBaiVietVi()== null && listposts.get(i).getTenBaiVietJa()==null){ %>
 													<span class="label label-default">Không có tên bài viết</span>
@@ -223,8 +249,9 @@ $(document).ready(function(){
 													<%
 												} %>
 								</td>
+								
 								<td><%=listposts.get(i).getDanhMuc().getTenDanhMucVi()%> - <%=listposts.get(i).getDanhMuc().getTenDanhMucJa()%></td>
-								<td><%=listposts.get(i).getTaiKhoan().getTenTaiKhoan() %></td>
+								<td><%=listposts.get(i).getTaiKhoan().getTenTaiKhoan()%></td>
 								<td><%=listposts.get(i).getNgayDang()%></td>
 								<td>
 									<%if(listposts.get(i).getMoTaVi() == null && listposts.get(i).getMoTaJa() == null){ %>
@@ -239,7 +266,7 @@ $(document).ready(function(){
 										<%}}%>
 									 
 								</td>
-									<td>
+								<td>
 									<%if(listposts.get(i).getTrangThai().equals("MoiDang")){ %>
 										Mới đăng - 
 									<%}else if(listposts.get(i).getTrangThai().equals("DangDich")) {%>
@@ -248,13 +275,12 @@ $(document).ready(function(){
 										Đã duyệt - 
 									<%}else if(listposts.get(i).getTrangThai().equals("KhongDich")){ %>
 										Không dịch - 
+									<%}else if(listposts.get(i).getTrangThai().equals("XoaBai")){ %>
+										Xóa bài - 
 									<%}else{ %>
 										<%=listposts.get(i).getTrangThai()%>
 									<%} %>
-								
-									
 								</td>
-								<td><%=listposts.get(i).getLuotXem() %></td>
 								<td>
 									<div id="resultMessage_<%=listposts.get(i).getIdBaiViet()%>">
 										<button type="button" id="<%=listposts.get(i).getIdBaiViet()%>"
@@ -271,20 +297,25 @@ $(document).ready(function(){
 									</div>
 								</td>
 								<td><a
-								href="ShowDetailPostsServlet?id=<%=listposts.get(i).getIdBaiViet()%>" data-toggle="tooltip" title="Chi tiết - 詳細"><button
-										type="button" class="btn btn-primary btn-sm">
-										<span class="glyphicon glyphicon-list-alt"></span>
-									</button> </a></td>
-							<td><a
-								href="<%if(listposts.get(i).getTrangThai().contains("OK") || listposts.get(i).getTrangThai().contains("DangDich") ){ %>#<%}else{ %> ./ShowAdminEditPostsServlet?idPost=<%=listposts.get(i).getIdBaiViet()%>&from=list<%}%>" data-toggle="tooltip" title="Chỉnh sửa - 編集"><button
-										type="button" class="btn btn-primary btn-sm"<%if(listposts.get(i).getTrangThai().contains("OK") || listposts.get(i).getTrangThai().contains("DangDich")){ %> disabled="disabled" <%} %>>
-										<span class="glyphicon glyphicon-pencil"> </span> 
-									</button></a></td>
-							<td><a href="#" data-toggle="tooltip" title="Xóa - 削除"><button type="button" class="btn btn-primary btn-sm"
-									data-toggle="modal" 
-									data-target="#delete<%=listposts.get(i).getIdBaiViet()%>">
-									<span class="glyphicon glyphicon-remove"></span> 
-								</button></a></td>
+									href="ShowDetailPostsServlet?id=<%=listposts.get(i).getIdBaiViet()%>"
+									data-toggle="tooltip" title="Chi tiết - 詳細"><button
+											type="button" class="btn btn-info btn-sm">
+											<span class="glyphicon glyphicon-list-alt"></span>
+										</button> </a></td>
+								<td><a
+									href="<%if(listposts.get(i).getTrangThai().contains("OK") || listposts.get(i).getTrangThai().contains("DangDich") ){ %>#<%}else{ %> ./ShowAdminEditPostsServlet?idPost=<%=listposts.get(i).getIdBaiViet()%>&from=list<%}%>"
+									data-toggle="tooltip" title="Chỉnh sửa - 修正"><button
+											type="button" class="btn btn-primary btn-sm"
+											<%if(listposts.get(i).getTrangThai().contains("OK") || listposts.get(i).getTrangThai().contains("DangDich")){ %>
+											disabled="disabled" <%} %>>
+											<span class="glyphicon glyphicon-pencil"> </span>
+										</button></a></td>
+								<td><a href="#" data-toggle="tooltip" title="Xóa - 削除"><button
+											type="button" class="btn btn-danger btn-sm"
+											data-toggle="modal"
+											data-target="#delete<%=listposts.get(i).getIdBaiViet()%>">
+											<span class="glyphicon glyphicon-remove"></span>
+										</button></a></td>
 							</tr>
 						<%} %>
 					</tbody>
@@ -300,10 +331,57 @@ $(document).ready(function(){
 				</div>
 			<%} %>
 		<!----------------------- Kết thúc hiển thị ------------------->
+		<%
+				if (listposts != null) {
+					for (int i = 0; i < listposts.size(); i++) {
+			%>
+
+			<!-- Model Delete -->
+			<div class="modal fade" id="delete<%=listposts.get(i).getIdBaiViet()%>">
+				<div class="modal-dialog">
+
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Xóa bài viết(Admin) - 記事の削除（管理者）</h4>
+						</div>
+						<div class="modal-body">
+
+							<form name="form_delete_posts_admin"
+								action="AdminDeletePostsServlet" method="post">
+
+
+								<div class="form-group">
+									<label>ID<span class="rq"> * </span>:
+									</label> <input type="text" class="form-control" maxlength="10"
+										name="Idposts" value="<%=listposts.get(i).getIdBaiViet()%>"
+										readonly="readonly">
+								</div>
+								<button type="submit" class="btn btn-success btn-sm">Xóa
+									- 削除</button>
+								<button type="button" id="btn" class="btn btn-default"
+									data-dismiss="modal">Quay lại - 戻り</button>
+							</form>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- End model delete -->
+			<%
+				}
+				}
+			%>
 		</div>
 			<div id="resultMessage" style="display:none;">
 	</div>
 </div>
+<%}else{
+		RequestDispatcher dispatcher = request.getRequestDispatcher("ShowloginAdmin");
+	    dispatcher.forward(request, response);
+	}%>	
 </body>
 <script type="text/javascript">
 	function changeBookmark(idPost) {
@@ -317,6 +395,7 @@ $(document).ready(function(){
 			success : function(res) {
 				if (res.indexOf("tối đa") > -1) {
 					$("#resultMessage").html(res);
+					alert($("#resultMessage").children("#result").text());
 				} else {
 					$("#resultMessage_" + idPost).html(res);
 				}

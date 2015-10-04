@@ -1,7 +1,9 @@
 h3 {
 	text-align: center;
 }
-
+#ribbon{
+	overflow: hide;
+}
 .ribbon2 {
 	font: bold 16px Cambria, Georgia, Times, Serif;
 	color: #fff;

@@ -14,6 +14,9 @@
 <title>Quản lý người dùng - ユーザーの管理</title>
 </head>
 <%
+//Check session exist
+		HttpSession session_user = request.getSession();
+		String username =(String)session_user.getAttribute("username");	
 	ArrayList<TAIKHOAN> accounts = (ArrayList<TAIKHOAN>) request.getAttribute("accounts");
 	String result = (String) request.getAttribute("result");
 	ArrayList<TAIKHOAN> account = (ArrayList<TAIKHOAN>)request.getAttribute("account");
@@ -23,6 +26,7 @@
 	String result_Restore = (String)request.getAttribute("result_Restore");	 
 %>
 <body>
+<%if(username!=null){ %>
 	<div class="container-fluid">
 		<%@include file="header_ver_1.jsp"%>
 		<%@include file="Menu.jsp"%>
@@ -32,7 +36,7 @@
 					//Hiển thị kết quả chỉnh sửa và xóa, tạo tài khoản
 					if (result != null) {
 				%>
-				<div class="col-md-4 col-md-offset-4 alert alert-info">
+				<div class="col-md-6 col-md-offset-3 alert alert-info">
 					<strong>Thông báo - 情報!</strong><%=result%>
 				</div>
 				<%
@@ -40,14 +44,14 @@
 					//Hiển thị kết quả khôi phục
 					if(result_Restore!=null){
 				%>
-				<div class="col-md-4 col-md-offset-4 alert alert-info">
+				<div class="col-md-6 col-md-offset-3 alert alert-info">
 					<strong>Thông báo - 情報!</strong><%=result_Restore%>
 				</div>
 				<%
 					}
 				%>
 			</div>
-			<div class="row">
+			<div class="container-fluid">
 				<form action="AdminSearchSevlet?type=User" method="post"
 					onsubmit="return checkValidateSearch()">
 					<h4 class="col-md-2">Tìm kiếm - 検索</h4>
@@ -68,21 +72,21 @@
 					</div>
 					<div class=" form-group">
 						<button type="submit" name="btnFind" value="Find"
-							class=" col-md-1 btn btn-primary btn-sm">
-							Tìm kiếm<br>検索
+							class=" col-md-1 btn btn-primary" data-toggle="tooltip" title="Tìm kiếm - 検索" data-placement="bottom">
+							<span class="glyphicon glyphicon-search"></span>
 						</button>
 					</div>
 				</form>
 				<div class="form-group">
 					<a href="ShowCreateAccount?type=user"><button
-							class=" col-md-1 btn btn-success btn-sm">
-							Tạo tài khoản<br>アカウントの作成
+							class=" col-md-1 btn btn-success" data-toggle="tooltip" title="Tạo tài khoản - アカウントの作成" data-placement="bottom">
+							<span class="glyphicon glyphicon-user"></span>
 						</button></a>
 				</div>
 				<div class="form-group">
 					<a href="ShowRestoreServlet?type=account&screen=User"><button
-							class=" col-md-1 btn btn-success btn-sm">
-							Khôi phục<br>回復
+							class=" col-md-1 btn btn-success" data-toggle="tooltip" title="Khôi phục - 回復" data-placement="bottom">
+							<span class="glyphicon glyphicon-share-alt"></span>
 						</button></a>
 				</div>
 			</div>
@@ -94,7 +98,7 @@
 			<%
 				if (account != null) {
 			%>
-			<div class="col-md-10 col-md-offset-1 panel panel-default">
+			<div class="col-md-10 col-md-offset-1 panel panel-success">
 				<div class="panel-heading">Kết quả - 結果</div>
 				<div class="panel-body">
 					<div class="table-responsive">
@@ -118,36 +122,39 @@
 							%>
 							<tbody>
 								<tr>
-									<td><%=account.get(i).getIdTaiKhoan()%></td>
-									<td><%=account.get(i).getHoTen()%></td>
-									<td><%=account.get(i).getDiaChi()%></td>
-									<td><%=account.get(i).getDienThoai()%></td>
-									<td><%=account.get(i).getEmail()%></td>
-									<td><%=account.get(i).getTenTaiKhoan()%></td>
-									<td><%=account.get(i).getNgonNgu().equals("vi") ?"Việt Nam - ":"Nhật Bản - "%></td>
+									<td><p><%=account.get(i).getIdTaiKhoan()%></p></td>
+									<td><p><%=account.get(i).getHoTen()%></p></td>
+									<td><p><%=account.get(i).getDiaChi()%></p></td>
+									<td><p><%=account.get(i).getDienThoai()%></p></td>
+									<td><p><%=account.get(i).getEmail()%></p></td>
+									<td><p><%=account.get(i).getTenTaiKhoan()%></p></td>
+									<td><p><%=account.get(i).getNgonNgu().equals("vi") ?"Việt Nam - 項目名":"Nhật Bản - 項目名"%></p></td>
 									<td>
 										<div class="resultMessage_<%=account.get(i).getIdTaiKhoan()%>">
-											<%=account.get(i).getTinhTrang().equals("MoiTao")? "Mới tạo - " : (account.get(i).getTinhTrang().equals("CanhCao1")) ? "Cảnh cáo lần 1 - " : (account.get(i).getTinhTrang().equals("CanhCao2")) ? "Cảnh cáo lần 2 - " : (account.get(i).getTinhTrang().equals("CanhCao3")) ? "Cảnh cáo lần 3 - " : (account.get(i).getTinhTrang().equals("KhoaTK") )? "Khóa tài khoản - " : "Mới tạo - "%>
+											<p><%=account.get(i).getTinhTrang().equals("MoiTao")? "Mới tạo - " : (account.get(i).getTinhTrang().equals("CanhCao1")) ? "Cảnh cáo lần 1 - " : (account.get(i).getTinhTrang().equals("CanhCao2")) ? "Cảnh cáo lần 2 - " : (account.get(i).getTinhTrang().equals("CanhCao3")) ? "Cảnh cáo lần 3 - " : (account.get(i).getTinhTrang().equals("KhoaTK") )? "Khóa tài khoản - " : "Mới tạo - "%></p>
 										</div>
 									</td>
-									<td><button type="button"
+										<td><button type="button"
 											<%if(account.get(i).getQuyenQuanTri().equals("admin")){%>
 											disabled="disabled" <%}%>
 											id="<%=account.get(i).getIdTaiKhoan()%>"
-											class="btn btn-warning btn-sm btnban" onclick="banAcc()">
+											class="btn btn-warning btn-sm btnban" title="Chuyển trạng thái - " data-placement="bottom" onclick="banAcc()">
 											<span class="glyphicon glyphicon-lock"></span>
 										</button></td>
 									<td><button type="button" class="btn btn-primary btn-sm"
-											data-toggle="modal"
-											data-target="#modal_Search_<%=account.get(i).getIdTaiKhoan()%>">
-											<span class="glyphicon glyphicon-pencil"></span> Chỉnh sửa<br>修正
-										</button></td>
-									<td><button type="button" class="btn btn-danger btn-sm"
-											<%if(account.get(i).getQuyenQuanTri().equals("admin")){%>
-											disabled="disabled" <%}%> data-toggle="modal"
-											data-target="#delete_Search<%=account.get(i).getIdTaiKhoan()%>">
-											<span class="glyphicon glyphicon-remove"></span> Xóa<br>削除
-										</button></td>
+											data-toggle="modal" title="Chỉnh sửa - 修正" data-placement="bottom"
+											data-target="#edit_<%=account.get(i).getIdTaiKhoan()%>">
+											<span class="glyphicon glyphicon-pencil"></span> 
+										</button>
+									</td>
+									<td><button type="button" <%if (account.get(i).getQuyenQuanTri().equals("admin")) {%>
+											class="btn btn-danger btn-sm disabled" <%} else {%>
+											data-toggle="modal" title="Xóa - 削除" data-placement="bottom"
+											data-target="#delete_<%=account.get(i).getIdTaiKhoan()%>"
+											class="btn btn-danger btn-sm" <%}%>>
+											<span class="glyphicon glyphicon-remove"></span>
+										</button>
+									</td>
 								</tr>
 							</tbody>
 							<%
@@ -309,7 +316,7 @@
 					}else{
 						if (accounts != null) {
 			%>
-		<!-- ********************Hiển thị danh sách người dùng******************************************* -->
+<!-- ********************Hiển thị danh sách người dùng******************************************* -->
 			<div class="col-md-12 panel panel-primary">
 				<div class="panel-heading">Danh sách người dùng - リストアカウント</div>
 				<div class="panel-body">
@@ -336,38 +343,40 @@
 							%>
 							<tbody>
 								<tr>
-									<td><%=accounts.get(i).getIdTaiKhoan()%></td>
-									<td><%=accounts.get(i).getHoTen()%></td>
-									<td><%=accounts.get(i).getDiaChi()%></td>
-									<td><%=accounts.get(i).getDienThoai()%></td>
-									<td><%=accounts.get(i).getEmail()%></td>
-									<td><%=accounts.get(i).getTenTaiKhoan()%></td>
-									<td><%=accounts.get(i).getQuyenQuanTri()%></td>
-									<td><%=accounts.get(i).getNgonNgu().equals("vi") ?"Việt Nam - ":"Nhật Bản - "%></td>
+									<td><p><%=accounts.get(i).getIdTaiKhoan()%></p></td>
+									<td><p><%=accounts.get(i).getHoTen()%></p></td>
+									<td><p><%=accounts.get(i).getDiaChi()%></p></td>
+									<td><p><%=accounts.get(i).getDienThoai()%></p></td>
+									<td><p><%=accounts.get(i).getEmail()%></p></td>
+									<td><p><%=accounts.get(i).getTenTaiKhoan()%></p></td>
+									<td><p><%=accounts.get(i).getQuyenQuanTri()%></p></td>
+									<td><p><%=accounts.get(i).getNgonNgu().equals("vi") ?"Việt Nam <br> 項目名":"Nhật Bản <br> 項目名"%></p></td>
 									<td>
 										<div class="resultMessage_<%=accounts.get(i).getIdTaiKhoan()%>">
-											<%=accounts.get(i).getTinhTrang().equals("MoiTao")? "Mới tạo - " : (accounts.get(i).getTinhTrang().equals("CanhCao1")) ? "Cảnh cáo lần 1 - " : (accounts.get(i).getTinhTrang().equals("CanhCao2")) ? "Cảnh cáo lần 2 - " : (accounts.get(i).getTinhTrang().equals("CanhCao3")) ? "Cảnh cáo lần 3 - " : (accounts.get(i).getTinhTrang().equals("KhoaTK") )? "Khóa tài khoản - " : "Mới tạo - "%>
+											<p><%=accounts.get(i).getTinhTrang().equals("MoiTao")? "Mới tạo <br> " : (accounts.get(i).getTinhTrang().equals("CanhCao1")) ? "Cảnh cáo lần 1 <br> " : (accounts.get(i).getTinhTrang().equals("CanhCao2")) ? "Cảnh cáo lần 2 <br> " : (accounts.get(i).getTinhTrang().equals("CanhCao3")) ? "Cảnh cáo lần 3 <br> " : (accounts.get(i).getTinhTrang().equals("KhoaTK") )? "Khóa tài khoản <br> " : "Mới tạo<br> "%></p>
 										</div>
 									</td>
 									<td><button type="button"
 											<%if(accounts.get(i).getQuyenQuanTri().equals("admin")){%>
 											disabled="disabled" <%}%>
 											id="<%=accounts.get(i).getIdTaiKhoan()%>"
-											class="btn btn-warning btn-sm btnban" onclick="banAcc()">
+											class="btn btn-warning btn-sm btnban" title="Chuyển trạng thái - " data-placement="bottom" onclick="banAcc()">
 											<span class="glyphicon glyphicon-lock"></span>
 										</button></td>
 									<td><button type="button" class="btn btn-primary btn-sm"
-											data-toggle="modal"
+											data-toggle="modal" title="Chỉnh sửa - 修正" data-placement="bottom"
 											data-target="#edit_<%=accounts.get(i).getIdTaiKhoan()%>">
-											<span class="glyphicon glyphicon-pencil"></span> Chỉnh sửa<br>修正
-										</button></td>
+											<span class="glyphicon glyphicon-pencil"></span> 
+										</button>
+									</td>
 									<td><button type="button" <%if (accounts.get(i).getQuyenQuanTri().equals("admin")) {%>
 											class="btn btn-danger btn-sm disabled" <%} else {%>
-											data-toggle="modal"
+											data-toggle="modal" title="Xóa - 削除" data-placement="bottom"
 											data-target="#delete_<%=accounts.get(i).getIdTaiKhoan()%>"
 											class="btn btn-danger btn-sm" <%}%>>
-											<span class="glyphicon glyphicon-remove"></span>Xóa<br>削除
-										</button></td>
+											<span class="glyphicon glyphicon-remove"></span>
+										</button>
+									</td>
 								</tr>
 							</tbody>
 							<%
@@ -519,6 +528,11 @@
 			</div>
 		</div>
 	</div>
+	<%}else{
+		RequestDispatcher dispatcher = request.getRequestDispatcher("ShowloginAdmin");
+	    dispatcher.forward(request, response);
+	}%>	
+	
 </body>
 <!-- ------------------JS-------------------------- -->
 <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>

@@ -10,9 +10,34 @@ import java.util.Date;
 
 public class ChangeStatusDAO {
 	DataBaseDAO db = new DataBaseDAO();
+	
+	/*
+	 * 
+	 * Kiểm tra bài viết đã được dịch hay chưa
+	 * 
+	 * */
+	public boolean checkStatusHistory(String idPosts,String idAccount){
+		String sql_check = "select IdBaiViet from lichsu where IdBaiViet = '"+idPosts+"' and IdTaiKhoan = '"+idAccount+"'";
+		ResultSet result_check = db.getResultSet(sql_check);
+		try {
+			if(result_check.next()) return true;
+			else return false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	public void changeStatusHistory(String status,String idPosts,String idAccount,Date date){
 		 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-		String sql_change_status_history = "insert into lichsu values('"+idPosts+"','"+idAccount+"',N'"+status+"','"+dateFormat.format(date)+"')";		
+		 String sql_change_status_history;
+		 if(checkStatusHistory(idPosts, idAccount)){
+			 //exists
+			 sql_change_status_history = "update lichsu set TrangThai = '"+status+"',ThoiGian = '"+dateFormat.format(date)+"' where IdBaiViet = '"+idPosts+"' and IdTaiKhoan = '"+idAccount+"'";
+		 }
+		 else sql_change_status_history = "insert into lichsu values('"+idPosts+"','"+idAccount+"',N'"+status+"','"+dateFormat.format(date)+"')";
+		System.out.println("sql_change_status_history: "+sql_change_status_history);
 		db.updateData(sql_change_status_history);
 	}
 	public void changeStatusPost(String status,String idPosts,String message){
@@ -81,6 +106,7 @@ public class ChangeStatusDAO {
 		System.out.println("sql_changeBookmark: "+sql_changeBookmark);
 		return db.updateData(sql_changeBookmark);
 	}
+		
 }
 
 

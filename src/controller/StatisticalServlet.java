@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.bean.BAIVIET;
 import model.bean.DANHMUC;
@@ -45,6 +46,12 @@ public class StatisticalServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		request.setCharacterEncoding("UTF-8");
+		
+		//Check session exist
+				HttpSession session_user = request.getSession();
+				String username =(String)session_user.getAttribute("username");	
+			
+				if(username!=null){
 		
 		String dayStart = request.getParameter("dayStart");
 		String dayFinish = request.getParameter("dayFinish");
@@ -221,8 +228,12 @@ public class StatisticalServlet extends HttpServlet {
 			requestDispatcher.forward(request, response);		
 		
 			
-		
-		
+				}
+				else{
+					RequestDispatcher requestDispatcher = request.getRequestDispatcher("Login.jsp");
+					requestDispatcher.forward(request, response);		
+				
+				}
 	}
 
 }

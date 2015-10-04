@@ -2,12 +2,15 @@ package controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.bean.BAIVIET;
+import model.bo.AdminEditPostsBO;
 import model.bo.ChangeStatusBO;
 import model.bo.ShowAdminEditPostsBO;
 
@@ -31,16 +34,7 @@ public class UploadPostServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String idPost = request.getParameter("idPost");
-		ShowAdminEditPostsBO checkID = new ShowAdminEditPostsBO();
-		ChangeStatusBO updateStatus = new ChangeStatusBO();
-		if(idPost!=null && checkID.checkExist_Post(idPost)){
-			updateStatus.changeStatusPost("OK", idPost, "Đã hoàn thành");
-			response.sendRedirect("ListPostsServlet");
-			
-		}else{
-			response.sendRedirect("Error.jsp");
-		}
+		doPost(request, response);
 	}
 
 	/**
@@ -48,6 +42,82 @@ public class UploadPostServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		request.setCharacterEncoding("UTF-8");
+		String idPost = request.getParameter("idPost");
+		
+		String type = request.getParameter("type");
+		String btn = request.getParameter("btn");
+		
+		if(btn.equals("btnSave") && type.equals("translate")){
+			String namePostVi = request.getParameter("namePostVi");
+			String namePostJa = request.getParameter("namePostJa");
+			String decriptionVi = request.getParameter("decriptionVi");
+			String decriptionJa = request.getParameter("decriptionJa");
+			String contentVi = request.getParameter("contentVi");
+			String contentJa = request.getParameter("contentJa");
+			
+			
+			BAIVIET post = new BAIVIET();
+			
+			post.setIdBaiViet(idPost);
+			post.setTenBaiVietVi(namePostVi);
+			post.setTenBaiVietJa(namePostJa);
+			post.setMoTaVi(decriptionVi);
+			post.setMoTaJa(decriptionJa);
+			post.setNoiDungVi(contentVi);
+			post.setNoiDungJa(contentJa);
+			
+			
+				request.setAttribute("post", post);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("SavePostServlet");
+				dispatcher.forward(request, response);
+			}
+		else{
+			
+			if(type.equals("translate")){
+				String namePostVi = request.getParameter("namePostVi");
+				String namePostJa = request.getParameter("namePostJa");
+				String decriptionVi = request.getParameter("decriptionVi");
+				String decriptionJa = request.getParameter("decriptionJa");
+				String contentVi = request.getParameter("contentVi");
+				String contentJa = request.getParameter("contentJa");
+				
+				
+				BAIVIET post = new BAIVIET();
+				
+				post.setIdBaiViet(idPost);
+				post.setTenBaiVietVi(namePostVi);
+				post.setTenBaiVietJa(namePostJa);
+				post.setMoTaVi(decriptionVi);
+				post.setMoTaJa(decriptionJa);
+				post.setNoiDungVi(contentVi);
+				post.setNoiDungJa(contentJa);
+				String resultTranslate;
+				AdminEditPostsBO adminEditPostBo = new AdminEditPostsBO();
+				if(adminEditPostBo.updatePost_Translated(post)){
+					resultTranslate = "Dịch bài viết thành công - ";
+				}
+				else{
+					resultTranslate = "Dịch bài viết thất bại - ";
+				}
+				request.setAttribute("resultTranslate", resultTranslate);
+			}
+		
+		ShowAdminEditPostsBO checkID = new ShowAdminEditPostsBO();
+		ChangeStatusBO updateStatus = new ChangeStatusBO();
+		if(idPost!=null && checkID.checkExist_Post(idPost)){
+			updateStatus.changeStatusPost("OK", idPost, "Đã hoàn thành");
+			request.setAttribute("idPost", idPost);
+			request.setAttribute("resultOK", "Duyệt bài thành công");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("ShowDetailPostsServlet");
+			dispatcher.forward(request, response);
+			
+		}else{
+			response.sendRedirect("Error.jsp");
+		}
+
+	}
 	}
 
 }

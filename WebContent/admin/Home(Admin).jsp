@@ -6,10 +6,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" name="viewport" content="text/html; charset=UTF-8; width=device-width; initial-scale=1">
-
 <!------------- CSS ---------------------->
 <link rel="stylesheet" href="../bootstrap-3.3.5-dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/dataTables.bootstrap.min.css">
 <link rel="stylesheet" href="css/home.css">
 <title>Trang chủ - ホーム</title>
 </head>
@@ -26,13 +24,16 @@
 		<%@include file="header_ver_1.jsp"%>	
 		<%@include file="Menu.jsp"%>
 		<div class="row">
+		
+			<div class="col-md-12" id="title">
+				<h2><strong><marquee behavior="alternate" width="10%">>></marquee>Chào mừng bạn đến với trang Admin - 管理者のホームページへようこそ<marquee behavior="alternate" width="10%"><<</marquee></strong></h2>
+			</div>
 <!-- |--------------------------------------------------------------| -->
 <!-- |-------------------Hiển thị hình ảnh--------------------------| -->
 <!-- |--------------------------------------------------------------| -->		
 			<div class = "col-md-3" id = "div_show_image">
-				<div class="col-md-10 col-md-offset-1">
-					<img src="../images/congthongtin.png" class=img-responsive alt="Cổng thông tin">
-					<marquee direction="left"><h2>Chào mừng bạn đến với trang Admin<br>管理者のホームページへようこそ</h2></marquee>
+				<div class="col-md-10 col-md-offset-1" >
+					<img src="../images/congthongtin.png" class="img-responsive img-rounded" alt="Cổng thông tin" data-spy="affix">
 				</div>
 			</div>
 <!-- |--------------------------------------------------------------| -->
@@ -53,7 +54,7 @@
 										<th>Người đăng<br>ユーザー名</th>
 										<th>Ngày đăng<br>掲載の日付</th>
 										<th>Lượt xem<br> 観覧回数</th>																			
-										<!-- <th></th> -->
+										<th></th>
 										<th></th>
 										<th></th>
 										<th></th>
@@ -77,40 +78,42 @@
 													<%}
 												} %>
 											</td>
-											<td><%=postsNew.get(i).getDanhMuc().getTenDanhMucVi()%> - <%=postsNew.get(i).getDanhMuc().getTenDanhMucJa()%></td>
-											<td><%=postsNew.get(i).getTaiKhoan().getTenTaiKhoan() %></td>
-											<td><%=postsNew.get(i).getNgayDang() %></td>
-											<td><%=postsNew.get(i).getLuotXem() %></td>
-											<%-- <td>
-												<div id="resultMessage_<%=postsNew.get(i).getIdBaiViet()%>">
-													<button type="button" id="<%=postsNew.get(i).getIdBaiViet()%>"
-														data-toggle="tooltip"
-														<%if(postsNew.get(i).getGimTrangChu()==1) {%>
-														title="Đã ghim"
-														<% }else{%>title="Chưa ghim"<%}%>
-														<%if (postsNew.get(i).getGimTrangChu()==1) { %>
-														class="btn btn-warning btn-sm btnbookmark" <%}else {%>
-														class="btn btn-primary btn-sm btnbookmark" <%}%>
-														onclick="changeBookmark('<%=postsNew.get(i).getIdBaiViet()%>')">
-														<span class="glyphicon glyphicon-bookmark"></span>
-													</button>
-												</div>	
-											</td> --%>
+											<td><p><%=postsNew.get(i).getDanhMuc().getTenDanhMucVi()%></p>
+												<p><%=postsNew.get(i).getDanhMuc().getTenDanhMucJa()%></p>
+											</td>
+											<td><p><%=postsNew.get(i).getTaiKhoan().getTenTaiKhoan() %></p></td>
+											<td><p><%=postsNew.get(i).getNgayDang()%><p></td>
+											<td><p><%=postsNew.get(i).getLuotXem()%></p></td>
+											<td>
+									<div id="resultMessage_<%=postsNew.get(i).getIdBaiViet()%>">
+										<button type="button" id="<%=postsNew.get(i).getIdBaiViet()%>"
+											data-toggle="tooltip"
+											<%if(postsNew.get(i).getGimTrangChu()==1) {%>
+											title="Đã ghim"
+											<% }else{%>title="Chưa ghim"<%}%>
+											<%if (postsNew.get(i).getGimTrangChu()==1) { %>
+											class="btn btn-warning btn-sm btn_action btnbookmark" <%}else {%>
+											class="btn btn-primary btn-sm btn_action btnbookmark" <%}%>
+											onclick="changeBookmark('<%=postsNew.get(i).getIdBaiViet()%>')">
+											<span class="glyphicon glyphicon-bookmark"></span>
+										</button>
+									</div>
+								</td>
 											<td><a href="ShowDetailPostsServlet?id=<%=postsNew.get(i).getIdBaiViet()%>" data-toggle="tooltip" title="Chi tiết - 詳細">
-													<button type="button" class="btn btn-info btn-sm">
+													<button type="button" class="btn btn-info btn-sm btn_action" >
 														<span class="glyphicon glyphicon-list-alt"></span>
 													</button> 
 												</a>
 											</td>
 											<td>
 												<a href="<%if(postsNew.get(i).getTrangThai().contains("OK") || postsNew.get(i).getTrangThai().contains("DangDich") ){ %>#<%}else{ %> ./ShowAdminEditPostsServlet?idPost=<%=postsNew.get(i).getIdBaiViet()%>&from=list<%}%>" data-toggle="tooltip" title="Chỉnh sửa - 修正">
-													<button type="button" class="btn btn-primary btn-sm"<%if(postsNew.get(i).getTrangThai().contains("OK") || postsNew.get(i).getTrangThai().contains("DangDich")){ %> disabled="disabled" <%} %>>
+													<button type="button" class="btn btn-primary btn-sm btn_action"<%if(postsNew.get(i).getTrangThai().contains("OK") || postsNew.get(i).getTrangThai().contains("DangDich")){ %> disabled="disabled" <%} %>>
 														<span class="glyphicon glyphicon-pencil"> </span> 
 													</button>
 												</a>
 											</td>
 											<td><a href="#" data-toggle="tooltip" title="Xóa - 削除">
-													<button type="button" class="btn btn-danger btn-sm"
+													<button type="button" class="btn btn-danger btn-sm btn_action"
 														data-toggle="modal" 
 														data-target="#delete<%=postsNew.get(i).getIdBaiViet()%>">
 													<span class="glyphicon glyphicon-remove"></span> 
@@ -154,7 +157,7 @@
 										name="Idposts" value="<%=postsNew.get(i).getIdBaiViet()%>"
 										readonly="readonly">
 								</div>
-								<button type="submit" class="btn btn-success btn-lg">Xóa - 削除</button>
+								<button type="submit" class="btn btn-success btn-sm">Xóa - 削除</button>
 								<button type="button" id="btn" class="btn btn-default" data-dismiss="modal">Quay lại - 戻り</button>
 							</form>
 						</div>
@@ -165,8 +168,9 @@
 				}
 				}
 			%>	
-			<div id="resultMessage"></div>
+			
 	</div>
+	<div id="resultMessage"></div>
 	<%}else{
 		RequestDispatcher dispatcher = request.getRequestDispatcher("ShowloginAdmin");
 	    dispatcher.forward(request, response);
@@ -175,7 +179,5 @@
 <!-- ---------- JS ------------------------->
 <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
 <script type="text/javascript" src="../bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="../js/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript" src="js/Home(Admin).js"></script>
 </html>
