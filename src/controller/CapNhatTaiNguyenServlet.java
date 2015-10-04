@@ -37,6 +37,9 @@ public class CapNhatTaiNguyenServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
+		if(request.getSession().getAttribute("username")==null){
+			response.sendRedirect("LoginServlet");
+		}else{
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 		
 		if (isMultipart) {
@@ -108,5 +111,5 @@ public class CapNhatTaiNguyenServlet extends HttpServlet {
 			request.getRequestDispatcher("TaiNguyenServlet").forward(request, response);
 		}
 	}
-
+	}
 }

@@ -25,6 +25,9 @@ public class TaiNguyenServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
+		if(request.getSession().getAttribute("username")==null){
+			response.sendRedirect("LoginServlet");
+		}else{
 		TaiNguyenBO tainguyenBO = new TaiNguyenBO();
 		String sotu = tainguyenBO.getValue("SoTuDich");
 		String giaVN = tainguyenBO.getValue("ThanhTienVN");
@@ -38,5 +41,5 @@ public class TaiNguyenServlet extends HttpServlet {
 		request.setAttribute("banggiaqc", banggiaqc);
 		request.getRequestDispatcher("TaiNguyen.jsp").forward(request, response);
 	}
-
+	}
 }

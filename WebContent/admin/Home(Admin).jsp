@@ -31,11 +31,11 @@
 <!-- |--------------------------------------------------------------| -->
 <!-- |-------------------Hiển thị hình ảnh--------------------------| -->
 <!-- |--------------------------------------------------------------| -->		
-			<div class = "col-md-3" id = "div_show_image">
+			<!-- <div class = "col-md-3" id = "div_show_image">
 				<div class="col-md-10 col-md-offset-1" >
 					<img src="../images/congthongtin.png" class="img-responsive img-rounded" alt="Cổng thông tin" data-spy="affix">
 				</div>
-			</div>
+			</div> -->
 <!-- |--------------------------------------------------------------| -->
 <!-- |-------------Hiển thị bài viết mới nhất- ---------------------| -->
 <!-- |--------------------------------------------------------------| -->				
@@ -45,7 +45,7 @@
 						<div class="panel-heading">Bài viết mới đăng - </div>
 						<div class="panel-body">
 							<div class="table-responsive">
-							<table class="table table-hover table-condensed table-striped ">
+							<table class="table table-striped table-hover">
 								<thead>
 									<tr>
 										<th>ID</th>

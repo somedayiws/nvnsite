@@ -62,13 +62,18 @@ public class ListPostsServlet extends HttpServlet {
 		ListAccountBO listaccount  = new ListAccountBO();	
 		ListCategoryBO listcategory = new ListCategoryBO();
 		int page = 1;
+		
+		String chon = request.getParameter("view");
+		if(chon==null) chon = "all";
+		
 		listPost.setMenu(10, 5);
 		try {
 			page = Integer.parseInt(request.getParameter("page"));
 		} catch (NumberFormatException e) {
 			page = 1;
 		}
-		ArrayList<BAIVIET> posts = listPost.getPosts(page);
+		
+		ArrayList<BAIVIET> posts = listPost.getPosts(page, chon);
 		
 			
 		ArrayList<TAIKHOAN> accounts = listaccount.getDataAccountInfor(0,listaccount.totalRecord(),"all");

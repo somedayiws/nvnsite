@@ -26,6 +26,9 @@ public class XoaQuangCaoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
+		if(request.getSession().getAttribute("username")==null){
+			response.sendRedirect("LoginServlet");
+		}else{
 		String idQC = request.getParameter("idQC");
 		if(idQC!=null){
 			QuangCaoBO quangCaoBo = new QuangCaoBO();
@@ -39,5 +42,5 @@ public class XoaQuangCaoServlet extends HttpServlet {
 		}
 		request.getRequestDispatcher("AdvertisementServlet").forward(request, response);
 	}
-
+	}
 }

@@ -26,6 +26,9 @@ public class SuaThongBaoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
+		if(request.getSession().getAttribute("username")==null){
+			response.sendRedirect("LoginServlet");
+		}else{
 		ThongBaoBO tb = new ThongBaoBO();
 		
 		String id = request.getParameter("id");
@@ -41,5 +44,5 @@ public class SuaThongBaoServlet extends HttpServlet {
 		
 		request.getRequestDispatcher("ThongBaoServlet").forward(request, response);
 	}
-
+	}
 }

@@ -31,6 +31,10 @@ public class AdvertisementServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
+		if(request.getSession().getAttribute("username")==null){
+			response.sendRedirect("LoginServlet");
+		}else{
+		
 		//Nhận lại danh sách các quảng cáo
 		AdvertisementBO listAdvertisement = new AdvertisementBO();
 		
@@ -55,5 +59,5 @@ public class AdvertisementServlet extends HttpServlet {
 		RequestDispatcher requestDis = request.getRequestDispatcher("Advertisement.jsp");
 		requestDis.forward(request, response);
 	}
-	
+	}
 }

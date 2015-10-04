@@ -47,40 +47,47 @@ public class LoginServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		String remember_me = request.getParameter("remember-me");
 		String result=null;
-		
+		if(username==null || password==null){
+			request.setAttribute("result", "Bạn chưa đăng nhập hệ thống!");
+			RequestDispatcher requestDis = request.getRequestDispatcher("Login.jsp");
+			requestDis.forward(request, response);
+		}else{
 		LoginBO checkLogin = new LoginBO();
 		if(checkLogin.checkValidate(username, password)){
-			if(checkLogin.checkLogin(username, password)){
-				HttpSession session = request.getSession();
-				session.setAttribute("username", username);
-				
-				if(remember_me!=null){
-				   Cookie user = new Cookie("username",username);
-				 
-				   // Set expiry date after 24 Hrs for both the cookies.
-				   user.setMaxAge(60*60*24); 
-				  
-				   // Add both the cookies in the response header.
-				   response.addCookie(user);
-				   
-				   System.out.println("user.getName: "+user.getName());
-				   System.out.println("user.getValue: "+user.getValue());
-				  
+				if(checkLogin.checkLogin(username, password)){
+					HttpSession session = request.getSession();
+					session.setAttribute("username", username);
+					
+					if(remember_me!=null){
+					   Cookie user = new Cookie("username",username);
+					 
+					   // Set expiry date after 24 Hrs for both the cookies.
+					   user.setMaxAge(60*60*24); 
+					  
+					   // Add both the cookies in the response header.
+					   response.addCookie(user);
+					   
+					   System.out.println("user.getName: "+user.getName());
+					   System.out.println("user.getValue: "+user.getValue());
+					  
+					}
+					
+					response.sendRedirect("ShowHomeServlet");
+//					RequestDispatcher requestDis = request.getRequestDispatcher("ShowHomeServlet");
+//					requestDis.forward(request, response);
 				}
-				RequestDispatcher requestDis = request.getRequestDispatcher("ShowHomeServlet");
-				requestDis.forward(request, response);
-			}
-			else{
-				result = "2";//Acc không tồn tại trong hệ thống
-				request.setAttribute("result", result);
-				RequestDispatcher requestDis = request.getRequestDispatcher("Login.jsp");
-				requestDis.forward(request, response);
-			}
-	}else{
-		result = "1";//Username và password không hợp lệ
-		request.setAttribute("result", result);
-		RequestDispatcher requestDis = request.getRequestDispatcher("Login.jsp");
-		requestDis.forward(request, response);
+				else{
+					result = "2";//Acc không tồn tại trong hệ thống
+					request.setAttribute("result", result);
+					RequestDispatcher requestDis = request.getRequestDispatcher("Login.jsp");
+					requestDis.forward(request, response);
+				}
+		}else{
+			result = "1";//Username và password không hợp lệ
+			request.setAttribute("result", result);
+			RequestDispatcher requestDis = request.getRequestDispatcher("Login.jsp");
+			requestDis.forward(request, response);
+		}
 	}
 	}
 }

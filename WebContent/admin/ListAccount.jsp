@@ -535,6 +535,7 @@
 	
 </body>
 <!-- ------------------JS-------------------------- -->
+<script src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
 <script type="text/javascript" src="../bootstrap-3.3.5-dist/js/bootstrap.js"></script>
 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>

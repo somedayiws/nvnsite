@@ -19,8 +19,7 @@
 				<ul class="nav navbar-nav">
 					<li><a href="ShowHomeServlet"><span
 							class="glyphicon glyphicon-home"></span>Trang chủ</a></li>
-					<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" href="DanhSachBaiDichServlet?view=all"><span
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span
 							class="glyphicon glyphicon-user"></span>QL thành viên<br>翻訳文書のリスト
 							<span class="caret"></span></a>
 						<ul class="dropdown-menu">
@@ -33,8 +32,7 @@
 					<li><a href="ListCategoryServlet"><span
 							class="glyphicon glyphicon-list"></span>QL danh mục</a></li>
 							
-					<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" href="DanhSachBaiDichServlet?view=all"><span
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"  href="#"><span
 							class="glyphicon glyphicon-list-alt"></span>QL bài viết
 							<span class="caret"></span></a>
 						<ul class="dropdown-menu">
@@ -58,9 +56,8 @@
 							class="glyphicon glyphicon-signal"></span>Thống kê</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" href="DanhSachBaiDichServlet?view=all"><span
-							class="glyphicon glyphicon-user"></span>Xin chào <%=((String)request.getSession().getAttribute("username"))%><br>翻訳文書のリスト <span class="caret"></span></a>
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span
+							class="glyphicon glyphicon-user"></span> <%=((String)request.getSession().getAttribute("username"))%><span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="EditProfileServlet"><span
 									class="glyphicon glyphicon-credit-card"></span>Hồ sơ<br>-</a></li>
