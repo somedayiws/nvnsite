@@ -72,6 +72,7 @@ public class DangKyThanhVienServlet extends HttpServlet {
 			String dienthoai = request.getParameter("dienthoai");
 			String email = request.getParameter("email");
 			String ngonngu = request.getParameter("ngonngu");
+			if(ngonngu==null) ngonngu = "vi";
 			if(taikhoan == null) request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Bạn chưa nhập đầy đủ thông tin.</p></div>");
 			if(matkhau == null) request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Bạn chưa nhập đầy đủ thông tin.</p></div>");
 			if(email == null) request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Bạn chưa nhập đầy đủ thông tin.</p></div>");
