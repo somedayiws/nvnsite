@@ -6,7 +6,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" name="viewport" content="text/html; charset=UTF-8; width=device-width; initial-scale=1">
-
+<!-- ______________________________JS________________________________________ -->
+<script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../bootstrap-3.3.5-dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="../check_validate/formEdit.js"></script>
 <!-- ___________________________CSS_______________________________________ -->
 <link rel="stylesheet" href="../bootstrap-3.3.5-dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/register.css">
@@ -396,9 +400,4 @@ $(document).ready(function() {
 	});
 </script>
 <%}%>
-<!-- ______________________________JS________________________________________ -->
-<script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
-<script type="text/javascript" src="../bootstrap-3.3.5-dist/js/bootstrap.js"></script>
-<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="../check_validate/formEdit.js"></script>
 </html>
