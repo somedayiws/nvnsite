@@ -235,4 +235,8 @@ public class BaiVietBO {
 	public int TongBaiViet(String tk, String trangthai){
 		return baiviet.TongBaiViet(tk, trangthai);
 	}
+	public int getCountBaiViet(String loai) {
+		// TODO Auto-generated method stub
+		return baiviet.getCountBaiViet(loai);
+	}
 }

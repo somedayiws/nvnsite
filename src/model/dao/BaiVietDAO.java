@@ -644,4 +644,24 @@ public class BaiVietDAO {
 		}
 		return 0;
 	}
+	public int getCountBaiViet(String loai) {
+		// TODO Auto-generated method stub
+		String sql = "";
+		if(loai.equals("moi")){
+			sql = "select count(*) from (select * from baiviet where TrangThai='MoiDang' or TrangThai='KhongDich') as tam";
+		}else if(loai.equals("xong")){
+			sql = "select count(*) from (select * from baiviet where TrangThai='DichXong') as tam";
+		}else {
+			sql = "select count(*) from (select * from baiviet where TrangThai='HuyDich') as tam";
+		}
+		ResultSet rs = db.getResultSet(sql);
+		try {
+			if(rs.next()){
+				return rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			return 0;
+		}
+		return 0;
+	}
 }

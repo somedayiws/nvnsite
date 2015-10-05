@@ -264,6 +264,7 @@
 								<th></th>
 								<th></th>
 								<th></th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -326,6 +327,44 @@
 									<%} %>
 								</td>
 								<% } %>
+								<td>
+									<%if(posts.get(i).getTrangThai().equals("MoiDang")){ %>
+										<a href="#" data-toggle="tooltip" title="Chuyển dịch - "><button
+											type="button" class="btn btn-default btn-sm"
+											data-toggle="modal"
+											data-target="#delete<%=posts.get(i).getIdBaiViet()%>">
+											<span class="glyphicon glyphicon-send"></span>
+										</button></a>
+									<%}else if(posts.get(i).getTrangThai().equals("DangDich")) {%>
+										<a href="#" data-toggle="tooltip" title="Hủy dịch - "><button
+											type="button" class="btn btn-warning btn-sm"
+											data-toggle="modal"
+											data-target="#delete<%=posts.get(i).getIdBaiViet()%>">
+											<span class="glyphicon glyphicon-exclamation-sign"></span>
+										</button></a>
+									<%}else if(posts.get(i).getTrangThai().equals("DichXong")) {%>
+										<a href="#" data-toggle="tooltip" title="Duyệt bài - "><button
+											type="button" class="btn btn-default btn-sm"
+											data-toggle="modal"
+											data-target="#delete<%=posts.get(i).getIdBaiViet()%>">
+											<span><img src="../images/icons/arrow .gif" style="width: 20px; margin-right: -9px;"></span>
+										</button></a>
+									<%}else if(posts.get(i).getTrangThai().equals("KhongDich")) {%>
+										<a href="#" data-toggle="tooltip" title="Duyệt bài - "><button
+											type="button" class="btn btn-default btn-sm"
+											data-toggle="modal"
+											data-target="#delete<%=posts.get(i).getIdBaiViet()%>">
+											<span><img src="../images/icons/arrow .gif" style="width: 20px; margin-right: -9px;"></span>
+										</button></a>
+									<%}else if(posts.get(i).getTrangThai().equals("HuyDich")){ %>
+										<a href="#" data-toggle="tooltip" title="Chuyển dịch - "><button
+											type="button" class="btn btn-default btn-sm"
+											data-toggle="modal"
+											data-target="#delete<%=posts.get(i).getIdBaiViet()%>">
+											<span class="glyphicon glyphicon-send"></span>
+										</button></a>
+									<%}%>
+								</td>
 								<td>
 									<div id="resultMessage_<%=posts.get(i).getIdBaiViet()%>">
 										<button type="button" id="<%=posts.get(i).getIdBaiViet()%>"
