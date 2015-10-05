@@ -22,10 +22,10 @@ public class ListPostsDAO {
 			
 			if(chon.equals("dadich")){
 				sql_select_posts = "select baiviet.IdBaiViet, TenBaiVietVi, TenBaiVietJa, IdDanhMuc, baiviet.IdTaiKhoan, NoiDungVi, NoiDungJa, baiviet.TrangThai, GhiChu, MotaVi, MotaJa, LuotXem, Lienket, NgayDang, GimTrangChu"
-						+ " from baiviet inner join lichsu on baiviet.IdBaiViet=lichsu.IdBaiViet where CoXoa = 0 and baiviet.TrangThai='DangDich' and lichsu.TrangThai='DangBai' order by NgayDang desc, baiviet.IdTaiKhoan desc";
+						+ " from baiviet inner join lichsu on baiviet.IdBaiViet=lichsu.IdBaiViet where CoXoa = 0 and baiviet.TrangThai='DichXong' and lichsu.TrangThai='DangBai' order by NgayDang desc, baiviet.IdTaiKhoan desc";
 			}else if(chon.equals("huydich")){
 				sql_select_posts = "select baiviet.IdBaiViet, TenBaiVietVi, TenBaiVietJa, IdDanhMuc, baiviet.IdTaiKhoan, NoiDungVi, NoiDungJa, baiviet.TrangThai, GhiChu, MotaVi, MotaJa, LuotXem, Lienket, NgayDang, GimTrangChu"
-						+ " from baiviet inner join lichsu on baiviet.IdBaiViet=lichsu.IdBaiViet where CoXoa = 0 and baiviet.TrangThai='DangDich' and lichsu.TrangThai='HuyDich' order by NgayDang desc, baiviet.IdTaiKhoan desc";
+						+ " from baiviet inner join lichsu on baiviet.IdBaiViet=lichsu.IdBaiViet where CoXoa = 0 and baiviet.TrangThai='HuyDich' and lichsu.TrangThai='HuyDich' order by NgayDang desc, baiviet.IdTaiKhoan desc";
 			}else if(chon.equals("moidang")){
 				sql_select_posts = "select * from baiviet where (TrangThai='MoiDang' or TrangThai='KhongDich') and CoXoa = 0 order by NgayDang desc, IdTaiKhoan desc";
 			}else if(chon.equals("dadang")){

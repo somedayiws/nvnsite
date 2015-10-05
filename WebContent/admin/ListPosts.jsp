@@ -259,7 +259,7 @@
 								</th>
 								<th>Mô tả<br> 説明
 								</th>
-								<th>Trạng thái<br> 状態
+								<% if(request.getParameter("view")!=null && request.getParameter("view").equals("all")) { %><th>Trạng thái<br> 状態 <% } %>
 								</th>
 								<th></th>
 								<th></th>
@@ -305,21 +305,27 @@
 										<%}}%>
 									 
 								</td>
+								<% if(request.getParameter("view")!=null && request.getParameter("view").equals("all")) { %>
 								<td>
 									<%if(posts.get(i).getTrangThai().equals("MoiDang")){ %>
-										Mới đăng - 
+										<p class="bg-success">Mới đăng - </p>
 									<%}else if(posts.get(i).getTrangThai().equals("DangDich")) {%>
-										Đang dịch - 
+										<p class="bg-info">Đang dịch - </p>
 									<%}else if(posts.get(i).getTrangThai().equals("OK")){ %>
-										Đã duyệt - 
+										<p class="bg-info">Đã duyệt - </p>
+									<%}else if(posts.get(i).getTrangThai().equals("DichXong")){ %>
+										<p class="bg-primary">Dịch xong - </p>
+									<%}else if(posts.get(i).getTrangThai().equals("HuyDich")){ %>
+										<p class="bg-danger"> Hủy dịch - </p>
 									<%}else if(posts.get(i).getTrangThai().equals("KhongDich")){ %>
-										Không dịch - 
+										<p class="bg-info">Không dịch - </p>
 									<%}else if(posts.get(i).getTrangThai().equals("XoaBai")){ %>
-										Xóa bài - 
+										<p class="bg-danger"> Xóa bài - </p>
 									<%}else{ %>
 										<%=posts.get(i).getTrangThai()%>
 									<%} %>
 								</td>
+								<% } %>
 								<td>
 									<div id="resultMessage_<%=posts.get(i).getIdBaiViet()%>">
 										<button type="button" id="<%=posts.get(i).getIdBaiViet()%>"

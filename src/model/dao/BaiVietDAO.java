@@ -376,14 +376,15 @@ public class BaiVietDAO {
 		if(ngonNgu.equals("ja")){
 			sql = "update baiviet set TenBaiVietVi=N'"+tieude
 					+"', MotaVi=N'"+mota
-					+"', NoiDungVi=N'"+noidung
+					+"', NoiDungVi=N'"+noidung 
 					+"' where IdBaiViet=N'"+id+"'";
 		}else{
 			sql = "update baiviet set TenBaiVietJa=N'"+tieude
 					+"', MotaJa=N'"+mota
-					+"', NoiDungJa=N'"+noidung
+					+"', NoiDungJa=N'"+noidung 
 					+"' where IdBaiViet=N'"+id+"'";
 		}
+		
 //		CapNhatBaiViet(id, tinhtrang, idTaiKhoan);
 		return (CapNhatBaiViet(id, tinhtrang, idTaiKhoan) & db.updateData(sql));
 	}
@@ -397,8 +398,15 @@ public class BaiVietDAO {
 		id = DinhDangSQL.FomatSQL(id);
 		tinhtrang = DinhDangSQL.FomatSQL(tinhtrang);
 		idTaiKhoan = DinhDangSQL.FomatSQL(idTaiKhoan);
+		
 		String sql = "update lichsu set TrangThai=N'"+tinhtrang+"' where IdBaiViet=N'"+id+"' and IdTaiKhoan=N'"+idTaiKhoan+"'";
-		return db.updateData(sql);
+		String sql1 = "update baiviet set ";
+		if(tinhtrang.equals("DangBai")){
+			sql1 += " TrangThai='DichXong' where IdBaiViet=N'"+id+"'";
+		}else{
+			sql1 += " TrangThai='HuyDich' where IdBaiViet=N'"+id+"'";
+		}
+		return db.updateData(sql) & db.updateData(sql1);
 	}
 	/*
 	 * Dùng cho trang cộng tác viên
