@@ -403,8 +403,10 @@ public class BaiVietDAO {
 		String sql1 = "update baiviet set ";
 		if(tinhtrang.equals("DangBai")){
 			sql1 += " TrangThai='DichXong' where IdBaiViet=N'"+id+"'";
-		}else{
+		}else if(tinhtrang.equals("HuyDich")){
 			sql1 += " TrangThai='HuyDich' where IdBaiViet=N'"+id+"'";
+		}else {
+			sql1 += " TrangThai='DangDich' where IdBaiViet=N'"+id+"'";
 		}
 		return db.updateData(sql) & db.updateData(sql1);
 	}
