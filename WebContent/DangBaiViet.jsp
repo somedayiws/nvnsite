@@ -232,6 +232,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#fdangbai").validate({
+			ignore: [],
 			rules : {
 				TieuDe : {
 					required : true

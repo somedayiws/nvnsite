@@ -75,8 +75,8 @@
 						</div>
 						<div class="form-group">
 							<label>Mô tả - 概要</label>
-							<textarea id="MoTa" name="MoTa" rows="5" cols="30"
-								class="form-control"><%=baiviet.getTenBaiVietVi()%></textarea>
+							<textarea id="MoTa" name="MoTa" rows="5" cols="30" 
+								class="form-control"><%=baiviet.getMoTaVi()%></textarea>
 						</div>
 					</div>
 					<%
@@ -320,6 +320,7 @@
 	$(document).ready(function() {
 		$(document).ready(function() {
 			$("#fdangbai").validate({
+				ignore: [],
 				rules : {
 					TieuDe : {
 						required : true

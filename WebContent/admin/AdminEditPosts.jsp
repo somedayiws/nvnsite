@@ -47,7 +47,7 @@
 			<div class="col-md-8 col-md-offset-2 panel panel-primary">		
 			 	<div class="panel-heading">Chỉnh sửa bài viết - 記事の修正</div>	
 			 	<div class="panel-body">
-				<form action="AdminEditPostsServlet" method="get" id="formAdminEditPost"
+				<form action="AdminEditPostsServlet" method="post" id="formAdminEditPost"
 					name="formAdminEditPost" onsubmit="return checkData()">
 					<!-- Id danh muc -->
 					<div class="form-group">

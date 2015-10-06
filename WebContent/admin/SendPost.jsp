@@ -70,7 +70,7 @@
 				<thead>
 					<tr>
 						<th>ID</th>
-						<th>Username - ユーザー名</th>
+						<th>Tên cộng tác viên - </th>
 						<th>Email - メールアドレス</th>
 						<th>Ngôn ngữ - </th>
 						<th></th>
@@ -86,7 +86,7 @@
 					%>
 						<tr>
 						<td><%=listAccountByStatus.get(i).getIdTaiKhoan() %></td>
-						<td><%=listAccountByStatus.get(i).getTenTaiKhoan() %></td>
+						<td><%=listAccountByStatus.get(i).getHoTen() %></td>
 						<td><%=listAccountByStatus.get(i).getEmail() %></td>
 						<td><%=listAccountByStatus.get(i).getNgonNgu().equals("vi")?"Việt -> Nhật":"Nhật -> Việt" %></td>
 						
@@ -133,7 +133,7 @@
 					%>
 					<tr>
 						<td><%=listAccountCTV.get(i).getIdTaiKhoan() %></td>
-						<td><%=listAccountCTV.get(i).getTenTaiKhoan() %></td>
+						<td><%=listAccountCTV.get(i).getHoTen() %></td>
 						<td><%=listAccountCTV.get(i).getEmail() %></td>
 						<td><%=listAccountCTV.get(i).getNgonNgu().equals("vi")?"Việt -> Nhật":"Nhật -> Việt" %></td>	
 						

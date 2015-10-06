@@ -21,7 +21,7 @@ public class AdminEditPostsDAO {
 				+ post.getNoiDungJa() + "',MoTaVi=N'" + post.getMoTaVi() + "',MoTaJa=N'"
 				+ post.getMoTaJa() + "' where IdBaiViet = '"
 				+ post.getIdBaiViet() + "' and CoXoa = '0'";
-		
+		System.out.println(sql_update_posts);
 		return db.updateData(sql_update_posts);
 	}
 	/*

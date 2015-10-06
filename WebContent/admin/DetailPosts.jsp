@@ -80,8 +80,8 @@
 								class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Chỉnh sửa - 修正</button>
 						</a>
 						<a
-							href="<%if(posts.getTrangThai().contains("OK") ||posts.getTrangThai().contains("DichXong") || ( posts.getTrangThai().contains("DangDich")) || posts.getTrangThai().contains("SoanThao")){ %>#<%}else{ %>TranslateServlet?idPost=<%=posts.getIdBaiViet()%><%}%>">
-							<button <%if(posts.getTrangThai().contains("OK")||posts.getTrangThai().contains("DichXong")|| ( posts.getTrangThai().contains("DangDich")) || posts.getTrangThai().contains("SoanThao")){ %> disabled="disabled"  <%} %>
+							href="<%if(posts.getTrangThai().contains("OK") ||posts.getTrangThai().contains("DichXong") || ( posts.getTrangThai().contains("DangDich")) || posts.getTrangThai().contains("SoanThao") || posts.getTrangThai().contains("KhongDich")){ %>#<%}else{ %>TranslateServlet?idPost=<%=posts.getIdBaiViet()%><%}%>">
+							<button <%if(posts.getTrangThai().contains("OK")||posts.getTrangThai().contains("DichXong")|| ( posts.getTrangThai().contains("DangDich")) || posts.getTrangThai().contains("SoanThao") || posts.getTrangThai().contains("KhongDich")){ %> disabled="disabled"  <%} %>
 								class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-subtitles"></span> Dịch bài - </button>
 						</a>
 						<a

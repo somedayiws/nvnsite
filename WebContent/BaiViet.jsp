@@ -106,7 +106,7 @@
 				<br> <br>
 				<div id="noidung">
 					<%
-						if(baiviet.getNoiDungVi() != null && baiviet.getNoiDungJa() != null ) {
+						if(baiviet.getNoiDungVi() != null && !baiviet.getNoiDungVi().equals("")  && baiviet.getNoiDungJa() != null && !baiviet.getNoiDungJa().equals("") ) {
 					%>
 					<div class="col-xs-12 col-sm-6 col-md-6" id="tiengviet">
 						<%=baiviet.getNoiDungVi()%>
@@ -191,7 +191,7 @@
 						} else {
 					%>
 					<%
-						if(baiviet.getNoiDungVi() != null ) {
+						if(baiviet.getNoiDungVi() != null && !baiviet.getNoiDungVi().equals("")) {
 					%>
 					<div class="col-xs-12 col-sm-12 col-md-12" id="tiengviet">
 						<%=baiviet.getNoiDungVi()%>
@@ -236,7 +236,7 @@
 						}
 					%>
 					<%
-						if(baiviet.getNoiDungJa() != null ) {
+						if(baiviet.getNoiDungJa() != null && !baiviet.getNoiDungJa().equals("")) {
 					%>
 					<div class="col-xs-12 col-sm-12 col-md-12" id="tiengnhat">
 						<%=baiviet.getNoiDungJa()%>
