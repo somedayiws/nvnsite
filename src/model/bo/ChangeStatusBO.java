@@ -42,4 +42,8 @@ public class ChangeStatusBO {
 		public int getPostBookmarkById(String idPost){
 			return change.getPostBookmarkById(idPost);
 		}
+	//Lấy trường ghi chú của bài viết
+		public String getNotePost(String idPost){
+			return change.getNotePost(idPost);
+		}
 }

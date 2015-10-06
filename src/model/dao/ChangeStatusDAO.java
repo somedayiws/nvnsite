@@ -40,7 +40,10 @@ public class ChangeStatusDAO {
 		db.updateData(sql_change_status_history);
 	}
 	public void changeStatusPost(String status,String idPosts,String message){
-		String sql_change_status_post = "update baiviet set TrangThai = N'"+status+"',GhiChu = '"+message+"' where IdBaiViet ='"+idPosts+"'  and CoXoa=0";		
+		//Lấy ghi chú của bài viết
+		String note = getNotePost(idPosts);
+		String noteNew = note+"<strong>Admin<strong/>"+"<p>"+message+"</p>";
+		String sql_change_status_post = "update baiviet set TrangThai = N'"+status+"',GhiChu = '"+noteNew+"' where IdBaiViet ='"+idPosts+"'  and CoXoa=0";		
 		db.updateData(sql_change_status_post);
 	}
 	public void updateStatusHistory(String status,String idPosts,String idAccount){		
@@ -104,6 +107,23 @@ public class ChangeStatusDAO {
 		String sql_changeBookmark = "UPDATE baiviet SET GimTrangChu = NOT '"+status+"' WHERE IdBaiViet = '"+idPost+"'";
 		System.out.println("sql_changeBookmark: "+sql_changeBookmark);
 		return db.updateData(sql_changeBookmark);
+	}
+	
+	//Lấy trường ghi chú của bài viết
+	public String getNotePost(String idPost){
+		String note = null;
+		String sql_getNotePost = "select GhiChu from baiviet where IdBaiViet = '"+idPost+"' ";
+		ResultSet result_getNotePost = db.getResultSet(sql_getNotePost);
+		try {
+			while(result_getNotePost.next()){
+				note = result_getNotePost.getString("GhiChu");
+			}
+		return note;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 		
 }
