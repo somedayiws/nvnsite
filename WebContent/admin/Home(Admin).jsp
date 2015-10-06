@@ -9,6 +9,8 @@
 <!------------- CSS ---------------------->
 <link rel="stylesheet" href="../bootstrap-3.3.5-dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/home.css">
+<script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
+
 <title>Trang chủ - ホーム</title>
 </head>
 <%
@@ -41,50 +43,101 @@
 <!-- |--------------------------------------------------------------| -->				
 			<div class = "col-md-9" id = "div_show_post_new">
 				<%if(postsNew!=null){ %>
-					<div class="col-md-10 col-md-offset-1 panel panel-primary">
-						<div class="panel-heading">Bài viết mới đăng - </div>
-						<div class="panel-body">
-							<div class="table-responsive">
-							<table class="table table-striped table-hover">
-								<thead>
-									<tr>
-										<th>ID</th>
-										<th>Tên bài viết<br>記事名</th>
-										<th>Danh mục<br>項目</th>
-										<th>Người đăng<br>ユーザー名</th>
-										<th>Ngày đăng<br>掲載の日付</th>
-										<th>Lượt xem<br> 観覧回数</th>																			
-										<th></th>
-										<th></th>
-										<th></th>
-										<th></th>
-									</tr>
-								</thead>
-								<tbody>
-									<%for(int i=0;i<postsNew.size();i++){
-									%>
-										<tr>
-											<td><%=postsNew.get(i).getIdBaiViet() %></td>
-											<td>
+					<div class="col-md-12 table-responsive panel panel-primary">
+				<div class="panel-heading">Bài viết -</div>
+				<div class="panel-body">
+					<table class="table table-hover table-condensed">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Tên bài viết<br> 記事名
+								</th>
+								<th>Danh mục<br> 項目
+								</th>
+								<th>Người đăng<br> ユーザー名
+								</th>
+								<th>Ngày đăng<br> 掲載の日付
+								</th>
+								<th>Mô tả<br> 説明
+								</th>
+								<% if(request.getParameter("view")!=null && request.getParameter("view").equals("all")) { %><th>Trạng thái<br> 状態 <% } %>
+								</th>
+								<th></th>
+								<th></th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<%
+							for (int i = 0; i < postsNew.size(); i++) {
+						%>
+							<tr>
+								<td><%=postsNew.get(i).getIdBaiViet()%></td>
+								
+								<td>
 												<%if(postsNew.get(i).getTenBaiVietVi()== null && postsNew.get(i).getTenBaiVietJa()==null){ %>
 													<span class="label label-default">Không có tên bài viết</span>
 												<%}else{ %>
 													<%if(postsNew.get(i).getTenBaiVietVi()!= null){%>
-														<p><%=postsNew.get(i).getTenBaiVietVi()%></p> 
-													<%}%>
+														<%=postsNew.get(i).getTenBaiVietVi()%><br>
+													<%} %>
 														 
 													<%if(postsNew.get(i).getTenBaiVietJa()!= null){%>
-														<p><%=postsNew.get(i).getTenBaiVietJa()%></p> 
-													<%}
+														<%=postsNew.get(i).getTenBaiVietJa()%> 
+													<%} %>
+														
+													<%
 												} %>
-											</td>
-											<td><p><%=postsNew.get(i).getDanhMuc().getTenDanhMucVi()%></p>
-												<p><%=postsNew.get(i).getDanhMuc().getTenDanhMucJa()%></p>
-											</td>
-											<td><p><%=postsNew.get(i).getTaiKhoan().getTenTaiKhoan() %></p></td>
-											<td><p><%=postsNew.get(i).getNgayDang()%><p></td>
-											<td><p><%=postsNew.get(i).getLuotXem()%></p></td>
-											<td>
+								</td>
+								
+								<td><%=postsNew.get(i).getDanhMuc().getTenDanhMucVi()%><br><%=postsNew.get(i).getDanhMuc().getTenDanhMucJa()%></td>
+								<td><%=postsNew.get(i).getTaiKhoan().getTenTaiKhoan()%></td>
+								<td><%=postsNew.get(i).getNgayDang()%></td>
+								<td>
+									<%if(postsNew.get(i).getMoTaVi() == null && postsNew.get(i).getMoTaJa() == null){ %>
+										<span class="label label-default">Không có mô tả</span>
+									<%}else{ %>
+										<%if(postsNew.get(i).getMoTaVi() != null ){ %>
+											<p><%=postsNew.get(i).getMoTaVi()%></p> 
+										<%}%>
+										
+										<%if(postsNew.get(i).getMoTaJa() != null ){  %>
+											<p><%=postsNew.get(i).getMoTaJa()%></p>
+										<%}}%>
+									 
+								</td>
+								<td>
+									<%if(postsNew.get(i).getTrangThai().equals("MoiDang")){ %>
+										<a href="SendPostServlet?idPost=<%=postsNew.get(i).getIdBaiViet()%>&status=MoiDang" data-toggle="tooltip" title="Chuyển dịch - "><button
+											type="button" class="btn btn-default btn-sm">
+											<span class="glyphicon glyphicon-send"></span>
+										</button></a>
+									<%}else if(postsNew.get(i).getTrangThai().equals("DangDich")) {%>
+										<a href="#" data-toggle="tooltip" title="Hủy dịch - "><button
+											type="button" class="btn btn-warning btn-sm"
+											data-toggle="modal"
+											data-target="#delete<%=postsNew.get(i).getIdBaiViet()%>">
+											<span class="glyphicon glyphicon-exclamation-sign"></span>
+										</button></a>
+									<%}else if(postsNew.get(i).getTrangThai().equals("DichXong")) {%>
+										<a href="ShowDetailPostsServlet?id=<%=postsNew.get(i).getIdBaiViet()%>" data-toggle="tooltip" title="Duyệt bài - "><button
+											type="button" class="btn btn-default btn-sm">
+											<span><img src="../images/icons/arrow .gif" style="width: 20px; margin-right: -9px;"></span>
+										</button></a>
+									<%}else if(postsNew.get(i).getTrangThai().equals("KhongDich")) {%>
+										<a href="ShowDetailPostsServlet?id=<%=postsNew.get(i).getIdBaiViet()%>" data-toggle="tooltip" title="Duyệt bài - "><button
+											type="button" class="btn btn-default btn-sm">
+											<span><img src="../images/icons/arrow .gif" style="width: 20px; margin-right: -9px;"></span>
+										</button></a>
+									<%}else if(postsNew.get(i).getTrangThai().equals("HuyDich")){ %>
+										<a href="SendPostServlet?idPost=<%=postsNew.get(i).getIdBaiViet()%>&status=HuyDich" data-toggle="tooltip" title="Chuyển dịch - "><button
+											type="button" class="btn btn-default btn-sm">
+											<span class="glyphicon glyphicon-send"></span>
+										</button></a>
+									<%}%>
+								</td>
+								<td>
 									<div id="resultMessage_<%=postsNew.get(i).getIdBaiViet()%>">
 										<button type="button" id="<%=postsNew.get(i).getIdBaiViet()%>"
 											data-toggle="tooltip"
@@ -92,43 +145,44 @@
 											title="Đã ghim"
 											<% }else{%>title="Chưa ghim"<%}%>
 											<%if (postsNew.get(i).getGimTrangChu()==1) { %>
-											class="btn btn-warning btn-sm btn_action btnbookmark" <%}else {%>
-											class="btn btn-primary btn-sm btn_action btnbookmark" <%}%>
+											class="btn btn-warning btn-sm btnbookmark" <%}else {%>
+											class="btn btn-primary btn-sm btnbookmark" <%}%>
 											onclick="changeBookmark('<%=postsNew.get(i).getIdBaiViet()%>')">
 											<span class="glyphicon glyphicon-bookmark"></span>
 										</button>
 									</div>
 								</td>
-											<td><a href="ShowDetailPostsServlet?id=<%=postsNew.get(i).getIdBaiViet()%>" data-toggle="tooltip" title="Chi tiết - 詳細">
-													<button type="button" class="btn btn-info btn-sm btn_action" >
-														<span class="glyphicon glyphicon-list-alt"></span>
-													</button> 
-												</a>
-											</td>
-											<td>
-												<a href="<%if(postsNew.get(i).getTrangThai().contains("OK") || postsNew.get(i).getTrangThai().contains("DangDich") ){ %>#<%}else{ %> ./ShowAdminEditPostsServlet?idPost=<%=postsNew.get(i).getIdBaiViet()%>&from=list<%}%>" data-toggle="tooltip" title="Chỉnh sửa - 修正">
-													<button type="button" class="btn btn-primary btn-sm btn_action"<%if(postsNew.get(i).getTrangThai().contains("OK") || postsNew.get(i).getTrangThai().contains("DangDich")){ %> disabled="disabled" <%} %>>
-														<span class="glyphicon glyphicon-pencil"> </span> 
-													</button>
-												</a>
-											</td>
-											<td><a href="#" data-toggle="tooltip" title="Xóa - 削除">
-													<button type="button" class="btn btn-danger btn-sm btn_action"
-														data-toggle="modal" 
-														data-target="#delete<%=postsNew.get(i).getIdBaiViet()%>">
-													<span class="glyphicon glyphicon-remove"></span> 
-													</button>
-												</a>
-											</td>
-										</tr>
-									<%} %>
-								</tbody>
-							</table>
-							<div id="page" class="menuPhanTrang">
-								<%= request.getAttribute("pageNav") %>
-							</div>
-							</div>
-						</div>
+								<td><a
+									href="ShowDetailPostsServlet?id=<%=postsNew.get(i).getIdBaiViet()%>"
+									data-toggle="tooltip" title="Chi tiết - 詳細"><button
+											type="button" class="btn btn-info btn-sm">
+											<span class="glyphicon glyphicon-list-alt"></span>
+										</button> </a></td>
+								<td><a
+									href="<%if(postsNew.get(i).getTrangThai().contains("OK") || postsNew.get(i).getTrangThai().contains("DangDich") ){ %>#<%}else{ %> ./ShowAdminEditPostsServlet?idPost=<%=postsNew.get(i).getIdBaiViet()%>&from=list<%}%>"
+									data-toggle="tooltip" title="Chỉnh sửa - 修正"><button
+											type="button" class="btn btn-primary btn-sm"
+											<%if(postsNew.get(i).getTrangThai().contains("OK") || postsNew.get(i).getTrangThai().contains("DangDich")){ %>
+											disabled="disabled" <%} %>>
+											<span class="glyphicon glyphicon-pencil"> </span>
+										</button></a></td>
+								<td><a href="#" data-toggle="tooltip" title="Xóa - 削除"><button
+											type="button" class="btn btn-danger btn-sm"
+											data-toggle="modal"
+											data-target="#delete<%=postsNew.get(i).getIdBaiViet()%>">
+											<span class="glyphicon glyphicon-remove"></span>
+										</button></a></td>
+							</tr>
+							<%
+							}
+						%>
+						</tbody>
+					</table>
+
+					<div id="page" class="menuPhanTrang">
+						<%= request.getAttribute("pageNav") %>
+					</div>
+				</div>
 					</div>
 				<%} %>
 			</div>

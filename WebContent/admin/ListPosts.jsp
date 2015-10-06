@@ -329,38 +329,28 @@
 								<% } %>
 								<td>
 									<%if(posts.get(i).getTrangThai().equals("MoiDang")){ %>
-										<a href="#" data-toggle="tooltip" title="Chuyển dịch - "><button
-											type="button" class="btn btn-default btn-sm"
-											data-toggle="modal"
-											data-target="#delete<%=posts.get(i).getIdBaiViet()%>">
+										<a href="SendPostServlet?idPost=<%=posts.get(i).getIdBaiViet()%>&status=MoiDang" data-toggle="tooltip" title="Chuyển dịch - "><button
+											type="button" class="btn btn-default btn-sm">
 											<span class="glyphicon glyphicon-send"></span>
 										</button></a>
 									<%}else if(posts.get(i).getTrangThai().equals("DangDich")) {%>
 										<a href="#" data-toggle="tooltip" title="Hủy dịch - "><button
-											type="button" class="btn btn-warning btn-sm"
-											data-toggle="modal"
-											data-target="#delete<%=posts.get(i).getIdBaiViet()%>">
+											type="button" class="btn btn-warning btn-sm" onclick="HuyBaiDich('<%=posts.get(i).getIdBaiViet()%>');">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 										</button></a>
 									<%}else if(posts.get(i).getTrangThai().equals("DichXong")) {%>
-										<a href="#" data-toggle="tooltip" title="Duyệt bài - "><button
-											type="button" class="btn btn-default btn-sm"
-											data-toggle="modal"
-											data-target="#delete<%=posts.get(i).getIdBaiViet()%>">
+										<a href="ShowDetailPostsServlet?id=<%=posts.get(i).getIdBaiViet()%>" data-toggle="tooltip" title="Duyệt bài - "><button
+											type="button" class="btn btn-default btn-sm">
 											<span><img src="../images/icons/arrow .gif" style="width: 20px; margin-right: -9px;"></span>
 										</button></a>
 									<%}else if(posts.get(i).getTrangThai().equals("KhongDich")) {%>
-										<a href="#" data-toggle="tooltip" title="Duyệt bài - "><button
-											type="button" class="btn btn-default btn-sm"
-											data-toggle="modal"
-											data-target="#delete<%=posts.get(i).getIdBaiViet()%>">
+										<a href="ShowDetailPostsServlet?id=<%=posts.get(i).getIdBaiViet()%>" data-toggle="tooltip" title="Duyệt bài - "><button
+											type="button" class="btn btn-default btn-sm">
 											<span><img src="../images/icons/arrow .gif" style="width: 20px; margin-right: -9px;"></span>
 										</button></a>
 									<%}else if(posts.get(i).getTrangThai().equals("HuyDich")){ %>
-										<a href="#" data-toggle="tooltip" title="Chuyển dịch - "><button
-											type="button" class="btn btn-default btn-sm"
-											data-toggle="modal"
-											data-target="#delete<%=posts.get(i).getIdBaiViet()%>">
+										<a href="SendPostServlet?idPost=<%=posts.get(i).getIdBaiViet()%>&status=HuyDich" data-toggle="tooltip" title="Chuyển dịch - "><button
+											type="button" class="btn btn-default btn-sm">
 											<span class="glyphicon glyphicon-send"></span>
 										</button></a>
 									<%}%>
@@ -497,6 +487,43 @@
 				$("#load").html("");
 			}
 		});
+	}
+</script>
+
+<script type="text/javascript">
+	function XoaQC(x) {
+		$("#idQC").text(x);
+		$("#idXoa").val(x);
+		$('#xoaQC').modal('show');
+	}
+	function HienThi(x, b) {
+		if (b == '1')
+			$("#idQCgo").text("Bạn thật sự muốn gỡ bỏ thông báo " + x);
+		else
+			$("#idQCgo").text("Cho phép đăng thông báo " + x);
+		$("#idGo").val(x);
+		$("#hienthi").val(b);
+		$('#goQC').modal('show');
+	}
+	function DieuHuong(url) {
+		window.location.href = url;
+	}
+	function HuyBaiDich(x) {
+		//Dùng ajax load dữ liệu về
+		$
+				.ajax({
+					url : "HuyBaiDichServlet", //file 
+					type : "POST", //phuong thức gưi
+					data : {
+						id : x
+					}, //dữ liệu gửi
+					async : true, //
+					success : function(res) {
+						alert(res);
+						window.location.reload();
+					}
+				});
+		/* $('#suaThongBao').modal('show'); */
 	}
 </script>
 </html>

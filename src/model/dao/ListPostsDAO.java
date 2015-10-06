@@ -140,7 +140,7 @@ public class ListPostsDAO {
 	
 	//Lấy các bài viết mới đăng 
 	public ArrayList<BAIVIET> getPostsNew(int page){
-		String sql_getPostsNew = "SELECT IdBaiViet,TenBaiVietVi,TenBaiVietJa,IdDanhMuc,IdTaiKhoan,NoiDungVi,NoiDungJa,GhiChu,MotaVi,MotaJa,TrangThai,LuotXem,Lienket,NgayDang,GimTrangChu FROM baiviet WHERE TrangThai = 'MoiDang' AND CoXoa = 0 ORDER BY NgayDang DESC";
+		String sql_getPostsNew = "SELECT IdBaiViet,TenBaiVietVi,TenBaiVietJa,IdDanhMuc,IdTaiKhoan,NoiDungVi,NoiDungJa,GhiChu,MotaVi,MotaJa,TrangThai,LuotXem,Lienket,NgayDang,GimTrangChu FROM baiviet WHERE (TrangThai = 'MoiDang' or TrangThai = 'KhongDich' or TrangThai = 'DichXong' or TrangThai = 'HuyDich') AND CoXoa = 0 ORDER BY NgayDang DESC";
 		
 		db.createMenu("ShowHomeServlet?", page, sql_getPostsNew);
 		

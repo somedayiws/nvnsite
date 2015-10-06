@@ -664,4 +664,10 @@ public class BaiVietDAO {
 		}
 		return 0;
 	}
+	public boolean HuyBaiDich(String id) {
+		// TODO Auto-generated method stub
+		String sql = "update baiviet set TrangThai='HuyDich' where IdBaiViet='"+id+"'";
+		String sql1 = "update lichsu set TrangThai='HuyDich' where IdBaiViet='"+id+"' order by ThoiGian desc limit 1";
+		return db.updateData(sql1)&db.updateData(sql);
+	}
 }

@@ -239,4 +239,8 @@ public class BaiVietBO {
 		// TODO Auto-generated method stub
 		return baiviet.getCountBaiViet(loai);
 	}
+	public boolean HuyBaiDich(String id) {
+		// TODO Auto-generated method stub
+		return baiviet.HuyBaiDich(id);
+	}
 }

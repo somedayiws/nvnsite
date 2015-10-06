@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="../bootstrap-3.3.5-dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/register.css">
 <link rel="stylesheet" href="css/listAccount.css">
+<script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
+
 <title>Quản lý người dùng - ユーザーの管理</title>
 </head>
 <%
