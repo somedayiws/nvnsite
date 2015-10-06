@@ -10,12 +10,44 @@ import model.bean.TAIKHOAN;
 
 public class ListAccountDAO {
 	DataBaseDAO db = new DataBaseDAO();	
-	public ArrayList<TAIKHOAN> getDataAcountInfor(int start,int limit,String status)	
+	public ArrayList<TAIKHOAN> getDataAcountInfor(int start,int limit,String status,String language)	
 	{
 		String sql_select_account = null;
 		//Lấy các tài khoản CTV
 		if(status.equals("CTV")){
-			sql_select_account = "SELECT * FROM taikhoan WHERE CoXoa = 0 AND QuyenQuanTri = '"+status+"' limit "+start+","+limit+"";
+			//Lấy cộng tác viên dịch bài viết có ngôn ngữ cố định
+			if(!language.contains("mutilanguage")){
+				sql_select_account = "SELECT IdTaiKhoan,"
+										+ "TenTaiKhoan,"
+										+ "MatKhau,"
+										+ "HoTen,"
+										+ "DiaChi,"
+										+ "DienThoai,"
+										+ "Email,"
+										+ "QuyenQuanTri,"
+										+ "NgonNgu,"
+										+ "TinhTrang "
+										+ "FROM taikhoan "
+										+ "WHERE CoXoa = 0 AND QuyenQuanTri = 'ctv' AND NgonNgu = '"+language+"'"
+										+ "limit "+start+","+limit+"";
+			}
+			//Lấy tất cả các cộng tác viên khi bài viết đó là song ngữ
+			else{
+				sql_select_account = "SELECT IdTaiKhoan,"
+						+ "TenTaiKhoan,"
+						+ "MatKhau,"
+						+ "HoTen,"
+						+ "DiaChi,"
+						+ "DienThoai,"
+						+ "Email,"
+						+ "QuyenQuanTri,"
+						+ "NgonNgu,"
+						+ "TinhTrang"
+						+ "FROM taikhoan "
+						+ "WHERE CoXoa = 0 AND QuyenQuanTri = ctv"
+						+ " limit "+start+","+limit+"";
+			}
+			
 		}
 		//Lấy tất cả tài khoản
 		else{

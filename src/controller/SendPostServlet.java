@@ -54,6 +54,10 @@ public class SendPostServlet extends HttpServlet {
 				if(username!=null){
 		String idPost = request.getParameter("idPost");
 		TAIKHOAN accountErrorTranslate = (TAIKHOAN)request.getAttribute("accountErrorTranslate");
+		
+		//Lấy trường ghi chú của bài viết
+		ChangeStatusBO changeStatusBo = new ChangeStatusBO();
+		String note = changeStatusBo.getNotePost(idPost);
 		/**
 		 * Biến để lưu ngôn ngữ bài viết
 		 * 0 : Song ngữ
@@ -69,31 +73,33 @@ public class SendPostServlet extends HttpServlet {
 			//Xác định ngôn ngữ của bài viết
 			ShowAdminEditPostsBO getPost = new ShowAdminEditPostsBO();
 			BAIVIET post = getPost.post(idPost);
+			ArrayList<TAIKHOAN> listAccountCTV = null;
 			
 			if(post.getTenBaiVietJa()!=null &&  post.getMoTaJa()!=null  && post.getNoiDungJa()!=null){
 				//Bài viết là tiếng việt
 				languagePost = "1";
+				listAccountCTV = listAcc.getDataAccountInfor(0,listAcc.totalRecord(),"CTV","ja");
 			}
-			if(post.getTenBaiVietVi()!=null &&  post.getMoTaVi()!=null  && post.getNoiDungVi()!=null){
+			else if(post.getTenBaiVietVi()!=null &&  post.getMoTaVi()!=null  && post.getNoiDungVi()!=null){
 				//Bài viết là tiếng nhật
 				languagePost = "2";
+				listAccountCTV = listAcc.getDataAccountInfor(0,listAcc.totalRecord(),"CTV","vi");
+			}
+			else{
+				listAccountCTV = listAcc.getDataAccountInfor(0,listAcc.totalRecord(),"CTV","mutilanguage");
 			}
 			
 			
 			ListStatusHistoryBO listStatus = new ListStatusHistoryBO();
 			LICHSU history = listStatus.getStatus(idPost);
 			String status = history.getTrangThai();
-			ArrayList<TAIKHOAN> listAccountCTV = listAcc.getDataAccountInfor(0,listAcc.totalRecord(),"CTV");
+			 
 			
 			if(history!=null && history.getTaikhoan()!=null){
 				ArrayList<TAIKHOAN> listAccountByStatus = getAcc.listAccountByStatus(history.getTaikhoan().getIdTaiKhoan());
 				request.setAttribute("listAccountByStatus", listAccountByStatus);
 			}
-		/*	if(history!=null && history.getTaikhoan()!=null && history.getTrangThai().contains("LoiDich")){ 
-				TAIKHOAN accountErrorTranslate = history.getTaikhoan();
-				request.setAttribute("accountErrorTranslate", accountErrorTranslate);
-			}*/
-			
+			request.setAttribute("note", note);
 			request.setAttribute("languagePost", languagePost);
 			request.setAttribute("accountErrorTranslate", accountErrorTranslate);
 			request.setAttribute("idPost", idPost);
@@ -115,7 +121,6 @@ public class SendPostServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	@SuppressWarnings("unused")
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

@@ -26,7 +26,6 @@
 	
 	LICHSU history =(LICHSU)request.getAttribute("history");
 	
-	
 	//Nhận lại kết quả dịch
 	String resultTranslate = (String)request.getAttribute("resultTranslate");
 	//Nhận lại kết quả duyệt bài
@@ -50,8 +49,6 @@
 				<div class="col-md-4">
 					<div id="divInfor">
 					<h2>Thông tin bài viết<br>..................</h2>
-							
-							
 							<strong>User - ユーザー:</strong> 		<%=posts.getTaiKhoan().getTenTaiKhoan()%><br>
 							<strong>Email - メール : </strong> 		<%=posts.getTaiKhoan().getEmail() %><br> 
 							<strong>ID:</strong>    				<%=posts.getIdBaiViet()%><br>
@@ -59,8 +56,11 @@
 							<strong>Lượt xem - 観覧回数:</strong>   	<%=posts.getLuotXem()%><br>
 							<strong>Ngày đăng - 掲載の日付:</strong> <%=posts.getNgayDang()%><br>
 							<strong><%if(posts.getGimTrangChu()==1){ %>Có<%}else{ %>Không<%} %> ghim lên trang chủ</strong>
-							<%if(posts.getTrangThai().contains("DangDich")){ %>
-							<img src="../images/logoctv_left.jpg" class="img-responsive"  alt="CTV" width="250" height="200" data-toggle="tooltip" data-placement="bottom" title="Tôi là <%if(history!=null&&history.getTaikhoan()!=null){ %><%=history.getTaikhoan().getHoTen()%><%} %>,tôi sẽ dịch bài viết này">
+							<%if(posts.getTrangThai().contains("DangDich")||posts.getTrangThai().contains("DichXong")){ %>
+							<img src="../images/logoctv_left.jpg" class="img-responsive"  alt="CTV" width="250" height="200">
+							<h2>Thông tin CTV<br>..................</h2>
+							<p><strong>Tên cộng tác viên: </strong><%=history.getTaikhoan().getHoTen() %></p>
+							<p><strong>Ngôn ngữ: </strong><%=history.getTaikhoan().getNgonNgu().equals("vi") ?"Việt Nam - 項目名":"Nhật Bản - 項目名"%></p>
 							<%} %>							
 					</div>
 					
@@ -71,21 +71,23 @@
 					<div class="col-md-12 ">
 					
 		
-						<a href=" <%if((posts.getTrangThai().contains("DangDich") && (history.getTrangThai()!=null && !history.getTrangThai().contains("HuyDich")))||posts.getTrangThai().contains("KhongDich")|| posts.getTrangThai().contains("SoanThao") || posts.getTrangThai().contains("OK")){ %>#<%}else{ %>SendPostServlet?idPost=<%=posts.getIdBaiViet()%>&status=<%=posts.getTrangThai()%><%}%>">
-						<button
-								class="btn btn-primary btn-sm" <%if((posts.getTrangThai().contains("DangDich") && (history.getTrangThai()!=null && !history.getTrangThai().contains("HuyDich")))||posts.getTrangThai().contains("KhongDich")|| posts.getTrangThai().contains("SoanThao") || posts.getTrangThai().contains("OK")){ %> disabled="disabled" <%} %>><span class="glyphicon glyphicon-send"></span> Chuyển bài</button>
+						<a href="<%if ((posts.getTrangThai().contains("DangDich") && history.getTrangThai()!=null && !history.getTrangThai().equals("LoiDich"))||posts.getTrangThai().contains("DichXong")||posts.getTrangThai().contains("KhongDich")|| posts.getTrangThai().contains("SoanThao") || posts.getTrangThai().contains("OK")){ %>#<%}else{ %>SendPostServlet?idPost=<%=posts.getIdBaiViet()%>&status=<%=posts.getTrangThai()%><%}%>">
+							<button <%if ((posts.getTrangThai().contains("DangDich") && history.getTrangThai()!=null && !history.getTrangThai().equals("LoiDich"))||posts.getTrangThai().contains("DichXong")||posts.getTrangThai().contains("KhongDich")|| posts.getTrangThai().contains("SoanThao") || posts.getTrangThai().contains("OK")){ %> disabled="disabled" <%} %>class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-send"></span> Chuyển bài</button>
 						</a> 
 						<a
-							href="<%if(posts.getTrangThai().contains("OK") || posts.getTrangThai().contains("DangDich") || posts.getTrangThai().contains("SoanThao")){ %>#<%}else{%>ShowAdminEditPostsServlet?idPost=<%=posts.getIdBaiViet()%>&from=detail<%}%>"><button <%if(posts.getTrangThai().contains("OK") || posts.getTrangThai().contains("DangDich") || posts.getTrangThai().contains("SoanThao")){ %> disabled="disabled"  <%} %>
+							href="<%if(posts.getTrangThai().contains("OK")|| posts.getTrangThai().contains("DangDich") || posts.getTrangThai().contains("SoanThao")){ %>#<%}else{%>ShowAdminEditPostsServlet?idPost=<%=posts.getIdBaiViet()%>&from=detail<%}%>">
+							<button <%if(posts.getTrangThai().contains("OK") || posts.getTrangThai().contains("DangDich") || posts.getTrangThai().contains("SoanThao")){ %> disabled="disabled"  <%} %>
 								class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Chỉnh sửa - 修正</button>
 						</a>
 						<a
-							href="<%if(posts.getTrangThai().contains("OK")|| ( posts.getTrangThai().contains("DangDich")&& (history.getTrangThai()!=null && !history.getTrangThai().contains("DangDich"))) || posts.getTrangThai().contains("SoanThao")){ %>#<%}else{ %>TranslateServlet?idPost=<%=posts.getIdBaiViet()%><%}%>"><button <%if(posts.getTrangThai().contains("OK")|| ( posts.getTrangThai().contains("DangDich")&& (history.getTrangThai()!=null && !history.getTrangThai().contains("DangDich"))) || posts.getTrangThai().contains("SoanThao")){ %> disabled="disabled"  <%} %>
+							href="<%if(posts.getTrangThai().contains("OK") ||posts.getTrangThai().contains("DichXong") || ( posts.getTrangThai().contains("DangDich")) || posts.getTrangThai().contains("SoanThao")){ %>#<%}else{ %>TranslateServlet?idPost=<%=posts.getIdBaiViet()%><%}%>">
+							<button <%if(posts.getTrangThai().contains("OK")||posts.getTrangThai().contains("DichXong")|| ( posts.getTrangThai().contains("DangDich")) || posts.getTrangThai().contains("SoanThao")){ %> disabled="disabled"  <%} %>
 								class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-subtitles"></span> Dịch bài - </button>
 						</a>
 						<a
-							href="<%if(posts.getTrangThai().contains("OK")){ %>#<%}else{%>UploadPostServlet?idPost=<%=posts.getIdBaiViet()%><%}%>&type=detail&btn=btnDetail"><button <%if(posts.getTrangThai().contains("OK")|| (posts.getTrangThai().contains("DangDich")&& (history.getTrangThai()!=null && !history.getTrangThai().contains("DangBai")))){ %> disabled="disabled"  <%}%>
-								class="btn btn-success btn-sm <%if(history.getTrangThai()!=null && history.getTrangThai().contains("Ok")){ %> btn_animation <%} %>"><span class="glyphicon glyphicon-pushpin" ></span>Duyệt bài - </button>
+							href="<%if(posts.getTrangThai().contains("OK")|| posts.getTrangThai().contains("DangDich")){ %>#<%}else{%>UploadPostServlet?idPost=<%=posts.getIdBaiViet()%><%}%>&type=detail&btn=btnDetail">
+							<button <%if(posts.getTrangThai().contains("OK")|| posts.getTrangThai().contains("DangDich")){ %> disabled="disabled"  <%}%>
+								class="btn btn-success btn-sm"><span class="glyphicon glyphicon-pushpin" ></span>Duyệt bài - </button>
 						</a>
 						<button class="btn btn-primary btn-sm " onclick="history.go(-1);"><span class="glyphicon glyphicon-share-alt"></span>Quay lại - 戻り</button>
 					</div>
@@ -94,17 +96,28 @@
 					
 					<!-- Hiển thị kết quả -->
 						
-						<%if(history.getTrangThai()!=null && history.getTrangThai().contains("DangBai")&&!posts.getTrangThai().equals("OK")){%>
+						<%if(history.getTrangThai()!=null && history.getTrangThai().contains("DangBai")&& posts.getTrangThai().equals("DichXong")){%>
 						<div class="panel panel-primary">
      						 <div class="panel-heading">Thông báo - お知らせ</div>
       						<div class="panel-body">
-      							<p>Bài đăng đã dịch, chờ duyệt</p>
+      							<h4>Tin nhắn bài viết - </h4>
+      							<div style="max-height: 200px;overflow: scroll">
+	      							<%if(posts.getGhiChu()!=null){ %>
+	      								<%=posts.getGhiChu() %>
+	      							<%}else{ %>
+	      								<p>Không có tin nhắn nào</p>
+	      							<%} %>
+      							</div>
+      							<div class="alert alert-info">
+									<strong>Bài đăng đã dịch, chờ duyệt</strong>
+								</div>
+      							
       							<a href="UploadPostServlet?idPost=<%=posts.getIdBaiViet()%>&type=detail&btn=btnDetail"><button class="btn btn-success btn-sm"><span class="glyphicon glyphicon-pushpin" ></span>Duyệt bài</button></a>
       							<a href="SendAgainServlet?idPost=<%=posts.getIdBaiViet()%>"><button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-share-alt"></span>Gởi lại - </button></a>
       						</div>
     					</div>
     				<%} %>
-    				<%if(history.getTrangThai()!=null && history.getTrangThai().contains("HuyDich")&&!posts.getTrangThai().equals("OK")){%>
+    				<%if(history.getTrangThai()!=null && history.getTrangThai().contains("HuyDich")&& posts.getTrangThai().equals("HuyDich")){%>
 						<div class="panel panel-primary">
      						 <div class="panel-heading">Thông báo - お知らせ</div>
       						<div class="panel-body">Bài đăng đã được hủy bởi <%=history.getTaikhoan().getHoTen() %></div>
@@ -144,6 +157,7 @@
 						<hr>
 						<%
 							for (int i = 0; i < posts.getBinhLuanVi().size(); i++) {
+								if(posts.getBinhLuanVi().get(i).getPhanHoiVi()!=null){
 						%>
 						<div class="row">
 							<div class="col-md-10">
@@ -156,7 +170,6 @@
 							</div>
 						</div>						
 						<p><%=posts.getBinhLuanVi().get(i).getNgayDang()%></p>
-						<%if(posts.getBinhLuanVi().get(i).getPhanHoiVi()!=null){ %>
 							<p class="pcomment"><%=posts.getBinhLuanVi().get(i).getPhanHoiVi()%></p>
 						<%}
 							}
@@ -176,6 +189,7 @@
 						<hr>
 						<%
 							for (int i = 0; i < posts.getBinhLuanJa().size(); i++) {
+								if(posts.getBinhLuanVi().get(i).getPhanHoiVi()!=null){
 						%>
 						<div class="row">
 							<div class="col-md-10">
@@ -187,7 +201,6 @@
 							</div>
 						</div>
 						<p><%=posts.getBinhLuanVi().get(i).getNgayDang()%></p>
-						<%if(posts.getBinhLuanJa().get(i).getPhanHoiJa()!=null){ %>
 							<p class="pcomment"><%=posts.getBinhLuanJa().get(i).getPhanHoiJa()%></p>
 						<%}
 							}
@@ -219,6 +232,7 @@
 	}%>	
 </body>
 <!-- _______________________________________JS___________________________________ -->
+<script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
 <script type="text/javascript" src="../bootstrap-3.3.5-dist/js/bootstrap.js"></script>
 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="../check_validate/formEdit.js"></script>

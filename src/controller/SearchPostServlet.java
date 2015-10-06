@@ -100,7 +100,7 @@ public class SearchPostServlet extends HttpServlet {
 //		for(int i=0;i<posts.size();i++){
 //			System.out.println("post["+i+"]: "+posts.get(i).getIdBaiViet());
 //		}
-		ArrayList<TAIKHOAN> accounts = listaccount.getDataAccountInfor(0,listaccount.totalRecord(),"all");
+		ArrayList<TAIKHOAN> accounts = listaccount.getDataAccountInfor(0,listaccount.totalRecord(),"all",null);
 		ArrayList<DANHMUC> category = listcategory.getCategory(-1);
 		String pageNav = searchPostBo.getMenuPhanTrang();		
 		

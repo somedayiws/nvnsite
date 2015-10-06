@@ -76,7 +76,7 @@ public class ListPostsServlet extends HttpServlet {
 		ArrayList<BAIVIET> posts = listPost.getPosts(page, chon);
 		
 			
-		ArrayList<TAIKHOAN> accounts = listaccount.getDataAccountInfor(0,listaccount.totalRecord(),"all");
+		ArrayList<TAIKHOAN> accounts = listaccount.getDataAccountInfor(0,listaccount.totalRecord(),"all",null);
 		ArrayList<DANHMUC> category = listcategory.getCategory(-1);
 		String pageNav = listPost.getMenuPhanTrang();		
 		

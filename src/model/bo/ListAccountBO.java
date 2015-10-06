@@ -9,10 +9,10 @@ import model.dao.ListAccountDAO;
 
 public class ListAccountBO {
 	ListAccountDAO lisAccount  = new ListAccountDAO();
-	public ArrayList<TAIKHOAN> getDataAccountInfor(int start,int limit,String status)
+	public ArrayList<TAIKHOAN> getDataAccountInfor(int start,int limit,String status,String language)
 	{
 		
-		return lisAccount.getDataAcountInfor(start,limit,status);
+		return lisAccount.getDataAcountInfor(start,limit,status,language);
 	}
 	
 	public TAIKHOAN getAccountbyUser(String username){

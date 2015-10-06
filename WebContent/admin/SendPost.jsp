@@ -31,7 +31,8 @@
 	/**Receive data from server*/
 	ArrayList<TAIKHOAN> listAccountCTV = (ArrayList<TAIKHOAN>) request.getAttribute("listAccountCTV");
 
-	
+	//Lấy ghi chú của bài viết
+	String note =(String)request.getAttribute("note");
 
 	String idPost = (String)request.getAttribute("idPost");
 	ArrayList<TAIKHOAN> listAccountByStatus =(ArrayList<TAIKHOAN>)request.getAttribute("listAccountByStatus");
@@ -181,25 +182,32 @@
 							<h3 class="modal-title">Lời nhắn - メッセージ</h3>
 
 						</div>
-
-
 						<div id="message">
 							<form action="SendPostServlet" method="post">
 								<input type="text" class="form-control" name="idPost"
-									value="<%=idPost%>" readonly="readonly"> <input
+									value="<%=idPost%>" readonly="readonly"> 
+								<input
 									type="text" class="form-control" placeholder="From - から: admin"
-									readonly="readonly"> <input type="text"
+									readonly="readonly"> 
+								<input type="text"
 									class="form-control" name="idAccount"
 									placeholder="To - まで: <%=listAccountCTV.get(i).getTenTaiKhoan()%>"
 									value="<%=listAccountCTV.get(i).getIdTaiKhoan()%>" readonly="readonly">
-
 								<div class="form-group">
+								<%if(note!=null && !note.trim().equals("")){ %>
+      								<div style="max-height: 200px;overflow: scroll">
+      								<h4>Tin nhắn bài viết - </h4>
+	      								<%=note %>
+	      							</div>
+      							<%} %>
+      							</div>
+								<div class="form-group col-md-10 col-md-offset-1" >
 									<label>Lời nhắn - メッセージ:</label>
-									<textarea class="form-control" rows="5" id="mesage"
-										name="message"></textarea>
+									<textarea class="form-control" rows="5" id="message"
+										name="message">
+									</textarea>
 								</div>
-								<button type="submit" id ="btnSend" class="btn btn-primary btn-sm"
-									>Gởi bài - 送信</button>
+								<button type="submit" id ="btnSend" class="btn btn-primary btn-sm">Gởi bài - 送信</button>
 								<button type="button" class="btn btn-default"
 								data-dismiss="modal">Quay lại - </button>
 							</form>
