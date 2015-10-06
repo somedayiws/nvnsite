@@ -71,8 +71,8 @@
 					<div class="col-md-12 ">
 					
 		
-						<a href="<%if ((posts.getTrangThai().contains("DangDich") && history.getTrangThai()!=null && !history.getTrangThai().equals("LoiDich"))||posts.getTrangThai().contains("DichXong")||posts.getTrangThai().contains("KhongDich")|| posts.getTrangThai().contains("SoanThao") || posts.getTrangThai().contains("OK")){ %>#<%}else{ %>SendPostServlet?idPost=<%=posts.getIdBaiViet()%>&status=<%=posts.getTrangThai()%><%}%>">
-							<button <%if ((posts.getTrangThai().contains("DangDich") && history.getTrangThai()!=null && !history.getTrangThai().equals("LoiDich"))||posts.getTrangThai().contains("DichXong")||posts.getTrangThai().contains("KhongDich")|| posts.getTrangThai().contains("SoanThao") || posts.getTrangThai().contains("OK")){ %> disabled="disabled" <%} %>class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-send"></span> Chuyển bài</button>
+						<a href="<%if ((posts.getTrangThai().contains("DangDich") && history.getTrangThai()!=null && history.getTrangThai().equals("LoiDich"))||posts.getTrangThai().contains("DichXong")||posts.getTrangThai().contains("KhongDich")|| posts.getTrangThai().contains("SoanThao") || posts.getTrangThai().contains("OK")){ %>#<%}else{ %>SendPostServlet?idPost=<%=posts.getIdBaiViet()%>&status=<%=posts.getTrangThai()%><%}%>">
+							<button <%if ((posts.getTrangThai().contains("DangDich") && history.getTrangThai()!=null && history.getTrangThai().equals("LoiDich"))||posts.getTrangThai().contains("DichXong")||posts.getTrangThai().contains("KhongDich")|| posts.getTrangThai().contains("SoanThao") || posts.getTrangThai().contains("OK")){ %> disabled="disabled" <%} %>class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-send"></span> Chuyển bài</button>
 						</a> 
 						<a
 							href="<%if(posts.getTrangThai().contains("OK")|| posts.getTrangThai().contains("DangDich") || posts.getTrangThai().contains("SoanThao")){ %>#<%}else{%>ShowAdminEditPostsServlet?idPost=<%=posts.getIdBaiViet()%>&from=detail<%}%>">

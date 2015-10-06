@@ -30,7 +30,7 @@
 		String username =(String)session_user.getAttribute("username");	
 	/**Receive data from server*/
 	ArrayList<TAIKHOAN> listAccountCTV = (ArrayList<TAIKHOAN>) request.getAttribute("listAccountCTV");
-
+	System.out.println(listAccountCTV.size()+"Độ lớn listAccountCTV");
 	//Lấy ghi chú của bài viết
 	String note =(String)request.getAttribute("note");
 
@@ -184,6 +184,7 @@
 						</div>
 						<div id="message">
 							<form action="SendPostServlet" method="post">
+								<input type="hidden" name="status" value="<%=status%>">
 								<input type="text" class="form-control" name="idPost"
 									value="<%=idPost%>" readonly="readonly"> 
 								<input

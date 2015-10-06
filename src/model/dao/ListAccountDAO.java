@@ -43,8 +43,8 @@ public class ListAccountDAO {
 						+ "QuyenQuanTri,"
 						+ "NgonNgu,"
 						+ "TinhTrang"
-						+ "FROM taikhoan "
-						+ "WHERE CoXoa = 0 AND QuyenQuanTri = ctv"
+						+ " FROM taikhoan "  
+						+ "WHERE CoXoa = 0 AND QuyenQuanTri = 'ctv'"
 						+ " limit "+start+","+limit+"";
 			}
 			

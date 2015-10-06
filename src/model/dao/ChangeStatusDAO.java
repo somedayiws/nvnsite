@@ -42,7 +42,7 @@ public class ChangeStatusDAO {
 	public void changeStatusPost(String status,String idPosts,String message){
 		//Lấy ghi chú của bài viết
 		String note = getNotePost(idPosts);
-		String noteNew = note+"<strong>Admin<strong/>"+"<p>"+message+"</p>";
+		String noteNew = note+"<strong>Admin</strong>"+"<p>"+message+"</p>";
 		String sql_change_status_post = "update baiviet set TrangThai = N'"+status+"',GhiChu = '"+noteNew+"' where IdBaiViet ='"+idPosts+"'  and CoXoa=0";		
 		db.updateData(sql_change_status_post);
 	}

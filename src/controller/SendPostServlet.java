@@ -75,19 +75,33 @@ public class SendPostServlet extends HttpServlet {
 			BAIVIET post = getPost.post(idPost);
 			ArrayList<TAIKHOAN> listAccountCTV = null;
 			
-			if(post.getTenBaiVietJa()!=null &&  post.getMoTaJa()!=null  && post.getNoiDungJa()!=null){
+			if (post.getTenBaiVietVi()!=null && post.getTenBaiVietJa()!=null) {
+				listAccountCTV = listAcc.getDataAccountInfor(0,listAcc.totalRecord(),"CTV","mutilanguage");				
+			} else if (post.getTenBaiVietVi()!=null){
+				//Bài viết là tiếng nhật
+				languagePost = "2";
+				listAccountCTV = listAcc.getDataAccountInfor(0,listAcc.totalRecord(),"CTV","vi");
+			} else if (post.getTenBaiVietJa()!=null) {
 				//Bài viết là tiếng việt
 				languagePost = "1";
 				listAccountCTV = listAcc.getDataAccountInfor(0,listAcc.totalRecord(),"CTV","ja");
 			}
-			else if(post.getTenBaiVietVi()!=null &&  post.getMoTaVi()!=null  && post.getNoiDungVi()!=null){
-				//Bài viết là tiếng nhật
-				languagePost = "2";
-				listAccountCTV = listAcc.getDataAccountInfor(0,listAcc.totalRecord(),"CTV","vi");
-			}
-			else{
-				listAccountCTV = listAcc.getDataAccountInfor(0,listAcc.totalRecord(),"CTV","mutilanguage");
-			}
+			
+			
+			
+//			if(post.getTenBaiVietJa()!=null &&  post.getMoTaJa()!=null  && post.getNoiDungJa()!=null){
+//				//Bài viết là tiếng việt
+//				languagePost = "1";
+//				listAccountCTV = listAcc.getDataAccountInfor(0,listAcc.totalRecord(),"CTV","ja");
+//			}
+//			else if(post.getTenBaiVietVi()!=null &&  post.getMoTaVi()!=null  && post.getNoiDungVi()!=null){
+//				//Bài viết là tiếng nhật
+//				languagePost = "2";
+//				listAccountCTV = listAcc.getDataAccountInfor(0,listAcc.totalRecord(),"CTV","vi");
+//			}
+//			else{
+//				listAccountCTV = listAcc.getDataAccountInfor(0,listAcc.totalRecord(),"CTV","mutilanguage");
+//			}
 			
 			
 			ListStatusHistoryBO listStatus = new ListStatusHistoryBO();
@@ -128,8 +142,16 @@ public class SendPostServlet extends HttpServlet {
 		String idPost = request.getParameter("idPost");
 		String idAccount = request.getParameter("idAccount");
 		String message = request.getParameter("message");
+		String status = request.getParameter("status");
+		
 		ChangeStatusBO changestatus = new ChangeStatusBO();
-		changestatus.changeStatusHistory("ChuyenDich", idPost,idAccount);
+		if(status.contains("LoiDich")){
+			changestatus.changeStatusHistory("LoiDich", idPost,idAccount);
+			//changestatus.changeStatusPost("DangDich", idPost, message);
+		}
+		else{
+			changestatus.changeStatusHistory("ChuyenDich", idPost,idAccount);
+		}
 		changestatus.changeStatusPost("DangDich", idPost,message);
 		request.setAttribute("resultSend", "Bài viết đã được chuyển cho cộng tác viên");
 		request.setAttribute("idPost", idPost);

@@ -42,14 +42,17 @@ public class SendAgainServlet extends HttpServlet {
 		System.out.println("idPost: "+idPost);
 		GetAccountBO getAcc = new GetAccountBO();
 		TAIKHOAN accountErrorTranslate = getAcc.getAccErrorTranslate(idPost);
-		
+		ArrayList<TAIKHOAN> listAccountCTV = new ArrayList<TAIKHOAN>();
+		listAccountCTV.add(accountErrorTranslate);
 		ChangeStatusBO changeStatus = new ChangeStatusBO();
 		
-		
-		changeStatus.updateStatusHistory("LoiDich", idPost, accountErrorTranslate.getIdTaiKhoan());
-		
+		//changeStatus.updateStatusHistory("LoiDich", idPost, accountErrorTranslate.getIdTaiKhoan());
+		request.setAttribute("status", "LoiDich");
+		request.setAttribute("listAccountCTV", listAccountCTV);
 		request.setAttribute("accountErrorTranslate", accountErrorTranslate);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("SendPostServlet");
+		request.setAttribute("note", changeStatus.getNotePost(idPost));
+		request.setAttribute("idPost", idPost);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("SendPost.jsp");
 		dispatcher.forward(request, response);
 		 /*ListStatusHistoryBO listStatus = new ListStatusHistoryBO();
 		 LICHSU history = listStatus.getStatus(idPost);

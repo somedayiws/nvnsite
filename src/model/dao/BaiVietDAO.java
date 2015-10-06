@@ -44,7 +44,7 @@ public class BaiVietDAO {
 				tk.setHoTen(DinhDangSQL.DeFomatSQL(rs.getString("HoTen")));
 				bv.setTaiKhoan(tk);
 				bv.setLuotXem(rs.getInt("LuotXem"));
-
+				System.out.println(bv.getGhiChu());
 				if(bv.getTrangThai().equals("OK"))
 					db.updateData("update baiviet set LuotXem = LuotXem + 1 where IdBaiViet=N'"+id+"'");
 				bv.setBinhLuanVi(bl.getListBinhLuan(id, "vi", "0"));
@@ -437,6 +437,7 @@ public class BaiVietDAO {
 					+ "where (lichsu.TrangThai = N'DangDich'"
 					+ ") and lichsu.IdTaiKhoan = N'"+idTaiKhoan+"'";
 		}
+		System.out.println("sql: "+sql);
 		//Tạo menu phân trang Url, page, sql
 		db.createMenu("DanhSachBaiDichServlet?view="+view+"&", page, sql);
 		
