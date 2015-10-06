@@ -52,7 +52,7 @@
 		</div>
 		<input type="hidden" id="iduser" name="iduser" value="<%= user.getIdTaiKhoan() %>">
 		<!-- ngôn ngữ chính của ctv là tiếng việt -->
-		<% if(user.getNgonNgu().equals("Viet")) { %>
+		<% if(user.getNgonNgu().equals("vi")) { %>
 			<% if(bviet.getTrangThai().equals("ChuyenDich")) { %>
 			<div class="col-xs-12 col-sm-12 col-md-12">
 					<label>Tiêu đề - タイトル</label>
