@@ -114,6 +114,7 @@
 					<div class="col-xs-12 col-sm-6 col-md-6" id="tiengnhat">
 						<%=baiviet.getNoiDungJa()%>
 					</div>
+					<div class="clearfix"></div>
 					<div class="col-xs-12 col-sm-6 col-md-6" id="blviet">
 						<strong id="selfComment"> Bình luận </strong>
 						<div class="row">

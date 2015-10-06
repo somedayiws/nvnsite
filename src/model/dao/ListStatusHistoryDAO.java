@@ -9,7 +9,7 @@ public class ListStatusHistoryDAO {
 	DataBaseDAO db = new DataBaseDAO();
 	ListAccountDAO listAccountDao = new ListAccountDAO();
 	public LICHSU getStatusHistory(String idPost){
-		String sql_select_status = "SELECT IdTaiKhoan,TrangThai FROM lichsu WHERE IdBaiViet ='"+idPost+"'";
+		String sql_select_status = "SELECT IdTaiKhoan,TrangThai FROM lichsu WHERE IdBaiViet ='"+idPost+"' order by ThoiGian asc";
 		System.out.println("sql_select_status: "+sql_select_status);
 		ResultSet result_select_status = db.getResultSet(sql_select_status);
 		LICHSU history = new LICHSU();

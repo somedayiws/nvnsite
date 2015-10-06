@@ -29,14 +29,13 @@ public class ChangeStatusDAO {
 		}
 	}
 	
-	public void changeStatusHistory(String status,String idPosts,String idAccount,Date date){
-		 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+	public void changeStatusHistory(String status,String idPosts,String idAccount){
 		 String sql_change_status_history;
 		 if(checkStatusHistory(idPosts, idAccount)){
 			 //exists
-			 sql_change_status_history = "update lichsu set TrangThai = '"+status+"',ThoiGian = '"+dateFormat.format(date)+"' where IdBaiViet = '"+idPosts+"' and IdTaiKhoan = '"+idAccount+"'";
+			 sql_change_status_history = "update lichsu set TrangThai = '"+status+"',ThoiGian = now() where IdBaiViet = '"+idPosts+"' and IdTaiKhoan = '"+idAccount+"'";
 		 }
-		 else sql_change_status_history = "insert into lichsu values('"+idPosts+"','"+idAccount+"',N'"+status+"','"+dateFormat.format(date)+"')";
+		 else sql_change_status_history = "insert into lichsu values('"+idPosts+"','"+idAccount+"',N'"+status+"',now())";
 		System.out.println("sql_change_status_history: "+sql_change_status_history);
 		db.updateData(sql_change_status_history);
 	}

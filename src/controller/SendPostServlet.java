@@ -115,6 +115,7 @@ public class SendPostServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@SuppressWarnings("unused")
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -122,11 +123,8 @@ public class SendPostServlet extends HttpServlet {
 		String idPost = request.getParameter("idPost");
 		String idAccount = request.getParameter("idAccount");
 		String message = request.getParameter("message");
-		 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-	       //get current date time with Date()
-	       Date date = new Date();
 		ChangeStatusBO changestatus = new ChangeStatusBO();
-		changestatus.changeStatusHistory("ChuyenDich", idPost,idAccount,date);
+		changestatus.changeStatusHistory("ChuyenDich", idPost,idAccount);
 		changestatus.changeStatusPost("DangDich", idPost,message);
 		request.setAttribute("resultSend", "Bài viết đã được chuyển cho cộng tác viên");
 		request.setAttribute("idPost", idPost);

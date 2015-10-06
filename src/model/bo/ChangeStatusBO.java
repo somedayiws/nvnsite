@@ -11,8 +11,8 @@ public class ChangeStatusBO {
 	
 	
 	/**Change status history*/
-	public void changeStatusHistory(String status,String idPosts,String idAccount,Date date){	
-		change.changeStatusHistory(status, idPosts,idAccount,date);
+	public void changeStatusHistory(String status,String idPosts,String idAccount){	
+		change.changeStatusHistory(status, idPosts,idAccount);
 	}
 	/**Change status post*/
 	public void changeStatusPost(String status,String idPosts,String message){	

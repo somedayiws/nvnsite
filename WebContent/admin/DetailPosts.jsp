@@ -10,6 +10,7 @@
 <meta http-equiv="Content-Type" name="viewport" content="text/html; charset=UTF-8; width=device-width; initial-scale=1">
 
 <!-- _______________________CSS_________________________________________ -->
+<script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
 <link rel="stylesheet" href="../bootstrap-3.3.5-dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/register.css">
 <link rel="stylesheet" href="css/detailPost.css">
@@ -86,7 +87,7 @@
 							href="<%if(posts.getTrangThai().contains("OK")){ %>#<%}else{%>UploadPostServlet?idPost=<%=posts.getIdBaiViet()%><%}%>&type=detail&btn=btnDetail"><button <%if(posts.getTrangThai().contains("OK")|| (posts.getTrangThai().contains("DangDich")&& (history.getTrangThai()!=null && !history.getTrangThai().contains("DangBai")))){ %> disabled="disabled"  <%}%>
 								class="btn btn-success btn-sm <%if(history.getTrangThai()!=null && history.getTrangThai().contains("Ok")){ %> btn_animation <%} %>"><span class="glyphicon glyphicon-pushpin" ></span>Duyệt bài - </button>
 						</a>
-						<a href="ListPostsServlet"><button class="btn btn-primary btn-sm "><span class="glyphicon glyphicon-share-alt"></span>Quay lại - 戻り</button></a>
+						<button class="btn btn-primary btn-sm " onclick="history.go(-1);"><span class="glyphicon glyphicon-share-alt"></span>Quay lại - 戻り</button>
 					</div>
 					<br>
 					<hr>
@@ -218,7 +219,6 @@
 	}%>	
 </body>
 <!-- _______________________________________JS___________________________________ -->
-<script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
 <script type="text/javascript" src="../bootstrap-3.3.5-dist/js/bootstrap.js"></script>
 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="../check_validate/formEdit.js"></script>

@@ -68,11 +68,8 @@ public class SavePostServlet extends HttpServlet {
 			
 			ListAccountBO acc = new ListAccountBO();
 			TAIKHOAN account = acc.getAccountbyUser(username);
-			 @SuppressWarnings("unused")
-			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		       //get current date time with Date()
-		       Date date = new Date();
-			updateStatus.changeStatusHistory("DangDich", post.getIdBaiViet(), account.getIdTaiKhoan(),date);
+			updateStatus.changeStatusHistory("DangDich", post.getIdBaiViet(), account.getIdTaiKhoan());
 			updateStatus.changeStatusPost("DangDich", post.getIdBaiViet(), "Đang dịch");
 			request.setAttribute("resultSave", resultSave);
 			request.setAttribute("idPost", post.getIdBaiViet());
