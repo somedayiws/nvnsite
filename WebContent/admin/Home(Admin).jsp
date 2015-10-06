@@ -58,8 +58,6 @@
 								</th>
 								<th>Ngày đăng<br> 掲載の日付
 								</th>
-								<th>Mô tả<br> 説明
-								</th>
 								<% if(request.getParameter("view")!=null && request.getParameter("view").equals("all")) { %><th>Trạng thái<br> 状態 <% } %>
 								</th>
 								<th></th>
@@ -94,19 +92,6 @@
 								<td><%=postsNew.get(i).getDanhMuc().getTenDanhMucVi()%><br><%=postsNew.get(i).getDanhMuc().getTenDanhMucJa()%></td>
 								<td><%=postsNew.get(i).getTaiKhoan().getTenTaiKhoan()%></td>
 								<td><%=postsNew.get(i).getNgayDang()%></td>
-								<td>
-									<%if(postsNew.get(i).getMoTaVi() == null && postsNew.get(i).getMoTaJa() == null){ %>
-										<span class="label label-default">Không có mô tả</span>
-									<%}else{ %>
-										<%if(postsNew.get(i).getMoTaVi() != null ){ %>
-											<p><%=postsNew.get(i).getMoTaVi()%></p> 
-										<%}%>
-										
-										<%if(postsNew.get(i).getMoTaJa() != null ){  %>
-											<p><%=postsNew.get(i).getMoTaJa()%></p>
-										<%}}%>
-									 
-								</td>
 								<td>
 									<%if(postsNew.get(i).getTrangThai().equals("MoiDang")){ %>
 										<a href="SendPostServlet?idPost=<%=postsNew.get(i).getIdBaiViet()%>&status=MoiDang" data-toggle="tooltip" title="Chuyển dịch - "><button

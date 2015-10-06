@@ -130,7 +130,7 @@
 					<input type="hidden" id="dichbai" name="dichbai" value="luu">
 					<input type="hidden" id="dangbai" name="dangbai" value="Đăng bài -">
 					<div class="form-group">
-						<input type="submit" value="Lưu bài - 保存" name="luubai" class="btn btn-success" />
+						<input type="submit" value="Lưu bài - 保存"  onclick="LuuBai();" name="luubai" class="btn btn-success" />
 						<input type="button" value="Đăng bài - ポスト" onclick="DichBai1();" name="dangbai" class="btn btn-success" data-toggle="modal" data-target="#xacnhandich"/> 
 						<input type="button" value="Quay lại - 戻り" class="btn" onclick="history.go(-1);" />
 					</div>
@@ -184,7 +184,10 @@
 		else $('#dichbai').val('khong');
 		$('#fdangbai').submit();
 	}
-	
+	function LuuBai() {
+		$('#dichbai').val('luu');
+		$('#fdangbai').submit();
+	}
 	function DichBai1() {
 		var value = CKEDITOR.instances['NoiDung'].getData();
 		var donvi = $("#sotu").val();

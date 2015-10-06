@@ -14,6 +14,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Thư viện cho menu -->
 <title>Cập nhật bài viết</title>
+<script src="js/jquery.min.js"></script>
 <script src="ckeditor/ckeditor.js"></script>
 <style type="text/css">
 .modal-body img {
@@ -41,10 +42,8 @@
 			value="<%=request.getAttribute("giaJA")%>">
 
 		<div id="mainContent">
-			<!-- Quảng cáo lung tung -->
-			<div class="col-sm-1 col-md-1"></div>
 			<!-- hiển thị nội dung chính ở đây -->
-			<div class="col-sm-8 col-md-8" id="baiviet">
+			<div class="col-sm-9 col-md-9" id="baiviet">
 				<form action="CapNhatBaiVietServlet" method="post" id="fdangbai"
 					enctype="multipart/form-data">
 					<!-- hiển thị nội dung chính ở đây -->
@@ -58,8 +57,10 @@
 			</div> -->
 					<%
 						int ngonngu = 0;
-														if(baiviet.getTenBaiVietVi()!=null && baiviet.getTenBaiVietJa()!=null) ngonngu=2;
-														else if(baiviet.getTenBaiVietJa()!=null) ngonngu=1;
+						if(baiviet.getTenBaiVietVi()!=null && baiviet.getTenBaiVietJa()!=null) 
+							ngonngu=2;
+						else if(baiviet.getTenBaiVietJa()!=null) 
+							ngonngu=1;
 					%>
 					<input type="hidden" name="id" value="<%=baiviet.getIdBaiViet()%>">
 					<input type="hidden" name="NgonNgu" value="<%=ngonngu%>">
@@ -130,8 +131,9 @@
 							class="form-control">
 							<%
 								i = 0;
-																													while(listdanhmuc != null && i < listdanhmuc.size()) {
-																														if(listdanhmuc.get(i).getIdDanhMuc()!=baiviet.getDanhMuc().getIdDanhMuc()) {
+								while(listdanhmuc != null && i < listdanhmuc.size()) {
+									System.out.println(listdanhmuc.get(i).getIdDanhMuc() + " .......... "+baiviet.getDanhMuc().getIdDanhMuc());
+								if(!listdanhmuc.get(i).getIdDanhMuc().equals(baiviet.getDanhMuc().getIdDanhMuc())) {
 							%>
 							<option value="<%=listdanhmuc.get(i).getIdDanhMuc()%>"><%=listdanhmuc.get(i).getTenDanhMucVi()%>
 								-
@@ -198,11 +200,10 @@
 							</p>
 						</div>
 						<input type="hidden" id="dichbai" name="dichbai" value="khong">
-						<input type="hidden" id="dangbai" name="dangbai"
-							value="Đăng bài -">
+						<input type="hidden" id="dangbai" name="dangbai" value="Đăng bài -">
 						<div class="form-group">
 							<input type="submit" value="Lưu bài - 保存" name="luubai"
-								class="btn btn-success" /> <input type="button"
+								class="btn btn-success" onclick="LuuBai();" /> <input type="button"
 								value="Đăng bài - ポスト" onclick="DichBai1();" name="dangbai"
 								class="btn btn-success" data-toggle="modal"
 								data-target="#xacnhandich" /> <input type="button"
@@ -258,11 +259,14 @@
 	}
 
 	function DichBai(x) {
-		if (x)
-			$('#dichbai').val('dich');
+		if(x) $('#dichbai').val('dich');
+		else $('#dichbai').val('khong');
 		$('#fdangbai').submit();
 	}
-
+	function LuuBai() {
+		$('#dichbai').val('luu');
+		$('#fdangbai').submit();
+	}
 	function DichBai1() {
 		var value = CKEDITOR.instances['NoiDung'].getData();
 		var donvi = $("#sotu").val();

@@ -15,10 +15,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.bean.BAIVIET;
 import model.bean.DANHMUC;
+import model.bean.QUANGCAO;
 import model.bean.TAIKHOAN;
+import model.bean.THONGBAO;
 import model.bo.BaiVietBO;
 import model.bo.DanhMucBO;
+import model.bo.QuangCaoBO;
 import model.bo.TaiNguyenBO;
+import model.bo.ThongBaoBO;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
@@ -43,6 +47,14 @@ public class CapNhatBaiVietServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
+		// List thông báo
+		ThongBaoBO thongBaoBO = new ThongBaoBO();
+		ArrayList<THONGBAO> listthongbao = thongBaoBO.getListHienThi("","1", "DienDan");
+		request.setAttribute("listthongbao", listthongbao);
+		// Danh sách quảng cáo
+		QuangCaoBO quangCaoBO = new QuangCaoBO();
+		ArrayList<QUANGCAO> listquangcao = quangCaoBO.getDanhSachQuangCao((int) 2);
+		request.setAttribute("listquangcao", listquangcao);
 		try {
 			boolean isMultipart = ServletFileUpload
 					.isMultipartContent(request);
@@ -127,12 +139,14 @@ public class CapNhatBaiVietServlet extends HttpServlet {
 				ngonngu = (String) params.get("NgonNgu");
 				TheLoai = (String) params.get("TheLoai");
 				linkan = (String) params.get("linkan");
-				DangBai = (String) params.get("DangBai");
+				DangBai = (String) params.get("dangbai");
 				DichBai = (String) params.get("dichbai");
 				
 				String ketqua = "";
-				if(filename == null || filename.trim().equals("")) HinhAnh = "baiviet.jpg";
-				else HinhAnh = filename;
+				if(filename == null || filename.trim().equals(""))
+					if(linkan.equals("") || linkan == null) HinhAnh = "images/baiviet.jpg";
+					else HinhAnh = linkan;
+				else HinhAnh = "images/"+filename;
 				BaiVietBO baivietBO = new BaiVietBO();
 				if(ngonngu.equals("0")){
 					TieuDe = (String) params.get("TieuDe");
@@ -143,12 +157,13 @@ public class CapNhatBaiVietServlet extends HttpServlet {
 					
 					if(DangBai != null){
 						if(DichBai!=null && DichBai.equals("khong")) DichBai = "KhongDich";
-						else DichBai = "MoiDang";
-						if(baivietBO.CapNhatBaiVietVi(id, TieuDe, MoTa, NoiDung, TheLoai, TaiKhoan, "images/" + HinhAnh, DichBai)) ketqua="capnhat-thanhcong";
+						else if(DichBai.equals("dich")) DichBai = "MoiDang";
+						else DichBai = "SoanThao";
+						if(baivietBO.CapNhatBaiVietVi(id, TieuDe, MoTa, NoiDung, TheLoai, TaiKhoan, HinhAnh, DichBai)) ketqua="capnhat-thanhcong";
 						else ketqua="capnhat-thatbai";
 					}
 					else {
-						if(baivietBO.CapNhatBaiVietVi(id, TieuDe, MoTa, NoiDung, TheLoai, TaiKhoan, "images/" + HinhAnh, "SoanThao")) ketqua="capnhat-thanhcong";
+						if(baivietBO.CapNhatBaiVietVi(id, TieuDe, MoTa, NoiDung, TheLoai, TaiKhoan, HinhAnh, "SoanThao")) ketqua="capnhat-thanhcong";
 						else ketqua="capnhat-thatbai";
 					}
 					
@@ -159,12 +174,13 @@ public class CapNhatBaiVietServlet extends HttpServlet {
 //					baivietBO.CapNhatBaiVietJa(id, TieuDe, MoTa, NoiDung, TheLoai, TaiKhoan, "images/" + HinhAnh);
 					if(DangBai != null) {
 						if(DichBai!=null && DichBai.equals("khong")) DichBai = "KhongDich";
-						else DichBai = "MoiDang";
-						if(baivietBO.CapNhatBaiVietJa(id, TieuDe, MoTa, NoiDung, TheLoai, TaiKhoan, "images/" + HinhAnh, DichBai)) ketqua="capnhat-thanhcong";
+						else if(DichBai.equals("dich")) DichBai = "MoiDang";
+						else DichBai = "SoanThao";
+						if(baivietBO.CapNhatBaiVietJa(id, TieuDe, MoTa, NoiDung, TheLoai, TaiKhoan,HinhAnh, DichBai)) ketqua="capnhat-thanhcong";
 						else ketqua="capnhat-thatbai";
 					}
 					else {
-						if(baivietBO.CapNhatBaiVietJa(id, TieuDe, MoTa, NoiDung, TheLoai, TaiKhoan, "images/" + HinhAnh, "SoanThao")) ketqua="capnhat-thanhcong";
+						if(baivietBO.CapNhatBaiVietJa(id, TieuDe, MoTa, NoiDung, TheLoai, TaiKhoan,HinhAnh, "SoanThao")) ketqua="capnhat-thanhcong";
 						else ketqua="capnhat-thatbai";
 					}
 				}else{
@@ -181,12 +197,13 @@ public class CapNhatBaiVietServlet extends HttpServlet {
 					
 					if(DangBai != null) {
 						if(DichBai!=null && DichBai.equals("khong")) DichBai = "KhongDich";
-						else DichBai = "MoiDang";
-						if(baivietBO.CapNhatBaiViet(id, TieuDeVi, MoTaVi, NoiDungVi, TieuDeJa, MoTaJa, NoiDungJa, TheLoai, TaiKhoan, "images/" + HinhAnh, DichBai)) ketqua="capnhat-thanhcong";
+						else if(DichBai.equals("dich")) DichBai = "MoiDang";
+						else DichBai = "SoanThao";
+						if(baivietBO.CapNhatBaiViet(id, TieuDeVi, MoTaVi, NoiDungVi, TieuDeJa, MoTaJa, NoiDungJa, TheLoai, TaiKhoan, HinhAnh, DichBai)) ketqua="capnhat-thanhcong";
 						else ketqua="capnhat-thatbai";
 					}
 					else {
-						if(baivietBO.CapNhatBaiViet(id, TieuDeVi, MoTaVi, NoiDungVi, TieuDeJa, MoTaJa, NoiDungJa, TheLoai, TaiKhoan, "images/" + HinhAnh, "SoanThao")) ketqua="capnhat-thanhcong";
+						if(baivietBO.CapNhatBaiViet(id, TieuDeVi, MoTaVi, NoiDungVi, TieuDeJa, MoTaJa, NoiDungJa, TheLoai, TaiKhoan,HinhAnh, "SoanThao")) ketqua="capnhat-thanhcong";
 						else ketqua="capnhat-thatbai";
 					}
 				}

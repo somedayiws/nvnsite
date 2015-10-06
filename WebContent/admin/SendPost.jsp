@@ -58,7 +58,8 @@
 		<!-- Hiển thị ngôn ngữ bài viết -->
 		
 		<div style="text-align: center;">
-			<h3>Ngôn ngữ bài viết - 
+		<%System.out.println(languagePost + "Ngôn ngữ"); %>
+			<h3>Dịch nội dung bài viết sang - 
 			<%if(languagePost == "1"){ %><span class="label label-success">Tiếng việt - </span>
 			<%}else if(languagePost == "2") {%><span class="label label-success">Tiếng nhật -</span>
 			<%}else{ %><span class="label label-success">Song ngữ -</span> <%} %></h3>
@@ -86,7 +87,7 @@
 						<td><%=listAccountByStatus.get(i).getIdTaiKhoan() %></td>
 						<td><%=listAccountByStatus.get(i).getTenTaiKhoan() %></td>
 						<td><%=listAccountByStatus.get(i).getEmail() %></td>
-						<td><%=listAccountByStatus.get(i).getNgonNgu() %></td>
+						<td><%=listAccountByStatus.get(i).getNgonNgu().equals("vi")?"Việt -> Nhật":"Nhật -> Việt" %></td>
 						
 						
 						<td><button class="btn btn-primary" data-toggle="modal"
@@ -133,7 +134,7 @@
 						<td><%=listAccountCTV.get(i).getIdTaiKhoan() %></td>
 						<td><%=listAccountCTV.get(i).getTenTaiKhoan() %></td>
 						<td><%=listAccountCTV.get(i).getEmail() %></td>
-						<td><%=listAccountCTV.get(i).getNgonNgu() %></td>	
+						<td><%=listAccountCTV.get(i).getNgonNgu().equals("vi")?"Việt -> Nhật":"Nhật -> Việt" %></td>	
 						
 						<!-- Nếu ngôn ngữ bài viết là tiếng việt thì gợi ý ctv có ngôn ngữ là tiếng nhật nghĩa là không cho ctv có ngôn ngữ tiếng việt dịch
 							Nếu ngôn ngữ bài viết là tiếng nhật thì gợi ý ctv có ngôn ngữ là tiếng việt nghĩa là không cho ctv có ngôn ngữ tiếng nhật dịch

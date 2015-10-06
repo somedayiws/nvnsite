@@ -28,6 +28,7 @@ public class ThongKeCTVSevlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		BaiVietBO bviet = new BaiVietBO();
 		TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("user");
+		if(user!=null){
 		String all = bviet.getCountAll(user.getIdTaiKhoan());
 		String moi = bviet.getCountMoi(user.getIdTaiKhoan());
 		String dich = bviet.getCountDich(user.getIdTaiKhoan());
@@ -39,6 +40,7 @@ public class ThongKeCTVSevlet extends HttpServlet {
 		request.setAttribute("tre", tre);
 		
 		request.getRequestDispatcher("ThongKeCTV.jsp").forward(request, response);
+		}
 	}
 
 }
