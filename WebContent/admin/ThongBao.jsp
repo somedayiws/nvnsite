@@ -16,7 +16,7 @@
 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 <link rel="stylesheet" href="css/register.css">
 <link rel="stylesheet" href="css/advertisement.css">
-<title>Quản lý thông báo - 広告を管理します</title>
+<title>Quản lý thông báo - </title>
 <style type="text/css">
 #advNoHomepage {
 	display: none;
@@ -104,7 +104,7 @@
 				<input type="text" name="txtFind" class="form-control"
 					placeholder="Nội dung cần tìm ...">
 			</div>
-			<input type="submit" value="Tìm kiếm" class="btn btn-primary">
+			<input type="submit" value="Tìm kiếm - 検索" class="btn btn-primary">
 		</form>
 		<%=request.getAttribute("meg")==null?"":request.getAttribute("meg")%>
 		<!-------------------- Nội dung quản lý quảng cáo ------------------------>

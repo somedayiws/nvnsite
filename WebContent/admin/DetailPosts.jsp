@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="../bootstrap-3.3.5-dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/register.css">
 <link rel="stylesheet" href="css/detailPost.css">
-<title>Chi tiết bài viết - </title>
+<title>Chi tiết bài viết - 詳細な記事</title>
 </head>
 <%
 //Check session exist
@@ -109,7 +109,7 @@
 	      							<%} %>
       							</div>
       							<div class="alert alert-info">
-									<strong>Bài đăng đã dịch, chờ duyệt</strong>
+									<strong>Bài viết đã dịch, chờ duyệt</strong>
 								</div>
       							
       							<a href="UploadPostServlet?idPost=<%=posts.getIdBaiViet()%>&type=detail&btn=btnDetail"><button class="btn btn-success btn-sm"><span class="glyphicon glyphicon-pushpin" ></span>Duyệt bài</button></a>
@@ -120,34 +120,38 @@
     				<%if(history.getTrangThai()!=null && history.getTrangThai().contains("HuyDich")&& posts.getTrangThai().equals("HuyDich")){%>
 						<div class="panel panel-primary">
      						 <div class="panel-heading">Thông báo - お知らせ</div>
-      						<div class="panel-body">Bài đăng đã được hủy bởi <%=history.getTaikhoan().getHoTen() %></div>
+      						<div class="panel-body">Bài đăng đã được hủy bởi cộng tác viên <%=history.getTaikhoan().getHoTen() %></div>
     					</div>
     				<%} %>
     				<%if(resultTranslate!=null){ %>
     					<div class="alert alert-info">
-							<strong>Thông báo - 情報</strong><%=resultTranslate%> 
+							<strong>Thông báo - 情報</strong>
+							<p><%=resultTranslate%></p> 
 						</div>
     				<%} %>
     				<%if(resultOK!=null){ %>	
     					<div class="alert alert-info">
-							<strong>Thông báo - 情報</strong><%=resultOK%>
+							<strong>Thông báo - 情報</strong>
+							<p><%=resultOK%></p>
 						</div>
 					<%} %>
 					<%if(resultSave!=null){ %>
 						<div class="alert alert-info">
-							<strong>Thông báo - 情報</strong><%=resultSave%>
+							<strong>Thông báo - 情報</strong>
+							<p><%=resultSave%></p>
 						</div>
 					<%} %>
 					<%if(resultSend!=null){ %>
 						<div class="alert alert-info">
-							<strong>Thông báo - 情報</strong><%=resultSend%> <%=history.getTaikhoan().getHoTen() %>
+							<strong>Thông báo - 情報</strong>
+							<p><%=resultSend%> <%=history.getTaikhoan().getHoTen() %></p>
 						</div>
 					<%} %>
     				<!-- --------------------- -->
 					<div id="ContentVi" class="col-md-6 content">
 					<button id="btnVi" class="btn btn-primary"><span class="glyphicon glyphicon-fast-forward"></span></button>
 					<button id="btnbackVi" class="btn btn-primary"><span class="glyphicon glyphicon-fast-backward"></span></button>
-						<h3>Việt Nam - 項目名</h3>
+						<h3>Việt Nam - ベトナム</h3>
 						<strong>Tên bài viết - 記事名:</strong>	<p><%if(posts.getTenBaiVietVi()!=null){%><%=posts.getTenBaiVietVi()%><%} %></p><br>
 						<strong> Mô tả - 説明:</strong> 			<p><%if(posts.getMoTaVi()!=null){%><%=posts.getMoTaVi()%><%} %></p><br>
 						<strong>Nội dung - 内容:</strong> 		<p><%if(posts.getNoiDungVi()!=null){%><%=posts.getNoiDungVi()%><%} %></p>
@@ -179,7 +183,7 @@
 					<div id="ContentJa" class="col-md-6 content">
 						<button id="btnbackJa" class="btn btn-primary"><span class="glyphicon glyphicon-fast-forward"></span></button>
 						<button id="btnJa"  class="btn btn-primary"><span class="glyphicon glyphicon-fast-backward"></span></button>
-						<h3>Nhật Bản - 項目名</h3>
+						<h3>Nhật Bản - 日本</h3>
 						<strong>Tên bài viết - 記事名:</strong>	<p><%if(posts.getTenBaiVietJa()!=null){%><%=posts.getTenBaiVietJa()%><%} %></p><br>
 						<strong> Mô tả - 説明:</strong> 			<p><%if(posts.getMoTaJa()!=null){%><%=posts.getMoTaJa()%><%} %></p><br>
 						<strong>Nội dung - 内容:</strong> 		<p><%if(posts.getNoiDungJa()!=null){%><%=posts.getNoiDungJa()%><%} %></p>

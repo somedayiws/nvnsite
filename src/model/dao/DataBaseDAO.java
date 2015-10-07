@@ -15,13 +15,13 @@ public class DataBaseDAO {
 //	String password = "vQfYcj1EjDG_";
 //	String url = "jdbc:mysql://127.11.82.130:3306/vietnhat?useUnicode=true&characterEncoding=utf-8";
 	
-//	String userName = "somedayiws";
-//    String password = "zxcvbnm1233";
-//    String url = "jdbc:mysql://127.0.0.1:3306/webvietnhat";
-	
-	String userName = "root";
-	String password = "123456";
+	String userName = "somedayiws";
+    String password = "zxcvbnm1233";
     String url = "jdbc:mysql://127.0.0.1:3306/webvietnhat";
+	
+//	String userName = "root";
+//	String password = "123456";
+//    String url = "jdbc:mysql://127.0.0.1:3306/webvietnhat";
 	// Biến dùng cho menu
 	private String menuPhanTrang = "";
 	private int nBangGhi = 5;

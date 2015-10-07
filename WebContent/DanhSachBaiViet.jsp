@@ -14,7 +14,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Thư viện cho menu -->
-<title>Danh mục bài viết</title>
+<title>Danh sách bài viết - 文書のリスト</title>
 </head>
 <body onLoad="initialize()">
 	<div id="wrapper">
@@ -70,7 +70,7 @@
 							}
 						%>
 						<a href="BaiVietServlet?id=<%=listbaiviet.get(i).getIdBaiViet()%>"
-							class="xemthem">Xem thêm ...</a>
+							class="xemthem">Xem thêm - 詳細</a>
 					</div>
 				</div>
 				<%
@@ -127,7 +127,7 @@
 																				"");
 															},
 															error : function() {
-																alert('Có lỗi xảy ra');
+																alert('Có lỗi xảy ra-エラが発生した。!!');
 																$("#load")
 																		.html(
 																				"");
@@ -202,7 +202,7 @@
 					required : "<br>Chưa nhập tên tài khoản"
 				},
 				matkhau : {
-					required : "<br>Chưa nhập mật khẩu!"
+					required : "<br>Chưa nhập mật khẩu-ログインをまだしない!"
 				}
 			},
 			submitHandler : function(form) {

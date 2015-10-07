@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="css/sendPost.css">
 <script type="text/javascript"
 	src="../check_validate/checkCreate(Admin).js"></script>
-<title>Chuyển bài viết</title>
+<title>Chuyển bài viết - </title>
 <script type="text/javascript">
 	
 </script>
@@ -58,10 +58,9 @@
 		<!-- Hiển thị ngôn ngữ bài viết -->
 		
 		<div style="text-align: center;">
-		<%System.out.println(languagePost + "Ngôn ngữ"); %>
 			<h3>Dịch nội dung bài viết sang - 
-			<%if(languagePost == "1"){ %><span class="label label-success">Tiếng việt - </span>
-			<%}else if(languagePost == "2") {%><span class="label label-success">Tiếng nhật -</span>
+			<%if(languagePost == "1"){ %><span class="label label-success">Tiếng việt - ベトナム語</span>
+			<%}else if(languagePost == "2") {%><span class="label label-success">Tiếng nhật - 日本語</span>
 			<%}else{ %><span class="label label-success">Song ngữ -</span> <%} %></h3>
 		</div>
 		<div class="table-responsive">
@@ -70,8 +69,8 @@
 					<tr>
 						<th>ID</th>
 						<th>Tên cộng tác viên - </th>
-						<th>Email - メールアドレス</th>
-						<th>Ngôn ngữ - </th>
+						<th>Email - メール</th>
+						<th>Ngôn ngữ - 言語</th>
 						<th></th>
 						<th></th>
 					</tr>
@@ -100,7 +99,7 @@
 						}else{
 					%>
 						<div class="panel panel-warning">
-      <div class="panel-heading">Cảnh báo - 警告</div>
+      <div class="panel-heading">Cảnh báo - </div>
       <div class="panel-body">Không có tài khoản nào dịch được bài này - </div>
     </div>
 					<%}}
@@ -113,14 +112,14 @@
 						<td><%=accountErrorTranslate.getEmail() %></td>
 						<td><button class="btn btn-primary" data-toggle="modal"
 								data-target="#myModal<%=accountErrorTranslate.getIdTaiKhoan()%>">Chuyển
-								bài - 投稿を送信</button></td>
+								bài - </button></td>
 					</tr>
 					<%
 						}
 						else{
 						%>
 						<div class="panel panel-warning">
-      <div class="panel-heading">Cảnh báo - 警告</div>
+      <div class="panel-heading">Cảnh báo - </div>
       <div class="panel-body">Không có lỗi bài dịch -  </div>
     </div>
 					<%}	
@@ -134,7 +133,7 @@
 						<td><%=listAccountCTV.get(i).getIdTaiKhoan() %></td>
 						<td><%=listAccountCTV.get(i).getHoTen() %></td>
 						<td><%=listAccountCTV.get(i).getEmail() %></td>
-						<td><%=listAccountCTV.get(i).getNgonNgu().equals("vi")?"Việt -> Nhật":"Nhật -> Việt" %></td>	
+						<td><%=listAccountCTV.get(i).getNgonNgu().equals("vi")?"Việt -> Nhật<br>ベトナム -> 日本":"Nhật -> Việt<br>日本  -> ベトナム" %></td>	
 						
 						<!-- Nếu ngôn ngữ bài viết là tiếng việt thì gợi ý ctv có ngôn ngữ là tiếng nhật nghĩa là không cho ctv có ngôn ngữ tiếng việt dịch
 							Nếu ngôn ngữ bài viết là tiếng nhật thì gợi ý ctv có ngôn ngữ là tiếng việt nghĩa là không cho ctv có ngôn ngữ tiếng nhật dịch
@@ -157,7 +156,7 @@
 							disabled="disabled"
 						<%}} %> 
 						data-target="#myModal<%=listAccountCTV.get(i).getIdTaiKhoan()%>">Chuyển
-								bài - 投稿を送信</button></td>
+								bài - </button></td>
 					</tr>
 					<%}
 						}
@@ -178,7 +177,7 @@
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h3 class="modal-title">Lời nhắn - メッセージ</h3>
+							<h3 class="modal-title">Lời nhắn - </h3>
 
 						</div>
 						<div id="message">
@@ -190,13 +189,13 @@
 								</div>
 								<div class="form-group col-md-6 col-md-offset-3">
 									<input
-										type="text" class="form-control" placeholder="From - から: admin"
+										type="text" class="form-control" placeholder="Từ - : admin"
 										readonly="readonly"> 
 								</div>
 								<div class="form-group col-md-6 col-md-offset-3">
 									<input type="text"
 										class="form-control" name="idAccount"
-										placeholder="To - まで: <%=listAccountCTV.get(i).getTenTaiKhoan()%>"
+										placeholder="Đến - : <%=listAccountCTV.get(i).getTenTaiKhoan()%>"
 										value="<%=listAccountCTV.get(i).getIdTaiKhoan()%>" readonly="readonly">
 								</div>
 								<div class="form-group alert alert-info col-md-8 col-md-offset-2" >
@@ -208,16 +207,15 @@
       							<%} %>
       							</div>
 								<div class="form-group col-md-10 col-md-offset-1" >
-									<label>Lời nhắn - メッセージ:</label>
+									<label>Lời nhắn - :</label>
 									<textarea class="form-control" rows="5" id="message"
 										name="message">
 									</textarea>
 								</div>
-								<button type="submit" id ="btnSend" class="btn btn-primary btn-sm">Gởi bài - 送信</button>
+								<button type="submit" id ="btnSend" class="btn btn-primary btn-sm">Gởi bài -</button>
 								<button type="button" class="btn btn-default"
-								data-dismiss="modal">Quay lại - </button>
+								data-dismiss="modal">Quay lại - 戻り</button>
 							</form>
-
 						</div>
 					</div>
 

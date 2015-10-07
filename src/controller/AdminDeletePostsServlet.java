@@ -46,10 +46,10 @@ public class AdminDeletePostsServlet extends HttpServlet {
 		AdminDeletePostsBO admindeletePost = new AdminDeletePostsBO();
 		
 		if(admindeletePost.deletePost(idPost)){
-			resultDelete = "Xóa bài viết thành công - ";
+			resultDelete = "Xóa bài viết thành công - 記事を削除することができた。";
 		}
 		else{
-			resultDelete = "Xóa bài viết thất bại - ";
+			resultDelete = "Xóa bài viết thất bại - 記事を削除することができない。";
 		}
 				
 		request.setAttribute("resultDelete", resultDelete);

@@ -18,7 +18,7 @@
 <!-- Thư viện cho menu -->
 <!-- Google+ -->
 <link rel="canonical" href="http://webvietnhat-demo.jelastic.skali.net/" />
-<title>Tin nhắn từ diễn đàn - 個人ホーム</title>
+<title>Tin nhắn từ diễn đàn - </title>
 </head>
 <body onLoad="initialize()">
 	<!-- Lấy dữ liệu từ server gửi về -->

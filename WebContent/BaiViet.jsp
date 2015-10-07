@@ -13,7 +13,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- <script type="text/javascript" src="js/disable-copyright.js"></script> -->
-<title>Chi tiết bài viết</title>
+<title>Chi tiết bài viết - 詳細な記事</title>
 </head>
 <body onLoad="initialize()">
 	<!-- Lấy dữ liệu từ server gửi về -->
@@ -116,9 +116,9 @@
 					</div>
 					<div class="clearfix"></div>
 					<div class="col-xs-12 col-sm-6 col-md-6" id="blviet">
-						<strong id="selfComment"> Bình luận </strong>
+						<strong id="selfComment"> Bình luận - コメント </strong>
 						<div class="row">
-							<textarea rows="3" placeholder="Bình luận của bạn"
+							<textarea rows="3" placeholder="Bình luận của bạn - あなたのコメントです。"
 								class="form-control" id="txtviet"></textarea>
 						</div>
 						<button type="button" class="btn btn-link"
@@ -126,7 +126,7 @@
 							<i class="fa fa-comments-o"></i> Gửi - コメント
 						</button>
 						<p id="anotherComments">
-							<span>Bình luận khác</span>
+							<span>Bình luận khác - 他のコメントです。</span>
 						</p>
 
 						<div class="row" id="listblviet">
@@ -151,9 +151,9 @@
 						</div>
 					</div>
 					<div class="col-xs-12 col-sm-6 col-md-6" id="blnhat">
-						<strong id="selfComment"> Bình luận </strong>
+						<strong id="selfComment"> Bình luận - コメント</strong>
 						<div class="row">
-							<textarea rows="3" placeholder="Bình luận của bạn"
+							<textarea rows="3" placeholder="Bình luận của bạn - あなたのコメントです。"
 								class="form-control" id="txtnhat"></textarea>
 						</div>
 						<button type="button" class="btn btn-link"
@@ -161,7 +161,7 @@
 							<i class="fa fa-comments-o"></i> Gửi - コメント
 						</button>
 						<p id="anotherComments">
-							<span>Bình luận khác</span>
+							<span>Bình luận khác - 他のコメントです。</span>
 						</p>
 
 						<div class="row" id="listblnhat">
@@ -197,9 +197,9 @@
 						<%=baiviet.getNoiDungVi()%>
 					</div>
 					<div class="col-xs-12 col-sm-12 col-md-12" id="blviet">
-						<strong id="selfComment"> Bình luận </strong>
+						<strong id="selfComment"> Bình luận - コメント</strong>
 						<div class="row">
-							<textarea rows="3" placeholder="Bình luận của bạn"
+							<textarea rows="3" placeholder="Bình luận của bạn - あなたのコメントです。"
 								class="form-control" id="txtviet"></textarea>
 						</div>
 						<button type="button" class="btn btn-link"
@@ -207,7 +207,7 @@
 							<i class="fa fa-comments-o"></i> Gửi - コメント
 						</button>
 						<p id="anotherComments">
-							<span>Bình luận khác</span>
+							<span>Bình luận khác - 他のコメントです。</span>
 						</p>
 
 						<div class="row" id="listblviet">
@@ -242,9 +242,9 @@
 						<%=baiviet.getNoiDungJa()%>
 					</div>
 					<div class="col-xs-12 col-sm-12 col-md-12" id="blnhat">
-						<strong id="selfComment"> Bình luận </strong>
+						<strong id="selfComment"> Bình luận - コメント </strong>
 						<div class="row">
-							<textarea rows="3" placeholder="Bình luận của bạn"
+							<textarea rows="3" placeholder="Bình luận của bạn - あなたのコメントです。"
 								class="form-control" id="txtnhat"></textarea>
 						</div>
 						<button type="button" class="btn btn-link"
@@ -252,7 +252,7 @@
 							<i class="fa fa-comments-o"></i> Gửi - コメント
 						</button>
 						<p id="anotherComments">
-							<span>Bình luận khác</span>
+							<span>Bình luận khác - 他のコメントです。</span>
 						</p>
 
 						<div class="row" id="listblnhat">
@@ -287,7 +287,7 @@
 				<!-- danh sách bài viết mới -->
 				<div class="col-xs-12 col-sm-12 col-md-12"
 					style="background-color: white;" id="listbaiviet">
-					<strong>Danh sách bài viết liên quan</strong>
+					<strong>Danh sách bài viết liên quan - 関係がある記事のリストです。</strong>
 					<%
 						i=0;
 								while(listbaiviet != null && i<listbaiviet.size()){
@@ -375,7 +375,7 @@
 					$("#listblviet").append(res);
 				},
 				error : function() {
-					alert('Có lỗi xảy ra');
+					alert('Có lỗi xảy ra - エラが発生した。!');
 				}
 			});
 		} else {
@@ -393,7 +393,7 @@
 					$("#listblnhat").append(res);
 				},
 				error : function() {
-					alert('Có lỗi xảy ra');
+					alert('Có lỗi xảy ra - エラが発生した。!');
 				}
 			});
 		}
@@ -411,7 +411,7 @@
 		var bien = $("#tkDangNhap").val();
 		var date = $("#dateComment").val();
 		if (bien == 'null') {
-			alert("Bạn phải đăng nhập, mới được bình luận.");
+			alert("Bạn phải đăng nhập, mới được bình luận.\nログインをしないと、コメントをすることができい。");
 		} else {
 			var txt = $("#txtviet").val();
 			if (txt != "") {
@@ -424,7 +424,7 @@
 				$("#txtviet").val("");
 				updatedatavi(id, 'vi', txt);
 			} else {
-				alert("Bạn chưa nhập bình luận của mình.");
+				alert("Bạn chưa nhập bình luận của mình.\nあなたはコメントをまだ入力しない。");
 			}
 		}
 		$("#txtviet").val("");
@@ -433,7 +433,7 @@
 		var bien = $("#tkDangNhap").val();
 		var date = $("#dateComment").val();
 		if (bien == 'null') {
-			alert("Bạn phải đăng nhập, mới được bình luận.");
+			alert("Bạn phải đăng nhập, mới được bình luận.\nログインをしないと、コメントをすることができい。");
 		} else {
 			var txt = $("#txtnhat").val();
 			if (txt != "") {
@@ -446,7 +446,7 @@
 				$("#txtnhat").val("");
 				updatedatavi(id, 'ja', txt);
 			} else {
-				alert("Bạn chưa nhập bình luận của mình.");
+				alert("Bạn chưa nhập bình luận của mình.\nあなたはコメントをまだ入力しない。");
 			}
 		}
 		$("#txtnhat").val("");

@@ -74,12 +74,12 @@
 					</a>
 						<ul class="dropdown-menu">
 							<li><a href="TrangCaNhanServlet"><i
-									class="fa fa-info-circle"></i> Trang cá nhân</a></li>
+									class="fa fa-info-circle"></i> Trang cá nhân-個人ホーム</a></li>
 							<li><a href="DangXuatServlet"><i class="fa fa-sign-out"></i>
-									Đăng xuất</a></li>
+									Đăng xuất-ログアウト</a></li>
 						</ul></li>
 					<li id="checkmail"></li>
-					<li><a href="BangGiaServlet"> Quảng cáo - ログイン</a> |</li>
+					<li><a href="BangGiaServlet"> Quảng cáo -</a> |</li>
 				</ul>
 				<%
 					} else {

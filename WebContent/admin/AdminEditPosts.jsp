@@ -92,7 +92,7 @@
 						<label>Trạng thái - 状態<span class="rq"> * </span></label>
 						<input type="text" class="form-control"
 							name="Status" 
-							value="<%if(post.getTrangThai().equals("MoiDang")) {%>Mới đăng - <%}else if(post.getTrangThai().equals("DangDich")){ %>Đang dịch<%}else if(post.getTrangThai().equals("OK")){%>Đã duyệt<%}else if(post.getTrangThai().equals("KhongDich")){ %>Không dịch<%}else{ %>Trạng thái khác - <%=post.getTrangThai()%><%} %>"
+							value="<%if(post.getTrangThai().equals("MoiDang")) {%>Mới đăng - <%}else if(post.getTrangThai().equals("DangDich")){ %>Đang dịch<%}else if(post.getTrangThai().equals("OK")){%>Đã duyệt<%}else if(post.getTrangThai().equals("KhongDich")){ %>Không dịch<%}else if(post.getTrangThai().equals("HuyDich")){ %>Hủy dịch<%}else if(post.getTrangThai().equals("DichXong")){ %>Dịch xong<%}else{%>Trạng thái khác - <%=post.getTrangThai()%><%} %>"
 							readonly="readonly">				
 					</div>
 					

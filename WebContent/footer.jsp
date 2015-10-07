@@ -4,8 +4,8 @@
 <div id="footer">
 	<div id="wFooter">
 		<span id="leftFooter">Cổng thông tin thương mại Việt - Nhật</span> <span
-			id="rightFooter"> <a href="TrangChuServlet">Trang chủ</a> | <a
-			href="BangGiaServlet">Liên hệ quảng cáo | </a><a href="#">Về đầu
+			id="rightFooter"> <a href="TrangChuServlet">Trang chủ-ホーム</a> | <a
+			href="BangGiaServlet">Quảng cáo | </a><a href="#">Về đầu
 				<i class="fa fa-chevron-up"></i>
 		</a>
 		</span>
@@ -16,7 +16,7 @@
 			<div id="infoContent">
 				<p>Cổng thông tin thương mại Việt - Nhật</p>
 				<p>Thông tin liên hệ</p>
-				<p>Số điện thoại:</p>
+				<p>Điện thoại:</p>
 				<p>Email:</p>
 				<p>© Copyright 2015 jpvn.net, All rights reserved.</p>
 			</div>

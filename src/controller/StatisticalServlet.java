@@ -71,15 +71,15 @@ public class StatisticalServlet extends HttpServlet {
 		/*************************************************************
 		* *********************** Thống kê người dùng ****************
 		* *************************************************************/
-			String resultStatisticUsers = "<strong>Tất cả người dùng:</strong> <span class='badge'>"+statisticalBo.countUsers(1)+"</span><br>"+
-					"<strong>Người dùng là User:</strong> <span class='badge'>"+statisticalBo.countUsers(2)+"</span><br>"+
-					"<strong>Người dùng là CTV:</strong> <span class='badge'>"+statisticalBo.countUsers(3)+"</span><br>"+
-					"<strong>Người dùng bị khóa tài khoản:</strong> <span class='badge'>"+statisticalBo.countUsers(4)+"</span><br>"+
-					"<strong>Người dùng bị xóa tài khoản:</strong> <span class='badge'>"+statisticalBo.countUsers(5)+"</span><br>"+
-					"<strong>Người dùng có ngôn ngữ là tiếng việt:</strong> <span class='badge'>"+statisticalBo.countUsers(6)+"</span><br>"+
-					"<strong>Người dùng có ngôn ngữ là tiếng nhật:</strong> <span class='badge'>"+statisticalBo.countUsers(7)+"</span><br>"+
-					"<strong>Số cộng tác viên dịch từ tiếng việt sang tiếng nhật:</strong> <span class='badge'>"+statisticalBo.countUsers(8)+"</span><br>"+
-					"<strong>Số cộng tác viên dịch từ tiếng nhật sang tiếng việt:</strong> <span class='badge'>"+statisticalBo.countUsers(9)+"</span><br>";
+			String resultStatisticUsers = "<strong>Tất cả người dùng - すべてのユーザーです。:</strong> <span class='badge'>"+statisticalBo.countUsers(1)+"</span><br>"+
+					"<strong>Người dùng là User - 使用している会員はユーザーです。:</strong> <span class='badge'>"+statisticalBo.countUsers(2)+"</span><br>"+
+					"<strong>Người dùng là CTV - ユーザーは協力者です。:</strong> <span class='badge'>"+statisticalBo.countUsers(3)+"</span><br>"+
+					"<strong>Người dùng bị khóa tài khoản - ユーザーのアカウントがを禁止された。:</strong> <span class='badge'>"+statisticalBo.countUsers(4)+"</span><br>"+
+					"<strong>Người dùng bị xóa tài khoản - ユーザーのアカウントがを削除された。:</strong> <span class='badge'>"+statisticalBo.countUsers(5)+"</span><br>"+
+					"<strong>Người dùng có ngôn ngữ là tiếng việt - ベトナム語で使う。:</strong> <span class='badge'>"+statisticalBo.countUsers(6)+"</span><br>"+
+					"<strong>Người dùng có ngôn ngữ là tiếng nhật - 日本語で使う。:</strong> <span class='badge'>"+statisticalBo.countUsers(7)+"</span><br>"+
+					"<strong>Số cộng tác viên dịch từ tiếng việt sang tiếng nhật - ベトナム語から日本語へ翻訳する協力者の数です。:</strong> <span class='badge'>"+statisticalBo.countUsers(8)+"</span><br>"+
+					"<strong>Số cộng tác viên dịch từ tiếng nhật sang tiếng việt - 日本語からベトナム語へ翻訳する協力者の数です。:</strong> <span class='badge'>"+statisticalBo.countUsers(9)+"</span><br>";
 			
 			if(btnStatistical!=null){
 				if(type.equals("TKUser")){				
@@ -106,25 +106,20 @@ public class StatisticalServlet extends HttpServlet {
 					for(int i=1;i<=4;i++){
 						listResultAccount.add(statisticalBo.getUsers(i, 1, null, null));
 					}
-					System.out.println("arrayNumberUser: "+arrayNumberUser);
-					arrayNumberUser = statisticalBo.arrayNumber_Account;
 				}
 			}else{
 				arrayNumberUser = statisticalBo.arrayNumber_Account;
 				for(int i=1;i<=4;i++){
 					listResultAccount.add(statisticalBo.getUsers(i, 1, null, null));
 				}
-				System.out.println("arrayNumberUser: "+arrayNumberUser);
 			}
 			
 			
 			/*************************************************************
 			* *********************** Thống kê danh mục ****************
 			* *************************************************************/
-			String resultStatisticCategory = "<strong>Tất cả danh mục:</strong> <span class='badge'>"+statisticalBo.countCategorys(1)+"</span><br>"+
-					"<strong>Danh mục bị xóa:</strong> <span class='badge'>"+statisticalBo.countCategorys(2)+"</span><br>";
-			
-			
+			String resultStatisticCategory = "<strong>Tất cả danh mục - すべて項目:</strong> <span class='badge'>"+statisticalBo.countCategorys(1)+"</span><br>"+
+					"<strong>Danh mục bị xóa - 削除された項目です。:</strong> <span class='badge'>"+statisticalBo.countCategorys(2)+"</span><br>";
 			if(btnStatistical!=null){
 				if (type.equals("TKCat")){
 					arrayNumberCategory = statisticalBo.arrayNumber_Category;
@@ -136,7 +131,6 @@ public class StatisticalServlet extends HttpServlet {
 					for(int i=1;i<=2;i++){
 						listResultCategory.add(statisticalBo.getCategory(i, 1, null, null));
 					}
-					System.out.println("arrayNumberCategory: "+arrayNumberCategory);
 				}
 			}else{
 				arrayNumberCategory = statisticalBo.arrayNumber_Category;
@@ -151,26 +145,26 @@ public class StatisticalServlet extends HttpServlet {
 			String resultStatisticPosts = null;
 			if(btnStatistical!=null){
 				if (type.equals("TKPosts")){
-				resultStatisticPosts = "<strong>Tất cả bài viết:</strong> <span class='badge'>"+statisticalBo.countPosts(1, 2, dayStart, dayFinish)+"</span><br>"+
-						"<strong>Số bài viết bị xóa:</strong> <span class='badge'>"+statisticalBo.countPosts(2, 2, dayStart, dayFinish)+"</span><br>"+
-						"<strong>Số bài viết đăng lên trang chủ:</strong> <span class='badge'>"+statisticalBo.countPosts(3, 2, dayStart, dayFinish)+"</span><br>"+
-						"<strong>Số bài viết mới đăng:</strong> <span class='badge'>"+statisticalBo.countPosts(4, 2, dayStart, dayFinish)+"</span><br>"+
-						"<strong>Số bài viết đang dịch:</strong> <span class='badge'>"+statisticalBo.countPosts(5, 2, dayStart, dayFinish)+"</span><br>"+
-						"<strong>Số bài viết tiếng việt:</strong> <span class='badge'>"+statisticalBo.countPosts(6, 2, dayStart, dayFinish)+"</span><br>"+
-						"<strong>Số bài viết tiếng nhật:</strong> <span class='badge'>"+statisticalBo.countPosts(7, 2, dayStart, dayFinish)+"</span><br>";
+				resultStatisticPosts = "<strong>Tất cả bài viết - すべての記事です。:</strong> <span class='badge'>"+statisticalBo.countPosts(1, 2, dayStart, dayFinish)+"</span><br>"+
+						"<strong>Số bài viết bị xóa - 削除された記事の数です。:</strong> <span class='badge'>"+statisticalBo.countPosts(2, 2, dayStart, dayFinish)+"</span><br>"+
+						"<strong>Số bài viết đăng lên trang chủ - ホームに投稿された記事の数です。:</strong> <span class='badge'>"+statisticalBo.countPosts(3, 2, dayStart, dayFinish)+"</span><br>"+
+						"<strong>Số bài viết mới đăng - 投稿したばかり記事の数です。:</strong> <span class='badge'>"+statisticalBo.countPosts(4, 2, dayStart, dayFinish)+"</span><br>"+
+						"<strong>Số bài viết đang dịch - 翻訳中の記事の数です。:</strong> <span class='badge'>"+statisticalBo.countPosts(5, 2, dayStart, dayFinish)+"</span><br>"+
+						"<strong>Số bài viết tiếng việt - :</strong> <span class='badge'>"+statisticalBo.countPosts(6, 2, dayStart, dayFinish)+"</span><br>"+
+						"<strong>Số bài viết tiếng nhật - 日本語で一番多い記事です。:</strong> <span class='badge'>"+statisticalBo.countPosts(7, 2, dayStart, dayFinish)+"</span><br>";
 				arrayNumberPost = statisticalBo.arrayNumber_Post;
 				for(int i=1;i<=3;i++){
 					listResultPost.add(statisticalBo.getPost(i, 1, null, null));
 					}
 				}
 				else if(type.equals("TKPost")){
-					resultStatisticPosts = "<strong>Tất cả bài viết:</strong> <span class='badge'>"+statisticalBo.countPosts(1, 1, null, null)+"</span><br>"+
-							"<strong>Số bài viết bị xóa:</strong> <span class='badge'>"+statisticalBo.countPosts(2, 1, null, null)+"</span><br>"+
-							"<strong>Số bài viết đăng lên trang chủ:</strong> <span class='badge'>"+statisticalBo.countPosts(3, 1, null, null)+"</span><br>"+
-							"<strong>Số bài viết mới đăng:</strong> <span class='badge'>"+statisticalBo.countPosts(4, 1, null, null)+"</span><br>"+
-							"<strong>Số bài viết đang dịch:</strong> <span class='badge'>"+statisticalBo.countPosts(5, 1, null, null)+"</span><br>"+
+					resultStatisticPosts = "<strong>Tất cả bài viết - すべての記事です。:</strong> <span class='badge'>"+statisticalBo.countPosts(1, 1, null, null)+"</span><br>"+
+							"<strong>Số bài viết bị xóa - 削除された記事の数です。:</strong> <span class='badge'>"+statisticalBo.countPosts(2, 1, null, null)+"</span><br>"+
+							"<strong>Số bài viết đăng lên trang chủ - ホームに投稿された記事の数です。:</strong> <span class='badge'>"+statisticalBo.countPosts(3, 1, null, null)+"</span><br>"+
+							"<strong>Số bài viết mới đăng - 投稿したばかり記事の数です。:</strong> <span class='badge'>"+statisticalBo.countPosts(4, 1, null, null)+"</span><br>"+
+							"<strong>Số bài viết đang dịch - 翻訳中の記事の数です。:</strong> <span class='badge'>"+statisticalBo.countPosts(5, 1, null, null)+"</span><br>"+
 							"<strong>Số bài viết tiếng việt:</strong> <span class='badge'>"+statisticalBo.countPosts(6, 1, null, null)+"</span><br>"+
-							"<strong>Số bài viết tiếng nhật:</strong> <span class='badge'>"+statisticalBo.countPosts(7, 1, null, null)+"</span><br>";
+							"<strong>Số bài viết tiếng nhật - 日本語で一番多い記事です。:</strong> <span class='badge'>"+statisticalBo.countPosts(7, 1, null, null)+"</span><br>";
 					arrayNumberPost = statisticalBo.arrayNumber_Post;
 					for(int i=1;i<=3;i++){
 						listResultPost.add(statisticalBo.getPost(i, 2, dayStart, dayFinish));
@@ -178,13 +172,13 @@ public class StatisticalServlet extends HttpServlet {
 				}
 				
 				else{
-					resultStatisticPosts = "<strong>Tất cả bài viết:</strong> <span class='badge'>"+statisticalBo.countPosts(1, 1, null, null)+"</span><br>"+
-							"<strong>Số bài viết bị xóa:</strong> <span class='badge'>"+statisticalBo.countPosts(2, 1, null, null)+"</span><br>"+
-							"<strong>Số bài viết đăng lên trang chủ:</strong> <span class='badge'>"+statisticalBo.countPosts(3, 1, null, null)+"</span><br>"+
-							"<strong>Số bài viết mới đăng:</strong> <span class='badge'>"+statisticalBo.countPosts(4, 1, null, null)+"</span><br>"+
-							"<strong>Số bài viết đang dịch:</strong> <span class='badge'>"+statisticalBo.countPosts(5, 1, null, null)+"</span><br>"+
+					resultStatisticPosts = "<strong>Tất cả bài viết - すべての記事です。:</strong> <span class='badge'>"+statisticalBo.countPosts(1, 1, null, null)+"</span><br>"+
+							"<strong>Số bài viết bị xóa - 削除された記事の数です。:</strong> <span class='badge'>"+statisticalBo.countPosts(2, 1, null, null)+"</span><br>"+
+							"<strong>Số bài viết đăng lên trang chủ - ホームに投稿された記事の数です。:</strong> <span class='badge'>"+statisticalBo.countPosts(3, 1, null, null)+"</span><br>"+
+							"<strong>Số bài viết mới đăng - 投稿したばかり記事の数です。:</strong> <span class='badge'>"+statisticalBo.countPosts(4, 1, null, null)+"</span><br>"+
+							"<strong>Số bài viết đang dịch - 翻訳中の記事の数です。:</strong> <span class='badge'>"+statisticalBo.countPosts(5, 1, null, null)+"</span><br>"+
 							"<strong>Số bài viết tiếng việt:</strong> <span class='badge'>"+statisticalBo.countPosts(6, 1, null, null)+"</span><br>"+
-							"<strong>Số bài viết tiếng nhật:</strong> <span class='badge'>"+statisticalBo.countPosts(7, 1, null, null)+"</span><br>";
+							"<strong>Số bài viết tiếng nhật - 日本語で一番多い記事です。:</strong> <span class='badge'>"+statisticalBo.countPosts(7, 1, null, null)+"</span><br>";
 					arrayNumberPost = statisticalBo.arrayNumber_Post;
 					for(int i=1;i<=3;i++){
 						listResultPost.add(statisticalBo.getPost(i, 1, null, null));
@@ -193,13 +187,13 @@ public class StatisticalServlet extends HttpServlet {
 				
 			}
 			else{
-				resultStatisticPosts = "<strong>Tất cả bài viết:</strong> <span class='badge'>"+statisticalBo.countPosts(1, 1, null, null)+"</span><br>"+
-					"<strong>Số bài viết bị xóa:</strong> <span class='badge'>"+statisticalBo.countPosts(2, 1, null, null)+"</span><br>"+
-					"<strong>Số bài viết đăng lên trang chủ:</strong> <span class='badge'>"+statisticalBo.countPosts(3, 1, null, null)+"</span><br>"+
-					"<strong>Số bài viết mới đăng:</strong> <span class='badge'>"+statisticalBo.countPosts(4, 1, null, null)+"</span><br>"+
-					"<strong>Số bài viết đang dịch:</strong> <span class='badge'>"+statisticalBo.countPosts(5, 1, null, null)+"</span><br>"+
+				resultStatisticPosts = "<strong>Tất cả bài viế - すべての記事です。:</strong> <span class='badge'>"+statisticalBo.countPosts(1, 1, null, null)+"</span><br>"+
+					"<strong>Số bài viết bị xóa - 削除された記事の数です。:</strong> <span class='badge'>"+statisticalBo.countPosts(2, 1, null, null)+"</span><br>"+
+					"<strong>Số bài viết đăng lên trang chủ - ホームに投稿された記事の数です。:</strong> <span class='badge'>"+statisticalBo.countPosts(3, 1, null, null)+"</span><br>"+
+					"<strong>Số bài viết mới đăng - 投稿したばかり記事の数です。:</strong> <span class='badge'>"+statisticalBo.countPosts(4, 1, null, null)+"</span><br>"+
+					"<strong>Số bài viết đang dịch - 翻訳中の記事の数です。:</strong> <span class='badge'>"+statisticalBo.countPosts(5, 1, null, null)+"</span><br>"+
 					"<strong>Số bài viết tiếng việt:</strong> <span class='badge'>"+statisticalBo.countPosts(6, 1, null, null)+"</span><br>"+
-					"<strong>Số bài viết tiếng nhật:</strong> <span class='badge'>"+statisticalBo.countPosts(7, 1, null, null)+"</span><br>";
+					"<strong>Số bài viết tiếng nhật - 日本語で一番多い記事です。:</strong> <span class='badge'>"+statisticalBo.countPosts(7, 1, null, null)+"</span><br>";
 				arrayNumberPost = statisticalBo.arrayNumber_Post;
 				for(int i=1;i<=3;i++){
 					listResultPost.add(statisticalBo.getPost(i, 1, null, null));

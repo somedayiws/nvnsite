@@ -15,7 +15,7 @@
 <!-- Thư viện cho menu -->
 <!-- Google+ -->
 <link rel="canonical" href="http://webvietnhat-demo.jelastic.skali.net/" />
-<title>Đăng ký thành viên</title>
+<title>Đăng ký thành viên - 会員登録の申請 </title>
 </head>
 <body onLoad="initialize()">
 	<div id="wrapper">
@@ -24,17 +24,17 @@
 			<!-- Quảng cáo lung tung -->
 			<!-- hiển thị nội dung chính ở đây -->
 			<div class="col-sm-9 col-md-9" id="baiviet" style="font-size: 12px;">
-				<center id="tieude">Đăng ký thành viên</center>
+				<center id="tieude">Đăng ký thành viên</br>会員登録の申請 </center>
 				<%=request.getAttribute("loi")==null?"":request.getAttribute("loi")%>
 				<form id="khungdangky" action="DangKyThanhVienServlet" method="post">
-					<label class="form-label1">Thông tin tài khoản</label><br> <label
+					<label class="form-label1">Thông tin tài khoản-アカウントの情報</label><br> <label
 						class="form-label">Tài khoản(*)</label> <input type="text"
 						name="taikhoan" class="form-control" placeholder="Tên tài khoản">
 					<br>
 					<label class="form-label">Mật khẩu(*)</label> <input
 						type="password" name="matkhau" class="form-control"
 						placeholder="Mật khẩu của bạn"> <label class="form-label1">Thông
-						tin cá nhân</label><br> <label class="form-label">Họ và
+						tin cá nhân-個人の情報</label><br> <label class="form-label">Họ và
 						tên(*)</label> <input type="text" name="hoten" class="form-control"
 						placeholder="Họ tên đầy đủ"> <br>
 					<label class="form-label">Địa chỉ</label> <input type="text"
@@ -125,7 +125,7 @@
 					required : "<br>Chưa nhập tên tài khoản"
 				},
 				matkhau : {
-					required : "<br>Chưa nhập mật khẩu!"
+					required : "<br>Chưa nhập mật khẩu - ログインをまだしない!"
 				}
 			},
 			submitHandler : function(form) {
@@ -158,7 +158,7 @@
 					required : "Bạn chưa nhập tên tài khoản!"
 				},
 				matkhau : {
-					required : "Bạn chưa nhập mật khẩu!"
+					required : "Bạn chưa nhập mật khẩu-ログインをまだしない!"
 				},
 				hoten : {
 					required : "Bạn chưa nhập họ tên!"

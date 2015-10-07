@@ -25,7 +25,7 @@
 				<form action="DangNhapServlet" method="post" id="fdangnhap">
 					<div class="login">
 						<div>
-							<h3 class="modal-title" id="myModalLabel">Đăng nhập - ログイン</h3>
+							<h3 class="modal-title" id="myModalLabel">Đăng nhập - </h3>
 						</div>
 						<div class="loi">
 							<%=request.getAttribute("loi")==null?"":request.getAttribute("loi")%>
@@ -35,20 +35,20 @@
 						</p>
 						<div class="modal-body">
 							<div class="row">
-								<strong>Tài khoản - アカウント</strong> <input name="taikhoan"
+								<strong>Tài khoản - </strong> <input name="taikhoan"
 									type="text" placeholder="Tài khoản" class="form-control">
 							</div>
 							<div class="row">
-								<strong>Mật khẩu - パスワード</strong> <input name="matkhau"
+								<strong>Mật khẩu - </strong> <input name="matkhau"
 									type="password" placeholder="Mật khẩu" class="form-control">
 							</div>
 							<a href="DangKyThanhVienServlet"><i class="fa fa-user-plus"></i>
-								Đăng ký - 新規取得</a> <br> <a href="QuenMatKhauServlet"><i
-								class="fa fa-user-plus"></i> Quên mật khẩu - 新規取得</a>
+								Đăng ký - </a> <br> <a href="QuenMatKhauServlet"><i
+								class="fa fa-user-plus"></i> Quên mật khẩu - パスワードを忘れた。 </a>
 						</div>
 						<div class="modal-footer">
 							<button name="xuly" name="submit" value="TrangChu"
-								class="btn btn-primary btn-sm">Đăng nhập - ログイン</button>
+								class="btn btn-primary btn-sm">Đăng nhập - </button>
 						</div>
 					</div>
 				</form>
@@ -126,7 +126,7 @@
 					required : "<br>Chưa nhập tên tài khoản"
 				},
 				matkhau : {
-					required : "<br>Chưa nhập mật khẩu!"
+					required : "<br>Chưa nhập mật khẩu - ログインをまだしない!"
 				}
 			},
 			submitHandler : function(form) {
