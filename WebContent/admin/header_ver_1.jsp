@@ -18,6 +18,7 @@
 				url : "CheckDataBaiViet",
 				type : "post",
 				success : function(result) {
+					
 					$("#baicanxem").html(result);
 				}
 			});

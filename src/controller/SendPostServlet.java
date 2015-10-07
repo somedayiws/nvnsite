@@ -1,4 +1,4 @@
-package controller;
+﻿package controller;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -108,10 +108,20 @@ public class SendPostServlet extends HttpServlet {
 			LICHSU history = listStatus.getStatus(idPost);
 			String status = history.getTrangThai();
 			 
-			
-			if(history!=null && history.getTaikhoan()!=null){
-				ArrayList<TAIKHOAN> listAccountByStatus = getAcc.listAccountByStatus(history.getTaikhoan().getIdTaiKhoan());
+			if(history!=null && history.getTrangThai().contains("HuyDich")){
+				ArrayList<TAIKHOAN> listAccountByStatus = null;
+				if (post.getTenBaiVietVi()!=null && post.getTenBaiVietJa()!=null) {
+					listAccountByStatus = getAcc.listAccountByStatus(history.getTaikhoan().getIdTaiKhoan(),"mutilanguage");			
+				} else if (post.getTenBaiVietVi()!=null){
+					//Bài viết là tiếng nhật
+					listAccountByStatus = getAcc.listAccountByStatus(history.getTaikhoan().getIdTaiKhoan(),"vi");
+				} else if (post.getTenBaiVietJa()!=null) {
+					//Bài viết là tiếng việt
+					listAccountByStatus = getAcc.listAccountByStatus(history.getTaikhoan().getIdTaiKhoan(),"ja");
+				}
+				
 				request.setAttribute("listAccountByStatus", listAccountByStatus);
+				
 			}
 			request.setAttribute("note", note);
 			request.setAttribute("languagePost", languagePost);

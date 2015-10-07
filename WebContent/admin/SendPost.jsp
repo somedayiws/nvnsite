@@ -30,7 +30,6 @@
 		String username =(String)session_user.getAttribute("username");	
 	/**Receive data from server*/
 	ArrayList<TAIKHOAN> listAccountCTV = (ArrayList<TAIKHOAN>) request.getAttribute("listAccountCTV");
-	System.out.println(listAccountCTV.size()+"Độ lớn listAccountCTV");
 	//Lấy ghi chú của bài viết
 	String note =(String)request.getAttribute("note");
 
@@ -110,7 +109,7 @@
 					%>
 						<tr>
 						<td><%=accountErrorTranslate.getIdTaiKhoan() %></td>
-						<td><%=accountErrorTranslate.getTenTaiKhoan() %></td>
+						<td><%=accountErrorTranslate.getHoTen()%></td>
 						<td><%=accountErrorTranslate.getEmail() %></td>
 						<td><button class="btn btn-primary" data-toggle="modal"
 								data-target="#myModal<%=accountErrorTranslate.getIdTaiKhoan()%>">Chuyển
@@ -185,19 +184,25 @@
 						<div id="message">
 							<form action="SendPostServlet" method="post">
 								<input type="hidden" name="status" value="<%=status%>">
-								<input type="text" class="form-control" name="idPost"
-									value="<%=idPost%>" readonly="readonly"> 
-								<input
-									type="text" class="form-control" placeholder="From - から: admin"
-									readonly="readonly"> 
-								<input type="text"
-									class="form-control" name="idAccount"
-									placeholder="To - まで: <%=listAccountCTV.get(i).getTenTaiKhoan()%>"
-									value="<%=listAccountCTV.get(i).getIdTaiKhoan()%>" readonly="readonly">
-								<div class="form-group">
+								<div class="form-group col-md-6 col-md-offset-3">
+									<input type="text" class="form-control" name="idPost"
+										value="<%=idPost%>" readonly="readonly"> 
+								</div>
+								<div class="form-group col-md-6 col-md-offset-3">
+									<input
+										type="text" class="form-control" placeholder="From - から: admin"
+										readonly="readonly"> 
+								</div>
+								<div class="form-group col-md-6 col-md-offset-3">
+									<input type="text"
+										class="form-control" name="idAccount"
+										placeholder="To - まで: <%=listAccountCTV.get(i).getTenTaiKhoan()%>"
+										value="<%=listAccountCTV.get(i).getIdTaiKhoan()%>" readonly="readonly">
+								</div>
+								<div class="form-group alert alert-info col-md-8 col-md-offset-2" >
 								<%if(note!=null && !note.trim().equals("")){ %>
       								<div style="max-height: 200px;overflow: scroll">
-      								<h4>Tin nhắn bài viết - </h4>
+      								<h4 style="text-align: center;">Tin nhắn bài viết - </h4>
 	      								<%=note %>
 	      							</div>
       							<%} %>

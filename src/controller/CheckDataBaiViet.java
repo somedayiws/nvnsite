@@ -28,9 +28,9 @@ public class CheckDataBaiViet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		BaiVietBO tb = new BaiVietBO();
-		request.setAttribute("baimoi", tb.getCountBaiViet("moi"));
-		request.setAttribute("dichxong", tb.getCountBaiViet("xong"));
-		request.setAttribute("huydich", tb.getCountBaiViet("huy"));
+		request.setAttribute("baimoi", tb.getCountBaiViet("moi")+"");
+		request.setAttribute("dichxong", tb.getCountBaiViet("xong")+"");
+		request.setAttribute("huydich", tb.getCountBaiViet("huy")+"");
 		request.getRequestDispatcher("KetQuaCheckData.jsp").forward(request,response);
 	}
 

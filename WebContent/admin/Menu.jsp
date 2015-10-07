@@ -18,16 +18,16 @@
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
 					<li><a href="ShowHomeServlet"><span
-							class="glyphicon glyphicon-home"></span>Trang chủ</a></li>
+							class="glyphicon glyphicon-home"></span>ホーム<br>Trang chủ</a></li>
 					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span
-							class="glyphicon glyphicon-user"></span>QL thành viên<br>翻訳文書のリスト
+							class="glyphicon glyphicon-user"></span>QL thành viên<br>
 							<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="ListAccountServlet"><span
-									class="glyphicon glyphicon-user"></span>QL người dùng</a></li>
+									class="glyphicon glyphicon-user"></span>ユーザーの管理<br>QL người dùng</a></li>
 							<li><a href="CTVServlet"><span
-									class="glyphicon glyphicon-signal"></span>QL cộng tác viên -
-									統計的</a></li>
+									class="glyphicon glyphicon-signal"></span>QL cộng tác viên
+									</a></li>
 						</ul></li>
 					<li><a href="ListCategoryServlet"><span
 							class="glyphicon glyphicon-list"></span>QL danh mục</a></li>
@@ -53,7 +53,7 @@
 					<li><a href="TaiNguyenServlet"><span
 							class="glyphicon glyphicon-briefcase"></span>QL tài nguyên</a></li>
 					<li><a href="StatisticalServlet"><span
-							class="glyphicon glyphicon-signal"></span>Thống kê</a></li>
+							class="glyphicon glyphicon-signal"></span>統計的<br>Thống kê</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span
@@ -62,7 +62,7 @@
 							<li><a href="EditProfileServlet"><span
 									class="glyphicon glyphicon-credit-card"></span>Hồ sơ<br>-</a></li>
 							<li><a href="LogoutServlet"><span
-									class="glyphicon glyphicon-log-out"></span> Đăng xuất<br>ログアウト</a></li>
+									class="glyphicon glyphicon-log-out"></span>ログアウト<br>Đăng xuất</a></li>
 						</ul></li>
 
 

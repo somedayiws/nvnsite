@@ -29,7 +29,8 @@ public class DataDanhMucServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		String vitri = request.getParameter("vitri");
-		if(vitri == null) vitri = "0";
+		System.out.println("vị trí: "+vitri);
+		if(vitri == null || vitri.contains("NaN")) vitri = "0";
 		DanhMucBO danhmucbo = new DanhMucBO();
 		ArrayList<DANHMUC> list = danhmucbo.getListDanhMuc(vitri, "4");
 		request.setAttribute("list", list);

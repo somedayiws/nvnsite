@@ -68,6 +68,7 @@ public class BaiVietDAO {
 		String sql = "select IdBaiViet, MoTaVi, MoTaJa,TenBaiVietVi, TenBaiVietJa, danhmuc.IdDanhMuc, TenDanhMucVi, TenDanhMucJa, HienThi, taikhoan.IdTaiKhoan, TenTaiKhoan, MatKhau, HoTen, DiaChi, DienThoai, Email, QuyenQuanTri, NoiDungVi, NoiDungJa, TrangThai, GhiChu, LienKet from baiviet "
 					+ "inner join danhmuc on baiviet.IdDanhMuc=danhmuc.IdDanhMuc "
 					+ "inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan "
+					+ "where baiviet.CoXoa = 0 "
 					+ "limit " + n + ", " + top;
 		rs = db.getResultSet(sql);
 		
@@ -96,7 +97,7 @@ public class BaiVietDAO {
 	 */
 	public ArrayList<BAIVIET> getListBaiViet(String id, String vitri, String top) {
 		// TODO Auto-generated method stub
-		String sql = "select IdBaiViet,TenBaiVietVi,TenBaiVietJa,MoTaVi,MoTaJa,NoiDungVi,NoiDungJa,NgayDang,Lienket,LuotXem,HoTen from baiviet inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan where TrangThai=N'OK' and IdDanhMuc=N'"+DinhDangSQL.FomatSQL(id)+"' order by NgayDang desc, LuotXem desc limit " + vitri + ", " +top;
+		String sql = "select IdBaiViet,TenBaiVietVi,TenBaiVietJa,MoTaVi,MoTaJa,NoiDungVi,NoiDungJa,NgayDang,Lienket,LuotXem,HoTen from baiviet inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan where TrangThai=N'OK' and IdDanhMuc=N'"+DinhDangSQL.FomatSQL(id)+"' and baiviet.CoXoa = 0 order by NgayDang desc, LuotXem desc limit " + vitri + ", " +top;
 		ResultSet rs = db.getResultSet(sql);
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		ArrayList<BAIVIET> list = new ArrayList<BAIVIET>();
@@ -202,11 +203,17 @@ public class BaiVietDAO {
 		ResultSet rs = null;
 		String sql = "";
 		if(loai.equals("Moi"))
-			sql = "select IdBaiViet, TenBaiVietVi, TenBaiVietJa,LienKet,MoTaVi,MoTaJa from baiviet where TrangThai='OK' order by NgayDang desc limit 10";
+			sql = "select IdBaiViet, TenBaiVietVi, TenBaiVietJa,LienKet,MoTaVi,MoTaJa from baiviet where TrangThai='OK' and baiviet.CoXoa = 0 order by NgayDang desc limit 10";
 		else if(loai.equals("hotPosts"))
-			sql = "select baiviet.IdBaiViet, TenBaiVietVi, TenBaiVietJa,LienKet,MoTaVi,MoTaJa, test.sobinhluan, baiviet.LuotXem from baiviet left join (select binhluan.IdBaiViet, count(*) as sobinhluan from binhluan group by binhluan.IdBaiViet order by sobinhluan desc) as test on test.IdBaiViet = baiviet.IdBaiViet where (DATE_SUB(CURDATE(),INTERVAL 14 DAY)) <= baiviet.NgayDang and baiviet.TrangThai = 'OK' order by test.sobinhluan desc, baiviet.LuotXem desc limit 4";
+			sql = "select baiviet.IdBaiViet, TenBaiVietVi, TenBaiVietJa,LienKet,MoTaVi,MoTaJa, test.sobinhluan, baiviet.LuotXem "
+					+ "from baiviet "
+					+ "left join (select binhluan.IdBaiViet, count(*) as sobinhluan from binhluan "
+					+ "group by binhluan.IdBaiViet "
+					+ "order by sobinhluan desc) as test on test.IdBaiViet = baiviet.IdBaiViet "
+					+ "where  baiviet.CoXoa = 0 and (DATE_SUB(CURDATE(),INTERVAL 14 DAY)) <= baiviet.NgayDang and baiviet.TrangThai = 'OK' "
+					+ "order by test.sobinhluan desc, baiviet.LuotXem desc limit 4";
 		else if(loai.equals("slidePosts"))
-			sql = "select baiviet.IdBaiViet, TenBaiVietVi, TenBaiVietJa,LienKet,MoTaVi,MoTaJa from baiviet where baiviet.GimTrangChu = '1' and baiviet.TrangThai = 'OK' order by RAND() limit 5";
+			sql = "select baiviet.IdBaiViet, TenBaiVietVi, TenBaiVietJa,LienKet,MoTaVi,MoTaJa from baiviet where baiviet.GimTrangChu = '1' and baiviet.TrangThai = 'OK' and baiviet.CoXoa = 0  order by RAND() limit 5";
 		rs = db.getResultSet(sql);
 //		BinhLuanDAO bl = new BinhLuanDAO();
 		try {
@@ -240,7 +247,7 @@ public class BaiVietDAO {
 		// TODO Auto-generated method stub
 		String sql = "select IdBaiViet,TenBaiVietVi,TenBaiVietJa,MoTaVi,MoTaJa,NoiDungVi,NoiDungJa,NgayDang,Lienket,LuotXem,HoTen from baiviet "
 				+ "inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan "
-				+ "where TrangThai=N'OK' and (TenBaiVietJa like N'%"+txtFind+"%' or TenBaiVietVi like N'%"+txtFind+"%'"
+				+ "where TrangThai=N'OK' and baiviet.CoXoa = 0 and (TenBaiVietJa like N'%"+txtFind+"%' or TenBaiVietVi like N'%"+txtFind+"%'"
 				+ " or MotaJa like N'%"+txtFind+"%' or MotaVi like N'%"+txtFind+"%')"
 				+ "order by NgayDang desc, LuotXem desc limit " + vitri + ", " +top;
 		ResultSet rs = db.getResultSet(sql);
@@ -277,7 +284,7 @@ public class BaiVietDAO {
 			sql = "select IdBaiViet,TenBaiVietVi,TenBaiVietJa,MoTaVi,MoTaJa,NoiDungVi,NoiDungJa,NgayDang,Lienket,LuotXem,HoTen from baiviet "
 					+ "inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan "
 					+ "inner join danhmuc on baiviet.IdDanhMuc=danhmuc.IdDanhMuc "
-					+ "where TrangThai=N'OK' and (TenDanhMucVi like N'%"+txtFind+"%' or TenDanhMucJa like N'%"+txtFind+"%'"
+					+ "where TrangThai=N'OK' and baiviet.CoXoa = 0 and (TenDanhMucVi like N'%"+txtFind+"%' or TenDanhMucJa like N'%"+txtFind+"%'"
 					+ " or TenBaiVietVi like N'%"+txtFind+"%' or TenBaiVietJa like N'%"+txtFind+"%'"
 					+ " or MotaVi like N'%"+txtFind+"%' or MotaJa like N'%"+txtFind+"%') "
 					+ "order by NgayDang desc, LuotXem desc limit " + vitri + ", " +top;
@@ -285,13 +292,13 @@ public class BaiVietDAO {
 			sql = "select IdBaiViet,TenBaiVietVi,TenBaiVietJa,MoTaVi,MoTaJa,NoiDungVi,NoiDungJa,NgayDang,Lienket,LuotXem,HoTen from baiviet "
 					+ "inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan "
                     + "inner join danhmuc on baiviet.IdDanhMuc=danhmuc.IdDanhMuc "
-					+ "where TrangThai=N'OK' and (TenDanhMucVi like N'%"+txtFind+"%' or TenDanhMucJa like N'%"+txtFind+"%' "
+					+ "where TrangThai=N'OK' and baiviet.CoXoa = 0 and (TenDanhMucVi like N'%"+txtFind+"%' or TenDanhMucJa like N'%"+txtFind+"%' "
 					+ "or TenBaiVietVi like N'%"+txtFind+"%' or TenBaiVietJa like N'%"+txtFind+"%') "
 					+ "order by NgayDang desc, LuotXem desc limit " + vitri + ", " +top;
 		}else {
 			sql = "select IdBaiViet,TenBaiVietVi,TenBaiVietJa,MoTaVi,MoTaJa,NoiDungVi,NoiDungJa,NgayDang,Lienket,LuotXem,HoTen from baiviet "
 					+ "inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan "
-					+ "where TrangThai=N'OK' and (TenBaiVietJa like N'%"+txtFind+"%' or TenBaiVietVi like N'%"+txtFind+"%'"
+					+ "where TrangThai=N'OK' and baiviet.CoXoa = 0 and (TenBaiVietJa like N'%"+txtFind+"%' or TenBaiVietVi like N'%"+txtFind+"%'"
 					+ " or MotaJa like N'%"+txtFind+"%' or MotaVi like N'%"+txtFind+"%')"
 					+ "order by NgayDang desc, LuotXem desc limit " + vitri + ", " +top;
 		}
@@ -332,7 +339,7 @@ public class BaiVietDAO {
 		String sql = "select baiviet.IdBaiViet, TenBaiVietVi, TenBaiVietJa, MotaVi, MotaJa, NoiDungVi, NoiDungJa, GhiChu from baiviet "
 				+ "inner join lichsu on baiviet.IdBaiViet = lichsu.IdBaiViet "
 				+ "where (lichsu.TrangThai = N'ChuyenDich' or lichsu.TrangThai = N'DangDich' or lichsu.TrangThai = N'LoiDich' "
-				+ ") and lichsu.IdTaiKhoan = N'"+idTaiKhoan+"'";
+				+ ") and baiviet.CoXoa = 0 and lichsu.IdTaiKhoan = N'"+idTaiKhoan+"'";
 		
 		//Tạo menu phân trang Url, page, sql
 		db.createMenu("DanhSachBaiDichServlet?view=all&", page, sql);
@@ -425,17 +432,17 @@ public class BaiVietDAO {
 			sql = "select baiviet.IdBaiViet, TenBaiVietVi, TenBaiVietJa, MotaVi, MotaJa, NoiDungVi, NoiDungJa, GhiChu from baiviet "
 					+ "inner join lichsu on baiviet.IdBaiViet = lichsu.IdBaiViet "
 					+ "where (lichsu.TrangThai = N'ChuyenDich' or lichsu.TrangThai = N'DangDich' or lichsu.TrangThai = N'LoiDich'"
-					+ ") and CURDATE()-ThoiGian>3  and lichsu.IdTaiKhoan = N'"+idTaiKhoan+"'";
+					+ ") and baiviet.CoXoa = 0 and CURDATE()-ThoiGian>3  and lichsu.IdTaiKhoan = N'"+idTaiKhoan+"'";
 		}else if(view.equals("moi")){
 			sql = "select baiviet.IdBaiViet, TenBaiVietVi, TenBaiVietJa, MotaVi, MotaJa, NoiDungVi, NoiDungJa, GhiChu from baiviet "
 					+ "inner join lichsu on baiviet.IdBaiViet = lichsu.IdBaiViet "
 					+ "where (lichsu.TrangThai = N'ChuyenDich' or lichsu.TrangThai = N'LoiDich'"
-					+ ") and lichsu.IdTaiKhoan = N'"+idTaiKhoan+"'";
+					+ ") and baiviet.CoXoa = 0 and lichsu.IdTaiKhoan = N'"+idTaiKhoan+"'";
 		}else{
 			sql = "select baiviet.IdBaiViet, TenBaiVietVi, TenBaiVietJa, MotaVi, MotaJa, NoiDungVi, NoiDungJa, GhiChu from baiviet "
 					+ "inner join lichsu on baiviet.IdBaiViet = lichsu.IdBaiViet "
 					+ "where (lichsu.TrangThai = N'DangDich'"
-					+ ") and lichsu.IdTaiKhoan = N'"+idTaiKhoan+"'";
+					+ ") and baiviet.CoXoa = 0 and lichsu.IdTaiKhoan = N'"+idTaiKhoan+"'";
 		}
 		System.out.println("sql: "+sql);
 		//Tạo menu phân trang Url, page, sql
@@ -649,11 +656,11 @@ public class BaiVietDAO {
 		// TODO Auto-generated method stub
 		String sql = "";
 		if(loai.equals("moi")){
-			sql = "select count(*) from (select * from baiviet where TrangThai='MoiDang' or TrangThai='KhongDich') as tam";
+			sql = "select count(*) from (select * from baiviet where (TrangThai='MoiDang' or TrangThai='KhongDich') and CoXoa = 0)  as tam";
 		}else if(loai.equals("xong")){
-			sql = "select count(*) from (select * from baiviet where TrangThai='DichXong') as tam";
+			sql = "select count(*) from (select * from baiviet where TrangThai='DichXong' and CoXoa = 0) as tam";
 		}else {
-			sql = "select count(*) from (select * from baiviet where TrangThai='HuyDich') as tam";
+			sql = "select count(*) from (select * from baiviet where TrangThai='HuyDich' and CoXoa = 0) as tam";
 		}
 		ResultSet rs = db.getResultSet(sql);
 		try {
