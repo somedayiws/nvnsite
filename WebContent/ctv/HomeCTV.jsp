@@ -14,7 +14,7 @@
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/jquery-2.1.0.min.js"></script>
 <script src="../js/jquery.lazyload.js"></script>
-<title>Danh sách bài viết</title>
+<title>Danh sách bài viết - 文書のリスト </title>
 <!--auto combobox -->
 <script src="../js/magicsuggest-min.js"></script>
 <link rel="stylesheet" href="css/CongtacvienStyle.css">
@@ -94,8 +94,8 @@
 		<table class="table table-hover">
 		  <tr id="tieude">
 		  	<td class="clid">ID</td>
-		  	<td class="cltde">Tiêu Đề - タイトル</td>
-		  	<td class="clmta">Mô Tả - 概要</td>
+		  	<td class="cltde">Tiêu Đề - </td>
+		  	<td class="clmta">Mô Tả - </td>
 		  	<td class="clx"><i class="fa fa-check-square"></i></td>
 		  	<td class="clvd"></td>
 		  </tr>
@@ -132,8 +132,8 @@
 		<table class="table table-hover">
 		  <tr id="tieude">
 		  	<td class="clid">ID</td>
-		  	<td class="cltde">Tiêu Đề - タイトル</td>
-		  	<td class="clmta">Mô Tả - 概要</td>
+		  	<td class="cltde">Tiêu Đề - </td>
+		  	<td class="clmta">Mô Tả - </td>
 		  	<td class="clx"><i class="fa fa-check-square"></i></td>
 		  	<td class="clvd"></td>
 		  </tr>

@@ -63,8 +63,8 @@
 		<table class="table table-hover dulieu">
 		  <tr id="tieude">
 		  	<td class="clid">ID</td>
-		  	<td class="cltde">Tiêu Đề - タイトル</td>
-		  	<td class="clmta">Mô Tả - 概要</td>
+		  	<td class="cltde">Tiêu Đề -</td>
+		  	<td class="clmta">Mô Tả -</td>
 		  	<td class="clx"><i class="fa fa-check-square"></i></td>
 		  	<td class="clvd"></td>
 		  </tr>

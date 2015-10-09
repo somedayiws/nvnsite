@@ -75,10 +75,10 @@ input.error {
 			},
 			messages : {
 				taikhoan : {
-					required : "<br>Chưa nhập tên tài khoản<br>"
+					required : "<br>Chưa nhập tên tài khoản<br>アカウントをまだ入力しない"
 				},
 				matkhau : {
-					required : "<br>Chưa nhập mật khẩu!"
+					required : "<br>Chưa nhập mật khẩu<br>アカウントをまだ入力しない"
 				}
 			},
 			submitHandler : function(form) {

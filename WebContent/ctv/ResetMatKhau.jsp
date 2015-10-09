@@ -11,7 +11,7 @@
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/jquery-2.1.0.min.js"></script>
 <script src="../js/jquery.lazyload.js"></script>
-<title>Reset Mật Khẩu</title>
+<title>Reset Mật Khẩu - パスワードのリセット </title>
 <!--auto combobox -->
 <script src="../js/magicsuggest-min.js"></script>
 <link rel="stylesheet" href="css/CongtacvienStyle.css">
@@ -32,7 +32,7 @@ input.error {
 <body>
 <div class="container">
 	<p>
-		<marquee>Trang cộng tác viên VIET-NHAT</marquee>
+		<marquee>Trang cộng tác viên VIET-NHAT - </marquee>
 	</p>
 </div>
 	<!-- nội dung chính -->
@@ -40,7 +40,7 @@ input.error {
 		<img alt="Cộng tác viên Việt - Nhât" src="../images/logoctv.jpg">
 		<form class="panel-login" action="CTVResetMatKhauServlet" method="post" id="freset">
 			<i class="fa fa-pinterest-p fa-2x"></i>
-			<label>Thông tin tài khoản</label>
+			<label>Thông tin tài khoản - アカウントの情報 </label>
 			<%= request.getAttribute("meg")==null ? "<div class='alert alert-info' role='alert'><p>Hãy nhập tài khoản cộng tác viên của bạn bên dưới và click vào button \"Lấy mật khẩu - ログイン\". Kiểm tra lại email của bạn đã đăng ký với chúng tôi để lấy lại mật khẩu. Cám ơn!<br>以下のボタンをクリックし、協力者のアカウントを入力してください。パスワードを収得し、ログイン\"。パスワードを収得するため、申請されたメールを改めて確認して下さい。ありがとう。</p></div>" : request.getAttribute("meg") %>
 			<div class="row">
 				<label><i class="fa fa-user"></i> Tài khoản - アカウント </label>
