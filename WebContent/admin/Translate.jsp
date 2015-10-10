@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="css/register.css">
 <link rel="stylesheet" href="css/translate.css">
 
-<title>Dịch bài - </title>
+<title>Dịch bài - 記事を翻訳する。</title>
 </head>
 
 <%
@@ -70,10 +70,10 @@
 				<div class="col-md-8 col-md-offset-4" >
 
 						<button class="btn btn-1 btn-1c"  name="btn" value="btnSave" type="submit">
-							<span class="glyphicon glyphicon-floppy-save"></span>Lưu bài -
+							<span class="glyphicon glyphicon-floppy-save"></span>Lưu bài - 記事を保存する。
 						</button>
 					<button class="btn btn-1 btn-1c" name = "btn" value="btnOk" type="submit">
-							<span class="glyphicon glyphicon-send"></span>Duyệt bài -
+							<span class="glyphicon glyphicon-send"></span>Duyệt bài - 記事を承認する。
 					</button>
 					 <a href="ShowDetailPostsServlet?id=<%=post.getIdBaiViet()%>&type=back&btn=btnBack">
 					 	<button type="button" class="btn btn-1 btn-1c">
@@ -87,7 +87,7 @@
 				} else {
 			%>
 			<div class="alert alert-warning">
-				<strong>Cảnh bảo -  !</strong> Trang web không tìm thấy - 
+				<strong>Cảnh bảo -  警告する。!</strong> Trang web không tìm thấy - ウェブページを見つからない
 			</div>
 			<%
 				}

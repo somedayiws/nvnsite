@@ -10,7 +10,9 @@
 <link rel="stylesheet" href="../bootstrap-3.3.5-dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/home.css">
 <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
-
+<!-- __________________JS_____________________ -->
+<script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript" src="../bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
 <title>Trang chủ - ホーム</title>
 </head>
 <%
@@ -44,7 +46,7 @@
 			<div class = "col-md-9" id = "div_show_post_new">
 				<%if(postsNew!=null){ %>
 					<div class="col-md-12 table-responsive panel panel-primary">
-				<div class="panel-heading">Bài viết -</div>
+				<div class="panel-heading">Bài viết - 記事</div>
 				<div class="panel-body">
 					<table class="table table-hover table-condensed">
 						<thead>
@@ -75,7 +77,7 @@
 								
 								<td>
 												<%if(postsNew.get(i).getTenBaiVietVi()== null && postsNew.get(i).getTenBaiVietJa()==null){ %>
-													<span class="label label-default">Không có tên bài viết</span>
+													<span class="label label-default">Không có tên bài viết - 記事のタイトルが無い</span>
 												<%}else{ %>
 													<%if(postsNew.get(i).getTenBaiVietVi()!= null){%>
 														<%=postsNew.get(i).getTenBaiVietVi()%><br>
@@ -94,29 +96,29 @@
 								<td><%=postsNew.get(i).getNgayDang()%></td>
 								<td>
 									<%if(postsNew.get(i).getTrangThai().equals("MoiDang")){ %>
-										<a href="SendPostServlet?idPost=<%=postsNew.get(i).getIdBaiViet()%>&status=MoiDang" data-toggle="tooltip" title="Chuyển dịch - "><button
+										<a href="SendPostServlet?idPost=<%=postsNew.get(i).getIdBaiViet()%>&status=MoiDang" data-toggle="tooltip" title="Chuyển dịch - 転換する。"><button
 											type="button" class="btn btn-default btn-sm">
 											<span class="glyphicon glyphicon-send"></span>
 										</button></a>
 									<%}else if(postsNew.get(i).getTrangThai().equals("DangDich")) {%>
-										<a href="#" data-toggle="tooltip" title="Hủy dịch - "><button
+										<a href="#" data-toggle="tooltip" title="Hủy dịch - 翻訳をキャンセルした。"><button
 											type="button" class="btn btn-warning btn-sm"
 											data-toggle="modal"
 											data-target="#delete<%=postsNew.get(i).getIdBaiViet()%>">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 										</button></a>
 									<%}else if(postsNew.get(i).getTrangThai().equals("DichXong")) {%>
-										<a href="ShowDetailPostsServlet?id=<%=postsNew.get(i).getIdBaiViet()%>" data-toggle="tooltip" title="Duyệt bài - "><button
+										<a href="ShowDetailPostsServlet?id=<%=postsNew.get(i).getIdBaiViet()%>" data-toggle="tooltip" title="Duyệt bài - 記事を承認する。"><button
 											type="button" class="btn btn-default btn-sm">
 											<span><img src="../images/icons/arrow .gif" style="width: 20px; margin-right: -9px;"></span>
 										</button></a>
 									<%}else if(postsNew.get(i).getTrangThai().equals("KhongDich")) {%>
-										<a href="ShowDetailPostsServlet?id=<%=postsNew.get(i).getIdBaiViet()%>" data-toggle="tooltip" title="Duyệt bài - "><button
+										<a href="ShowDetailPostsServlet?id=<%=postsNew.get(i).getIdBaiViet()%>" data-toggle="tooltip" title="Duyệt bài - 記事を承認する。"><button
 											type="button" class="btn btn-default btn-sm">
 											<span><img src="../images/icons/arrow .gif" style="width: 20px; margin-right: -9px;"></span>
 										</button></a>
 									<%}else if(postsNew.get(i).getTrangThai().equals("HuyDich")){ %>
-										<a href="SendPostServlet?idPost=<%=postsNew.get(i).getIdBaiViet()%>&status=HuyDich" data-toggle="tooltip" title="Chuyển dịch - "><button
+										<a href="SendPostServlet?idPost=<%=postsNew.get(i).getIdBaiViet()%>&status=HuyDich" data-toggle="tooltip" title="Chuyển dịch - 転換する。"><button
 											type="button" class="btn btn-default btn-sm">
 											<span class="glyphicon glyphicon-send"></span>
 										</button></a>
@@ -127,8 +129,8 @@
 										<button type="button" id="<%=postsNew.get(i).getIdBaiViet()%>"
 											data-toggle="tooltip"
 											<%if(postsNew.get(i).getGimTrangChu()==1) {%>
-											title="Đã ghim"
-											<% }else{%>title="Chưa ghim"<%}%>
+											title="Đã ghim - 固定された。"
+											<% }else{%>title="Chưa ghim - まだ固定しない。"<%}%>
 											<%if (postsNew.get(i).getGimTrangChu()==1) { %>
 											class="btn btn-warning btn-sm btnbookmark" <%}else {%>
 											class="btn btn-primary btn-sm btnbookmark" <%}%>
@@ -216,7 +218,6 @@
 	}%>				
 </body>
 <!-- ---------- JS ------------------------->
-<script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
-<script type="text/javascript" src="../bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+
 <script type="text/javascript" src="js/Home(Admin).js"></script>
 </html>

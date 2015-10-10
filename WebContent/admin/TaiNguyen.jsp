@@ -15,7 +15,7 @@
 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 <link rel="stylesheet" href="css/register.css">
 <link rel="stylesheet" href="css/advertisement.css">
-<title>Quản lý tài nguyên</title>
+<title>Quản lý chung - 全体に管理する</title>
 <script type="text/javascript">
 	function capnhatlai() {
 		$("#capnhat").removeAttr('disabled');
@@ -62,16 +62,16 @@
 											},
 											messages : {
 												SoTuDich : {
-													required : "Phải nhập số từ trên 1 trang - 1からページ番号を入力するには",
-													range : "Số từ trên trang phải trong khoảng từ 1 đến 100000 - ページ上の単語の数は、1〜100000の間であるべきです"
+													required : "Phải nhập số từ trên 1 trang - 1ページ以上から数字を入力して下さい",
+													range : "Số từ trên trang phải trong khoảng từ 1 đến 100000 - 1ページに100000までに入力しなければならない。"
 												},
 												ThanhTienVN : {
-													required : "Phải nhập đơn giá tính cho trang - ページに対して計算単価を入力する必要があります",
-													range : "Đơn giá trong khoảng từ 1 đến 10000000 - 千万〜1の範囲の単価"
+													required : "Phải nhập đơn giá tính cho trang - ページに単価を入力しなければならない",
+													range : "Đơn giá trong khoảng từ 1 đến 10000000 - 単価は約1 から 10000000までです。"
 												},
 												ThanhTienJA : {
-													required : "Phải nhập đơn giá tính cho trang - ページに対して計算単価を入力する必要があります",
-													range : "Đơn giá trong khoảng từ 1 đến 10000000 - 千万〜1の範囲の単価"
+													required : "Phải nhập đơn giá tính cho trang - ページに単価を入力しなければならない",
+													range : "Đơn giá trong khoảng từ 1 đến 10000000 - 単価は約1 から 10000000までです。"
 												}
 											}
 										});
@@ -89,39 +89,41 @@
 			enctype="multipart/form-data">
 			<!-- Hình ảnh giá dịch vụ dịch thuật -->
 			<div class="form-group" id="banggia">
-				<label class="nhan1"> Biểu giá dịch thuật song ngữ Việt-Nhật</label> <br> Số
-				từ trên 1 trang : <input class="form-control"
+				<label class="nhan1"> Biểu giá dịch thuật song ngữ Việt-Nhật - ベトナム語-日本語の翻訳価格表</label> <br> Số
+				từ trên 1 trang - 1ページ以上 : <input class="form-control"
 					onchange="capnhatlai();"
 					value="<%=(String) request.getAttribute("sotu")%>" type="text"
-					id="SoTuDich" name="SoTuDich" /> <br> Đơn giá dịch(VND) : <input
+					id="SoTuDich" name="SoTuDich" /> <br> Đơn giá dịch(VND) - 翻訳の単価（ベトナムドン） : <input
 					class="form-control" onchange="capnhatlai();"
 					value="<%=request.getAttribute("giaVN")%>" type="text"
-					id="ThanhTienVN" name="ThanhTienVN" /> <br> Đơn giá dịch(JPY)
+					id="ThanhTienVN" name="ThanhTienVN" /> <br> Đơn giá dịch(JPY) - 翻訳の単価（日本円）
 				: <input class="form-control" onchange="capnhatlai();"
 					value="<%=request.getAttribute("giaJA")%>" type="text"
-					id="ThanhTienVN" name="ThanhTienJA" /> <br> Bảng giá quảng bá
+					id="ThanhTienVN" name="ThanhTienJA" /> <br> Bảng giá khuyến mãi - キャンペーンの価格
 				: <input type="file" id="Image" name="Image" onchange="xem(this);" />
 				<input type="hidden" name="Imagee"
 					value="<%=request.getAttribute("banggiadich")%>">
 				<p class="help-block">
-					Chọn file .png, .jpg ... <br> <img alt="Icon đại diện"
+					Chọn tập tin có đuôi là .png, .jpg, .gif, .jpeg <br> ファイルの形式は.png, .jpg, .gif, .jpegを選択して下さい。
+					<img alt="Icon đại diện"
 						src="../<%=request.getAttribute("banggiadich")%>" id="fu2">
 				</p>
 
 			</div>
 			<!-- Hình ảnh giá dịch vụ quảng cáo -->
 			<div class="form-group" id="banggia">
-				<label class="nhan1"> Biểu giá dịch vụ quảng cáo</label> <input type="file"
+				<label class="nhan1"> Biểu giá dịch vụ quảng cáo - 広告の価格のリスト</label> <input type="file"
 					id="Image1" name="Image1" onchange="xem1(this);" /> <input
 					type="hidden" name="Imagee1"
 					value="<%=request.getAttribute("banggiaqc")%>">
 				<p class="help-block">
-					Chọn file .png, .jpg ... <br> <img alt="Icon đại diện"
+					Chọn tập tin có đuôi là .png, .jpg, .gif, .jpeg <br> ファイルの形式は.png, .jpg, .gif, .jpegを選択して下さい。 
+					<img alt="Icon đại diện - 表示のアイコン"
 						src="../<%=request.getAttribute("banggiaqc")%>" id="fu22">
 				</p>
 			</div>
 			<button class="btn btn-primary btn-sm" type="submit" id="capnhat"
-				disabled="disabled">Cập nhật - 広告を作成</button>
+				disabled="disabled">Cập nhật - アップデート</button>
 		</form>
 	</div>
 </body>

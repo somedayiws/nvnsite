@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="css/restore.css">
 <script type="text/javascript"
 	src="../check_validate/checkCreate(Admin).js"></script>
-<title>Phục hồi baì viết</title>
+<title>Phục hồi bài viết</title>
 <script type="text/javascript">
 	
 </script>
@@ -49,7 +49,7 @@
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th>Tên bài viết(Việt Nam - Japan)</th>
+								<th>Tên bài viết(Việt Nam - Nhật Bản)<br>記事名(ベトナム - 日本)</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -63,7 +63,7 @@
 								<td><a
 									href="RestoreServlet?idPosts=<%=list_PostsDeleted.get(i).getIdBaiViet()%>"><button
 											type="button" class="btn btn-default">
-											<span class="glyphicon glyphicon-pencil"></span>Phục hồi
+											<span class="glyphicon glyphicon-pencil"></span>Khôi phục - 回復
 										</button></a></td>
 							</tr>
 						</tbody>

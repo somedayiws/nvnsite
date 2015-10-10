@@ -162,7 +162,7 @@ public class CreateCategoryServlet extends HttpServlet {
 				if (id_Category == null) {
 					request.setAttribute(
 							"error",
-							"Canot increate automatic IdDanhMuc! Please contact with programmer to fix error this");
+							"Không thể tăng ID danh mục");
 					RequestDispatcher requestDis_error = request
 							.getRequestDispatcher("Error.jsp");
 					requestDis_error.forward(request, response);
@@ -186,7 +186,7 @@ public class CreateCategoryServlet extends HttpServlet {
 			}
 
 		} else {
-			request.setAttribute("error", "You must enter fully infomation");
+			request.setAttribute("error", "Bạn phải nhập đầy đủ thông tin -");
 			RequestDispatcher requestDis_error = request
 					.getRequestDispatcher("Error.jsp");
 			requestDis_error.forward(request, response);

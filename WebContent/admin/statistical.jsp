@@ -181,7 +181,7 @@ $(document).ready(function() {
 								      				<span class="badge">Không tìm thấy - 見つからない。</span>
 								      			<%}%>								      		
 								      		<%}else{ %>
-								      			 <div class="well">Không thể thống kê tài khoản CTV - </div>
+								      			 <div class="well">Không thể thống kê tài khoản CTV - 協力者のアカウントをまとめることができない</div>
 								      		<%} %>	
 								      		</div>
 								      		</div>
@@ -352,7 +352,7 @@ $(document).ready(function() {
 								      				<span class="badge">Không tìm thấy - 見つからない。</span>
 								      			<%}%>
 								      		<%}else{ %>
-								      			 <div class="well">Không thể thống kê bài viết - </div>
+								      			 <div class="well">Không thể thống kê bài viết - 記事をまとめることができない</div>
 								      		<%} %>
 								      		</div>
         </div>
@@ -396,7 +396,7 @@ $(document).ready(function() {
         	Ngôn ngữ - 言語: <span class="badge"><%if(listResultAccount.get(i).getNgonNgu().equals("vi")){%>Việt Nam<%}else{%>Nhật Bản<%} %></span>
         </h4>
         	 <%}else{ %>
-        		Tài khoản này đã bị xóa hoặc đã bị khóa tài khoản
+        		Tài khoản này đã bị xóa hoặc đã bị khóa tài khoản - このアカウントはロック・禁止された。
         	<%} %>        	
         </div>
        
@@ -437,10 +437,10 @@ $(document).ready(function() {
         <h4>
         	Tên danh mục tiếng việt - ベトナム語（項目名）: <span class="badge"><%=listResultCategory.get(i).getTenDanhMucVi() %></span><br>
         	Tên danh mục tiếng nhật - 日本語（項目名）: <span class="badge"><%=listResultCategory.get(i).getTenDanhMucJa() %></span><br>
-        	<span class="badge"><%if(listResultCategory.get(i).getHienThi() == 1){ %>Có - 有 <%}else{ %>Không - 無<%} %></span>hiển thị lên trang chủ
+        	<span class="badge"><%if(listResultCategory.get(i).getHienThi() == 1){ %>Có hiển thị lên trang chủ - 有ホームページに表示する。 <%}else{ %>Không hiển thị lên trang chủ - 無ホームページに表示する。<%} %></span>
         </h4>
         	 <%}else{ %>
-        		Danh mục này đã bị xóa
+        		Danh mục này đã bị xóa - この項目が削除された。
         	<%} %>        	
         </div>
        
@@ -489,7 +489,7 @@ $(document).ready(function() {
         	
         </h4>        
         	 <%}else{ %>
-        		Bài viết này đã bị xóa
+        		Bài viết này đã bị xóa - この記事が削除された。
         	<%} %>        	
         </div>
        

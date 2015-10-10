@@ -76,9 +76,9 @@ public class RestoreServlet extends HttpServlet {
 			}
 			else if (valueId.contains("BV")) {
 				if (restore.restore("IdBaiViet", valueId, "baiviet")) {
-					result_Restore = "Phục hồi bài viết thành công - ";
+					result_Restore = "Phục hồi bài viết thành công - 記事の回復ができた";
 				} else {
-					result_Restore = "Phục hồi bài viết thất bại - ";
+					result_Restore = "Phục hồi bài viết thất bại - 記事の回復ができない";
 				}
 			}
 		}

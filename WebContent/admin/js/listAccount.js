@@ -5,7 +5,7 @@
  * */	
 
 $(".btnban").click(function() {
-	var returnValue = confirm("Bạn có muốn thay đổi tình trạng người dùng hay không?");
+	var returnValue = confirm("Bạn có muốn thay đổi tình trạng người dùng hay không - 貴方はユーザーの状況を更新したいですか？?");
 						if (returnValue == true) {
 							var idAcc = this.id;
 							$.ajax({
@@ -19,7 +19,7 @@ $(".btnban").click(function() {
 									$(".resultMessage_"+idAcc).html(res);
 								},
 								error : function() {
-									alert('Không thể thay đổi tình trạng');
+									alert('Không thể thay đổi tình trạng - 現況が変更できない');
 									$("#load").html("");
 								}
 							});

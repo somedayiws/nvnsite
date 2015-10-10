@@ -15,7 +15,7 @@
 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 <link rel="stylesheet" href="css/register.css">
 <link rel="stylesheet" href="css/advertisement.css">
-<title>Quản lý quảng cáo - 広告を管理します</title>
+<title>Quản lý quảng cáo - 広告の管理</title>
 <style type="text/css">
 #advNoHomepage{
 	display: none;
@@ -71,35 +71,35 @@ $(document).ready(function(){
    },
 	  messages : {
 	company:{
-		required:"Phải nhập tên đơn vị quảng cáo - 会社の広告を入力してください",        			
+		required:"Phải nhập tên đơn vị quảng cáo - 広告の会社名・企業を入力しなければならない",        			
 	},
 	link: {
-		required: "Phải nhập link quảng cáo - リンク広告を入力してください",
-		url: "Link không hợp lệ - リンク無効"
+		required: "Phải nhập link quảng cáo - 広告のリンクを入力しなければならない",
+		url: "Link không hợp lệ - 無効なリンク"
 	},
 	page:{ 
-		required: "Phải chọn trang hiển thị - 選択ページの表示",        			        			
+		required: "Phải chọn trang hiển thị - 表示するページを選択しければならない",        			        			
 	},
 	positionInHome:{
-		required: "Phải chọn vị trí hiển thị trên trang chủ - ホームページでの選択位置表示",        		
+		required: "Phải chọn vị trí hiển thị trên trang chủ - ホームページに表示する場所を選択しなければならない。",        		
 	},
 	positionInNoHome:{
-		required: "Phải chọn vị trí hiển thị trên các trang khác - 別のページで選択位置表示", 
+		required: "Phải chọn vị trí hiển thị trên các trang khác - 他のホームページに表示する場所を選択しなければならない。", 
 	},	
 	date:{
-		required: "Phải nhập ngày đăng - 日付を入力します",
+		required: "Phải nhập ngày đăng - 日付を入力しなければならない。",
 		date: "Ngày không hợp lệ - 無効な日付"
 	},
 	numberOfDay:{
-		required: "Phải nhập số ngày hiển thị - 日付の数を入力します",
-		range: "Số ngày trong khoảng từ 1 đến 100 - 1から100までの値を入力してください。"
+		required: "Phải nhập số ngày hiển thị - 表示する日程を入力しなければならない",
+		range: "Số ngày trong khoảng từ 1 đến 100 - 日付は1-100です"
 	},
 	Image:{
-		required: "Phải chọn hình ảnh để hiển thị - 表示する画像を選択します",
-		accept: "Định dạng ảnh không phù hợp - フォーマット無効"
+		required: "Phải chọn hình ảnh để hiển thị - 表示する画像を選択しなければならない。",
+		accept: "Định dạng ảnh không phù hợp - 合わない写真"
 	}, 
 	price:{
-		required: "Phải nhập giá quảng cáo - 価格広告を入力してください",
+		required: "Phải nhập giá quảng cáo - 広告の価格を入力しなければならない。",
 	}
 }
 });
@@ -135,18 +135,18 @@ function xem(f,x){
 				<button type="button" class="btn btn-primary btn-sm them" onclick="DieuHuong('ThemQuangCaoServlet');">Tạo quảng cáo - 広告を作成</button>
 		
 			<div class="col-md-10 col-md-offset-2 panel panel-primary quangcao">
-					<div class="panel-heading">Quảng cáo đang hiển thị - リスト広告</div>
+					<div class="panel-heading">Quảng cáo đang hiển thị - </div>
 					<div class="panel-body">
 						<div class="table-responsive table-hover">
 							<table class="table">
 							<thead>
 								<tr>
 									<th>ID</th>
-									<th>Đối tác<br>像</th>
-									<th>Liên kết<br>リンク</th>
-									<th>Trang<br>像</th>
+									<th>Đối tác<br>パートナー</th>
+									<th>Liên kết<br>連結する</th>
+									<th>Trang<br>ページ</th>
 									<th>Vị trí<br>位置</th>
-									<th>Số ngày</th>
+									<th>Số ngày<br>日付の数</th>
 									<th class="sua"></th>
 									<th class="xoa"></th>
 								</tr>
@@ -158,15 +158,15 @@ function xem(f,x){
 									<td><%=listHienThi.get(i).getIdQuangCao() %></td>
 									<td><%=listHienThi.get(i).getDonViQuangCao() %></td>
 									<td><%=listHienThi.get(i).getLienKet() %></td>
-									<td><%=listHienThi.get(i).getTrangHienThi()==1?"Home":"Khác" %></td>
+									<td><%=listHienThi.get(i).getTrangHienThi()==1?"Home - ホーム":"Khác - 他の" %></td>
 									<td><%=listHienThi.get(i).getViTri() %></td>
 									<td><%=listHienThi.get(i).getSoNgay() %></td>
 									<% if(listHienThi.get(i).getDonViQuangCao().equals("Mặt định")) { %>
-										<td><button type="button" class="btn btn-primary btn-sm" disabled="disabled" onclick="HienThi('<%= listHienThi.get(i).getIdQuangCao() %>', '1');">Gỡ bỏ - 削除します</button></td>
+										<td><button type="button" class="btn btn-primary btn-sm" disabled="disabled" onclick="HienThi('<%= listHienThi.get(i).getIdQuangCao() %>', '1');">Gỡ bỏ - 削除する</button></td>
 									<% } else { %>
-										<td><button type="button" class="btn btn-primary btn-sm" onclick="HienThi('<%= listHienThi.get(i).getIdQuangCao() %>', '1');">Gỡ bỏ - 削除します</button></td>
+										<td><button type="button" class="btn btn-primary btn-sm" onclick="HienThi('<%= listHienThi.get(i).getIdQuangCao() %>', '1');">Gỡ bỏ - 削除する</button></td>
 									<% } %>
-									<td><button type="button" class="btn btn-primary btn-sm" onclick="DieuHuong('CapNhatQuangCaoServlet?id=<%= listHienThi.get(i).getIdQuangCao() %>');">Chỉnh sửa - 編集</button></td>
+									<td><button type="button" class="btn btn-primary btn-sm" onclick="DieuHuong('CapNhatQuangCaoServlet?id=<%= listHienThi.get(i).getIdQuangCao() %>');">Chỉnh sửa - 修正</button></td>
 								</tr>
 							<%} %>
 							<%} %>
@@ -178,18 +178,18 @@ function xem(f,x){
 	<!--------------------------- Hiển thị danh sách các quảng cáo trong cơ sở dữ liệu ------------------->
 				<%= request.getAttribute("mes")==null ? "" : request.getAttribute("mes") %>
 				<div class="col-md-10 col-md-offset-2 panel panel-primary quangcao">
-					<div class="panel-heading">Danh sách quảng cáo - リスト広告</div>
+					<div class="panel-heading">Danh sách quảng cáo - 広告のリスト</div>
 					<div class="panel-body">
 						<div class="table-responsive table-hover">
 							<table class="table">
 							<thead>
 								<tr>
 									<th>ID</th>
-									<th>Đối tác<br>像</th>
-									<th>Liên kết<br>リンク</th>
-									<th>Trang<br>像</th>
+									<th>Đối tác<br>パートナー</th>
+									<th>Liên kết<br>連結する</th>
+									<th>Trang<br>ページ</th>
 									<th>Vị trí<br>位置</th>
-									<th>Số ngày</th>
+									<th>Số ngày<br>日付の数</th>
 									<th class="sua"></th>
 									<th class="sua"></th>
 									<th class="xoa"></th>
@@ -202,12 +202,12 @@ function xem(f,x){
 									<td><%=advertisement.get(i).getIdQuangCao() %></td>
 									<td><%=advertisement.get(i).getDonViQuangCao() %></td>
 									<td><%=advertisement.get(i).getLienKet() %></td>
-									<td><%=advertisement.get(i).getTrangHienThi()==1?"Home":"Khác" %></td>
+									<td><%=advertisement.get(i).getTrangHienThi()==1?"Home - ホーム":"Khác - 他の" %></td>
 									<td><%=advertisement.get(i).getViTri() %></td>
 									<td><%=advertisement.get(i).getSoNgay() %></td>	
-									<td><button type="button" class="btn btn-primary btn-sm" onclick="HienThi('<%= advertisement.get(i).getIdQuangCao() %>', '0')">Hiển thị - 削除します</button></td>	
-									<td><button type="button" class="btn btn-primary btn-sm" onclick="DieuHuong('CapNhatQuangCaoServlet?id=<%= advertisement.get(i).getIdQuangCao() %>');">Chỉnh sửa - 編集</button></td>
-									<td><button type="button" <%= advertisement.get(i).getDonViQuangCao().equals("Mặt định")?"disabled='disabled'":"" %> class="btn btn-primary btn-sm" onclick="XoaQC(<%= advertisement.get(i).getIdQuangCao() %>);">Xóa - 削除します</button></td>							
+									<td><button type="button" class="btn btn-primary btn-sm" onclick="HienThi('<%= advertisement.get(i).getIdQuangCao() %>', '0')">Hiển thị - 表示する</button></td>	
+									<td><button type="button" class="btn btn-primary btn-sm" onclick="DieuHuong('CapNhatQuangCaoServlet?id=<%= advertisement.get(i).getIdQuangCao() %>');">Chỉnh sửa - 修正</button></td>
+									<td><button type="button" <%= advertisement.get(i).getDonViQuangCao().equals("Mặt định")?"disabled='disabled'":"" %> class="btn btn-primary btn-sm" onclick="XoaQC(<%= advertisement.get(i).getIdQuangCao() %>);">Xóa - 削除</button></td>							
 								</tr>
 							<%} %>
 							<%} %>
@@ -225,9 +225,9 @@ function xem(f,x){
 					}
 					function HienThi(x, b){
 						if(b=='1')
-							$("#idQCgo").text("Bạn thật sự muốn gỡ bỏ quảng cáo " + x);
+							$("#idQCgo").text("Bạn thật sự muốn gỡ bỏ quảng cáo - あなたは本当に広告を削除したいですか " + x);
 						else
-							$("#idQCgo").text("Cho phép đăng quảng cáo " + x);
+							$("#idQCgo").text("Cho phép đăng quảng cáo - 広告の掲載することを許可する" + x);
 						$("#idGo").val(x);
 						$("#hienthi").val(b);
 						$('#goQC').modal('show');
@@ -243,15 +243,15 @@ function xem(f,x){
 				    <div class="modal-content">
 				      <div class="modal-header">
 				        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				        <h4 class="modal-title" id="myModalLabel">Xóa dữ liệu quảng cáo</h4>
+				        <h4 class="modal-title" id="myModalLabel">Xóa dữ liệu quảng cáo - 広告のデータペース</h4>
 				      </div>
 				      <div class="modal-body">
 				        Bạn thật sự muốn xóa quảng cáo <label id="idQC"></label> ???
 				        <input type="hidden" name="idQC" id="idXoa">
 				      </div>
 				      <div class="modal-footer">
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
-				        <button type="submit" class="btn btn-primary">Xóa</button>
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy - 削除する</button>
+				        <button type="submit" class="btn btn-primary">Xóa - 削除</button>
 				      </div>
 				    </div>
 				  </div>
@@ -263,8 +263,7 @@ function xem(f,x){
 				  <div class="modal-dialog">
 				    <div class="modal-content">
 				      <div class="modal-header">
-				        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				        <h4 class="modal-title" id="myModalLabel">Quản lý hiện/ẩn quảng cáo</h4>
+				        <h4 class="modal-title" id="myModalLabel">Quản lý hiện/ẩn quảng cáo - 表示/非表示な広告を管理する</h4>
 				      </div>
 				      <div class="modal-body">
 				        <label id="idQCgo"></label> ???
@@ -272,8 +271,8 @@ function xem(f,x){
 				        <input type="hidden" name="hienthi" id="hienthi">
 				      </div>
 				      <div class="modal-footer">
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
-				        <button type="submit" class="btn btn-primary">Chấp nhận</button>
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy - 削除する</button>
+				        <button type="submit" class="btn btn-primary">Chấp nhận - 承認する</button>
 				      </div>
 				    </div>
 				  </div>

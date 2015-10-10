@@ -18,7 +18,7 @@
 <script type="text/javascript" src="../check_validate/formEdit.js"></script>
 <link rel="stylesheet" href="css/register.css">
 <link rel="stylesheet" href="css/listPost.css">
-<title>Tìm kiếm bài viết</title>
+<title>Tìm kiếm bài viết - 検索記事</title>
 <script>
 	$(document)
 			.ready(
@@ -135,7 +135,7 @@
 							<option value="MoTaJa">Mô tả - Tiếng Nhật / 説明 - 日本語</option>
 							<option value="LuotXem">Lượt xem / 観覧回数</option>
 							<option value="NgayDang">Ngày đăng / 掲載の日付</option>
-							<option value="GimTrangChu">Bài viết đã Ghim / -</option>
+							<option value="GimTrangChu">Bài viết đã Ghim / 記事が固定できた</option>
 						</select>
 					</div>
 					<div class="col-sm-4 form-group" id="typeDifference">
@@ -146,9 +146,9 @@
 						<select class="form-control" id="stringFindView"
 							name="stringFindView">
 							<option value="0" selected="selected" disabled="disabled">Chọn
-								lượt xem -</option>
-							<option value="1">Tăng dần</option>
-							<option value="2">Giảm dần</option>
+								lượt xem - 観覧回数を選択する</option>
+							<option value="1">Tăng dần - 徐々に増加する。</option>
+							<option value="2">Giảm dần - 徐々に減少する。</option>
 						</select>
 					</div>
 					<div class="col-sm-4 form-group" id="typeDay">
@@ -161,7 +161,7 @@
 						<select class="form-control" id="stringFind"
 							name="stringFindCategory">
 							<option value="0" selected="selected" disabled="disabled">Chọn
-								danh mục -</option>
+								danh mục - 項目を選択する</option>
 							<%for(int i=0;i<category.size();i++){ %>
 							<option value="<%=category.get(i).getIdDanhMuc()%>"><%=category.get(i).getTenDanhMucVi()%>
 								-
@@ -182,7 +182,7 @@
 						<select class="form-control" id="stringFind"
 							name="stringFindAccount">
 							<option value="0" selected="selected" disabled="disabled">Chọn
-								tài khoản -</option>
+								tài khoản - アカウントを選択する</option>
 							<%for(int i=0;i<accounts.size();i++){ %>
 							<option value="<%=accounts.get(i).getIdTaiKhoan()%>"><%=accounts.get(i).getTenTaiKhoan()%></option>
 							<%} %>
@@ -236,7 +236,7 @@
 								
 								<td>
 												<%if(listposts.get(i).getTenBaiVietVi()== null && listposts.get(i).getTenBaiVietJa()==null){ %>
-													<span class="label label-default">Không có tên bài viết</span>
+													<span class="label label-default">Không có tên bài viết<br>記事のタイトルが無い</span>
 												<%}else{ %>
 													<%if(listposts.get(i).getTenBaiVietVi()!= null){%>
 														<p><%=listposts.get(i).getTenBaiVietVi()%></p> 
@@ -255,7 +255,7 @@
 								<td><%=listposts.get(i).getNgayDang()%></td>
 								<td>
 									<%if(listposts.get(i).getMoTaVi() == null && listposts.get(i).getMoTaJa() == null){ %>
-										<span class="label label-default">Không có mô tả</span>
+										<span class="label label-default">Không có mô tả<br>記事の内容を述べない。</span>
 									<%}else{ %>
 										<%if(listposts.get(i).getMoTaVi() != null ){ %>
 											<p><%=listposts.get(i).getMoTaVi()%></p> 
@@ -268,15 +268,19 @@
 								</td>
 								<td>
 									<%if(listposts.get(i).getTrangThai().equals("MoiDang")){ %>
-										Mới đăng - 
+										<p class="bg-success">Mới đăng - 新たな掲載</p>
 									<%}else if(listposts.get(i).getTrangThai().equals("DangDich")) {%>
-										Đang dịch - 
+										<p class="bg-info">Đang dịch - 翻訳中</p>
 									<%}else if(listposts.get(i).getTrangThai().equals("OK")){ %>
-										Đã duyệt - 
+										<p class="bg-info">Đã duyệt - 承認された。</p>
+									<%}else if(listposts.get(i).getTrangThai().equals("DichXong")){ %>
+										<p class="bg-primary">Dịch xong - 翻訳を完了した</p>
+									<%}else if(listposts.get(i).getTrangThai().equals("HuyDich")){ %>
+										<p class="bg-danger"> Hủy dịch - 翻訳をキャンセルした。</p>
 									<%}else if(listposts.get(i).getTrangThai().equals("KhongDich")){ %>
-										Không dịch - 
+										<p class="bg-info">Không dịch - 翻訳しない。</p>
 									<%}else if(listposts.get(i).getTrangThai().equals("XoaBai")){ %>
-										Xóa bài - 
+										<p class="bg-danger"> Xóa bài - 記事を削除うする。</p>
 									<%}else{ %>
 										<%=listposts.get(i).getTrangThai()%>
 									<%} %>
@@ -286,8 +290,8 @@
 										<button type="button" id="<%=listposts.get(i).getIdBaiViet()%>"
 											data-toggle="tooltip"
 											<%if(listposts.get(i).getGimTrangChu()==1) {%>
-											title="Đã ghim"
-											<% }else{%>title="Chưa ghim"<%}%>
+											title="Đã ghim - 固定された。"
+											<% }else{%>title="Chưa ghim - まだ固定しない。"<%}%>
 											<%if (listposts.get(i).getGimTrangChu()==1) { %>
 											class="btn btn-warning btn-sm btnbookmark" <%}else {%>
 											class="btn btn-primary btn-sm btnbookmark" <%}%>
@@ -327,7 +331,7 @@
 			</div>
 			<%}else{ %>
 				<div class="col-md-6 col-md-offset-3 alert alert-info">
-  					<strong>Thông báo - お知らせ!</strong> Không tìm thấy bài viết nào - 
+  					<strong>Thông báo - お知らせ!</strong> Không tìm thấy dữ liệu bạn cần - あなたは調べた内容がありません。
 				</div>
 			<%} %>
 		<!----------------------- Kết thúc hiển thị ------------------->
@@ -402,7 +406,7 @@
 
 			},
 			error : function() {
-				alert('Không thể thay đổi để ghim lên trang chủ');
+				alert('Không thể thay đổi để ghim lên trang chủ - ホームページに固定することができない');
 				$("#load").html("");
 			}
 		});

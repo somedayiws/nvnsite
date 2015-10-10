@@ -9,28 +9,28 @@
 <input type="hidden" name="id" value="<%=tb.getIdThongBao()%>">
 <!-- Đơn vị quảng cáo -->
 <div class="form-group">
-	<label for="company"> Tiêu đề - 企業広告</label> <input type="text"
+	<label for="company"> Tiêu đề - タイトル</label> <input type="text"
 		class="form-control" name="TieuDe" value="<%=tb.getTieuDe()%>"
 		maxlength="200">
 </div>
 <div class="form-group">
-	<label for="company"> Nội dung thông báo - 企業広告</label>
+	<label for="company"> Nội dung thông báo - お知らせの内容</label>
 	<textarea rows="5" cols="10" name="NoiDung" class="form-control"><%=tb.getNoiDung()%></textarea>
 </div>
 <div class="form-group">
-	<label for="company"> Gửi đến - 企業広告</label> <select
+	<label for="company"> Gửi đến - 送信する</label> <select
 		class="form-control" id="typeSend2" name="typeSend2"
 		onchange="chonGui2('<%=tb.getGuiDen()%>')">
 		<option value="DienDan"
 			<%=tb.getGuiDen().equals("DienDan") ? "selected" : ""%>>Toàn
-			diễn đàn</option>
+			diễn đàn - 全フォーラム</option>
 		<option value="TenThanhVien"
 			<%=!tb.getGuiDen().equals("DienDan") ? "selected" : ""%>>Thành
-			viên</option>
+			viên - 会員</option>
 	</select>
 </div>
 <div class="form-group" style="display: none;" id="GuiDenForm2">
-	<label for="company"> Tên thành viên - 企業広告</label> <input type="text"
+	<label for="company"> Tên thành viên - 会員の氏名</label> <input type="text"
 		class="form-control" name="GuiDen" maxlength="200"
 		value="<%=tb.getGuiDen()%>" id="GuiDen2">
 </div>

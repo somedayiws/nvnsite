@@ -67,10 +67,10 @@ public class AdminEditPostsServlet extends HttpServlet {
 		AdminEditPostsBO adminEditPosts = new AdminEditPostsBO();
 		
 		if(adminEditPosts.updatePost(post, idcategory_Vi, idaccount)){
-			resultEdit = "Chỉnh sửa bài viết thành công - Update Success";
+			resultEdit = "Chỉnh sửa bài viết thành công - 記事が修正できた";
 		}
 		else{
-			resultEdit = "Chỉnh sửa bài viết thất bại - Update fail";
+			resultEdit = "Chỉnh sửa bài viết thất bại - 記事が修正できない。";
 		}
 		request.setAttribute("resultEdit", resultEdit);
 		RequestDispatcher requestDis_edit = request.getRequestDispatcher("ShowAdminEditPostsServlet?idPost="+idPost+"&from=detail");

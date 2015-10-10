@@ -31,38 +31,38 @@
 						<div class="form-group">
 							<label>Tên - 氏名<span class="rq"> * </span>
 							</label> <input class="form-control" maxlength="30" type="text" id="name" name="name">
-							<p class="help-block">Nhập tên đầy đủ của bạn, tối đa 30 kí tự.</p>
+							<p class="help-block">Nhập tên đầy đủ của bạn, tối đa 30 kí tự.<br>貴方の氏名を全て入力し、最大に30文字までです。</p>
 						</div>
 						<div class="form-group">
 							<label>Địa chỉ - 住所<span class="rq"> * </span>
 							</label> <input type="text" class="form-control" maxlength="100" name="adress">
-							<p class="help-block">Nhập địa chỉ hiện tại của bạn.</p>
+							<p class="help-block">Nhập địa chỉ hiện tại của bạn.<br>貴方の現在の住所を入力して下さい。</p>
 						</div>
 						<div class="form-group">
 							<label>Số điện thoại - 電話番号<span class="rq"> * </span>
 							</label> <input type="text" class="form-control" maxlength="11" name="phone">
-							<p class="help-block">Nhập số điện thoại mà bạn đang dùng.Số điện thoại tối đa 11 số</p>
+							<p class="help-block">Nhập số điện thoại mà bạn đang dùng.Số điện thoại tối đa 11 số<br>貴方が使われている電話番号を入力して下さい。最大に11文字までです。</p>
 						</div>
 						<div class="form-group">
 							<label>Email - メール<span class="rq"> * </span>
 							</label> <input type="text" class="form-control" maxlength="30" name="email">
-							<p class="help-block">Nhập địa chỉ email mà bạn thường dùng</p>
+							<p class="help-block">Nhập địa chỉ email mà bạn thường dùng<br>貴方がよく使われているメールアドレスを入力して下さい</p>
 						</div>
 						<div class="form-group">
 							<label>Tên đăng nhập - ユーザー名<span class="rq"> * </span>
 							</label> <input type="text" class="form-control" maxlength="20" name="username">
 							<p class="help-block">Tên đăng nhập dùng để đăng nhập vào hệ
-								thống, tối đa 20 ký tự, không chứa ký tự đặt biệt</p>
+								thống, tối đa 20 ký tự, không chứa ký tự đặt biệt<br>ユーザー名はシステム上にログインし、最大に20文字で、特別な記号を使わないでください。</p>
 						</div>
 						<div class="form-group">
 							<label>Mật khẩu - パスワード<span class="rq"> * </span>
 							</label> <input type="password" class="form-control" maxlength="20" id="password" name="password">
-							<p class="help-block">Mật khẩu ít nhất 6 ký tự, có phân biệt chữ hoa chữ thường</p>
+							<p class="help-block">Mật khẩu ít nhất 6 ký tự, có phân biệt chữ hoa chữ thường<br>パスワードは最低に6文字、半角と全角を分別して下さい。</p>
 						</div>
 						<div class="form-group">
-							<label>Nhập lại mật khẩu -  <span class="rq"> * </span>
+							<label>Nhập lại mật khẩu -  パスワードをもう一度入力して下さい<span class="rq"> * </span>
 							</label> <input type="password" class="form-control " maxlength="20" name="re_password">
-							<p class="help-block">Xác nhận lại mật khẩu vừa nhập</p>
+							<p class="help-block">Xác nhận lại mật khẩu vừa nhập<br>入力されたパスワードをもう一度確認ください。</p>
 						</div>
 						<%if(type.equals("CTV")) {%>
 							<div class="form-group">
@@ -95,7 +95,7 @@
 			</div>
 			<%} else{%>
 				<div class="col-md-4 col-md-offset-4 alert alert-info">
-						<strong>Thông báo - お知らせ</strong>Trang này không tồn tại - 
+						<strong>Thông báo - お知らせ</strong>Trang này không tồn tại - このホームページを存しない。
 				</div>
 			<%} %>
 		</div>

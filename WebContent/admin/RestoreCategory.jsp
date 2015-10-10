@@ -48,7 +48,7 @@
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th>Tên danh mục(Việt Nam - Japan)</th>
+								<th>Tên danh mục(Việt Nam - Nhật Bản)<br>ベトナム語(ベトナム - 日本)</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -62,7 +62,7 @@
 								<td><a
 									href="RestoreServlet?idCategory=<%=list_CategoryDeleted.get(i).getIdDanhMuc()%>"><button
 											type="button" class="btn btn-default">
-											<span class="glyphicon glyphicon-pencil"></span>Phục hồi
+											<span class="glyphicon glyphicon-pencil"></span>Khôi phục - 回復
 										</button></a></td>
 							</tr>
 						</tbody>

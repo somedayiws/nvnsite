@@ -96,10 +96,10 @@ public class UploadPostServlet extends HttpServlet {
 				String resultTranslate;
 				AdminEditPostsBO adminEditPostBo = new AdminEditPostsBO();
 				if(adminEditPostBo.updatePost_Translated(post)){
-					resultTranslate = "Dịch bài viết thành công - ";
+					resultTranslate = "Dịch bài viết thành công - 記事が翻訳できた";
 				}
 				else{
-					resultTranslate = "Dịch bài viết thất bại - ";
+					resultTranslate = "Dịch bài viết thất bại - 記事がまだ翻訳できない";
 				}
 				request.setAttribute("resultTranslate", resultTranslate);
 			}
@@ -109,7 +109,7 @@ public class UploadPostServlet extends HttpServlet {
 		if(idPost!=null && checkID.checkExist_Post(idPost)){
 			updateStatus.changeStatusPost("OK", idPost, "Đã hoàn thành");
 			request.setAttribute("idPost", idPost);
-			request.setAttribute("resultOK", "Duyệt bài thành công");
+			request.setAttribute("resultOK", "Duyệt bài thành công - 記事が承認された");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("ShowDetailPostsServlet");
 			dispatcher.forward(request, response);
 			

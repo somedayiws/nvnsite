@@ -59,13 +59,13 @@ public class ChangePassServlet extends HttpServlet {
 					dispatcher.forward(request, response);
 				}
 				else{
-					request.setAttribute("error", "Cập nhật thất bại");
+					request.setAttribute("error", "Cập nhật thất bại - ログインがまだできない。");
 					RequestDispatcher dispatcher = request.getRequestDispatcher("Error.jsp");
 					dispatcher.forward(request, response);
 				}
 			}
 			else{
-				request.setAttribute("error", "Mật khẩu đã tồn tại trong hệ thống");
+				request.setAttribute("error", "Mật khẩu đã tồn tại trong hệ thống - ");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("Error.jsp");
 				dispatcher.forward(request, response);
 			}

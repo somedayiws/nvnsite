@@ -130,17 +130,17 @@
 									<td><p><%=account.get(i).getDienThoai()%></p></td>
 									<td><p><%=account.get(i).getEmail()%></p></td>
 									<td><p><%=account.get(i).getTenTaiKhoan()%></p></td>
-									<td><p><%=account.get(i).getNgonNgu().equals("vi") ?"Việt Nam - 項目名":"Nhật Bản - 項目名"%></p></td>
+									<td><p><%=account.get(i).getNgonNgu().equals("vi") ?"Việt Nam - ベトナム":"Nhật Bản - 日本"%></p></td>
 									<td>
 										<div class="resultMessage_<%=account.get(i).getIdTaiKhoan()%>">
-											<p><%=account.get(i).getTinhTrang().equals("MoiTao")? "Mới tạo - " : (account.get(i).getTinhTrang().equals("CanhCao1")) ? "Cảnh cáo lần 1 - " : (account.get(i).getTinhTrang().equals("CanhCao2")) ? "Cảnh cáo lần 2 - " : (account.get(i).getTinhTrang().equals("CanhCao3")) ? "Cảnh cáo lần 3 - " : (account.get(i).getTinhTrang().equals("KhoaTK") )? "Khóa tài khoản - " : "Mới tạo - "%></p>
+											<p><%=account.get(i).getTinhTrang().equals("MoiTao")? "Mới tạo - 新規" : (account.get(i).getTinhTrang().equals("CanhCao1")) ? "Cảnh cáo lần 1 - 第1回目の警告" : (account.get(i).getTinhTrang().equals("CanhCao2")) ? "Cảnh cáo lần 2 - 第2回目の警告" : (account.get(i).getTinhTrang().equals("CanhCao3")) ? "Cảnh cáo lần 3 - 第3回目の警告" : (account.get(i).getTinhTrang().equals("KhoaTK") )? "Khóa tài khoản - アカウントをロックする。" : "Mới tạo - 新規"%></p>
 										</div>
 									</td>
 										<td><button type="button"
 											<%if(account.get(i).getQuyenQuanTri().equals("admin")){%>
 											disabled="disabled" <%}%>
 											id="<%=account.get(i).getIdTaiKhoan()%>"
-											class="btn btn-warning btn-sm btnban" title="Chuyển trạng thái - " data-placement="bottom" onclick="banAcc()">
+											class="btn btn-warning btn-sm btnban" title="Chuyển trạng thái - 状態を変更する。" data-placement="bottom" onclick="banAcc()">
 											<span class="glyphicon glyphicon-lock"></span>
 										</button></td>
 									<td><button type="button" class="btn btn-primary btn-sm"
@@ -352,17 +352,17 @@
 									<td><p><%=accounts.get(i).getEmail()%></p></td>
 									<td><p><%=accounts.get(i).getTenTaiKhoan()%></p></td>
 									<td><p><%=accounts.get(i).getQuyenQuanTri()%></p></td>
-									<td><p><%=accounts.get(i).getNgonNgu().equals("vi") ?"Việt Nam <br> 項目名":"Nhật Bản <br> 項目名"%></p></td>
+									<td><p><%=accounts.get(i).getNgonNgu().equals("vi") ?"Việt Nam <br> ベトナム":"Nhật Bản <br> 日本"%></p></td>
 									<td>
 										<div class="resultMessage_<%=accounts.get(i).getIdTaiKhoan()%>">
-											<p><%=accounts.get(i).getTinhTrang().equals("MoiTao")? "Mới tạo <br> " : (accounts.get(i).getTinhTrang().equals("CanhCao1")) ? "Cảnh cáo lần 1 <br> " : (accounts.get(i).getTinhTrang().equals("CanhCao2")) ? "Cảnh cáo lần 2 <br> " : (accounts.get(i).getTinhTrang().equals("CanhCao3")) ? "Cảnh cáo lần 3 <br> " : (accounts.get(i).getTinhTrang().equals("KhoaTK") )? "Khóa tài khoản <br> " : "Mới tạo<br> "%></p>
+											<p><%=accounts.get(i).getTinhTrang().equals("MoiTao")? "Mới tạo <br>新規 " : (accounts.get(i).getTinhTrang().equals("CanhCao1")) ? "Cảnh cáo lần 1 <br>第1回目の警告" : (accounts.get(i).getTinhTrang().equals("CanhCao2")) ? "Cảnh cáo lần 2 <br>第2回目の警告 " : (accounts.get(i).getTinhTrang().equals("CanhCao3")) ? "Cảnh cáo lần 3 <br>第3回目の警告" : (accounts.get(i).getTinhTrang().equals("KhoaTK") )? "Khóa tài khoản <br>アカウントをロックする。" : "Mới tạo<br>新規"%></p>
 										</div>
 									</td>
 									<td><button type="button"
 											<%if(accounts.get(i).getQuyenQuanTri().equals("admin")){%>
 											disabled="disabled" <%}%>
 											id="<%=accounts.get(i).getIdTaiKhoan()%>"
-											class="btn btn-warning btn-sm btnban" title="Chuyển trạng thái - " data-placement="bottom" onclick="banAcc()">
+											class="btn btn-warning btn-sm btnban" title="Chuyển trạng thái - 状態を変更する。" data-placement="bottom" onclick="banAcc()">
 											<span class="glyphicon glyphicon-lock"></span>
 										</button></td>
 									<td><button type="button" class="btn btn-primary btn-sm"
@@ -387,9 +387,10 @@
 						</table>
 					</div>
 					<div class="alert alert-info">
-						<strong>Tình trạng - 状況: </strong>Mới tạo(MoiTao) -> Cảnh cáo lần
+						<p><strong>Tình trạng: </strong>Mới tạo(MoiTao) -> Cảnh cáo lần
 						1(CanhCao1) -> Cảnh cáo lần 2(CanhCao2) -> Cảnh cáo lần
-						3(CanhCao3) -> Khóa tài khoản(KhoaTK)
+						3(CanhCao3) -> Khóa tài khoản(KhoaTK)</p>
+						<p><strong>状況: </strong>新規 -> 第1回目の警告 -> 第2回目の警告-> 第3回目の警告 -> アカウントをロックする。</p>
 					</div>
 					<div id="divpage" class="menuPhanTrang">
 						<%=request.getAttribute("pageNav")%>

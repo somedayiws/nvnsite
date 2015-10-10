@@ -45,7 +45,7 @@
 				window.location = "ShowDetailPostsServlet?id=<%=posts.getIdBaiViet()%>"
 			},
 			error : function() {
-				alert('Có lỗi xảy ra');
+				alert('Có lỗi xảy ra - エラが発生した');
 				$("#load").html("");
 			}
 		});	

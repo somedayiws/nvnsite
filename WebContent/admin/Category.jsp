@@ -43,7 +43,6 @@
 	
 	//Nhận lại số danh mục được hiển thị lên thanh menu
 	int countCategoryShowed = (Integer)request.getAttribute("countCategoryShowed");
-	System.out.println("countCategoryShowed: "+countCategoryShowed);
 	//Nhận lại các danh mục được hiển thị
 	ArrayList<DANHMUC> listCategoryShowed = (ArrayList<DANHMUC>)request.getAttribute("listCategoryShowed");
 	
@@ -68,7 +67,7 @@
 								<!-- Hiển thị kết quả thay đổi hiển thị -->
 								<%if(resultChangeShowed!=null){ %>				
 								<div class="alert alert-info">
-				  					<strong>Thông báo!</strong><%=resultChangeShowed%>
+				  					<strong>Thông báo - お知らせ!</strong><%=resultChangeShowed%>
 								</div>
 								<%} %>
 				
@@ -87,8 +86,9 @@
 								</div>
 									<%if(countCategoryShowed>7){ %>
 									<div class="alert alert-danger">
-			  							<strong>Cảnh báo!</strong>Số danh mục hiển thị lên thanh menu đã tối đa.
-			  							Nếu muốn thay đổi thì nhấn vào <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalChangeShow">đây</button>
+			  							<p><strong>Cảnh báo!</strong>Số danh mục hiển thị lên thanh menu đã tối đa.Nếu muốn thay đổi thì nhấn vào đây</p>
+			  							<p><strong>警告!メニューに表示された項目が最大に達した。.変更しい場合は、クリックして下さい。ここ</strong></p>
+			  							 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalChangeShow">Thay đổi - 変更</button>
 									</div>
 									<%} %>						 
 								<label>Hiện thị lên thanh menu - メニューに表示する<span class="rq"> * </span></label>											
@@ -102,8 +102,8 @@
 										value="no">Không - 無</label>
 								</div>
 								<div class="form-group">
-									<label>Icon -  <input type="file" id="Image" name="Image" onchange="xem(this,'fua');"/></label>
-									<p class="help-block">Chọn tập tin có đuôi là .png, .jpg, .gif, .jpeg<br>
+									<label>Icon - アイコン <input type="file" id="Image" name="Image" onchange="xem(this,'fua');"/></label>
+									<p class="help-block">Chọn tập tin có đuôi là .png, .jpg, .gif, .jpeg - ファイルの形式は.png, .jpg, .gif, .jpegを選択して下さい。<br>
 										<img alt="Icon đại diện" src="../images/icons/icondefault.png" id="fua" width="50px" height="50px">
 									</p>
 								</div>
@@ -120,14 +120,14 @@
 		%>
 		
 			<div class="col-md-6 col-md-offset-3 alert alert-info">
-	<strong>Thông báo!</strong>Thêm danh mục thành công - 項目の追加ができた。
+	<strong>Thông báo - お知らせ!</strong>Thêm danh mục thành công - 項目の追加ができた。
 	</div>
 	
 		<%
 			}else{
 		%>
 		<div class="col-md-6 col-md-offset-3 alert alert-info">
-	<strong>Thông báo!</strong>Thêm danh mục thất bại
+	<strong>Thông báo - お知らせ!</strong>Thêm danh mục thất bại - 項目の追加ができない
 	</div>
 		<%}
 			}
@@ -136,13 +136,13 @@
 					if (resultUpdate.contains("success")) {
 				%>
 				<div class="col-md-6 col-md-offset-3 alert alert-info">
-	<strong>Thông báo!</strong>Chỉnh sửa danh mục thành công - 項目の修正ができた。
+	<strong>Thông báo - お知らせ!</strong>Chỉnh sửa danh mục thành công - 項目の修正ができた。
 	</div>
 				<%
 					} else {
 				%>
 				<div class="col-md-6 col-md-offset-3 alert alert-info">
-	<strong>Thông báo!</strong>Chỉnh sửa danh mục thất bại - 項目の修正がまだできない
+	<strong>Thông báo - お知らせ!</strong>Chỉnh sửa danh mục thất bại - 項目の修正がまだできない
 	</div>
 				<%
 					}	
@@ -151,13 +151,13 @@
 					if (resultDelete.contains("success")) {
 		%>
 				<div class="col-md-6 col-md-offset-3 alert alert-info">
-	<strong>Thông báo!</strong>Xóa danh mục thành công - 項目の削除ができた
+	<strong>Thông báo - お知らせ!</strong>Xóa danh mục thành công - 項目の削除ができた
 	</div>
 				<%
 					} else {
 				%>
 				<div class="col-md-6 col-md-offset-3 alert alert-info">
-	<strong>Thông báo!</strong>Xóa danh mục thất bại - 項目の削除がまだできない
+	<strong>Thông báo - お知らせ!</strong>Xóa danh mục thất bại - 項目の削除がまだできない
 	</div>
 				<%
 					}	
@@ -166,11 +166,11 @@
 				if(resultRestore.contains("success")){
 		%>
 		<div class="col-md-6 col-md-offset-3 alert alert-info">
-	<strong>Thông báo!</strong>Khôi phục danh mục thành công - 
+	<strong>Thông báo - お知らせ!</strong>Khôi phục danh mục thành công - 項目の回復ができた
 	</div>
 	<%}else{ %>
 	<div class="col-md-6 col-md-offset-3 alert alert-info">
-	<strong>Thông báo!</strong>Khôi phục danh mục thất bại
+	<strong>Thông báo - お知らせ!</strong>Khôi phục danh mục thất bại - 項目の回復がまだできない
 	</div>
 		<%
 			}
@@ -229,7 +229,7 @@
 					<th>Tên danh mục(Việt Nam)<br>ベトナム語（項目名）</th>
 					<th>Tên danh mục(Nhật Bản)<br>日本語（項目名）</th>
 					<th>Hiển thị(1: có,0:không)<br>表示（1：有、０：無）</th>
-					<th>File ảnh</th>
+					<th>Icon<br>アイコン</th>
 					<th></th>
 					<th></th>
 				</tr>
@@ -237,7 +237,6 @@
 
 			<%
 				for (int i = 0; i < category_after_search.size(); i++) {
-					System.out.println("TenDanhMucJa: "+category_after_search.get(i).getTenDanhMucJa());
 			%>
 			<tbody>
 				<tr>
@@ -317,12 +316,12 @@
 								</select>
 							</div>							
 							<div class="form-group">
-								<label>Icon: </label>	
+								<label>Icon - アイコン: </label>	
 								<input type="text" class ="form-control col-md-4" name="ImageIcon" value="<%=category_after_search.get(i).getIcon()%>" readonly="readonly">
 							</div>
 							<div class="form-group">					
 							<input type="file" class="Image" name="Image" onchange="xem(this,'fu<%=i%>');"/>
-							<p class="help-block">Chọn file .png, .jpg ...<br>
+							<p class="help-block">Chọn file .png, .jpg, .gif, .jpeg ...<br>ファイルの形式は.png, .jpg, .gif, .jpegを選択して下さい。
 							<img src="../images/icons/<%if(category_after_search.get(i).getIcon()==null){ %>icondefault.png<%}else{ %><%=category_after_search.get(i).getIcon()%><%}%>" alt="image" id="fu<%=i%>" width="50px" height="50px">
 <%-- 							<img alt="Ảnh đại diện" src="../images/"<%=category_after_search.get(i).getIcon()%> id="fu2" width="50px" height="50px"> --%>
 							</p>
@@ -383,7 +382,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Danh mục được hiển thị</h4>
+          <h4 class="modal-title">Danh mục được hiển thị - </h4>
         </div>
         <div class="modal-body">
         <%	if(listCategoryShowed!=null){ %>
@@ -413,7 +412,7 @@
     		</table>
     		<%}else{ %>
     			<div class="alert alert-danger">
-  					<strong>Cảnh báo!</strong>Không có danh mục nào được hiển thị lên thanh menu
+  					<strong>Cảnh báo - 警告する。!</strong>Không có danh mục nào được hiển thị lên thanh menu
 				</div>
     		<%}} %>
         </div>
@@ -443,7 +442,7 @@
 					<th>Tên danh mục(Việt Nam)<br>ベトナム語（項目名）</th>
 					<th>Tên danh mục(Nhật Bản)<br>日本語（項目名）</th>
 					<th>Hiển thị(1: có,0:không)<br>表示（1：有、０：無）</th>	
-					<th>File ảnh</th>				
+					<th>Icon<br>アイコン</th>				
 					<th></th>
 					<th></th>
 				</tr>
@@ -532,12 +531,12 @@
 								</select>
 							</div>							
 							<div class="form-group">
-								<label>Icon: </label>	
+								<label>Icon - アイコン: </label>	
 								<input type="text" class ="form-control col-md-4" name="ImageIcon" value="<%=category.get(i).getIcon()%>" readonly="readonly">
 							</div>
 							<div class="form-group">					
 							<input type="file" class="Image" name="Image" onchange="xem(this,'fu<%=i%>');"/>
-							<p class="help-block">Chọn file .png, .jpg ...<br>
+							<p class="help-block">Chọn file .png, .jpg, .gif, .jpeg ...<br>ファイルの形式は.png, .jpg, .gif, .jpegを選択して下さい。
 							<img src="../images/icons/<%if(category.get(i).getIcon()==null){ %>icondefault.png<%}else{ %><%=category.get(i).getIcon()%><%}%>" alt="image" id="fu<%=i%>" width="50px" height="50px">
 <%-- 							<img alt="Ảnh đại diện" src="../images/"<%=category.get(i).getIcon()%> id="fu2" width="50px" height="50px"> --%>
 							</p>
@@ -631,7 +630,7 @@
     		</table>
     		<%}else{ %>
     			<div class="alert alert-danger">
-  					<strong>Cảnh báo!</strong>Không có danh mục nào được hiển thị lên thanh menu
+  					<strong>Cảnh báo - 警告!</strong>Không có danh mục nào được hiển thị lên thanh menu
 				</div>
     		<%}} %>
         </div>

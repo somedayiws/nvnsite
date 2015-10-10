@@ -57,24 +57,24 @@ public class BookmarkInHomeServlet extends HttpServlet {
 				int bookmarkOfPost = changeStatusBo.getPostBookmarkById(id);
 				
 				if(bookmarkOfPost==1){
-				resultChangeStatusBookmark = "Đã ghim - ";
+				resultChangeStatusBookmark = "Đã ghim - 固定された。";
 				}else{
-					resultChangeStatusBookmark = "Chưa ghim - ";
+					resultChangeStatusBookmark = "Chưa ghim - まだ固定しない。";
 				}
 			}else{
-				resultChangeStatusBookmark = "Thay đổi thất bại - ";
+				resultChangeStatusBookmark = "Thay đổi thất bại - 変更がまだできない";
 			}
 			
 		}else{
 			if(status == 0){
-				resultChangeStatusBookmark = "Số lượng bài viết đã tối đa, bạn cần thay đổi các bài đã ghim để ghim các bài khác - ";				
+				resultChangeStatusBookmark = "Số lượng bài viết đã tối đa, bạn cần thay đổi các bài đã ghim để ghim các bài khác - 記事が最大に達し、貴方は固定された記事を変更する必要で、新しい記事を固定しなさい。";				
 			}
 			else{
 				//thay đổi trường gim bài viết
 				if(changeStatusBo.changeBookmark(id,status)){					
-						resultChangeStatusBookmark = "Chưa ghim - ";					
+						resultChangeStatusBookmark = "Chưa ghim - まだ固定しない。";					
 				}else{
-					resultChangeStatusBookmark = "Thay đổi thất bại - ";
+					resultChangeStatusBookmark = "Thay đổi thất bại - 変更がまだできない";
 				}
 			}
 		}

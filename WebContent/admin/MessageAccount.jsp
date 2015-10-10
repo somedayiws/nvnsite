@@ -9,7 +9,7 @@
 			String result = (String)request.getAttribute("result");
 		
 %>
-<p><%=result.equals("MoiTao")? "Mới tạo" : (result.equals("CanhCao1")) ? "Cảnh cáo lần 1" : (result.equals("CanhCao2")) ? "Cảnh cáo lần 2" : (result.equals("CanhCao3")) ? "Cảnh cáo lần 3" : (result.equals("KhoaTK") )? "Khóa tài khoản" : "Mới tạo"%></p>
+<p><%=result.equals("MoiTao")? "Mới tạo - 新規" : (result.equals("CanhCao1")) ? "Cảnh cáo lần 1 - 第1回目の警告" : (result.equals("CanhCao2")) ? "Cảnh cáo lần 2 - 第2回目の警告" : (result.equals("CanhCao3")) ? "Cảnh cáo lần 3 - 第3回目の警告" : (result.equals("KhoaTK") )? "Khóa tài khoản - アカウントをロックする。" : "Mới tạo - 新規"%></p>
 <%}else{
 		RequestDispatcher dispatcher = request.getRequestDispatcher("ShowloginAdmin");
 	    dispatcher.forward(request, response);

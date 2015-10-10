@@ -107,8 +107,8 @@ public class SendPostServlet extends HttpServlet {
 			ListStatusHistoryBO listStatus = new ListStatusHistoryBO();
 			LICHSU history = listStatus.getStatus(idPost);
 			String status = history.getTrangThai();
-			 
-			if(history!=null && history.getTrangThai().contains("HuyDich")){
+			 System.out.println("tt: "+history.getTrangThai());
+			if(history.getTrangThai()!=null && history.getTrangThai().contains("HuyDich")){
 				ArrayList<TAIKHOAN> listAccountByStatus = null;
 				if (post.getTenBaiVietVi()!=null && post.getTenBaiVietJa()!=null) {
 					listAccountByStatus = getAcc.listAccountByStatus(history.getTaikhoan().getIdTaiKhoan(),"mutilanguage");			
@@ -163,7 +163,7 @@ public class SendPostServlet extends HttpServlet {
 			changestatus.changeStatusHistory("ChuyenDich", idPost,idAccount);
 		}
 		changestatus.changeStatusPost("DangDich", idPost,message);
-		request.setAttribute("resultSend", "Bài viết đã được chuyển cho cộng tác viên");
+		request.setAttribute("resultSend", "Bài viết đã được chuyển cho cộng tác viên - 記事が協力者に転送できた。");
 		request.setAttribute("idPost", idPost);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("ShowDetailPostsServlet");
 		dispatcher.forward(request, response);

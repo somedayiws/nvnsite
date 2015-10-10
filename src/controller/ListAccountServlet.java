@@ -63,9 +63,9 @@ public class ListAccountServlet extends HttpServlet {
 			if (result != null) {
 				if (result.contains("Cập nhật")) {
 					if (result.contains("thành công")) {
-						resultUpdate = "Chỉnh sửa thành công";
+						resultUpdate = "Chỉnh sửa thành công - 修正でた";
 					} else {
-						resultUpdate = "Chỉnh sửa thất bại";
+						resultUpdate = "Chỉnh sửa thất bại - 修正がまだできない";
 					}
 					request.setAttribute("result", resultUpdate);
 				}
@@ -75,18 +75,18 @@ public class ListAccountServlet extends HttpServlet {
 				else if(result.contains("account")){
 					
 					if(result.contains("exists")){
-						resultCreate = "Tài khoản đã tồn tại trong hệ thống";
+						resultCreate = "Tài khoản đã tồn tại trong hệ thống - アカウントが既にシステム上に存在する。";
 					}else{
-						resultCreate = "Tạo tài khoản thành công";
+						resultCreate = "Tạo tài khoản thành công - アカウントが作成できた";
 					}
 					request.setAttribute("result", resultCreate);
 				}
 				else
 				{
 					if (result.contains("success")) {
-						resultDelete= "Xóa tài khoản thành công";
+						resultDelete= "Xóa tài khoản thành công - アカウントが削除された";
 					} else {
-						resultDelete = "Xóa tài khoản thất bại";
+						resultDelete = "Xóa tài khoản thất bại - アカウントがまだ削除できない";
 					}
 					request.setAttribute("result", resultDelete);
 				}

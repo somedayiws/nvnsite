@@ -54,10 +54,10 @@ public class SavePostServlet extends HttpServlet {
 		String resultSave;
 		AdminEditPostsBO adminEditPostBo = new AdminEditPostsBO();
 		if(adminEditPostBo.updatePost_Translated(post)){
-			resultSave = "Lưu bài viết thành công - ";
+			resultSave = "Lưu bài viết thành công - 記事が保存できた";
 		}
 		else{
-			resultSave = "Lưu bài viết thất bại - ";
+			resultSave = "Lưu bài viết thất bại - 記事が保存できない";
 		}
 		
 		ShowAdminEditPostsBO checkID = new ShowAdminEditPostsBO();

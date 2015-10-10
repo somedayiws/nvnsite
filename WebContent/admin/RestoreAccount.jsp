@@ -43,7 +43,7 @@
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th>Tài khoản</th>
+								<th>Tài khoản - ユーザー名</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -57,7 +57,7 @@
 								<td><a
 									href="RestoreServlet?idAccount=<%=listAccountDeleted.get(i).getIdTaiKhoan()%>&type=account&screen=<%=screen%>"><button
 											type="button" class="btn btn-default">
-											<span class="glyphicon glyphicon-pencil"></span>Phục hồi
+											<span class="glyphicon glyphicon-pencil"></span>Khôi phục - 回復
 										</button></a></td>
 							</tr>
 						</tbody>

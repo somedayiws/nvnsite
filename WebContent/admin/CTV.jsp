@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="../bootstrap-3.3.5-dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/register.css">
 <link rel="stylesheet" href="css/listAccount.css">
-<title>Quản lý cộng tác viên - ユーザーの管理</title>
+<title>Quản lý cộng tác viên - 協力者の管理</title>
 <%
 
 //Check session exist
@@ -73,7 +73,7 @@
 					<%if(ctv!=null){ %>
 <!---------------------- Liệt kê tất cả cộng tác viên và thông tin ------------------->
 			<div class="col-md-12 panel panel-primary">
-			<div class="panel-heading">Danh sách Cộng tác viên - リストアカウント</div>
+			<div class="panel-heading">Danh sách Cộng tác viên - 協力者のリスト</div>
   			<div class="panel-body">
 			<div class="table-responsive">
 				<table class=" table table-hover">
@@ -87,12 +87,12 @@
 							<th>Tài khoản<br>ユーザー名</th>
 							<th>Ngôn ngữ<br>言語</th>
 							<th>Tổng số bài viết<br>.....</th>
-							<th>Bài đã dịch<br>...</th>		
-							<th>Bài đang dịch<br>....</th>						
-							<th>Bài đã gởi<br>....</th>
-							<th>Bài bị lỗi<br>....</th>
-							<th>Bài đã hủy<br>....</th>
-							<th>Bài mới nhận<br>....</th>		
+							<th>Bài đã dịch<br>翻訳された記事</th>		
+							<th>Bài đang dịch<br>翻訳中の記事</th>						
+							<th>Bài đã gởi<br>送信した記事</th>
+							<th>Bài bị lỗi<br>エラされた記事</th>
+							<th>Bài đã hủy<br>削除された記事</th>
+							<th>Bài mới nhận<br>新しい記事を受け取る</th>		
 							<th></th>
 							<th></th>
 						</tr>
@@ -110,7 +110,7 @@
 								<td><%=ctv.get(i).getTaikhoan().getDienThoai()%></td>
 								<td><%=ctv.get(i).getTaikhoan().getEmail()%></td>
 								<td><%=ctv.get(i).getTaikhoan().getTenTaiKhoan()%></td>
-								<td><%=ctv.get(i).getTaikhoan().getNgonNgu().equals("vi") ?"Việt Nam - ":"Nhật Bản - "%></td>
+								<td><%=ctv.get(i).getTaikhoan().getNgonNgu().equals("vi") ?"Việt Nam - ベトナム":"Nhật Bản - 日本"%></td>
 								<td><%=ctv.get(i).getNumberPosts() %></td>
 							<%} %>
 							<%if(ctv.get(i).getArray_ListPost()!=null ){
@@ -124,7 +124,6 @@
 											5: Bài viết mới nhận
 										
 										*/
-										System.out.println("client_size_getArray_ListPost().get(j).size(): "+ctv.get(i).getArray_ListPost().get(j).size());
 										if(ctv.get(i).getArray_ListPost().get(j)!=null){
 								%>
 								<td><%=ctv.get(i).getArray_ListPost().get(j).size()%><br> <%if(ctv.get(i).getArray_ListPost().get(j).size()!=0){ %><button type="button" class="btn btn-default btn-sm"
@@ -180,7 +179,7 @@
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title">Chỉnh sửa cộng tác viên - </h4>
+							<h4 class="modal-title">Chỉnh sửa cộng tác viên - 協力者の修正</h4>
 						</div>
 						<div class="modal-body">
 
@@ -256,7 +255,7 @@
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title">Xóa tài khoản cộng tác viên - アカウントを削除(管理者)</h4>
+							<h4 class="modal-title">Xóa tài khoản cộng tác viên - 協力者を削除する</h4>
 						</div>
 						<div class="modal-body">
 
@@ -304,7 +303,7 @@
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title">Danh sách bài viết - アカウントを削除(管理者)</h4>
+							<h4 class="modal-title">Danh sách bài viết - 記事のリスト</h4>
 						</div>
 						<div class="modal-body">
 								
@@ -327,7 +326,7 @@
 													<td><%=ctv.get(i).getArray_ListPost().get(j).get(k).getIdBaiViet() %></td>													
 													<td>
 														<%if(ctv.get(i).getArray_ListPost().get(j).get(k).getTenBaiVietVi()== null && ctv.get(i).getArray_ListPost().get(j).get(k).getTenBaiVietJa()==null){ %>
-															<span class="label label-default">Không có tên bài viết - </span>
+															<span class="label label-default">Không có tên bài viết - 記事のタイトルが無い</span>
 														<%}else{ %>
 															<%if(ctv.get(i).getArray_ListPost().get(j).get(k).getTenBaiVietVi()!= null){%>
 																<p><%=ctv.get(i).getArray_ListPost().get(j).get(k).getTenBaiVietVi()%></p> 

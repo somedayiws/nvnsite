@@ -86,7 +86,7 @@
 							<option value="MoTaJa">Mô tả - Tiếng Nhật / 説明 - 日本語</option>
 							<option value="LuotXem">Lượt xem / 観覧回数</option>
 							<option value="NgayDang">Ngày đăng / 掲載の日付</option>
-							<option value="GimTrangChu">Bài viết đã Ghim / -</option>
+							<option value="GimTrangChu">Bài viết đã Ghim / 記事が固定できた</option>
 						</select>
 					</div>
 					<div class="col-sm-4 form-group" id="typeDifference">
@@ -97,9 +97,9 @@
 						<select class="form-control" id="stringFindView"
 							name="stringFindView">
 							<option value="0" selected="selected" disabled="disabled">Chọn
-								lượt xem -</option>
-							<option value="1">Tăng dần</option>
-							<option value="2">Giảm dần</option>
+								lượt xem - 観覧回数を選択する</option>
+							<option value="1">Tăng dần - 徐々に増加する。</option>
+							<option value="2">Giảm dần - 徐々に減少する。</option>
 						</select>
 					</div>
 					<div class="col-sm-4 form-group" id="typeDay">
@@ -112,7 +112,7 @@
 						<select class="form-control" id="stringFind"
 							name="stringFindCategory">
 							<option value="0" selected="selected" disabled="disabled">Chọn
-								danh mục -</option>
+								danh mục - 項目を選択する</option>
 							<%for(int i=0;i<category.size();i++){ %>
 							<option value="<%=category.get(i).getIdDanhMuc()%>"><%=category.get(i).getTenDanhMucVi()%>
 								-
@@ -133,7 +133,7 @@
 						<select class="form-control" id="stringFind"
 							name="stringFindAccount">
 							<option value="0" selected="selected" disabled="disabled">Chọn
-								tài khoản -</option>
+								tài khoản - アカウントを選択する</option>
 							<%for(int i=0;i<accounts.size();i++){ %>
 							<option value="<%=accounts.get(i).getIdTaiKhoan()%>"><%=accounts.get(i).getTenTaiKhoan()%></option>
 							<%} %>
@@ -198,7 +198,7 @@
 								
 								<td>
 												<%if(posts.get(i).getTenBaiVietVi()== null && posts.get(i).getTenBaiVietJa()==null){ %>
-													<span class="label label-default">Không có tên bài viết</span>
+													<span class="label label-default">Không có tên bài viết<br>記事のタイトルが無い</span>
 												<%}else{ %>
 													<%if(posts.get(i).getTenBaiVietVi()!= null){%>
 														<p><%=posts.get(i).getTenBaiVietVi()%></p> 
@@ -217,7 +217,7 @@
 								<td><%=posts.get(i).getNgayDang()%></td>
 								<td>
 									<%if(posts.get(i).getMoTaVi() == null && posts.get(i).getMoTaJa() == null){ %>
-										<span class="label label-default">Không có mô tả</span>
+										<span class="label label-default">Không có mô tả<br>記事の内容を述べない。</span>
 									<%}else{ %>
 										<%if(posts.get(i).getMoTaVi() != null ){ %>
 											<p><%=posts.get(i).getMoTaVi()%></p> 
@@ -231,19 +231,19 @@
 								<% if(request.getParameter("view")!=null && request.getParameter("view").equals("all")) { %>
 								<td>
 									<%if(posts.get(i).getTrangThai().equals("MoiDang")){ %>
-										<p class="bg-success">Mới đăng - </p>
+										<p class="bg-success">Mới đăng - 新たな掲載</p>
 									<%}else if(posts.get(i).getTrangThai().equals("DangDich")) {%>
-										<p class="bg-info">Đang dịch - </p>
+										<p class="bg-info">Đang dịch - 翻訳中</p>
 									<%}else if(posts.get(i).getTrangThai().equals("OK")){ %>
-										<p class="bg-info">Đã duyệt - </p>
+										<p class="bg-info">Đã duyệt - 承認された。</p>
 									<%}else if(posts.get(i).getTrangThai().equals("DichXong")){ %>
-										<p class="bg-primary">Dịch xong - </p>
+										<p class="bg-primary">Dịch xong - 翻訳を完了した</p>
 									<%}else if(posts.get(i).getTrangThai().equals("HuyDich")){ %>
-										<p class="bg-danger"> Hủy dịch - </p>
+										<p class="bg-danger"> Hủy dịch - 翻訳をキャンセルした。</p>
 									<%}else if(posts.get(i).getTrangThai().equals("KhongDich")){ %>
-										<p class="bg-info">Không dịch - </p>
+										<p class="bg-info">Không dịch - 翻訳しない。</p>
 									<%}else if(posts.get(i).getTrangThai().equals("XoaBai")){ %>
-										<p class="bg-danger"> Xóa bài - </p>
+										<p class="bg-danger"> Xóa bài - 記事を削除うする。</p>
 									<%}else{ %>
 										<%=posts.get(i).getTrangThai()%>
 									<%} %>
@@ -251,27 +251,27 @@
 								<% } %>
 								<td>
 									<%if(posts.get(i).getTrangThai().equals("MoiDang")){ %>
-										<a href="SendPostServlet?idPost=<%=posts.get(i).getIdBaiViet()%>&status=MoiDang" data-toggle="tooltip" title="Chuyển dịch - "><button
+										<a href="SendPostServlet?idPost=<%=posts.get(i).getIdBaiViet()%>&status=MoiDang" data-toggle="tooltip" title="Chuyển dịch - 転換する。"><button
 											type="button" class="btn btn-default btn-sm">
 											<span class="glyphicon glyphicon-send"></span>
 										</button></a>
 									<%}else if(posts.get(i).getTrangThai().equals("DangDich")) {%>
-										<a href="#" data-toggle="tooltip" title="Hủy dịch - "><button
+										<a href="#" data-toggle="tooltip" title="Hủy dịch - 翻訳をキャンセルした。"><button
 											type="button" class="btn btn-warning btn-sm" onclick="HuyBaiDich('<%=posts.get(i).getIdBaiViet()%>');">
 											<span class="glyphicon glyphicon-exclamation-sign"></span>
 										</button></a>
 									<%}else if(posts.get(i).getTrangThai().equals("DichXong")) {%>
-										<a href="ShowDetailPostsServlet?id=<%=posts.get(i).getIdBaiViet()%>" data-toggle="tooltip" title="Duyệt bài - "><button
+										<a href="ShowDetailPostsServlet?id=<%=posts.get(i).getIdBaiViet()%>" data-toggle="tooltip" title="Duyệt bài - 記事を承認する。"><button
 											type="button" class="btn btn-default btn-sm">
 											<span><img src="../images/icons/arrow .gif" style="width: 20px; margin-right: -9px;"></span>
 										</button></a>
 									<%}else if(posts.get(i).getTrangThai().equals("KhongDich")) {%>
-										<a href="ShowDetailPostsServlet?id=<%=posts.get(i).getIdBaiViet()%>" data-toggle="tooltip" title="Duyệt bài - "><button
+										<a href="ShowDetailPostsServlet?id=<%=posts.get(i).getIdBaiViet()%>" data-toggle="tooltip" title="Duyệt bài - 記事を承認する。"><button
 											type="button" class="btn btn-default btn-sm">
 											<span><img src="../images/icons/arrow .gif" style="width: 20px; margin-right: -9px;"></span>
 										</button></a>
 									<%}else if(posts.get(i).getTrangThai().equals("HuyDich")){ %>
-										<a href="SendPostServlet?idPost=<%=posts.get(i).getIdBaiViet()%>&status=HuyDich" data-toggle="tooltip" title="Chuyển dịch - "><button
+										<a href="SendPostServlet?idPost=<%=posts.get(i).getIdBaiViet()%>&status=HuyDich" data-toggle="tooltip" title="Chuyển dịch - 転換する。"><button
 											type="button" class="btn btn-default btn-sm">
 											<span class="glyphicon glyphicon-send"></span>
 										</button></a>
@@ -282,8 +282,8 @@
 										<button type="button" id="<%=posts.get(i).getIdBaiViet()%>"
 											data-toggle="tooltip"
 											<%if(posts.get(i).getGimTrangChu()==1) {%>
-											title="Đã ghim"
-											<% }else{%>title="Chưa ghim"<%}%>
+											title="Đã ghim - 固定された。"
+											<% }else{%>title="Chưa ghim - まだ固定しない。"<%}%>
 											<%if (posts.get(i).getGimTrangChu()==1) { %>
 											class="btn btn-warning btn-sm btnbookmark" <%}else {%>
 											class="btn btn-primary btn-sm btnbookmark" <%}%>

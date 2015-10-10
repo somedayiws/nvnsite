@@ -11,6 +11,10 @@
 <!-- _______________________CSS_________________________________________ -->
 <link rel="stylesheet" href="../bootstrap-3.3.5-dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/editPost.css">
+<!-- __________________________________JS_________________________________ -->
+<script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../bootstrap-3.3.5-dist/js/bootstrap.js"></script>
+<script src="../js/jquery-ui.js"></script>
 <title>Chỉnh sửa bài viết - 記事の修正</title>
 </head>
 <%
@@ -72,7 +76,6 @@
 								}
 							%>
 						</select>
-				
 					<%
 						} else {
 					%>
@@ -92,7 +95,7 @@
 						<label>Trạng thái - 状態<span class="rq"> * </span></label>
 						<input type="text" class="form-control"
 							name="Status" 
-							value="<%if(post.getTrangThai().equals("MoiDang")) {%>Mới đăng - <%}else if(post.getTrangThai().equals("DangDich")){ %>Đang dịch<%}else if(post.getTrangThai().equals("OK")){%>Đã duyệt<%}else if(post.getTrangThai().equals("KhongDich")){ %>Không dịch<%}else if(post.getTrangThai().equals("HuyDich")){ %>Hủy dịch<%}else if(post.getTrangThai().equals("DichXong")){ %>Dịch xong<%}else{%>Trạng thái khác - <%=post.getTrangThai()%><%} %>"
+							value="<%if(post.getTrangThai().equals("MoiDang")) {%>Mới đăng - 新たな掲載<%}else if(post.getTrangThai().equals("DangDich")){ %>Đang dịch - 翻訳中<%}else if(post.getTrangThai().equals("OK")){%>Đã duyệt - 承認された。<%}else if(post.getTrangThai().equals("KhongDich")){ %>Không dịch - 翻訳しない。<%}else if(post.getTrangThai().equals("HuyDich")){ %>Hủy dịch - 翻訳をキャンセルした。<%}else if(post.getTrangThai().equals("DichXong")){ %>Dịch xong - 翻訳を完了した<%}else{%>Trạng thái khác - 別の状態<%=post.getTrangThai()%><%} %>"
 							readonly="readonly">				
 					</div>
 					
@@ -227,10 +230,10 @@
 					</div>
 					<!-- Ghim trang chủ -->
 					<div class="form-group">
-						<label>Ghim trang chủ - </label>
+						<label>Ghim trang chủ - ホームページに固定する。</label>
 						<select class="form-control" id="ghim" name="ghim">
-							<option value="1" <%if(post.getGimTrangChu()==1){ %> selected="selected" <%} %> disabled="disabled" >Ghim trang chủ</option>
-							<option value="0" <%if(post.getGimTrangChu()==0){ %> selected="selected" <%} %> disabled="disabled">Không ghim trang chủ</option>									
+							<option value="1" <%if(post.getGimTrangChu()==1){ %> selected="selected" <%} %> disabled="disabled" >Ghim trang chủ - ホームページに固定する。</option>
+							<option value="0" <%if(post.getGimTrangChu()==0){ %> selected="selected" <%} %> disabled="disabled">Không ghim trang chủ - ホームページに固定することができない</option>									
 						</select>
 					</div>
 					<div class="col-md-6 col-md-offset-3 form-group">
@@ -258,10 +261,7 @@
 	}%>	
 </body>
 <!-- __________________________________JS_________________________________ -->
-<script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
-<script type="text/javascript" src="../bootstrap-3.3.5-dist/js/bootstrap.js"></script>
 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="../check_validate/formEdit.js"></script>
 <script src="../ckeditor/ckeditor.js"></script>
-<script src="../js/jquery-ui.js"></script>
 </html>

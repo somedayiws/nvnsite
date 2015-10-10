@@ -16,7 +16,7 @@
 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 <link rel="stylesheet" href="css/register.css">
 <link rel="stylesheet" href="css/advertisement.css">
-<title>Quản lý thông báo - </title>
+<title>Quản lý thông báo - 知らせの管理</title>
 <style type="text/css">
 #advNoHomepage {
 	display: none;
@@ -38,13 +38,13 @@
 			},
 			messages : {
 				TieuDe : {
-					required : "<br>Chưa nhập tiêu đề!"
+					required : "タイトルをまだ入力しない<br>Chưa nhập tiêu đề!"
 				},
 				NoiDung : {
-					required : "<br>Chưa nhập nội dung!"
+					required : "内容をまだ入力しない<br>Chưa nhập nội dung!"
 				},
 				GuiDen : {
-					required : "<br>Chưa chọn nơi hiển thị!"
+					required : "表示の場所をまだ選択しない<br>Chưa chọn nơi hiển thị!"
 				}
 			},
 			submitHandler : function(form) {
@@ -65,13 +65,13 @@
 			},
 			messages : {
 				TieuDe : {
-					required : "<br>Chưa nhập tiêu đề!"
+					required : "タイトルをまだ入力しない<br>Chưa nhập tiêu đề!"
 				},
 				NoiDung : {
-					required : "<br>Chưa nhập nội dung!"
+					required : "内容をまだ入力しない<br>Chưa nhập nội dung!"
 				},
 				GuiDen : {
-					required : "<br>Chưa chọn nơi hiển thị!"
+					required : "表示の場所をまだ選択しない<br>Chưa chọn nơi hiển thị!"
 				}
 			},
 			submitHandler : function(form) {
@@ -94,15 +94,15 @@
 		<form action="ThongBaoServlet" id="ftimkiem">
 			<div class="col-md-3 col-md-offset-1">
 				<select name="timtheo" class="form-control">
-					<option value="1">Tất cả</option>
+					<option value="1">Tất cả - 全て</option>
 					<option value="2">Id</option>
-					<option value="3">Nơi hiển thị</option>
-					<option value="4">Nội dung thông báo</option>
+					<option value="3">Nơi hiển thị - 表示の場所</option>
+					<option value="4">Nội dung thông báo - お知らせの内容</option>
 				</select>
 			</div>
 			<div class="col-md-6">
 				<input type="text" name="txtFind" class="form-control"
-					placeholder="Nội dung cần tìm ...">
+					placeholder="Nội dung cần tìm - 知りたい内容です。">
 			</div>
 			<input type="submit" value="Tìm kiếm - 検索" class="btn btn-primary">
 		</form>
@@ -112,21 +112,21 @@
 			<!--------------------------- Tạo quảng cáo ---------------------------------------------------------->
 			<button type="button" class="btn btn-primary btn-sm them"
 				data-toggle="modal" data-target="#themThongBao">Thêm thông
-				báo - 広告を作成</button>
+				báo - お知らせの追加</button>
 
 			<div class="col-md-10 col-md-offset-2 panel panel-primary quangcao">
-				<div class="panel-heading">Thông báo đang hiển thị - リスト広告</div>
+				<div class="panel-heading">Thông báo đang hiển thị - お知らせを表示する</div>
 				<div class="panel-body">
 					<div class="table-responsive table-hover">
 						<table class="table">
 							<thead>
 								<tr>
 									<th>ID</th>
-									<th class="sua">Gửi đến<br>像
+									<th class="sua">Gửi đến<br>送信する<br>
 									</th>
-									<th>Nội dung tin nhắn<br>像
+									<th>Nội dung tin nhắn<br>メッセージの内容
 									</th>
-									<th class="sua">Ngày Đăng <br>位置
+									<th class="sua">Ngày Đăng<br>掲載された日付
 									</th>
 									<th class="sua"></th>
 									<th class="xoa"></th>
@@ -144,13 +144,13 @@
 									<td><%=listHienThi.get(i).getNgayDang()%></td>
 									<td><button type="button" class="btn btn-primary btn-sm"
 											onclick="HienThi('<%=listHienThi.get(i).getIdThongBao()%>', '1');">Gỡ
-											bỏ - 削除します</button></td>
+											bỏ - 削除する</button></td>
 									<td><button type="button" class="btn btn-primary btn-sm"
 											onclick="CapNhat('<%=listHienThi.get(i).getIdThongBao()%>');">Chi
-											tiết - 編集</button></td>
+											tiết - 詳細</button></td>
 									<td><button type="button" class="btn btn-primary btn-sm"
 											onclick="XoaQC(<%=listHienThi.get(i).getIdThongBao()%>);">Xóa
-											- 削除します</button></td>
+											- 削除</button></td>
 								</tr>
 								<%
 									}
@@ -168,18 +168,18 @@
 
 			<%=request.getAttribute("mes")==null ? "" : request.getAttribute("mes")%>
 			<div class="col-md-10 col-md-offset-2 panel panel-primary quangcao">
-				<div class="panel-heading">Danh sách thông báo - リスト広告</div>
+				<div class="panel-heading">Danh sách thông báo - お知らせのリスト</div>
 				<div class="panel-body">
 					<div class="table-responsive table-hover">
 						<table class="table">
 							<thead>
 								<tr>
 									<th>ID</th>
-									<th class="sua">Gửi đến<br>像
+									<th class="sua">Gửi đến<br>送信する
 									</th>
-									<th>Nội dung tin nhắn<br>像
+									<th>Nội dung tin nhắn<br>メッセージの内容
 									</th>
-									<th class="sua">Ngày Đăng <br>位置
+									<th class="sua">Ngày Đăng<br>掲載された日付
 									</th>
 									<th class="sua"></th>
 									<th class="xoa"></th>
@@ -197,13 +197,13 @@
 									<td><%=listAn.get(i).getNgayDang()%></td>
 									<td><button type="button" class="btn btn-primary btn-sm"
 											onclick="HienThi('<%=listAn.get(i).getIdThongBao()%>', '0');">Hiển
-											thị - 削除します</button></td>
+											thị - 表示する</button></td>
 									<td><button type="button" class="btn btn-primary btn-sm"
 											onclick="CapNhat('<%=listAn.get(i).getIdThongBao()%>');">Chi
-											tiết - 編集</button></td>
+											tiết - 詳細</button></td>
 									<td><button type="button" class="btn btn-primary btn-sm"
 											onclick="XoaQC(<%=listAn.get(i).getIdThongBao()%>);">Xóa
-											- 削除します</button></td>
+											- 削除</button></td>
 								</tr>
 								<%
 									}
@@ -228,9 +228,9 @@
 					}
 					function HienThi(x, b){
 						if(b=='1')
-							$("#idQCgo").text("Bạn thật sự muốn gỡ bỏ thông báo " + x);
+							$("#idQCgo").text("Bạn thật sự muốn gỡ bỏ thông báo - 貴方は本当に知らせを削除したいですか？ " + x);
 						else
-							$("#idQCgo").text("Cho phép đăng thông báo " + x);
+							$("#idQCgo").text("Cho phép đăng thông báo - お知らせの掲載を許可する。 " + x);
 						$("#idGo").val(x);
 						$("#hienthi").val(b);
 						$('#goQC').modal('show');
@@ -253,7 +253,7 @@
 								$("#xong").removeAttr("disabled");
 							},
 							error : function() {
-								$("#noidungsua").html("<div class='alert alert-danger' role='alert'>Lỗi truy vấn dữ liệu từ Server!</div>");
+								$("#noidungsua").html("<div class='alert alert-danger' role='alert'>Lỗi truy vấn dữ liệu từ Server - サーバにデータベースのエラーが発生した!</div>");
 							}
 						});
 						$('#suaThongBao').modal('show');
@@ -270,29 +270,29 @@
 									<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 								</button>
 								<h4 class="modal-title" id="myModalLabel">Thêm thông báo
-									mới</h4>
+									mới - 新しいお知らせを追加する。</h4>
 							</div>
 							<div class="modal-body">
 								<!-- Đơn vị quảng cáo -->
 								<div class="form-group">
-									<label for="company"> Tiêu đề - 企業広告</label> <input type="text"
+									<label for="company"> Tiêu đề - タイトル</label> <input type="text"
 										class="form-control" name="TieuDe" maxlength="200">
 								</div>
 								<div class="form-group">
-									<label for="company"> Nội dung thông báo - 企業広告</label>
+									<label for="company"> Nội dung thông báo - お知らせの内容</label>
 									<textarea rows="5" cols="10" name="NoiDung"
 										class="form-control"></textarea>
 								</div>
 								<div class="form-group">
-									<label for="company"> Gửi đến - 企業広告</label> <select
+									<label for="company"> Gửi đến - 送信する</label> <select
 										class="form-control" id="typeSend" name="typeSend"
 										onchange="chonGui()">
-										<option value="DienDan">Toàn diễn đàn</option>
-										<option value="TenThanhVien">Thành viên</option>
+										<option value="DienDan">Toàn diễn đàn - 全フォーラム</option>
+										<option value="TenThanhVien">Thành viên - 会員</option>
 									</select>
 								</div>
 								<div class="form-group" style="display: none;" id="GuiDenForm">
-									<label for="company"> Tên thành viên - 企業広告</label>
+									<label for="company"> Tên thành viên - 会員の氏名</label>
 									<input type="text" class="form-control" name="GuiDen"
 										 maxlength="200" value="DienDan" id="GuiDen">
 								</div>
@@ -313,8 +313,8 @@ function chonGui(){
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default"
-									data-dismiss="modal">Hủy</button>
-								<button type="submit" class="btn btn-primary">Xong</button>
+									data-dismiss="modal">Hủy - 削除する</button>
+								<button type="submit" class="btn btn-primary">Xong - 完了する</button>
 							</div>
 						</div>
 					</div>
@@ -328,10 +328,9 @@ function chonGui(){
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal">
-									<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 								</button>
 								<h4 class="modal-title" id="myModalLabel">
-									Cập nhật thông báo <label id="idTBSua"></label>
+									Cập nhật thông báo - お知らせをアップデートする <label id="idTBSua"></label>
 								</h4>
 							</div>
 							<div class="modal-body" id="noidungsua">
@@ -340,9 +339,9 @@ function chonGui(){
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default"
-									data-dismiss="modal">Hủy</button>
+									data-dismiss="modal">Hủy - 削除する</button>
 								<button type="submit" class="btn btn-primary" id="xong"
-									disabled="disabled">Xong</button>
+									disabled="disabled">Xong - 完了する</button>
 							</div>
 						</div>
 					</div>
@@ -356,19 +355,18 @@ function chonGui(){
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal">
-									<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 								</button>
 								<h4 class="modal-title" id="myModalLabel">Xóa dữ liệu thông
-									báo</h4>
+									báo - お知らせのデータベースを削除する</h4>
 							</div>
 							<div class="modal-body">
-								Bạn thật sự muốn xóa thông báo <label id="idQC"></label> ??? <input
+								Bạn thật sự muốn xóa thông báo - 貴方は本当にお知らせを削除したいですか <label id="idQC"></label> ??? <input
 									type="hidden" name="id" id="idXoa">
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default"
-									data-dismiss="modal">Hủy</button>
-								<button type="submit" class="btn btn-primary">Xóa</button>
+									data-dismiss="modal">Hủy - 削除する</button>
+								<button type="submit" class="btn btn-primary">Xóa - 完了する</button>
 							</div>
 						</div>
 					</div>
@@ -382,10 +380,9 @@ function chonGui(){
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal">
-									<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 								</button>
 								<h4 class="modal-title" id="myModalLabel">Quản lý hiện/ẩn
-									thông báo</h4>
+									thông báo - 管理の表示/非表示のお知らせ</h4>
 							</div>
 							<div class="modal-body">
 								<label id="idQCgo"></label> ??? <input type="hidden" name="id"
@@ -394,8 +391,8 @@ function chonGui(){
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default"
-									data-dismiss="modal">Hủy</button>
-								<button type="submit" class="btn btn-primary">Chấp nhận</button>
+									data-dismiss="modal">Hủy - 削除する</button>
+								<button type="submit" class="btn btn-primary">Chấp nhận - 承認する</button>
 							</div>
 						</div>
 					</div>

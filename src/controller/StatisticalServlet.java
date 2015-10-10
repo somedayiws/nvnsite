@@ -150,7 +150,7 @@ public class StatisticalServlet extends HttpServlet {
 						"<strong>Số bài viết đăng lên trang chủ - ホームに投稿された記事の数です。:</strong> <span class='badge'>"+statisticalBo.countPosts(3, 2, dayStart, dayFinish)+"</span><br>"+
 						"<strong>Số bài viết mới đăng - 投稿したばかり記事の数です。:</strong> <span class='badge'>"+statisticalBo.countPosts(4, 2, dayStart, dayFinish)+"</span><br>"+
 						"<strong>Số bài viết đang dịch - 翻訳中の記事の数です。:</strong> <span class='badge'>"+statisticalBo.countPosts(5, 2, dayStart, dayFinish)+"</span><br>"+
-						"<strong>Số bài viết tiếng việt - :</strong> <span class='badge'>"+statisticalBo.countPosts(6, 2, dayStart, dayFinish)+"</span><br>"+
+						"<strong>Số bài viết tiếng việt - ベトナム語での記事の数:</strong> <span class='badge'>"+statisticalBo.countPosts(6, 2, dayStart, dayFinish)+"</span><br>"+
 						"<strong>Số bài viết tiếng nhật - 日本語で一番多い記事です。:</strong> <span class='badge'>"+statisticalBo.countPosts(7, 2, dayStart, dayFinish)+"</span><br>";
 				arrayNumberPost = statisticalBo.arrayNumber_Post;
 				for(int i=1;i<=3;i++){
@@ -163,7 +163,7 @@ public class StatisticalServlet extends HttpServlet {
 							"<strong>Số bài viết đăng lên trang chủ - ホームに投稿された記事の数です。:</strong> <span class='badge'>"+statisticalBo.countPosts(3, 1, null, null)+"</span><br>"+
 							"<strong>Số bài viết mới đăng - 投稿したばかり記事の数です。:</strong> <span class='badge'>"+statisticalBo.countPosts(4, 1, null, null)+"</span><br>"+
 							"<strong>Số bài viết đang dịch - 翻訳中の記事の数です。:</strong> <span class='badge'>"+statisticalBo.countPosts(5, 1, null, null)+"</span><br>"+
-							"<strong>Số bài viết tiếng việt:</strong> <span class='badge'>"+statisticalBo.countPosts(6, 1, null, null)+"</span><br>"+
+							"<strong>Số bài viết tiếng việt - ベトナム語での記事の数:</strong> <span class='badge'>"+statisticalBo.countPosts(6, 1, null, null)+"</span><br>"+
 							"<strong>Số bài viết tiếng nhật - 日本語で一番多い記事です。:</strong> <span class='badge'>"+statisticalBo.countPosts(7, 1, null, null)+"</span><br>";
 					arrayNumberPost = statisticalBo.arrayNumber_Post;
 					for(int i=1;i<=3;i++){
@@ -177,7 +177,7 @@ public class StatisticalServlet extends HttpServlet {
 							"<strong>Số bài viết đăng lên trang chủ - ホームに投稿された記事の数です。:</strong> <span class='badge'>"+statisticalBo.countPosts(3, 1, null, null)+"</span><br>"+
 							"<strong>Số bài viết mới đăng - 投稿したばかり記事の数です。:</strong> <span class='badge'>"+statisticalBo.countPosts(4, 1, null, null)+"</span><br>"+
 							"<strong>Số bài viết đang dịch - 翻訳中の記事の数です。:</strong> <span class='badge'>"+statisticalBo.countPosts(5, 1, null, null)+"</span><br>"+
-							"<strong>Số bài viết tiếng việt:</strong> <span class='badge'>"+statisticalBo.countPosts(6, 1, null, null)+"</span><br>"+
+							"<strong>Số bài viết tiếng việt - ベトナム語での記事の数:</strong> <span class='badge'>"+statisticalBo.countPosts(6, 1, null, null)+"</span><br>"+
 							"<strong>Số bài viết tiếng nhật - 日本語で一番多い記事です。:</strong> <span class='badge'>"+statisticalBo.countPosts(7, 1, null, null)+"</span><br>";
 					arrayNumberPost = statisticalBo.arrayNumber_Post;
 					for(int i=1;i<=3;i++){
@@ -192,7 +192,7 @@ public class StatisticalServlet extends HttpServlet {
 					"<strong>Số bài viết đăng lên trang chủ - ホームに投稿された記事の数です。:</strong> <span class='badge'>"+statisticalBo.countPosts(3, 1, null, null)+"</span><br>"+
 					"<strong>Số bài viết mới đăng - 投稿したばかり記事の数です。:</strong> <span class='badge'>"+statisticalBo.countPosts(4, 1, null, null)+"</span><br>"+
 					"<strong>Số bài viết đang dịch - 翻訳中の記事の数です。:</strong> <span class='badge'>"+statisticalBo.countPosts(5, 1, null, null)+"</span><br>"+
-					"<strong>Số bài viết tiếng việt:</strong> <span class='badge'>"+statisticalBo.countPosts(6, 1, null, null)+"</span><br>"+
+					"<strong>Số bài viết tiếng việt - ベトナム語での記事の数:</strong> <span class='badge'>"+statisticalBo.countPosts(6, 1, null, null)+"</span><br>"+
 					"<strong>Số bài viết tiếng nhật - 日本語で一番多い記事です。:</strong> <span class='badge'>"+statisticalBo.countPosts(7, 1, null, null)+"</span><br>";
 				arrayNumberPost = statisticalBo.arrayNumber_Post;
 				for(int i=1;i<=3;i++){

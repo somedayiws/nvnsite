@@ -58,8 +58,8 @@ public class CTVServlet extends HttpServlet {
 		String result_Restore = (String)request.getAttribute("result_Restore");
 		if(result!=null)
 		{
-			 if(result.contains("Delete success")) result = "Xóa cộng tác viên thành công - ";
-			 else if(result.contains("Delete fail")) result = "Xóa cộng tác viên thất bại - ";
+			 if(result.contains("Delete success")) result = "Xóa cộng tác viên thành công - 協力者がロックされた";
+			 else if(result.contains("Delete fail")) result = "Xóa cộng tác viên thất bại - 協力者がまだロックできない";
 		}
 		if(result_Restore!=null) result = result_Restore;
 		
