@@ -13,7 +13,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Thư viện cho menu -->
-<title>Cập nhật bài viết</title>
+<title>Cập nhật bài viết - 記事をまだアップデートしない</title>
 <script src="js/jquery.min.js"></script>
 <script src="ckeditor/ckeditor.js"></script>
 <style type="text/css">
@@ -61,12 +61,12 @@
 					%>
 					<div class="donngu">
 						<div class="form-group">
-							<label>Tiêu đề - </label> <input id="TieuDe" name="TieuDe"
+							<label>Tiêu đề - タイトル</label> <input id="TieuDe" name="TieuDe"
 								type="text" class="form-control"
 								value="<%=baiviet.getTenBaiVietVi()%>"></input>
 						</div>
 						<div class="form-group">
-							<label>Mô tả - </label>
+							<label>Mô tả - 説明</label>
 							<textarea id="MoTa" name="MoTa" rows="5" cols="30" 
 								class="form-control"><%=baiviet.getMoTaVi()%></textarea>
 						</div>
@@ -76,12 +76,12 @@
 					%>
 					<div class="donngu">
 						<div class="form-group">
-							<label>Tiêu đề - </label> <input id="TieuDe" name="TieuDe"
+							<label>Tiêu đề - タイトル</label> <input id="TieuDe" name="TieuDe"
 								type="text" class="form-control"
 								value="<%=baiviet.getTenBaiVietJa()%>"></input>
 						</div>
 						<div class="form-group">
-							<label>Mô tả - </label>
+							<label>Mô tả - 説明</label>
 							<textarea id="MoTa" name="MoTa" rows="5" cols="30"
 								class="form-control"><%=baiviet.getMoTaJa()%></textarea>
 						</div>
@@ -92,12 +92,12 @@
 					<div class="dangu">
 						<div class="col-sm-6 col-md-6 tviet">
 							<div class="form-group">
-								<label>Tiêu đề - </label> <input id="TieuDeVi" name="TieuDeVi"
+								<label>Tiêu đề</label> <input id="TieuDeVi" name="TieuDeVi"
 									type="text" class="form-control"
 									value="<%=baiviet.getTenBaiVietVi()%>"></input>
 							</div>
 							<div class="form-group">
-								<label>Mô tả - </label>
+								<label>Mô tả</label>
 								<textarea id="MoTaVi" name="MoTaVi" rows="5" cols="30"
 									class="form-control"><%=baiviet.getMoTaVi()%></textarea>
 							</div>
@@ -119,7 +119,7 @@
 						}
 					%>
 					<div class="form-group">
-						<label>Thể loại - </label> <select id="TheLoai" name="TheLoai"
+						<label>Thể loại - 種類</label> <select id="TheLoai" name="TheLoai"
 							class="form-control">
 							<%
 								i = 0;
@@ -147,7 +147,7 @@
 					%>
 					<div class="donngu">
 						<div class="form-group">
-							<label>Nội dung - </label>
+							<label>Nội dung - 内容</label>
 							<textarea id="NoiDung" name="NoiDung" class="ckeditor"><%=baiviet.getNoiDungVi()%></textarea>
 						</div>
 					</div>
@@ -156,7 +156,7 @@
 					%>
 					<div class="donngu">
 						<div class="form-group">
-							<label>Nội dung - </label>
+							<label>Nội dung - 内容</label>
 							<textarea id="NoiDung" name="NoiDung" class="ckeditor"><%=baiviet.getNoiDungJa()%></textarea>
 						</div>
 					</div>
@@ -166,13 +166,13 @@
 					<div class="dangu">
 						<div class="col-sm-6 col-md-6 tviet">
 							<div class="form-group">
-								<label>Nội dung - </label>
+								<label>Nội dung</label>
 								<textarea id="NoiDungVi" name="NoiDungVi" class="ckeditor"><%=baiviet.getNoiDungVi()%></textarea>
 							</div>
 						</div>
 						<div class="col-sm-6 col-md-6 tnhat">
 							<div class="form-group">
-								<label>Nội dung - </label>
+								<label>内容</label>
 								<textarea id="NoiDungJa" name="NoiDungJa" class="ckeditor"><%=baiviet.getNoiDungJa()%></textarea>
 							</div>
 						</div>
@@ -182,7 +182,7 @@
 					%>
 					<div class="col-sm-12 col-md-12">
 						<div class="form-group">
-							<label>Hình ảnh - </label> <input type="file" id="HinhAnh"
+							<label>Hình ảnh - 画像</label> <input type="file" id="HinhAnh"
 								name="HinhAnh" onchange="xem(this);" />
 							<p class="help-block">
 								Chọn file .png, .jpg ...<br> <input type="hidden"
@@ -194,7 +194,7 @@
 						<input type="hidden" id="dichbai" name="dichbai" value="khong">
 						<input type="hidden" id="dangbai" name="dangbai" value="Đăng bài -">
 						<div class="form-group">
-							<input type="submit" value="Lưu bài - " name="luubai"
+							<input type="submit" value="Lưu bài - 記事を保存する" name="luubai"
 								class="btn btn-success" onclick="LuuBai();" /> <input type="button"
 								value="Đăng bài - 投稿" onclick="DichBai1();" name="dangbai"
 								class="btn btn-success" data-toggle="modal"

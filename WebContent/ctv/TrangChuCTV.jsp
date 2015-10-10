@@ -44,11 +44,11 @@ input.error {
 			</div>
 			<div class="row">
 				<label><i class="fa fa-user"></i> Tài khoản - アカウント </label>
-				<input type="text" name="taikhoan" placeholder="Tên đăng nhập" class="form-control">
+				<input type="text" name="taikhoan" placeholder="Tên đăng nhập - ユーザー名" class="form-control">
 			</div>
 			<div class="row">
 				<label><i class="fa fa-key"></i> Mật khẩu - パスワード</label>
-				<input type="password" name="matkhau" placeholder="Mật khẩu" class="form-control">
+				<input type="password" name="matkhau" placeholder="Mật khẩu - パスワード" class="form-control">
 			</div>
 			<div class="row">
 				<i class="fa fa-frown-o"></i> <a href="CTVResetMatKhauServlet"> Quên mật khẩu<br>パスワードを忘れた。!!!</a>

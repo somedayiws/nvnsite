@@ -70,7 +70,7 @@
 				<ul class="nav navbar-nav navbar-right">
 
 					<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" href="CapNhatThongTinServlet">Chào <%=user.getTenTaiKhoan()%>
+						data-toggle="dropdown" href="CapNhatThongTinServlet">Chào-ようこそ<%=user.getTenTaiKhoan()%>
 					</a>
 						<ul class="dropdown-menu">
 							<li><a href="TrangCaNhanServlet"><i
@@ -79,16 +79,16 @@
 									Đăng xuất-ログアウト</a></li>
 						</ul></li>
 					<li id="checkmail"></li>
-					<li><a href="BangGiaServlet"> Quảng cáo -</a> |</li>
+					<li><a href="BangGiaServlet"> Quảng cáo - 広告</a> |</li>
 				</ul>
 				<%
 					} else {
 				%>
 				<input type="hidden" id="tkDangNhap" value="null">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="BangGiaServlet"> Quảng cáo -</a> | <a
-						href="DangKyThanhVienServlet">Đăng ký -</a> | <a
-						data-toggle="modal" data-target="#mdangnhap"> Đăng nhập -</a></li>
+					<li><a href="BangGiaServlet"> Quảng cáo - 広告</a> | <a
+						href="DangKyThanhVienServlet">Đăng ký - 登録する</a> | <a
+						data-toggle="modal" data-target="#mdangnhap"> Đăng nhập - ログインする</a></li>
 					<%
 						}
 					%>
@@ -101,9 +101,9 @@
 			<form id="seach" class="navbar-form navbar-right" role="search"
 				action="TimKiemServlet" method="post">
 				<select name="categoryJa" class="form-control">
-					<option value="All" selected="selected">Tất cả</option>
-					<option value="ChuDe">Theo chủ đề</option>
-					<option value="NoiDung">Theo nội dung</option>
+					<option value="All" selected="selected">Tất cả - 全て</option>
+					<option value="ChuDe">Theo chủ đề - テーマ通り</option>
+					<option value="NoiDung">Theo nội dung - 内容通り</option>
 				</select> <input type="text" class="form-control"
 					placeholder="Tìm kiếm - 検索" name="txtFind">
 				<button type="submit" class="btn btn-success">
@@ -122,23 +122,23 @@
 								aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
-							<h3 class="modal-title" id="myModalLabel">Đăng nhập - </h3>
+							<h3 class="modal-title" id="myModalLabel">Đăng nhập - ログインする</h3>
 						</div>
 						<div class="modal-body">
 							<div class="row">
-								<strong>Tài khoản -</strong> <input name="taikhoan"
-									type="text" placeholder="Tài khoản" class="form-control">
+								<strong>Tài khoản - アカウント</strong> <input name="taikhoan"
+									type="text" placeholder="Tài khoản - アカウント" class="form-control">
 							</div>
 							<div class="row">
-								<strong>Mật khẩu - </strong> <input name="matkhau"
-									type="password" placeholder="Tài khoản" class="form-control">
+								<strong>Mật khẩu - パスワード</strong> <input name="matkhau"
+									type="password" placeholder="Tài khoản - パスワード" class="form-control">
 							</div>
 							<a href="DangKyThanhVienServlet"><i class="fa fa-user-plus"></i>
-								Đăng ký -</a>
+								Đăng ký - 登録する</a>
 						</div>
 						<div class="modal-footer">
 							<button name="xuly" name="submit" value="TrangChu"
-								class="btn btn-primary btn-sm">Đăng nhập -</button>
+								class="btn btn-primary btn-sm">Đăng nhập - ログインする</button>
 							<button type="button" class="btn btn-default btn-sm"
 								data-dismiss="modal">
 								<i class="fa fa-reply"></i> Hủy - 削除
@@ -205,7 +205,7 @@
 	<div id="textdiv">
 		<span class="col-sm-2 col-md-2" id="datetime"><i
 			class="fa fa-clock-o"></i> <%=homedate%> </span> <span id="textcontent">
-			<marquee> Dòng chữ chạy tự động nội dung web </marquee>
+			<marquee> Xin chào quý khách! </marquee>
 		</span>
 		<%
 			if (user == null) {

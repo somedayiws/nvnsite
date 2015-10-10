@@ -14,7 +14,7 @@
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/jquery-2.1.0.min.js"></script>
 <script src="../js/jquery.lazyload.js"></script>
-<title>Trang cá nhân</title>
+<title>Trang cá nhân - </title>
 <!--auto combobox -->
 <script src="../js/magicsuggest-min.js"></script>
 <link rel="stylesheet" href="css/CongtacvienStyle.css">
@@ -38,7 +38,7 @@ input.error {
 <body>
 <div class="container">
 	<p>
-		<marquee> Trang cộng tác viên VIET-NHAT</marquee>
+		<marquee> Trang cộng tác viên VIET-NHAT - 協力者専用の日越ホームページ</marquee>
 	</p>
 </div>
 	<!-- menu ngang -->
@@ -51,27 +51,27 @@ input.error {
 	<div class="col-sm-2 col-md-2">
 		<%@include file="files/thongke.jsp" %>
 		
-		<div class="xem">Tiến độ -  : <%= request.getAttribute("tongbvok") %>%</div>
-		<div class="xem1">Hủy bỏ - 削除 : <%= request.getAttribute("tongbvhuy") %>%</div>
-		<div class="xem2">Bài lỗi - : <%= request.getAttribute("tongbvloi") %></div>
+		<div class="xem">Tiến độ-進捗状況 : <%= request.getAttribute("tongbvok") %>%</div>
+		<div class="xem1">Hủy bỏ-削除 : <%= request.getAttribute("tongbvhuy") %>%</div>
+		<div class="xem2">Bài lỗi-エラーの記事 : <%= request.getAttribute("tongbvloi") %></div>
 		
 	</div>
 	<div class="col-sm-10 col-md-10">
 	<form action="CapNhatThongTinServlet" method="post" id="fcapnhat">
 		<%= (String)request.getAttribute("meg") %>
-		Tài khoản
+		Tài khoản - アカウント
 		<input type="text" name="taikhoan" readonly="readonly" class="form-control" value="<%= user.getTenTaiKhoan() %>">
-		Họ tên
+		Họ tên - 氏名
 		<input type="text" name="hoten" class="form-control" value="<%= user.getHoTen() %>">
-		Điện thoại
+		Điện thoại - 電話番号
 		<input type="text" name="dienthoai" class="form-control" value="<%= user.getDienThoai() %>">
-		Địa chỉ
+		Địa chỉ - 住所
 		<input type="text" name="diachi" class="form-control" value="<%= user.getDiaChi() %>">
 		Email
 		<input type="text" name="email" class="form-control" value="<%= user.getEmail() %>">
 		Mật khẩu mới - 新しいパスワード
 		<input type="password" name="matkhau" class="form-control" value="<%= user.getMatKhau() %>">
-		<button type="submit" class="btn btn-primary btn-sm" id="gui">Cập nhật</button>
+		<button type="submit" class="btn btn-primary btn-sm" id="gui">Cập nhật - アップデート</button>
 	</form>
 	</div>
 </body>

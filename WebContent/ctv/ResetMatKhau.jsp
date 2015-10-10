@@ -32,7 +32,7 @@ input.error {
 <body>
 <div class="container">
 	<p>
-		<marquee>Trang cộng tác viên VIET-NHAT - </marquee>
+		<marquee>Trang cộng tác viên VIET-NHAT - 協力者専用の日越ホームページ</marquee>
 	</p>
 </div>
 	<!-- nội dung chính -->
@@ -64,7 +64,7 @@ input.error {
 			},
 			messages : {
 				taikhoan : {
-					required : "<br>Chưa nhập tài khoản cần reset<br>リセットする必要なアカウントをまだ入力しない。"
+					required : "<br>Chưa nhập tài khoản cần reset<br>ユーザー名をまだ入力しない"
 				}
 			},
 			submitHandler : function(form) {

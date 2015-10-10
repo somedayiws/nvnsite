@@ -18,7 +18,7 @@
 <!-- Thư viện cho menu -->
 <!-- Google+ -->
 <link rel="canonical" href="http://webvietnhat-demo.jelastic.skali.net/" />
-<title>Tin nhắn từ diễn đàn - </title>
+<title>Tin nhắn từ diễn đàn - フォーラムからのメッセージ</title>
 </head>
 <body onLoad="initialize()">
 	<!-- Lấy dữ liệu từ server gửi về -->
@@ -43,7 +43,10 @@
 		</div>
 		<!-- hiển thị nội dung chính ở đây -->
 		<div class="col-sm-9 col-md-9" id="baiviet" style="font-size: 12px;">
-		<div class='alert alert-success' role='alert'>Ghi chú: Mọi vấn đề về thông báo các bạn vui lòng thông tin qua chúng tôi bằng cách click vào "Vui lòng để lại lời nhắn" bên dưới. Hoặc gửi mail thông qua thông tin liên hệ bên dưới. Xin cảm ơn!
+		<div class='alert alert-success' role='alert'>
+		Ghi chú: Mọi vấn đề về thông báo các bạn vui lòng thông tin qua chúng tôi bằng cách click vào "Vui lòng để lại lời nhắn" bên dưới. Hoặc gửi mail thông qua thông tin liên hệ bên dưới. Xin cảm ơn!
+		<br>
+		注：すべての問題は、以下のボタンの「メッセージを残してください」をクリックし、お知らせを通知してください。または下記の連絡先を経由してメールを送信して下さい。ありがとうございました！
 		</div>
 			<center id="tieude"><%=thongbao.getTieuDe() %></center>
 			<div id="infoThongBao">

@@ -48,19 +48,19 @@
 			</div>
 			<!-- hiển thị nội dung chính ở đây -->
 			<div class="col-sm-9 col-md-9" id="baiviet" style="font-size: 12px;">
-				<center id="tieude">Thông tin cá nhân</center>
+				<center id="tieude">Thông tin cá nhân-個人の情報 </center>
 				<%=(String)request.getAttribute("meg")==null?"":request.getAttribute("meg")%>
 				<form action="TrangCaNhanServlet" method="post" id="fcapnhat">
 					<div class="col-sm-6 col-md-6">
-						<label>Tài khoản</label> <input type="text" name="taikhoan"
+						<label>Tài khoản-アカウント</label> <input type="text" name="taikhoan"
 							readonly="readonly" class="form-control"
-							value="<%=user.getTenTaiKhoan()%>"> <label>Họ tên</label>
+							value="<%=user.getTenTaiKhoan()%>"> <label>Họ tên-氏名</label>
 						<input type="text" name="hoten" class="form-control"
 							value="<%=user.getHoTen()==null?"":user.getHoTen()%>"> <label>Điện
-							thoại</label> <input type="text" name="dienthoai" class="form-control"
+							thoại-電話番号</label> <input type="text" name="dienthoai" class="form-control"
 							value="<%=user.getDienThoai()==null?"":user.getDienThoai()%>">
 						<br>
-						<label>Địa chỉ</label> <input type="text" name="diachi"
+						<label>Địa chỉ-住所</label> <input type="text" name="diachi"
 							class="form-control"
 							value="<%=user.getDiaChi()==null?"":user.getDiaChi()%>">
 						<label>Email</label> <input type="text" id="email" name="email"
@@ -89,8 +89,8 @@
 				<%=hthi == null || hthi.equals("") ? "" : hthi%>
 				<table class="table table-hover">
 					<tr id="tieude1">
-						<td class="cltde">Tiêu Đề -</td>
-						<td class="clmta">Ngày - </td>
+						<td class="cltde">Tiêu Đề - タイトル</td>
+						<td class="clmta">Ngày - 日付</td>
 						<td class="ttrang"></td>
 						<td class="cllxem"><i class="fa fa-globe"></i></td>
 						<td class="clvd"></td>
@@ -110,13 +110,13 @@
 								if(listbaidang.get(i).getTrangThai().equals("Đã đăng<br>既設")||listbaidang.get(i).getTrangThai().equals("Đang duyệt<br>バロース")) {
 							%> <a
 							href="BaiVietServlet?id=<%=listbaidang.get(i).getIdBaiViet()%>"><i
-								class="fa fa-eye-slash"> Xem-書評</i></a> <%
+								class="fa fa-eye-slash"> Xem-観覧する</i></a> <%
  	} else {
  %> <a
 							href="CapNhatBaiVietServlet?id=<%=listbaidang.get(i).getIdBaiViet()%>"><i
-								class="fa fa-eye-slash"> Sửa -</i></a> <a
+								class="fa fa-eye-slash"> Sửa-修正する</i></a> <a
 							href="XoaBaiVietServlet?id=<%=listbaidang.get(i).getIdBaiViet()%>"><i
-								class="fa fa-eye-slash"> Xóa -</i></a> <%-- <%= list.get(i).getTrangThai()%> --%>
+								class="fa fa-eye-slash"> Xóa-削除する</i></a> <%-- <%= list.get(i).getTrangThai()%> --%>
 							<%
 								}
 							%>
@@ -135,13 +135,13 @@
 								if(listbaidang.get(i).getTrangThai().equals("Đã đăng<br>既設")||listbaidang.get(i).getTrangThai().equals("Đang duyệt<br>バロース")) {
 							%> <a
 							href="BaiVietServlet?id=<%=listbaidang.get(i).getIdBaiViet()%>"><i
-								class="fa fa-eye-slash"> Xem - </i></a> <%
+								class="fa fa-eye-slash"> Xem-観覧する</i></a> <%
  	} else {
  %> <a
 							href="CapNhatBaiVietServlet?id=<%=listbaidang.get(i).getIdBaiViet()%>"><i
-								class="fa fa-eye-slash"> Sửa - </i></a> <a
+								class="fa fa-eye-slash"> Sửa-修正する</i></a> <a
 							href="XoaBaiVietServlet?id=<%=listbaidang.get(i).getIdBaiViet()%>"><i
-								class="fa fa-eye-slash"> Xóa - </i></a> <%-- <%= list.get(i).getTrangThai()%> --%>
+								class="fa fa-eye-slash"> Xóa-削除する</i></a> <%-- <%= list.get(i).getTrangThai()%> --%>
 							<%
 								}
 							%>

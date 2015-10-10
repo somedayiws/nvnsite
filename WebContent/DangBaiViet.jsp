@@ -13,7 +13,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Thư viện cho menu -->
-<title>Đăng bài viết</title>
+<title>Đăng bài viết - 記事を掲載する</title>
 <!-- ck -->
 <script src="js/jquery.min.js"></script>
 <script src="ckeditor/ckeditor.js"></script>
@@ -42,20 +42,20 @@
 				enctype="multipart/form-data">
 				<!-- hiển thị nội dung chính ở đây -->
 				<div class="form-group">
-					<label>Ngôn ngữ soạn thảo - </label> <select id="NgonNgu"
+					<label>Ngôn ngữ soạn thảo - 記述する言語</label> <select id="NgonNgu"
 						name="NgonNgu" class="form-control" onchange="hienan();">
-						<option value="0">Tiếng Việt -</option>
-						<option value="1">Tiếng Nhật -</option>
-						<option value="2">Song ngữ -</option>
+						<option value="0">Tiếng Việt - ベトナム語</option>
+						<option value="1">Tiếng Nhật - 日本語</option>
+						<option value="2">Song ngữ - 両方の言語</option>
 					</select>
 				</div>
 				<div class="donngu">
 					<div class="form-group">
-						<label>Tiêu đề - </label> <input id="TieuDe" name="TieuDe"
+						<label>Tiêu đề - タイトル</label> <input id="TieuDe" name="TieuDe"
 							type="text" class="form-control" onblur="check();"></input>
 					</div>
 					<div class="form-group">
-						<label>Mô tả - </label>
+						<label>Mô tả - 説明</label>
 						<textarea id="MoTa" name="MoTa" rows="5" cols="30"
 							class="form-control"></textarea>
 					</div>
@@ -74,18 +74,18 @@
 					</div>
 					<div class="col-sm-6 col-md-6 tnhat">
 						<div class="form-group">
-							<label>Tiêu đề</label> <input id="TieuDeJa" name="TieuDeJa"
+							<label>タイトル</label> <input id="TieuDeJa" name="TieuDeJa"
 								type="text" class="form-control" onblur="check();"></input>
 						</div>
 						<div class="form-group">
-							<label>Mô tả</label>
+							<label>説明</label>
 							<textarea id="MoTaJa" name="MoTaJa" rows="5" cols="30"
 								class="form-control"></textarea>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label>Thể loại - </label> <select id="TheLoai" name="TheLoai"
+					<label>Thể loại - 種類</label> <select id="TheLoai" name="TheLoai"
 						class="form-control">
 						<%
 							i = 0;
@@ -101,7 +101,7 @@
 				</div>
 				<div class="donngu">
 					<div class="form-group">
-						<label>Nội dung - </label>
+						<label>Nội dung - 内容</label>
 						<textarea id="NoiDung" name="NoiDung" class="ckeditor"></textarea>
 					</div>
 				</div>
@@ -114,14 +114,14 @@
 					</div>
 					<div class="col-sm-6 col-md-6 tnhat">
 						<div class="form-group">
-							<label>Nội dung</label>
+							<label>内容</label>
 							<textarea id="NoiDungJa" name="NoiDungJa" class="ckeditor"></textarea>
 						</div>
 					</div>
 				</div>
 				<div class="col-sm-12 col-md-12">
 					<div class="form-group">
-						<label>Hình ảnh -</label> <input type="file" id="HinhAnh"
+						<label>Hình ảnh - 画像</label> <input type="file" id="HinhAnh"
 							name="HinhAnh" onchange="xem(this);" />
 						<p class="help-block">
 							Chọn file .png, .jpg ...<br> <img alt="Ảnh đại diện" src=""
@@ -131,7 +131,7 @@
 					<input type="hidden" id="dichbai" name="dichbai" value="luu">
 					<input type="hidden" id="dangbai" name="dangbai" value="Đăng bài -">
 					<div class="form-group">
-						<input type="submit" value="Lưu bài - "  onclick="LuuBai();" name="luubai" class="btn btn-success" />
+						<input type="submit" value="Lưu bài - 記事を保存する"  onclick="LuuBai();" name="luubai" class="btn btn-success" />
 						<input type="button" value="Đăng bài - 投稿" onclick="DichBai1();" name="dangbai" class="btn btn-success" data-toggle="modal" data-target="#xacnhandich"/> 
 						<input type="button" value="Quay lại - 戻り" class="btn" onclick="history.go(-1);" />
 					</div>

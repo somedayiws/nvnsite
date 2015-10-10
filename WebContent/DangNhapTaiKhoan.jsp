@@ -13,7 +13,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Thư viện cho menu -->
-<title>Đăng nhập</title>
+<title>Đăng nhập - ログイン</title>
 </head>
 <body onLoad="initialize()">
 	<div id="wrapper">
@@ -25,7 +25,7 @@
 				<form action="DangNhapServlet" method="post" id="fdangnhap">
 					<div class="login">
 						<div>
-							<h3 class="modal-title" id="myModalLabel">Đăng nhập - </h3>
+							<h3 class="modal-title" id="myModalLabel">Đăng nhập - ログイン</h3>
 						</div>
 						<div class="loi">
 							<%=request.getAttribute("loi")==null?"":request.getAttribute("loi")%>
@@ -35,20 +35,20 @@
 						</p>
 						<div class="modal-body">
 							<div class="row">
-								<strong>Tài khoản - </strong> <input name="taikhoan"
-									type="text" placeholder="Tài khoản" class="form-control">
+								<strong>Tài khoản - アカウント</strong> <input name="taikhoan"
+									type="text" placeholder="Tài khoản - アカウント" class="form-control">
 							</div>
 							<div class="row">
-								<strong>Mật khẩu - </strong> <input name="matkhau"
-									type="password" placeholder="Mật khẩu" class="form-control">
+								<strong>Mật khẩu - パスワード</strong> <input name="matkhau"
+									type="password" placeholder="Mật khẩu - パスワード" class="form-control">
 							</div>
 							<a href="DangKyThanhVienServlet"><i class="fa fa-user-plus"></i>
-								Đăng ký - </a> <br> <a href="QuenMatKhauServlet"><i
+								Đăng ký thành viên - 会員登録の申請 </a> <br> <a href="QuenMatKhauServlet"><i
 								class="fa fa-user-plus"></i> Quên mật khẩu - パスワードを忘れた。 </a>
 						</div>
 						<div class="modal-footer">
 							<button name="xuly" name="submit" value="TrangChu"
-								class="btn btn-primary btn-sm">Đăng nhập - </button>
+								class="btn btn-primary btn-sm">Đăng nhập - ログイン</button>
 						</div>
 					</div>
 				</form>
@@ -123,10 +123,10 @@
 			},
 			messages : {
 				taikhoan : {
-					required : "<br>Chưa nhập tên tài khoản"
+					required : "<br>Chưa nhập tên tài khoản<br>アカウントのユーザー名をまだ入力しない"
 				},
 				matkhau : {
-					required : "<br>Chưa nhập mật khẩu - ログインをまだしない!"
+					required : "<br>Chưa nhập mật khẩu<br>ログインをまだしない!"
 				}
 			},
 			submitHandler : function(form) {

@@ -58,29 +58,29 @@
 		<!-- ngôn ngữ chính của ctv là tiếng việt -->
 		<% if(user.getNgonNgu().equals("vi")) { %>
 			<div class="col-xs-12 col-sm-6 col-md-6 trai">
-					<strong>Tiêu đề - </strong>
+					<strong>Tiêu đề - タイトル</strong>
 					<input type="text" class="form-control" readonly="readonly" value="<%= bviet.getTenBaiVietVi() %>">
 			</div>		
 			<div class="col-xs-12 col-sm-6 col-md-6 phai">
-					<strong>Tiêu đề - </strong>
+					<strong>Tiêu đề - タイトル</strong>
 					<input id="TieuDe" name="tieude" type="text" class="form-control" placeholder="Tiêu đề bài dịch" value="<%= bviet.getTenBaiVietJa() == null ? "" :  bviet.getTenBaiVietJa()%>">		
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6 trai">
-					<strong>Mô tả - </strong>
+					<strong>Mô tả - 説明</strong>
 					<textarea class="form-control" readonly="readonly" rows="5"><%= bviet.getMoTaVi() %></textarea>
 			</div>		
 			<div class="col-xs-12 col-sm-6 col-md-6 phai">
-					<strong>Mô tả - </strong>
+					<strong>Mô tả - 説明</strong>
 					<textarea id="MoTa" name="mota" class="form-control" rows="5"><%= bviet.getMoTaJa() == null ? "" : bviet.getMoTaJa() %></textarea>		
 			</div>		
 			<div class="col-xs-12 col-sm-6 col-md-6 trai">
-					<strong>Nội dung - </strong>
+					<strong>Nội dung - 内容</strong>
 					<div id="ndviet">
 						<textarea  name="NoiDung" readonly="readonly" class="ckeditor"><%= bviet.getNoiDungVi() %></textarea>
 					</div>
 			</div>		
 			<div class="col-xs-12 col-sm-6 col-md-6 phai">
-					<strong>Nội dung - </strong>
+					<strong>Nội dung - 内容</strong>
 					<div id="ndviet">
 						<textarea id="NoiDung" name="noidung" class="ckeditor"><%= bviet.getNoiDungJa() == null ? "" : bviet.getNoiDungJa() %></textarea>
 					</div>
@@ -89,27 +89,27 @@
 		<% } else { %>
 		<!-- ngôn ngữ chính là tiếng nhật -->
 			<div class="col-xs-12 col-sm-6 col-md-6 trai">
-					Tiêu đề - 
+					Tiêu đề - タイトル
 					<input type="text" class="form-control" readonly="readonly" value="<%= bviet.getTenBaiVietJa() %>">
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6 phai">
-					Tiêu đề - 
+					Tiêu đề - タイトル
 					<input name="tieude" id="TieuDe" type="text" class="form-control" value="<%= bviet.getTenBaiVietVi()==null ? "" : bviet.getTenBaiVietVi()%>">
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6 trai">		
-					Mô tả - 
+					Mô tả - 説明
 					<textarea class="form-control" readonly="readonly" rows="5"><%= bviet.getMoTaJa() %></textarea>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6 phai">
-					Mô tả - 
+					Mô tả - 説明
 					<textarea name="mota" id="MoTa" class="form-control" rows="5"><%= bviet.getMoTaVi() == null ? "" : bviet.getMoTaVi() %></textarea>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6 trai">		
-					Nội dung - 
+					Nội dung - 内容
 					<div id="ndviet"><textarea name="tam" readonly="readonly" class="ckeditor"><%= bviet.getNoiDungJa() %></textarea></div>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6 phai">
-					Nội dung - 
+					Nội dung - 内容
 					<div id="ndviet"><textarea id="NoiDung" name="noidung" class="ckeditor"><%= bviet.getNoiDungVi()==null ? "" : bviet.getNoiDungVi() %></textarea></div>
 			</div>
 		<% } %>
@@ -119,7 +119,7 @@
 				<%= bviet.getGhiChu()==null ? "" : bviet.getGhiChu().replace("<strong>"+user.getIdTaiKhoan(), "<strong>Tôi") %>
 			</div>
 			<div class="row">
-				<textarea rows="3" placeholder="Bình luận của bạn" class="form-control" id="txtviet"></textarea>
+				<textarea rows="3" placeholder="Bình luận của bạn - あなたのコメントです" class="form-control" id="txtviet"></textarea>
 			</div>
 			<button type="button" class="btn btn-link" onclick="comentvi('<%= bviet.getIdBaiViet() %>');"><i class="fa fa-comments-o"></i> Bình luận - コメント</button>
 			<button type="button" class="btn btn-primary btn-sm" id="lui" name="submit" value="lui" onclick="history.go(-1);">Quay lại - 戻り</button>
@@ -136,8 +136,9 @@
 				        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-exclamation-triangle"></i> Hủy bài dịch - 翻訳の記事を削除うする</h4>
 				      </div>
 				      <div class="modal-body">
-				        Những bài dịch sẽ được gửi với yêu cầu HỦY DỊCH lên Admin và điều sẽ ảnh hưởng xấu đến thành tích của bạn.
-				        <br><strong>Bạn thật sự muốn hủy bài dich?</strong>
+				        Vì trường hợp  hủy bài dịch sẽ ảnh hưởng xấu đến thành tích của bạn. Bạn có thật sự muốn hủy bài dịch này không?
+				        <br>翻訳の記事がキャンセルされた場合は悪い評価が付けられるため、本当に翻訳の記事をキャンセルしたいですか？
+				        <br><strong>Bạn thật sự muốn hủy bài dich?<br>あなたは本当に翻訳の記事をキャンセルしたいですか？</strong>
 				      </div>
 				      <div class="modal-footer">
 				        <button type="button" class="btn btn-default" data-dismiss="modal">Không-いいえ</button>

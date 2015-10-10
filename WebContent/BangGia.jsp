@@ -13,7 +13,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Thư viện cho menu -->
-<title>Bảng giá quảng cáo</title>
+<title>Bảng giá quảng cáo - 広告の価格表</title>
 </head>
 <body onLoad="initialize()">
 	<!-- Lấy dữ liệu từ server gửi về -->
@@ -42,13 +42,13 @@
 			<!-- hiển thị nội dung chính ở đây -->
 			<div class="col-sm-9 col-md-9" id="baiviet">
 				<center>
-					<h3>Bảng giá dịch vụ</h3>
+					<h3>Bảng giá dịch vụ - サービスの価格表</h3>
 				</center>
-				<label class="nhan">1. Bảng giá dịch vụ dịch thuật</label> <img
-					class="imggia" alt="Bảng giá dịch vụ dịch thuật"
+				<label class="nhan">1. Bảng giá dịch vụ dịch thuật - 科学的翻訳の価格表</label> <img
+					class="imggia" alt="Bảng giá dịch vụ dịch thuật - 科学的翻訳の価格表"
 					src="<%=request.getAttribute("giadich")==null?"images/tainguyen/Capture2.PNG":request.getAttribute("giadich")%>">
-				<br> <label class="nhan">2. Bảng giá dịch vụ quảng cáo</label>
-				<img class="imggia" alt="Bảng giá dịch vụ quảng cáo"
+				<br> <label class="nhan">2. Bảng giá dịch vụ quảng cáo - 広告のサービスの価格表</label>
+				<img class="imggia" alt="Bảng giá dịch vụ quảng cáo - 広告のサービスの価格表"
 					src="<%=request.getAttribute("giaquangcao")==null?"images/tainguyen/Capture1.PNG":request.getAttribute("giaquangcao")%>">
 			</div>
 
@@ -119,10 +119,10 @@
 			},
 			messages : {
 				taikhoan : {
-					required : "<br>Chưa nhập tên tài khoản"
+					required : "<br>Chưa nhập tên tài khoản<br>アカウントのユーザー名をまだ入力しない"
 				},
 				matkhau : {
-					required : "<br>Chưa nhập mật khẩu - ログインをまだしない!"
+					required : "<br>Chưa nhập mật khẩu<br>ログインをまだしない!"
 				}
 			},
 			submitHandler : function(form) {

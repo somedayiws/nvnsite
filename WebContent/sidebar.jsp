@@ -19,7 +19,7 @@
 	<!-- Quảng cáo lung tung -->
 	<div id="sidebar">
 		<div class="sidebar-item">
-			<div id="title-item"><i class="fa fa-bell-o"></i> THÔNG BÁO</div>
+			<div id="title-item"><i class="fa fa-bell-o"></i> THÔNG BÁO-お知らせ</div>
 			<div id="content-item">
 				<div class="item-style">
 					<%
@@ -42,8 +42,7 @@
 		<div class="xemnhieu">
 			<div id="titleTabBar">
 				<div class="col-sm-6 col-md-6 active" id="pMoiNhat">
-					<p>Mới nhất</p>
-					<p>最新</p>
+					<p>Mới nhất - 最新</p>
 				</div>
 			</div>
 			<ul id="contentMoiNhat">
@@ -70,11 +69,11 @@
 			%>
 			<p>
 				<span id="icon"><i class="fa fa-users fa-4x"></i> <br>
-					Views - 履歴</span><span id="count"><%=counter.getActiveView()%></span>
+					Views - 再生回数</span><span id="count"><%=counter.getActiveView()%></span>
 			</p>
 			<p>
 				<span id="icon"><i class="fa fa-globe fa-4x"></i> <br>Online
-					- 直結</span><span id="count"><%=counter.getActiveSessionNumber()%></span>
+					- オンライン</span><span id="count"><%=counter.getActiveSessionNumber()%></span>
 
 			</p>
 		</div>

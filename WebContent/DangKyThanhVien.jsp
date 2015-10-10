@@ -28,27 +28,27 @@
 				<%=request.getAttribute("loi")==null?"":request.getAttribute("loi")%>
 				<form id="khungdangky" action="DangKyThanhVienServlet" method="post">
 					<label class="form-label1">Thông tin tài khoản-アカウントの情報</label><br> <label
-						class="form-label">Tài khoản(*)</label> <input type="text"
-						name="taikhoan" class="form-control" placeholder="Tên tài khoản">
+						class="form-label">Tài khoản - アカウント(*)</label> <input type="text"
+						name="taikhoan" class="form-control" placeholder="Tên tài khoản - ユーザー名">
 					<br>
-					<label class="form-label">Mật khẩu(*)</label> <input
+					<label class="form-label">Mật khẩu - パスワード(*)</label> <input
 						type="password" name="matkhau" class="form-control"
-						placeholder="Mật khẩu của bạn"> <label class="form-label1">Thông
+						placeholder="Mật khẩu của bạn - あなたのパスワード"> <label class="form-label1">Thông
 						tin cá nhân-個人の情報</label><br> <label class="form-label">Họ và
-						tên(*)</label> <input type="text" name="hoten" class="form-control"
-						placeholder="Họ tên đầy đủ"> <br>
-					<label class="form-label">Địa chỉ</label> <input type="text"
-						name="diachi" class="form-control" placeholder="Địa chỉ">
-					<label class="form-label">Điện thoại</label> <input type="text"
+						tên - 氏名(*)</label> <input type="text" name="hoten" class="form-control"
+						placeholder="Họ tên đầy đủ - 全ての氏名"> <br>
+					<label class="form-label">Địa chỉ - 住所</label> <input type="text"
+						name="diachi" class="form-control" placeholder="Địa chỉ - 住所">
+					<label class="form-label">Điện thoại - 電話番号</label> <input type="text"
 						name="dienthoai" class="form-control"
-						placeholder="Điện thoại liên hệ"> <label
+						placeholder="Điện thoại liên hệ - 連絡先の電話番号"> <label
 						class="form-label">Email(*)</label> <br>
 					<input type="text" name="email" class="form-control"
 						placeholder="Email"> <br>
-					<label class="form-label">Ngôn ngữ chính(*) </label> <input
+					<label class="form-label">Ngôn ngữ chính - 主要な言語(*) </label> <input
 						type="radio" name="ngonngu" value="vi" checked="checked">
-					Tiếng Việt <input type="radio" name="ngonngu" title="ja">
-					Tiếng Nhật <br> <input type="submit" value="Đăng ký"
+					Tiếng Việt - ベトナム語<input type="radio" name="ngonngu" title="ja">
+					Tiếng Nhật - 日本語<br> <input type="submit" value="Đăng ký - 登録する"
 						name="submit" id="btndangky" class="btn btn-primary btn-sm">
 				</form>
 			</div>
@@ -122,10 +122,10 @@
 			},
 			messages : {
 				taikhoan : {
-					required : "<br>Chưa nhập tên tài khoản"
+					required : "<br>Chưa nhập tên tài khoản<br>ユーザー名をまだログインしない"
 				},
 				matkhau : {
-					required : "<br>Chưa nhập mật khẩu - ログインをまだしない!"
+					required : "<br>Chưa nhập mật khẩu<br>ログインをまだしない!"
 				}
 			},
 			submitHandler : function(form) {
@@ -155,21 +155,21 @@
 			},
 			messages : {
 				taikhoan : {
-					required : "Bạn chưa nhập tên tài khoản!"
+					required : "Bạn chưa nhập tên tài khoản<br>あなたはユーザー名をまだログインしない"
 				},
 				matkhau : {
-					required : "Bạn chưa nhập mật khẩu-ログインをまだしない!"
+					required : "Bạn chưa nhập mật khẩu<br>ログインをまだしない!"
 				},
 				hoten : {
-					required : "Bạn chưa nhập họ tên!"
+					required : "Bạn chưa nhập họ tên!<br>氏名をまだ入力しない!"
 				},
 				email : {
-					required : "Bạn chưa nhập email!",
-					email : "Không đúng định dạng email"
+					required : "Bạn chưa nhập email!<br>メールをまだ入力しない!",
+					email : "Không đúng định dạng email<br>メールの形式が無効です"
 				},
 				dienthoai : {
-					digits : "Nhập sai định dạng số điện thoại<br>",
-					minlength : "Chứa tối thiểu 10 chữ số"
+					digits : "Nhập sai định dạng số điện thoại<br>入力された電話番号が無効です。",
+					minlength : "Chứa tối thiểu 10 chữ số<br>最低に10文字です。"
 				}
 			},
 			submitHandler : function(form) {

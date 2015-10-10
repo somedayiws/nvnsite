@@ -89,7 +89,7 @@
 			<div class="col-sm-12 col-md-12" id="topMainContent">
 				<div class="col-sm-3 col-md-3" id="leftTopContent">
 					<div id="danhmuchot" class="ancainay">
-						<p id="titlehot">Danh Muc HOT -</p>
+						<p id="titlehot">Danh Muc HOT-人気の項目</p>
 						<ul id="listhot">
 							<%
 								i=0;
@@ -358,7 +358,7 @@
 				<div id="sidebar">
 					<div class="sidebar-item">
 						<div id="title-item">
-							<i class="fa fa-bell-o"></i> THÔNG BÁO
+							<i class="fa fa-bell-o"></i> THÔNG BÁO-お知らせ
 						</div>
 						<div id="content-item">
 							<div class="item-style">
@@ -382,8 +382,7 @@
 					<div class="xemnhieu">
 						<div id="titleTabBar">
 							<div class="col-sm-6 col-md-6 active" id="pMoiNhat">
-								<p>Mới nhất</p>
-								<p>最新 </p>
+								<p>Mới nhất-最新</p>
 							</div>
 						</div>
 						<ul id="contentMoiNhat">
@@ -410,11 +409,11 @@
 						%>
 						<p>
 							<span id="icon"><i class="fa fa-users fa-4x"></i> <br>
-								Views - </span><span id="count"><%=counter.getActiveView()%></span>
+								Views - 再生回数</span><span id="count"><%=counter.getActiveView()%></span>
 						</p>
 						<p>
 							<span id="icon"><i class="fa fa-globe fa-4x"></i> <br>Online
-								- </span><span id="count"><%=counter.getActiveSessionNumber()%></span>
+								- オンライン</span><span id="count"><%=counter.getActiveSessionNumber()%></span>
 
 						</p>
 					</div>
@@ -428,7 +427,7 @@
 			</div>
 			<div class="col-sm-3 col-md-3">
 				<div class="sidebar-item">
-					<div id="title-item">NHÀ TÀI TRỢ</div>
+					<div id="title-item">NHÀ TÀI TRỢ-スポンサー</div>
 					<div id="content-item">
 						<div class="item-style">
 							<p>
@@ -601,10 +600,10 @@
 			},
 			messages : {
 				taikhoan : {
-					required : "<br>Chưa nhập tên tài khoản"
+					required : "<br>Chưa nhập tên tài khoản<br>ユーザー名をまだログインしない"
 				},
 				matkhau : {
-					required : "<br>Chưa nhập mật khẩu - ログインをまだしない!"
+					required : "<br>Chưa nhập mật khẩu<br>ログインをまだしない!"
 				}
 			},
 			submitHandler : function(form) {

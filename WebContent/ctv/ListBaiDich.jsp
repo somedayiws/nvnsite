@@ -47,9 +47,9 @@
 	<div class="col-sm-2 col-md-2">
 		<%@include file="files/thongke.jsp" %>
 		
-		<div class="xem">Tiến độ -  : <%= request.getAttribute("tongbvok") %>%</div>
-		<div class="xem1">Hủy bỏ - 削除 : <%= request.getAttribute("tongbvhuy") %>%</div>
-		<div class="xem2">Bài lỗi - : <%= request.getAttribute("tongbvloi") %></div>
+		<div class="xem">Tiến độ-進捗状況 : <%= request.getAttribute("tongbvok") %>%</div>
+		<div class="xem1">Hủy bỏ-削除 : <%= request.getAttribute("tongbvhuy") %>%</div>
+		<div class="xem2">Bài lỗi-エラーの記事 : <%= request.getAttribute("tongbvloi") %></div>
 		
 	</div>
 	<div class="col-sm-10 col-md-10">
@@ -63,8 +63,8 @@
 		<table class="table table-hover dulieu">
 		  <tr id="tieude">
 		  	<td class="clid">ID</td>
-		  	<td class="cltde">Tiêu Đề -</td>
-		  	<td class="clmta">Mô Tả -</td>
+		  	<td class="cltde">Tiêu Đề - タイトル</td>
+		  	<td class="clmta">Mô Tả - 説明</td>
 		  	<td class="clx"><i class="fa fa-check-square"></i></td>
 		  	<td class="clvd"></td>
 		  </tr>
@@ -79,8 +79,8 @@
 				  	<td><%= list.get(i).getMoTaVi() %></td>
 				  	<td><input type="checkbox" name="chon" value="<%= list.get(i).getIdBaiViet() %>"></td>
 				  	<td class="ctv-chon">
-				  		<a href="XemBaiDichServlet?id=<%= list.get(i).getIdBaiViet() %>"><i class="fa fa-eye-slash"> Xem</i></a>
-				  		- <a href="DichBaiDichServlet?id=<%= list.get(i).getIdBaiViet() %>"><i class="fa fa-pencil-square-o">Dich</i></a>
+				  		<a href="XemBaiDichServlet?id=<%= list.get(i).getIdBaiViet() %>"><i class="fa fa-eye-slash"> Xem-観覧する</i></a>
+				  		<a href="DichBaiDichServlet?id=<%= list.get(i).getIdBaiViet() %>"><i class="fa fa-pencil-square-o">Dich-翻訳する</i></a>
 				  	</td>
 				  </tr>
 			  <% } else { %>
@@ -90,8 +90,8 @@
 					  	<td><%= list.get(i).getMoTaJa() %></td>
 					  	<td><input type="checkbox" name="chon" value="<%= list.get(i).getIdBaiViet() %>"></td>
 					  	<td class="ctv-chon">
-					  		<a href="XemBaiDichServlet?id=<%= list.get(i).getIdBaiViet() %>"><i class="fa fa-eye-slash"> Xem</i></a>
-					  		- <a href="DichBaiDichServlet?id=<%= list.get(i).getIdBaiViet() %>"><i class="fa fa-pencil-square-o"> Dich</i></a>
+					  		<a href="XemBaiDichServlet?id=<%= list.get(i).getIdBaiViet() %>"><i class="fa fa-eye-slash"> Xem-観覧する</i></a>
+					  		<a href="DichBaiDichServlet?id=<%= list.get(i).getIdBaiViet() %>"><i class="fa fa-pencil-square-o"> Dich-翻訳する</i></a>
 					  	</td>
 					  </tr>
 			  <% } %>
@@ -115,8 +115,9 @@
 				        <h4 class="modal-title" id="myModalLabel">Hủy bài dịch-翻訳の記事を削除うする</h4>
 				      </div>
 				      <div class="modal-body">
-				        Những bài dịch sẽ được gửi với yêu cầu HỦY DỊCH lên Admin và điều sẽ ảnh hưởng xấu đến thành tích của bạn.
-				        <br><label>Bạn thật sự muốn hủy bài dich?</label>
+				        Vì trường hợp  hủy bài dịch sẽ ảnh hưởng xấu đến thành tích của bạn. Bạn có thật sự muốn hủy bài dịch này không?
+				        <br>翻訳の記事がキャンセルされた場合は悪い評価が付けられるため、本当に翻訳の記事をキャンセルしたいですか？
+				        <br><strong>Bạn thật sự muốn hủy bài dich?<br>あなたは本当に翻訳の記事をキャンセルしたいですか？</strong>
 				      </div>
 				      <div class="modal-footer">
 				        <button type="button" class="btn btn-default" data-dismiss="modal">Không-いいえ</button>

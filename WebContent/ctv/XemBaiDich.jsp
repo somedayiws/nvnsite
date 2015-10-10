@@ -55,11 +55,11 @@
 		<% if(user.getNgonNgu().equals("vi")) { %>
 			<% if(bviet.getTrangThai().equals("ChuyenDich")) { %>
 			<div class="col-xs-12 col-sm-12 col-md-12">
-					<label>Tiêu đề - </label>
+					<label>Tiêu đề - タイトル</label>
 					<p><%= bviet.getTenBaiVietVi() %></p>
-					<label>Mô tả - </label>
+					<label>Mô tả - 説明</label>
 					<p><%= bviet.getMoTaVi() %>"></p>
-					<label>Nội dung - </label>
+					<label>Nội dung - 内容</label>
 					<p id="ndviet">
 						<%= bviet.getNoiDungVi() %>
 					</p>
@@ -67,33 +67,33 @@
 			<% } else { %>
 			<div class="row cot1">
 			<div class="col-xs-12 col-sm-6 col-md-6">
-					<strong>Tiêu đề - </strong>
+					<strong>Tiêu đề</strong>
 					<p><%= bviet.getTenBaiVietVi() %></p>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6">
-					<strong>Tiêu đề - </strong>
+					<strong>タイトル</strong>
 					<p><%= bviet.getTenBaiVietJa() %></p>
 			</div>
 			</div>
 			<div class="row cot2">
 			<div class="col-xs-12 col-sm-6 col-md-6">
-					<strong>Mô tả - </strong>
+					<strong>Mô tả</strong>
 					<p><%= bviet.getMoTaVi() %>"></p>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6">
-					<strong>Mô tả - </strong>
+					<strong>説明</strong>
 					<p><%= bviet.getMoTaJa() %></p>
 			</div>
 			</div>
 			<div class="row cot1">
 			<div class="col-xs-12 col-sm-6 col-md-6">
-					<strong>Nội dung - </strong>
+					<strong>Nội dung</strong>
 					<p id="ndviet">
 						<%= bviet.getNoiDungVi() %>
 					</p>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6">
-					<strong>Nội dung - </strong>
+					<strong>内容</strong>
 					<p id="ndviet">
 						<%= bviet.getNoiDungJa() %>
 					</p>
@@ -104,11 +104,11 @@
 		<!-- ngôn ngữ chính là tiếng nhật -->
 			<% if(bviet.getTrangThai().equals("ChuyenDich")) { %>
 			<div class="col-xs-12 col-sm-12 col-md-12">
-					<label>Tiêu đề - </label>
+					<label>Tiêu đề - タイトル</label>
 					<p><%= bviet.getTenBaiVietJa() %></p>
-					<label>Mô tả - </label>
+					<label>Mô tả - 説明</label>
 					<p><%= bviet.getMoTaJa() %></p>
-					<label>Nội dung - </label>
+					<label>Nội dung - 内容</label>
 					<p id="ndviet">
 						<%= bviet.getNoiDungJa() %>
 					</p>
@@ -116,33 +116,33 @@
 			<% } else { %>
 			<div class="row cot1">
 			<div class="col-xs-12 col-sm-6 col-md-6">
-					<strong>Tiêu đề - </strong>
+					<strong>タイトル</strong>
 					<p><%= bviet.getTenBaiVietJa() %></p>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6">
-					<strong>Tiêu đề - </strong>
+					<strong>Tiêu đề</strong>
 					<p><%= bviet.getTenBaiVietVi() %></p>
 			</div>
 			</div>
 			<div class="row cot2">
 			<div class="col-xs-12 col-sm-6 col-md-6">
-					<strong>Mô tả - </strong>
+					<strong>説明</strong>
 					<p><%= bviet.getMoTaJa() %></p>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6">
-					<strong>Mô tả - </strong>
+					<strong>Mô tả</strong>
 					<p><%= bviet.getMoTaVi() %></p>
 			</div>
 			</div>
 			<div class="row cot1">
 			<div class="col-xs-12 col-sm-6 col-md-6">
-					<strong>Nội dung - </strong>
+					<strong>内容</strong>
 					<p id="ndviet">
 						<%= bviet.getNoiDungJa() %>
 					</p>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6">
-					<strong>Nội dung - </strong>
+					<strong>Nội dung</strong>
 					<p id="ndviet">
 						<%= bviet.getNoiDungVi() %>
 					</p>
@@ -156,7 +156,7 @@
 				<%= bviet.getGhiChu()==null ? "" : bviet.getGhiChu().replace("<strong>"+user.getIdTaiKhoan(), "<strong>Tôi") %>
 			</div>
 			<div class="row">
-				<textarea rows="3" placeholder="Bình luận của bạn" class="form-control" id="txtviet"></textarea>
+				<textarea rows="3" placeholder="Bình luận của bạn - あなたのコメントです" class="form-control" id="txtviet"></textarea>
 			</div>
 			<div class="row" id="tuychonviet">
 				<button type="button" class="btn btn-link" onclick="comentvi('<%= bviet.getIdBaiViet() %>');"><i class="fa fa-comments-o"></i> Bình luận - コメント</button>
@@ -176,8 +176,9 @@
 							        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-exclamation-triangle"></i> Hủy bài dịch - 翻訳の記事を削除うする。</h4>
 							      </div>
 							      <div class="modal-body">
-							        Những bài dịch sẽ được gửi với yêu cầu HỦY DỊCH lên Admin và điều sẽ ảnh hưởng xấu đến thành tích của bạn.
-							        <br><strong>Bạn thật sự muốn hủy bài dich?<br>本当に記事を削除したい？</strong>
+							        Vì trường hợp  hủy bài dịch sẽ ảnh hưởng xấu đến thành tích của bạn. Bạn có thật sự muốn hủy bài dịch này không?
+							        <br>翻訳の記事がキャンセルされた場合は悪い評価が付けられるため、本当に翻訳の記事をキャンセルしたいですか？
+							        <br><strong>Bạn thật sự muốn hủy bài dich?<br>あなたは本当に翻訳の記事をキャンセルしたいですか？</strong>
 							      </div>
 							      <div class="modal-footer">
 							        <button type="button" class="btn btn-default" data-dismiss="modal">Không-いいえ</button>
