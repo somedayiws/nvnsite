@@ -58,29 +58,29 @@
 		<!-- ngôn ngữ chính của ctv là tiếng việt -->
 		<% if(user.getNgonNgu().equals("vi")) { %>
 			<div class="col-xs-12 col-sm-6 col-md-6 trai">
-					<strong>Tiêu đề - タイトル</strong>
+					<strong>Tiêu đề - </strong>
 					<input type="text" class="form-control" readonly="readonly" value="<%= bviet.getTenBaiVietVi() %>">
 			</div>		
 			<div class="col-xs-12 col-sm-6 col-md-6 phai">
-					<strong>Tiêu đề - タイトル</strong>
+					<strong>Tiêu đề - </strong>
 					<input id="TieuDe" name="tieude" type="text" class="form-control" placeholder="Tiêu đề bài dịch" value="<%= bviet.getTenBaiVietJa() == null ? "" :  bviet.getTenBaiVietJa()%>">		
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6 trai">
-					<strong>Mô tả - 概要</strong>
+					<strong>Mô tả - </strong>
 					<textarea class="form-control" readonly="readonly" rows="5"><%= bviet.getMoTaVi() %></textarea>
 			</div>		
 			<div class="col-xs-12 col-sm-6 col-md-6 phai">
-					<strong>Mô tả - 概要</strong>
+					<strong>Mô tả - </strong>
 					<textarea id="MoTa" name="mota" class="form-control" rows="5"><%= bviet.getMoTaJa() == null ? "" : bviet.getMoTaJa() %></textarea>		
 			</div>		
 			<div class="col-xs-12 col-sm-6 col-md-6 trai">
-					<strong>Nội dung - 内容</strong>
+					<strong>Nội dung - </strong>
 					<div id="ndviet">
 						<textarea  name="NoiDung" readonly="readonly" class="ckeditor"><%= bviet.getNoiDungVi() %></textarea>
 					</div>
 			</div>		
 			<div class="col-xs-12 col-sm-6 col-md-6 phai">
-					<strong>Nội dung - 内容</strong>
+					<strong>Nội dung - </strong>
 					<div id="ndviet">
 						<textarea id="NoiDung" name="noidung" class="ckeditor"><%= bviet.getNoiDungJa() == null ? "" : bviet.getNoiDungJa() %></textarea>
 					</div>
@@ -89,32 +89,32 @@
 		<% } else { %>
 		<!-- ngôn ngữ chính là tiếng nhật -->
 			<div class="col-xs-12 col-sm-6 col-md-6 trai">
-					Tiêu đề - タイトル
+					Tiêu đề - 
 					<input type="text" class="form-control" readonly="readonly" value="<%= bviet.getTenBaiVietJa() %>">
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6 phai">
-					Tiêu đề - タイトル
+					Tiêu đề - 
 					<input name="tieude" id="TieuDe" type="text" class="form-control" value="<%= bviet.getTenBaiVietVi()==null ? "" : bviet.getTenBaiVietVi()%>">
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6 trai">		
-					Mô tả - 概要
+					Mô tả - 
 					<textarea class="form-control" readonly="readonly" rows="5"><%= bviet.getMoTaJa() %></textarea>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6 phai">
-					Mô tả - 概要
+					Mô tả - 
 					<textarea name="mota" id="MoTa" class="form-control" rows="5"><%= bviet.getMoTaVi() == null ? "" : bviet.getMoTaVi() %></textarea>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6 trai">		
-					Nội dung - 内容
+					Nội dung - 
 					<div id="ndviet"><textarea name="tam" readonly="readonly" class="ckeditor"><%= bviet.getNoiDungJa() %></textarea></div>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6 phai">
-					Nội dung - 内容
+					Nội dung - 
 					<div id="ndviet"><textarea id="NoiDung" name="noidung" class="ckeditor"><%= bviet.getNoiDungVi()==null ? "" : bviet.getNoiDungVi() %></textarea></div>
 			</div>
 		<% } %>
 		<div class="col-xs-12 col-sm-12 col-md-12 khungbinhluan">
-			<strong> Phản hồi bài dịch - 翻訳文書の返事 </strong>
+			<strong> Phản hồi bài dịch - 翻訳文書の返事  </strong>
 			<div class="row" id="listblviet">
 				<%= bviet.getGhiChu()==null ? "" : bviet.getGhiChu().replace("<strong>"+user.getIdTaiKhoan(), "<strong>Tôi") %>
 			</div>

@@ -18,11 +18,11 @@
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="TrangChuCTVServlet"><i class="fa fa-home"></i> ホーム<br>Trang Chủ</a></li>
 				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="DanhSachBaiDichServlet?view=all"><i class="fa fa-list-ul"></i> 翻訳文書のリスト<br>Danh sách bài dịch<span class="caret"></span></a>
+					data-toggle="dropdown" href="DanhSachBaiDichServlet?view=all"><i class="fa fa-list-ul"></i> 翻訳された記事のリスト<br>Danh sách bài dịch<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="DanhSachBaiDichServlet?view=all">Tất cả bài viết - 全てニュース・文書 </a></li>
+						<li><a href="DanhSachBaiDichServlet?view=all">Tất cả bài viết - すべての記事です。 </a></li>
 						<li><a href="DanhSachBaiDichServlet?view=moi">Bài mới nhận - 届いたばかり文書ーニュース</a></li>
-						<li><a href="DanhSachBaiDichServlet?view=dich">Bài đang dịch - 翻訳中の文書 </a></li>
+						<li><a href="DanhSachBaiDichServlet?view=dich">Bài đang dịch - 翻訳中の文書  </a></li>
 						<li><a href="DanhSachBaiDichServlet?view=qua-han">Bài dịch quá hạn - 期限が過ぎた翻訳の文書•ニュース </a></li>
 					</ul></li>
 			</ul>
@@ -30,7 +30,7 @@
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="CapNhatThongTinServlet">Chào CTV <i class="fa fa-cogs"> </i></a>
 					<ul class="dropdown-menu">
-						<li><a href="CapNhatThongTinServlet"><i class="fa fa-info-circle"></i> Trang cá nhân<br>個人のホームページ </a></li>
+						<li><a href="CapNhatThongTinServlet"><i class="fa fa-info-circle"></i> Trang cá nhân<br>個人ホーム </a></li>
 						<li><a href="../DangXuatServlet"><i class="fa fa-sign-out"></i> Đăng xuất<br>ログアウト</a></li>
 					</ul></li>
 			</ul>

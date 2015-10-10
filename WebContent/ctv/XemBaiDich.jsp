@@ -14,7 +14,7 @@
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/jquery-2.1.0.min.js"></script>
 <script src="../js/jquery.lazyload.js"></script>
-<title>Xem bài dịch</title>
+<title>Xem bài dịch - 翻訳の記事を読む</title>
 <!--auto combobox -->
 <script src="../js/magicsuggest-min.js"></script>
 <link rel="stylesheet" href="css/CongtacvienStyle.css">
@@ -48,18 +48,18 @@
 	</div>
 	<div class="col-sm-10 col-md-10">
 		<div class="title-page">
-			Chi tiết bài viết - 
+			Chi tiết bài viết - 詳細な記事
 		</div>
 		<input type="hidden" id="iduser" name="iduser" value="<%= user.getIdTaiKhoan() %>">
 		<!-- ngôn ngữ chính của ctv là tiếng việt -->
 		<% if(user.getNgonNgu().equals("vi")) { %>
 			<% if(bviet.getTrangThai().equals("ChuyenDich")) { %>
 			<div class="col-xs-12 col-sm-12 col-md-12">
-					<label>Tiêu đề - タイトル</label>
+					<label>Tiêu đề - </label>
 					<p><%= bviet.getTenBaiVietVi() %></p>
-					<label>Mô tả - 概要</label>
+					<label>Mô tả - </label>
 					<p><%= bviet.getMoTaVi() %>"></p>
-					<label>Nội dung - 内容</label>
+					<label>Nội dung - </label>
 					<p id="ndviet">
 						<%= bviet.getNoiDungVi() %>
 					</p>
@@ -67,33 +67,33 @@
 			<% } else { %>
 			<div class="row cot1">
 			<div class="col-xs-12 col-sm-6 col-md-6">
-					<strong>Tiêu đề - タイトル</strong>
+					<strong>Tiêu đề - </strong>
 					<p><%= bviet.getTenBaiVietVi() %></p>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6">
-					<strong>Tiêu đề - タイトル</strong>
+					<strong>Tiêu đề - </strong>
 					<p><%= bviet.getTenBaiVietJa() %></p>
 			</div>
 			</div>
 			<div class="row cot2">
 			<div class="col-xs-12 col-sm-6 col-md-6">
-					<strong>Mô tả - 概要</strong>
+					<strong>Mô tả - </strong>
 					<p><%= bviet.getMoTaVi() %>"></p>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6">
-					<strong>Mô tả - 概要</strong>
+					<strong>Mô tả - </strong>
 					<p><%= bviet.getMoTaJa() %></p>
 			</div>
 			</div>
 			<div class="row cot1">
 			<div class="col-xs-12 col-sm-6 col-md-6">
-					<strong>Nội dung - 内容</strong>
+					<strong>Nội dung - </strong>
 					<p id="ndviet">
 						<%= bviet.getNoiDungVi() %>
 					</p>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6">
-					<strong>Nội dung - 内容</strong>
+					<strong>Nội dung - </strong>
 					<p id="ndviet">
 						<%= bviet.getNoiDungJa() %>
 					</p>
@@ -104,11 +104,11 @@
 		<!-- ngôn ngữ chính là tiếng nhật -->
 			<% if(bviet.getTrangThai().equals("ChuyenDich")) { %>
 			<div class="col-xs-12 col-sm-12 col-md-12">
-					<label>Tiêu đề - タイトル</label>
+					<label>Tiêu đề - </label>
 					<p><%= bviet.getTenBaiVietJa() %></p>
-					<label>Mô tả - 概要</label>
+					<label>Mô tả - </label>
 					<p><%= bviet.getMoTaJa() %></p>
-					<label>Nội dung - 内容</label>
+					<label>Nội dung - </label>
 					<p id="ndviet">
 						<%= bviet.getNoiDungJa() %>
 					</p>
@@ -116,33 +116,33 @@
 			<% } else { %>
 			<div class="row cot1">
 			<div class="col-xs-12 col-sm-6 col-md-6">
-					<strong>Tiêu đề - タイトル</strong>
+					<strong>Tiêu đề - </strong>
 					<p><%= bviet.getTenBaiVietJa() %></p>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6">
-					<strong>Tiêu đề - タイトル</strong>
+					<strong>Tiêu đề - </strong>
 					<p><%= bviet.getTenBaiVietVi() %></p>
 			</div>
 			</div>
 			<div class="row cot2">
 			<div class="col-xs-12 col-sm-6 col-md-6">
-					<strong>Mô tả - 概要</strong>
+					<strong>Mô tả - </strong>
 					<p><%= bviet.getMoTaJa() %></p>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6">
-					<strong>Mô tả - 概要</strong>
+					<strong>Mô tả - </strong>
 					<p><%= bviet.getMoTaVi() %></p>
 			</div>
 			</div>
 			<div class="row cot1">
 			<div class="col-xs-12 col-sm-6 col-md-6">
-					<strong>Nội dung - 内容</strong>
+					<strong>Nội dung - </strong>
 					<p id="ndviet">
 						<%= bviet.getNoiDungJa() %>
 					</p>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6">
-					<strong>Nội dung - 内容</strong>
+					<strong>Nội dung - </strong>
 					<p id="ndviet">
 						<%= bviet.getNoiDungVi() %>
 					</p>
