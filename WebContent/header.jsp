@@ -86,10 +86,9 @@
 				%>
 				<input type="hidden" id="tkDangNhap" value="null">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="BangGiaServlet"> Quảng cáo - ログイン</a> | <a
-						href="DangKyThanhVienServlet">Đăng ký - ログイン</a> | <a
-						data-toggle="modal" data-target="#mdangnhap"> Đăng nhập -
-							ログインログイン</a></li>
+					<li><a href="BangGiaServlet"> Quảng cáo -</a> | <a
+						href="DangKyThanhVienServlet">Đăng ký -</a> | <a
+						data-toggle="modal" data-target="#mdangnhap"> Đăng nhập -</a></li>
 					<%
 						}
 					%>
@@ -106,9 +105,9 @@
 					<option value="ChuDe">Theo chủ đề</option>
 					<option value="NoiDung">Theo nội dung</option>
 				</select> <input type="text" class="form-control"
-					placeholder="Tìm kiếm - Nhật ngữ" name="txtFind">
+					placeholder="Tìm kiếm - 検索" name="txtFind">
 				<button type="submit" class="btn btn-success">
-					<i class="fa fa-search"></i> Tìm kiếm
+					<i class="fa fa-search"></i> Tìm kiếm-検索
 				</button>
 			</form>
 		</div>
@@ -123,26 +122,26 @@
 								aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
-							<h3 class="modal-title" id="myModalLabel">Đăng nhập - ログイン</h3>
+							<h3 class="modal-title" id="myModalLabel">Đăng nhập - </h3>
 						</div>
 						<div class="modal-body">
 							<div class="row">
-								<strong>Tài khoản - アカウント</strong> <input name="taikhoan"
+								<strong>Tài khoản -</strong> <input name="taikhoan"
 									type="text" placeholder="Tài khoản" class="form-control">
 							</div>
 							<div class="row">
-								<strong>Mật khẩu - パスワード</strong> <input name="matkhau"
+								<strong>Mật khẩu - </strong> <input name="matkhau"
 									type="password" placeholder="Tài khoản" class="form-control">
 							</div>
 							<a href="DangKyThanhVienServlet"><i class="fa fa-user-plus"></i>
-								Đăng ký - 新規取得</a>
+								Đăng ký -</a>
 						</div>
 						<div class="modal-footer">
 							<button name="xuly" name="submit" value="TrangChu"
-								class="btn btn-primary btn-sm">Đăng nhập - ログイン</button>
+								class="btn btn-primary btn-sm">Đăng nhập -</button>
 							<button type="button" class="btn btn-default btn-sm"
 								data-dismiss="modal">
-								<i class="fa fa-reply"></i> Hủy - 取り消す
+								<i class="fa fa-reply"></i> Hủy - 削除
 							</button>
 						</div>
 					</div>
@@ -181,7 +180,7 @@
 					<!-- <li><a href="#"> <small class=vi>Thông Tin</small><br><small class=ja>じょうほう </small></a></li> -->
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#"> <small class=vi>Danh
-								Mục</small><br> <small class=ja>カテゴリ</small> <span class="caret"></span></a>
+								Mục</small><br> <small class=ja>項目</small> <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<%
 								while (listdanhmuc != null && i < listdanhmuc.size()) {

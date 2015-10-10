@@ -18,7 +18,7 @@
 <!-- Thư viện cho menu -->
 <!-- Google+ -->
 <link rel="canonical" href="http://webvietnhat-demo.jelastic.skali.net/" />
-<title>Tin nhắn từ diễn đàn - 個人ホーム</title>
+<title>Tin nhắn từ diễn đàn - </title>
 </head>
 <body onLoad="initialize()">
 	<!-- Lấy dữ liệu từ server gửi về -->
@@ -56,8 +56,8 @@
 				<%=hthi == null || hthi.equals("") ? "" : hthi%>
 				<table class="table table-hover" id="tableThongBao">
 					<tr id="tieude1">
-						<td class="cltde">Tiêu Đề - タイトル</td>
-						<td class="clmta">Ngày - 概要</td>
+						<td class="cltde">Tiêu Đề - </td>
+						<td class="clmta">Ngày - </td>
 					</tr>
 					<%
 						i = 0;

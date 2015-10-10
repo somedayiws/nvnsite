@@ -43,11 +43,11 @@
 				%>
 				<div class="baivieti col-xs-12 col-sm-12 col-md-12">
 					<a href="BaiVietServlet?id=<%=listbaiviet.get(i).getIdBaiViet()%>"
-						class="thongtinthem"> <img
-						src="<%=listbaiviet.get(i).getLienKet()%>"><strong>Tác
-							giả : <%=listbaiviet.get(i).getTaiKhoan().getHoTen()%></strong><br> <em>
-							Ngày : <%=listbaiviet.get(i).getNgayDang()%><br> View : <%=listbaiviet.get(i).getLuotXem()%>
-					</em>
+						class="thongtinthem"> <img src="<%=listbaiviet.get(i).getLienKet()==null?"images/baiviet.jpg":listbaiviet.get(i).getLienKet()%>"><strong><i
+				class="fa fa-user"></i> <%=listbaiviet.get(i).getTaiKhoan().getHoTen()%></strong>
+				<em> <i class="fa fa-calendar"></i> <%=listbaiviet.get(i).getNgayDang()%></em>
+				<em><i class="fa fa-eye"></i> <%=listbaiviet.get(i).getLuotXem()%>
+				</em>
 					</a>
 					<div class="motabai">
 						<a href="BaiVietServlet?id=<%=listbaiviet.get(i).getIdBaiViet()%>">

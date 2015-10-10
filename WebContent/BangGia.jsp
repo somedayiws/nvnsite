@@ -122,7 +122,7 @@
 					required : "<br>Chưa nhập tên tài khoản"
 				},
 				matkhau : {
-					required : "<br>Chưa nhập mật khẩu!"
+					required : "<br>Chưa nhập mật khẩu - ログインをまだしない!"
 				}
 			},
 			submitHandler : function(form) {

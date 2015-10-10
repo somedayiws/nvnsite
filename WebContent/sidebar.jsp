@@ -43,7 +43,7 @@
 			<div id="titleTabBar">
 				<div class="col-sm-6 col-md-6 active" id="pMoiNhat">
 					<p>Mới nhất</p>
-					<p>人気の動画</p>
+					<p>最新</p>
 				</div>
 			</div>
 			<ul id="contentMoiNhat">

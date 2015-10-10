@@ -11,9 +11,9 @@ public class DataBaseDAO {
 
 	Connection con;
 	Statement stm;
-//	String userName = "adminVgrgS7w";
-//	String password = "vQfYcj1EjDG_";
-//	String url = "jdbc:mysql://127.11.82.130:3306/vietnhat?useUnicode=true&characterEncoding=utf-8";
+//	String userName = "jpvnnetl_siwsapp"; 
+//	String password = "Zxcvbnm1233";
+//	String url = "jdbc:mysql://localhost:3306/jpvnnetl_webvietnhat?useUnicode=true&characterEncoding=utf-8";
 	
 	String userName = "somedayiws";
     String password = "zxcvbnm1233";
@@ -23,6 +23,7 @@ public class DataBaseDAO {
 //	String password = "123456";
 //    String url = "jdbc:mysql://127.0.0.1:3306/webvietnhat";
 	// Biến dùng cho menu
+	//Comment
 	private String menuPhanTrang = "";
 	private int nBangGhi = 5;
 	private int nTrang = 10;

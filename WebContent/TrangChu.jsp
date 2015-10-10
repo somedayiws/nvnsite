@@ -14,7 +14,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Thư viện cho menu -->
-<title>Trang Chủ</title>
+<title>Trang Chủ - ホーム</title>
 <!-- Google+ -->
 <link rel="canonical" href="http://jpvn.net/" />
 <style type="text/css">
@@ -194,7 +194,7 @@
 							<p>
 								<i class="fa fa-newspaper-o"></i> NỔI BẬT TRONG TUẦN QUA
 							</p>
-							<p>人気の動画人気の動気の動画</p>
+							<p>一週間前にホットの文書-ニュース </p>
 						</div>
 						<ul id="contentWeek">
 							<%
@@ -383,7 +383,7 @@
 						<div id="titleTabBar">
 							<div class="col-sm-6 col-md-6 active" id="pMoiNhat">
 								<p>Mới nhất</p>
-								<p>人気の動画</p>
+								<p>最新 </p>
 							</div>
 						</div>
 						<ul id="contentMoiNhat">
@@ -410,11 +410,11 @@
 						%>
 						<p>
 							<span id="icon"><i class="fa fa-users fa-4x"></i> <br>
-								Views - 履歴</span><span id="count"><%=counter.getActiveView()%></span>
+								Views - </span><span id="count"><%=counter.getActiveView()%></span>
 						</p>
 						<p>
 							<span id="icon"><i class="fa fa-globe fa-4x"></i> <br>Online
-								- 直結</span><span id="count"><%=counter.getActiveSessionNumber()%></span>
+								- </span><span id="count"><%=counter.getActiveSessionNumber()%></span>
 
 						</p>
 					</div>
@@ -523,7 +523,7 @@
 																				"");
 															},
 															error : function() {
-																alert('Có lỗi xảy ra');
+																alert('Có lỗi xảy ra - エラが発生した。');
 																$("#load")
 																		.html(
 																				"");
@@ -604,7 +604,7 @@
 					required : "<br>Chưa nhập tên tài khoản"
 				},
 				matkhau : {
-					required : "<br>Chưa nhập mật khẩu!"
+					required : "<br>Chưa nhập mật khẩu - ログインをまだしない!"
 				}
 			},
 			submitHandler : function(form) {

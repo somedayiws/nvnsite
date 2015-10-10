@@ -68,10 +68,10 @@
 							value="<%=user.getEmail()==null?"":user.getEmail()%>">
 					</div>
 					<div class="col-sm-6 col-md-6">
-						<label>Mật khẩu mới</label> <input type="password" id="matkhau"
+						<label>Mật khẩu mới - 新しいパスワード</label> <input type="password" id="matkhau"
 							name="matkhau" class="form-control"
 							value="<%=user.getMatKhau()%>"> <br> <label>Nhập
-							mã xác nhận bên dưới</label>
+							mã xác nhận bên dưới</br>以下のＩＤ（暗号化）　を入力して下さい。</label>
 						<%
 							/* ReCaptcha c = ReCaptchaFactory.newReCaptcha("6LcUfwsTAAAAAJvWq__-nMqX8qhBymgzfztk342-",
 																                                        "6LcUfwsTAAAAAA3VD4c_O4wK66-0AxVccisDCx8m", false); */
@@ -80,17 +80,17 @@
 																    out.print(c.createRecaptchaHtml(null, null));
 						%>
 						<button type="submit" class="btn btn-primary row" id="btnSubmit">
-							Cập nhật thông tin cá nhân<br>個人情報をアップデートする
+							Cập nhật thông tin cá nhân<br>個人情報をアップデートする。
 						</button>
 					</div>
 				</form>
 				<div style="clear: both;"></div>
-				<center id="tieude">Các bài viết đã đăng - 投資された記事です</center>
+				<center id="tieude">Các bài viết đã đăng - 投資された記事です。</center>
 				<%=hthi == null || hthi.equals("") ? "" : hthi%>
 				<table class="table table-hover">
 					<tr id="tieude1">
-						<td class="cltde">Tiêu Đề - タイトル</td>
-						<td class="clmta">Ngày - 概要</td>
+						<td class="cltde">Tiêu Đề -</td>
+						<td class="clmta">Ngày - </td>
 						<td class="ttrang"></td>
 						<td class="cllxem"><i class="fa fa-globe"></i></td>
 						<td class="clvd"></td>
@@ -114,9 +114,9 @@
  	} else {
  %> <a
 							href="CapNhatBaiVietServlet?id=<%=listbaidang.get(i).getIdBaiViet()%>"><i
-								class="fa fa-eye-slash"> Sửa-修正</i></a> <a
+								class="fa fa-eye-slash"> Sửa -</i></a> <a
 							href="XoaBaiVietServlet?id=<%=listbaidang.get(i).getIdBaiViet()%>"><i
-								class="fa fa-eye-slash"> Xóa-イレーズ</i></a> <%-- <%= list.get(i).getTrangThai()%> --%>
+								class="fa fa-eye-slash"> Xóa -</i></a> <%-- <%= list.get(i).getTrangThai()%> --%>
 							<%
 								}
 							%>
@@ -135,13 +135,13 @@
 								if(listbaidang.get(i).getTrangThai().equals("Đã đăng<br>既設")||listbaidang.get(i).getTrangThai().equals("Đang duyệt<br>バロース")) {
 							%> <a
 							href="BaiVietServlet?id=<%=listbaidang.get(i).getIdBaiViet()%>"><i
-								class="fa fa-eye-slash"> Xem-書評</i></a> <%
+								class="fa fa-eye-slash"> Xem - </i></a> <%
  	} else {
  %> <a
 							href="CapNhatBaiVietServlet?id=<%=listbaidang.get(i).getIdBaiViet()%>"><i
-								class="fa fa-eye-slash"> Sửa-修正</i></a> <a
+								class="fa fa-eye-slash"> Sửa - </i></a> <a
 							href="XoaBaiVietServlet?id=<%=listbaidang.get(i).getIdBaiViet()%>"><i
-								class="fa fa-eye-slash"> Xóa-イレーズ</i></a> <%-- <%= list.get(i).getTrangThai()%> --%>
+								class="fa fa-eye-slash"> Xóa - </i></a> <%-- <%= list.get(i).getTrangThai()%> --%>
 							<%
 								}
 							%>

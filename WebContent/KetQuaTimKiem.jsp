@@ -13,7 +13,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Thư viện cho menu -->
-<title>Danh mục bài viết</title>
+<title>Danh sách bài viết - 文書のリスト</title>
 </head>
 <body onLoad="initialize()">
 	<!-- Lấy dữ liệu từ server gửi về -->
@@ -44,13 +44,13 @@
 		</div>
 		<div class="col-sm-9 col-md-9" id="baiviet">
 			<h3>
-				<i class="fa fa-empire"></i> Kết quả tìm kiếm -
+				<i class="fa fa-empire"></i> Kết quả tìm kiếm - 検索の結果 
 			</h3>
 			<%
 				if(listbaiviet == null) {
 			%>
 			<div class="alert alert-warning" role="alert">Không tìm thấy dữ
-				liệu bạn cần ...</div>
+				liệu bạn cần ... </br>あなたは調べた内容がありません。 ...</div>
 			<%
 				}
 			%>
@@ -60,10 +60,10 @@
 			%>
 			<div class="baivieti col-xs-12 col-sm-12 col-md-12">
 				<a href="BaiVietServlet?id=<%=listbaiviet.get(i).getIdBaiViet()%>"
-					class="thongtinthem"> <img
-						src="<%=listbaiviet.get(i).getLienKet()%>"><strong>Tác
-						giả : <%=listbaiviet.get(i).getTaiKhoan().getHoTen()%></strong><br> <em>
-						Ngày : <%=listbaiviet.get(i).getNgayDang()%><br> View : <%=listbaiviet.get(i).getLuotXem()%>
+					class="thongtinthem"> <img src="<%=listbaiviet.get(i).getLienKet()==null?"images/baiviet.jpg":listbaiviet.get(i).getLienKet()%>"><strong><i
+				class="fa fa-user"></i> <%=listbaiviet.get(i).getTaiKhoan().getHoTen()%></strong>
+				<em> <i class="fa fa-calendar"></i> <%=listbaiviet.get(i).getNgayDang()%></em>
+				<em><i class="fa fa-eye"></i> <%=listbaiviet.get(i).getLuotXem()%>
 				</em>
 				</a>
 				<div class="motabai">
@@ -87,7 +87,7 @@
 						}
 					%>
 					<a href="BaiVietServlet?id=<%=listbaiviet.get(i).getIdBaiViet()%>"
-						class="xemthem">Xem thêm ...</a>
+						class="xemthem">Xem thêm - 詳細</a>
 				</div>
 			</div>
 			<%
@@ -171,7 +171,7 @@
 						$("#load").html("");
 					},
 					error : function() {
-						alert('Có lỗi xảy ra');
+						alert('Có lỗi xảy ra - エラが発生した。');
 						$("#load").html("");
 					}
 				});
