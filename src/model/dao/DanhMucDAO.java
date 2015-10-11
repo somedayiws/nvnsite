@@ -14,8 +14,8 @@ public class DanhMucDAO {
 		// TODO Auto-generated method stub
 		txtFind = DinhDangSQL.FomatSQL(txtFind);
 		ResultSet rs = null;
-		if(txtFind.equals("")) rs = db.getResultSet("select danhmuc.IdDanhMuc, TenDanhMucVi, TenDanhMucJa, HienThi, count(IdBaiViet) as SoLuongBai from danhmuc left join baiviet on danhmuc.IdDanhMuc=baiviet.IdDanhMuc  and TrangThai=N'OK' group by danhmuc.IdDanhMuc order by HienThi desc");
-		else rs = db.getResultSet("select danhmuc.IdDanhMuc, TenDanhMucVi, TenDanhMucJa, HienThi, count(IdBaiViet) as SoLuongBai from danhmuc left join baiviet on danhmuc.IdDanhMuc=baiviet.IdDanhMuc group by danhmuc.IdDanhMuc order by HienThi desc");
+		if(txtFind.equals("")) rs = db.getResultSet("select danhmuc.IdDanhMuc, TenDanhMucVi, TenDanhMucJa, HienThi, count(IdBaiViet) as SoLuongBai from danhmuc left join baiviet on danhmuc.IdDanhMuc=baiviet.IdDanhMuc  and TrangThai=N'OK' where danhmuc.CoXoa=0 group by danhmuc.IdDanhMuc order by HienThi desc");
+		else rs = db.getResultSet("select danhmuc.IdDanhMuc, TenDanhMucVi, TenDanhMucJa, HienThi, count(IdBaiViet) as SoLuongBai from danhmuc left join baiviet on danhmuc.IdDanhMuc=baiviet.IdDanhMuc where danhmuc.CoXoa=0 group by danhmuc.IdDanhMuc order by HienThi desc");
 		ArrayList<DANHMUC> list = new ArrayList<DANHMUC>();
 		try {
 			while(rs.next()){
@@ -34,7 +34,7 @@ public class DanhMucDAO {
 	
 	public ArrayList<DANHMUC> getListDanhMuc(String vitri, String top) {
 		// TODO Auto-generated method stub
-		String sql = "select IdDanhMuc,TenDanhMucVi,TenDanhMucJa,ICon from danhmuc limit "+vitri+","+top;
+		String sql = "select IdDanhMuc,TenDanhMucVi,TenDanhMucJa,ICon from danhmuc where danhmuc.CoXoa=0 limit "+vitri+","+top;
 		System.out.println(sql);
 		ResultSet rs = db.getResultSet(sql);
 		ArrayList<DANHMUC> list = new ArrayList<DANHMUC>();
@@ -70,7 +70,7 @@ public class DanhMucDAO {
 	public DANHMUC getDanhMuc(String id) {
 		// TODO Auto-generated method stub
 		id = DinhDangSQL.FomatSQL(id);
-		String sql = "select danhmuc.IdDanhMuc, TenDanhMucVi, TenDanhMucJa, HienThi, count(IdBaiViet) as SoLuongBai from danhmuc left join baiviet on danhmuc.IdDanhMuc=baiviet.IdDanhMuc and TrangThai=N'OK' where danhmuc.IdDanhMuc=N'"+id+"' group by danhmuc.IdDanhMuc order by HienThi desc";
+		String sql = "select danhmuc.IdDanhMuc, TenDanhMucVi, TenDanhMucJa, HienThi, count(IdBaiViet) as SoLuongBai from danhmuc left join baiviet on danhmuc.IdDanhMuc=baiviet.IdDanhMuc and TrangThai=N'OK' where danhmuc.IdDanhMuc=N'"+id+"' and danhmuc.CoXoa=0 group by danhmuc.IdDanhMuc order by HienThi desc";
 		ResultSet rs = db.getResultSet(sql);
 		try {
 			if(rs.next()){
