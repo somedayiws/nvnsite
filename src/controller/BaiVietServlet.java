@@ -37,15 +37,16 @@ public class BaiVietServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id");
-		BaiVietBO baiviet = new BaiVietBO();
-		DanhMucBO danhmuc = new DanhMucBO();
-		ArrayList<BAIVIET> listbaiviet = new ArrayList<BAIVIET>();
-		ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc("");
-		// Danh sách bài viết moi
-		ArrayList<BAIVIET> topmoi = baiviet.getTopBaiViet("Moi");
 
 		BAIVIET bviet = null;
 		if (id != null && !"".equals(id)) {
+			BaiVietBO baiviet = new BaiVietBO();
+			DanhMucBO danhmuc = new DanhMucBO();
+			ArrayList<BAIVIET> listbaiviet = new ArrayList<BAIVIET>();
+			ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc("");
+			// Danh sách bài viết moi
+			ArrayList<BAIVIET> topmoi = baiviet.getTopBaiViet("Moi");
+			
 			bviet = baiviet.getBaiViet(id);
 			listbaiviet = baiviet.getDanhSachBaiViet(bviet.getDanhMuc()
 					.getIdDanhMuc(), 0, "10");
@@ -66,6 +67,8 @@ public class BaiVietServlet extends HttpServlet {
 					.getDanhSachQuangCao((int) 2);
 			request.setAttribute("listquangcao", listquangcao);
 
+			baiviet.closeConnection();
+			danhmuc.closeConnection();
 			request.getRequestDispatcher("BaiViet.jsp").forward(request,
 					response);
 		} else {

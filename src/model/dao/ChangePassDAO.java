@@ -37,4 +37,9 @@ public class ChangePassDAO {
 		return db.updateData(sql_update_pass);
 	}
 
+
+	public void closeConnection() {
+		db.closeConnection();
+	}
+
 }

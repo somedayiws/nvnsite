@@ -66,26 +66,24 @@ public class LoginServlet extends HttpServlet {
 					  
 					   // Add both the cookies in the response header.
 					   response.addCookie(user);
-					   
-					   System.out.println("user.getName: "+user.getName());
-					   System.out.println("user.getValue: "+user.getValue());
 					  
 					}
 					
+					checkLogin.closeConnection();
 					response.sendRedirect("ShowHomeServlet");
-//					RequestDispatcher requestDis = request.getRequestDispatcher("ShowHomeServlet");
-//					requestDis.forward(request, response);
 				}
 				else{
 					result = "2";//Acc không tồn tại trong hệ thống
 					request.setAttribute("result", result);
 					RequestDispatcher requestDis = request.getRequestDispatcher("Login.jsp");
+					checkLogin.closeConnection();
 					requestDis.forward(request, response);
 				}
 		}else{
 			result = "1";//Username và password không hợp lệ
 			request.setAttribute("result", result);
 			RequestDispatcher requestDis = request.getRequestDispatcher("Login.jsp");
+			checkLogin.closeConnection();
 			requestDis.forward(request, response);
 		}
 	}

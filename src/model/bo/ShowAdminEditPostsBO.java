@@ -16,4 +16,7 @@ public class ShowAdminEditPostsBO {
 		return editPosts.getPostsById(idPost);
 	}
 
+	public void closeConnection() {
+		editPosts.closeConnection();
+	}
 }

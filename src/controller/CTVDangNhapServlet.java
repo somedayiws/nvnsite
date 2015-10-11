@@ -48,21 +48,26 @@ public class CTVDangNhapServlet extends HttpServlet {
 						// Tạo session lưu trữ phiên làm việc
 						request.getSession().setAttribute("user", user);
 						// Điều hướng đến trang khác mà không cần gửi dữ liệu
+						taikhoanBO.closeConnection();
 						response.sendRedirect("Trang-chu");
 					} else {
 						request.setAttribute("meg", "Tên đăng nhập hoặc mật khẩu không chính xác!<br>ユーザー名またログインが不正確です。");
+						taikhoanBO.closeConnection();
 						request.getRequestDispatcher("TrangChuCTV.jsp").forward(request, response);
 					}
 				} else {
 					request.setAttribute("meg", "Không thể để trống trường mật khẩu!<br>パスワードをすべて書き込んでください。");
+					taikhoanBO.closeConnection();
 					request.getRequestDispatcher("TrangChuCTV.jsp").forward(request, response);
 				}
 			} else {
 				request.setAttribute("meg", "Không thể để trống trường tài khoản!<br>アカウントをすべて書き込んでください。");
+				taikhoanBO.closeConnection();
 				request.getRequestDispatcher("TrangChuCTV.jsp").forward(request, response);
 			}
 		} else {
 			request.setAttribute("meg", "");
+			taikhoanBO.closeConnection();
 			request.getRequestDispatcher("TrangChuCTV.jsp").forward(request, response);
 		}
 	}

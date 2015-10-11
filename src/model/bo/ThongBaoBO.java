@@ -65,5 +65,7 @@ public class ThongBaoBO {
 	public void setViewed(String id) {
 		tb.setViewed(id);
 	}
-
+	public void closeConnection() {
+		tb.closeConnection();
+	}
 }

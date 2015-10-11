@@ -15,5 +15,7 @@ public class TaiNguyenBO {
 			String image, String image1) {
 		return tn.CapNhatTaiNguyen(soTu, giaVN, giaJA, image, image1);
 	}
-
+	public void closeConnection() {
+		tn.closeConnection();
+	}
 }

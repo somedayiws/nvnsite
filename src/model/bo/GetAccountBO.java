@@ -13,5 +13,7 @@ public class GetAccountBO {
 	public TAIKHOAN getAccErrorTranslate(String idPost){
 		return getAcc.getAccErrorTranslate(idPost);
 	}
-
+	public void closeConnection() {
+		getAcc.closeConnection();
+	}
 }

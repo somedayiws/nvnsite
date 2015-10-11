@@ -21,5 +21,7 @@ public class ListPostsBO {
 		public ArrayList<BAIVIET> getPostsNew(int page){
 			return listPosts.getPostsNew(page);
 		}
-
+		public void closeConnection() {
+			listPosts.closeConnection();
+		}
 }

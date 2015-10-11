@@ -39,6 +39,7 @@ public class ThongKeCTVSevlet extends HttpServlet {
 		request.setAttribute("dich", dich);
 		request.setAttribute("tre", tre);
 		
+		bviet.closeConnection();
 		request.getRequestDispatcher("ThongKeCTV.jsp").forward(request, response);
 		}
 	}

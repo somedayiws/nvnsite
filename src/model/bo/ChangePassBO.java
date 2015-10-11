@@ -40,5 +40,7 @@ public class ChangePassBO {
 	{
 		return changepass.updatePass(password_new,username);
 	}
-
+	public void closeConnection() {
+		changepass.closeConnection();
+	}
 }

@@ -39,7 +39,6 @@ public class SendAgainServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		String idPost = request.getParameter("idPost");
-		System.out.println("idPost: "+idPost);
 		GetAccountBO getAcc = new GetAccountBO();
 		TAIKHOAN accountErrorTranslate = getAcc.getAccErrorTranslate(idPost);
 		ArrayList<TAIKHOAN> listAccountCTV = new ArrayList<TAIKHOAN>();
@@ -53,19 +52,9 @@ public class SendAgainServlet extends HttpServlet {
 		request.setAttribute("note", changeStatus.getNotePost(idPost));
 		request.setAttribute("idPost", idPost);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("SendPost.jsp");
+		getAcc.closeConnection();
+		changeStatus.closeConnection();
 		dispatcher.forward(request, response);
-		 /*ListStatusHistoryBO listStatus = new ListStatusHistoryBO();
-		 LICHSU history = listStatus.getStatus(idPost);
-			String status = history.getTrangThai();
-		 request.setAttribute("idPost", idPost);
-		 request.setAttribute("accountErrorTranslate", accountErrorTranslate);
-		 ListAccountBO listAcc = new ListAccountBO();
-		 ArrayList<TAIKHOAN> accounts = listAcc.getDataAccountInfor(1);
-		 request.setAttribute("accounts", accounts);
-		 request.setAttribute("status", status);
-			RequestDispatcher requestDis = request
-					.getRequestDispatcher("SendPost.jsp");
-			requestDis.forward(request, response);*/
 	}
 
 	/**

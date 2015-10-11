@@ -37,6 +37,7 @@ public class XoaQuangCaoServlet extends HttpServlet {
 			}else{
 				request.setAttribute("mes", "<div class='alert alert-danger tbmeg' role='alert'>Xóa không thành công.</div>");
 			}
+			quangCaoBo.closeConnection();
 		}else{
 			request.setAttribute("mes", "<div class='alert alert-warning tbmeg' role='alert'>Bạn không có thẩm quyền cho thao tác này.</div>");
 		}

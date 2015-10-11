@@ -83,4 +83,7 @@ public class DanhMucDAO {
 		}
 		return null;
 	}
+	public void closeConnection() {
+		db.closeConnection();
+	}
 }

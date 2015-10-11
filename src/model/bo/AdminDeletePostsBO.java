@@ -10,5 +10,7 @@ public class AdminDeletePostsBO {
 	public boolean deletePost(String idPost) {
 		return deletepost.deletePost(idPost);		
 	}
-
+	public void closeConnection() {
+		deletepost.closeConnection();
+	}
 }

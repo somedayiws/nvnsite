@@ -86,7 +86,7 @@
 												},
 												numberOfDay : {
 													required : true,
-													range : [ 1, 100 ]
+													range : [ 1, 367 ]
 												},
 												price : {
 													required : true,
@@ -121,7 +121,7 @@
 												},
 												numberOfDay : {
 													required : "Phải nhập số ngày hiển thị - 表示する日程を入力しなければならない",
-													range : "Số ngày trong khoảng từ 1 đến 100 - 日付は1-100です。"
+													range : "Số ngày trong khoảng từ 1 đến 366 - 日付は1-366です。"
 												},
 												price : {
 													required : "Phải nhập giá quảng cáo - 広告の価格を入力しなければならない。",

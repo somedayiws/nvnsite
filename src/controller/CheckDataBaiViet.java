@@ -31,6 +31,7 @@ public class CheckDataBaiViet extends HttpServlet {
 		request.setAttribute("baimoi", tb.getCountBaiViet("moi")+"");
 		request.setAttribute("dichxong", tb.getCountBaiViet("xong")+"");
 		request.setAttribute("huydich", tb.getCountBaiViet("huy")+"");
+		tb.closeConnection();
 		request.getRequestDispatcher("KetQuaCheckData.jsp").forward(request,response);
 	}
 

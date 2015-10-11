@@ -125,6 +125,10 @@ public class ChangeStatusDAO {
 			return null;
 		}
 	}
+
+	public void closeConnection() {
+		db.closeConnection();
+	}
 		
 }
 

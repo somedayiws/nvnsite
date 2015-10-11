@@ -243,4 +243,7 @@ public class BaiVietBO {
 		// TODO Auto-generated method stub
 		return baiviet.HuyBaiDich(id);
 	}
+	public void closeConnection(){
+		baiviet.closeConnection();
+	}
 }

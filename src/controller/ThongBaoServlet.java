@@ -49,6 +49,7 @@ public class ThongBaoServlet extends HttpServlet {
 		request.setAttribute("pageNav", pageNav);
 		request.setAttribute("listhienthi", listhienthi);
 		request.setAttribute("listan", listan);
+		thongBaoBO.closeConnection();
 		request.getRequestDispatcher("ThongBao.jsp").forward(request, response);
 	}
 	}

@@ -9,5 +9,7 @@ public class GetInforAccountBO {
 	public TAIKHOAN getAcc(String username) {
 		return get_Account.getInforAcc(username);
 	}
-
+	public void closeConnection() {
+		get_Account.closeConnection();
+	}
 }

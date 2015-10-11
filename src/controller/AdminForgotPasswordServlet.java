@@ -42,7 +42,6 @@ public class AdminForgotPasswordServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String email = request.getParameter("email");
 		String result = null;//Không xử lý email
-		System.out.println("email: "+email);
 		
 		AdminForgotPasswordBO forgotPass = new AdminForgotPasswordBO();
 		if(forgotPass.checkValidate(email)){
@@ -53,12 +52,14 @@ public class AdminForgotPasswordServlet extends HttpServlet {
 				if(forgotPass.updateEmail(password, email)){
 					String body = "Khôi phục lại mật khẩu admin.Mật khẩu mới của bạn là: "+password+".Bạn nên thay đổi mật khẩu để dễ nhớ hơn";
 					sendEmail.sendFromGMail(to, subject, body);
+					forgotPass.closeConnection();
 					response.sendRedirect("ShowloginAdmin");
 				}
 				else{
 					result = "1";//Cập nhật mật khẩu không thành công
 					request.setAttribute("result", result);
 					RequestDispatcher requestDis = request.getRequestDispatcher("ForgotPassword.jsp");
+					forgotPass.closeConnection();
 					requestDis.forward(request, response);
 					
 				}					
@@ -66,18 +67,15 @@ public class AdminForgotPasswordServlet extends HttpServlet {
 				result = "2";//Email không có trong hệ thống
 				request.setAttribute("result", result);
 				RequestDispatcher requestDis = request.getRequestDispatcher("ForgotPassword.jsp");
+				forgotPass.closeConnection();
 				requestDis.forward(request, response);
 			}
 		}else{
 			result = "3";//Email không hợp lệ
 			request.setAttribute("result", result);
 			RequestDispatcher requestDis = request.getRequestDispatcher("ForgotPassword.jsp");
+			forgotPass.closeConnection();
 			requestDis.forward(request, response);
 		}
-		
-		
-		
-		
 	}
-
 }

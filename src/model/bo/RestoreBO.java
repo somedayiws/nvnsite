@@ -34,5 +34,8 @@ public class RestoreBO {
 			return null;
 		}
 	}
-
+	
+	public void closeConnection() {
+		restoreDAO.closeConnection();
+	}
 }

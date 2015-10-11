@@ -51,9 +51,9 @@ public class RemoveCommentSetvlet extends HttpServlet {
 		}else{
 			resultDeleteComment = "Xóa bình luận thất bại - ";
 		}
-		System.out.println("resultDeleteComment: "+resultDeleteComment);
 		request.setAttribute("result", resultDeleteComment);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("Message.jsp");
+		commentBo.closeConnection();
 		requestDispatcher.forward(request, response);
 		
 	}

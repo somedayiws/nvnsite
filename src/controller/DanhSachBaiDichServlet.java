@@ -31,11 +31,13 @@ public class DanhSachBaiDichServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		String view = request.getParameter("view");
-		BaiVietBO baiviet = new BaiVietBO();
+		
 		TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("user");
-		ArrayList<BAIVIET> listbaiviet = new ArrayList<BAIVIET>();
+		
 		if(user != null){
 			int page = 1;
+			BaiVietBO baiviet = new BaiVietBO();
+			ArrayList<BAIVIET> listbaiviet = new ArrayList<BAIVIET>();
 			baiviet.setMenu(10, 10);
 			try {
 				page = Integer.parseInt(request.getParameter("page"));
@@ -66,6 +68,7 @@ public class DanhSachBaiDichServlet extends HttpServlet {
 			request.setAttribute("tongbvhuy", df.format(tongbvhuy*100.00/tongbv));
 			request.setAttribute("tongbvloi", tongbvloi);
 			
+			baiviet.closeConnection();
 			request.getRequestDispatcher("ListBaiDich.jsp").forward(request, response);
 		}else{
 			response.sendRedirect("Trang-chu");

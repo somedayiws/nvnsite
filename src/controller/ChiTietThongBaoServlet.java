@@ -37,10 +37,8 @@ public class ChiTietThongBaoServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		BaiVietBO bv = new BaiVietBO();
 		DanhMucBO danhmuc = new DanhMucBO();
-		ThongBaoBO tb = new ThongBaoBO();
 		String id = request.getParameter("id");
 		bv.setMenu(10, 10);
-		TAIKHOAN user = (TAIKHOAN) request.getSession().getAttribute("user");
 		// Danh mục hiển thị
 		ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc("");
 		// Danh sách bài viết host
@@ -56,11 +54,15 @@ public class ChiTietThongBaoServlet extends HttpServlet {
 		request.setAttribute("listquangcao", listquangcao);
 		request.setAttribute("topmoi", topmoi);
 		request.setAttribute("listdanhmuc", listdanhmuc);
-		THONGBAO thongbao = tb.getThongBao(id);
+		THONGBAO thongbao = thongBaoBO.getThongBao(id);
 		if(thongbao !=null && (!thongbao.getGuiDen().equals("DienDan"))){
-			tb.setViewed(id);
+			thongBaoBO.setViewed(id);
 		}
 		request.setAttribute("thongbao", thongbao);
+		bv.closeConnection();
+		danhmuc.closeConnection();
+		thongBaoBO.closeConnection();
+		quangCaoBO.closeConnection();
 		request.getRequestDispatcher("ChiTietThongBao.jsp").forward(request, response);
 	}
 

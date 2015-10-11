@@ -101,6 +101,7 @@ public class UploadPostServlet extends HttpServlet {
 				else{
 					resultTranslate = "Dịch bài viết thất bại - 記事がまだ翻訳できない";
 				}
+				adminEditPostBo.closeConnection();
 				request.setAttribute("resultTranslate", resultTranslate);
 			}
 		
@@ -111,12 +112,16 @@ public class UploadPostServlet extends HttpServlet {
 			request.setAttribute("idPost", idPost);
 			request.setAttribute("resultOK", "Duyệt bài thành công - 記事が承認された");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("ShowDetailPostsServlet");
-			dispatcher.forward(request, response);
 			
+			checkID.closeConnection();
+			updateStatus.closeConnection();
+			
+			dispatcher.forward(request, response);
 		}else{
+			checkID.closeConnection();
+			updateStatus.closeConnection();
 			response.sendRedirect("Error.jsp");
 		}
-
 	}
 	}
 

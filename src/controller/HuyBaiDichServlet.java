@@ -32,6 +32,7 @@ public class HuyBaiDichServlet extends HttpServlet {
 		}else{
 			request.setAttribute("KetQua", "Hủy bài dịch không thành công");
 		}
+		bv.closeConnection();
 		request.getRequestDispatcher("KetQuaHuyDich.jsp").forward(request, response);
 	}
 

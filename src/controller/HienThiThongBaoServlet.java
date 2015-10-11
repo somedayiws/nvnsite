@@ -41,7 +41,7 @@ public class HienThiThongBaoServlet extends HttpServlet {
 			if(hienthi.equals("1")) request.setAttribute("meg", "<div class='alert alert-danger' role='alert'>Hiển thị thông báo thất bại.</div>");
 			else request.setAttribute("meg", "<div class='alert alert-danger' role='alert'>Gỡ bỏ thông báo thất bại.</div>");
 		}
-		
+		tb.closeConnection();
 		request.getRequestDispatcher("ThongBaoServlet").forward(request, response);
 	}
 	}

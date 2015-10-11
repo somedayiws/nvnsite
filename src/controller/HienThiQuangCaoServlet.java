@@ -51,6 +51,7 @@ public class HienThiQuangCaoServlet extends HttpServlet {
 						request.setAttribute("mes", "<div class='alert alert-danger tbmeg' role='alert'>Đăng quảng cáo không thành công.</div>");
 				}
 			}
+			quangCaoBo.closeConnection();
 		}else{
 			request.setAttribute("mes", "<div class='alert alert-warning tbmeg' role='alert'>Bạn không có thẩm quyền cho thao tác này.</div>");
 		}

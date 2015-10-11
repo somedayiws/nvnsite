@@ -197,5 +197,9 @@ public class ListPostsDAO {
 			return null;
 		}
 	}
+
+	public void closeConnection() {
+		db.closeConnection();
+	}
 	
 }

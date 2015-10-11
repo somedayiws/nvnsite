@@ -29,10 +29,11 @@ public class XuLyBaiVietServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String fruits[] = request.getParameterValues("chon");
 		String submit = request.getParameter("submit");
-		BaiVietBO bviet = new BaiVietBO();
-		TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("user");
+		
 		if(fruits != null)
 		{
+			BaiVietBO bviet = new BaiVietBO();
+			TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("user");
 			for(int i=0; i<fruits.length; i++)
 			{
 				if(submit.equals("gui")){
@@ -43,6 +44,7 @@ public class XuLyBaiVietServlet extends HttpServlet {
 					request.setAttribute("meg", "<div class='alert alert-success' role='alert'>Hủy bài dịch thành công.<br>翻訳の記事が削除できた。</div>");
 				}
 			}
+			bviet.closeConnection();
 		}else{
 			request.setAttribute("meg", "<div class='alert alert-warning' role='alert'>Bạn chưa chọn bài nào cả.</div>");
 		}

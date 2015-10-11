@@ -11,4 +11,8 @@ public class AdminDeleteDAO {
 		return db.updateData(sql_update_account);
 	}
 
+	public void closeConnection() {
+		db.closeConnection();
+	}
+
 }

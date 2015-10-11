@@ -678,4 +678,7 @@ public class BaiVietDAO {
 		String sql1 = "update lichsu set TrangThai='HuyDich' where IdBaiViet='"+id+"' order by ThoiGian desc limit 1";
 		return db.updateData(sql1)&db.updateData(sql);
 	}
+	public void closeConnection() {
+		db.closeConnection();
+	}
 }

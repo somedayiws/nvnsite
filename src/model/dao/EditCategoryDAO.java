@@ -76,4 +76,8 @@ public class EditCategoryDAO {
 			
 		}
 
+	public void closeConnection() {
+		db.closeConnection();
+	}
+
 }

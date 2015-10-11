@@ -59,11 +59,13 @@ public class EditCategoryServlet extends HttpServlet {
 			}			
 			request.setAttribute("resultChangeShowed", resultChangeShowed);
 			RequestDispatcher requestDis = request.getRequestDispatcher("ListCategoryServlet");
+			editCategory.closeConnection();
 			requestDis.forward(request, response);
 		}else{
 			//Không tồn tại			
 			request.setAttribute("resultChangeShowed", "ID danh mục không tồn tại trong hệ thống");
 			RequestDispatcher requestDis = request.getRequestDispatcher("Error.jsp");
+			editCategory.closeConnection();
 			requestDis.forward(request, response);
 		}
 		

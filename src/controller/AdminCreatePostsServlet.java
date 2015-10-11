@@ -93,19 +93,6 @@ public class AdminCreatePostsServlet extends HttpServlet {
 					.getRequestDispatcher("Error.jsp");
 			requestDis_error.forward(request, response);
 		}
-
-		// System.out.println("namePostsVi: "+namePostsVi);
-		// System.out.println("namePostsJa: "+namePostsJa);
-		// System.out.println("categoryVi: "+categoryVi);
-		// System.out.println("categoryJa: "+categoryJa);
-		// System.out.println("account: "+account);
-		// System.out.println("ContentVi: "+ContentVi);
-		// System.out.println("ContentJa: "+ContentJa);
-		// System.out.println("note: "+note);
-		// System.out.println("namePostsVi: "+namePostsVi);
-		// System.out.println("DescriptionVi: "+DescriptionVi);
-		// System.out.println("DescriptionJa: "+DescriptionJa);
-
 	}
 
 }

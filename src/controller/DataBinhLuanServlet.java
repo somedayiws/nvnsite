@@ -36,8 +36,7 @@ public class DataBinhLuanServlet extends HttpServlet {
 		BinhLuanBO bl = new BinhLuanBO();
 		ArrayList<BINHLUAN> list = bl.getListBinhLuan(id, ngonngu, vitri);
 		request.setAttribute("list", list);
-		if(list != null)
-			System.out.println("Ngon ngu : " + ngonngu + "size : " + list.size());
+		bl.closeConnection();
 		request.getRequestDispatcher("DataBinhLuan.jsp").forward(request, response);
 	}
 

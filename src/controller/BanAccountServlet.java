@@ -77,7 +77,6 @@ public class BanAccountServlet extends HttpServlet {
 		ListAccountBO listAccountBo = new ListAccountBO();
 		
 		String statusAccount = listAccountBo.getStatusAccount(id);
-		System.out.println("statusAccount: "+statusAccount);
 		
 		if(statusAccount.equals(MoiTao)) 		statusChange = CanhCao1;
 		else if(statusAccount.equals(CanhCao1)) statusChange = CanhCao2;
@@ -109,6 +108,7 @@ public class BanAccountServlet extends HttpServlet {
 		request.setAttribute("notice", resultChangeStatusAccount);
 		request.setAttribute("id", id);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("MessageAccount.jsp");
+		listAccountBo.closeConnection();
 		requestDispatcher.forward(request, response);
 		
 	}

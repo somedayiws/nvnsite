@@ -197,4 +197,7 @@ public class ThongBaoDAO {
 		String sql = "update thongbao set HienThi='-1' where IdThongBao='"+id+"'";
 		db.updateData(sql);		
 	}
+	public void closeConnection() {
+		db.closeConnection();
+	}
 }

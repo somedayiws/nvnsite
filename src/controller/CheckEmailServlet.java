@@ -29,11 +29,13 @@ public class CheckEmailServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
-		ThongBaoBO tb = new ThongBaoBO();
+		
 		TAIKHOAN user = (TAIKHOAN) request.getSession().getAttribute("user");
 		if (user != null) {
+			ThongBaoBO tb = new ThongBaoBO();
 			request.setAttribute("soEmail",
 					tb.CheckMail(user.getIdTaiKhoan(), user.getTenTaiKhoan()));
+			tb.closeConnection();
 			request.getRequestDispatcher("CheckEmail.jsp").forward(request,
 					response);
 		}

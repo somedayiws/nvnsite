@@ -59,4 +59,8 @@ public class CreateCategoryDAO {
 		
 		return db.updateData(sql_insert_category);
 	}
+
+	public void closeConnection() {
+		db.closeConnection();
+	}
 }

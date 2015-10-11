@@ -97,10 +97,10 @@ public class ListCategoryServlet extends HttpServlet {
 			String pageNav = listCategory.getMenuPhanTrang();
 			
 			request.setAttribute("category", category);
-			System.out.println("pageNav: "+pageNav);
 			request.setAttribute("pageNav", pageNav);	
 		}
 		RequestDispatcher requestDis_listCategory = request.getRequestDispatcher("Category.jsp");
+		listCategory.closeConnection();
 		requestDis_listCategory.forward(request, response);
 	}else{
 		RequestDispatcher requestDis_listCategory = request.getRequestDispatcher("Login.jsp");

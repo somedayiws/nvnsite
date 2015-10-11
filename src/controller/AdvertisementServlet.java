@@ -57,6 +57,7 @@ public class AdvertisementServlet extends HttpServlet {
 		request.setAttribute("pageNav", pageNav);
 		
 		RequestDispatcher requestDis = request.getRequestDispatcher("Advertisement.jsp");
+		listAdvertisement.closeConnection();
 		requestDis.forward(request, response);
 	}
 	}

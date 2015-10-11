@@ -79,4 +79,8 @@ public class ShowAdminEditPostsDAO {
 		}
 
 	}
+
+	public void closeConnection() {
+		db.closeConnection();
+	}
 }

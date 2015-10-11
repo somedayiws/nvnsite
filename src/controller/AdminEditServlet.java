@@ -99,6 +99,7 @@ public class AdminEditServlet extends HttpServlet {
 				requestDispatcher = request
 						.getRequestDispatcher("ListAccountServlet");
 			}
+			adminEdit.closeConnection();
 			requestDispatcher.forward(request, response);
 		}
 		else
@@ -109,10 +110,8 @@ public class AdminEditServlet extends HttpServlet {
 			request.setAttribute("error", resultSubmit);
 			RequestDispatcher requestDis_error = request
 					.getRequestDispatcher("Error.jsp");
+			adminEdit.closeConnection();
 			requestDis_error.forward(request, response);
-			
 		}
-		
 	}
-
 }

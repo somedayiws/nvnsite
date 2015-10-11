@@ -143,4 +143,7 @@ public class TaiKhoanDAO {
 		}
 		return id;
 	}
+	public void closeConnection() {
+		db.closeConnection();
+	}
 }

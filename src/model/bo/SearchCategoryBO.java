@@ -20,4 +20,7 @@ public class SearchCategoryBO {
 		searchCategory.setMenu(nBangghi, ntrang);
 	}
 
+	public void closeConnection() {
+		searchCategory.closeConnection();
+	}
 }

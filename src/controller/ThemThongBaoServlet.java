@@ -40,7 +40,7 @@ public class ThemThongBaoServlet extends HttpServlet {
 		}else{
 			request.setAttribute("meg", "<div class='alert alert-danger' role='alert'>Thêm thông báo thất bại.</div>");
 		}
-		
+		tb.closeConnection();
 		request.getRequestDispatcher("ThongBaoServlet").forward(request, response);
 	}
 	}

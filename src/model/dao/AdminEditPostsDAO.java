@@ -45,5 +45,8 @@ public class AdminEditPostsDAO {
 		System.out.println("sql_update_post_translate: "+sql_update_post_translate);
 		return db.updateData(sql_update_post_translate);
 	}
+	public void closeConnection() {
+		db.closeConnection();
+	}
 
 }

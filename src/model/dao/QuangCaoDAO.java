@@ -190,4 +190,8 @@ public class QuangCaoDAO {
 		}
 		return -1;
 	}
+
+	public void closeConnection() {
+		db.closeConnection();
+	}
 }

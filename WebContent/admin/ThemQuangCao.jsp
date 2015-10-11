@@ -93,7 +93,7 @@ $(document).ready(function(){
 												},
 												numberOfDay : {
 													required : true,
-													range : [ 1, 100 ]
+													range : [ 1, 367 ]
 												},
 												Image : {
 													required : true
@@ -131,7 +131,7 @@ $(document).ready(function(){
 												},
 												numberOfDay : {
 													required : "Phải nhập số ngày hiển thị - 表示する日程を入力しなければならない",
-													range : "Số ngày trong khoảng từ 1 đến 100 - 日付は1-100です。"
+													range : "Số ngày trong khoảng từ 1 đến 366 - 日付は1-366です。"
 												},
 												Image : {
 													required : "Phải chọn hình ảnh để hiển thị - 表示する画像を選択しなければならない。"

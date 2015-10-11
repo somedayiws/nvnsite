@@ -31,6 +31,7 @@ public class DataThongBaoServlet extends HttpServlet {
 		String id = request.getParameter("id");
 		THONGBAO tbao = tb.getThongBao(id);
 		request.setAttribute("thongbao", tbao);
+		tb.closeConnection();
 		request.getRequestDispatcher("DataThongBao.jsp").forward(request, response);
 	}
 }

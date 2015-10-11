@@ -66,6 +66,7 @@ public class ShowHomeServlet extends HttpServlet {
 			
 			request.setAttribute("pageNav", pageNav);
 			request.setAttribute("postsNew", postsNew);
+			listPost.closeConnection();
 			requestDis = request.getRequestDispatcher("Home(Admin).jsp");
 		}
 		else{

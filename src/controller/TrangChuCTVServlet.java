@@ -52,6 +52,8 @@ public class TrangChuCTVServlet extends HttpServlet {
 			request.setAttribute("tongbvhuy", df.format(tongbvhuy*100.00/tongbv));
 			request.setAttribute("tongbvloi", tongbvloi);
 			
+			baiviet.closeConnection();
+			
 			request.getRequestDispatcher("HomeCTV.jsp").forward(request, response);
 		}
 	}

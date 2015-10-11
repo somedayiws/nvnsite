@@ -18,4 +18,7 @@ public class SearchPostBO {
 	public void setMenu(int nBangghi, int ntrang){
 		searchPostDao.setMenu(nBangghi, ntrang);
 	}
+	public void closeConnection() {
+		searchPostDao.closeConnection();
+	}
 }

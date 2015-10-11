@@ -62,6 +62,11 @@ public class TrangChuServlet extends HttpServlet {
 		// List thông báo
 		ArrayList<THONGBAO> listthongbao = thongBaoBO.getListHienThi("", "1","DienDan");
 		request.setAttribute("listthongbao", listthongbao);
+		//Đóng kết nối database
+		baiviet.closeConnection();
+		quangCaoBO.closeConnection();
+		danhmuc.closeConnection();
+		thongBaoBO.closeConnection();
 		request.getRequestDispatcher("TrangChu.jsp").forward(request, response);
 	}
 

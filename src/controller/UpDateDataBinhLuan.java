@@ -30,7 +30,6 @@ public class UpDateDataBinhLuan extends HttpServlet {
 		String id = request.getParameter("idbaiviet");
 		String ngonngu = request.getParameter("ngonngu");
 		String binhluan = request.getParameter("binhluan");
-		System.out.println("Ket qua : " + id + ", " +ngonngu+", "+binhluan);
 		TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("user");
 		if(user != null){
 			BinhLuanBO bl = new BinhLuanBO();
@@ -39,6 +38,7 @@ public class UpDateDataBinhLuan extends HttpServlet {
 			}else{
 				bl.addBinhLuanJa(id, user.getIdTaiKhoan(), binhluan);
 			}
+			bl.closeConnection();
 		}
 	}
 

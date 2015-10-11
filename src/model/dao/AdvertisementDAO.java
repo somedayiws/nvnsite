@@ -68,5 +68,8 @@ public class AdvertisementDAO {
 	public void setMenu(int nBangghi, int ntrang) {
 		db.setMenu(nBangghi, ntrang);
 	}
+	public void closeConnection() {
+		db.closeConnection();
+	}
 
 }

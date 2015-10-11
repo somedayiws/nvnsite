@@ -80,6 +80,7 @@ public class AdminSearchSevlet extends HttpServlet {
 		dispatcher= request
 				.getRequestDispatcher("ListAccountServlet");
 		}
+		adminSearch.closeConnection();
 		dispatcher.forward(request, response);
 	}
 

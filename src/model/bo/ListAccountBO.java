@@ -41,5 +41,7 @@ public class ListAccountBO {
 		return lisAccount.getStatusAccount(idAccount);
 	}
 	
-
+	public void closeConnection() {
+		lisAccount.closeConnection();
+	}
 }

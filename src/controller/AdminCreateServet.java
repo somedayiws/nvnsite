@@ -42,9 +42,6 @@ public class AdminCreateServet extends HttpServlet {
 		String typeUser = request.getParameter("typeUser");				
 		String language = request.getParameter("language");
 		
-		
-		
-		System.out.println("language: "+language);
 		/** Create Object */
 		model.bo.AdminCreateBO adminCreate = new model.bo.AdminCreateBO();
 		TAIKHOAN account = new TAIKHOAN();
@@ -82,6 +79,7 @@ public class AdminCreateServet extends HttpServlet {
 				else{
 					dispatcher = request.getRequestDispatcher("ListAccountServlet");
 				}
+				adminCreate.closeConnection();
 				dispatcher.forward(request, response);
 			} else {
 
@@ -89,6 +87,7 @@ public class AdminCreateServet extends HttpServlet {
 				request.setAttribute("error", resultSubmit);
 				RequestDispatcher requestDis_error = request
 						.getRequestDispatcher("Error.jsp");
+				adminCreate.closeConnection();
 				requestDis_error.forward(request, response);
 
 			}
@@ -108,6 +107,7 @@ public class AdminCreateServet extends HttpServlet {
 				else{
 					dispatcher = request.getRequestDispatcher("ListAccountServlet");
 				}
+				adminCreate.closeConnection();
 				dispatcher.forward(request, response);
 			}
 			// if not exist
@@ -115,6 +115,7 @@ public class AdminCreateServet extends HttpServlet {
 				request.setAttribute("error", resultSubmit);
 				RequestDispatcher requestDis_error = request
 						.getRequestDispatcher("Error.jsp");
+				adminCreate.closeConnection();
 				requestDis_error.forward(request, response);
 			}
 		}

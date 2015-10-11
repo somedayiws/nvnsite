@@ -78,6 +78,11 @@ public class DangBaiVietServlet extends HttpServlet {
 				request.setAttribute("giaVN", giaVN);
 				request.setAttribute("giaJA", giaJA);
 				request.setAttribute("banggiadich", banggiadich);
+				danhmuc.closeConnection();
+				baiviet.closeConnection();
+				thongBaoBO.closeConnection();
+				quangCaoBO.closeConnection();
+				tainguyenBO.closeConnection();
 				request.getRequestDispatcher("DangBaiViet.jsp").forward(request, response);
 			} else {
 				FileItemFactory factory = new DiskFileItemFactory();
@@ -185,6 +190,7 @@ public class DangBaiVietServlet extends HttpServlet {
 					}
 					else baivietBO.ThemBaiViet(TieuDeVi, MoTaVi, NoiDungVi, TieuDeJa, MoTaJa, NoiDungJa, TheLoai, TaiKhoan, "images/" + HinhAnh, "SoanThao");
 				}
+				baivietBO.closeConnection();
 				response.sendRedirect("Trang-ca-nhan?xuly=" + ketqua);
 			}
 		} catch (Exception e) {

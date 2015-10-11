@@ -10,4 +10,8 @@ public class DeleteCategoryDAO {
 		return db.updateData(sql_update_category);
 	}
 
+	public void closeConnection() {
+		db.closeConnection();
+	}
+
 }

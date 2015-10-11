@@ -46,4 +46,8 @@ public class ChangeStatusBO {
 		public String getNotePost(String idPost){
 			return change.getNotePost(idPost);
 		}
+		
+		public void closeConnection() {
+			change.closeConnection();
+		}
 }

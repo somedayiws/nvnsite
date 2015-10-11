@@ -79,5 +79,9 @@ public class RegisterDAO {
 				+ "',N'" + account.getDiaChi() + "','" + account.getDienThoai()
 				+ "','" + account.getEmail() + "','user','0')";
 		return db.updateData(sql_insert_account);
+	}
+
+	public void closeConnection() {
+		db.closeConnection();
 	}	
 }

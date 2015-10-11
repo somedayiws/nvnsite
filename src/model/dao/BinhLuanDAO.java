@@ -66,4 +66,7 @@ public class BinhLuanDAO {
 		System.out.println(sql);
 		db.updateData(sql);
 	}
+	public void closeConnection() {
+		db.closeConnection();
+	}
 }

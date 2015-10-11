@@ -34,6 +34,7 @@ public class editAdvertisementServlet extends HttpServlet {
 		doPost(request, response);
 	}
 
+	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
@@ -119,6 +120,7 @@ public class editAdvertisementServlet extends HttpServlet {
 			}else{
 				request.setAttribute("mes", "<div class='alert alert-danger tbmeg' role='alert'>Cập nhật không thành công.</div>");
 			}
+			qcBO.closeConnection();
 			request.getRequestDispatcher("AdvertisementServlet").forward(request, response);
 		}
 	}

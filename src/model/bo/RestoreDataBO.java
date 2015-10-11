@@ -26,5 +26,8 @@ public class RestoreDataBO {
 	public boolean restore(String nameColumn,String valueId,String nameTable){
 		return restoredata.restore(nameColumn, valueId, nameTable);
 	}
-
+	
+	public void closeConnection() {
+		restoredata.closeConnection();
+	}
 }

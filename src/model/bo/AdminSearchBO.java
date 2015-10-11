@@ -17,5 +17,7 @@ public class AdminSearchBO {
 	public void setMenu(int nBangghi, int ntrang){
 		adminSearch.setMenu(nBangghi, ntrang);
 	}
-
+	public void closeConnection() {
+		adminSearch.closeConnection();
+	}
 }

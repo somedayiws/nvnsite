@@ -29,15 +29,17 @@ public class XemBaiDichServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id");
-		BaiVietBO baiviet = new BaiVietBO();
-		BAIVIET bviet = null;
+		
 		if(id != null && !"".equals(id)){
+			BaiVietBO baiviet = new BaiVietBO();
+			BAIVIET bviet = null;
 			bviet = baiviet.getBaiViet(id);
 			TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("user");
 			String info = baiviet.getInfo(id, user.getIdTaiKhoan());
 			request.setAttribute("TinhTrang", info.split(",")[0]);
 			request.setAttribute("NgayGui", info.split(",")[1]);
 			request.setAttribute("baiviet", bviet);
+			baiviet.closeConnection();
 			request.getRequestDispatcher("XemBaiDich.jsp").forward(request, response);
 		}else{
 			response.sendRedirect("Dang-nhap");

@@ -74,9 +74,16 @@ public class SavePostServlet extends HttpServlet {
 			request.setAttribute("resultSave", resultSave);
 			request.setAttribute("idPost", post.getIdBaiViet());
 			RequestDispatcher dispatcher = request.getRequestDispatcher("ShowDetailPostsServlet");
+			adminEditPostBo.closeConnection();
+			checkID.closeConnection();
+			updateStatus.closeConnection();
+			adminEditPostBo.closeConnection();
 			dispatcher.forward(request, response);
-			
 		}else{
+			adminEditPostBo.closeConnection();
+			checkID.closeConnection();
+			updateStatus.closeConnection();
+			adminEditPostBo.closeConnection();
 			response.sendRedirect("Error.jsp");
 		}
 	}

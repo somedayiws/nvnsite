@@ -29,10 +29,11 @@ public class DichBaiDichServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id");
-		String submit =  request.getParameter("submit");
-		BaiVietBO baiviet = new BaiVietBO();
-		BAIVIET bviet = null;
+		
 		if(id != null && !"".equals(id)){
+			String submit =  request.getParameter("submit");
+			BaiVietBO baiviet = new BaiVietBO();
+			BAIVIET bviet = null;
 			if(submit==null){
 				bviet = baiviet.getBaiViet(id);
 				request.setAttribute("baiviet", bviet);
@@ -40,6 +41,7 @@ public class DichBaiDichServlet extends HttpServlet {
 				String info = baiviet.getInfo(id, user.getIdTaiKhoan());
 				request.setAttribute("TinhTrang", info.split(",")[0]);
 				request.setAttribute("NgayGui", info.split(",")[1]);
+				baiviet.closeConnection();
 				request.getRequestDispatcher("DichBai.jsp").forward(request, response);
 			}else{
 				TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("user");
@@ -57,6 +59,7 @@ public class DichBaiDichServlet extends HttpServlet {
 					if(baiviet.CapNhatBaiViet(id, "HuyDich", user.getIdTaiKhoan())) kqua="?xuly=huy-thanhcong";
 					else kqua="?xuly=huy-thatbai";
 				}
+				baiviet.closeConnection();
 				response.sendRedirect("Danh-sach-bai-dich"+kqua);
 			}
 		}else{

@@ -29,5 +29,8 @@ public class EditBO {
 	{
 		return edit.updateInfor(accountInfor);
 	}
+	public void closeConnection() {
+		edit.closeConnection();
+	}
 
 }

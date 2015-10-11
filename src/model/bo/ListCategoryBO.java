@@ -33,4 +33,7 @@ public class ListCategoryBO {
 		return listCategory.getCategoryShowed();
 	}
 	
+	public void closeConnection() {
+		listCategory.closeConnection();
+	}
 }

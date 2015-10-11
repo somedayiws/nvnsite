@@ -56,4 +56,7 @@ public class AdminCreatePostsBO {
 	public boolean insertPosts(BAIVIET posts,String idCategory,String idAccount){
 		return createposts.insertPosts(posts, idCategory, idAccount);
 	}
+	public void closeConnection() {
+		createposts.closeConnection();
+	}
 }

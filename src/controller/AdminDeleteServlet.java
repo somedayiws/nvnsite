@@ -65,6 +65,7 @@ public class AdminDeleteServlet extends HttpServlet {
 		else{
 			dispatcher = request.getRequestDispatcher("ListAccountServlet");
 		}
+		adminDelete.closeConnection();
 		dispatcher.forward(request, response);
 	}
 

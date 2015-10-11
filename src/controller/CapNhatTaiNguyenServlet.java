@@ -107,7 +107,7 @@ public class CapNhatTaiNguyenServlet extends HttpServlet {
 			}else{
 				request.setAttribute("mes", "<div class='alert alert-danger tbmeg' role='alert'>Cập nhật không thành công.</div>");
 			}
-			
+			tn.closeConnection();
 			request.getRequestDispatcher("TaiNguyenServlet").forward(request, response);
 		}
 	}

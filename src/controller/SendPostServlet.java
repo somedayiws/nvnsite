@@ -87,27 +87,9 @@ public class SendPostServlet extends HttpServlet {
 				listAccountCTV = listAcc.getDataAccountInfor(0,listAcc.totalRecord(),"CTV","ja");
 			}
 			
-			
-			
-//			if(post.getTenBaiVietJa()!=null &&  post.getMoTaJa()!=null  && post.getNoiDungJa()!=null){
-//				//Bài viết là tiếng việt
-//				languagePost = "1";
-//				listAccountCTV = listAcc.getDataAccountInfor(0,listAcc.totalRecord(),"CTV","ja");
-//			}
-//			else if(post.getTenBaiVietVi()!=null &&  post.getMoTaVi()!=null  && post.getNoiDungVi()!=null){
-//				//Bài viết là tiếng nhật
-//				languagePost = "2";
-//				listAccountCTV = listAcc.getDataAccountInfor(0,listAcc.totalRecord(),"CTV","vi");
-//			}
-//			else{
-//				listAccountCTV = listAcc.getDataAccountInfor(0,listAcc.totalRecord(),"CTV","mutilanguage");
-//			}
-			
-			
 			ListStatusHistoryBO listStatus = new ListStatusHistoryBO();
 			LICHSU history = listStatus.getStatus(idPost);
 			String status = history.getTrangThai();
-			 System.out.println("tt: "+history.getTrangThai());
 			if(history.getTrangThai()!=null && history.getTrangThai().contains("HuyDich")){
 				ArrayList<TAIKHOAN> listAccountByStatus = null;
 				if (post.getTenBaiVietVi()!=null && post.getTenBaiVietJa()!=null) {
@@ -119,7 +101,6 @@ public class SendPostServlet extends HttpServlet {
 					//Bài viết là tiếng việt
 					listAccountByStatus = getAcc.listAccountByStatus(history.getTaikhoan().getIdTaiKhoan(),"ja");
 				}
-				
 				request.setAttribute("listAccountByStatus", listAccountByStatus);
 				
 			}
@@ -131,6 +112,7 @@ public class SendPostServlet extends HttpServlet {
 			request.setAttribute("status", status);
 			RequestDispatcher requestDis = request
 					.getRequestDispatcher("SendPost.jsp");
+			changeStatusBo.closeConnection();
 			requestDis.forward(request, response);
 	
 				}else{
@@ -166,6 +148,7 @@ public class SendPostServlet extends HttpServlet {
 		request.setAttribute("resultSend", "Bài viết đã được chuyển cho cộng tác viên - 記事が協力者に転送できた。");
 		request.setAttribute("idPost", idPost);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("ShowDetailPostsServlet");
+		changestatus.closeConnection();
 		dispatcher.forward(request, response);
 
 	}

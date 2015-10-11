@@ -8,5 +8,7 @@ public class ListStatusHistoryBO {
 	public LICHSU getStatus(String idPost){
 		return liststatus.getStatusHistory(idPost);
 	}
-
+	public void closeConnection() {
+		liststatus.closeConnection();
+	}
 }

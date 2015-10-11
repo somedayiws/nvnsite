@@ -41,6 +41,7 @@ public class TranslateServlet extends HttpServlet {
 		
 		/**Check id exist*/
 		RequestDispatcher requestDis_translate = request.getRequestDispatcher("Translate.jsp");
+		postreturn.closeConnection();
 		requestDis_translate.forward(request, response);
 		}
 		else{

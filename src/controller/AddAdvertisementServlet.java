@@ -122,6 +122,9 @@ public class AddAdvertisementServlet extends HttpServlet {
 			}else{
 				request.setAttribute("mes", "<div class='alert alert-danger tbmeg' role='alert'>Thêm không thành công.</div>");
 			}
+			//Đóng database
+			qcBO.closeConnection();
+			
 			request.getRequestDispatcher("AdvertisementServlet").forward(request, response);
 		}
 	}

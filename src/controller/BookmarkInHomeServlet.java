@@ -81,6 +81,7 @@ public class BookmarkInHomeServlet extends HttpServlet {
 		request.setAttribute("id", id);
 		request.setAttribute("result", resultChangeStatusBookmark);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("MessagePost.jsp");
+		changeStatusBo.closeConnection();
 		requestDispatcher.forward(request, response);
 	}
 

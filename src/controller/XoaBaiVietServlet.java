@@ -32,8 +32,9 @@ public class XoaBaiVietServlet extends HttpServlet {
 				response.sendRedirect("Trang-ca-nhan?xuly=xoa-thanhcong");
 			else
 				response.sendRedirect("Trang-ca-nhan?xuly=xoa-thatbai");
+			baiviet.closeConnection();
 		}else{
-			response.sendRedirect("TrangChuServlet");
+			response.sendRedirect("Trang-chu");
 		}
 	}
 

@@ -7,4 +7,7 @@ public class DeleteCategoryBO {
 	public boolean deleteCategory(String IdCategory){
 		return delCategory.deleteCategory(IdCategory);
 	} 
+	public void closeConnection() {
+		delCategory.closeConnection();
+	}
 }

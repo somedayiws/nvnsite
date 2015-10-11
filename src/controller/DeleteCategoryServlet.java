@@ -56,6 +56,7 @@ public class DeleteCategoryServlet extends HttpServlet {
 		}
 		 request.setAttribute("resultDelete", resultDelete);
 		 RequestDispatcher requsetDis_delete = request.getRequestDispatcher("ListCategoryServlet");
+		 delCategory.closeConnection();
 		 requsetDis_delete.forward(request, response);
 		
 	}

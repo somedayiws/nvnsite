@@ -34,6 +34,7 @@ public class CapNhatQuangCaoServlet extends HttpServlet {
 		QuangCaoBO qcBO = new QuangCaoBO();
 		QUANGCAO qc = qcBO.getQuangCao(id);
 		request.setAttribute("quangcao", qc);
+		qcBO.closeConnection();
 		request.getRequestDispatcher("SuaQuangCao.jsp").forward(request, response);
 	}
 	}

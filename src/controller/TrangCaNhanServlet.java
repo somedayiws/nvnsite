@@ -66,6 +66,7 @@ public class TrangCaNhanServlet extends HttpServlet {
 					user.setMatKhau(matkhau);
 					TaiKhoanBO tk = new TaiKhoanBO();
 					tk.UpdateThongTin(user);
+					tk.closeConnection();
 					request.setAttribute("meg", "<div class='alert alert-success' role='alert'><p>Cập nhật thành công.</p></div>");
 				}
 				else 
@@ -105,6 +106,10 @@ public class TrangCaNhanServlet extends HttpServlet {
 			request.setAttribute("pageNav", pageNav);
 			request.setAttribute("dsbaidang", listBV);
 			request.setAttribute("listdanhmuc", listdanhmuc);
+			bv.closeConnection();
+			danhmuc.closeConnection();
+			thongBaoBO.closeConnection();
+			quangCaoBO.closeConnection();
 			request.getRequestDispatcher("TrangCaNhan.jsp").forward(request, response);
 		}else{
 			response.sendRedirect("Trang-chu");

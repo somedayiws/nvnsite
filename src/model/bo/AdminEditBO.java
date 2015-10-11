@@ -29,7 +29,9 @@ public class AdminEditBO {
 	{
 		return adminEdit.updateAccount(account);
 	}
-	
+	public void closeConnection() {
+		adminEdit.closeConnection();
+	}
 	
 
 }

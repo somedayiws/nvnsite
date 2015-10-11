@@ -25,4 +25,7 @@ public class CTVBO {
 		public void setMenu(int nBangghi, int ntrang){
 			ctvDao.setMenu(nBangghi, ntrang);
 		}
+		public void closeConnection() {
+			ctvDao.closeConnection();
+		}
 }

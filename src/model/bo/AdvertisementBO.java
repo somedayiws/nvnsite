@@ -19,5 +19,7 @@ public class AdvertisementBO {
 		// TODO Auto-generated method stub
 		return advertisement.listAdv(page, hthi);
 	}
-
+	public void closeConnection() {
+		advertisement.closeConnection();
+	}
 }

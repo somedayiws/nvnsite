@@ -38,7 +38,7 @@ public class XoaThongBaoServlet extends HttpServlet {
 		}else{
 			request.setAttribute("meg", "<div class='alert alert-danger' role='alert'>Xóa thông báo thất bại.</div>");
 		}
-		
+		tb.closeConnection();
 		request.getRequestDispatcher("ThongBaoServlet").forward(request, response);
 	}
 	}

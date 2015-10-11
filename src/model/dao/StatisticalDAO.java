@@ -363,5 +363,8 @@ public class StatisticalDAO {
 		System.out.println("username: "+account.getTenTaiKhoan());
 		
 	}
+	public void closeConnection() {
+		db.closeConnection();
+	}
 
 }

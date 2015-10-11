@@ -78,6 +78,13 @@ public class CapNhatBaiVietServlet extends HttpServlet {
 					request.setAttribute("baiviet", bv);
 					request.setAttribute("listdanhmuc", listdanhmuc);
 					request.setAttribute("topmoi", topmoi);
+					
+					baiviet.closeConnection();
+					danhmuc.closeConnection();
+					tainguyenBO.closeConnection();
+					thongBaoBO.closeConnection();
+					quangCaoBO.closeConnection();
+					
 					request.getRequestDispatcher("CapNhatBaiViet.jsp").forward(request, response);
 				}else{
 					response.sendRedirect("Trang-chu");
@@ -199,6 +206,9 @@ public class CapNhatBaiVietServlet extends HttpServlet {
 						else ketqua="capnhat-thatbai";
 					}
 				}
+				baivietBO.closeConnection();
+				quangCaoBO.closeConnection();
+				thongBaoBO.closeConnection();
 				response.sendRedirect("Trang-ca-nhan?xuly=" + ketqua);
 			}
 		} catch (Exception e) {

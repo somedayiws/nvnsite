@@ -31,6 +31,7 @@ public class DataMenuServlet extends HttpServlet {
 		DanhMucBO danhmuc = new DanhMucBO();
 		ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc("");
 		request.setAttribute("listdanhmuc", listdanhmuc);
+		danhmuc.closeConnection();
 		request.getRequestDispatcher("DataMenu.jsp").forward(request, response);
 	}
 

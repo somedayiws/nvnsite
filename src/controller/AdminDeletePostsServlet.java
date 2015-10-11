@@ -54,6 +54,7 @@ public class AdminDeletePostsServlet extends HttpServlet {
 				
 		request.setAttribute("resultDelete", resultDelete);
 		RequestDispatcher requestDis_delete = request.getRequestDispatcher("ListPostsServlet");
+		admindeletePost.closeConnection();
 		requestDis_delete.forward(request, response);
 	}
 

@@ -16,4 +16,7 @@ public class AdminForgotPasswordBO {
 	 public boolean updateEmail(String password,String email){
 		 return forgotPass.updatePassword(password, email);		 
 	 }
+	 public void closeConnection() {
+			forgotPass.closeConnection();
+		}
 }

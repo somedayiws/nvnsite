@@ -120,5 +120,9 @@ public class ListCategoryDAO {
 			return null;
 		}
 	}
+
+	public void closeConnection() {
+		db.closeConnection();
+	}
 	
 }

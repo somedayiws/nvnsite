@@ -42,4 +42,7 @@ public class StatisticalBO {
 	public BAIVIET getPost(int type, int by, String dayStart, String dayFinish){
 		return statisticalDAO.getPost(type, by, dayStart, dayFinish);
 	}
+	public void closeConnection() {
+		statisticalDAO.closeConnection();
+	}
 }

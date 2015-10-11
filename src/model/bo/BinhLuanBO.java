@@ -20,5 +20,7 @@ public class BinhLuanBO {
 		// TODO Auto-generated method stub
 		bl.addBinhLuanJa(id, idTaiKhoan, binhluan);
 	}
-
+	public void closeConnection() {
+		bl.closeConnection();
+	}
 }

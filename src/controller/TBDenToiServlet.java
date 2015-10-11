@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sun.swing.internal.plaf.basic.resources.basic;
+
 import model.bean.BAIVIET;
 import model.bean.DANHMUC;
 import model.bean.QUANGCAO;
@@ -55,8 +57,7 @@ public class TBDenToiServlet extends HttpServlet {
 		String pageNav = bv.getMenuPhanTrang();
 		
 		// List thông báo
-		ThongBaoBO thongBaoBO = new ThongBaoBO();
-		ArrayList<THONGBAO> listthongbao = thongBaoBO.getListHienThi("", "1","DienDan");
+		ArrayList<THONGBAO> listthongbao = tb.getListHienThi("", "1","DienDan");
 		request.setAttribute("listthongbao", listthongbao);
 
 		// Danh sách quảng cáo
@@ -67,6 +68,12 @@ public class TBDenToiServlet extends HttpServlet {
 		request.setAttribute("pageNav", pageNav);
 		request.setAttribute("listdanhmuc", listdanhmuc);
 		request.setAttribute("list", list);
+		
+		bv.closeConnection();
+		danhmuc.closeConnection();
+		tb.closeConnection();
+		quangCaoBO.closeConnection();
+		
 		request.getRequestDispatcher("TBDenToi.jsp").forward(request, response);
 	}
 

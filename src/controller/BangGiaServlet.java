@@ -55,6 +55,12 @@ public class BangGiaServlet extends HttpServlet {
 		ArrayList<QUANGCAO> listquangcao = quangCaoBO.getDanhSachQuangCao((int) 2);
 		request.setAttribute("listquangcao", listquangcao);
 		
+		baiviet.closeConnection();
+		danhmuc.closeConnection();
+		tainguyen.closeConnection();
+		thongBaoBO.closeConnection();
+		quangCaoBO.closeConnection();
+		
 		request.getRequestDispatcher("BangGia.jsp").forward(request, response);
 	}
 

@@ -36,4 +36,8 @@ public class GetInforAccountDAO {
 		}
 	}
 
+	public void closeConnection() {
+		db.closeConnection();
+	}
+
 }

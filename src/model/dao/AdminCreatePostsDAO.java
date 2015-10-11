@@ -45,4 +45,7 @@ public class AdminCreatePostsDAO {
 				+ posts.getMoTaJa() + "','0')";
 		return db.updateData(sql_insert_Posts);
 	}
+	public void closeConnection() {
+		db.closeConnection();
+	}
 }

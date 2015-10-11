@@ -89,6 +89,7 @@ public class CTVServlet extends HttpServlet {
 		request.setAttribute("pageNav", pageNav);	
 		request.setAttribute("result", result);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("CTV.jsp");
+		ctvBo.closeConnection();
 		requestDispatcher.forward(request, response);
 	}else{
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("Login.jsp");

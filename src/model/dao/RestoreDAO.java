@@ -53,4 +53,8 @@ public class RestoreDAO {
 		}
 	}
 
+	public void closeConnection() {
+		db.closeConnection();
+	}
+
 }

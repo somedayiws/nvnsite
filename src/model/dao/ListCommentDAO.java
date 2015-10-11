@@ -72,4 +72,8 @@ public class ListCommentDAO {
 		return db.updateData(sql_deleteComment);
 		
 	}
+
+	public void closeConnection() {
+		db.closeConnection();
+	}
 }

@@ -20,4 +20,8 @@ public class EditDAO {
 		return db.updateData(sql_update_infor);
 	}
 
+	public void closeConnection() {
+		db.closeConnection();
+	}
+
 }

@@ -66,6 +66,7 @@ public class SearchCategoryServlet extends HttpServlet {
 		request.setAttribute("button", btnFind);
 		RequestDispatcher requestDis_error = request
 				.getRequestDispatcher("ListCategoryServlet");
+		searchCategory.closeConnection();
 		requestDis_error.forward(request, response);
 	}
 

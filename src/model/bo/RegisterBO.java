@@ -118,6 +118,8 @@ public class RegisterBO {
 		return registerDAO.insertAccount(account);
 	}
 
-	
+	public void closeConnection() {
+		registerDAO.closeConnection();
+	}
 
 }

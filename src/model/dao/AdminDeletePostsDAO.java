@@ -10,5 +10,8 @@ public class AdminDeletePostsDAO {
 		return db.updateData(sql_delete_post);
 		
 	}
+	public void closeConnection() {
+		db.closeConnection();
+	}
 
 }

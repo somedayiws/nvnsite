@@ -72,6 +72,7 @@ public class EditServlet extends HttpServlet {
 			request.setAttribute("result", resultSubmit);
 			RequestDispatcher requestDis_error = request
 					.getRequestDispatcher("GetInforAccountServlet");
+			edit.closeConnection();
 			requestDis_error.forward(request, response);
 		}
 		else
@@ -80,6 +81,7 @@ public class EditServlet extends HttpServlet {
 			request.setAttribute("error", resultSubmit);
 			RequestDispatcher requestDis_error = request
 					.getRequestDispatcher("Error.jsp");
+			edit.closeConnection();
 			requestDis_error.forward(request, response);
 		}
 	}

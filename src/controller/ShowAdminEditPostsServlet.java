@@ -79,13 +79,13 @@ public class ShowAdminEditPostsServlet extends HttpServlet {
 		request.setAttribute("resultEdit", resultEdit);
 		RequestDispatcher requestDis_editPost = request.getRequestDispatcher("AdminEditPosts.jsp");
 		
+		listAccount.closeConnection();
+		listCategory.closeConnection();
+		editPosts.closeConnection();
 		requestDis_editPost.forward(request, response);
-		
-		
 		}
 		}else{
 			RequestDispatcher dispatcher = request.getRequestDispatcher("Login.jsp");
-			
 			dispatcher.forward(request, response);
 		}
 		

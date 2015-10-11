@@ -62,6 +62,10 @@ public class DangKyThanhVienServlet extends HttpServlet {
 		
 		if(submit == null){
 			request.setAttribute("loi", "");
+			danhmuc.closeConnection();
+			baiviet.closeConnection();
+			thongBaoBO.closeConnection();
+			quangCaoBO.closeConnection();
 			request.getRequestDispatcher("DangKyThanhVien.jsp").forward(request, response);
 		}
 		else{
@@ -86,6 +90,10 @@ public class DangKyThanhVienServlet extends HttpServlet {
 			}else{
 				request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Tài khoản đã tồn tại. Vui lòng chọn tài khoản khác để đăng ký. Cảm ơn!</p></div>");
 			}
+			danhmuc.closeConnection();
+			baiviet.closeConnection();
+			thongBaoBO.closeConnection();
+			quangCaoBO.closeConnection();
 			request.getRequestDispatcher("DangKyThanhVien.jsp").forward(request, response);
 		}
 	}

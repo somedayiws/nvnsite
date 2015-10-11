@@ -30,6 +30,7 @@ public class UpDatePhanHoiServlet extends HttpServlet {
 		String id = request.getParameter("id");
 		String bluan = request.getParameter("bluan");
 		baiviet.setBinhLuan(id, bluan);
+		baiviet.closeConnection();
 	}
 
 }

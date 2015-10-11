@@ -26,4 +26,7 @@ public class ListStatusHistoryDAO {
 			return null;
 		}
 	}
+	public void closeConnection() {
+		db.closeConnection();
+	}
 }

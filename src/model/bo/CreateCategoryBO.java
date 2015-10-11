@@ -69,4 +69,7 @@ public class CreateCategoryBO {
 	{
 		return createCategory.insertCategory(category);
 	}
+	public void closeConnection() {
+		createCategory.closeConnection();
+	}
 }

@@ -52,6 +52,7 @@ public class CreateCategoryServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -153,6 +154,7 @@ public class CreateCategoryServlet extends HttpServlet {
 				request.setAttribute("error", "Category existed into database");
 				RequestDispatcher requestDis_error = request
 						.getRequestDispatcher("Error.jsp");
+				createCategory.closeConnection();
 				requestDis_error.forward(request, response);
 
 			} else {
@@ -165,6 +167,7 @@ public class CreateCategoryServlet extends HttpServlet {
 							"Không thể tăng ID danh mục");
 					RequestDispatcher requestDis_error = request
 							.getRequestDispatcher("Error.jsp");
+					createCategory.closeConnection();
 					requestDis_error.forward(request, response);
 				} else {
 					category.setIdDanhMuc(id_Category);
@@ -173,6 +176,7 @@ public class CreateCategoryServlet extends HttpServlet {
 						//Insert success
 						request.setAttribute("resultInsert", "Insert success");
 						RequestDispatcher requsetDis_result = request.getRequestDispatcher("ListCategoryServlet");
+						createCategory.closeConnection();
 						requsetDis_result.forward(request, response);
 					}
 					else{
@@ -180,6 +184,7 @@ public class CreateCategoryServlet extends HttpServlet {
 						request.setAttribute("resultInsert", "Insert fail");
 						RequestDispatcher requestDis_error = request
 								.getRequestDispatcher("ListCategoryServlet");
+						createCategory.closeConnection();
 						requestDis_error.forward(request, response);
 					}
 				}

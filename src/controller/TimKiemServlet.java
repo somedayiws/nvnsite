@@ -64,6 +64,12 @@ public class TimKiemServlet extends HttpServlet {
 		request.setAttribute("txtFind", txtFind);
 		request.setAttribute("listbaiviet", listbaiviet);
 		request.setAttribute("listdanhmuc", listdanhmuc);
+		
+		baiviet.closeConnection();
+		danhmuc.closeConnection();
+		thongBaoBO.closeConnection();
+		quangCaoBO.closeConnection();
+		
 		request.getRequestDispatcher("KetQuaTimKiem.jsp").forward(request, response);
 	}
 

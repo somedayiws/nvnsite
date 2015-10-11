@@ -31,4 +31,8 @@ public class AdminForgotPasswordDAO {
 		return db.updateData(sql_update_password);
 	}
 
+	public void closeConnection() {
+		db.closeConnection();
+	}
+
 }

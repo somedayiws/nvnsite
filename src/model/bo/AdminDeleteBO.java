@@ -11,5 +11,7 @@ public class AdminDeleteBO {
 	{
 		return adminDelete.deleteAccount(username);
 	} 
-	
+	public void closeConnection() {
+		adminDelete.closeConnection();
+	}
 }

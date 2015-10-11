@@ -32,4 +32,7 @@ public class TaiKhoanBO {
 		// TODO Auto-generated method stub
 		taikhoanDAO.addTaiKhoan(taikhoan, matkhau, hoten, diachi, dienthoai, email, ngonngu);
 	}
+	public void closeConnection() {
+		taikhoanDAO.closeConnection();
+	}
 }

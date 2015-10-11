@@ -18,4 +18,7 @@ public class AdminEditPostsBO {
 	public boolean updatePost_Translated(BAIVIET post){
 		return adminEditPost.updatePost_Translated(post);
 	}
+	public void closeConnection() {
+		adminEditPost.closeConnection();
+	}
 }

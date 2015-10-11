@@ -32,7 +32,6 @@ public class DataBaiVietServlet extends HttpServlet {
 		String id = request.getParameter("id");
 		String txtFind = request.getParameter("txtFind");
 		String chon = request.getParameter("chon");
-		System.out.println("Xem : " + id);
 		if(n == null) n = "10";
 		BaiVietBO baiviet = new BaiVietBO();
 		ArrayList<BAIVIET> listbaiviet = null;
@@ -40,6 +39,7 @@ public class DataBaiVietServlet extends HttpServlet {
 		else listbaiviet = baiviet.getFind(chon, txtFind, n, "5");
 		request.setAttribute("listbaiviet", listbaiviet);
 		request.setAttribute("n", n);
+		baiviet.closeConnection();
 		request.getRequestDispatcher("DataBaiViet.jsp").forward(request, response);
 	}
 

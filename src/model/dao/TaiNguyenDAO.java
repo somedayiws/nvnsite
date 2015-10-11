@@ -30,5 +30,7 @@ public class TaiNguyenDAO {
 		String sql4	= " update tainguyen set Value111=N'"+giaJA+"' where IdTaiNguyen='10'";
 		return db.updateData(sql)&db.updateData(sql1)&db.updateData(sql2)&db.updateData(sql3)&db.updateData(sql4);
 	}
-
+	public void closeConnection() {
+		db.closeConnection();
+	}
 }

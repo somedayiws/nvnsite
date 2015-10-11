@@ -57,4 +57,7 @@ public class QuangCaoBO {
 	public boolean KiemTraTonTai(int Vitri, int Page) {
 		return quangcao.KiemTraTonTai(Vitri, Page);
 	}
+	public void closeConnection() {
+		quangcao.closeConnection();
+	}
 }

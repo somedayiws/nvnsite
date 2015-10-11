@@ -49,6 +49,7 @@ public class CapNhatThongTinServlet extends HttpServlet {
 					request.setAttribute("meg", "<div class='alert alert-success' role='alert'>Cập nhật thành công.<br>ログインができた。</div>");
 				else
 					request.setAttribute("meg", "<div class='alert alert-danger' role='alert'>Cập nhật thất bại.<br>ログインがまだできない。</div>");
+				tk.closeConnection();
 			}else{
 				request.setAttribute("meg", "<div class='alert alert-success' role='alert'><p>Chào bạn " + user.getHoTen() + ", Chúc bạn một ngày làm việc vui vẻ.</p>"
 						+ "<br><p>"+user.getHoTen()+" 様に良い日々を迎えるように</p></div>");
@@ -66,7 +67,7 @@ public class CapNhatThongTinServlet extends HttpServlet {
 			request.setAttribute("tongbvok", df.format(tongbvok*100.00/tongbv));
 			request.setAttribute("tongbvhuy", df.format(tongbvhuy*100.00/tongbv));
 			request.setAttribute("tongbvloi", tongbvloi);
-			
+			baiviet.closeConnection();
 			request.getRequestDispatcher("ThongTinCTV.jsp").forward(request, response);
 		}else{
 			response.sendRedirect("Trang-chu");

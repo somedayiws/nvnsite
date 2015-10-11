@@ -86,6 +86,10 @@ public class ListPostsServlet extends HttpServlet {
 		request.setAttribute("accounts", accounts);
 		request.setAttribute("category", category);
 		RequestDispatcher requestDis_posts = request.getRequestDispatcher("ListPosts.jsp");
+		listaccount.closeConnection();
+		listcategory.closeConnection();
+		listPost.closeConnection();
+		
 		requestDis_posts.forward(request, response);
 		
 	}

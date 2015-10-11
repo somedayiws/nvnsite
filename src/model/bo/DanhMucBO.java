@@ -29,5 +29,7 @@ public class DanhMucBO {
 		// TODO Auto-generated method stub
 		return danhmuc.getDanhMuc(id);
 	}
-
+	public void closeConnection() {
+		danhmuc.closeConnection();
+	}
 }

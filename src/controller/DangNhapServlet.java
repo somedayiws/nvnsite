@@ -42,9 +42,9 @@ public class DangNhapServlet extends HttpServlet {
 		String username = request.getParameter("taikhoan");
 		String password = request.getParameter("matkhau");
 		//Tạo đối tượng xử lý đăng nhập
-		TaiKhoanBO taikhoanBO = new TaiKhoanBO();
 		ValidateBO kiemtra = new ValidateBO();
 		if (username != null) {
+			TaiKhoanBO taikhoanBO = new TaiKhoanBO();
 			if (kiemtra.check(username, "")) {
 				if (kiemtra.check(password, "")) {
 					if (taikhoanBO.chekOk(username, password)) {
@@ -54,6 +54,7 @@ public class DangNhapServlet extends HttpServlet {
 						request.getSession().setAttribute("user", user);
 						request.getSession().setAttribute("CKFinder_UserRole", user.getQuyenQuanTri());
 						// Điều hướng đến trang khác mà không cần gửi dữ liệu
+						taikhoanBO.closeConnection();
 						response.sendRedirect("Trang-ca-nhan");
 					} else {
 						String txtFind = (String)request.getAttribute("txtFind");
@@ -81,6 +82,11 @@ public class DangNhapServlet extends HttpServlet {
 						request.setAttribute("list", list);
 						request.setAttribute("listdanhmuc", listdanhmuc);
 						request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Tên đăng nhập hoặc mật khẩu không chính xác.</p></div>");
+						taikhoanBO.closeConnection();
+						danhmuc.closeConnection();
+						baiviet.closeConnection();
+						thongBaoBO.closeConnection();
+						quangCaoBO.closeConnection();
 						request.getRequestDispatcher("DangNhapTaiKhoan.jsp").forward(request, response);
 					}
 				} else {
@@ -98,6 +104,9 @@ public class DangNhapServlet extends HttpServlet {
 					request.setAttribute("listdanhmuc", listdanhmuc);
 					request.setAttribute("topbaiviet", topbaiviet);
 					request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Bạn chưa nhập tài khoản.</p></div>");
+					taikhoanBO.closeConnection();
+					danhmuc.closeConnection();
+					baiviet.closeConnection();
 					request.getRequestDispatcher("DangNhapTaiKhoan.jsp").forward(request, response);
 				}
 			} else {
@@ -115,6 +124,9 @@ public class DangNhapServlet extends HttpServlet {
 				request.setAttribute("listdanhmuc", listdanhmuc);
 				request.setAttribute("topbaiviet", topbaiviet);
 				request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Bạn chưa mật khẩu.</p></div>");
+				taikhoanBO.closeConnection();
+				danhmuc.closeConnection();
+				baiviet.closeConnection();
 				request.getRequestDispatcher("DangNhapTaiKhoan.jsp").forward(request, response);
 			}
 		} else {

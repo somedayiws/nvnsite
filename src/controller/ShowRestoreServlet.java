@@ -73,6 +73,7 @@ public class ShowRestoreServlet extends HttpServlet {
 			else if(result_Restore.contains("bài viết")){
 				requestDis = request.getRequestDispatcher("ListPostsServlet");				
 			}
+			restoredata.closeConnection();
 			requestDis.forward(request, response);
 		} else {
 			if (type.contains("account")) {
@@ -85,6 +86,7 @@ public class ShowRestoreServlet extends HttpServlet {
 				
 				RequestDispatcher requestDis_restoreAccount = request
 						.getRequestDispatcher("RestoreAccount.jsp");
+				restoredata.closeConnection();
 				requestDis_restoreAccount.forward(request, response);
 
 			}
@@ -95,8 +97,8 @@ public class ShowRestoreServlet extends HttpServlet {
 				request.setAttribute("listCategoryDeleted", listCategoryDeleted);
 				RequestDispatcher requestDis_restoreAccount = request
 						.getRequestDispatcher("RestoreCategory.jsp");
+				restoredata.closeConnection();
 				requestDis_restoreAccount.forward(request, response);
-
 			}
 			
 			else if (type.contains("posts")) {
@@ -106,19 +108,19 @@ public class ShowRestoreServlet extends HttpServlet {
 				request.setAttribute("listPostsDeleted", listPostsDeleted);
 				RequestDispatcher requestDis_restoreAccount = request
 						.getRequestDispatcher("RestorePosts.jsp");
+				restoredata.closeConnection();
 				requestDis_restoreAccount.forward(request, response);
 
 			}
 			else{
+				restoredata.closeConnection();
 				response.sendRedirect("ShowloginAdmin");
 			}
-
 		}
 	}else{
 		RequestDispatcher requestDis_restoreAccount = request
 				.getRequestDispatcher("Login.jsp");
 		requestDis_restoreAccount.forward(request, response);
-
 	}
 	}
 

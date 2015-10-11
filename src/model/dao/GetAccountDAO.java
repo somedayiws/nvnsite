@@ -58,4 +58,7 @@ public class GetAccountDAO {
 				
 	
 	}
+	public void closeConnection() {
+		db.closeConnection();
+	}
 }

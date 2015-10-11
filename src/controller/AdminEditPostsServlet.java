@@ -74,9 +74,8 @@ public class AdminEditPostsServlet extends HttpServlet {
 		}
 		request.setAttribute("resultEdit", resultEdit);
 		RequestDispatcher requestDis_edit = request.getRequestDispatcher("ShowAdminEditPostsServlet?idPost="+idPost+"&from=detail");
+		adminEditPosts.closeConnection();
 		requestDis_edit.forward(request, response);
-		
-	
 	}
 
 }

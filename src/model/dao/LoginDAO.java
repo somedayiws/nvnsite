@@ -22,5 +22,8 @@ public class LoginDAO {
 			return false;
 		}
 	}
+	public void closeConnection() {
+		db.closeConnection();
+	}
 
 }

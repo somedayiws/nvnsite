@@ -69,6 +69,10 @@ public class AdminCreateDAO {
 				+ "',N'" + account.getDiaChi() + "','" + account.getDienThoai()
 				+ "','" + account.getEmail() + "','"+account.getQuyenQuanTri()+"','0',N'"+account.getNgonNgu()+"',N'"+account.getTinhTrang()+"')";
 		return db.updateData(sql_insert_account);
+	}
+
+	public void closeConnection() {
+		db.closeConnection();
 	}	
 
 }

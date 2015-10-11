@@ -39,6 +39,7 @@ public class TaiNguyenServlet extends HttpServlet {
 		request.setAttribute("giaJA", giaJA);
 		request.setAttribute("banggiadich", banggiadich);
 		request.setAttribute("banggiaqc", banggiaqc);
+		tainguyenBO.closeConnection();
 		request.getRequestDispatcher("TaiNguyen.jsp").forward(request, response);
 	}
 	}

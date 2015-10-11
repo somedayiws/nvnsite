@@ -58,11 +58,13 @@ public class CTVResetMatKhauServlet extends HttpServlet {
 		            resultMessage = "<div class='alert alert-danger' role='alert'><p>Tài khoản không tồn tại. Vui lòng kiểm tra lại.<br>アカウントを存しない。改めて確認ください。</p></div>";
 		        } finally {
 		            request.setAttribute("meg", resultMessage);
+		            ctv.closeConnection();
 		            request.getRequestDispatcher("ResetMatKhau.jsp").forward(request, response);
 		        }
 			}else{
 				request.setAttribute("meg", "<div class='alert alert-danger' role='alert'><p>Tài khoản không tồn tại. Vui lòng kiểm tra lại.<br>アカウントを存しない。改めて確認ください。</p></div>");
-	            request.getRequestDispatcher("ResetMatKhau.jsp").forward(request, response);
+				ctv.closeConnection();
+				request.getRequestDispatcher("ResetMatKhau.jsp").forward(request, response);
 			}
 		}else{
 			request.setAttribute("meg", "<div class='alert alert-info' role='alert'><p>Hãy nhập tài khoản cộng tác viên của bạn bên dưới và click vào button \"Lấy mật khẩu - ログイン\". Kiểm tra lại email của bạn đã đăng ký với chúng tôi để lấy lại mật khẩu. Cám ơn!<br>以下のボタンをクリックし、協力者のアカウントを入力してください。パスワードを収得し、ログイン\"。パスワードを収得するため、申請されたメールを改めて確認して下さい。ありがとう。</p></div>");

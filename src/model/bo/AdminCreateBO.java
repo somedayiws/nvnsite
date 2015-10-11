@@ -105,5 +105,7 @@ public class AdminCreateBO {
 	{			
 		return adminCreate.insertAccount(account);
 	}
-
+	public void closeConnection() {
+		adminCreate.closeConnection();
+	}
 }

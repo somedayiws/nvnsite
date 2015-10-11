@@ -86,6 +86,7 @@ public class RestoreServlet extends HttpServlet {
 		request.setAttribute("result_Restore", result_Restore);
 		RequestDispatcher requestDis_restore = request
 				.getRequestDispatcher("ShowRestoreServlet");
+		restore.closeConnection();
 		requestDis_restore.forward(request, response);
 	}
 

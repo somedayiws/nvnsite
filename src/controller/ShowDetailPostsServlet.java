@@ -71,9 +71,6 @@ public class ShowDetailPostsServlet extends HttpServlet {
 			ShowAdminEditPostsBO editPosts = new ShowAdminEditPostsBO();
 			ListStatusHistoryBO listStatus = new ListStatusHistoryBO();
 			
-			
-//			String status = listStatus.getStatus(idPost).getTrangThai();
-			
 			LICHSU history = listStatus.getStatus(idPost);
 
 			BAIVIET post = editPosts.post(idPost);
@@ -85,6 +82,9 @@ public class ShowDetailPostsServlet extends HttpServlet {
 			RequestDispatcher requestDis_editPost = request
 					.getRequestDispatcher("DetailPosts.jsp");
 
+			editPosts.closeConnection();
+			listStatus.closeConnection();
+			
 			requestDis_editPost.forward(request, response);
 
 		}

@@ -34,5 +34,8 @@ public class EditCategoryBO {
 		public boolean checkExistID(String idCategory){
 			return editCategory.checkExistID(idCategory);
 		}
+		public void closeConnection() {
+			editCategory.closeConnection();
+		}
 }
 

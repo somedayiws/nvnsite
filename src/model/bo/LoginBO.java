@@ -15,4 +15,7 @@ public class LoginBO {
 	public boolean checkLogin(String username, String password){
 		return check.checkLogin(username, password);
 	}
+	public void closeConnection() {
+		check.closeConnection();
+	}
 }

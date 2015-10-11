@@ -8,4 +8,7 @@ public class CommentBO {
 	public boolean deleteComent(String idComment){
 		return listCommentDAO.deleteComment(idComment);
 	}
+	public void closeConnection() {
+		listCommentDAO.closeConnection();
+	}
 }

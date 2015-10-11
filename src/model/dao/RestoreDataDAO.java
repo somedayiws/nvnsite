@@ -91,4 +91,8 @@ public class RestoreDataDAO {
 		System.out.println("sql: "+sql_restore);
 		return db.updateData(sql_restore);
 	}
+
+	public void closeConnection() {
+		db.closeConnection();
+	}
 }

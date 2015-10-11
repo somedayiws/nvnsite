@@ -35,10 +35,10 @@ public class DanhSachBaiVietServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id");
-		BaiVietBO baiviet = new BaiVietBO();
-		DanhMucBO danhmuc = new DanhMucBO();
-		ArrayList<BAIVIET> listbaiviet = new ArrayList<BAIVIET>();
 		if(id != null && !"".equals(id)){
+			BaiVietBO baiviet = new BaiVietBO();
+			DanhMucBO danhmuc = new DanhMucBO();
+			ArrayList<BAIVIET> listbaiviet = new ArrayList<BAIVIET>();
 			listbaiviet = baiviet.getDanhSachBaiViet(id, 0, "10");
 			ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc("");
 			ArrayList<BAIVIET> topmoi = baiviet.getTopBaiViet("Moi");
@@ -57,6 +57,11 @@ public class DanhSachBaiVietServlet extends HttpServlet {
 			QuangCaoBO quangCaoBO = new QuangCaoBO();
 			ArrayList<QUANGCAO> listquangcao = quangCaoBO.getDanhSachQuangCao((int) 2);
 			request.setAttribute("listquangcao", listquangcao);
+			
+			baiviet.closeConnection();
+			danhmuc.closeConnection();
+			thongBaoBO.closeConnection();
+			quangCaoBO.closeConnection();
 			
 			request.getRequestDispatcher("DanhSachBaiViet.jsp").forward(request, response);
 		}else{
