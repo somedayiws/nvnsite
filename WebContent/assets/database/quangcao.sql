@@ -1,0 +1,15 @@
+/*
+-- Query: SELECT * FROM webvietnhat.quangcao
+LIMIT 0, 1000
+
+-- Date: 2015-10-11 13:13
+*/
+INSERT INTO `quangcao` (`IdQuangCao`,`LienKet`,`HinhAnh`,`ViTri`,`HienThi`,`SoNgay`,`TrangHienThi`,`DonViQuangCao`,`NgayDang`,`GiaQuangCao`,`KichThuoc`,`DienThoai`,`Email`) VALUES (1,'http://test.com','http://placehold.it/300x250',1,0,100,1,'Mặc định','2015-09-22','3000000','300x250','01234567899','it007bk@gmail.com');
+INSERT INTO `quangcao` (`IdQuangCao`,`LienKet`,`HinhAnh`,`ViTri`,`HienThi`,`SoNgay`,`TrangHienThi`,`DonViQuangCao`,`NgayDang`,`GiaQuangCao`,`KichThuoc`,`DienThoai`,`Email`) VALUES (2,'http://test.com','http://placehold.it/300x250',5,1,30,1,'Mặc định','2015-09-02','3000000','300x250','01234567899','it007bk@gmail.com');
+INSERT INTO `quangcao` (`IdQuangCao`,`LienKet`,`HinhAnh`,`ViTri`,`HienThi`,`SoNgay`,`TrangHienThi`,`DonViQuangCao`,`NgayDang`,`GiaQuangCao`,`KichThuoc`,`DienThoai`,`Email`) VALUES (3,'http://test.com','http://placehold.it/300x250',2,0,30,1,'Mặc định','2015-09-02','2000000','300x250','01234567899','it007bk@gmail.com');
+INSERT INTO `quangcao` (`IdQuangCao`,`LienKet`,`HinhAnh`,`ViTri`,`HienThi`,`SoNgay`,`TrangHienThi`,`DonViQuangCao`,`NgayDang`,`GiaQuangCao`,`KichThuoc`,`DienThoai`,`Email`) VALUES (4,'http://test.com','http://placehold.it/300x600',6,1,30,1,'Mặc định','2015-09-02','3000000','300x600','01234567899','it007bk@gmail.com');
+INSERT INTO `quangcao` (`IdQuangCao`,`LienKet`,`HinhAnh`,`ViTri`,`HienThi`,`SoNgay`,`TrangHienThi`,`DonViQuangCao`,`NgayDang`,`GiaQuangCao`,`KichThuoc`,`DienThoai`,`Email`) VALUES (5,'http://test.com','http://placehold.it/728x90',4,1,30,1,'Mặc định','2015-09-02','3000000','728x90','01234567899','it007bk@gmail.com');
+INSERT INTO `quangcao` (`IdQuangCao`,`LienKet`,`HinhAnh`,`ViTri`,`HienThi`,`SoNgay`,`TrangHienThi`,`DonViQuangCao`,`NgayDang`,`GiaQuangCao`,`KichThuoc`,`DienThoai`,`Email`) VALUES (6,'https://www.facebook.com/','http://placehold.it/300x100',3,1,90,1,'Mặc định','2015-09-21','1000000','300x100','01234567899','it007bk@gmail.com');
+INSERT INTO `quangcao` (`IdQuangCao`,`LienKet`,`HinhAnh`,`ViTri`,`HienThi`,`SoNgay`,`TrangHienThi`,`DonViQuangCao`,`NgayDang`,`GiaQuangCao`,`KichThuoc`,`DienThoai`,`Email`) VALUES (7,'https://www.facebook.com/','http://placehold.it/300x250',1,1,30,2,'Mặc định','2015-09-21','1000000','300x250','01234567899','it007bk@gmail.com');
+INSERT INTO `quangcao` (`IdQuangCao`,`LienKet`,`HinhAnh`,`ViTri`,`HienThi`,`SoNgay`,`TrangHienThi`,`DonViQuangCao`,`NgayDang`,`GiaQuangCao`,`KichThuoc`,`DienThoai`,`Email`) VALUES (8,'http://fptshop.com.vn/','images/quangcao/Tulips.jpg',1,1,7,1,'Công ty FPT','2015-10-11','100000000','300x250','05116253479','fpt@gmail.com');
+INSERT INTO `quangcao` (`IdQuangCao`,`LienKet`,`HinhAnh`,`ViTri`,`HienThi`,`SoNgay`,`TrangHienThi`,`DonViQuangCao`,`NgayDang`,`GiaQuangCao`,`KichThuoc`,`DienThoai`,`Email`) VALUES (9,'http://www.philong.com.vn/','images/quangcao/Jellyfish.jpg',2,1,7,1,'Philong computer','2015-10-11','1000000','300x250','05116287945','philong@gmail.com');
