@@ -19,7 +19,7 @@ import model.bo.DanhMucBO;
 import model.bo.QuangCaoBO;
 import model.bo.ThongBaoBO;
 
-@WebServlet("/TBDenToiServlet")
+@WebServlet("/Thong-bao")
 public class TBDenToiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

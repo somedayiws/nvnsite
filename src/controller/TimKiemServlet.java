@@ -18,7 +18,7 @@ import model.bo.DanhMucBO;
 import model.bo.QuangCaoBO;
 import model.bo.ThongBaoBO;
 
-@WebServlet("/TimKiemServlet")
+@WebServlet("/Tim-kiem")
 public class TimKiemServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -37,7 +37,6 @@ public class TimKiemServlet extends HttpServlet {
 		String txtFind = request.getParameter("txtFind");
 		String theo = request.getParameter("categoryJa");
 		if(txtFind == null) txtFind="";
-		System.out.println(txtFind);
 		String vitri = request.getParameter("vitri");
 		BaiVietBO baiviet = new BaiVietBO();
 		DanhMucBO danhmuc = new DanhMucBO();

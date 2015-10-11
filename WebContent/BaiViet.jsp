@@ -72,7 +72,7 @@
 				<div id="infoNews">
 					<div class="infoDetail" id="category">
 						<a
-							href="DanhSachBaiVietServlet?id=<%=baiviet.getDanhMuc().getIdDanhMuc()%>">
+							href="Danh-sach-bai-viet?id=<%=baiviet.getDanhMuc().getIdDanhMuc()%>">
 							<%=baiviet.getDanhMuc().getTenDanhMucVi()+"-"+baiviet.getDanhMuc().getTenDanhMucJa()%></a>
 					</div>
 					<div class="infoDetail">

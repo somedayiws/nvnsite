@@ -18,7 +18,7 @@ import model.bo.DanhMucBO;
 import model.bo.QuangCaoBO;
 import model.bo.ThongBaoBO;
 
-@WebServlet("/DanhSachBaiVietServlet")
+@WebServlet("/Danh-sach-bai-viet")
 public class DanhSachBaiVietServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

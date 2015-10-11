@@ -19,34 +19,19 @@ import model.bo.DanhMucBO;
 import model.bo.QuangCaoBO;
 import model.bo.ThongBaoBO;
 
-/**
- * Servlet implementation class ChiTietThongBaoServlet
- */
-@WebServlet("/ChiTietThongBaoServlet")
+@WebServlet("/Xem-thong-bao")
 public class ChiTietThongBaoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public ChiTietThongBaoServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");

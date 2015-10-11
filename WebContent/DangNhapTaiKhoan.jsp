@@ -22,7 +22,7 @@
 			<!-- hiển thị nội dung chính ở đây -->
 			<div class="col-sm-9 col-md-9" id="baiviet" style="font-size: 12px;">
 
-				<form action="DangNhapServlet" method="post" id="fdangnhap">
+				<form action="Dang-nhap" method="post" id="fdangnhap">
 					<div class="login">
 						<div>
 							<h3 class="modal-title" id="myModalLabel">Đăng nhập - ログイン</h3>
@@ -42,8 +42,8 @@
 								<strong>Mật khẩu - パスワード</strong> <input name="matkhau"
 									type="password" placeholder="Mật khẩu - パスワード" class="form-control">
 							</div>
-							<a href="DangKyThanhVienServlet"><i class="fa fa-user-plus"></i>
-								Đăng ký thành viên - 会員登録の申請 </a> <br> <a href="QuenMatKhauServlet"><i
+							<a href="Dang-ky"><i class="fa fa-user-plus"></i>
+								Đăng ký thành viên - 会員登録の申請 </a> <br> <a href="Quen-mat-khau"><i
 								class="fa fa-user-plus"></i> Quên mật khẩu - パスワードを忘れた。 </a>
 						</div>
 						<div class="modal-footer">

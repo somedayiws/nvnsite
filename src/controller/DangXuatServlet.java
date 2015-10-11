@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.bean.TAIKHOAN;
 
-@WebServlet("/DangXuatServlet")
+@WebServlet("/Dang-xuat")
 public class DangXuatServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,7 +33,7 @@ public class DangXuatServlet extends HttpServlet {
 		}else if(user.getQuyenQuanTri().equals("ctv")){
 			response.sendRedirect("ctv/Dang-nhap");
 		}else {
-			response.sendRedirect("DangNhapServlet");
+			response.sendRedirect("Trang-chu");
 		}
 		
 	}

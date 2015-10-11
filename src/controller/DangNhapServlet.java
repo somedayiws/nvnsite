@@ -21,7 +21,7 @@ import model.bo.TaiKhoanBO;
 import model.bo.ThongBaoBO;
 import model.bo.ValidateBO;
 
-@WebServlet("/DangNhapServlet")
+@WebServlet("/Dang-nhap")
 public class DangNhapServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -54,7 +54,7 @@ public class DangNhapServlet extends HttpServlet {
 						request.getSession().setAttribute("user", user);
 						request.getSession().setAttribute("CKFinder_UserRole", user.getQuyenQuanTri());
 						// Điều hướng đến trang khác mà không cần gửi dữ liệu
-						response.sendRedirect("TrangCaNhanServlet");
+						response.sendRedirect("Trang-ca-nhan");
 					} else {
 						String txtFind = (String)request.getAttribute("txtFind");
 						if(txtFind == null) txtFind="";
@@ -118,7 +118,7 @@ public class DangNhapServlet extends HttpServlet {
 				request.getRequestDispatcher("DangNhapTaiKhoan.jsp").forward(request, response);
 			}
 		} else {
-			response.sendRedirect("TrangChuServlet");
+			response.sendRedirect("Trang-chu");
 		}
 	}
 }

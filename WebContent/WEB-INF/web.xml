@@ -63,7 +63,7 @@
     <param-value>87033577</param-value>
   </context-param>
   <welcome-file-list>
-    <welcome-file>TrangChuServlet</welcome-file>
-    <welcome-file>ctv/TrangChuCTVServlet</welcome-file>
+    <welcome-file>Trang-chu</welcome-file>
+    <welcome-file>ctv/Dang-nhap</welcome-file>
   </welcome-file-list>
 </web-app>

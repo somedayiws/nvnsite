@@ -31,7 +31,7 @@
 					data-toggle="dropdown" href="Cap-nhat-tai-khoan">Chào CTV <i class="fa fa-cogs"> </i></a>
 					<ul class="dropdown-menu">
 						<li><a href="Cap-nhat-tai-khoan"><i class="fa fa-info-circle"></i> Trang cá nhân<br>個人ホーム </a></li>
-						<li><a href="../DangXuatServlet"><i class="fa fa-sign-out"></i> Đăng xuất<br>ログアウト</a></li>
+						<li><a href="../Dang-xuat"><i class="fa fa-sign-out"></i> Đăng xuất<br>ログアウト</a></li>
 					</ul></li>
 			</ul>
 		</div>

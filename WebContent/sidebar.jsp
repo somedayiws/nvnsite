@@ -28,7 +28,7 @@
 					%>
 					<p>
 						<a
-							href="ChiTietThongBaoServlet?id=<%=listthongbao.get(l).getIdThongBao()%>">
+							href="Xem-thong-bao?id=<%=listthongbao.get(l).getIdThongBao()%>">
 							<i class="fa fa-angle-double-right"></i> <%=listthongbao.get(l).getTieuDe()%>
 						</a>
 					</p>
@@ -51,7 +51,7 @@
 					while (topmoi != null && l < topmoi.size()) {
 				%>
 				<li><a
-					href="BaiVietServlet?id=<%=topmoi.get(l).getIdBaiViet()%>"><i
+					href="Xem-bai-viet?id=<%=topmoi.get(l).getIdBaiViet()%>"><i
 						class="fa fa-thumbs-o-up"></i> <%=topmoi.get(l).getTenBaiVietVi() == null ? "" : topmoi
 						.get(l).getTenBaiVietVi() + "<br>"%> <%=topmoi.get(l).getTenBaiVietJa() == null ? "" : topmoi
 						.get(l).getTenBaiVietJa()%></a></li>

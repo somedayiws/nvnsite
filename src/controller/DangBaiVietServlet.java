@@ -31,7 +31,7 @@ import model.bo.QuangCaoBO;
 import model.bo.TaiNguyenBO;
 import model.bo.ThongBaoBO;
 
-@WebServlet("/DangBaiVietServlet")
+@WebServlet("/Dang-bai-viet")
 public class DangBaiVietServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -185,11 +185,11 @@ public class DangBaiVietServlet extends HttpServlet {
 					}
 					else baivietBO.ThemBaiViet(TieuDeVi, MoTaVi, NoiDungVi, TieuDeJa, MoTaJa, NoiDungJa, TheLoai, TaiKhoan, "images/" + HinhAnh, "SoanThao");
 				}
-				response.sendRedirect("TrangCaNhanServlet?xuly=" + ketqua);
+				response.sendRedirect("Trang-ca-nhan?xuly=" + ketqua);
 			}
 		} catch (Exception e) {
 			System.out.println("Throw exception upload file!");
-			response.sendRedirect("TrangCaNhanServlet?xuly=loi-he-thong");
+			response.sendRedirect("Trang-ca-nhan?xuly=loi-he-thong");
 		}
 	}
 

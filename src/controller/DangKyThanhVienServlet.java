@@ -19,7 +19,7 @@ import model.bo.QuangCaoBO;
 import model.bo.TaiKhoanBO;
 import model.bo.ThongBaoBO;
 
-@WebServlet("/DangKyThanhVienServlet")
+@WebServlet("/Dang-ky")
 public class DangKyThanhVienServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

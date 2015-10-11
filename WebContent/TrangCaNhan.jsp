@@ -50,7 +50,7 @@
 			<div class="col-sm-9 col-md-9" id="baiviet" style="font-size: 12px;">
 				<center id="tieude">Thông tin cá nhân-個人の情報 </center>
 				<%=(String)request.getAttribute("meg")==null?"":request.getAttribute("meg")%>
-				<form action="TrangCaNhanServlet" method="post" id="fcapnhat">
+				<form action="Trang-ca-nhan" method="post" id="fcapnhat">
 					<div class="col-sm-6 col-md-6">
 						<label>Tài khoản-アカウント</label> <input type="text" name="taikhoan"
 							readonly="readonly" class="form-control"
@@ -109,13 +109,13 @@
 							<%
 								if(listbaidang.get(i).getTrangThai().equals("Đã đăng<br>既設")||listbaidang.get(i).getTrangThai().equals("Đang duyệt<br>バロース")) {
 							%> <a
-							href="BaiVietServlet?id=<%=listbaidang.get(i).getIdBaiViet()%>"><i
+							href="Xem-bai-viet?id=<%=listbaidang.get(i).getIdBaiViet()%>"><i
 								class="fa fa-eye-slash"> Xem-観覧する</i></a> <%
  	} else {
  %> <a
-							href="CapNhatBaiVietServlet?id=<%=listbaidang.get(i).getIdBaiViet()%>"><i
+							href="Cap-nhat-bai-viet?id=<%=listbaidang.get(i).getIdBaiViet()%>"><i
 								class="fa fa-eye-slash"> Sửa-修正する</i></a> <a
-							href="XoaBaiVietServlet?id=<%=listbaidang.get(i).getIdBaiViet()%>"><i
+							href="Xoa-bai-viet?id=<%=listbaidang.get(i).getIdBaiViet()%>"><i
 								class="fa fa-eye-slash"> Xóa-削除する</i></a> <%-- <%= list.get(i).getTrangThai()%> --%>
 							<%
 								}
@@ -134,13 +134,13 @@
 							<%
 								if(listbaidang.get(i).getTrangThai().equals("Đã đăng<br>既設")||listbaidang.get(i).getTrangThai().equals("Đang duyệt<br>バロース")) {
 							%> <a
-							href="BaiVietServlet?id=<%=listbaidang.get(i).getIdBaiViet()%>"><i
+							href="Xem-bai-viet?id=<%=listbaidang.get(i).getIdBaiViet()%>"><i
 								class="fa fa-eye-slash"> Xem-観覧する</i></a> <%
  	} else {
  %> <a
-							href="CapNhatBaiVietServlet?id=<%=listbaidang.get(i).getIdBaiViet()%>"><i
+							href="Cap-nhat-bai-viet?id=<%=listbaidang.get(i).getIdBaiViet()%>"><i
 								class="fa fa-eye-slash"> Sửa-修正する</i></a> <a
-							href="XoaBaiVietServlet?id=<%=listbaidang.get(i).getIdBaiViet()%>"><i
+							href="Xoa-bai-viet?id=<%=listbaidang.get(i).getIdBaiViet()%>"><i
 								class="fa fa-eye-slash"> Xóa-削除する</i></a> <%-- <%= list.get(i).getTrangThai()%> --%>
 							<%
 								}

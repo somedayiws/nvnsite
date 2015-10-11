@@ -31,7 +31,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.FileCleanerCleanup;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-@WebServlet("/CapNhatBaiVietServlet")
+@WebServlet("/Cap-nhat-bai-viet")
 public class CapNhatBaiVietServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -80,10 +80,9 @@ public class CapNhatBaiVietServlet extends HttpServlet {
 					request.setAttribute("topmoi", topmoi);
 					request.getRequestDispatcher("CapNhatBaiViet.jsp").forward(request, response);
 				}else{
-					response.sendRedirect("TrangChuServlet");
+					response.sendRedirect("Trang-chu");
 				}
 			} else {
-				System.out.println("Làm đây 2");
 				FileItemFactory factory = new DiskFileItemFactory();
 				ServletFileUpload upload = new ServletFileUpload(factory);
 				
@@ -97,7 +96,6 @@ public class CapNhatBaiVietServlet extends HttpServlet {
 				String TheLoai;
 				String NoiDung, NoiDungVi, NoiDungJa;
 				String DangBai, DichBai;
-				@SuppressWarnings("unused")
 				String HinhAnh, linkan;
 				String TaiKhoan = ((TAIKHOAN)request.getSession().getAttribute("user")).getIdTaiKhoan();
 				try {
@@ -117,8 +115,6 @@ public class CapNhatBaiVietServlet extends HttpServlet {
 					FileItem item = (FileItem) iter.next();
 					if (item.isFormField()) {
 						params.put(item.getFieldName(),item.getString("UTF-8"));
-						System.out.println("Du lieu: " + item.getString()
-								+ "       " + item.getFieldName());
 					} else {
 						try {
 							String itemName = item.getName();
@@ -153,8 +149,6 @@ public class CapNhatBaiVietServlet extends HttpServlet {
 					MoTa = (String) params.get("MoTa");
 					NoiDung = (String) params.get("NoiDung");
 					
-//					baivietBO.CapNhatBaiVietVi(id, TieuDe, MoTa, NoiDung, TheLoai, TaiKhoan, "images/" + HinhAnh);
-					
 					if(DangBai != null){
 						if(DichBai!=null && DichBai.equals("khong")) DichBai = "KhongDich";
 						else if(DichBai.equals("dich")) DichBai = "MoiDang";
@@ -171,7 +165,7 @@ public class CapNhatBaiVietServlet extends HttpServlet {
 					TieuDe = (String) params.get("TieuDe");
 					MoTa = (String) params.get("MoTa");
 					NoiDung = (String) params.get("NoiDung");
-//					baivietBO.CapNhatBaiVietJa(id, TieuDe, MoTa, NoiDung, TheLoai, TaiKhoan, "images/" + HinhAnh);
+					
 					if(DangBai != null) {
 						if(DichBai!=null && DichBai.equals("khong")) DichBai = "KhongDich";
 						else if(DichBai.equals("dich")) DichBai = "MoiDang";
@@ -193,8 +187,6 @@ public class CapNhatBaiVietServlet extends HttpServlet {
 					NoiDungVi = (String) params.get("NoiDungVi");
 					NoiDungJa = (String) params.get("NoiDungJa");
 					
-//					baivietBO.CapNhatBaiViet(id, TieuDeVi, MoTaVi, NoiDungVi, TieuDeJa, MoTaJa, NoiDungJa, TheLoai, TaiKhoan, "images/" + HinhAnh);
-					
 					if(DangBai != null) {
 						if(DichBai!=null && DichBai.equals("khong")) DichBai = "KhongDich";
 						else if(DichBai.equals("dich")) DichBai = "MoiDang";
@@ -207,7 +199,7 @@ public class CapNhatBaiVietServlet extends HttpServlet {
 						else ketqua="capnhat-thatbai";
 					}
 				}
-				response.sendRedirect("TrangCaNhanServlet?xuly=" + ketqua);
+				response.sendRedirect("Trang-ca-nhan?xuly=" + ketqua);
 			}
 		} catch (Exception e) {
 			System.out.println("Throw exception upload file!");

@@ -22,7 +22,7 @@ import model.bo.QuangCaoBO;
 import model.bo.TaiKhoanBO;
 import model.bo.ThongBaoBO;
 
-@WebServlet("/TrangCaNhanServlet")
+@WebServlet("/Trang-ca-nhan")
 public class TrangCaNhanServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -107,7 +107,7 @@ public class TrangCaNhanServlet extends HttpServlet {
 			request.setAttribute("listdanhmuc", listdanhmuc);
 			request.getRequestDispatcher("TrangCaNhan.jsp").forward(request, response);
 		}else{
-			response.sendRedirect("TrangChuServlet");
+			response.sendRedirect("Trang-chu");
 		}
 	}
 

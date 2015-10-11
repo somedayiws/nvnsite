@@ -22,7 +22,7 @@
 			<!-- hiển thị nội dung chính ở đây -->
 			<div class="col-sm-9 col-md-9" id="baiviet" style="font-size: 12px;">
 
-				<form class="panel-login" action="QuenMatKhauServlet" method="post"
+				<form class="panel-login" action="Quen-mat-khau" method="post"
 					id="fdangnhap">
 					<div class="login">
 						<i class="fa fa-pinterest-p fa-2x"></i> <label>Reset mật

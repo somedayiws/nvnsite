@@ -4,8 +4,8 @@
 <div id="footer">
 	<div id="wFooter">
 		<span id="leftFooter">Cổng thông tin thương mại Việt-Nhật - 日越ビジネス情報の窓口</span> <span
-			id="rightFooter"> <a href="TrangChuServlet">Trang chủ-ホーム</a> | <a
-			href="BangGiaServlet">Quảng cáo-広告 | </a><a href="#"> 
+			id="rightFooter"> <a href="Trang-chu">Trang chủ-ホーム</a> | <a
+			href="Gia-dich-vu">Quảng cáo-広告 | </a><a href="#"> 
 				<i class="fa fa-chevron-up"></i>
 		</a>
 		</span>

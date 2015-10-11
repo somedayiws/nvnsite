@@ -18,18 +18,16 @@ import model.bo.DanhMucBO;
 import model.bo.QuangCaoBO;
 import model.bo.ThongBaoBO;
 
-@WebServlet("/TrangChuServlet")
+@WebServlet("/Trang-chu")
 public class TrangChuServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public TrangChuServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doPost(request, response);
 	}
 

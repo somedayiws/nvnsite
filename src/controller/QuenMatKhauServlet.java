@@ -22,10 +22,7 @@ import model.bo.QuangCaoBO;
 import model.bo.TaiKhoanBO;
 import model.bo.ThongBaoBO;
 
-/**
- * Servlet implementation class QuenMatKhauServlet
- */
-@WebServlet("/QuenMatKhauServlet")
+@WebServlet("/Quen-mat-khau")
 public class QuenMatKhauServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

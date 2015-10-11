@@ -46,7 +46,7 @@
 		<div id="headerMain">
 			<!-- logo đại diện -->
 
-			<a href="TrangChuServlet"> <span></span>
+			<a href="Trang-chu"> <span></span>
 			</a>
 		</div>
 		<div id="login">
@@ -70,24 +70,24 @@
 				<ul class="nav navbar-nav navbar-right">
 
 					<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" href="CapNhatThongTinServlet">Chào-ようこそ<%=user.getTenTaiKhoan()%>
+						data-toggle="dropdown" href="Trang-ca-nhan">Chào-ようこそ<%=user.getTenTaiKhoan()%>
 					</a>
 						<ul class="dropdown-menu">
-							<li><a href="TrangCaNhanServlet"><i
+							<li><a href="Trang-ca-nhan"><i
 									class="fa fa-info-circle"></i> Trang cá nhân-個人ホーム</a></li>
-							<li><a href="DangXuatServlet"><i class="fa fa-sign-out"></i>
+							<li><a href="Dang-xuat"><i class="fa fa-sign-out"></i>
 									Đăng xuất-ログアウト</a></li>
 						</ul></li>
 					<li id="checkmail"></li>
-					<li><a href="BangGiaServlet"> Quảng cáo - 広告</a> |</li>
+					<li><a href="Gia-dich-vu"> Quảng cáo - 広告</a> |</li>
 				</ul>
 				<%
 					} else {
 				%>
 				<input type="hidden" id="tkDangNhap" value="null">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="BangGiaServlet"> Quảng cáo - 広告</a> | <a
-						href="DangKyThanhVienServlet">Đăng ký - 登録する</a> | <a
+					<li><a href="Gia-dich-vu"> Quảng cáo - 広告</a> | <a
+						href="Dang-ky">Đăng ký - 登録する</a> | <a
 						data-toggle="modal" data-target="#mdangnhap"> Đăng nhập - ログインする</a></li>
 					<%
 						}
@@ -99,7 +99,7 @@
 			<div class="clearfix"></div>
 			<!-- form tìm kiếm -->
 			<form id="seach" class="navbar-form navbar-right" role="search"
-				action="TimKiemServlet" method="post">
+				action="Tim-kiem" method="post">
 				<select name="categoryJa" class="form-control">
 					<option value="All" selected="selected">Tất cả - 全て</option>
 					<option value="ChuDe">Theo chủ đề - テーマ通り</option>
@@ -112,7 +112,7 @@
 			</form>
 		</div>
 		<!-- form đăng nhập -->
-		<form action="DangNhapServlet" method="post" id="fdangnhap">
+		<form action="Dang-nhap" method="post" id="fdangnhap">
 			<div class="modal fade" id="mdangnhap" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel">
 				<div class="modal-dialog" role="document">
@@ -161,14 +161,14 @@
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="TrangChuServlet"
+					<li class="active"><a href="Trang-chu"
 						class="fa fa-home fa-2x"></a></li>
 					<%
 						int i = 0;
 						while (listdanhmuc != null && i < listdanhmuc.size() && i < 7) {
 					%>
 					<li><a
-						href="DanhSachBaiVietServlet?id=<%=listdanhmuc.get(i).getIdDanhMuc()%>">
+						href="Danh-sach-bai-viet?id=<%=listdanhmuc.get(i).getIdDanhMuc()%>">
 							<small class=vi><%=listdanhmuc.get(i).getTenDanhMucVi()%></small><br>
 							<small class=ja><%=listdanhmuc.get(i).getTenDanhMucJa()%></small>
 					</a></li>
@@ -186,7 +186,7 @@
 								while (listdanhmuc != null && i < listdanhmuc.size()) {
 							%>
 							<li><a
-								href="DanhSachBaiVietServlet?id=<%=listdanhmuc.get(i).getIdDanhMuc()%>"><%=listdanhmuc.get(i).getTenDanhMucVi()%>-<%=listdanhmuc.get(i).getTenDanhMucJa()%></a></li>
+								href="Danh-sach-bai-viet?id=<%=listdanhmuc.get(i).getIdDanhMuc()%>"><%=listdanhmuc.get(i).getTenDanhMucVi()%>-<%=listdanhmuc.get(i).getTenDanhMucJa()%></a></li>
 							<%
 								i++;
 									}
@@ -217,7 +217,7 @@
 			</button> <%
  	} else {
  %> <span class="col-sm-3 col-md-3">
-				<button type="button" onclick="dichuyen('DangBaiVietServlet');"
+				<button type="button" onclick="dichuyen('Dang-bai-viet');"
 					class="btn btn-danger form-control">
 					<i class="fa fa-newspaper-o"></i> Đăng bài - 投稿
 				</button> <%

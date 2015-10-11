@@ -44,7 +44,7 @@
 		<div id="mainContent">
 			<!-- hiển thị nội dung chính ở đây -->
 			<div class="col-sm-9 col-md-9" id="baiviet">
-				<form action="CapNhatBaiVietServlet" method="post" id="fdangbai"
+				<form action="Cap-nhat-bai-viet" method="post" id="fdangbai"
 					enctype="multipart/form-data">
 					<!-- hiển thị nội dung chính ở đây -->
 					<%
@@ -124,7 +124,6 @@
 							<%
 								i = 0;
 								while(listdanhmuc != null && i < listdanhmuc.size()) {
-									System.out.println(listdanhmuc.get(i).getIdDanhMuc() + " .......... "+baiviet.getDanhMuc().getIdDanhMuc());
 								if(!listdanhmuc.get(i).getIdDanhMuc().equals(baiviet.getDanhMuc().getIdDanhMuc())) {
 							%>
 							<option value="<%=listdanhmuc.get(i).getIdDanhMuc()%>"><%=listdanhmuc.get(i).getTenDanhMucVi()%>

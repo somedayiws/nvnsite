@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,12 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.bean.BAIVIET;
-import model.bean.DANHMUC;
 import model.bo.BaiVietBO;
-import model.bo.DanhMucBO;
 
-@WebServlet("/XoaBaiVietServlet")
+@WebServlet("/Xoa-bai-viet")
 public class XoaBaiVietServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,9 +29,9 @@ public class XoaBaiVietServlet extends HttpServlet {
 		if(id!=null){
 			BaiVietBO baiviet = new BaiVietBO();
 			if(baiviet.XoaBaiViet(id))
-				response.sendRedirect("TrangCaNhanServlet?xuly=xoa-thanhcong");
+				response.sendRedirect("Trang-ca-nhan?xuly=xoa-thanhcong");
 			else
-				response.sendRedirect("TrangCaNhanServlet?xuly=xoa-thatbai");
+				response.sendRedirect("Trang-ca-nhan?xuly=xoa-thatbai");
 		}else{
 			response.sendRedirect("TrangChuServlet");
 		}

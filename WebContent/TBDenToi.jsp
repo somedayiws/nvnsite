@@ -66,9 +66,9 @@
 					<tr
 						class="<%=listbaidang.get(i).getHienThi() == 1?"active":"non-Active"%>">
 						<td><a
-							href="ChiTietThongBaoServlet?id=<%=listbaidang.get(i).getIdThongBao()%>"><%=listbaidang.get(i).getTieuDe()==null ? "" : listbaidang.get(i).getTieuDe()%></a></td>
+							href="Xem-thong-bao?id=<%=listbaidang.get(i).getIdThongBao()%>"><%=listbaidang.get(i).getTieuDe()==null ? "" : listbaidang.get(i).getTieuDe()%></a></td>
 						<td><a
-							href="ChiTietThongBaoServlet?id=<%=listbaidang.get(i).getIdThongBao()%>"><%=listbaidang.get(i).getNgayDang()%></a></td>
+							href="Xem-thong-bao?id=<%=listbaidang.get(i).getIdThongBao()%>"><%=listbaidang.get(i).getNgayDang()%></a></td>
 					</tr>
 					<%
 						i++; }

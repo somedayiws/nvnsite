@@ -38,7 +38,7 @@
 	<div id="mainContent">
 		<!-- hiển thị nội dung chính ở đây -->
 		<div class="col-sm-9 col-md-9" id="baiviet">
-			<form action="DangBaiVietServlet" method="post" id="fdangbai"
+			<form action="Dang-bai-viet" method="post" id="fdangbai"
 				enctype="multipart/form-data">
 				<!-- hiển thị nội dung chính ở đây -->
 				<div class="form-group">

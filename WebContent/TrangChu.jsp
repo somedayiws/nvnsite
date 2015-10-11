@@ -96,7 +96,7 @@
 																							while(listdanhmuc != null && i<listdanhmuc.size() && i<10){
 							%>
 							<li><a
-								href="DanhSachBaiVietServlet?id=<%=listdanhmuc.get(i).getIdDanhMuc()%>"><i
+								href="Danh-sach-bai-viet?id=<%=listdanhmuc.get(i).getIdDanhMuc()%>"><i
 									class="fa fa-hand-o-right"></i> <%=listdanhmuc.get(i).getTenDanhMucVi()== null ? "" : listdanhmuc.get(i).getTenDanhMucVi()+" - "%>
 									<%=listdanhmuc.get(i).getTenDanhMucJa()== null ? "" : listdanhmuc.get(i).getTenDanhMucJa()%>
 									<span class="label label-default canh"><%=listdanhmuc.get(i).getSoLuongBV()%></span></a></li>
@@ -170,12 +170,12 @@
 					<div id="relativePost">
 						<%
 							i=0;
-																			while(slidePosts != null && i<slidePosts.size()){
+							while(slidePosts != null && i<slidePosts.size()){
 						%>
 						<div id="col-sm-6 col-md-6">
 							<div class="itemMini">
 								<a
-									href="BaiVietServlet?id=<%=slidePosts.get(i).getIdBaiViet()%>">
+									href="Xem-bai-viet?id=<%=slidePosts.get(i).getIdBaiViet()%>">
 									<img src="<%=slidePosts.get(i).getLienKet()%>"> <strong>
 										<%=slidePosts.get(i).getTenBaiVietVi()!=null ? (slidePosts.get(i).getTenBaiVietVi().length()>90 ? (slidePosts.get(i).getTenBaiVietVi().substring(0, 90)+"..."): slidePosts.get(i).getTenBaiVietVi()):""%>
 										</br> <%=slidePosts.get(i).getTenBaiVietJa() !=null ? (slidePosts.get(i).getTenBaiVietJa().length()>90 ? (slidePosts.get(i).getTenBaiVietJa().substring(0, 90)+"..."): slidePosts.get(i).getTenBaiVietJa()): ""%></strong>
@@ -202,7 +202,7 @@
 																							while(hotPosts != null && i<hotPosts.size() && i < 4){
 							%>
 							<li><a
-								href="BaiVietServlet?id=<%=hotPosts.get(i).getIdBaiViet()%>"><i
+								href="Xem-bai-viet?id=<%=hotPosts.get(i).getIdBaiViet()%>"><i
 									class="fa fa-angle-double-right"></i> <%=hotPosts.get(i).getTenBaiVietVi()==null?"":hotPosts.get(i).getTenBaiVietVi()%>
 									<%=(hotPosts.get(i).getTenBaiVietVi()!=null && hotPosts.get(i).getTenBaiVietJa()!=null)?"<br>":""%>
 									<%=hotPosts.get(i).getTenBaiVietJa()==null?"":hotPosts.get(i).getTenBaiVietJa()%>
@@ -249,7 +249,7 @@
 					id="<%=list.get(i).getIdDanhMuc().trim().substring(2)%>">
 					<p id="titleDanhMuc">
 						<strong
-							onclick="loadData('DanhSachBaiVietServlet','<%=list.get(i).getIdDanhMuc().trim()%>');">
+							onclick="loadData('Danh-sach-bai-viet','<%=list.get(i).getIdDanhMuc().trim()%>');">
 							<span id="iconImg"> <%
  	if(list.get(i).getIcon()!=null)
    							{
@@ -260,7 +260,7 @@
  %>
 						</span> <span><%=list.get(i).getTenDanhMucVi()%></span> - <%=list.get(i).getTenDanhMucJa()%></strong>
 						<a id="AllPosts"
-							href="DanhSachBaiVietServlet?id=<%=list.get(i).getIdDanhMuc().trim()%>">
+							href="Danh-sach-bai-viet?id=<%=list.get(i).getIdDanhMuc().trim()%>">
 							Xem tất cả <i class="fa fa-chevron-right"></i>
 						</a>
 					</p>
@@ -278,7 +278,7 @@
 									<div class="item active">
 										<div class="baivieti col-xs-12 col-sm-12 col-md-12">
 											<a
-												href="BaiVietServlet?id=<%=listbaiviet.get(j).getIdBaiViet()%>"
+												href="Xem-bai-viet?id=<%=listbaiviet.get(j).getIdBaiViet()%>"
 												class="thongtinthem"> <img
 												src="<%=listbaiviet.get(j).getLienKet()==null?"images/baiviet.jpg":listbaiviet.get(j).getLienKet()%>"><strong><i
 													class="fa fa-user"></i> <%=listbaiviet.get(j).getTaiKhoan().getHoTen()%></strong>
@@ -288,7 +288,7 @@
 											</a>
 											<div class="motabai">
 												<a
-													href="BaiVietServlet?id=<%=listbaiviet.get(j).getIdBaiViet()%>">
+													href="Xem-bai-viet?id=<%=listbaiviet.get(j).getIdBaiViet()%>">
 													<%=listbaiviet.get(j).getTenBaiVietVi()==null?"":listbaiviet.get(j).getTenBaiVietVi()%>
 													<%=listbaiviet.get(j).getTenBaiVietJa()==null?"":"<br>"+listbaiviet.get(j).getTenBaiVietJa()%>
 												</a>
@@ -321,7 +321,7 @@
 							style="background-color: white;" id="binhluan<%=i%>">
 							<%
 								j = 0;
-																							while(listbaiviet != null && j<listbaiviet.size()){
+								while(listbaiviet != null && j<listbaiviet.size()){
 							%>
 							<div class="row">
 								<!-- danh sách các bài viết trong nhóm -->
@@ -332,7 +332,7 @@
 								</div>
 								<div class="col-xs-10 col-md-11">
 									<a
-										href="BaiVietServlet?id=<%=listbaiviet.get(j).getIdBaiViet()%>">
+										href="Xem-bai-viet?id=<%=listbaiviet.get(j).getIdBaiViet()%>">
 										<%=listbaiviet.get(j).getTenBaiVietVi()==null?"":listbaiviet.get(j).getTenBaiVietVi()%>
 										<%=listbaiviet.get(j).getTenBaiVietJa()==null?"":"<br>"+listbaiviet.get(j).getTenBaiVietJa()%>
 									</a>
@@ -368,7 +368,7 @@
 								%>
 								<p>
 									<a
-										href="ChiTietThongBaoServlet?id=<%=listthongbao.get(l).getIdThongBao()%>">
+										href="Xem-thong-bao?id=<%=listthongbao.get(l).getIdThongBao()%>">
 										<i class="fa fa-angle-double-right"></i> <%=listthongbao.get(l).getTieuDe()%>
 									</a>
 								</p>
@@ -391,7 +391,7 @@
 																							while (topmoi != null && l < topmoi.size()) {
 							%>
 							<li><a
-								href="BaiVietServlet?id=<%=topmoi.get(l).getIdBaiViet()%>"><i
+								href="Xem-bai-viet?id=<%=topmoi.get(l).getIdBaiViet()%>"><i
 									class="fa fa-thumbs-o-up"></i> <%=topmoi.get(l).getTenBaiVietVi() == null ? "" : topmoi
 						.get(l).getTenBaiVietVi() + "<br>"%> <%=topmoi.get(l).getTenBaiVietJa() == null ? "" : topmoi
 						.get(l).getTenBaiVietJa()%></a></li>

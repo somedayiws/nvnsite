@@ -18,7 +18,7 @@ import model.bo.DanhMucBO;
 import model.bo.QuangCaoBO;
 import model.bo.ThongBaoBO;
 
-@WebServlet("/BaiVietServlet")
+@WebServlet("/Xem-bai-viet")
 public class BaiVietServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -69,7 +69,7 @@ public class BaiVietServlet extends HttpServlet {
 			request.getRequestDispatcher("BaiViet.jsp").forward(request,
 					response);
 		} else {
-			response.sendRedirect("TrangChuServlet");
+			response.sendRedirect("Trang-chu");
 		}
 	}
 
