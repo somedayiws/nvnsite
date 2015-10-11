@@ -3,7 +3,7 @@
  */
 $(document).ready(function() {
 		$.ajax({
-			url : "ThongKeCTVSevlet",
+			url : "Thong-ke",
 			type : "post",
 			success : function(result) {
 				$("#capnhat").html(result);
@@ -11,7 +11,7 @@ $(document).ready(function() {
 		});
 		var refreshId = setInterval(function() {
 			$.ajax({
-				url : "ThongKeCTVSevlet",
+				url : "Thong-ke",
 				type : "post",
 				success : function(result) {
 					$("#capnhat").html(result);

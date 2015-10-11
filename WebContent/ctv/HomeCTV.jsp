@@ -48,7 +48,7 @@
 	</div>
 	<div class="col-sm-10 col-md-10">
 	<strong> <%= ((String)request.getAttribute("meg"))==null ? "" : ((String)request.getAttribute("meg")) %> </strong><br>
-	<form action="XuLyBaiVietServlet" method="get">
+	<form action="Gui-bai-dich" method="post">
 		<button type="button" id="huy" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#huybai">Hủy bài - 削除</button>
 		<button type="button" id="gui" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#guibai">Gửi bài - 送信</button>
 		<!-- dialog xác nhận hủy -->
@@ -111,8 +111,8 @@
 			  	<td><%= listmoi.get(i).getMoTaVi() %></td>
 			  	<td><input type="checkbox" name="chon" value="<%= listmoi.get(i).getIdBaiViet() %>"></td>
 			  	<td class="ctv-chon">
-			  		<a href="XemBaiDichServlet?id=<%= listmoi.get(i).getIdBaiViet() %>"><i class="fa fa-eye-slash"> Xem-観覧する</i></a>
-			  		<a href="DichBaiDichServlet?id=<%= listmoi.get(i).getIdBaiViet() %>"><i class="fa fa-pencil-square-o"> Dich-翻訳する</i></a>
+			  		<a href="Xem-bai-dich?id=<%= listmoi.get(i).getIdBaiViet() %>"><i class="fa fa-eye-slash"> Xem-観覧する</i></a>
+				  	<a href="Dich-bai?id=<%= listmoi.get(i).getIdBaiViet() %>"><i class="fa fa-pencil-square-o"> Dich-翻訳する</i></a>
 			  	</td>
 			  </tr>
 			  <% } else { %>
@@ -122,8 +122,8 @@
 					  	<td><%= listmoi.get(i).getMoTaJa() %></td>
 					  	<td><input type="checkbox" name="chon" value="<%= listmoi.get(i).getIdBaiViet() %>"></td>
 					  	<td class="ctv-chon">
-					  		<a href="XemBaiDichServlet?id=<%= listmoi.get(i).getIdBaiViet() %>"><i class="fa fa-eye-slash"> Xem-観覧する</i></a>
-					  		<a href="DichBaiDichServlet?id=<%= listmoi.get(i).getIdBaiViet() %>"><i class="fa fa-pencil-square-o"> Dich-翻訳する</i></a>
+					  		<a href="Xem-bai-dich?id=<%= listmoi.get(i).getIdBaiViet() %>"><i class="fa fa-eye-slash"> Xem-観覧する</i></a>
+				  			<a href="Dich-bai?id=<%= listmoi.get(i).getIdBaiViet() %>"><i class="fa fa-pencil-square-o"> Dich-翻訳する</i></a>
 					  	</td>
 					  </tr>
 			  <% } %>
@@ -149,8 +149,8 @@
 			  	<td><%= listtre.get(i).getMoTaVi() %></td>
 			  	<td><input type="checkbox" name="chon" value="<%= listtre.get(i).getIdBaiViet() %>"></td>
 			  	<td class="ctv-chon">
-			  		<a href="XemBaiDichServlet?id=<%= listtre.get(i).getIdBaiViet() %>"><i class="fa fa-eye-slash"> Xem-観覧する</i></a>
-			  		<a href="DichBaiDichServlet?id=<%= listtre.get(i).getIdBaiViet() %>"><i class="fa fa-pencil-square-o"> Dich-翻訳する</i></a>
+			  		<a href="Xem-bai-dich?id=<%= listtre.get(i).getIdBaiViet() %>"><i class="fa fa-eye-slash"> Xem-観覧する</i></a>
+				  	<a href="Dich-bai?id=<%= listtre.get(i).getIdBaiViet() %>"><i class="fa fa-pencil-square-o"> Dich-翻訳する</i></a>
 			  	</td>
 			  </tr>
 			  <% } else { %>
@@ -160,8 +160,8 @@
 					  	<td><%= listtre.get(i).getMoTaJa() %></td>
 					  	<td><input type="checkbox" name="chon" value="<%= listtre.get(i).getIdBaiViet() %>"></td>
 					  	<td class="ctv-chon">
-					  		<a href="XemBaiDichServlet?id=<%= listtre.get(i).getIdBaiViet() %>"><i class="fa fa-eye-slash"> Xem-観覧する</i></a>
-					  		<a href="DichBaiDichServlet?id=<%= listtre.get(i).getIdBaiViet() %>"><i class="fa fa-pencil-square-o"> Dich-翻訳する</i></a>
+					  		<a href="Xem-bai-dich?id=<%= listtre.get(i).getIdBaiViet() %>"><i class="fa fa-eye-slash"> Xem-観覧する</i></a>
+				  			<a href="Dich-bai?id=<%= listtre.get(i).getIdBaiViet() %>"><i class="fa fa-pencil-square-o"> Dich-翻訳する</i></a>
 					  	</td>
 					  </tr>
 			  <% } %>

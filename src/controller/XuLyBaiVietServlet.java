@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.bean.TAIKHOAN;
 import model.bo.BaiVietBO;
 
-@WebServlet("/ctv/XuLyBaiVietServlet")
+@WebServlet("/ctv/Gui-bai-dich")
 public class XuLyBaiVietServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -46,7 +46,7 @@ public class XuLyBaiVietServlet extends HttpServlet {
 		}else{
 			request.setAttribute("meg", "<div class='alert alert-warning' role='alert'>Bạn chưa chọn bài nào cả.</div>");
 		}
-		request.getRequestDispatcher("DanhSachBaiDichServlet").forward(request, response);
+		request.getRequestDispatcher("Danh-sach-bai-dich").forward(request, response);
 	}
 
 }

@@ -52,7 +52,7 @@
 	<div class="title-page">
 		Dịch bài - 翻訳
 	</div>
-	<form action="DichBaiDichServlet" method="post">
+	<form action="Dich-bai" method="post">
 		<input type="hidden" name="id" value="<%= request.getParameter("id") %>">
 		<input type="hidden" id="iduser" name="iduser" value="<%= user.getIdTaiKhoan() %>">
 		<!-- ngôn ngữ chính của ctv là tiếng việt -->

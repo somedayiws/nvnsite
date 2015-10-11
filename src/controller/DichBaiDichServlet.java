@@ -12,7 +12,7 @@ import model.bean.BAIVIET;
 import model.bean.TAIKHOAN;
 import model.bo.BaiVietBO;
 
-@WebServlet("/ctv/DichBaiDichServlet")
+@WebServlet("/ctv/Dich-bai")
 public class DichBaiDichServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -57,10 +57,10 @@ public class DichBaiDichServlet extends HttpServlet {
 					if(baiviet.CapNhatBaiViet(id, "HuyDich", user.getIdTaiKhoan())) kqua="?xuly=huy-thanhcong";
 					else kqua="?xuly=huy-thatbai";
 				}
-				response.sendRedirect("DanhSachBaiDichServlet"+kqua);
+				response.sendRedirect("Danh-sach-bai-dich"+kqua);
 			}
 		}else{
-			response.sendRedirect("TrangChuCTVServlet");
+			response.sendRedirect("Trang-chu");
 		}
 	}
 

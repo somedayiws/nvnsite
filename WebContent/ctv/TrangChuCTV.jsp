@@ -36,7 +36,7 @@ input.error {
 	<!-- nội dung chính -->
 	<div class="manhinh">
 		<img alt="Cộng tác viên Việt - Nhât" src="../images/logoctv.jpg">
-		<form class="panel-login" action="CTVDangNhapServlet" method="post" id="fdangnhap">
+		<form class="panel-login" action="Dang-nhap" method="post" id="fdangnhap">
 			<i class="fa fa-pinterest-p fa-2x"></i>
 			<label>Đăng Nhập Tài Khoản<br>アカウントのログイン</label>
 			<div class="row">
@@ -51,6 +51,7 @@ input.error {
 				<input type="password" name="matkhau" placeholder="Mật khẩu - パスワード" class="form-control">
 			</div>
 			<div class="row">
+				<!-- <i class="fa fa-frown-o"></i> <a href="Reset-mat-khau"> Quên mật khẩu<br>パスワードを忘れた。!!!</a> -->
 				<i class="fa fa-frown-o"></i> <a href="CTVResetMatKhauServlet"> Quên mật khẩu<br>パスワードを忘れた。!!!</a>
 			</div>
 			<div class="row">

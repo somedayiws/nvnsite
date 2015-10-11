@@ -12,7 +12,7 @@ import model.bean.TAIKHOAN;
 import model.bo.TaiKhoanBO;
 import model.bo.ValidateBO;
 
-@WebServlet("/ctv/CTVDangNhapServlet")
+@WebServlet("/ctv/Dang-nhap")
 public class CTVDangNhapServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -28,6 +28,11 @@ public class CTVDangNhapServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
+		try{
+			request.getSession().removeAttribute("user");
+		}catch(Exception e){
+			System.out.println("Lỗi : Chưa có session");
+		}
 		//Lấy dữ liệu gửi từ client lên
 		String username = request.getParameter("taikhoan");
 		String password = request.getParameter("matkhau");
@@ -43,7 +48,7 @@ public class CTVDangNhapServlet extends HttpServlet {
 						// Tạo session lưu trữ phiên làm việc
 						request.getSession().setAttribute("user", user);
 						// Điều hướng đến trang khác mà không cần gửi dữ liệu
-						response.sendRedirect("TrangChuCTVServlet");
+						response.sendRedirect("Trang-chu");
 					} else {
 						request.setAttribute("meg", "Tên đăng nhập hoặc mật khẩu không chính xác!<br>ユーザー名またログインが不正確です。");
 						request.getRequestDispatcher("TrangChuCTV.jsp").forward(request, response);

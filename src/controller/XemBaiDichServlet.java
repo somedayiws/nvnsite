@@ -12,7 +12,7 @@ import model.bean.BAIVIET;
 import model.bean.TAIKHOAN;
 import model.bo.BaiVietBO;
 
-@WebServlet("/ctv/XemBaiDichServlet")
+@WebServlet("/ctv/Xem-bai-dich")
 public class XemBaiDichServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -40,7 +40,7 @@ public class XemBaiDichServlet extends HttpServlet {
 			request.setAttribute("baiviet", bviet);
 			request.getRequestDispatcher("XemBaiDich.jsp").forward(request, response);
 		}else{
-			response.sendRedirect("TrangChu.jsp");
+			response.sendRedirect("Dang-nhap");
 		}
 	}
 

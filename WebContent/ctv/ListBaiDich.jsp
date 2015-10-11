@@ -57,8 +57,7 @@
 	<%= ((String)request.getAttribute("meg"))==null ? "" : ((String)request.getAttribute("meg")) %>
 	
 	<%= (tbao == null || tbao.equals("")) ? "" : tbao %>
-	
-	<form action="XuLyBaiVietServlet" method="post">
+	<form action="Gui-bai-dich" method="post">
 		<label>Danh sách bài viết - 文書のリスト</label>
 		<table class="table table-hover dulieu">
 		  <tr id="tieude">
@@ -79,8 +78,8 @@
 				  	<td><%= list.get(i).getMoTaVi() %></td>
 				  	<td><input type="checkbox" name="chon" value="<%= list.get(i).getIdBaiViet() %>"></td>
 				  	<td class="ctv-chon">
-				  		<a href="XemBaiDichServlet?id=<%= list.get(i).getIdBaiViet() %>"><i class="fa fa-eye-slash"> Xem-観覧する</i></a>
-				  		<a href="DichBaiDichServlet?id=<%= list.get(i).getIdBaiViet() %>"><i class="fa fa-pencil-square-o">Dich-翻訳する</i></a>
+				  		<a href="Xem-bai-dich?id=<%= list.get(i).getIdBaiViet() %>"><i class="fa fa-eye-slash"> Xem-観覧する</i></a>
+				  		<a href="Dich-bai?id=<%= list.get(i).getIdBaiViet() %>"><i class="fa fa-pencil-square-o"> Dich-翻訳する</i></a>
 				  	</td>
 				  </tr>
 			  <% } else { %>
@@ -90,8 +89,8 @@
 					  	<td><%= list.get(i).getMoTaJa() %></td>
 					  	<td><input type="checkbox" name="chon" value="<%= list.get(i).getIdBaiViet() %>"></td>
 					  	<td class="ctv-chon">
-					  		<a href="XemBaiDichServlet?id=<%= list.get(i).getIdBaiViet() %>"><i class="fa fa-eye-slash"> Xem-観覧する</i></a>
-					  		<a href="DichBaiDichServlet?id=<%= list.get(i).getIdBaiViet() %>"><i class="fa fa-pencil-square-o"> Dich-翻訳する</i></a>
+					  		<a href="Xem-bai-dich?id=<%= list.get(i).getIdBaiViet() %>"><i class="fa fa-eye-slash"> Xem-観覧する</i></a>
+				  			<a href="Dich-bai?id=<%= list.get(i).getIdBaiViet() %>"><i class="fa fa-pencil-square-o"> Dich-翻訳する</i></a>
 					  	</td>
 					  </tr>
 			  <% } %>

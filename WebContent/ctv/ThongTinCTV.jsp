@@ -57,7 +57,7 @@ input.error {
 		
 	</div>
 	<div class="col-sm-10 col-md-10">
-	<form action="CapNhatThongTinServlet" method="post" id="fcapnhat">
+	<form action="Cap-nhat-tai-khoan" method="post" id="fcapnhat">
 		<%= (String)request.getAttribute("meg") %>
 		Tài khoản - アカウント
 		<input type="text" name="taikhoan" readonly="readonly" class="form-control" value="<%= user.getTenTaiKhoan() %>">

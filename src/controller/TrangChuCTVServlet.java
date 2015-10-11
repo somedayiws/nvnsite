@@ -14,7 +14,7 @@ import model.bean.BAIVIET;
 import model.bean.TAIKHOAN;
 import model.bo.BaiVietBO;
 
-@WebServlet("/ctv/TrangChuCTVServlet")
+@WebServlet("/ctv/Trang-chu")
 public class TrangChuCTVServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

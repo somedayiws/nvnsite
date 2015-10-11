@@ -14,7 +14,7 @@ import model.bean.BAIVIET;
 import model.bean.TAIKHOAN;
 import model.bo.BaiVietBO;
 
-@WebServlet("/ctv/DanhSachBaiDichServlet")
+@WebServlet("/ctv/Danh-sach-bai-dich")
 public class DanhSachBaiDichServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -68,7 +68,7 @@ public class DanhSachBaiDichServlet extends HttpServlet {
 			
 			request.getRequestDispatcher("ListBaiDich.jsp").forward(request, response);
 		}else{
-			response.sendRedirect("TrangChuCTVServlet");
+			response.sendRedirect("Trang-chu");
 		}
 	}
 }

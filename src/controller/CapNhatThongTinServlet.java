@@ -13,7 +13,7 @@ import model.bean.TAIKHOAN;
 import model.bo.BaiVietBO;
 import model.bo.TaiKhoanBO;
 
-@WebServlet("/ctv/CapNhatThongTinServlet")
+@WebServlet("/ctv/Cap-nhat-tai-khoan")
 public class CapNhatThongTinServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -69,7 +69,7 @@ public class CapNhatThongTinServlet extends HttpServlet {
 			
 			request.getRequestDispatcher("ThongTinCTV.jsp").forward(request, response);
 		}else{
-			response.sendRedirect("TrangChuCTVServlet");
+			response.sendRedirect("Trang-chu");
 		}
 	}
 }

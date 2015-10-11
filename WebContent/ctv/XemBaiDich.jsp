@@ -160,12 +160,12 @@
 			</div>
 			<div class="row" id="tuychonviet">
 				<button type="button" class="btn btn-link" onclick="comentvi('<%= bviet.getIdBaiViet() %>');"><i class="fa fa-comments-o"></i> Bình luận - コメント</button>
-				<form action="XuLyBaiVietServlet" method="post">
+				<form action="Gui-bai-dich" method="post">
 					<input type="hidden" name="chon" value="<%= bviet.getIdBaiViet() %>">
 					<button type="button" class="btn btn-primary btn-sm" id="lui" name="submit" value="lui" onclick="history.go(-1);">Quay lại - 戻り</button>
 					<button type="button" id="huy" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#huybai">Hủy bài - 削除</button>
 					<button type="button" id="gui" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#guibai">Gửi bài - 送信</button>
-					<button type="button" class="btn btn-primary btn-sm" id="luu" onclick="loadData('DichBaiDichServlet','<%= bviet.getIdBaiViet() %>');">Dịch bài - 翻訳の文書 </button>
+					<button type="button" class="btn btn-primary btn-sm" id="luu" onclick="loadData('Dich-bai','<%= bviet.getIdBaiViet() %>');">Dịch bài - 翻訳の文書 </button>
 				
 					<!-- dialog xác nhận hủy -->
 					<div class="modal fade" id="huybai" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
