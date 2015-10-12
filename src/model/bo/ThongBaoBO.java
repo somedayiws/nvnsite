@@ -33,6 +33,11 @@ public class ThongBaoBO {
 		// TODO Auto-generated method stub
 		return tb.ThemThongBao(tieude, noidung, guiden);
 	}
+	
+	public boolean ThemThongBaoClient(String tieude, String noidung, String guiden) {
+		// TODO Auto-generated method stub
+		return tb.ThemThongBaoClient(tieude, noidung, guiden);
+	}
 
 	public boolean SuaThongBao(String id, String tieude, String noidung,
 			String guiden) {

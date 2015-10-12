@@ -13,6 +13,7 @@ import model.bean.BAIVIET;
 import model.bo.AdminEditPostsBO;
 import model.bo.ChangeStatusBO;
 import model.bo.ShowAdminEditPostsBO;
+import model.bo.ThongBaoBO;
 
 /**
  * Servlet implementation class UploadPostServlet
@@ -111,11 +112,16 @@ public class UploadPostServlet extends HttpServlet {
 			updateStatus.changeStatusPost("OK", idPost, "Đã hoàn thành");
 			request.setAttribute("idPost", idPost);
 			request.setAttribute("resultOK", "Duyệt bài thành công - 記事が承認された");
+			//Add thông báo
+			ThongBaoBO tb = new ThongBaoBO();
+			String tieude = "Thông báo duyệt bài viết "+idPost;
+			String noidung = "Bài viết của bạn đã được xét duyệt thành công! Xem chi tiết bài viết tại địa chỉ: http://jpvn.net/Xem-bai-viet?id="+idPost;
+			String guiden = checkID.post(idPost).getTaiKhoan().getTenTaiKhoan();
+			System.out.println("Xuat thong bao duyet bai thanh cong");
+			tb.ThemThongBaoClient(tieude, noidung, guiden);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("ShowDetailPostsServlet");
-			
 			checkID.closeConnection();
 			updateStatus.closeConnection();
-			
 			dispatcher.forward(request, response);
 		}else{
 			checkID.closeConnection();

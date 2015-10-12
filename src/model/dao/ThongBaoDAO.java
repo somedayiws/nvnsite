@@ -149,6 +149,18 @@ public class ThongBaoDAO {
 		return db.updateData(sql);
 	}
 
+	public boolean ThemThongBaoClient(String tieude, String noidung, String guiden) {
+		// TODO Auto-generated method stub
+		tieude = DinhDangSQL.FomatSQL(tieude);
+		noidung = DinhDangSQL.FomatSQL(noidung);
+		guiden = DinhDangSQL.FomatSQL(guiden);
+		Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String sql = "insert into thongbao(TieuDe, NoiDung, NgayDang, HienThi, GuiDen)"
+				+ " values (N'"+tieude+"', N'"+noidung+"', '"+sdf.format(cal.getTime())+"', '1', N'"+guiden+"')";
+		return db.updateData(sql);
+	}
+	
 	public boolean SuaThongBao(String id, String tieude, String noidung,
 			String guiden) {
 		// TODO Auto-generated method stub
