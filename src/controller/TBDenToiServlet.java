@@ -19,6 +19,7 @@ import model.bean.THONGBAO;
 import model.bo.BaiVietBO;
 import model.bo.DanhMucBO;
 import model.bo.QuangCaoBO;
+import model.bo.TaiNguyenBO;
 import model.bo.ThongBaoBO;
 
 @WebServlet("/Thong-bao")
@@ -68,7 +69,19 @@ public class TBDenToiServlet extends HttpServlet {
 		request.setAttribute("pageNav", pageNav);
 		request.setAttribute("listdanhmuc", listdanhmuc);
 		request.setAttribute("list", list);
+		TaiNguyenBO tainguyenBO = new TaiNguyenBO();
 		
+		String ThongDiep = tainguyenBO.getValue("ThongDiep");
+		String LienHe = tainguyenBO.getValue("LienHe");
+		String DienThoai = tainguyenBO.getValue("DienThoai");
+		String Email = tainguyenBO.getValue("Email");
+		
+		request.setAttribute("ThongDiep", ThongDiep);
+		request.setAttribute("LienHe", LienHe);
+		request.setAttribute("DienThoai", DienThoai);
+		request.setAttribute("Email", Email);
+		
+		tainguyenBO.closeConnection();
 		bv.closeConnection();
 		danhmuc.closeConnection();
 		tb.closeConnection();

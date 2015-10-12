@@ -20,6 +20,7 @@ import model.bo.DanhMucBO;
 import model.bo.EmailUtility;
 import model.bo.QuangCaoBO;
 import model.bo.TaiKhoanBO;
+import model.bo.TaiNguyenBO;
 import model.bo.ThongBaoBO;
 
 @WebServlet("/Quen-mat-khau")
@@ -42,6 +43,10 @@ public class QuenMatKhauServlet extends HttpServlet {
 		String taikhoan = request.getParameter("taikhoan");
 		String txtFind = (String)request.getAttribute("txtFind");
 		if(txtFind == null) txtFind="";
+		// Danh sách quảng cáo
+		QuangCaoBO quangCaoBO = new QuangCaoBO();
+		ArrayList<QUANGCAO> listquangcao = quangCaoBO.getDanhSachQuangCao((int) 2);
+		request.setAttribute("listquangcao", listquangcao);
 		
 		if(taikhoan != null){
 			ServletContext context = getServletContext();
@@ -67,10 +72,17 @@ public class QuenMatKhauServlet extends HttpServlet {
 			ArrayList<THONGBAO> listthongbao = thongBaoBO.getListHienThi("", "1","DienDan");
 			request.setAttribute("listthongbao", listthongbao);
 
-			// Danh sách quảng cáo
-			QuangCaoBO quangCaoBO = new QuangCaoBO();
-			ArrayList<QUANGCAO> listquangcao = quangCaoBO.getDanhSachQuangCao((int) 2);
-			request.setAttribute("listquangcao", listquangcao);
+			TaiNguyenBO tainguyenBO = new TaiNguyenBO();
+			
+			String ThongDiep = tainguyenBO.getValue("ThongDiep");
+			String LienHe = tainguyenBO.getValue("LienHe");
+			String DienThoai = tainguyenBO.getValue("DienThoai");
+			String Email = tainguyenBO.getValue("Email");
+			
+			request.setAttribute("ThongDiep", ThongDiep);
+			request.setAttribute("LienHe", LienHe);
+			request.setAttribute("DienThoai", DienThoai);
+			request.setAttribute("Email", Email);
 			
 			if(tk != null){
 				String email = tk.getEmail();
@@ -88,6 +100,7 @@ public class QuenMatKhauServlet extends HttpServlet {
 			            resultMessage = "<div class='alert alert-danger' role='alert'><p>Tài khoản không tồn tại. Vui lòng kiểm tra lại.</p></div>";
 			        } finally {
 			            request.setAttribute("meg", resultMessage);
+			            tainguyenBO.closeConnection();
 			            danhmuc.closeConnection();
 			            baiviet.closeConnection();
 			            thongBaoBO.closeConnection();
@@ -96,6 +109,7 @@ public class QuenMatKhauServlet extends HttpServlet {
 			        }
 				} else {
 					request.setAttribute("meg", "<div class='alert alert-warning' role='alert'><p>Lỗi hệ thống. Vui lòng Reset lại trang. Cám ơn!</p></div>");
+					tainguyenBO.closeConnection();
 					danhmuc.closeConnection();
 		            baiviet.closeConnection();
 		            thongBaoBO.closeConnection();
@@ -104,6 +118,7 @@ public class QuenMatKhauServlet extends HttpServlet {
 		        }
 			}else{
 				request.setAttribute("meg", "<div class='alert alert-danger' role='alert'><p>Tài khoản không tồn tại. Vui lòng kiểm tra lại.</p></div>");
+				tainguyenBO.closeConnection();
 				danhmuc.closeConnection();
 	            baiviet.closeConnection();
 	            thongBaoBO.closeConnection();

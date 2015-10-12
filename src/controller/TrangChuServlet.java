@@ -16,6 +16,7 @@ import model.bean.THONGBAO;
 import model.bo.BaiVietBO;
 import model.bo.DanhMucBO;
 import model.bo.QuangCaoBO;
+import model.bo.TaiNguyenBO;
 import model.bo.ThongBaoBO;
 
 @WebServlet("/Trang-chu")
@@ -62,6 +63,20 @@ public class TrangChuServlet extends HttpServlet {
 		// List thông báo
 		ArrayList<THONGBAO> listthongbao = thongBaoBO.getListHienThi("", "1","DienDan");
 		request.setAttribute("listthongbao", listthongbao);
+		
+		TaiNguyenBO tainguyenBO = new TaiNguyenBO();
+		
+		String ThongDiep = tainguyenBO.getValue("ThongDiep");
+		String LienHe = tainguyenBO.getValue("LienHe");
+		String DienThoai = tainguyenBO.getValue("DienThoai");
+		String Email = tainguyenBO.getValue("Email");
+		
+		request.setAttribute("ThongDiep", ThongDiep);
+		request.setAttribute("LienHe", LienHe);
+		request.setAttribute("DienThoai", DienThoai);
+		request.setAttribute("Email", Email);
+		
+		tainguyenBO.closeConnection();
 		//Đóng kết nối database
 		baiviet.closeConnection();
 		quangCaoBO.closeConnection();

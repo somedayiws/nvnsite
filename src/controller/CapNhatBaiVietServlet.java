@@ -79,6 +79,16 @@ public class CapNhatBaiVietServlet extends HttpServlet {
 					request.setAttribute("listdanhmuc", listdanhmuc);
 					request.setAttribute("topmoi", topmoi);
 					
+					String ThongDiep = tainguyenBO.getValue("ThongDiep");
+					String LienHe = tainguyenBO.getValue("LienHe");
+					String DienThoai = tainguyenBO.getValue("DienThoai");
+					String Email = tainguyenBO.getValue("Email");
+					
+					request.setAttribute("ThongDiep", ThongDiep);
+					request.setAttribute("LienHe", LienHe);
+					request.setAttribute("DienThoai", DienThoai);
+					request.setAttribute("Email", Email);
+					
 					baiviet.closeConnection();
 					danhmuc.closeConnection();
 					tainguyenBO.closeConnection();

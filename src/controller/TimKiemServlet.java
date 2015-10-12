@@ -16,6 +16,7 @@ import model.bean.THONGBAO;
 import model.bo.BaiVietBO;
 import model.bo.DanhMucBO;
 import model.bo.QuangCaoBO;
+import model.bo.TaiNguyenBO;
 import model.bo.ThongBaoBO;
 
 @WebServlet("/Tim-kiem")
@@ -64,7 +65,19 @@ public class TimKiemServlet extends HttpServlet {
 		request.setAttribute("txtFind", txtFind);
 		request.setAttribute("listbaiviet", listbaiviet);
 		request.setAttribute("listdanhmuc", listdanhmuc);
+		TaiNguyenBO tainguyenBO = new TaiNguyenBO();
 		
+		String ThongDiep = tainguyenBO.getValue("ThongDiep");
+		String LienHe = tainguyenBO.getValue("LienHe");
+		String DienThoai = tainguyenBO.getValue("DienThoai");
+		String Email = tainguyenBO.getValue("Email");
+		
+		request.setAttribute("ThongDiep", ThongDiep);
+		request.setAttribute("LienHe", LienHe);
+		request.setAttribute("DienThoai", DienThoai);
+		request.setAttribute("Email", Email);
+		
+		tainguyenBO.closeConnection();
 		baiviet.closeConnection();
 		danhmuc.closeConnection();
 		thongBaoBO.closeConnection();

@@ -18,6 +18,7 @@ import model.bo.BaiVietBO;
 import model.bo.DanhMucBO;
 import model.bo.QuangCaoBO;
 import model.bo.TaiKhoanBO;
+import model.bo.TaiNguyenBO;
 import model.bo.ThongBaoBO;
 import model.bo.ValidateBO;
 
@@ -82,6 +83,19 @@ public class DangNhapServlet extends HttpServlet {
 						request.setAttribute("list", list);
 						request.setAttribute("listdanhmuc", listdanhmuc);
 						request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Tên đăng nhập hoặc mật khẩu không chính xác.</p></div>");
+						TaiNguyenBO tainguyenBO = new TaiNguyenBO();
+						
+						String ThongDiep = tainguyenBO.getValue("ThongDiep");
+						String LienHe = tainguyenBO.getValue("LienHe");
+						String DienThoai = tainguyenBO.getValue("DienThoai");
+						String Email = tainguyenBO.getValue("Email");
+						
+						request.setAttribute("ThongDiep", ThongDiep);
+						request.setAttribute("LienHe", LienHe);
+						request.setAttribute("DienThoai", DienThoai);
+						request.setAttribute("Email", Email);
+						
+						tainguyenBO.closeConnection();
 						taikhoanBO.closeConnection();
 						danhmuc.closeConnection();
 						baiviet.closeConnection();
@@ -104,6 +118,19 @@ public class DangNhapServlet extends HttpServlet {
 					request.setAttribute("listdanhmuc", listdanhmuc);
 					request.setAttribute("topbaiviet", topbaiviet);
 					request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Bạn chưa nhập tài khoản.</p></div>");
+					TaiNguyenBO tainguyenBO = new TaiNguyenBO();
+					
+					String ThongDiep = tainguyenBO.getValue("ThongDiep");
+					String LienHe = tainguyenBO.getValue("LienHe");
+					String DienThoai = tainguyenBO.getValue("DienThoai");
+					String Email = tainguyenBO.getValue("Email");
+					
+					request.setAttribute("ThongDiep", ThongDiep);
+					request.setAttribute("LienHe", LienHe);
+					request.setAttribute("DienThoai", DienThoai);
+					request.setAttribute("Email", Email);
+					
+					tainguyenBO.closeConnection();
 					taikhoanBO.closeConnection();
 					danhmuc.closeConnection();
 					baiviet.closeConnection();
@@ -124,6 +151,19 @@ public class DangNhapServlet extends HttpServlet {
 				request.setAttribute("listdanhmuc", listdanhmuc);
 				request.setAttribute("topbaiviet", topbaiviet);
 				request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Bạn chưa mật khẩu.</p></div>");
+				TaiNguyenBO tainguyenBO = new TaiNguyenBO();
+				
+				String ThongDiep = tainguyenBO.getValue("ThongDiep");
+				String LienHe = tainguyenBO.getValue("LienHe");
+				String DienThoai = tainguyenBO.getValue("DienThoai");
+				String Email = tainguyenBO.getValue("Email");
+				
+				request.setAttribute("ThongDiep", ThongDiep);
+				request.setAttribute("LienHe", LienHe);
+				request.setAttribute("DienThoai", DienThoai);
+				request.setAttribute("Email", Email);
+				
+				tainguyenBO.closeConnection();
 				taikhoanBO.closeConnection();
 				danhmuc.closeConnection();
 				baiviet.closeConnection();

@@ -42,9 +42,8 @@
 								<strong>Mật khẩu - パスワード</strong> <input name="matkhau"
 									type="password" placeholder="Mật khẩu - パスワード" class="form-control">
 							</div>
-							<a href="Dang-ky"><i class="fa fa-user-plus"></i>
-								Đăng ký thành viên - 会員登録の申請 </a> <br> <a href="Quen-mat-khau"><i
-								class="fa fa-user-plus"></i> Quên mật khẩu - パスワードを忘れた。 </a>
+							<a href="Dang-ky"><i class="fa fa-user-plus"></i> Đăng ký thành viên - 会員登録の申請 </a> 
+							<br> <a href="Quen-mat-khau"> Quên mật khẩu - パスワードを忘れた。 </a>
 						</div>
 						<div class="modal-footer">
 							<button name="xuly" name="submit" value="TrangChu"

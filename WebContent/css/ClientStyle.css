@@ -860,10 +860,16 @@ a {
 	margin: 10px;
 	min-width: 300px;
 }
-
-#connect {
-	width: 405px;
+div#infoContent p a:hover {
+    color: black;
+    font-weight: bold;
 }
+div#infoContent p a {
+    color: white;
+}
+/* #connect {
+	width: 405px;
+} */
 /*footer style*/
 .container-fluid .navbar-nav>li>a {
 	color: #fcfcfc !important;

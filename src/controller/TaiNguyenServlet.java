@@ -29,11 +29,23 @@ public class TaiNguyenServlet extends HttpServlet {
 			response.sendRedirect("LoginServlet");
 		}else{
 		TaiNguyenBO tainguyenBO = new TaiNguyenBO();
+		
+		String ThongDiep = tainguyenBO.getValue("ThongDiep");
+		String LienHe = tainguyenBO.getValue("LienHe");
+		String DienThoai = tainguyenBO.getValue("DienThoai");
+		String Email = tainguyenBO.getValue("Email");
+		
 		String sotu = tainguyenBO.getValue("SoTuDich");
 		String giaVN = tainguyenBO.getValue("ThanhTienVN");
 		String giaJA = tainguyenBO.getValue("ThanhTienJA");
 		String banggiadich = tainguyenBO.getValue("BangGiaDich");
 		String banggiaqc = tainguyenBO.getValue("BangGiaQuangCao");
+		
+		request.setAttribute("ThongDiep", ThongDiep);
+		request.setAttribute("LienHe", LienHe);
+		request.setAttribute("DienThoai", DienThoai);
+		request.setAttribute("Email", Email);
+		
 		request.setAttribute("sotu", sotu);
 		request.setAttribute("giaVN", giaVN);
 		request.setAttribute("giaJA", giaJA);

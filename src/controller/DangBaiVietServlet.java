@@ -78,6 +78,17 @@ public class DangBaiVietServlet extends HttpServlet {
 				request.setAttribute("giaVN", giaVN);
 				request.setAttribute("giaJA", giaJA);
 				request.setAttribute("banggiadich", banggiadich);
+				
+				String ThongDiep = tainguyenBO.getValue("ThongDiep");
+				String LienHe = tainguyenBO.getValue("LienHe");
+				String DienThoai = tainguyenBO.getValue("DienThoai");
+				String Email = tainguyenBO.getValue("Email");
+				
+				request.setAttribute("ThongDiep", ThongDiep);
+				request.setAttribute("LienHe", LienHe);
+				request.setAttribute("DienThoai", DienThoai);
+				request.setAttribute("Email", Email);
+				
 				danhmuc.closeConnection();
 				baiviet.closeConnection();
 				thongBaoBO.closeConnection();

@@ -17,6 +17,7 @@ import model.bo.BaiVietBO;
 import model.bo.DanhMucBO;
 import model.bo.QuangCaoBO;
 import model.bo.TaiKhoanBO;
+import model.bo.TaiNguyenBO;
 import model.bo.ThongBaoBO;
 
 @WebServlet("/Dang-ky")
@@ -60,12 +61,25 @@ public class DangKyThanhVienServlet extends HttpServlet {
 		ArrayList<QUANGCAO> listquangcao = quangCaoBO.getDanhSachQuangCao((int) 2);
 		request.setAttribute("listquangcao", listquangcao);
 		
+		TaiNguyenBO tainguyenBO = new TaiNguyenBO();
+		
+		String ThongDiep = tainguyenBO.getValue("ThongDiep");
+		String LienHe = tainguyenBO.getValue("LienHe");
+		String DienThoai = tainguyenBO.getValue("DienThoai");
+		String Email = tainguyenBO.getValue("Email");
+		
+		request.setAttribute("ThongDiep", ThongDiep);
+		request.setAttribute("LienHe", LienHe);
+		request.setAttribute("DienThoai", DienThoai);
+		request.setAttribute("Email", Email);
+		
 		if(submit == null){
 			request.setAttribute("loi", "");
 			danhmuc.closeConnection();
 			baiviet.closeConnection();
 			thongBaoBO.closeConnection();
 			quangCaoBO.closeConnection();
+			tainguyenBO.closeConnection();
 			request.getRequestDispatcher("DangKyThanhVien.jsp").forward(request, response);
 		}
 		else{
@@ -94,6 +108,7 @@ public class DangKyThanhVienServlet extends HttpServlet {
 			baiviet.closeConnection();
 			thongBaoBO.closeConnection();
 			quangCaoBO.closeConnection();
+			tainguyenBO.closeConnection();
 			request.getRequestDispatcher("DangKyThanhVien.jsp").forward(request, response);
 		}
 	}

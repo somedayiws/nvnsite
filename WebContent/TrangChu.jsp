@@ -93,7 +93,7 @@
 						<ul id="listhot">
 							<%
 								i=0;
-																							while(listdanhmuc != null && i<listdanhmuc.size() && i<10){
+								while(listdanhmuc != null && i<listdanhmuc.size() && i<10){
 							%>
 							<li><a
 								href="Danh-sach-bai-viet?id=<%=listdanhmuc.get(i).getIdDanhMuc()%>"><i
@@ -194,7 +194,7 @@
 							<p>
 								<i class="fa fa-newspaper-o"></i> NỔI BẬT TRONG TUẦN QUA
 							</p>
-							<p>一週間前にホットの文書-ニュース </p>
+							<p>一週間前に人気の記事です </p>
 						</div>
 						<ul id="contentWeek">
 							<%

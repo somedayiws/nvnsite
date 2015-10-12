@@ -17,6 +17,7 @@ import model.bean.THONGBAO;
 import model.bo.BaiVietBO;
 import model.bo.DanhMucBO;
 import model.bo.QuangCaoBO;
+import model.bo.TaiNguyenBO;
 import model.bo.ThongBaoBO;
 
 @WebServlet("/Xem-thong-bao")
@@ -59,6 +60,19 @@ public class ChiTietThongBaoServlet extends HttpServlet {
 			thongBaoBO.setViewed(id);
 		}
 		request.setAttribute("thongbao", thongbao);
+		TaiNguyenBO tainguyenBO = new TaiNguyenBO();
+		
+		String ThongDiep = tainguyenBO.getValue("ThongDiep");
+		String LienHe = tainguyenBO.getValue("LienHe");
+		String DienThoai = tainguyenBO.getValue("DienThoai");
+		String Email = tainguyenBO.getValue("Email");
+		
+		request.setAttribute("ThongDiep", ThongDiep);
+		request.setAttribute("LienHe", LienHe);
+		request.setAttribute("DienThoai", DienThoai);
+		request.setAttribute("Email", Email);
+		
+		tainguyenBO.closeConnection();
 		bv.closeConnection();
 		danhmuc.closeConnection();
 		thongBaoBO.closeConnection();

@@ -14,20 +14,22 @@
 		<div class="infoContent" id="about">
 			<div id="titleContent">GIỚI THIỆU-自己紹介</div>
 			<div id="infoContent">
-				<p>Cổng thông tin thương mại Việt - Nhật<br>日越ビジネス情報の窓口</p>
-				<p>Thông tin liên hệ - 連絡先の情報</p>
-				<p>Điện thoại - 電話番号:</p>
-				<p>Email:</p>
-				<p>© Copyright 2015 jpvn.net, All rights reserved.</p>
+				<p><a href="Trang-chu">Cổng thông tin thương mại Việt-Nhật - 日越ビジネス情報の窓口</a></p>
+				<p>Liên hệ - 連絡先の情報  : <%= request.getAttribute("LienHe")==null?"":request.getAttribute("LienHe") %></p>
+				<p>Điện thoại - 電話番号: <%= request.getAttribute("DienThoai")==null?"":request.getAttribute("DienThoai") %></p>
+				<p>Email: <%= request.getAttribute("Email")==null?"congthongtin.vietnhat@gmail.com":request.getAttribute("Email") %></p>
 			</div>
 		</div>
 		<div class="infoContent" id="link">
 			<div id="titleContent">LIÊN KẾT-連結する</div>
 			<div id="infoContent">
-				<p>Từ điển Nhật - Việt<br></p>
-				<p>Thông tin ngoại tệ</p>
-				<p>VYSA</p>
-				<p>Thời tiết</p>
+				<p><a href="https://www.jetro.go.jp/" target="_blank">Tổ chức Thương Mại Nhật Bản - 日本貿易振興機構</a></p>
+				<p><a href="http://www.immi-moj.go.jp/" target="_blank">Cục Quản Lý Nhập Cảnh Nhật Bản - 日本入国管理局</a></p>
+				<p><a href="http://www.xuatnhapcanh.com.vn/" target="_blank">Cục quản lý xuất nhập cảnh TP Hồ Chí Minh - ホーチミン市にて出入国管理局</a></p>
+				<p><a href="http://www.vn.emb-japan.go.jp/index_jp.html" target="_blank">Đại sứ quán Nhật Bản tại Việt Nam - 在ベトナム日本国大使館</a></p>
+				<p><a href="http://www.mofa.gov.vn/vnemb.jp/" target="_blank">Đại sứ quán Việt Nam tại Nhật Bản - 在日ベトナム国大使館</a></p>
+				<p><a href="http://www.jasso.go.jp/job/" target="_blank">Tổ chức Hỗ Trợ Sinh viên tại Nhật Bản - 日本学生支援機構</a></p>
+				<p><a href="http://www.jsda.or.jp/" target="_blank">Hiệp Hội Chứng Khoán Nhật Bản - 日本証券業協会</a></p>
 			</div>
 		</div>
 		<div class="infoContent" id="connect">

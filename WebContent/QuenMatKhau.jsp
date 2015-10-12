@@ -25,8 +25,7 @@
 				<form class="panel-login" action="Quen-mat-khau" method="post"
 					id="fdangnhap">
 					<div class="login">
-						<i class="fa fa-pinterest-p fa-2x"></i> <label>Reset mật
-							khẩu - パスワードをリセットする。</label>
+						<i class="fa fa-pinterest-p fa-2x"></i> <label>Reset mật khẩu - パスワードをリセットする。</label>
 						<%=request.getAttribute("meg")==null ? "<div class='alert alert-info' role='alert'><p>Hãy nhập tài khoản thành viên của bạn bên dưới và click vào button \"Lấy mật khẩu - ログイン\". Kiểm tra lại email của bạn đã đăng ký với chúng tôi để lấy lại mật khẩu. Cám ơn!<br>以下にあなたのアカウント情報を入力し、ボタンをクリックし、パスワードの収得-ログインする。次に登録されたメールをチェックして、パスワードを収得する。</p></div>" : request.getAttribute("meg")%>
 						<div class="row">
 							<label><i class="fa fa-user"></i> Tài khoản - アカウント</label> <input

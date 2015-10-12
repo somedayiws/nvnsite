@@ -133,8 +133,8 @@
 								<strong>Mật khẩu - パスワード</strong> <input name="matkhau"
 									type="password" placeholder="Tài khoản - パスワード" class="form-control">
 							</div>
-							<a href="DangKyThanhVienServlet"><i class="fa fa-user-plus"></i>
-								Đăng ký - 登録する</a>
+							<a href="Dang-ky"><i class="fa fa-user-plus"></i> Đăng ký - 登録する</a>
+							<br> <a href="Quen-mat-khau"> Quên mật khẩu - パスワードを忘れた。 </a>
 						</div>
 						<div class="modal-footer">
 							<button name="xuly" name="submit" value="TrangChu"
@@ -205,7 +205,7 @@
 	<div id="textdiv">
 		<span class="col-sm-2 col-md-2" id="datetime"><i
 			class="fa fa-clock-o"></i> <%=homedate%> </span> <span id="textcontent">
-			<marquee> Xin chào quý khách! </marquee>
+			<marquee> <%= request.getAttribute("ThongDiep")==null?"JPVN.NET   へようこそ　Chào Mừng Bạn Đến Với JPVN.NET":request.getAttribute("ThongDiep") %> </marquee>
 		</span>
 		<%
 			if (user == null) {

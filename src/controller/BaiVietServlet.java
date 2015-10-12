@@ -16,6 +16,7 @@ import model.bean.THONGBAO;
 import model.bo.BaiVietBO;
 import model.bo.DanhMucBO;
 import model.bo.QuangCaoBO;
+import model.bo.TaiNguyenBO;
 import model.bo.ThongBaoBO;
 
 @WebServlet("/Xem-bai-viet")
@@ -66,7 +67,20 @@ public class BaiVietServlet extends HttpServlet {
 			ArrayList<QUANGCAO> listquangcao = quangCaoBO
 					.getDanhSachQuangCao((int) 2);
 			request.setAttribute("listquangcao", listquangcao);
-
+			
+			TaiNguyenBO tainguyenBO = new TaiNguyenBO();
+			
+			String ThongDiep = tainguyenBO.getValue("ThongDiep");
+			String LienHe = tainguyenBO.getValue("LienHe");
+			String DienThoai = tainguyenBO.getValue("DienThoai");
+			String Email = tainguyenBO.getValue("Email");
+			
+			request.setAttribute("ThongDiep", ThongDiep);
+			request.setAttribute("LienHe", LienHe);
+			request.setAttribute("DienThoai", DienThoai);
+			request.setAttribute("Email", Email);
+			
+			tainguyenBO.closeConnection();
 			baiviet.closeConnection();
 			danhmuc.closeConnection();
 			request.getRequestDispatcher("BaiViet.jsp").forward(request,

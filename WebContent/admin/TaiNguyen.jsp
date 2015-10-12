@@ -87,6 +87,30 @@
 		<form name="formCreateAdv" id="formCreateAdv111"
 			action="CapNhatTaiNguyenServlet" method="post"
 			enctype="multipart/form-data">
+			<!-- Chữ chạy -->
+			<div class="form-group" id="banggia">
+				<label class="nhan1"> Thông điệp từ diễn đàn - </label> 
+				<br>Nội dung - 内容: 
+				<input class="form-control" onchange="capnhatlai();"
+					value="<%=(String) request.getAttribute("ThongDiep")%>"
+					type="text" id="ThongDiep" name="ThongDiep" />
+			</div>
+			<!-- Thông tin liên hệ -->
+			<div class="form-group" id="banggia">
+				<label class="nhan1"> Giới thiệu - 自己紹介</label> 
+				<br> Liên hệ - 連絡先の情報: 
+				<input class="form-control" onchange="capnhatlai();"
+					value="<%=(String) request.getAttribute("LienHe")%>"
+					type="text" id="LienHe" name="LienHe" />
+				<br> Điện thoại - 電話番号: 
+				<input class="form-control" onchange="capnhatlai();"
+					value="<%=(String) request.getAttribute("DienThoai")%>"
+					type="text" id="DienThoai" name="DienThoai" />
+				<br> Email : 
+				<input class="form-control" onchange="capnhatlai();"
+					value="<%=(String) request.getAttribute("Email")%>"
+					type="text" id="Email" name="Email" />
+			</div>
 			<!-- Hình ảnh giá dịch vụ dịch thuật -->
 			<div class="form-group" id="banggia">
 				<label class="nhan1"> Biểu giá dịch thuật song ngữ Việt-Nhật - ベトナム語-日本語の翻訳価格表</label> <br> Số

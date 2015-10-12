@@ -12,8 +12,8 @@ public class TaiNguyenBO {
 	}
 
 	public boolean CapNhatTaiNguyen(String soTu, String giaVN, String giaJA,
-			String image, String image1) {
-		return tn.CapNhatTaiNguyen(soTu, giaVN, giaJA, image, image1);
+			String image, String image1, String thongDiep, String lienHe, String dienThoai, String email) {
+		return tn.CapNhatTaiNguyen(soTu, giaVN, giaJA, image, image1, thongDiep, lienHe, dienThoai, email);
 	}
 	public void closeConnection() {
 		tn.closeConnection();

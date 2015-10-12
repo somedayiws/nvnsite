@@ -20,6 +20,7 @@ import model.bo.BaiVietBO;
 import model.bo.DanhMucBO;
 import model.bo.QuangCaoBO;
 import model.bo.TaiKhoanBO;
+import model.bo.TaiNguyenBO;
 import model.bo.ThongBaoBO;
 
 @WebServlet("/Trang-ca-nhan")
@@ -106,6 +107,19 @@ public class TrangCaNhanServlet extends HttpServlet {
 			request.setAttribute("pageNav", pageNav);
 			request.setAttribute("dsbaidang", listBV);
 			request.setAttribute("listdanhmuc", listdanhmuc);
+			TaiNguyenBO tainguyenBO = new TaiNguyenBO();
+			
+			String ThongDiep = tainguyenBO.getValue("ThongDiep");
+			String LienHe = tainguyenBO.getValue("LienHe");
+			String DienThoai = tainguyenBO.getValue("DienThoai");
+			String Email = tainguyenBO.getValue("Email");
+			
+			request.setAttribute("ThongDiep", ThongDiep);
+			request.setAttribute("LienHe", LienHe);
+			request.setAttribute("DienThoai", DienThoai);
+			request.setAttribute("Email", Email);
+			
+			tainguyenBO.closeConnection();
 			bv.closeConnection();
 			danhmuc.closeConnection();
 			thongBaoBO.closeConnection();
