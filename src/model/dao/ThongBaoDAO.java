@@ -47,7 +47,7 @@ public class ThongBaoDAO {
 					+ (timtheo.equals("3")?" and GuiDen like N'%"+find+"%'":"")
 					+ (timtheo.equals("4")?" and NoiDung like N'%"+find+"%'":"");
 		}else{
-			sql = "select * from thongbao where HienThi='1' and GuiDen like N'%'"
+			sql = "select * from thongbao where HienThi='1' and GuiDen like N'%" + den + "'"
 					+ (timtheo.equals("1")?" and (IdThongBao='"+find+"' or IdThongBao='"+find+"' or GuiDen like N'%"+find+"%' or NoiDung like N'%"+find+"%')":"")
 					+ (timtheo.equals("2")?" and IdThongBao='"+find+"'":"")
 					+ (timtheo.equals("3")?" and GuiDen like N'%"+find+"%'":"")

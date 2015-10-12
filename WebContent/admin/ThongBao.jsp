@@ -163,8 +163,8 @@
 					</div>
 				</div>
 			</div>
+			
 			<!--------------------------- Hiển thị danh sách các quảng cáo trong cơ sở dữ liệu ------------------->
-
 
 			<%=request.getAttribute("mes")==null ? "" : request.getAttribute("mes")%>
 			<div class="col-md-10 col-md-offset-2 panel panel-primary quangcao">
@@ -296,20 +296,20 @@
 									<input type="text" class="form-control" name="GuiDen"
 										 maxlength="200" value="DienDan" id="GuiDen">
 								</div>
-								<script>
-function chonGui(){
-	if($('#typeSend').val() == "DienDan"){
-		alert("toan dien dan1");
-		$('#GuiDenForm').attr("style","display: none;");
-	 	$('#GuiDen').val("DienDan");
-	}
-	else{
-		alert("toan dien dan2");
-		$('#GuiDen').val("");
-		$('#GuiDenForm').removeAttr("style");
-	}
-}
-</script>
+							<script>
+							function chonGui(){
+								if($('#typeSend').val() == "DienDan"){
+									alert("toan dien dan1");
+									$('#GuiDenForm').attr("style","display: none;");
+								 	$('#GuiDen').val("DienDan");
+								}
+								else{
+									alert("toan dien dan2");
+									$('#GuiDen').val("");
+									$('#GuiDenForm').removeAttr("style");
+								}
+							}
+							</script>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default"

@@ -43,7 +43,7 @@ public class ThongBaoServlet extends HttpServlet {
 		} catch (NumberFormatException e) {
 			page = 1;
 		}
-		ArrayList<THONGBAO> listhienthi = thongBaoBO.getListHienThi("", timtheo, txtFind);
+		ArrayList<THONGBAO> listhienthi = thongBaoBO.getListHienThi("DienDan", timtheo, txtFind);
 		ArrayList<THONGBAO> listan = thongBaoBO.getListKhongHienThi("", timtheo, txtFind, page);
 		String pageNav = thongBaoBO.getMenuPhanTrang();
 		request.setAttribute("pageNav", pageNav);
