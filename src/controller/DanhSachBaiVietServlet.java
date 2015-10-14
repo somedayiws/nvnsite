@@ -36,6 +36,7 @@ public class DanhSachBaiVietServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id");
+		try{
 		if(id != null && !"".equals(id)){
 			BaiVietBO baiviet = new BaiVietBO();
 			DanhMucBO danhmuc = new DanhMucBO();
@@ -76,10 +77,13 @@ public class DanhSachBaiVietServlet extends HttpServlet {
 			danhmuc.closeConnection();
 			thongBaoBO.closeConnection();
 			quangCaoBO.closeConnection();
-			
-			request.getRequestDispatcher("DanhSachBaiViet.jsp").forward(request, response);
+			if(dmchon==null || listbaiviet==null) response.sendRedirect("Trang-chu");
+			else request.getRequestDispatcher("DanhSachBaiViet.jsp").forward(request, response);
 		}else{
-			response.sendRedirect("TrangChuServlet");
+			response.sendRedirect("Trang-chu");
+		}
+		}catch (Exception e){
+			response.sendRedirect("Trang-chu");
 		}
 	}
 

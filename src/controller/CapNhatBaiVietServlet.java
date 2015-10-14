@@ -223,6 +223,7 @@ public class CapNhatBaiVietServlet extends HttpServlet {
 			}
 		} catch (Exception e) {
 			System.out.println("Throw exception upload file!");
+			response.sendRedirect("Trang-chu");
 		}
 	}
 

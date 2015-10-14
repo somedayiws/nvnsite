@@ -15,7 +15,7 @@ public class ThongBaoDAO {
 	public ArrayList<THONGBAO> getListThongBao(String den, int page) {
 		// TODO Auto-generated method stub
 		String sql = "select * from thongbao where "+den+" order by HienThi desc, NgayDang desc ";
-		db.createMenu("TBDenToiServlet?", 1, sql);
+		db.createMenu("Thong-bao?", 1, sql);
 		ResultSet rs = db.getResultSet(sql);
 		ArrayList<THONGBAO> list = new ArrayList<THONGBAO>();
 		try {

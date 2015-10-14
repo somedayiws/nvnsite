@@ -36,6 +36,7 @@ public class ChiTietThongBaoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		try{
 		BaiVietBO bv = new BaiVietBO();
 		DanhMucBO danhmuc = new DanhMucBO();
 		String id = request.getParameter("id");
@@ -77,7 +78,11 @@ public class ChiTietThongBaoServlet extends HttpServlet {
 		danhmuc.closeConnection();
 		thongBaoBO.closeConnection();
 		quangCaoBO.closeConnection();
-		request.getRequestDispatcher("ChiTietThongBao.jsp").forward(request, response);
+		if(thongbao==null) response.sendRedirect("Trang-chu");
+		else request.getRequestDispatcher("ChiTietThongBao.jsp").forward(request, response);
+		}catch(Exception e){
+			response.sendRedirect("Trang-chu");
+		}
 	}
 
 }

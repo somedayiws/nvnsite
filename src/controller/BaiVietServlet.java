@@ -38,7 +38,7 @@ public class BaiVietServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id");
-
+		try{
 		BAIVIET bviet = null;
 		if (id != null && !"".equals(id)) {
 			BaiVietBO baiviet = new BaiVietBO();
@@ -86,6 +86,9 @@ public class BaiVietServlet extends HttpServlet {
 			request.getRequestDispatcher("BaiViet.jsp").forward(request,
 					response);
 		} else {
+			response.sendRedirect("Trang-chu");
+		}
+		} catch (Exception e){
 			response.sendRedirect("Trang-chu");
 		}
 	}
