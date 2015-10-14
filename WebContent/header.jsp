@@ -205,7 +205,7 @@
 	<div id="textdiv">
 		<span class="col-sm-2 col-md-2" id="datetime"><i
 			class="fa fa-clock-o"></i> <%=homedate%> </span> <span id="textcontent">
-			<marquee> <%= request.getAttribute("ThongDiep")==null?"JPVN.NET   へようこそ　Chào Mừng Bạn Đến Với JPVN.NET":request.getAttribute("ThongDiep") %> </marquee>
+			<marquee> <%= request.getAttribute("ThongDiep")==null ||request.getAttribute("ThongDiep").equals("")?"JPVN.NET   へようこそ　Chào Mừng Bạn Đến Với JPVN.NET":request.getAttribute("ThongDiep") %> </marquee>
 		</span>
 		<%
 			if (user == null) {

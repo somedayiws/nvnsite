@@ -858,18 +858,51 @@ a {
 #contentFooter .infoContent {
 	float: left;
 	margin: 10px;
-	min-width: 300px;
+/* 	min-width: 300px; */
 }
-div#infoContent p a:hover {
-    color: black;
-    font-weight: bold;
-}
+
 div#infoContent p a {
     color: white;
 }
 /* #connect {
 	width: 405px;
 } */
+
+
+
+
+#linkleft, #linkright {
+float: left;
+}
+#linkleft {
+margin-right: 20px;
+}
+#connect {
+width: 250px;
+}
+.itemconnect {
+padding-top: 5px;
+}
+.itemconnect i{
+background: #ccc;
+color: white;
+border-radius: 18px;
+padding: 10px 12px;
+width: 35px;
+margin-right: 10px
+}
+#facebookitem a:hover i{
+background: #3b5998;
+}
+#googleitem a:hover i{
+background: #dd4b39;
+}
+div#infoContent p a:hover {
+    color: #333;
+}
+
+
+
 /*footer style*/
 .container-fluid .navbar-nav>li>a {
 	color: #fcfcfc !important;
