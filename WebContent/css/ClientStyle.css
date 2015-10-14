@@ -1559,6 +1559,21 @@ form#seach {
 	height: 90px;
 	overflow: hidden;
 }
+.adv300x250 img {
+	width: 100%;
+}
+
+.adv300x100 img {
+	width: 100%;
+}
+
+.adv300x600 img{
+	width: 100%;
+}
+
+.adv728x90 img{
+	width: 100%;
+}
 /*End advertisement style*/
 #dateComment {
 	color: #333;
