@@ -20,7 +20,7 @@ public class BaiVietDAO {
 	public BAIVIET getBaiViet(String id) {
 		// TODO Auto-generated method stub
 		id = DinhDangSQL.FomatSQL(id);
-		ResultSet rs = db.getResultSet("select IdBaiViet,TenBaiVietVi, TenBaiVietJa, MoTaVi, MoTaJa, danhmuc.IdDanhMuc, TenDanhMucVi, TenDanhMucJa, HienThi, taikhoan.IdTaiKhoan, TenTaiKhoan, MatKhau, HoTen, DiaChi, DienThoai, Email, QuyenQuanTri, NoiDungVi, NoiDungJa, TrangThai, GhiChu, LienKet, NgayDang, taikhoan.HoTen, LuotXem from baiviet inner join danhmuc on baiviet.IdDanhMuc=danhmuc.IdDanhMuc inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan where IdBaiViet='"+id+"'");
+		ResultSet rs = db.getResultSet("select IdBaiViet,TenBaiVietVi, TenBaiVietJa, MoTaVi, MoTaJa, danhmuc.IdDanhMuc, TenDanhMucVi, TenDanhMucJa, HienThi, taikhoan.IdTaiKhoan, TenTaiKhoan, MatKhau, HoTen, DiaChi, DienThoai, Email, QuyenQuanTri, NoiDungVi, NoiDungJa, TrangThai, GhiChu, LienKet, NgayDang, taikhoan.HoTen, LuotXem from baiviet inner join danhmuc on baiviet.IdDanhMuc=danhmuc.IdDanhMuc inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan where IdBaiViet='"+id+"' and CoXoa=0");
 		BAIVIET bv = null;
 		BinhLuanDAO bl = new BinhLuanDAO();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -52,8 +52,7 @@ public class BaiVietDAO {
 				return bv;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return null;
 		}
 		return bv;
 	}
@@ -342,7 +341,7 @@ public class BaiVietDAO {
 				+ ") and baiviet.CoXoa = 0 and lichsu.IdTaiKhoan = N'"+idTaiKhoan+"'";
 		
 		//Tạo menu phân trang Url, page, sql
-		db.createMenu("DanhSachBaiDichServlet?view=all&", page, sql);
+		db.createMenu("Danh-sach-bai-dich?view=all&", page, sql);
 		rs = db.getResultSet(sql + " limit " + (page-1)*db.getNBangGhi() +","+ db.getNBangGhi());
 		try {
 			while(rs.next()){
@@ -446,7 +445,7 @@ public class BaiVietDAO {
 		}
 		System.out.println("sql: "+sql);
 		//Tạo menu phân trang Url, page, sql
-		db.createMenu("DanhSachBaiDichServlet?view="+view+"&", page, sql);
+		db.createMenu("Danh-sach-bai-dich?view="+view+"&", page, sql);
 		
 		rs = db.getResultSet(sql + " limit " + (page-1)*db.getNBangGhi() +","+ db.getNBangGhi());
 		
@@ -544,9 +543,9 @@ public class BaiVietDAO {
 	 */
 	public ArrayList<BAIVIET> getListBaiViet(String id, int page) {
 		// TODO Auto-generated method stub
-		String sql = "select IdBaiViet, TenBaiVietVi, TenBaiVietJa, LuotXem, NgayDang, TrangThai, Lienket from baiviet where IdTaiKhoan=N'"+id+"'";
+		String sql = "select IdBaiViet, TenBaiVietVi, TenBaiVietJa, LuotXem, NgayDang, TrangThai, Lienket from baiviet where IdTaiKhoan=N'"+id+"'  order by IdBaiViet desc";
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-		db.createMenu("TrangCaNhanServlet?", page, sql);
+		db.createMenu("Trang-ca-nhan?", page, sql);
 		ResultSet rs = db.getResultSet(sql+ " limit " + (page-1)*db.getNBangGhi() +","+ db.getNBangGhi());
 		ArrayList<BAIVIET> list = new ArrayList<BAIVIET>();
 		try {

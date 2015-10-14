@@ -161,7 +161,7 @@ function xem(f,x){
 									<td><%=listHienThi.get(i).getTrangHienThi()==1?"Home - ホーム":"Khác - 他の" %></td>
 									<td><%=listHienThi.get(i).getViTri() %></td>
 									<td><%=listHienThi.get(i).getSoNgay() %></td>
-									<% if(listHienThi.get(i).getDonViQuangCao().equals("Mặt định")) { %>
+									<% if(listHienThi.get(i).getDonViQuangCao().equals("Mặc định")) { %>
 										<td><button type="button" class="btn btn-primary btn-sm" disabled="disabled" onclick="HienThi('<%= listHienThi.get(i).getIdQuangCao() %>', '1');">Gỡ bỏ - 削除する</button></td>
 									<% } else { %>
 										<td><button type="button" class="btn btn-primary btn-sm" onclick="HienThi('<%= listHienThi.get(i).getIdQuangCao() %>', '1');">Gỡ bỏ - 削除する</button></td>
