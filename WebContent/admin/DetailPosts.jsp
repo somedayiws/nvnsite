@@ -89,6 +89,14 @@
 							<button <%if(posts.getTrangThai().contains("OK")|| posts.getTrangThai().contains("DangDich")){ %> disabled="disabled"  <%}%>
 								class="btn btn-success btn-sm"><span class="glyphicon glyphicon-pushpin" ></span>Duyệt bài<br>記事を承認する</button>
 						</a>
+						<a href="#" data-toggle="tooltip" >
+							<button <%if(!(posts.getTrangThai().contains("MoiDang") || posts.getTrangThai().contains("OK")||posts.getTrangThai().contains("KhongDich"))){ %>
+												disabled="disabled"
+											<%} %>
+											data-toggle="modal"
+											data-target="#delete<%=posts.getIdBaiViet()%>"
+								class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove" ></span>Xóa<br>削除</button>
+						</a>
 						<button class="btn btn-primary btn-sm " onclick="history.go(-1);"><span class="glyphicon glyphicon-share-alt"></span>Quay lại<br>戻り</button>
 					</div>
 					<br>
@@ -234,6 +242,39 @@
 		RequestDispatcher dispatcher = request.getRequestDispatcher("ShowloginAdmin");
 	    dispatcher.forward(request, response);
 	}%>	
+	<!-- Model Delete -->
+	<div class="modal fade" id="delete<%=posts.getIdBaiViet()%>">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Xóa bài viết(Admin) - 記事の削除（管理者）</h4>
+				</div>
+				<div class="modal-body">
+
+					<form name="form_delete_posts_admin"
+						action="AdminDeletePostsServlet" method="post">
+
+
+						<div class="form-group">
+							<label>ID<span class="rq"> * </span>:
+							</label> <input type="text" class="form-control" maxlength="10"
+								name="Idposts" value="<%=posts.getIdBaiViet()%>"
+								readonly="readonly">
+						</div>
+						<button type="submit" class="btn btn-success btn-sm">Xóa
+							- 削除</button>
+						<button type="button" id="btn" class="btn btn-default"
+							data-dismiss="modal">Quay lại - 戻り</button>
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End model delete -->
 </body>
 <!-- _______________________________________JS___________________________________ -->
 <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>

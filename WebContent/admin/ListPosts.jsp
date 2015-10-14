@@ -308,7 +308,7 @@
 										</button></a></td>
 								<td><a href="#" data-toggle="tooltip" title="Xóa - 削除"><button
 											type="button" class="btn btn-danger btn-sm"
-											<%if(!posts.get(i).getTrangThai().contains("MoiDang")){ %>
+											<%if(!(posts.get(i).getTrangThai().contains("MoiDang") || posts.get(i).getTrangThai().contains("OK")||posts.get(i).getTrangThai().contains("KhongDich"))){ %>
 												disabled="disabled"
 											<%} %>
 											data-toggle="modal"
