@@ -92,7 +92,7 @@
 				<label class="nhan1"> Thông điệp từ diễn đàn - </label> 
 				<br>Nội dung - 内容: 
 				<input class="form-control" onchange="capnhatlai();"
-					value="<%=(String) request.getAttribute("ThongDiep")%>"
+					value="<%=(String) request.getAttribute("ThongDiep") == null || ((String) request.getAttribute("ThongDiep")).trim().equals("") ? "" : (String) request.getAttribute("ThongDiep") %>"
 					type="text" id="ThongDiep" name="ThongDiep" />
 			</div>
 			<!-- Thông tin liên hệ -->
@@ -100,15 +100,15 @@
 				<label class="nhan1"> Giới thiệu - 自己紹介</label> 
 				<br> Liên hệ - 連絡先の情報: 
 				<input class="form-control" onchange="capnhatlai();"
-					value="<%=(String) request.getAttribute("LienHe")%>"
+					value="<%=(String) request.getAttribute("LienHe")==null||((String) request.getAttribute("LienHe")).trim().equals("")?"":(String) request.getAttribute("LienHe")%>"
 					type="text" id="LienHe" name="LienHe" />
 				<br> Điện thoại - 電話番号: 
 				<input class="form-control" onchange="capnhatlai();"
-					value="<%=(String) request.getAttribute("DienThoai")%>"
+					value="<%=((String) request.getAttribute("DienThoai") == null || ((String) request.getAttribute("DienThoai")).trim().equals("") )? "" : (String) request.getAttribute("DienThoai")%>"
 					type="text" id="DienThoai" name="DienThoai" />
 				<br> Email : 
 				<input class="form-control" onchange="capnhatlai();"
-					value="<%=(String) request.getAttribute("Email")%>"
+					value="<%=(String) request.getAttribute("Email") == null || ((String) request.getAttribute("Email")).trim().equals("") ? "" : (String) request.getAttribute("Email")%>"
 					type="text" id="Email" name="Email" />
 			</div>
 			<!-- Hình ảnh giá dịch vụ dịch thuật -->

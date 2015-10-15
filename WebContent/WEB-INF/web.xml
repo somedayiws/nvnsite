@@ -65,6 +65,16 @@
   <welcome-file-list>
     <welcome-file>Trang-chu</welcome-file>
     <welcome-file>ctv/Dang-nhap</welcome-file>
-    <welcome-file>admin/Login.jsp</welcome-file>
+    <welcome-file>admin/ShowloginAdmin</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>ShowHomeServlet</display-name>
+    <servlet-name>ShowHomeServlet</servlet-name>
+    <servlet-class>controller.ShowHomeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowHomeServlet</servlet-name>
+    <url-pattern>/admin/</url-pattern>
+  </servlet-mapping>
 </web-app>
