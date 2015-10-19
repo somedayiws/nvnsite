@@ -16,7 +16,7 @@ public class ThongBaoDAO {
 		// TODO Auto-generated method stub
 		String sql = "select * from thongbao where "+den+" order by HienThi desc, NgayDang desc ";
 		db.createMenu("Thong-bao?", 1, sql);
-		ResultSet rs = db.getResultSet(sql);
+		ResultSet rs = db.getResultSet(sql + " limit " + (page-1)*db.getNBangGhi() +","+ db.getNBangGhi());
 		ArrayList<THONGBAO> list = new ArrayList<THONGBAO>();
 		try {
 			while(rs.next()){
@@ -95,7 +95,7 @@ public class ThongBaoDAO {
 					+ (timtheo.equals("4")?" and NoiDung like N'%"+find+"%'":"");
 		}
 		db.createMenu("ThongBaoServlet?", 1, sql);
-		ResultSet rs = db.getResultSet(sql);
+		ResultSet rs = db.getResultSet(sql + " limit " + (page-1)*db.getNBangGhi() +","+ db.getNBangGhi());
 		ArrayList<THONGBAO> list = new ArrayList<THONGBAO>();
 		try {
 			while(rs.next()){

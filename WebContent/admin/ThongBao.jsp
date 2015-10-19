@@ -135,7 +135,7 @@
 							<tbody>
 								<%
 									if(listHienThi!=null){
-																																																							for(int i=0;i<listHienThi.size();i++){
+									for(int i=0;i<listHienThi.size();i++){
 								%>
 								<tr>
 									<td><%=listHienThi.get(i).getIdThongBao()%></td>

@@ -1,19 +1,92 @@
 package model.dao;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import model.bean.LIENHE;
+import model.bean.THONGBAO;
 
 
 public class LienHeDAO {
 
 	DataBaseDAO db = new DataBaseDAO();
 
+	public void setMenu(int nBangghi, int ntrang) {
+		// TODO Auto-generated method stub
+		db.setMenu(nBangghi, ntrang);
+	}
+	
+	public String getMenuPhanTrang(){
+		return db.getMenuPhanTrang();
+	}
+	
 	public void closeConnection() {
 		db.closeConnection();
 	}
 
 	public void addLienHe(String taikhoan, String hoten, String dienthoai,
 			String email, String tieude, String noidung) {
+	public ArrayList<LIENHE> getListLienHe(String timtheo, String find,
+			int page) {
+		find = DinhDangSQL.FomatSQL(find);
+		String sql = "select * from lienhe "
+				+ (timtheo.equals("1")?" where (idlienhe='"+find+"' or email='"+find+"' or sodienthoai like N'%"+find+"' or tennguoigui like N'%"+find+"' or tieude like N'%"+find+"%' or noidung like N'%"+find+"%')":"")
+				+ (timtheo.equals("2")?" where idlienhe='"+find+"'":"")
+				+ (timtheo.equals("3")?" where tennguoigui like N'%"+find+"%'":"")
+				+ (timtheo.equals("4")?" where noidung like N'%"+find+"%' or tieude like N'%"+find+"%' ":"");
+		sql += " order by dadoc asc, idlienhe desc ";
+		db.createMenu("LienHeServlet?", 1, sql);
+		ResultSet rs = db.getResultSet(sql + " limit " + (page-1)*db.getNBangGhi() +","+ db.getNBangGhi());
+		ArrayList<LIENHE> list = new ArrayList<LIENHE>();
+		try {
+			while(rs.next()){
+				LIENHE tb = new LIENHE();
+				tb.setIdLienHe(rs.getInt("idlienhe") + "");
+				tb.setTieuDe(DinhDangSQL.DeFomatSQL(rs.getString("tieude")));
+				tb.setNoiDung(DinhDangSQL.DeFomatSQL(rs.getString("noidung")));
+				tb.setDaDoc(rs.getInt("dadoc"));
+				tb.setNgayGui(DinhDangSQL.DeFomatSQL(rs.getString("ngaygui")));
+				tb.setHoTen(DinhDangSQL.DeFomatSQL(rs.getString("tennguoigui")));
+				list.add(tb);
+			}
+			return list;
+		} catch (SQLException e) {
+			System.out.println("Lỗi hệ truy vấn dữ liệu bảng thông báo!");
+		}
+		return null;
+	}
+
+	public LIENHE getLienHe(String id) {
+		// TODO Auto-generated method stub
+		id = DinhDangSQL.FomatSQL(id);
+		String sql = "select * from lienhe where idlienhe='"+id+"'";
+		ResultSet rs = db.getResultSet(sql);
+		try {
+			if(rs.next()){
+				LIENHE tb = new LIENHE();
+				tb.setIdLienHe(rs.getInt("idlienhe") + "");
+				tb.setTaiKhoan(DinhDangSQL.DeFomatSQL(rs.getString("taikhoan")));
+				tb.setEmail(DinhDangSQL.DeFomatSQL(rs.getString("email")));
+				tb.setHoTen(DinhDangSQL.DeFomatSQL(rs.getString("tennguoigui")));
+				tb.setTieuDe(DinhDangSQL.DeFomatSQL(rs.getString("tieude")));
+				tb.setNoiDung(DinhDangSQL.DeFomatSQL(rs.getString("noidung")));
+				tb.setDaDoc(rs.getInt("dadoc"));
+				tb.setNgayGui(DinhDangSQL.DeFomatSQL(rs.getString("ngaygui")));
+				return tb;
+			}
+		} catch (SQLException e) {
+			System.out.println("Lỗi hệ truy vấn dữ liệu bảng liên hệ!");
+		}
+		return null;
+	}
+
+	public boolean XoaLienHe(String id) {
+		// TODO Auto-generated method stub
+		return db.updateData("delete from lienhe where idlienhe='" + id + "'");
+	}
+
+	public void capNhat(String id) {
 		// TODO Auto-generated method stub
 		Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -29,5 +102,6 @@ public class LienHeDAO {
 						+ " N'"+hoten+"', N'"+noidung+"','"+sdf.format(cal.getTime())+"',N'"+tieude+"',"
 						+ "'0')";
 		db.updateData(sql);		
+		db.updateData("update lienhe set dadoc=1 where idlienhe='" + id + "'");
 	}
 }
