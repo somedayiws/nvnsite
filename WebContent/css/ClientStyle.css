@@ -858,50 +858,51 @@ a {
 #contentFooter .infoContent {
 	float: left;
 	margin: 10px;
-/* 	min-width: 300px; */
+	/* 	min-width: 300px; */
 }
 
 div#infoContent p a {
-    color: white;
+	color: white;
 }
 /* #connect {
 	width: 405px;
 } */
-
-
-
-
 #linkleft, #linkright {
-float: left;
+	float: left;
 }
+
 #linkleft {
-margin-right: 20px;
+	margin-right: 20px;
 }
+
 #connect {
-width: 250px;
+	width: 250px;
 }
+
 .itemconnect {
-padding-top: 5px;
+	padding-top: 5px;
 }
-.itemconnect i{
-background: #ccc;
-color: white;
-border-radius: 18px;
-padding: 10px 12px;
-width: 35px;
-margin-right: 10px
+
+.itemconnect i {
+	background: #ccc;
+	color: white;
+	border-radius: 18px;
+	padding: 10px 12px;
+	width: 35px;
+	margin-right: 10px
 }
-#facebookitem a:hover i{
-background: #3b5998;
+
+#facebookitem a:hover i {
+	background: #3b5998;
 }
-#googleitem a:hover i{
-background: #dd4b39;
+
+#googleitem a:hover i {
+	background: #dd4b39;
 }
+
 div#infoContent p a:hover {
-    color: #333;
+	color: #333;
 }
-
-
 
 /*footer style*/
 .container-fluid .navbar-nav>li>a {
@@ -1559,6 +1560,7 @@ form#seach {
 	height: 90px;
 	overflow: hidden;
 }
+
 .adv300x250 img {
 	width: 100%;
 }
@@ -1567,11 +1569,11 @@ form#seach {
 	width: 100%;
 }
 
-.adv300x600 img{
+.adv300x600 img {
 	width: 100%;
 }
 
-.adv728x90 img{
+.adv728x90 img {
 	width: 100%;
 }
 /*End advertisement style*/
@@ -1717,4 +1719,41 @@ img.imggia {
 	position: fixed;
 	top: 40%;
 	right: 0%;
+}
+
+#noidung #tiengviet p img {
+	width: 100% !important;
+	height: 100% !important;
+}
+
+#noidung #tiengnhat p img {
+	width: 100% !important;
+	height: 100% !important;
+}
+
+#delailoinhan {
+	position: fixed;
+	background: #078AE8;
+	bottom: 0px;
+	color: white !important;
+	font-weight: bold;
+	z-index: 999;
+	right: 10px;
+	padding: 5px 7px 0px 7px;
+	margin-bottom: -5px;
+	border: 1px solid #4583ea;
+}
+
+#delailoinhan a {
+	color: white !important;
+}
+
+#delailoinhan a:hover {
+	color: white !important;
+}
+
+#delailoinhan:hover {
+	color: white !important;
+	cursor: pointer;
+	background: #4583ea;
 }

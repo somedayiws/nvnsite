@@ -226,3 +226,6 @@
 		</span>
 	</div>
 </div>
+<div id="delailoinhan">
+	<p><a href="Lien-he"><i class="fa fa-envelope"></i> Liên hệ với admin - 管理者とコンタクト</a></p>
+	</div>

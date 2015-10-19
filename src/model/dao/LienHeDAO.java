@@ -1,11 +1,12 @@
-package model.dao;
+﻿package model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import model.bean.LIENHE;
-import model.bean.THONGBAO;
 
 
 public class LienHeDAO {
@@ -25,8 +26,6 @@ public class LienHeDAO {
 		db.closeConnection();
 	}
 
-	public void addLienHe(String taikhoan, String hoten, String dienthoai,
-			String email, String tieude, String noidung) {
 	public ArrayList<LIENHE> getListLienHe(String timtheo, String find,
 			int page) {
 		find = DinhDangSQL.FomatSQL(find);
@@ -88,6 +87,10 @@ public class LienHeDAO {
 
 	public void capNhat(String id) {
 		// TODO Auto-generated method stub
+		db.updateData("update lienhe set dadoc=1 where idlienhe='" + id + "'");
+	}
+public void addLienHe(String taikhoan, String hoten, String dienthoai,
+			String email, String tieude, String noidung) {
 		Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		taikhoan = DinhDangSQL.FomatSQL(taikhoan);
@@ -102,6 +105,6 @@ public class LienHeDAO {
 						+ " N'"+hoten+"', N'"+noidung+"','"+sdf.format(cal.getTime())+"',N'"+tieude+"',"
 						+ "'0')";
 		db.updateData(sql);		
-		db.updateData("update lienhe set dadoc=1 where idlienhe='" + id + "'");
 	}
+	
 }

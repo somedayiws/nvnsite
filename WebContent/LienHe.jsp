@@ -23,7 +23,7 @@
 		<div id="mainContent">
 			<!-- hiển thị nội dung chính ở đây -->
 			<div class="col-sm-9 col-md-9" id="baiviet" style="font-size: 12px;">
-				<center id="tieude">Liên hệ</br></center>
+				<center id="tieude">Liên hệ - 連絡先の情報</br></center>
 				<%=request.getAttribute("loi")==null?"":request.getAttribute("loi")%>
 				<form id="khunglienhe" action="Lien-he" method="post">
 					<input type="hidden" name="taikhoan" class="form-control" value="<%=request.getAttribute("taikhoan_lh") !=null?request.getAttribute("taikhoan_lh"):""%>">

@@ -478,6 +478,7 @@
 
 		<%@include file="footer.jsp"%>
 	</div>
+	
 </body>
 <!-- Các đoạn script để đây -->
 <script language="JavaScript">
@@ -559,22 +560,6 @@
 		js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.4&appId=1671772309710877";
 		fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));
-</script>
-<!-- Hộp thoại phản hồi -->
-<script lang="javascript">
-	(function() {
-		var _h1 = document.getElementsByTagName('title')[0] || false;
-		var product_name = '';
-		if (_h1) {
-			product_name = _h1.textContent || _h1.innerText;
-		}
-		var ga = document.createElement('script');
-		ga.type = 'text/javascript';
-		ga.src = '//live.vnpgroup.net/js/web_client_box.php?hash=f6fdedfea03ad1bcd7118f3fed15d856&data=eyJzc29faWQiOjEzNDI2MjcsImhhc2giOiIzMzRmODIxY2QwNmFiNTM4ZTBkOTMzNzM2ZDA2ZThlMSJ9&pname='
-				+ product_name;
-		var s = document.getElementsByTagName('script');
-		s[0].parentNode.insertBefore(ga, s[0]);
-	})();
 </script>
 <!-- Chuyển hướng đến danh muc x -->
 <script type="text/javascript">

@@ -25,6 +25,7 @@ public class LienHeBO {
 			String email, String tieude, String noidung) {
 		lienHeDAO.addLienHe(taikhoan, hoten, dienthoai, email, tieude,
 				noidung);
+	}
 	public ArrayList<LIENHE> getListLienHe(String timtheo, String txtFind,
 			int page) {
 		// TODO Auto-generated method stub
