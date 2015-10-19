@@ -153,7 +153,7 @@
 							i=0;
 																			while(slidePosts != null && i<slidePosts.size()){
 						%>
-						<a href="BaiVietServlet?id=<%=slidePosts.get(i).getIdBaiViet()%>"
+						<a href="Xem-bai-viet?id<%=slidePosts.get(i).getIdBaiViet()%>"
 							class="show"> <img src="<%=slidePosts.get(i).getLienKet()%>"
 							alt="<%=slidePosts.get(i).getTenBaiVietVi()%>" title="" alt=""
 							rel="<h3><%=slidePosts.get(i).getTenBaiVietVi()==null?"":slidePosts.get(i).getTenBaiVietVi()%> </br> <%=slidePosts.get(i).getTenBaiVietJa()==null?"":slidePosts.get(i).getTenBaiVietJa()%></h3>

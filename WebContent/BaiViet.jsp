@@ -296,7 +296,7 @@
 						<!-- danh sách các bài viết trong nhóm -->
 						<img alt="Ảnh đại diện" src="images/baiviet.jpg"
 							style="width: 20px;"> <a
-							href="BaiVietServlet?id=<%=listbaiviet.get(i).getIdBaiViet()%>">
+							href="Xem-bai-viet?id=<%=listbaiviet.get(i).getIdBaiViet()%>">
 							<%=listbaiviet.get(i).getTenBaiVietVi()==null?"":listbaiviet.get(i).getTenBaiVietVi()+"<br>"%>
 							<%=listbaiviet.get(i).getTenBaiVietJa()==null?"":listbaiviet.get(i).getTenBaiVietJa()%></a>
 					</div>
