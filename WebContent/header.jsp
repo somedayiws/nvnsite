@@ -213,13 +213,13 @@
 		<span class="col-sm-3 col-md-3">
 			<button type="button" data-toggle="modal" data-target="#mdangnhap"
 				class="btn btn-danger form-control">
-				<i class="fa fa-newspaper-o"></i> Đăng bài - 投稿
+				<i class="fa fa-newspaper-o"></i> Đăng bài miễn phí --無料掲載
 			</button> <%
  	} else {
  %> <span class="col-sm-3 col-md-3">
 				<button type="button" onclick="dichuyen('Dang-bai-viet');"
 					class="btn btn-danger form-control">
-					<i class="fa fa-newspaper-o"></i> Đăng bài - 投稿
+					<i class="fa fa-newspaper-o"></i> Đăng bài miễn phí --無料掲載
 				</button> <%
  	}
  %>

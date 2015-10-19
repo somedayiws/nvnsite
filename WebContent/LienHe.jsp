@@ -24,21 +24,30 @@
 			<!-- hiển thị nội dung chính ở đây -->
 			<div class="col-sm-9 col-md-9" id="baiviet" style="font-size: 12px;">
 				<center id="tieude">Liên hệ</br></center>
-				<form id="khungdangky" action="Lien-he" method="post">
-					<input type="hidden" name="taikhoan" class="form-control">
+				<%=request.getAttribute("loi")==null?"":request.getAttribute("loi")%>
+				<form id="khunglienhe" action="Lien-he" method="post">
+					<input type="hidden" name="taikhoan" class="form-control" value="<%=request.getAttribute("taikhoan_lh") !=null?request.getAttribute("taikhoan_lh"):""%>">
 					<label class="form-label">Họ và	tên - 氏名(*)</label> 
-					<input type="text" name="hoten" class="form-control" placeholder="Họ tên đầy đủ - 全ての氏名"> 
+					<input type="text" name="hoten" class="form-control" placeholder="Họ tên đầy đủ - 全ての氏名"
+					value="<%=request.getAttribute("hovaten_lh") !=null?request.getAttribute("hovaten_lh"):""%>"> 
 					<br>
-					<label class="form-label">Địa chỉ - 住所</label> 
-					<input type="text" name="diachi" class="form-control" placeholder="Địa chỉ - 住所">
 					<label class="form-label">Điện thoại - 電話番号</label> <input type="text"
 						name="dienthoai" class="form-control"
-						placeholder="Điện thoại liên hệ - 連絡先の電話番号"> 
+						placeholder="Điện thoại liên hệ - 連絡先の電話番号"
+						value="<%=request.getAttribute("dienthoai_lh") !=null?request.getAttribute("dienthoai_lh"):""%>"> 
 					<label class="form-label">Email(*)</label> <br>
 					<input type="text" name="email" class="form-control"
-						placeholder="Email"> <br>
-					
-					<input type="submit" value="Đăng ký - 登録する"
+						placeholder="Email"
+						value="<%=request.getAttribute("email_lh") !=null?request.getAttribute("email_lh"):""%>"> <br>
+					<label class="form-label">Tiêu đề(*)</label> <br>
+					<input type="text" name="tieude" class="form-control"
+						placeholder="Tiêu đề"> 
+					<br>
+					<label class="form-label">Nội dung(*)</label> 
+					<textarea rows="3" placeholder="Nội dung liên hệ"
+								class="form-control" name="noidung" id="noidunglh"></textarea> 	
+								<br>
+					<input type="submit" value="Gửi - 登録する"
 						name="submit" id="btndangky" class="btn btn-primary btn-sm">
 				</form>
 			</div>
