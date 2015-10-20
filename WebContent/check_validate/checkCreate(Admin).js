@@ -1,6 +1,5 @@
 jQuery.validator.addMethod("specialChars", function(value, element) {
 	var regex = new RegExp("^[a-zA-Z0-9]+$");
-	alert("vào");
 	return regex.test(value);
 }, "please use only alphanumeric or alphabetic characters");
 $(document).ready(function() {	

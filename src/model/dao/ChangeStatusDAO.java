@@ -2,11 +2,6 @@ package model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-
 
 public class ChangeStatusDAO {
 	DataBaseDAO db = new DataBaseDAO();
@@ -43,7 +38,7 @@ public class ChangeStatusDAO {
 		//Lấy ghi chú của bài viết
 		String note = getNotePost(idPosts);
 		String noteNew = note+"<strong>Admin</strong>"+"<p>"+message+"</p>";
-		String sql_change_status_post = "update baiviet set TrangThai = N'"+status+"',GhiChu = '"+noteNew+"' where IdBaiViet ='"+idPosts+"'  and CoXoa=0";		
+		String sql_change_status_post = "update baiviet set TrangThai = N'"+status+"',GhiChu = '"+noteNew+"', NgayDang = current_time() where IdBaiViet ='"+idPosts+"'  and CoXoa=0";		
 		db.updateData(sql_change_status_post);
 	}
 	public void updateStatusHistory(String status,String idPosts,String idAccount){		
