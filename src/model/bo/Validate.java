@@ -18,7 +18,7 @@ public class Validate {
 		}
 		/** text is phone number */
 		if (typeOfText.contains("phone")) {
-			String PhoneNumber = "0\\d{9,10}";
+			String PhoneNumber = "0\\d{9,50}";
 			if (!text.matches(PhoneNumber)) {
 				errorValidate = "Phone number not is valid";
 				return false;
@@ -26,7 +26,7 @@ public class Validate {
 		}
 		/** text is email */
 		if (typeOfText.contains("email")) {
-			String Email = "\\w+@\\w+\\.[a-zA-Z.]{2,5}";
+			String Email = "\\w+@\\w+\\.[a-zA-Z.]{1,5}";
 			if (!text.matches(Email)) {
 				errorValidate = "Email not is valid";
 				return false;

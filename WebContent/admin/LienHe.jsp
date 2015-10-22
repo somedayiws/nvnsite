@@ -24,54 +24,21 @@
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("#themthongbao").validate({
-			rules : {
-				TieuDe : {
-					required : true
-				},
-				NoiDung : {
-					required : true
-				},
-				GuiDen : {
-					required : true
-				}
-			},
-			messages : {
-				TieuDe : {
-					required : "タイトルをまだ入力しない<br>Chưa nhập tiêu đề!"
-				},
-				NoiDung : {
-					required : "内容をまだ入力しない<br>Chưa nhập nội dung!"
-				},
-				GuiDen : {
-					required : "表示の場所をまだ選択しない<br>Chưa chọn nơi hiển thị!"
-				}
-			},
-			submitHandler : function(form) {
-				form.submit();
-			}
-		});
 		$("#suathongbao").validate({
 			rules : {
-				TieuDe : {
+				tieude : {
 					required : true
 				},
-				NoiDung : {
-					required : true
-				},
-				GuiDen : {
+				traloi : {
 					required : true
 				}
 			},
 			messages : {
-				TieuDe : {
+				tieude : {
 					required : "タイトルをまだ入力しない<br>Chưa nhập tiêu đề!"
 				},
-				NoiDung : {
+				traloi : {
 					required : "内容をまだ入力しない<br>Chưa nhập nội dung!"
-				},
-				GuiDen : {
-					required : "表示の場所をまだ選択しない<br>Chưa chọn nơi hiển thị!"
 				}
 			},
 			submitHandler : function(form) {
@@ -98,7 +65,7 @@
 	<div class="container-fluid">
 		<%@include file="header_ver_1.jsp"%>
 		<%@include file="Menu.jsp"%>
-		<form action="ThongBaoServlet" id="ftimkiem">
+		<form action="LienHeServlet" id="ftimkiem">
 			<div class="col-md-3 col-md-offset-1">
 				<select name="timtheo" class="form-control">
 					<option value="1">Tất cả - 全て</option>

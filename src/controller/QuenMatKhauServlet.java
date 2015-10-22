@@ -87,9 +87,9 @@ public class QuenMatKhauServlet extends HttpServlet {
 			if(tk != null){
 				String email = tk.getEmail();
 				tk.setMatKhau(RandomPassword.password());
-				String tieude = "Reset mật khẩu tài khoản cộng tác viên";
-				String noidung = "Chào " + tk.getHoTen() + "\nĐây là thông tin tài khoản của bạn sau khi reset\n Tài khoản : " 
-				+ tk.getTenTaiKhoan() + "\n Mật khẩu : " + tk.getMatKhau() + "\n Vui lòng đăng nhập sớm và cập nhật lại mật khẩu của bạn.\n Cám ơn nhiều!";
+				String tieude = "JPVN.NET - Reset mật khẩu tài khoản";
+				String noidung = "Chào " + tk.getHoTen() + "\nĐây là thông tin tài khoản của bạn sau khi reset\n\nTài khoản : " 
+				+ tk.getTenTaiKhoan() + "\nMật khẩu : " + tk.getMatKhau() + "\nVui lòng đăng nhập sớm và cập nhật lại mật khẩu của bạn.\n\nCám ơn nhiều!";
 				if(ctv.UpdateThongTin(tk)){
 					String resultMessage = "";
 					try {

@@ -33,9 +33,9 @@ public class GuiLienHeServlet extends HttpServlet {
 		String tieude =  request.getParameter("tieude");
 		String traloi =  request.getParameter("traloi");
 		
-		if(taikhoan!=null && taikhoan.trim().equals("")){
+		if(taikhoan!=null && !taikhoan.trim().equals("")){
 			ThongBaoBO tb = new ThongBaoBO();
-			tb.ThemThongBao(tieude, traloi, taikhoan);
+			tb.ThemThongBaoClient(tieude, traloi, taikhoan);
 		}
 		
 		ServletContext context = getServletContext();

@@ -57,6 +57,8 @@
 							class="glyphicon glyphicon-globe"></span>QL quảng cáo<br>広告の管理</a></li>
 					<li><a href="TaiNguyenServlet"><span
 							class="glyphicon glyphicon-briefcase"></span>QL chung<br>全般に管理する。</a></li>
+					<li><a href="LienHeServlet"><span
+							class="glyphicon glyphicon-briefcase"></span>Liên hệ<br>連絡先の情報</a></li>
 					<li><a href="StatisticalServlet"><span
 							class="glyphicon glyphicon-signal"></span>Thống kê<br>まとめ</a></li>
 				</ul>
