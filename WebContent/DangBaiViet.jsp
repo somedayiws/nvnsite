@@ -42,7 +42,7 @@
 				enctype="multipart/form-data">
 				<!-- hiển thị nội dung chính ở đây -->
 				<div class="form-group">
-					<label>Ngôn ngữ soạn thảo - 記述する言語</label> <select id="NgonNgu"
+					<label>Ngôn ngữ - 言語</label> <select id="NgonNgu"
 						name="NgonNgu" class="form-control" onchange="hienan();">
 						<option value="0">Tiếng Việt - ベトナム語</option>
 						<option value="1">Tiếng Nhật - 日本語</option>
@@ -85,8 +85,11 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label>Thể loại - 種類</label> <select id="TheLoai" name="TheLoai"
+					<label>Danh Mục - 項目</label> 
+					<div id="ghichu">(Chọn đúng danh mục - 項目を正しく選択する)</div>
+					<select id="TheLoai" name="TheLoai"
 						class="form-control">
+						<option value=""></option>
 						<%
 							i = 0;
 									while(listdanhmuc != null && i < listdanhmuc.size()) {
@@ -235,42 +238,60 @@
 		$("#fdangbai").validate({
 			rules : {
 				TieuDe : {
-					required : true
+					required : true,
+					maxlength: 80
 				},
 				TieuDeVi : {
-					required : true
+					required : true,
+					maxlength: 80
 				},
 				TieuDeJa : {
-					required : true
+					required : true,
+					maxlength: 80
 				},
 				MoTa : {
+					required : true,
+					maxlength: 200
+				},
+				TheLoai : {
 					required : true
 				},
 				MoTaVi : {
-					required : true
+					required : true,
+					maxlength: 200
 				},
 				MoTaJa : {
-					required : true
+					required : true,
+					maxlength: 150
 				}
 			},
 			messages : {
 				TieuDe : {
-					required : "Chưa nhập tiêu đề - テーマをまだ入力しない。!"
+					required : "Chưa nhập tiêu đề - テーマをまだ入力しない。!",
+					maxlength : "Tiêu đề quá dài - テーマが長いです。!<br>"
 				},
 				TieuDeJa : {
-					required : "日本語でテーマをまだ入力しない。!"
+					required : "日本語でテーマをまだ入力しない。!",
+					maxlength : "テーマが長いです。!<br>"
 				},
 				TieuDeVi : {
-					required : "Chưa nhập tiêu đề tiếng Việt!"
+					required : "Chưa nhập tiêu đề tiếng Việt!",
+					maxlength : "Tiêu đề quá dài!<br>"
 				},
 				MoTa : {
-					required : "Chưa nhập mô tả - 記されていない。!"
+					required : "Chưa nhập mô tả - 記されていない。!",
+					maxlength : "Mô tả quá dài -  記された説明が長いです。!<br>"
+				},
+				TheLoai : {
+					required : "Chọn đúng danh mục - 項目を正しく選択する"
 				},
 				MoTaVi : {
-					required : "Chưa nhập mô tả!"
+					required : "Chưa nhập mô tả!",
+					maxlength : "Mô tả quá dài!<br>"
 				},
 				MoTaJa : {
-					required : "記されていない。!"
+					required : "記されていない。!",
+					maxlength : "記された説明が長いです。!<br>"
 				}
 			},
 			submitHandler : function(form) {

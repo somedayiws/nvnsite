@@ -426,33 +426,14 @@
 				</div>
 			</div>
 			<div class="col-sm-3 col-md-3">
-				<div class="sidebar-item">
-					<div id="title-item">NHÀ TÀI TRỢ-スポンサー</div>
-					<div id="content-item">
-						<div class="item-style">
-							<p>
-								<a href="#"> <img src="http://placehold.it/400x100">
-								</a>
-							</p>
-							<p>
-								<a href="#"> <img src="http://placehold.it/400x100">
-								</a>
-							</p>
-							<p>
-								<a href="#"> <img src="http://placehold.it/400x100">
-								</a>
-							</p>
-							<p>
-								<a href="#"> <img src="http://placehold.it/400x100">
-								</a>
-							</p>
-							<p>
-								<a href="#"> <img src="http://placehold.it/400x100">
-								</a>
-							</p>
-						</div>
-					</div>
-				</div>
+<!-- 				<div class="adv300x250"> -->
+<!-- 						<a href="http://jpvn.net"><img -->
+<!-- 							src="http://placehold.it/300x250"></a> -->
+<!-- 				</div> -->
+<!-- 				<div class="adv300x250"> -->
+<!-- 						<a href="http://jpvn.net"><img -->
+<!-- 							src="http://placehold.it/300x250"></a> -->
+<!-- 				</div> -->
 				<div class="adv300x600">
 					<a href="<%=listquangcao.get(5).getLienKet()%>"><img
 						src="<%=listquangcao.get(5).getHinhAnh()%>"></a>

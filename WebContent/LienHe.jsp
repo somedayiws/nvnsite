@@ -23,7 +23,7 @@
 		<div id="mainContent">
 			<!-- hiển thị nội dung chính ở đây -->
 			<div class="col-sm-9 col-md-9" id="baiviet" style="font-size: 12px;">
-				<center id="tieude">Liên hệ - 連絡先の情報</br></center>
+				<center id="tieude">Liên hệ - 問い合わせ</br></center>
 				<%=request.getAttribute("loi")==null?"":request.getAttribute("loi")%>
 				<form id="khunglienhe" action="Lien-he" method="post">
 					<input type="hidden" name="taikhoan" class="form-control" value="<%=request.getAttribute("taikhoan_lh") !=null?request.getAttribute("taikhoan_lh"):""%>">
@@ -35,19 +35,19 @@
 						name="dienthoai" class="form-control"
 						placeholder="Điện thoại liên hệ - 連絡先の電話番号"
 						value="<%=request.getAttribute("dienthoai_lh") !=null?request.getAttribute("dienthoai_lh"):""%>"> 
-					<label class="form-label">Email(*)</label> <br>
+					<label class="form-label">Email - メール(*)</label> <br>
 					<input type="text" name="email" class="form-control"
 						placeholder="Email"
 						value="<%=request.getAttribute("email_lh") !=null?request.getAttribute("email_lh"):""%>"> <br>
-					<label class="form-label">Tiêu đề(*)</label> <br>
+					<label class="form-label">Tiêu đề - テーマ(*)</label> <br>
 					<input type="text" name="tieude" class="form-control"
 						placeholder="Tiêu đề"> 
 					<br>
-					<label class="form-label">Nội dung(*)</label> 
+					<label class="form-label">Nội dung - `内容(*)</label> 
 					<textarea rows="3" placeholder="Nội dung liên hệ"
 								class="form-control" name="noidung" id="noidunglh"></textarea> 	
 								<br>
-					<input type="submit" value="Gửi - 登録する"
+					<input type="submit" value="Gửi - 送信"
 						name="submit" id="btndangky" class="btn btn-primary btn-sm">
 				</form>
 			</div>
@@ -131,6 +131,7 @@
 				},
 				tieude : {
 					required : true,
+					maxlength: 80
 				},
 				noidung : {
 					required : true,
@@ -141,10 +142,8 @@
 					required : "Bạn chưa nhập họ tên!<br>氏名をまだ入力しない!"
 				},
 				tieude : {
-					required : "Bạn chưa nhập tiêu đề!<br>!"
-				},
-				hoten : {
-					required : "Bạn chưa nhập nội dung!<br>!"
+					required : "Bạn chưa nhập tiêu đề!<br> テーマをまだ記入しない!",
+					maxlength : "Tiêu đề quá dài! <br> テーマが長いです。!<br>"
 				},
 				email : {
 					required : "Bạn chưa nhập email!<br>メールをまだ入力しない!",
@@ -153,7 +152,10 @@
 				dienthoai : {
 					digits : "Nhập sai định dạng số điện thoại<br>入力された電話番号が無効です。",
 					minlength : "Chứa tối thiểu 10 chữ số<br>最低に10文字です。"
-				}
+				},
+				noidung : {
+					required : "Bạn chưa nhập nội dung !<br> 内容をまだ記入しない !"
+				},
 			},
 			submitHandler : function(form) {
 				form.submit();

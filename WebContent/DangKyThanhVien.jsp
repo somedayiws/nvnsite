@@ -24,7 +24,7 @@
 			<!-- Quảng cáo lung tung -->
 			<!-- hiển thị nội dung chính ở đây -->
 			<div class="col-sm-9 col-md-9" id="baiviet" style="font-size: 12px;">
-				<center id="tieude">Đăng ký thành viên</br>会員登録の申請 </center>
+				<center id="tieude">Đăng ký thành viên</br>会員登録 </center>
 				<%=request.getAttribute("loi")==null?"":request.getAttribute("loi")%>
 				<form id="khungdangky" action="Dang-ky" method="post">
 					<label class="form-label1">Thông tin tài khoản-アカウントの情報</label><br> <label

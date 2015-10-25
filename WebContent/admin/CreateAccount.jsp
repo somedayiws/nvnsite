@@ -40,7 +40,7 @@
 						</div>
 						<div class="form-group">
 							<label>Số điện thoại - 電話番号<span class="rq"> * </span>
-							</label> <input type="text" class="form-control" maxlength="11" name="phone">
+							</label> <input type="text" class="form-control" name="phone">
 							<p class="help-block">Nhập số điện thoại mà bạn đang dùng.Số điện thoại tối đa 11 số<br>貴方が使われている電話番号を入力して下さい。最大に11文字までです。</p>
 						</div>
 						<div class="form-group">
@@ -83,8 +83,13 @@
 						<div class="form-group" id="language">
 							<label>Ngôn ngữ - 言語</label> <select class="form-control"
 								name="language">
-								<option value="vi">Tiếng Việt - ベトナム語</option>
-								<option value="ja">Tiếng Nhật - 日本語</option>								
+								<%if(!type.equals("CTV")){ %>
+									<option value="vi">Tiếng Việt - ベトナム語</option>
+									<option value="ja">Tiếng Nhật - 日本語</option>
+								<%}else{ %>
+									<option value="vi">Tiếng Nhật - 日本語  -> Tiếng Việt - ベトナム語</option>
+									<option value="ja">Tiếng Việt - ベトナム語  -> Tiếng Nhật - 日本語</option>
+								<%} %>								
 							</select>
 						</div>
 						<button type="submit" class="btn btn-primary btn-md">Tạo

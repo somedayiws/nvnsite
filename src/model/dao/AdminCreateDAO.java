@@ -45,8 +45,10 @@ public class AdminCreateDAO {
 		String sql_select_id_account = "SELECT * FROM TAIKHOAN";
 		ResultSet resultset_id_account = db.getResultSet(sql_select_id_account);
 		try {
-			resultset_id_account.last();
-			id_Account_last = resultset_id_account.getString("IdTaiKhoan");
+			if(resultset_id_account.next()){
+				resultset_id_account.last();
+				id_Account_last = resultset_id_account.getString("IdTaiKhoan");
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

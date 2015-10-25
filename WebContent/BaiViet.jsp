@@ -396,6 +396,7 @@
 		var date = $("#dateComment").val();
 		if (bien == 'null') {
 			alert("Bạn phải đăng nhập, mới được bình luận.\nログインをしないと、コメントをすることができい。");
+			$('#mdangnhap').modal('toggle');
 		} else {
 			var txt = $("#txtviet").val();
 			if (txt != "") {
@@ -418,6 +419,7 @@
 		var date = $("#dateComment").val();
 		if (bien == 'null') {
 			alert("Bạn phải đăng nhập, mới được bình luận.\nログインをしないと、コメントをすることができい。");
+			$('#mdangnhap').modal('toggle');
 		} else {
 			var txt = $("#txtnhat").val();
 			if (txt != "") {

@@ -21,7 +21,7 @@
 			</div>
 		</div>
 		<div class="infoContent" id="link">
-			<div id="titleContent">LIÊN KẾT - コンタクト</div>
+			<div id="titleContent">LIÊN KẾT - 連結</div>
 			<div id="infoContent">
 			<div id="linkleft">
 			<p><a href="https://www.jetro.go.jp/" target="_blank">

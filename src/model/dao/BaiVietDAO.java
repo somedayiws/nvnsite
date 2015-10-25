@@ -23,7 +23,7 @@ public class BaiVietDAO {
 		ResultSet rs = db.getResultSet("select IdBaiViet,TenBaiVietVi, TenBaiVietJa, MoTaVi, MoTaJa, danhmuc.IdDanhMuc, TenDanhMucVi, TenDanhMucJa, HienThi, taikhoan.IdTaiKhoan, TenTaiKhoan, MatKhau, HoTen, DiaChi, DienThoai, Email, QuyenQuanTri, NoiDungVi, NoiDungJa, TrangThai, GhiChu, LienKet, NgayDang, taikhoan.HoTen, LuotXem from baiviet inner join danhmuc on baiviet.IdDanhMuc=danhmuc.IdDanhMuc inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan where IdBaiViet='"+id+"' and baiviet.CoXoa=0 ");
 		BAIVIET bv = null;
 		BinhLuanDAO bl = new BinhLuanDAO();
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 		try {
 			if(rs.next()){
 				bv = new BAIVIET();
@@ -67,7 +67,7 @@ public class BaiVietDAO {
 		String sql = "select IdBaiViet, MoTaVi, MoTaJa,TenBaiVietVi, TenBaiVietJa, danhmuc.IdDanhMuc, TenDanhMucVi, TenDanhMucJa, HienThi, taikhoan.IdTaiKhoan, TenTaiKhoan, MatKhau, HoTen, DiaChi, DienThoai, Email, QuyenQuanTri, NoiDungVi, NoiDungJa, TrangThai, GhiChu, LienKet from baiviet "
 					+ "inner join danhmuc on baiviet.IdDanhMuc=danhmuc.IdDanhMuc "
 					+ "inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan "
-					+ "where baiviet.CoXoa = 0 "
+					+ "where baiviet.CoXoa = 0 order by baiviet.NgayDang desc"
 					+ "limit " + n + ", " + top;
 		rs = db.getResultSet(sql);
 		
@@ -130,7 +130,7 @@ public class BaiVietDAO {
 			String taiKhoan, String hinhAnh, String trangThai) {
 		// TODO Auto-generated method stub
 		Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String sql = "insert into baiviet(IdBaiViet, TenBaiVietVi, TenBaiVietJa, IdDanhMuc, MotaVi, MotaJa, IdTaiKhoan, NoiDungVi, NoiDungJa, TrangThai, LuotXem, NgayDang, CoXoa, LienKet) values "
 				+ "(N'"+getID()+"', N'"+DinhDangSQL.FomatSQL(tieuDeVi)
 				+"', N'"+DinhDangSQL.FomatSQL(tieuDeJa)+"', N'"+DinhDangSQL.FomatSQL(theLoai)+"', N'"
@@ -149,7 +149,7 @@ public class BaiVietDAO {
 			String theLoai, String taiKhoan, String hinhAnh, String trangThai) {
 		// TODO Auto-generated method stub
 		Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String sql = "insert into baiviet(IdBaiViet, TenBaiVietVi, IdDanhMuc, MotaVi, IdTaiKhoan, NoiDungVi, TrangThai, LuotXem, NgayDang, CoXoa, LienKet) values "
 				+ "(N'"+getID()+"', N'"+DinhDangSQL.FomatSQL(tieuDe)+"', N'"
 				+DinhDangSQL.FomatSQL(theLoai)+"', N'"+DinhDangSQL.FomatSQL(moTa)+"', N'"
@@ -166,7 +166,7 @@ public class BaiVietDAO {
 			String theLoai, String taiKhoan, String hinhAnh, String trangThai) {
 		// TODO Auto-generated method stub
 		Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String sql = "insert into baiviet(IdBaiViet, TenBaiVietJa, IdDanhMuc, MotaJa, IdTaiKhoan, NoiDungJa, TrangThai, LuotXem, NgayDang, CoXoa, LienKet) values "
 				+ "(N'"+getID()+"', N'"+DinhDangSQL.FomatSQL(tieuDe)+"', N'"
 				+DinhDangSQL.FomatSQL(theLoai)+"', N'"+DinhDangSQL.FomatSQL(moTa)+"', N'"
@@ -214,17 +214,12 @@ public class BaiVietDAO {
 		else if(loai.equals("slidePosts"))
 			sql = "select baiviet.IdBaiViet, TenBaiVietVi, TenBaiVietJa,LienKet,MoTaVi,MoTaJa from baiviet where baiviet.GimTrangChu = '1' and baiviet.TrangThai = 'OK' and baiviet.CoXoa = 0  order by RAND() limit 5";
 		rs = db.getResultSet(sql);
-//		BinhLuanDAO bl = new BinhLuanDAO();
 		try {
 			while(rs.next()){
 				BAIVIET bv = new BAIVIET();
 				bv.setIdBaiViet(DinhDangSQL.DeFomatSQL(rs.getString("IdBaiViet")));
 				bv.setTenBaiVietVi(DinhDangSQL.DeFomatSQL(rs.getString("TenBaiVietVi")));
 				bv.setTenBaiVietJa(DinhDangSQL.DeFomatSQL(rs.getString("TenBaiVietJa")));
-//				String id = rs.getString("IdBaiViet");
-//				BAIVIET bv = new BAIVIET(id, DinhDangSQL.DeFomatSQL(rs.getString("TenBaiVietVi")), DinhDangSQL.DeFomatSQL(rs.getString("TenBaiVietJa")), new DANHMUC(DinhDangSQL.DeFomatSQL(rs.getString("IdDanhMuc")), DinhDangSQL.DeFomatSQL(rs.getString("TenDanhMucVi")), DinhDangSQL.DeFomatSQL(rs.getString("TenDanhMucJa")), rs.getInt("HienThi")), new TAIKHOAN(DinhDangSQL.DeFomatSQL(rs.getString("IdTaiKhoan")), DinhDangSQL.DeFomatSQL(rs.getString("TenTaiKhoan")), DinhDangSQL.DeFomatSQL(rs.getString("MatKhau")), DinhDangSQL.DeFomatSQL(rs.getString("HoTen")), DinhDangSQL.DeFomatSQL(rs.getString("DiaChi")), DinhDangSQL.DeFomatSQL(rs.getString("DienThoai")), DinhDangSQL.DeFomatSQL(rs.getString("Email")), DinhDangSQL.DeFomatSQL(rs.getString("QuyenQuanTri"))), DinhDangSQL.DeFomatSQL(rs.getString("NoiDungVi")), DinhDangSQL.DeFomatSQL(rs.getString("NoiDungJa")), DinhDangSQL.DeFomatSQL(rs.getString("TrangThai")), DinhDangSQL.DeFomatSQL(rs.getString("GhiChu")));
-//				bv.setBinhLuanVi(bl.getListBinhLuan(id, "vi", "0"));
-//				bv.setBinhLuanVi(bl.getListBinhLuan(id, "ja", "0"));
 				bv.setLienKet(DinhDangSQL.DeFomatSQL(rs.getString("LienKet")));
 				bv.setMoTaVi(DinhDangSQL.DeFomatSQL(rs.getString("MoTaVi")));
 				bv.setMoTaJa(DinhDangSQL.DeFomatSQL(rs.getString("MoTaJa")));
@@ -528,7 +523,7 @@ public class BaiVietDAO {
 				}else {
 					ttrang = "Dịch xong";
 				}
-		        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 				return ttrang + "," + sdf.format(rs.getDate(2));
 			}
 		} catch (SQLException e) {
