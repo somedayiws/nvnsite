@@ -104,10 +104,17 @@
 					%>
 				</p>
 				<br> <br>
+				
 				<div id="noidung">
 					<%
 						if(baiviet.getNoiDungVi() != null && !baiviet.getNoiDungVi().equals("")  && baiviet.getNoiDungJa() != null && !baiviet.getNoiDungJa().equals("") ) {
+					if(!baiviet.getLienKet().equals("images/baiviet.jpg")){
 					%>
+					<img src="<%=baiviet.getLienKet() %>" >
+					<%
+					}
+					%>
+					
 					<div class="col-xs-12 col-sm-6 col-md-6" id="tiengviet">
 						<%=baiviet.getNoiDungVi()%>
 					</div>

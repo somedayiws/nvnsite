@@ -53,11 +53,35 @@
 			 	<div class="panel-body">
 				<form action="AdminEditPostsServlet" method="post" id="formAdminEditPost"
 					name="formAdminEditPost" onsubmit="return checkData()">
-					<!-- Id danh muc -->
+					<!-- Id bài viết -->
 					<div class="form-group">
 						<label>ID</label> <input type="text" class="form-control"
 							name="IdPost" value="<%=post.getIdBaiViet()%>"
 							readonly="readonly">
+					</div>
+					<!-- Danh mục -->
+					<div class="form-group">
+					<%if(categorys != null){ %>
+					<label>Danh mục - 項目</label>
+					<select name="category" class="form-control">
+						<%for(int i=0;i<categorys.size();i++){ %>
+							<option value="<%=categorys.get(i).getIdDanhMuc()%>"
+									<%if (categorys.get(i).getIdDanhMuc().equals(post.getDanhMuc().getIdDanhMuc())) {%>
+								selected="selected" <%}%>>
+								<%=categorys.get(i).getTenDanhMucVi()%> - <%=categorys.get(i).getTenDanhMucJa()%> 
+							</option>
+						<%}%>
+					</select>
+					<%}else{ %>
+					<div class="panel panel-info">
+						<div class="panel-heading">Danh mục - 項目</div>
+						<div class="panel-body">
+							Không có danh mục trong cơ sở dữ liệu - データベースに全ての項目を存しない。<br>
+							<a href="../ListCategoryServlet"><button
+									class="btn btn-success">Tạo danh mục - 項目の作成</button></a>
+						</div>
+					</div>
+					<%} %>
 					</div>
 					<!-- Tài khoản -->
 					<%
@@ -123,65 +147,6 @@
 							</div>
 						</div>
 					</div>
-
-					<!-- Danh muc -->
-					
-					<%
-						if (categorys != null) {
-					%>
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>Danh mục (Tiếng Việt) - 項目（ベトナム語）<span class="rq"> * </span>
-								</label> <select name="categoryVi" class="form-control">
-									<%
-										for (int i = 0; i < categorys.size(); i++) {
-									%>
-									<option value="<%=categorys.get(i).getIdDanhMuc()%>"
-										<%if (categorys.get(i).getIdDanhMuc().equals(
-								post.getDanhMuc().getIdDanhMuc())) {%>
-										selected="selected" <%}%>><%=categorys.get(i).getTenDanhMucVi()%></option>
-									<%
-										}
-									%>
-								</select>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>Danh mục (Tiếng Nhật) - 項目（日本語）<span class="rq"> * </span>
-								</label> <select name="categoryJa" class="form-control">
-									<%
-										for (int i = 0; i < categorys.size(); i++) {
-									%>
-									<option value="<%=categorys.get(i).getIdDanhMuc()%>"
-										<%if (categorys.get(i).getIdDanhMuc().equals(
-											post.getDanhMuc().getIdDanhMuc())) {%>
-										selected="selected" <%}%>><%=categorys.get(i).getTenDanhMucJa()%></option>
-									<%
-										}
-									%>
-								</select>
-							</div>
-						</div>
-					</div>
-					<%
-						} else {
-					%>
-
-					<div class="panel panel-info">
-						<div class="panel-heading">Danh mục- 項目</div>
-						<div class="panel-body">
-							Không có danh mục trong cơ sở dữ liệu - データベースに項目を存しない。<br>
-							<a href="../ListCategoryServlet"><button
-									class="btn btn-success">Tạo danh mục - 項目の作成</button></a>
-						</div>
-					</div>
-
-					<%
-						}
-					%>
-					<!-- Nội dung -->
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">

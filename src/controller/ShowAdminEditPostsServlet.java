@@ -68,7 +68,7 @@ public class ShowAdminEditPostsServlet extends HttpServlet {
 		ListAccountBO listAccount = new ListAccountBO();
 		ShowAdminEditPostsBO editPosts = new ShowAdminEditPostsBO();
 		 
-		ArrayList<DANHMUC> categorys = listCategory.getCategory(1);
+		ArrayList<DANHMUC> categorys = listCategory.getCategory(-1);
 		ArrayList<TAIKHOAN> accounts = listAccount.getDataAccountInfor(-1);
 		BAIVIET post = editPosts.post(idpost);
 		

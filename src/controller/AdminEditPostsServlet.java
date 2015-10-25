@@ -44,9 +44,8 @@ public class AdminEditPostsServlet extends HttpServlet {
 		String idPost = request.getParameter("IdPost");
 		String namePostVi = request.getParameter("namePostVi");
 		String namePostJa = request.getParameter("namePostJa");
-		String idcategory_Vi = request.getParameter("categoryVi");
+		String idcategory = request.getParameter("category");
 		
-		String idcategory_Ja = request.getParameter("categoryJa");
 		String idaccount = request.getParameter("account");
 		String contentVi = request.getParameter("contentVi");
 		String contentJa = request.getParameter("contentJa");
@@ -66,7 +65,7 @@ public class AdminEditPostsServlet extends HttpServlet {
 		/**update posts in database*/
 		AdminEditPostsBO adminEditPosts = new AdminEditPostsBO();
 		
-		if(adminEditPosts.updatePost(post, idcategory_Vi, idaccount)){
+		if(adminEditPosts.updatePost(post, idcategory, idaccount)){
 			resultEdit = "Chỉnh sửa bài viết thành công - 記事が修正できた";
 		}
 		else{
