@@ -130,7 +130,7 @@ public class TaiKhoanDAO {
 	}
 	public String getIdTaiKhoanMax(){
 		String id = "TK00000000";
-		ResultSet rs = db.getResultSet("select IdTaiKhoan from taikhoan where QuyenQuanTri=N'user' order by IdTaiKhoan desc limit 1");
+		ResultSet rs = db.getResultSet("select IdTaiKhoan from taikhoan order by IdTaiKhoan desc limit 1");
 		try {
 			if(rs.next()){
 				int tam = Integer.parseInt(rs.getString(1).substring(2)) + 1;

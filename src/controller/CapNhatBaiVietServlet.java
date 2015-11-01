@@ -1,5 +1,7 @@
 package controller;
 
+import java.awt.image.BufferedImage;
+import java.awt.image.ColorConvertOp;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -7,6 +9,7 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,6 +33,7 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.FileCleanerCleanup;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.imgscalr.Scalr;
 
 @WebServlet("/Cap-nhat-bai-viet")
 public class CapNhatBaiVietServlet extends HttpServlet {
@@ -42,7 +46,6 @@ public class CapNhatBaiVietServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
-
 	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -106,7 +109,7 @@ public class CapNhatBaiVietServlet extends HttpServlet {
 				@SuppressWarnings("rawtypes")
 				List items = null;
 				
-				String id;
+				String id = "";
 				String ngonngu;
 				String TieuDe, TieuDeVi, TieuDeJa;
 				String MoTa, MoTaVi, MoTaJa;
@@ -132,17 +135,26 @@ public class CapNhatBaiVietServlet extends HttpServlet {
 					FileItem item = (FileItem) iter.next();
 					if (item.isFormField()) {
 						params.put(item.getFieldName(),item.getString("UTF-8"));
+						id = (String) params.get("id");
 					} else {
 						try {
 							String itemName = item.getName();
 							filename = itemName.substring(itemName
 									.lastIndexOf("\\") + 1);
-							String realPath = getServletContext().getRealPath("/")+ "images/" + filename;
+							filename = id
+									+ filename.substring(filename
+											.indexOf("."));
+							String realPath = getServletContext().getRealPath("/")+ "images/Thumbs/" + filename;
 							File savedFile = new File(realPath);
 							@SuppressWarnings("unused")
 							FileCleanerCleanup item2 = new FileCleanerCleanup();
 							// Upload file l�n server
-							item.write(savedFile);
+							BufferedImage img = ImageIO.read(item.getInputStream());
+							BufferedImage scaledImg = Scalr.resize(img, 800);
+							ImageIO.write(scaledImg, filename.substring(filename
+									.indexOf(".")+1), savedFile);
+							System.out.println("file extension : "+filename.substring(filename
+									.indexOf(".")+1));
 						} catch (Exception e) {
 							System.out.println("Trùng file ban đầu.");
 						}
@@ -159,7 +171,7 @@ public class CapNhatBaiVietServlet extends HttpServlet {
 				if(filename == null || filename.trim().equals(""))
 					if(linkan.equals("") || linkan == null) HinhAnh = "images/baiviet.jpg";
 					else HinhAnh = linkan;
-				else HinhAnh = "images/"+filename;
+				else HinhAnh = "images/Thumbs/"+filename;
 				BaiVietBO baivietBO = new BaiVietBO();
 				if(ngonngu.equals("0")){
 					TieuDe = (String) params.get("TieuDe");

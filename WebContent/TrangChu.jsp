@@ -151,7 +151,8 @@
 					<div id="gallery">
 						<%
 							i=0;
-							while(slidePosts != null && i<1){
+							while(slidePosts != null && i<1
+									){
 						%>
 						<a href="Xem-bai-viet?id=<%=slidePosts.get(i).getIdBaiViet()%>"
 							class="show"> <img src="<%=slidePosts.get(i).getLienKet()%>"

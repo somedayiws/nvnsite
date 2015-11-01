@@ -40,9 +40,6 @@ public class BaiVietDAO {
 				bv.setGhiChu(DinhDangSQL.DeFomatSQL(rs.getString("GhiChu")));
 				bv.setLienKet(DinhDangSQL.DeFomatSQL(rs.getString("LienKet")));
 				bv.setNgayDang(sdf.format(rs.getDate("NgayDang")));
-				TAIKHOAN tk = new TAIKHOAN();
-				tk.setHoTen(DinhDangSQL.DeFomatSQL(rs.getString("HoTen")));
-				bv.setTaiKhoan(tk);
 				bv.setLuotXem(rs.getInt("LuotXem"));
 				System.out.println(bv.getGhiChu());
 				if(bv.getTrangThai().equals("OK"))

@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +16,7 @@ import model.bean.QUANGCAO;
 import model.bean.THONGBAO;
 import model.bo.BaiVietBO;
 import model.bo.DanhMucBO;
+import model.bo.EmailUtility;
 import model.bo.QuangCaoBO;
 import model.bo.TaiKhoanBO;
 import model.bo.TaiNguyenBO;
@@ -99,8 +101,32 @@ public class DangKyThanhVienServlet extends HttpServlet {
 			if(!taiKhoanBO.chekOk(taikhoan, "")){
 				taiKhoanBO.addTaiKhoan(taikhoan, matkhau, hoten, diachi, dienthoai, email, ngonngu);
 				request.setAttribute("loi", "");
-				request.setAttribute("tbao", "<div class='alert alert-success' role='alert'><p>Đăng ký thành công.<br>Vui lòng đăng nhập tài khoản thành viên.</p></div>");
+				
+				ServletContext context = getServletContext();
+				
+				String host = context.getInitParameter("host");
+				String port = context.getInitParameter("port");
+				String user = context.getInitParameter("user");
+				String pass = context.getInitParameter("pass");
+				String tieude = "JPVN.NET - Đăng ký tài khoản thành viên";
+				String noidung = "Chào mừng bạn đến với JPVN.NET.\nĐây là thông tin tài khoản của bạn:\n\nTài khoản : " 
+				+ taikhoan + "\nMật khẩu : " + matkhau;
+				
+				try {
+		            EmailUtility.sendEmail(host, port, user, pass, email, tieude,noidung);
+		            request.setAttribute("tbao", "<div class='alert alert-success' role='alert'><p>Đăng ký thành công.<br>Vui lòng đăng nhập tài khoản thành viên.</p></div>");
+		        } catch (Exception ex) {
+		        	System.out.println("Lỗi! gửi mail.");
+		        }
 				request.getRequestDispatcher("DangNhapTaiKhoan.jsp").forward(request, response);
+				System.out.println("Done dang ky");
+				danhmuc.closeConnection();
+				baiviet.closeConnection();
+				thongBaoBO.closeConnection();
+				quangCaoBO.closeConnection();
+				tainguyenBO.closeConnection();
+				taiKhoanBO.closeConnection();
+				return;
 			}else{
 				request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Tài khoản đã tồn tại. Vui lòng chọn tài khoản khác để đăng ký. Cảm ơn!</p></div>");
 			}

@@ -55,6 +55,7 @@
 				<%
 					Calendar cal = Calendar.getInstance();
 					SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy z");
+					SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy z");
 					sdf.setTimeZone(TimeZone.getTimeZone("GMT+7"));
 					String homedate = sdf.format(cal.getTime());
 					/* Danh mục được hiển thị trong phần menu */
@@ -95,7 +96,7 @@
 				</ul>
 			</div>
 			<input type="hidden" id="dateComment"
-				value=<%=sdf.format(cal.getTime())%>>
+				value=<%=sdf1.format(cal.getTime())%>>
 			<div class="clearfix"></div>
 			<!-- form tìm kiếm -->
 			<form id="seach" class="navbar-form navbar-right" role="search"
