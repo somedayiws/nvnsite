@@ -44,7 +44,7 @@
 		<div class="infoContent" id="connect">
 			<div id="titleContent">KẾT NỐI - コンタクト</div>
 			<div id="infoContent">
-				<p class ="itemconnect" id="facebookitem"><a href="#"><i class="fa fa-facebook"></i> Facebook</a></p>
+				<p class ="itemconnect" id="facebookitem"><a href="https://www.facebook.com/Jpvnnet-1049870061692951/"><i class="fa fa-facebook"></i> Facebook</a></p>
 				<p class ="itemconnect" id="googleitem"><a href="#"><i class="fa fa-google-plus"></i> Google+</a></p>
 			</div>
 		</div>

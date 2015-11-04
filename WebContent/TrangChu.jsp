@@ -13,6 +13,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta property="og:image" content="http://jpvn.net/images/trangchu/logo-vietnhat24h.png" />
+<meta property="og:title" content="Cổng thông tin thương mại Việt-Nhật - 日越ビジネス情報の窓口" />
+<meta property="og:description" content="Cổng thông tin thương mại Việt-Nhật 
+日越ビジネス情報の窓口" />
 <!-- Thư viện cho menu -->
 <title>Trang Chủ - ホーム</title>
 <!-- Google+ -->
@@ -449,7 +453,7 @@
 				<div id="fb-root"></div>
 				<!-- Your share button code -->
 				<div class="fb-share-button"
-					data-href="http://webvietnhat-demo.jelastic.skali.net/"
+					data-href="http://jpvn.net/"
 					data-layout="button_count"></div>
 			</div>
 			<div class="clearfix"></div>

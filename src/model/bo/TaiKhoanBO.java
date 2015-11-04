@@ -35,4 +35,9 @@ public class TaiKhoanBO {
 	public void closeConnection() {
 		taikhoanDAO.closeConnection();
 	}
+
+	public boolean kiemTraTonTai(String tk) {
+		// TODO Auto-generated method stub
+		return taikhoanDAO.kiemTraTonTai(tk);
+	}
 }

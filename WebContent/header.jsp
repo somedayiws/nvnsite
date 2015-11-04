@@ -134,8 +134,9 @@
 								<strong>Mật khẩu - パスワード</strong> <input name="matkhau"
 									type="password" placeholder="Tài khoản - パスワード" class="form-control">
 							</div>
+							<a href="Quen-mat-khau" style="color: rgb(23,96,147);"> Quên mật khẩu - パスワードを忘れた。 ?</a><br> 
 							<a href="Dang-ky"><i class="fa fa-user-plus"></i> Đăng ký - 登録する</a>
-							<br> <a href="Quen-mat-khau"> Quên mật khẩu - パスワードを忘れた。 </a>
+							
 						</div>
 						<div class="modal-footer">
 							<button name="xuly" name="submit" value="TrangChu"

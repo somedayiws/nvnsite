@@ -61,6 +61,38 @@ public class TaiKhoanDAO {
 		return false;
 	}
 	
+	public boolean checkLoginWithFacebook(String username, String facebookId, String facebookLink) {
+		//Kiểm tra tồn tại của user
+		username = DinhDangSQL.FomatSQL(username);
+		facebookId = DinhDangSQL.FomatSQL(facebookId);
+		facebookLink = DinhDangSQL.FomatSQL(facebookLink);
+		String sql = "";
+		sql = "select * from taikhoan where TenTaiKhoan='"+username+"' and FacebookID='"+facebookId+"' and FacebookLink=N'"+facebookLink+"'";
+		ResultSet rs = db.getResultSet(sql);
+		try {
+			if(rs.next()) return true;
+		} catch (SQLException e) {
+			//Lỗi trả về sai
+			e.printStackTrace();
+			return false;
+		}
+		return false;
+	}
+	
+	public void registerAccountWithFacebook(String facebookId, String facebookLink, String taikhoan, String hoten, String email) {
+		// TODO Auto-generated method stub
+		taikhoan = DinhDangSQL.FomatSQL(taikhoan);
+		facebookId = DinhDangSQL.FomatSQL(facebookId);
+		hoten = DinhDangSQL.FomatSQL(hoten);
+		facebookLink = DinhDangSQL.FomatSQL(facebookLink);
+		email = DinhDangSQL.FomatSQL(email);
+		String sql = "insert into taikhoan(IdTaiKhoan, TenTaiKhoan, QuyenQuanTri, HoTen, Email, CoXoa, TinhTrang, FacebookId, FacebookLink)"
+				+ " values (N'"+getIdTaiKhoanMax()+"', N'"+taikhoan+"',N'user',"
+				+ " N'"+hoten+"',"
+				+ " N'"+email+"','0', N'MoiTao',N'"+facebookId+"','"+facebookLink+"')";
+		db.updateData(sql);
+	}
+	
 	public boolean chekEmail(String email) {
 		//Kiểm tra tồn tại của user
 		email = DinhDangSQL.FomatSQL(email);
@@ -145,5 +177,16 @@ public class TaiKhoanDAO {
 	}
 	public void closeConnection() {
 		db.closeConnection();
+	}
+
+	public boolean kiemTraTonTai(String tk) {
+		// TODO Auto-generated method stub
+		String sql = "select * from taikhoan where TenTaiKhoan='"+tk+"' or email = '"+tk+"' or email like '"+tk+"@%'";
+		ResultSet rs = db.getResultSet(sql);
+		try {
+			return rs.next();
+		} catch (SQLException e) {
+			return false;
+		}
 	}
 }

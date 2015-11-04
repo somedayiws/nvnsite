@@ -44,6 +44,7 @@
 				<div class="form-group">
 					<label>Ngôn ngữ - 言語</label> <select id="NgonNgu"
 						name="NgonNgu" class="form-control" onchange="hienan();">
+						<option value=""></option>
 						<option value="0">Tiếng Việt - ベトナム語</option>
 						<option value="1">Tiếng Nhật - 日本語</option>
 						<option value="2">Song ngữ - 両方の言語</option>
@@ -256,6 +257,9 @@
 				TheLoai : {
 					required : true
 				},
+				NgonNgu: {
+					required : true
+				},
 				MoTaVi : {
 					required : true,
 					maxlength: 200
@@ -284,6 +288,9 @@
 				},
 				TheLoai : {
 					required : "Chọn đúng danh mục - 項目を正しく選択する"
+				},
+				NgonNgu: {
+					required : "Hãy chọn ngôn ngữ - 言語を選択する"
 				},
 				MoTaVi : {
 					required : "Chưa nhập mô tả!",

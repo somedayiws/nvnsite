@@ -1,5 +1,7 @@
 package model.bean;
 
+import com.google.gson.annotations.SerializedName;
+
 public class TAIKHOAN {
 	private String IdTaiKhoan;
 	private String TenTaiKhoan;
@@ -11,6 +13,29 @@ public class TAIKHOAN {
 	private String QuyenQuanTri;
 	private String NgonNgu;
 	private String TinhTrang;
+	@SerializedName(value="id")
+	private String FacebookID;
+	@SerializedName(value="userId")
+	private String id;
+	
+	public String getFacebookID() {
+		return FacebookID;
+	}
+
+	public void setFacebookID(String facebookID) {
+		FacebookID = facebookID;
+	}
+
+	public String getFacebookLink() {
+		return FacebookLink;
+	}
+
+	public void setFacebookLink(String facebookLink) {
+		FacebookLink = facebookLink;
+	}
+
+	private String FacebookLink;
+	
 	
 	public String getTinhTrang() {
 		return TinhTrang;

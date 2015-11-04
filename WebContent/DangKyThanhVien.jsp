@@ -28,8 +28,8 @@
 				<%=request.getAttribute("loi")==null?"":request.getAttribute("loi")%>
 				<form id="khungdangky" action="Dang-ky" method="post">
 					<label class="form-label1">Thông tin tài khoản-アカウントの情報</label><br> <label
-						class="form-label">Tài khoản - アカウント(*)</label> <input type="text"
-						name="taikhoan" class="form-control" placeholder="Tên tài khoản - ユーザー名">
+						class="form-label">Tài khoản - アカウント(*)</label> <input type="text" onblur="checkTaiKhoan();"
+						name="taikhoan" id="taikhoandk" class="form-control" placeholder="Tên tài khoản - ユーザー名">
 					<br>
 					<label class="form-label">Mật khẩu - パスワード(*)</label> <input
 						type="password" name="matkhau" class="form-control"
@@ -37,14 +37,14 @@
 						tin cá nhân-個人の情報</label><br> <label class="form-label">Họ và
 						tên - 氏名(*)</label> <input type="text" name="hoten" class="form-control"
 						placeholder="Họ tên đầy đủ - 全ての氏名"> <br>
-					<label class="form-label">Địa chỉ - 住所</label> <input type="text"
+					<label class="form-label">Địa chỉ - 住所(*)</label> <input type="text"
 						name="diachi" class="form-control" placeholder="Địa chỉ - 住所">
-					<label class="form-label">Điện thoại - 電話番号</label> <input type="text"
+					<label class="form-label">Điện thoại - 電話番号(*)</label> <input type="text"
 						name="dienthoai" class="form-control"
-						placeholder="Điện thoại liên hệ - 連絡先の電話番号"> <label
+						placeholder="Điện thoại liên hệ - 連絡先の電話番号"> <br> <label
 						class="form-label">Email(*)</label> <br>
-					<input type="text" name="email" class="form-control"
-						placeholder="Email"> <br>
+					<input type="text" name="email" id="eml" class="form-control"
+						placeholder="Email" onblur="checkEmail();"> <br>
 					<label class="form-label">Ngôn ngữ chính - 主要な言語(*) </label> <input
 						type="radio" name="ngonngu" value="vi" checked="checked">
 					Tiếng Việt - ベトナム語<input type="radio" name="ngonngu" title="ja">
@@ -93,6 +93,37 @@
 	function dichuyen(x) {
 		window.location.href = x;
 	};
+	
+	function checkTaiKhoan() {
+		$.ajax({
+			url : "CheckTaiKhoanServlet", //file 
+			type : "POST", //phuong thức gưi
+			data : {
+	        	tk : $('#taikhoandk').val()
+	        },
+	        async : true,
+	        success : function(res) {
+	        	$('#loitk').remove();
+	        	$('#taikhoandk').after(res);
+			}
+		});
+	};
+	
+	function checkEmail() {
+		$.ajax({
+			url : "CheckEmailExistServlet", //file 
+			type : "POST", //phuong thức gưi
+			data : {
+	        	tk : $('#eml').val()
+	        },
+	        async : true,
+	        success : function(res) {
+	        	$('#loiem').remove();
+	        	$('#eml').after(res);
+			}
+		});
+	};
+	
 	$(document).ready(function() {
 		/* Check đăng nhập */
 		$("#fdangnhap").validate({
@@ -116,6 +147,7 @@
 				form.submit();
 			}
 		});
+		
 		/* Check đăng ký */
 		$("#khungdangky").validate({
 			rules : {
@@ -128,13 +160,16 @@
 				hoten : {
 					required : true
 				},
+				diachi : {
+					required : true
+				},
 				email : {
 					required : true,
 					email : true
 				},
 				dienthoai : {
-					digits : true,
-					minlength : 10
+					required : true,
+					digits : true
 				}
 			},
 			messages : {
@@ -147,13 +182,16 @@
 				hoten : {
 					required : "Bạn chưa nhập họ tên!<br>氏名をまだ入力しない!"
 				},
+				diachi : {
+					required : "Bạn chưa nhập địa chỉ hiện tại!<br>貴方の現在の住所を入力して下さい!"
+				},
 				email : {
 					required : "Bạn chưa nhập email!<br>メールをまだ入力しない!",
 					email : "Không đúng định dạng email<br>メールの形式が無効です"
 				},
 				dienthoai : {
-					digits : "Nhập sai định dạng số điện thoại<br>入力された電話番号が無効です。",
-					minlength : "Chứa tối thiểu 10 chữ số<br>最低に10文字です。"
+					required : "Bạn chưa nhập số điện thoại!<br>連絡取れる電話番号を入力しなければならない",
+					digits : "Nhập sai định dạng số điện thoại<br>入力された電話番号が無効です。"
 				}
 			},
 			submitHandler : function(form) {

@@ -112,6 +112,9 @@
 	#contentFooter {
 		width: 1066px;
 	}
+        #about{
+                width: 270px;
+        }
 }
 
 @media only screen and (max-width: 1065px) {
@@ -252,6 +255,9 @@
 	#contentFooter {
 		width: 960px;
 	}
+        #about{
+                width: 265px;
+        }
 }
 
 @media only screen and (max-width: 970px) { /*Style 960px*/
@@ -448,6 +454,9 @@
 	#linkleft, #linkright {
 		width: 240px;
 	}
+#about{
+width: 260px;
+}
 }
 
 @media only screen and (max-width: 799px) {
@@ -498,6 +507,9 @@
 	#footer {
 		font-size: 13px;
 	}
+#about{
+width: 245px;
+}
 }
 
 @media only screen and (max-width: 767px) {
@@ -624,6 +636,9 @@
 	#contentFooter {
 		height: 100%;
 	}
+#about{
+width: 100%;
+}
 }
 
 @media only screen and (max-width: 719px) {
