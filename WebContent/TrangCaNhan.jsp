@@ -64,7 +64,7 @@
 							class="form-control"
 							value="<%=user.getDiaChi()==null?"":user.getDiaChi()%>">
 						<label>Email</label> <input type="text" id="email" name="email"
-							class="form-control"
+							class="form-control" readonly="readonly"
 							value="<%=user.getEmail()==null?"":user.getEmail()%>">
 					</div>
 					<div class="col-sm-6 col-md-6">

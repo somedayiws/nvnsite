@@ -85,7 +85,7 @@ public class LienHeClientServlet extends HttpServlet {
 				
 				TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("user");
 				if(user !=null){
-					request.setAttribute("taikhoan_lh", user.getTenTaiKhoan());
+					request.setAttribute("taikhoan_lh", user.getIdTaiKhoan());
 					request.setAttribute("email_lh", user.getEmail());
 					request.setAttribute("hovaten_lh", user.getHoTen());
 					request.setAttribute("dienthoai_lh", user.getDienThoai());

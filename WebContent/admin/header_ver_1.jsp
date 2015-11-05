@@ -4,27 +4,6 @@
 <html>
 <head>
 <link rel="stylesheet" href="css/header.css">
-<script type="text/javascript">
-	$(document).ready(function() {
-		$.ajax({
-			url : "CheckDataBaiViet",
-			type : "post",
-			success : function(result) {
-				$("#baicanxem").html(result);
-			}
-		});
-		var refreshId = setInterval(function() {
-			$.ajax({
-				url : "CheckDataBaiViet",
-				type : "post",
-				success : function(result) {
-					
-					$("#baicanxem").html(result);
-				}
-			});
-		}, 300000);
-	});
-</script>
 </head>
 <body>
 	<div class="container-fluid">
@@ -38,8 +17,6 @@
 						CỔNG THÔNG TIN VIỆT - NHẬT<br>日越ビジネス情報の窓口 
 					</h1>
 					
-			</div>
-			<div id="baicanxem">
 			</div>
 		</div>
 	</div>

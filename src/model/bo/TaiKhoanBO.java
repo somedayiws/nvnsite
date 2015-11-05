@@ -40,4 +40,11 @@ public class TaiKhoanBO {
 		// TODO Auto-generated method stub
 		return taikhoanDAO.kiemTraTonTai(tk);
 	}
+	public void registerAccountWithFacebook(String facebookId, String facebookLink, String hoten, String email) {
+		 taikhoanDAO.registerAccountWithFacebook(facebookId, facebookLink, hoten, email);
+	}
+	public boolean checkLoginWithFacebook(String facebookId) {
+		return taikhoanDAO.checkLoginWithFacebook(facebookId);
+	}
+	
 }

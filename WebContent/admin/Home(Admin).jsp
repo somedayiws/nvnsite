@@ -14,6 +14,27 @@
 <script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
 <script type="text/javascript" src="../bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
 <title>Trang chủ - ホーム</title>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$.ajax({
+			url : "CheckDataBaiViet",
+			type : "post",
+			success : function(result) {
+				$("#baicanxem").html(result);
+			}
+		});
+		var refreshId = setInterval(function() {
+			$.ajax({
+				url : "CheckDataBaiViet",
+				type : "post",
+				success : function(result) {
+					
+					$("#baicanxem").html(result);
+				}
+			});
+		}, 300000);
+	});
+</script>
 </head>
 <%
 	//Kiểm tra session có tồn tại hay không
@@ -27,11 +48,13 @@
 	<div class="container-fluid" >
 		<%@include file="header_ver_1.jsp"%>	
 		<%@include file="Menu.jsp"%>
-		<div class="row">
-		
-			<div class="col-md-12" id="title">
-				<h2><strong><marquee behavior="alternate" width="10%">>></marquee>Chào mừng bạn đến với trang Admin - 管理者のホームページへようこそ<marquee behavior="alternate" width="10%"><<</marquee></strong></h2>
+			<div id="baicanxem">
 			</div>
+		<div class="row">
+	
+<!-- 			<div class="col-md-12" id="title"> -->
+<!-- 				<h2><strong><marquee behavior="alternate" width="10%">>></marquee>Chào mừng bạn đến với trang Admin - 管理者のホームページへようこそ<marquee behavior="alternate" width="10%"><<</marquee></strong></h2> -->
+<!-- 			</div> -->
 <!-- |--------------------------------------------------------------| -->
 <!-- |-------------------Hiển thị hình ảnh--------------------------| -->
 <!-- |--------------------------------------------------------------| -->		

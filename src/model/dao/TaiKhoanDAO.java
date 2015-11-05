@@ -61,13 +61,11 @@ public class TaiKhoanDAO {
 		return false;
 	}
 	
-	public boolean checkLoginWithFacebook(String username, String facebookId, String facebookLink) {
+	public boolean checkLoginWithFacebook(String facebookId) {
 		//Kiểm tra tồn tại của user
-		username = DinhDangSQL.FomatSQL(username);
 		facebookId = DinhDangSQL.FomatSQL(facebookId);
-		facebookLink = DinhDangSQL.FomatSQL(facebookLink);
 		String sql = "";
-		sql = "select * from taikhoan where TenTaiKhoan='"+username+"' and FacebookID='"+facebookId+"' and FacebookLink=N'"+facebookLink+"'";
+		sql = "select * from taikhoan where FacebookID='"+facebookId+"'";
 		ResultSet rs = db.getResultSet(sql);
 		try {
 			if(rs.next()) return true;
@@ -79,18 +77,36 @@ public class TaiKhoanDAO {
 		return false;
 	}
 	
-	public void registerAccountWithFacebook(String facebookId, String facebookLink, String taikhoan, String hoten, String email) {
+	public void registerAccountWithFacebook(String facebookId, String facebookLink, String hoten, String email) {
 		// TODO Auto-generated method stub
-		taikhoan = DinhDangSQL.FomatSQL(taikhoan);
 		facebookId = DinhDangSQL.FomatSQL(facebookId);
 		hoten = DinhDangSQL.FomatSQL(hoten);
 		facebookLink = DinhDangSQL.FomatSQL(facebookLink);
 		email = DinhDangSQL.FomatSQL(email);
 		String sql = "insert into taikhoan(IdTaiKhoan, TenTaiKhoan, QuyenQuanTri, HoTen, Email, CoXoa, TinhTrang, FacebookId, FacebookLink)"
-				+ " values (N'"+getIdTaiKhoanMax()+"', N'"+taikhoan+"',N'user',"
+				+ " values (N'"+getIdTaiKhoanMax()+"', N'"+facebookId+"',N'user',"
 				+ " N'"+hoten+"',"
 				+ " N'"+email+"','0', N'MoiTao',N'"+facebookId+"','"+facebookLink+"')";
 		db.updateData(sql);
+	}
+	
+	public TAIKHOAN getAccountByEmail(String email) {
+		//lấy tài khoản thỏa mãn
+		email = DinhDangSQL.FomatSQL(email);
+		ResultSet rs = db.getResultSet("select * from taikhoan where Email=N'"+email+"'");
+		TAIKHOAN taikhoan = null;
+		try {
+			if(rs.next()){
+				taikhoan = new TAIKHOAN(DinhDangSQL.DeFomatSQL(rs.getString("IdTaiKhoan")),DinhDangSQL.DeFomatSQL(rs.getString("TenTaiKhoan")), DinhDangSQL.DeFomatSQL(rs.getString("MatKhau")), DinhDangSQL.DeFomatSQL(rs.getString("HoTen")), DinhDangSQL.DeFomatSQL(rs.getString("DiaChi")), rs.getString("DienThoai"), DinhDangSQL.DeFomatSQL(rs.getString("Email")), DinhDangSQL.DeFomatSQL(rs.getString("QuyenQuanTri")));
+				taikhoan.setNgonNgu(DinhDangSQL.DeFomatSQL(rs.getString("NgonNgu")));
+				return taikhoan;
+			}
+		} catch (SQLException e) {
+			//Lỗi trả về sai
+			e.printStackTrace();
+			return taikhoan;
+		}
+		return taikhoan;
 	}
 	
 	public boolean chekEmail(String email) {

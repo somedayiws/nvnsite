@@ -6,17 +6,17 @@ public class TAIKHOAN {
 	private String IdTaiKhoan;
 	private String TenTaiKhoan;
 	private String MatKhau;
+	@SerializedName(value="name")
 	private String HoTen;
 	private String DiaChi;
 	private String DienThoai;
+	@SerializedName(value="email")
 	private String Email;
 	private String QuyenQuanTri;
 	private String NgonNgu;
 	private String TinhTrang;
 	@SerializedName(value="id")
 	private String FacebookID;
-	@SerializedName(value="userId")
-	private String id;
 	
 	public String getFacebookID() {
 		return FacebookID;
@@ -131,5 +131,15 @@ public class TAIKHOAN {
 	public void setEmail(String email) {
 		Email = email;
 	}
-
+	
+	@Override
+	public String toString() {
+		return "TAIKHOAN [IdTaiKhoan=" + IdTaiKhoan + ", TenTaiKhoan="
+				+ TenTaiKhoan + ", MatKhau=" + MatKhau + ", HoTen=" + HoTen
+				+ ", DiaChi=" + DiaChi + ", DienThoai=" + DienThoai
+				+ ", Email=" + Email + ", QuyenQuanTri=" + QuyenQuanTri
+				+ ", NgonNgu=" + NgonNgu + ", TinhTrang=" + TinhTrang
+				+ ", FacebookID=" + FacebookID
+				+ ", FacebookLink=" + FacebookLink + "]";
+	}
 }

@@ -3,6 +3,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.bean.BAIVIET"%>
 <%@page import="model.bean.DANHMUC"%>
+<%@page import="Utils.APIWrapper"%>
 
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
@@ -71,7 +72,7 @@
 				<ul class="nav navbar-nav navbar-right">
 
 					<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" href="Trang-ca-nhan">Chào-ようこそ<%=user.getTenTaiKhoan()%>
+						data-toggle="dropdown" href="Trang-ca-nhan">Chào-ようこそ<%=user.getHoTen()%>
 					</a>
 						<ul class="dropdown-menu">
 							<li><a href="Trang-ca-nhan"><i
@@ -137,6 +138,7 @@
 							<a href="Quen-mat-khau" style="color: rgb(23,96,147);"> Quên mật khẩu - パスワードを忘れた。 ?</a><br> 
 							<a href="Dang-ky"><i class="fa fa-user-plus"></i> Đăng ký - 登録する</a>
 							
+							<a href="<%=APIWrapper.getDialogLink() %>">Đăng nhập bằng facebook</a>
 						</div>
 						<div class="modal-footer">
 							<button name="xuly" name="submit" value="TrangChu"
