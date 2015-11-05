@@ -7,20 +7,20 @@ public class Validate {
 			String typeOfText) {
 		/** Empty text */
 		if ("".equals(text)) {
-			errorValidate = "You must enter into " + nameOfText;
+			errorValidate = "Hãy nhập - 入力します  " + nameOfText;
 			return false;
 		}
 		/** text is lager permit character */
 		if (text.length() > maxlength) {			
-			errorValidate = nameOfText + " not lager " + maxlength
-					+ " character";
+			errorValidate = nameOfText + " nhỏ hơn - より小さい " + maxlength
+					+ " ký tự - 文字";
 			return false;
 		}
 		/** text is phone number */
 		if (typeOfText.contains("phone")) {
 			String PhoneNumber = "0\\d{9,50}";
 			if (!text.matches(PhoneNumber)) {
-				errorValidate = "Phone number not is valid";
+				errorValidate = "Số điện thoại không hợp lệ - 電話番号は不適です。";
 				return false;
 			}
 		}
@@ -28,7 +28,7 @@ public class Validate {
 		if (typeOfText.contains("email")) {
 			String Email = "\\w+@\\w+\\.[a-zA-Z.]{1,5}";
 			if (!text.matches(Email)) {
-				errorValidate = "Email not is valid";
+				errorValidate = "Email không hợp lệ - メールが不適切です。";
 				return false;
 			}
 		}
@@ -39,7 +39,7 @@ public class Validate {
 			String userOrpass = "\\w+";
 			if(!text.matches(userOrpass))
 			{
-				errorValidate = nameOfText+" not valid";
+				errorValidate = nameOfText+" không hợp lệ - 無効";
 				return false;
 			}
 		}

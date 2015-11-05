@@ -90,23 +90,15 @@ public class TaiKhoanDAO {
 		db.updateData(sql);
 	}
 	
-	public TAIKHOAN getAccountByEmail(String email) {
-		//lấy tài khoản thỏa mãn
-		email = DinhDangSQL.FomatSQL(email);
-		ResultSet rs = db.getResultSet("select * from taikhoan where Email=N'"+email+"'");
-		TAIKHOAN taikhoan = null;
-		try {
-			if(rs.next()){
-				taikhoan = new TAIKHOAN(DinhDangSQL.DeFomatSQL(rs.getString("IdTaiKhoan")),DinhDangSQL.DeFomatSQL(rs.getString("TenTaiKhoan")), DinhDangSQL.DeFomatSQL(rs.getString("MatKhau")), DinhDangSQL.DeFomatSQL(rs.getString("HoTen")), DinhDangSQL.DeFomatSQL(rs.getString("DiaChi")), rs.getString("DienThoai"), DinhDangSQL.DeFomatSQL(rs.getString("Email")), DinhDangSQL.DeFomatSQL(rs.getString("QuyenQuanTri")));
-				taikhoan.setNgonNgu(DinhDangSQL.DeFomatSQL(rs.getString("NgonNgu")));
-				return taikhoan;
-			}
-		} catch (SQLException e) {
-			//Lỗi trả về sai
-			e.printStackTrace();
-			return taikhoan;
-		}
-		return taikhoan;
+	public boolean updateAccountByEmail(TAIKHOAN user) {
+		// TODO Auto-generated method stub
+		String sql = "update taikhoan set MatKhau=N'"+DinhDangSQL.FomatSQL(user.getMatKhau())
+				+"', DiaChi=N'"+DinhDangSQL.FomatSQL(user.getDiaChi())
+				+"', HoTen=N'"+DinhDangSQL.FomatSQL(user.getHoTen())
+				+"', DienThoai='"+DinhDangSQL.FomatSQL(user.getDienThoai())
+				+"', Email=N'"+DinhDangSQL.FomatSQL(user.getEmail())
+				+"' where TenTaiKhoan=N'"+DinhDangSQL.FomatSQL(user.getTenTaiKhoan())+"'";
+		return db.updateData(sql);
 	}
 	
 	public boolean chekEmail(String email) {

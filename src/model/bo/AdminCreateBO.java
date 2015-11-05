@@ -15,7 +15,7 @@ public class AdminCreateBO {
 		/*--------check re-pass-----------*/
 		if(!re_pass.equals(pass))
 		{
-			error = "re-pass must same password";
+			error = "Mật khẩu xác nhận không chính xác - 既に入力されたパスワードが正しくない";
 			return false;
 		}
 		return true;
@@ -25,12 +25,12 @@ public class AdminCreateBO {
 	/**Check validate data input*/
 	public boolean checkAccount(TAIKHOAN account)
 	{
-		if (Validate.check_text("Name", account.getHoTen(), 30, "text")
-				&& Validate.check_text("Adress", account.getDiaChi(), 50,"text")
-				&& Validate.check_text("Phone", account.getDienThoai(), 11, "phone")
-				&& Validate.check_text("Email", account.getEmail(), 30, "email")
-				&& Validate.check_text("Username", account.getTenTaiKhoan(), 20, "user")
-				&& Validate.check_text("Password", account.getMatKhau(), 50, "pass"))
+		if (Validate.check_text("Họ tên - 氏名", account.getHoTen(), 30, "text")
+				&& Validate.check_text("Địa chỉ - 住所", account.getDiaChi(), 50,"text")
+				&& Validate.check_text("Số điện thoại - 電話番号", account.getDienThoai(), 50, "phone")
+				&& Validate.check_text("Email - メール", account.getEmail(), 50, "email")
+				&& Validate.check_text("Tên tài khoản - ユーザー名", account.getTenTaiKhoan(), 20, "user")
+				&& Validate.check_text("Mật khẩu - パスワード", account.getMatKhau(), 50, "pass"))
 		{
 			//Data valid
 			return true;
