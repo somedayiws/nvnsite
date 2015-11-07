@@ -1756,3 +1756,37 @@ img.imggia {
 	cursor: pointer;
 	background: #4583ea;
 }
+
+#loginfb {
+	margin-top: 10px;
+	display: block;
+	background: #48649f;
+	padding: 7px 20px;
+	color: white;
+	font-size: 14;
+}
+
+#loginfb {
+	color: white !important:
+}
+
+#loginfb i {
+	font-size: 16;
+}
+
+#logingg {
+	margin-top: 10px;
+	display: block;
+	background: #dd4b39;
+	padding: 7px 20px;
+	color: white;
+	font-size: 14;
+}
+
+#logingg {
+	color: white !important:
+}
+
+#loginggi {
+	font-size: 16;
+}

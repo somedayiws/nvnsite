@@ -7,7 +7,7 @@ import com.google.gson.Gson;
 public class APIWrapper {
 	private static String appID = "925159020912140";
 	private static String appSecret = "f7b232f08084835c3c660fbe082f89f9";
-	private static String redirectUrl = "http://localhost:8000/WEBVIETNHAT/LoginFacebook";
+	private static String redirectUrl = "http://jpvn.net/LoginFacebook";
 	private String accessToken = "";
 	public void setAccessToken(String accessToken) {
 		this.accessToken = accessToken;
@@ -20,7 +20,7 @@ public class APIWrapper {
 	}
 
 	public static String getDialogLink() {
-		String dialogLink = "https://www.facebook.com/dialog/oauth?client_id=%s&redirect_uri=%s";
+		String dialogLink = "https://www.facebook.com/dialog/oauth?client_id=%s&redirect_uri=%s&scope=email";
 		return String.format(dialogLink, appID, redirectUrl);
 	}
 

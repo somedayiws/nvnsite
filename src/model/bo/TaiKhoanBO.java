@@ -46,5 +46,13 @@ public class TaiKhoanBO {
 	public boolean checkLoginWithFacebook(String facebookId) {
 		return taikhoanDAO.checkLoginWithFacebook(facebookId);
 	}
-	
+	public boolean chekEmail(String email) {
+		return taikhoanDAO.chekEmail(email);
+	}
+	public boolean updateAccountByEmail(TAIKHOAN user) {
+		return taikhoanDAO.updateAccountByEmail(user);
+	}
+	public TAIKHOAN getAccountByEmail(String email) {
+		return taikhoanDAO.getAccountByEmail(email);
+	}
 }
