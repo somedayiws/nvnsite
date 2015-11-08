@@ -380,7 +380,7 @@ $(document).ready(function() {
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title"><%if(listResultAccount.get(i)!=null){%><%=listResultAccount.get(i).getTenTaiKhoan() %><%}else{ %>Tài khoản không tồn tại<%} %></h4>
+        <h4 class="modal-title"><%if(listResultAccount.get(i)!=null){%><%=listResultAccount.get(i).getTenTaiKhoan() %><%}else{ %>Tài khoản không tồn tại - アカウントはシステム上に存しない。<%} %></h4>
       </div>
       <%if(listResultAccount.get(i)!=null){ %>
       <div class="modal-body">
@@ -393,7 +393,7 @@ $(document).ready(function() {
         	Điện thoại - 電話番号: <span class="badge"><%=listResultAccount.get(i).getDienThoai() %></span><br>
         	Email - メール: <span class="badge"><%=listResultAccount.get(i).getEmail() %></span><br>
         	Tình trạng - 状況: <span class="badge"><%=listResultAccount.get(i).getTinhTrang() %></span><br>
-        	Ngôn ngữ - 言語: <span class="badge"><%if(listResultAccount.get(i).getNgonNgu().equals("vi")){%>Việt Nam<%}else{%>Nhật Bản<%} %></span>
+        	Ngôn ngữ - 言語: <span class="badge"><%if(listResultAccount.get(i).getNgonNgu().equals("vi")){%>Việt Nam - ベトナム<%}else{%>Nhật Bản - 日本<%} %></span>
         </h4>
         	 <%}else{ %>
         		Tài khoản này đã bị xóa hoặc đã bị khóa tài khoản - このアカウントはロック・禁止された。

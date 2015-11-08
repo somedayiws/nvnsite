@@ -10,10 +10,10 @@ public class EditBO {
 	/**Check validate data input*/
 	public boolean checkAccount(TAIKHOAN account)
 	{
-		if (Validate.check_text("Name", account.getHoTen(), 30, "text")
-				&& Validate.check_text("Adress", account.getDiaChi(), 50,"text")
-				&& Validate.check_text("Phone", account.getDienThoai(), 11, "phone")
-				&& Validate.check_text("Email", account.getEmail(), 30, "email"))		
+		if (Validate.check_text("Họ tên - 氏名", account.getHoTen(), 30, "text")
+				&& Validate.check_text("Địa chỉ - 住所", account.getDiaChi(), 50,"text")
+				&& Validate.check_text("Số điện thoại - 電話番号", account.getDienThoai(), 50, "phone")
+				&& Validate.check_text("Email - メール", account.getEmail(), 30, "email"))		
 		{
 			//Data valid
 			return true;

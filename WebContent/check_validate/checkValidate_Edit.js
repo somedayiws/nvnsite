@@ -32,7 +32,7 @@ $(document).ready(function() {
 				specialChars : "Mật khẩu mới không được chứa chứa ký tự đặc biệt"
 			},
 			re_password_new : {
-				equalTo : "Mật khẩu xác nhận không chính xác"
+				equalTo : "Mật khẩu xác nhận không chính xác - 既に入力されたパスワードが正しくない"
 			},		
 		},
 

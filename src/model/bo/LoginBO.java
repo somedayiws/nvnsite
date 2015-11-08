@@ -8,7 +8,7 @@ public class LoginBO {
 	
 	/**check validate data(username,password)*/
 	public boolean checkValidate(String username, String password){
-		return (Validate.check_text("Username", username, 50, "user")|| Validate.check_text("Password", password, 50, "pass"));
+		return (Validate.check_text("Tên tài khoản - ユーザー名", username, 50, "user")|| Validate.check_text("Mật khẩu - パスワード", password, 50, "pass"));
 	}
 	
 	/**Check login*/

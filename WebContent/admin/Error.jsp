@@ -26,7 +26,7 @@ String error = (String)request.getAttribute("error");
 		<%@include file="Menu.jsp"%>
 		<%if(error!=null){ %>
 		<div class="alert alert-danger">
-		  <strong>Lỗi</strong> <%=error %>
+		  <strong>Lỗi - エラ</strong> <%=error %>
 		</div>
 			
 		<%} %>

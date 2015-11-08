@@ -47,7 +47,7 @@ public class AdminForgotPasswordServlet extends HttpServlet {
 		if(forgotPass.checkValidate(email)){
 			if(forgotPass.checkEmail(email)){
 				String[] to = { email };
-				String subject = "CỔNG THÔNG TIN VIỆT - NHẬT";
+				String subject = "Cổng thông tin thương mại Nhật―Việt - 日越ビジネス情報の窓口 ";
 				String password = RandomPassword.password();
 				if(forgotPass.updateEmail(password, email)){
 					String body = "Khôi phục lại mật khẩu admin.Mật khẩu mới của bạn là: "+password+".Bạn nên thay đổi mật khẩu để dễ nhớ hơn";

@@ -16,7 +16,6 @@ function check_Image(){
 	      alert("File ảnh không hợp lệ!");
 	      return false;
 	    } else {
-	      alert("File ảnh hợp lệ!");
 	      return true;
 	    }
 }	
@@ -41,7 +40,7 @@ function check_Image(){
 			
 		if (nameCategoryVi == "" || nameCategoryJa == "") {
 
-			alert("Bạn phải nhập tên danh mục(vừa tiếng việt vừa tiếng nhật)");
+			alert("Bạn phải nhập tên danh mục(vừa tiếng việt vừa tiếng nhật) - 項目を必ず入力下さい（日本語とベトナム語）");
 			return false;
 		}
 		for (var i = 0; i < document.formcreateCategory.display.length; i++) {
@@ -50,7 +49,7 @@ function check_Image(){
 			}
 		}
 		if (c_value == 0) {
-			alert("Bạn phải chọn có hiển thị lên trang chủ hay không");
+			alert("Bạn phải chọn có hiển thị lên trang chủ hay không - ホームに表示するかどうかを必ず選択して下さい。");
 			return false;
 		} 
 		if ($.inArray(extension, ['png', 'gif', 'jpeg', 'jpg']) == -1) {
@@ -64,7 +63,7 @@ function check_Image(){
 	//Check validate
 	function checkValidate(typeFind, stringFind, lengthStringFind) {
 		if (stringFind == "") {
-			alert("Bạn phải nhập từ cần tìm");
+			alert("Bạn phải nhập từ cần tìm - 検索したい言葉を入力下さい。");
 			return false;
 		}
 		if (stringFind.length > lengthStringFind) {
@@ -74,7 +73,7 @@ function check_Image(){
 		if (typeFind == "HienThi") {
 			if (!(stringFind == "1" || stringFind == "0")) {
 				alert(stringFind);
-				alert("Bạn phải nhập số 1(hiển thị) hoặc 0(không hiển thị)");
+				alert("Bạn phải nhập số 1(hiển thị) hoặc 0(không hiển thị) - 1を入力下さい（掲載）又０（掲載しない");
 				return false;
 			}
 		}
@@ -103,3 +102,6 @@ function check_Image(){
 
 	}
 	/*----------------- End check validate form Search -----------*/
+	$(document).ready(function(){
+	    $('[data-toggle="tooltip"]').tooltip(); 
+	});

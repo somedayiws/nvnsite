@@ -1,0 +1,1 @@
+﻿bỏ file footer.jsp

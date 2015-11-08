@@ -16,12 +16,12 @@
 %>
 <!-- Đơn vị quảng cáo -->
 <div class="form-group">
-	<label for="company"> Email </label> <input type="text"
+	<label for="company"> Email - メール </label> <input type="text"
 		class="form-control" name="email" maxlength="200"
 		value="<%=tb.getEmail()%>" readonly="readonly">
 </div>
 <div class="form-group">
-	<label for="company"> Nội dung - </label>
+	<label for="company"> Nội dung - 内容</label>
 	<textarea rows="5" cols="10" name="noidung" class="form-control" readonly="readonly"><%=tb.getNoiDung()%></textarea>
 </div>
 <div class="form-group">

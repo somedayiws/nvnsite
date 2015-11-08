@@ -186,7 +186,7 @@ public class EditCategoryServlet extends HttpServlet {
 			//Valid
 			if(editCategory.checkExist(category)){
 				//Exist
-				request.setAttribute("error", "Category existed into database");
+				request.setAttribute("error", "Danh mục đã tồn tại trong hệ thống");
 				RequestDispatcher requestDis_error = request.getRequestDispatcher("Error.jsp");
 				requestDis_error.forward(request, response);
 			}
@@ -208,7 +208,7 @@ public class EditCategoryServlet extends HttpServlet {
 		}else
 		{
 			//Invalid
-			request.setAttribute("error", "You must enter name category VietNam and name category Japan");
+			request.setAttribute("error", "Bạn phải nhập tên danh mục tiếng việt và tiếng nhật");
 			RequestDispatcher requestDis_error = request.getRequestDispatcher("Error.jsp");
 			requestDis_error.forward(request, response);
 		}

@@ -31,6 +31,8 @@ public class TaiNguyenServlet extends HttpServlet {
 		TaiNguyenBO tainguyenBO = new TaiNguyenBO();
 		
 		String ThongDiep = tainguyenBO.getValue("ThongDiep");
+		String GioiThieu = tainguyenBO.getValue("GioiThieu");
+		String NoiQuy = tainguyenBO.getValue("NoiQuy");
 		String LienHe = tainguyenBO.getValue("LienHe");
 		String DienThoai = tainguyenBO.getValue("DienThoai");
 		String Email = tainguyenBO.getValue("Email");
@@ -42,6 +44,8 @@ public class TaiNguyenServlet extends HttpServlet {
 		String banggiaqc = tainguyenBO.getValue("BangGiaQuangCao");
 		
 		request.setAttribute("ThongDiep", ThongDiep);
+		request.setAttribute("GioiThieu", GioiThieu);
+		request.setAttribute("NoiQuy", NoiQuy);
 		request.setAttribute("LienHe", LienHe);
 		request.setAttribute("DienThoai", DienThoai);
 		request.setAttribute("Email", Email);

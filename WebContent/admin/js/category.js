@@ -16,7 +16,6 @@ function check_Image(){
 	      alert("File ảnh không hợp lệ!");
 	      return false;
 	    } else {
-	      alert("File ảnh hợp lệ!");
 	      return true;
 	    }
 }	

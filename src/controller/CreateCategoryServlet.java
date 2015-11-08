@@ -151,7 +151,7 @@ public class CreateCategoryServlet extends HttpServlet {
 			/** Check exist */
 			if (createCategory.checkExist(category)) {
 				// Exist
-				request.setAttribute("error", "Category existed into database");
+				request.setAttribute("error", "Danh mục đã tồn tại trong hệ thống - ");
 				RequestDispatcher requestDis_error = request
 						.getRequestDispatcher("Error.jsp");
 				createCategory.closeConnection();

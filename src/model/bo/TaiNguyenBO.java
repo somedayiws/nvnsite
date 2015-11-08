@@ -11,9 +11,9 @@ public class TaiNguyenBO {
 		return tn.getValue(key);
 	}
 
-	public boolean CapNhatTaiNguyen(String soTu, String giaVN, String giaJA,
-			String image, String image1, String thongDiep, String lienHe, String dienThoai, String email) {
-		return tn.CapNhatTaiNguyen(soTu, giaVN, giaJA, image, image1, thongDiep, lienHe, dienThoai, email);
+	public boolean CapNhatTaiNguyen(String soTu, String giaVN, String giaJA, String image, String image1, String thongDiep, 
+			String lienHe, String dienThoai, String email, String gioiThieu, String noiQuy) {
+		return tn.CapNhatTaiNguyen(soTu, giaVN, giaJA, image, image1, thongDiep, lienHe, dienThoai, email, gioiThieu, noiQuy);
 	}
 	public void closeConnection() {
 		tn.closeConnection();

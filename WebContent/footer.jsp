@@ -14,11 +14,10 @@
 		<div class="infoContent" id="about">
 			<div id="titleContent">GIỚI THIỆU - 自己紹介</div>
 			<div id="infoContent">
-				<p><a href="Trang-chu">Về chúng tôi</a></p>
-				<p><a href="Trang-chu">Quy định sử dụng</a></p>
+				<p><a href="Trang-chu">Cổng thông tin thương mại Việt-Nhật <br> 日越ビジネス情報の窓口</a></p>
 				<p>Liên hệ - 連絡先の情報  : <%= request.getAttribute("LienHe")==null?"":request.getAttribute("LienHe") %></p>
 				<p>Điện thoại - 電話番号: <%= request.getAttribute("DienThoai")==null?"":request.getAttribute("DienThoai") %></p>
-				<p>Email: <%= request.getAttribute("Email")==null?"congthongtin.vietnhat@gmail.com":request.getAttribute("Email") %></p>
+				<p>Email - メール: <%= request.getAttribute("Email")==null?"congthongtin.vietnhat@gmail.com":request.getAttribute("Email") %></p>
 			</div>
 		</div>
 		<div class="infoContent" id="link">

@@ -1,17 +1,9 @@
-	$(document).ready(function() {
-		$("#background").css("height",$(window).height());			
+	$(document).ready(function() {	
 	$(".idAcc").click(function(){
 		$("#message").slideToggle(1000);
 		});
 		
-		if ($(window).width() < 1300) {
-			$("#Infor").css("position", "inherit")
-			$("#ImageAccount").css("display","none");
-			$("#background").css({"height": "0", "magrin-bottom": "10px"});
-			$("#content").css("margin-top","15%");
-			$("#btnVi").css("display","none");
-			$("#btnJa").css("display","none");
-		}else{
+	
 			
 			$("#btnVi").click(function(){
 				$("#ContentVi").css("width","100%")
@@ -37,5 +29,24 @@
 				$("#btnJa").show();
 				$("#btnbackJa").hide();
 				})
-		}
+		
 	});
+	$(".removeIcon").click(function(){	
+		$.ajax({
+			url : "RemoveCommentSetvlet", //file 
+			type : "POST", //phuong thức gưi
+			data : {
+				id 	: this.id					
+			}, //dữ liệu gửi
+			async : true, //
+			success : function(res) {	
+				$("#resultMessage").html(res);
+				alert($("#resultMessage").children("#result").text());	
+				window.location = "ShowDetailPostsServlet?id=<%=posts.getIdBaiViet()%>"
+			},
+			error : function() {
+				alert('Có lỗi xảy ra - エラが発生した');
+				$("#load").html("");
+			}
+		});	
+});

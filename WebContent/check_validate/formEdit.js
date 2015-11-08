@@ -14,12 +14,12 @@ $(document).ready(function() {
 			
 		},
 		messages : {
-			name : "Hãy nhập tên của bạn",
-			adress : "Hãy nhập địa chỉ của bạn",
+			name : "Hãy nhập tên của bạn - お客様の氏名を入力下さい。",
+			adress : "Hãy nhập địa chỉ của bạn - お客様の住所を入力下さい。",
 			phone : {
-				required : "Hãy nhập số điện thoại của bạn",
-				digits : "Số điện thoại phải là số",
-				minlength : "Số điện thoại ít nhất 10 ký tự"
+				required : "Hãy nhập số điện thoại của bạn - お客様の電話番号を入力下さい。",
+				digits : "Số điện thoại không hợp lệ - 電話番号は不適です。",
+				minlength : "Số điện thoại ít nhất 10 ký tự - 電話番号は最低に10数字です。"
 			},
 			
 						

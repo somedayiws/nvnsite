@@ -36,7 +36,7 @@
 						<input type="text" class="form-control" name="email">
 				</div>
 				<button type="submit" name="btnSubmit" class="btn btn-success">Khôi phục - リストア</button>
-				<a href="ShowloginAdmin"><button type="button" class="btn btn-success">Quay lại</button></a>				
+				<a href="ShowloginAdmin"><button type="button" class="btn btn-success">Quay lại - 戻り</button></a>				
 			</form>
 			
 				<%if(result!=null){ %>

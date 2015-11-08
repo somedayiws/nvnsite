@@ -10,17 +10,17 @@ public class ChangePassBO {
 	{
 		if(!re_password_new.equals(password_new))
 		{
-			error = "Re-password must same password new";
+			error = "Mật khẩu lặp lại phải giống mật khẩu mới";
 			return false;
 		}
 		else if(!Validate.check_text("Password", password_new, 50, "pass")|| !Validate.check_text("New Password", password_new, 50, "pass"))
 		{
-			error = "Data enter not valid";
+			error = "Dữ liệu không hợp lệ";
 			return false;
 		}
 		else if(password.equals(password_new))
 		{
-			error = "New password must different password old";
+			error = "Mật khẩu mới phải khác mật khẩu cũ";
 			return false;
 		}
 		else

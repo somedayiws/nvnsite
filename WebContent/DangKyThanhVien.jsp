@@ -17,7 +17,7 @@
 <link rel="canonical" href="http://webvietnhat-demo.jelastic.skali.net/" />
 <title>Đăng ký thành viên - 会員登録の申請 </title>
 </head>
-<body onLoad="initialize()">
+<body>
 	<div id="wrapper">
 		<%@include file="header.jsp"%>
 		<div id="mainContent">
@@ -42,14 +42,20 @@
 					<label class="form-label">Điện thoại - 電話番号(*)</label> <input type="text"
 						name="dienthoai" class="form-control"
 						placeholder="Điện thoại liên hệ - 連絡先の電話番号"> <br> <label
-						class="form-label">Email(*)</label> <br>
+						class="form-label">Email - メール(*)</label> <br>
 					<input type="text" name="email" id="eml" class="form-control"
-						placeholder="Email" onblur="checkEmail();"> <br>
-					<label class="form-label">Ngôn ngữ chính - 主要な言語(*) </label> <input
+						placeholder="Email" onblur="checkEmail();"> 
+					<br>
+					<input type="hidden" name="ngonngu" value="vi">
+					<input type="checkbox" name="noiquy" align="right" title="Abd" > <label for="noiquy" id="noiquy"> Tôi đồng ý với quy định của diễn đàn.</label><br>
+					<!-- <label class="form-label">Ngôn ngữ chính - 主要な言語(*) </label> <input
 						type="radio" name="ngonngu" value="vi" checked="checked">
 					Tiếng Việt - ベトナム語<input type="radio" name="ngonngu" title="ja">
-					Tiếng Nhật - 日本語<br> <input type="submit" value="Đăng ký - 登録する"
-						name="submit" id="btndangky" class="btn btn-primary btn-sm">
+					Tiếng Nhật - 日本語<br> --> 
+					<div style="border: 1px solid rgba(193, 176, 176, 0.46); padding: 5px; max-height: 150px;border-radius: 5px;margin-bottom: 5px;overflow: auto;">
+						<%=request.getAttribute("noiquy")==null?"":request.getAttribute("noiquy")%>
+					</div>
+					<input type="submit" value="Đăng ký - 登録する" name="submit" id="btndangky" class="btn btn-primary btn-sm">
 				</form>
 			</div>
 			<%@include file="sidebar.jsp"%>
@@ -170,6 +176,9 @@
 				dienthoai : {
 					required : true,
 					digits : true
+				},
+				noiquy : {
+					required : true
 				}
 			},
 			messages : {
@@ -192,6 +201,9 @@
 				dienthoai : {
 					required : "Bạn chưa nhập số điện thoại!<br>連絡取れる電話番号を入力しなければならない",
 					digits : "Nhập sai định dạng số điện thoại<br>入力された電話番号が無効です。"
+				},
+				noiquy : {
+					required : "Bạn chưa đồng ý với quy định của diễn đàn!"
 				}
 			},
 			submitHandler : function(form) {

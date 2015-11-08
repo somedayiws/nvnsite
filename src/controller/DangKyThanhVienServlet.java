@@ -69,11 +69,13 @@ public class DangKyThanhVienServlet extends HttpServlet {
 		String LienHe = tainguyenBO.getValue("LienHe");
 		String DienThoai = tainguyenBO.getValue("DienThoai");
 		String Email = tainguyenBO.getValue("Email");
+		String NoiQuy = tainguyenBO.getValue("NoiQuy");
 		
 		request.setAttribute("ThongDiep", ThongDiep);
 		request.setAttribute("LienHe", LienHe);
 		request.setAttribute("DienThoai", DienThoai);
 		request.setAttribute("Email", Email);
+		request.setAttribute("noiquy", NoiQuy);
 		
 		if(submit == null){
 			request.setAttribute("loi", "");

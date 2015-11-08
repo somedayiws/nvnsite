@@ -46,7 +46,7 @@ public class CapNhatTaiNguyenServlet extends HttpServlet {
 			String Image, imagee;
 			String Image1, imagee1;
 			String SoTu, GiaVN, GiaJA;
-			String ThongDiep, LienHe, DienThoai, Email;
+			String ThongDiep, LienHe, DienThoai, Email, GioiThieu, NoiQuy;
 			FileItemFactory factory = new DiskFileItemFactory();
 			ServletFileUpload upload = new ServletFileUpload(factory);
 			
@@ -95,6 +95,8 @@ public class CapNhatTaiNguyenServlet extends HttpServlet {
 			imagee = (String) params.get("Imagee");
 			imagee1 = (String) params.get("Imagee1");
 			ThongDiep = (String) params.get("ThongDiep");
+			GioiThieu = (String) params.get("txtGioiThieu");
+			NoiQuy = (String) params.get("txtNoiQuy");
 			LienHe = (String) params.get("LienHe");
 			DienThoai = (String) params.get("DienThoai");
 			Email = (String) params.get("Email");
@@ -106,7 +108,7 @@ public class CapNhatTaiNguyenServlet extends HttpServlet {
 			else Image1 = "images/tainguyen/" + filename[1];
 			
 			TaiNguyenBO tn = new TaiNguyenBO();
-			if(tn.CapNhatTaiNguyen(SoTu, GiaVN, GiaJA, Image, Image1, ThongDiep, LienHe, DienThoai, Email)){
+			if(tn.CapNhatTaiNguyen(SoTu, GiaVN, GiaJA, Image, Image1, ThongDiep, LienHe, DienThoai, Email, GioiThieu, NoiQuy)){
 				request.setAttribute("mes", "<div class='alert alert-success tbmeg' role='alert'>Cập nhật thành công.</div>");
 			}else{
 				request.setAttribute("mes", "<div class='alert alert-danger tbmeg' role='alert'>Cập nhật không thành công.</div>");

@@ -7,7 +7,7 @@ public class AdminForgotPasswordBO {
 	
 	/**Check validate email*/
 	public boolean checkValidate(String email){
-		return Validate.check_text("Email", email, 100, email);
+		return Validate.check_text("Email - メール", email, 100, email);
 	}
 	 public boolean checkEmail(String email){
 		 System.out.println("forgotPass.checkEmail(email): "+forgotPass.checkEmail(email));

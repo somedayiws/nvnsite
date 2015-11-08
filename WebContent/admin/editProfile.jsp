@@ -225,7 +225,7 @@
 		var regex = new RegExp("^[a-zA-Z0-9]+$");
 		
 		if(password == "" || password_new == ""){
-			alert("Bạn phải nhập mật khẩu");
+			alert("Bạn phải nhập mật khẩu - パスワードを入力下さい");
 			return false;
 		}
 		if(regex.test(password) || regex.test(password_new)){
@@ -233,7 +233,7 @@
 			return false;
 		}	
 		if(password_new != password_repeater){
-			alert("Mật khẩu lặp lại không đúng");
+			alert("Mật khẩu xác nhận không đúng - 既に入力されたパスワードが正しくない");
 			return false;
 		}
 	});

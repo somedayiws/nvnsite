@@ -246,7 +246,7 @@ function xem(f,x){
 				        <h4 class="modal-title" id="myModalLabel">Xóa dữ liệu quảng cáo - 広告のデータペース</h4>
 				      </div>
 				      <div class="modal-body">
-				        Bạn thật sự muốn xóa quảng cáo <label id="idQC"></label> ???
+				        Bạn thật sự muốn xóa quảng cáo - あなたは本当に広告を削除したいですか <label id="idQC"></label> ???
 				        <input type="hidden" name="idQC" id="idXoa">
 				      </div>
 				      <div class="modal-footer">

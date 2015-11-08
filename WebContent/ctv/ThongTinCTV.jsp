@@ -67,7 +67,7 @@ input.error {
 		<input type="text" name="dienthoai" class="form-control" value="<%= user.getDienThoai() %>">
 		Địa chỉ - 住所
 		<input type="text" name="diachi" class="form-control" value="<%= user.getDiaChi() %>">
-		Email
+		Email - メール
 		<input type="text" name="email" class="form-control" value="<%= user.getEmail() %>">
 		Mật khẩu mới - 新しいパスワード
 		<input type="password" name="matkhau" class="form-control" value="<%= user.getMatKhau() %>">

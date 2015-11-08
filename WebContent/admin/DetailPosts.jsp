@@ -55,6 +55,7 @@
 							<strong>Trạng thái - 状態:</strong><%if(posts.getTrangThai().equals("OK")){ %><span class="label label-danger"><%}else if(posts.getTrangThai().equals("DangDich")){%><span class="label label-warning"><%}else if(posts.getTrangThai().equals("MoiDang")){%><span class="label label-primary"><%}else{%><span class="label label-default"><%}%><%=posts.getTrangThai()%></span><br>
 							<strong>Lượt xem - 観覧回数:</strong>   	<%=posts.getLuotXem()%><br>
 							<strong>Ngày đăng - 掲載の日付:</strong> <%=posts.getNgayDang()%><br>
+							<strong>Danh mục - 項目:</strong> <%=posts.getDanhMuc().getTenDanhMucVi()%> - <%=posts.getDanhMuc().getTenDanhMucJa()%><br>
 							<strong><%if(posts.getGimTrangChu()==1){ %>Có ghim lên trang chủ - ホームページに固定する。<%}else{ %>Không ghim lên trang chủ - ホームページに固定しない<%} %> </strong>
 							<%if(posts.getTrangThai().contains("DangDich")||posts.getTrangThai().contains("DichXong")){ %>
 							<img src="../images/logoctv_left.jpg" class="img-responsive"  alt="CTV" width="250" height="200">

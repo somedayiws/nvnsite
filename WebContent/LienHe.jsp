@@ -15,7 +15,7 @@
 <!-- Thư viện cho menu -->
 <!-- Google+ -->
 <link rel="canonical" href="http://webvietnhat-demo.jelastic.skali.net/" />
-<title>Liên hệ -  </title>
+<title>Liên hệ - 問い合わせ </title>
 </head>
 <body onLoad="initialize()">
 	<div id="wrapper">
@@ -37,11 +37,11 @@
 						value="<%=request.getAttribute("dienthoai_lh") !=null?request.getAttribute("dienthoai_lh"):""%>"> 
 					<label class="form-label">Email - メール(*)</label> <br>
 					<input type="text" name="email" class="form-control"
-						placeholder="Email"
+						placeholder="Email - メール"
 						value="<%=request.getAttribute("email_lh") !=null?request.getAttribute("email_lh"):""%>"> <br>
 					<label class="form-label">Tiêu đề - テーマ(*)</label> <br>
 					<input type="text" name="tieude" class="form-control"
-						placeholder="Tiêu đề"> 
+						placeholder="Tiêu đề - テーマ"> 
 					<br>
 					<label class="form-label">Nội dung - `内容(*)</label> 
 					<textarea rows="3" placeholder="Nội dung liên hệ"

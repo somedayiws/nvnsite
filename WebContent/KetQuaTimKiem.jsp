@@ -191,10 +191,10 @@
 											},
 											messages : {
 												taikhoan : {
-													required : "<br>Chưa nhập tên tài khoản"
+													required : "あなたはユーザー名をまだログインしない<br>Chưa nhập tên tài khoản"
 												},
 												matkhau : {
-													required : "<br>Chưa nhập mật khẩu!"
+													required : "ログインをまだしない<br>Chưa nhập mật khẩu!"
 												}
 											},
 											submitHandler : function(form) {

@@ -7,14 +7,14 @@
 <head>
 <meta http-equiv="Content-Type" name="viewport"
 	content="text/html; charset=UTF-8; width=device-width; initial-scale=1">
-<link rel="stylesheet"
-	href="../bootstrap-3.3.5-dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="../bootstrap-3.3.5-dist/css/bootstrap.min.css">
 <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
-<script type="text/javascript"
-	src="../bootstrap-3.3.5-dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="../bootstrap-3.3.5-dist/js/bootstrap.js"></script>
 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 <link rel="stylesheet" href="css/register.css">
 <link rel="stylesheet" href="css/advertisement.css">
+<!-- ck -->
+<script src="../ckeditor/ckeditor.js"></script>
 <title>Quản lý chung - 全体に管理する</title>
 <script type="text/javascript">
 	function capnhatlai() {
@@ -95,6 +95,20 @@
 					value="<%=(String) request.getAttribute("ThongDiep") == null || ((String) request.getAttribute("ThongDiep")).trim().equals("") ? "" : (String) request.getAttribute("ThongDiep") %>"
 					type="text" id="ThongDiep" name="ThongDiep" />
 			</div>
+			<!-- Giới thiệu diễn đàn -->
+			<div class="form-group" id="banggia">
+				<label class="nhan1"> Giới thiệu diễn đàn - </label> 
+				<textarea id="txtGioiThieu" name="txtGioiThieu" class="ckeditor" onchange="capnhatlai();">
+					<%=(String) request.getAttribute("GioiThieu") == null || ((String) request.getAttribute("GioiThieu")).trim().equals("") ? "" : (String) request.getAttribute("GioiThieu") %>
+				</textarea>
+			</div>
+			<!-- Nội quy diễn đàn -->
+			<div class="form-group" id="banggia">
+				<label class="nhan1"> Nội quy diễn đàn - </label> 
+				<textarea id="txtNoiQuy" name="txtNoiQuy" class="ckeditor" onchange="capnhatlai();">
+					<%=(String) request.getAttribute("NoiQuy") == null || ((String) request.getAttribute("NoiQuy")).trim().equals("") ? "" : (String) request.getAttribute("NoiQuy") %>
+				</textarea>
+			</div>
 			<!-- Thông tin liên hệ -->
 			<div class="form-group" id="banggia">
 				<label class="nhan1"> Giới thiệu - 自己紹介</label> 
@@ -141,7 +155,7 @@
 					type="hidden" name="Imagee1"
 					value="<%=request.getAttribute("banggiaqc")%>">
 				<p class="help-block">
-					Chọn tập tin có đuôi là .png, .jpg, .gif, .jpeg <br> ファイルの形式は.png, .jpg, .gif, .jpegを選択して下さい。 
+					Chọn tập tin có đuôi là .png, .jpg, .gif, .jpeg <br> ファイルの形式は.png, .jpg, .gif, .jpeg - を選択して下さい。 
 					<img alt="Icon đại diện - 表示のアイコン"
 						src="../<%=request.getAttribute("banggiaqc")%>" id="fu22">
 				</p>
