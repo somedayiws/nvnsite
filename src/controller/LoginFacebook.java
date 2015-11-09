@@ -24,7 +24,7 @@ public class LoginFacebook extends HttpServlet {
 	 */
 	public LoginFacebook() {
 		super();
-	}
+	} 
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse

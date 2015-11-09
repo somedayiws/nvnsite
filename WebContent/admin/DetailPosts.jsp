@@ -45,31 +45,8 @@
 			<%
 				if (posts != null) {
 			%>
-			<div class="col-md-10 col-md-offset-1">
-				<div class="col-md-4">
-					<div id="divInfor">
-					<h2>Thông tin bài viết<br>記事の情報</h2>
-							<strong>User - ユーザー:</strong> 		<%=posts.getTaiKhoan().getTenTaiKhoan()%><br>
-							<strong>Email - メール : </strong> 		<%=posts.getTaiKhoan().getEmail() %><br> 
-							<strong>ID:</strong>    				<%=posts.getIdBaiViet()%><br>
-							<strong>Trạng thái - 状態:</strong><%if(posts.getTrangThai().equals("OK")){ %><span class="label label-danger"><%}else if(posts.getTrangThai().equals("DangDich")){%><span class="label label-warning"><%}else if(posts.getTrangThai().equals("MoiDang")){%><span class="label label-primary"><%}else{%><span class="label label-default"><%}%><%=posts.getTrangThai()%></span><br>
-							<strong>Lượt xem - 観覧回数:</strong>   	<%=posts.getLuotXem()%><br>
-							<strong>Ngày đăng - 掲載の日付:</strong> <%=posts.getNgayDang()%><br>
-							<strong>Danh mục - 項目:</strong> <%=posts.getDanhMuc().getTenDanhMucVi()%> - <%=posts.getDanhMuc().getTenDanhMucJa()%><br>
-							<strong><%if(posts.getGimTrangChu()==1){ %>Có ghim lên trang chủ - ホームページに固定する。<%}else{ %>Không ghim lên trang chủ - ホームページに固定しない<%} %> </strong>
-							<%if(posts.getTrangThai().contains("DangDich")||posts.getTrangThai().contains("DichXong")){ %>
-							<img src="../images/logoctv_left.jpg" class="img-responsive"  alt="CTV" width="250" height="200">
-							<h2>Thông tin CTV<br>協力者のプロファイル</h2>
-							<p><strong>Tên cộng tác viên<br>協力者の氏名 </strong><%=history.getTaikhoan().getHoTen() %></p>
-							<p><strong>Ngôn ngữ<br>言語 </strong><%=history.getTaikhoan().getNgonNgu().equals("vi") ?"Việt Nam - 項目名":"Nhật Bản - 項目名"%></p>
-							<%} %>							
-					</div>
-					
-				</div>
-				<div class="col-md-8 " id="content" style="margin-top: 5%">
-				
-<!-------------------------------- Hiển thị kết quả và các nút nhấn --------------------------------->
-					<div class="col-md-12 ">
+			<div class="container-fluid" style="background: #EBEBE0;">
+			<div class="col-md-6 col-md-offset-3" style=" margin-top: 1%">
 					
 		
 						<a href="<%if ((posts.getTrangThai().contains("DangDich") && history.getTrangThai()!=null && history.getTrangThai().equals("LoiDich"))||posts.getTrangThai().contains("DichXong")||posts.getTrangThai().contains("KhongDich")|| posts.getTrangThai().contains("SoanThao") || posts.getTrangThai().contains("OK")){ %>#<%}else{ %>SendPostServlet?idPost=<%=posts.getIdBaiViet()%>&status=<%=posts.getTrangThai()%><%}%>">
@@ -101,7 +78,31 @@
 						<button class="btn btn-primary btn-sm " onclick="history.go(-1);"><span class="glyphicon glyphicon-share-alt"></span>Quay lại<br>戻り</button>
 					</div>
 					<br>
-					<hr>
+					<hr class="hr_detail">
+				</div>
+				<div class="container-fluid" style="background-color: #003D66;">
+					<div  class="col-md-3"  id="divInfor">
+					<h2>Thông tin bài viết<br>記事の情報</h2>
+							<strong>User - ユーザー:</strong> 		<%=posts.getTaiKhoan().getTenTaiKhoan()%><br>
+							<strong>Email - メール : </strong> 		<%=posts.getTaiKhoan().getEmail() %><br> 
+							<strong>ID:</strong>    				<%=posts.getIdBaiViet()%><br>
+							<strong>Trạng thái - 状態:</strong><%if(posts.getTrangThai().equals("OK")){ %><span class="label label-danger"><%}else if(posts.getTrangThai().equals("DangDich")){%><span class="label label-warning"><%}else if(posts.getTrangThai().equals("MoiDang")){%><span class="label label-primary"><%}else{%><span class="label label-default"><%}%><%=posts.getTrangThai()%></span><br>
+							<strong>Lượt xem - 観覧回数:</strong>   	<%=posts.getLuotXem()%><br>
+							<strong>Ngày đăng - 掲載の日付:</strong> <%=posts.getNgayDang()%><br>
+							<strong>Danh mục - 項目:</strong> <%=posts.getDanhMuc().getTenDanhMucVi()%> - <%=posts.getDanhMuc().getTenDanhMucJa()%><br>
+							<strong><%if(posts.getGimTrangChu()==1){ %>Có ghim lên trang chủ - ホームページに固定する。<%}else{ %>Không ghim lên trang chủ - ホームページに固定しない<%} %> </strong>
+							<%if(posts.getTrangThai().contains("DangDich")||posts.getTrangThai().contains("DichXong")){ %>
+							<img src="../images/logoctv_left.jpg" class="img-responsive"  alt="CTV" width="250" height="200">
+							<h2>Thông tin CTV<br>協力者のプロファイル</h2>
+							<p><strong>Tên cộng tác viên<br>協力者の氏名 </strong><%=history.getTaikhoan().getHoTen() %></p>
+							<p><strong>Ngôn ngữ<br>言語 </strong><%=history.getTaikhoan().getNgonNgu().equals("vi") ?"Việt Nam - 項目名":"Nhật Bản - 項目名"%></p>
+							<%} %>							
+					</div>
+					
+				
+				<div class="col-md-9" id="content" style="position: relative;left: 26%;min-height: 500px">
+				
+<!-------------------------------- Hiển thị kết quả và các nút nhấn --------------------------------->
 					
 					<!-- Hiển thị kết quả -->
 						
@@ -157,6 +158,7 @@
 						</div>
 					<%} %>
     				<!-- --------------------- -->
+    				<div class = "ct" >
 					<div id="ContentVi" class="col-md-6 content">
 					<button id="btnVi" class="btn btn-primary"><span class="glyphicon glyphicon-fast-forward"></span></button>
 					<button id="btnbackVi" class="btn btn-primary"><span class="glyphicon glyphicon-fast-backward"></span></button>
@@ -232,6 +234,7 @@
 					Không có bài viết trong cơ sở dữ liệu - データベースに記事を存しない。<br>					
 				</div>
 			</div>
+		</div>
 			<%
 				}
 			%>

@@ -299,12 +299,10 @@
 							<script>
 							function chonGui(){
 								if($('#typeSend').val() == "DienDan"){
-									alert("toan dien dan1");
 									$('#GuiDenForm').attr("style","display: none;");
 								 	$('#GuiDen').val("DienDan");
 								}
 								else{
-									alert("toan dien dan2");
 									$('#GuiDen').val("");
 									$('#GuiDenForm').removeAttr("style");
 								}
