@@ -57,7 +57,7 @@ public class ThongBaoBO {
 
 	public int CheckMail(String idtaikhoan, String tentaikhoan){
 		return tb.CheckMail(idtaikhoan, tentaikhoan);
-	}
+	} 
 	
 	public String getMenuPhanTrang(){
 		return tb.getMenuPhanTrang();

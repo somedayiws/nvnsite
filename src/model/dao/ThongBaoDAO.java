@@ -184,7 +184,7 @@ public class ThongBaoDAO {
 	}
 
 	public int CheckMail(String idtaikhoan, String tentaikhoan){
-		String sql = "select count(*) from thongbao where GuiDen like N'"+idtaikhoan+"' or GuiDen like N'"+tentaikhoan+"' and HienThi='1'";
+		String sql = "select count(*) from thongbao where (GuiDen like N'"+idtaikhoan+"' or GuiDen like N'"+tentaikhoan+"') and HienThi='1'";
 		ResultSet rs = db.getResultSet(sql);
 		try {
 			if(rs.next()){
@@ -205,7 +205,7 @@ public class ThongBaoDAO {
 		db.setMenu(nBangghi, ntrang);
 	}
 
-	public void setViewed(String id) {
+	public void setViewed(String id) { 
 		String sql = "update thongbao set HienThi='-1' where IdThongBao='"+id+"'";
 		db.updateData(sql);		
 	}

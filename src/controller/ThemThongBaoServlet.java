@@ -34,11 +34,19 @@ public class ThemThongBaoServlet extends HttpServlet {
 		String tieude = request.getParameter("TieuDe");
 		String noidung = request.getParameter("NoiDung");
 		String guiden = request.getParameter("GuiDen");
-		
-		if(tb.ThemThongBao(tieude, noidung, guiden)){
-			request.setAttribute("meg", "<div class='alert alert-success' role='alert'>Thêm thông báo thành công.</div>");
-		}else{
-			request.setAttribute("meg", "<div class='alert alert-danger' role='alert'>Thêm thông báo thất bại.</div>");
+		if(guiden.equals("DienDan")){
+			if(tb.ThemThongBao(tieude, noidung, guiden)){
+				request.setAttribute("meg", "<div class='alert alert-success' role='alert'>Thêm thông báo thành công.</div>");
+			}else{
+				request.setAttribute("meg", "<div class='alert alert-danger' role='alert'>Thêm thông báo thất bại.</div>");
+			}
+		}
+		else{
+			if(tb.ThemThongBaoClient(tieude, noidung, guiden)){
+				request.setAttribute("meg", "<div class='alert alert-success' role='alert'>Thêm thông báo thành công.</div>");
+			}else{
+				request.setAttribute("meg", "<div class='alert alert-danger' role='alert'>Thêm thông báo thất bại.</div>");
+			}
 		}
 		tb.closeConnection();
 		request.getRequestDispatcher("ThongBaoServlet").forward(request, response);
