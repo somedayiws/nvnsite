@@ -12,18 +12,21 @@
 
 <html>
 <head>
+<%
+/* Lấy sesion người dùng */
+DANHMUC danhmuc = (DANHMUC)request.getAttribute("danhmuc");
+%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta property="og:title" content="<%=(danhmuc.getTenDanhMucVi()==null ? "" : danhmuc.getTenDanhMucVi()+" - ") + (danhmuc.getTenDanhMucJa()==null ? "" : danhmuc.getTenDanhMucJa())%>" />
 <!-- Thư viện cho menu -->
 <title>Danh sách bài viết - 文書のリスト</title>
 </head>
-<body onLoad="initialize()">
+<body>
 	<div id="wrapper">
 		<%@include file="header.jsp"%>
 		<div id="mainContent">
 
 			<%
-				/* Lấy sesion người dùng */
-				DANHMUC danhmuc = (DANHMUC)request.getAttribute("danhmuc");
 				/* Danh mục được hiển thị trong phần content */
 				ArrayList<BAIVIET> listbaiviet = (ArrayList<BAIVIET>)request.getAttribute("listbaiviet");
 			%>
@@ -34,8 +37,6 @@
 						value="<%=danhmuc.getIdDanhMuc()%>">
 					<%=danhmuc.getTenDanhMucVi()==null ? "" : danhmuc.getTenDanhMucVi()+" - "%>
 					<%=danhmuc.getTenDanhMucJa()==null ? "" : danhmuc.getTenDanhMucJa()%>
-					[Bài viết :
-					<%=danhmuc.getSoLuongBV()%>]
 				</h3>
 				<%
 					i=0;
@@ -136,34 +137,6 @@
 											}
 										});
 					});
-</script>
-<!-- Google+ -->
-<script type="text/javascript"
-	src="https://apis.google.com/js/plusone.js"></script>
-<!-- Twitter -->
-<script>
-	!function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/
-				.test(d.location) ? 'http' : 'https';
-		if (!d.getElementById(id)) {
-			js = d.createElement(s);
-			js.id = id;
-			js.src = p + '://platform.twitter.com/widgets.js';
-			fjs.parentNode.insertBefore(js, fjs);
-		}
-	}(document, 'script', 'twitter-wjs');
-</script>
-<!-- Facebook -->
-<script>
-	(function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id))
-			return;
-		js = d.createElement(s);
-		js.id = id;
-		js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.4&appId=1671772309710877";
-		fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
 </script>
 <!-- check validate -->
 <script src="js/jquery.validate.js" type="text/javascript"></script>

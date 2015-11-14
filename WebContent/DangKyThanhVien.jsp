@@ -14,7 +14,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Thư viện cho menu -->
 <!-- Google+ -->
-<link rel="canonical" href="http://webvietnhat-demo.jelastic.skali.net/" />
 <title>Đăng ký thành viên - 会員登録の申請 </title>
 </head>
 <body>
@@ -32,8 +31,13 @@
 						name="taikhoan" id="taikhoandk" class="form-control" placeholder="Tên tài khoản - ユーザー名">
 					<br>
 					<label class="form-label">Mật khẩu - パスワード(*)</label> <input
-						type="password" name="matkhau" class="form-control"
-						placeholder="Mật khẩu của bạn - あなたのパスワード"> <label class="form-label1">Thông
+						type="password" name="matkhau" id="matkhau" class="form-control"
+						placeholder="Mật khẩu của bạn - あなたのパスワード">
+					<br>
+					<label class="form-label">Nhập lại mật khẩu - パスワードをもう一度入力して下さい。(*)</label> <input
+						type="password" name="laimatkhau" class="form-control"
+						placeholder="Nhập lại mật khẩu của bạn - パスワードをもう一度入力して下さい。">
+					<label class="form-label1">Thông
 						tin cá nhân-個人の情報</label><br> <label class="form-label">Họ và
 						tên - 氏名(*)</label> <input type="text" name="hoten" class="form-control"
 						placeholder="Họ tên đầy đủ - 全ての氏名"> <br>
@@ -65,34 +69,6 @@
 	</div>
 </body>
 <!-- Các đoạn script để đây -->
-<!-- Google+ -->
-<script type="text/javascript"
-	src="https://apis.google.com/js/plusone.js"></script>
-<!-- Twitter -->
-<script>
-	!function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/
-				.test(d.location) ? 'http' : 'https';
-		if (!d.getElementById(id)) {
-			js = d.createElement(s);
-			js.id = id;
-			js.src = p + '://platform.twitter.com/widgets.js';
-			fjs.parentNode.insertBefore(js, fjs);
-		}
-	}(document, 'script', 'twitter-wjs');
-</script>
-<!-- Facebook -->
-<script>
-	(function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id))
-			return;
-		js = d.createElement(s);
-		js.id = id;
-		js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.4&appId=1671772309710877";
-		fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
-</script>
 <!-- check validate -->
 <script src="js/jquery.validate.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -158,10 +134,16 @@
 		$("#khungdangky").validate({
 			rules : {
 				taikhoan : {
-					required : true
+					required : true,
+					maxlength : 30 
 				},
 				matkhau : {
-					required : true
+					required : true,
+					minlength : 6
+				},
+				laimatkhau : {
+					required : true,
+					equalTo: "#matkhau"
 				},
 				hoten : {
 					required : true
@@ -183,10 +165,16 @@
 			},
 			messages : {
 				taikhoan : {
-					required : "Bạn chưa nhập tên tài khoản<br>あなたはユーザー名をまだログインしない"
+					required : "Bạn chưa nhập tên tài khoản<br>あなたはユーザー名をまだログインしない",
+					maxlength : "Tên đăng nhập dùng để đăng nhập vào hệ thống, tối đa 30 ký tự, không chứa ký tự đặc biệt<br>ユーザー名はシステム上にログインし、最大に30文字で、特別な記号を使わないでください。"
 				},
 				matkhau : {
-					required : "Bạn chưa nhập mật khẩu<br>ログインをまだしない!"
+					required : "Bạn chưa nhập mật khẩu<br>ログインをまだしない!",
+					minlength : "Mật khẩu ít nhất 6 ký tự, có phân biệt chữ hoa, chữ thường<br>パスワードは最低に6文字、半角と全角を分別して下さい。"
+				},
+				laimatkhau : {
+					required: 'Vui lòng nhập mật khẩu<br>パスワードをもう一度入力して下さい。',
+					equalTo: 'Mật khẩu xác nhận không chính xác<br>既に入力されたパスワードが正しくない'
 				},
 				hoten : {
 					required : "Bạn chưa nhập họ tên!<br>氏名をまだ入力しない!"

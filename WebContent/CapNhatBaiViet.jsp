@@ -26,7 +26,7 @@
 }
 </style>
 </head>
-<body onLoad="initialize()">
+<body>
 	<!-- Lấy dữ liệu từ server gửi về -->
 	<%
 		/* Bài viết chỉnh cần chỉnh sửa */

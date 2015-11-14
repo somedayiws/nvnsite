@@ -15,7 +15,7 @@
 <!-- Thư viện cho menu -->
 <title>Danh sách bài viết - 文書のリスト</title>
 </head>
-<body onLoad="initialize()">
+<body>
 	<!-- Lấy dữ liệu từ server gửi về -->
 	<%
 		/* Danh mục được hiển thị trong phần content */
@@ -30,18 +30,6 @@
 		<!-- Tạo dữ liệu ẩn -->
 		<input type="hidden" id="txtSearch" value="<%= txtSearch%>">
 		<input type="hidden" id="chon" value="<%= chon%>">
-		<!-- Quảng cáo lung tung -->
-		<div id="sahred">
-			<g:plusone></g:plusone>
-
-			<a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
-
-			<div id="fb-root"></div>
-			<!-- Your share button code -->
-			<div class="fb-share-button"
-				data-href="http://webvietnhat-demo.jelastic.skali.net/"
-				data-layout="button_count"></div>
-		</div>
 		<div class="col-sm-9 col-md-9" id="baiviet">
 			<h3>
 				<i class="fa fa-empire"></i> Kết quả tìm kiếm - 検索の結果 
@@ -104,33 +92,6 @@
 	</div>
 </body>
 <!-- Script ở đây -->
-<!-- Google+ -->
-<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
-<!-- Twitter -->
-<script>
-	!function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/
-				.test(d.location) ? 'http' : 'https';
-		if (!d.getElementById(id)) {
-			js = d.createElement(s);
-			js.id = id;
-			js.src = p + '://platform.twitter.com/widgets.js';
-			fjs.parentNode.insertBefore(js, fjs);
-		}
-	}(document, 'script', 'twitter-wjs');
-</script>
-<!-- Facebook -->
-<script>
-	(function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id))
-			return;
-		js = d.createElement(s);
-		js.id = id;
-		js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.4&appId=1671772309710877";
-		fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
-</script>
 <!-- Ajax load bài viết -->
 <script language="JavaScript">
 	var nbaiviet = parseInt($("#baiviet").children().size()) - 1;

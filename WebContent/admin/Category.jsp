@@ -163,7 +163,7 @@
 					}	
 			}
 			if(resultRestore!=null){
-				if(resultRestore.contains("success")){
+				if(resultRestore.contains("thành công")){
 		%>
 		<div class="col-md-6 col-md-offset-3 alert alert-info">
 	<strong>Thông báo - お知らせ!</strong>Khôi phục danh mục thành công - 項目の回復ができた

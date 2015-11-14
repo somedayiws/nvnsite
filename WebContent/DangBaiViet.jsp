@@ -26,7 +26,6 @@
 }
 </style>
 </head>
-<!-- <body onLoad="initialize()"> -->
 <body>
 	<div id="wrapper">
 	<%@include file="header.jsp"%>

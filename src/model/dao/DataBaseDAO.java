@@ -17,7 +17,7 @@ public class DataBaseDAO {
 	
 //	String userName = "somedayiws";
 //    String password = "zxcvbnm1233";
-//    String url = "jdbc:mysql://127.0.0.1:3306/webvietnhat";
+//    String url = "jdbc:mysql://127.0.0.1:3306/jpvnnetl_webvietnhat?useUnicode=true&characterEncoding=utf-8";
 	
 //    String userName = "adminVgrgS7w";
 //	String password = "vQfYcj1EjDG_";

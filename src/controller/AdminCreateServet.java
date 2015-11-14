@@ -70,7 +70,7 @@ public class AdminCreateServet extends HttpServlet {
 			account.setIdTaiKhoan(adminCreate.id_Account_after_increase());
 			// insert
 			if (adminCreate.insertAccount(account)) {
-				resultSubmit = "Create account success";				
+				resultSubmit = "Tạo tài khoản thành công - アカウントが作成できた";				
 				request.setAttribute("result", resultSubmit);
 				RequestDispatcher dispatcher;
 				if(type.equals("CTV")){
@@ -83,7 +83,7 @@ public class AdminCreateServet extends HttpServlet {
 				dispatcher.forward(request, response);
 			} else {
 
-				resultSubmit = "Insert failed";
+				resultSubmit = "Tạo tài khoản thất bại";
 				request.setAttribute("error", resultSubmit);
 				RequestDispatcher requestDis_error = request
 						.getRequestDispatcher("Error.jsp");
@@ -97,7 +97,7 @@ public class AdminCreateServet extends HttpServlet {
 			resultSubmit = "Error: " + adminCreate.error;
 			if (resultSubmit != null
 					&& resultSubmit
-							.contains("account already exists int the system")) {
+							.contains("tồn tại")) {
 				
 				request.setAttribute("result", resultSubmit);
 				RequestDispatcher dispatcher;

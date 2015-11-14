@@ -11,15 +11,30 @@
 
 <html>
 <head>
+	<%
+		BAIVIET baiviet = (BAIVIET) request.getAttribute("baiviet");
+		String titleStr = "";
+		if(baiviet.getTenBaiVietVi() != null ) {
+			titleStr = baiviet.getTenBaiVietVi();
+		}
+		if(baiviet.getTenBaiVietVi() != null && baiviet.getTenBaiVietJa() != null) {
+			titleStr += "<br>";
+		}
+		if(baiviet.getTenBaiVietJa() != null ) {
+			titleStr += baiviet.getTenBaiVietJa();
+		}		
+	%>
+
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta property="og:image" content="http://jpvn.net/<%=((BAIVIET) request.getAttribute("baiviet")).getLienKet()%>" />
+<meta property="og:title" content="<%=titleStr%>" />
 <!-- <script type="text/javascript" src="js/disable-copyright.js"></script> -->
 <title>Chi tiết bài viết - 詳細な記事</title>
 </head>
-<body onLoad="initialize()">
+<body>
 	<!-- Lấy dữ liệu từ server gửi về -->
 	<%
-		/* Bài viết được view */
-		BAIVIET baiviet = (BAIVIET) request.getAttribute("baiviet");
 		/* Top 10 bài viết đầu tiên được hiển thị */
 		ArrayList<BAIVIET> listbaiviet = (ArrayList<BAIVIET>) request.getAttribute("listbaiviet");
 		/* binh luan tiếng việt*/
@@ -31,43 +46,11 @@
 		<!-- Kết thúc quá trình lấy dữ liệu -->
 		<%@include file="header.jsp"%>
 		<div id="mainContent">
-			<!-- Quảng cáo lung tung -->
-			<div id="sahred">
-				<g:plusone></g:plusone>
-
-				<a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
-
-				<div id="fb-root"></div>
-				<!-- Your share button code -->
-				<div class="fb-share-button"
-					data-href="http://webvietnhat-demo.jelastic.skali.net/"
-					data-layout="button_count"></div>
-			</div>
 			<!-- hiển thị nội dung chính ở đây -->
 			<div class="col-sm-9 col-md-9" id="baiviet">
 				<h3>
 					<i class="fa fa-empire"></i>
-					<%
-						if(baiviet.getTenBaiVietVi() != null ) {
-					%>
-					<%=baiviet.getTenBaiVietVi()%>
-					<%
-						}
-					%>
-					<%
-						if(baiviet.getTenBaiVietVi() != null && baiviet.getTenBaiVietJa() != null) {
-					%>
-					<br>
-					<%
-						}
-					%>
-					<%
-						if(baiviet.getTenBaiVietJa() != null ) {
-					%>
-					<%=baiviet.getTenBaiVietJa()%>
-					<%
-						}
-					%>
+					<%=titleStr%>
 				</h3>
 				<div id="infoNews">
 					<div class="infoDetail" id="category">
@@ -320,34 +303,6 @@
 	</div>
 </body>
 <!-- Script ở đây -->
-<!-- Google+ -->
-<script type="text/javascript"
-	src="https://apis.google.com/js/plusone.js"></script>
-<!-- Twitter -->
-<script>
-	!function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/
-				.test(d.location) ? 'http' : 'https';
-		if (!d.getElementById(id)) {
-			js = d.createElement(s);
-			js.id = id;
-			js.src = p + '://platform.twitter.com/widgets.js';
-			fjs.parentNode.insertBefore(js, fjs);
-		}
-	}(document, 'script', 'twitter-wjs');
-</script>
-<!-- Facebook -->
-<script>
-	(function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id))
-			return;
-		js = d.createElement(s);
-		js.id = id;
-		js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.4&appId=1671772309710877";
-		fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
-</script>
 <!-- Xử lý load lấy bình luận -->
 <script type="text/javascript">
 	function loadBinhLuan(id, ngonngu) {

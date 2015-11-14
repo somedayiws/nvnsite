@@ -18,7 +18,7 @@ public class Validate {
 		}
 		/** text is phone number */
 		if (typeOfText.contains("phone")) {
-			String PhoneNumber = "0\\d{9,50}";
+			String PhoneNumber = "\\d{9,50}";
 			if (!text.matches(PhoneNumber)) {
 				errorValidate = "Số điện thoại không hợp lệ - 電話番号は不適です。";
 				return false;
@@ -26,23 +26,23 @@ public class Validate {
 		}
 		/** text is email */
 		if (typeOfText.contains("email")) {
-			String Email = "\\w+@\\w+\\.[a-zA-Z.]{1,5}";
+			String Email = "\\w+@\\w+\\.[a-zA-Z.]{1,50}";
 			if (!text.matches(Email)) {
 				errorValidate = "Email không hợp lệ - メールが不適切です。";
 				return false;
 			}
 		}
-		/**text is user & pass*/
-		if(typeOfText.contains("user")||typeOfText.contains("pass"))
-		{			
-			/*check character special*/
-			String userOrpass = "\\w+";
-			if(!text.matches(userOrpass))
-			{
-				errorValidate = nameOfText+" không hợp lệ - 無効";
-				return false;
-			}
-		}
+//		/**text is user & pass*/
+//		if(typeOfText.contains("user")||typeOfText.contains("pass"))
+//		{			
+//			/*check character special*/
+//			String userOrpass = "\\w+";
+//			if(!text.matches(userOrpass))
+//			{
+//				errorValidate = nameOfText+" không hợp lệ - 無効";
+//				return false;
+//			}
+//		}
 		return true;
 	}
 

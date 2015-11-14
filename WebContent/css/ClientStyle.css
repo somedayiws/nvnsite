@@ -1770,6 +1770,18 @@ img.imggia {
 	color: white !important:
 }
 
+
+#loadmorebutton {
+background: #45a3ea;
+border-radius: 4px!important;
+text-align: center;
+color: white;
+padding: 10px!important;
+}
+#loadmorebutton:hover {
+background: #318bd0;
+cursor: pointer;
+}
 #loginfb i {
 	font-size: 16;
 }

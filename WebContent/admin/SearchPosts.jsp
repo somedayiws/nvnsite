@@ -222,7 +222,7 @@
 							<th>Ngày đăng<br> 日付</th>
 							<th>Mô tả<br> 説明</th>
 							<th>Trạng thái<br> 状態</th>
-							<th>Lượt xem<br>観覧回数</th>
+<!-- 							<th>Lượt xem<br>観覧回数</th> -->
 							<th></th>
 							<th></th>
 							<th></th>
@@ -307,10 +307,10 @@
 											<span class="glyphicon glyphicon-list-alt"></span>
 										</button> </a></td>
 								<td><a
-									href="<%if(listposts.get(i).getTrangThai().contains("OK") || listposts.get(i).getTrangThai().contains("DangDich") ){ %>#<%}else{ %> ./ShowAdminEditPostsServlet?idPost=<%=listposts.get(i).getIdBaiViet()%>&from=list<%}%>"
+									href="<%if( listposts.get(i).getTrangThai().contains("DangDich") ){ %>#<%}else{ %> ./ShowAdminEditPostsServlet?idPost=<%=listposts.get(i).getIdBaiViet()%>&from=list<%}%>"
 									data-toggle="tooltip" title="Chỉnh sửa - 修正"><button
 											type="button" class="btn btn-primary btn-sm"
-											<%if(listposts.get(i).getTrangThai().contains("OK") || listposts.get(i).getTrangThai().contains("DangDich")){ %>
+											<%if(listposts.get(i).getTrangThai().contains("DangDich")){ %>
 											disabled="disabled" <%} %>>
 											<span class="glyphicon glyphicon-pencil"> </span>
 										</button></a></td>

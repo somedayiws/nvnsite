@@ -24,12 +24,12 @@ $(document).ready(function() {
 			},
 			username : {
 				required : true,
-				specialChars : true
+//				specialChars : true
 			},
 			password : {
 				required : true,
 				minlength : 6,
-				specialChars : true,
+//				specialChars : true,
 			},
 			re_password : {
 				equalTo : "#password"
@@ -49,12 +49,12 @@ $(document).ready(function() {
 			},
 			username : {
 				required : "Hãy điền tên đăng nhập. - ユーザー名を入力下さい",
-				specialChars : "Tên đăng nhập không được chứa ký tự đặc biệt - ユーザー名は特別な文字を使えません。"
+//				specialChars : "Tên đăng nhập không được chứa ký tự đặc biệt - ユーザー名は特別な文字を使えません。"
 			},
 			password : {
 				required : "Hãy điền mật khẩu - パスワードを入力下さい",
 				minlength : "Mật khẩu ít nhất 6 ký tự - パスワードは最低に６文字をご入力下さい。",
-				specialChars : "Mật khẩu không được chứa chứa ký tự đặc biệt - パスワードは特別な文字が使えない。"
+//				specialChars : "Mật khẩu không được chứa chứa ký tự đặc biệt - パスワードは特別な文字が使えない。"
 			},
 			re_password : {
 				equalTo : "Mật khẩu xác nhận không chính xác - 既に入力されたパスワードが正しくない"

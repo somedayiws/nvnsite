@@ -64,8 +64,13 @@ public class DanhSachBaiDichServlet extends HttpServlet {
 			
 			DecimalFormat df = new DecimalFormat("0.00");
 			
-			request.setAttribute("tongbvok", df.format(tongbvok*100.00/tongbv));
-			request.setAttribute("tongbvhuy", df.format(tongbvhuy*100.00/tongbv));
+			if(tongbv!=0){
+				request.setAttribute("tongbvok", df.format(tongbvok*100.00/tongbv));
+				request.setAttribute("tongbvhuy", df.format(tongbvhuy*100.00/tongbv));
+			}else{
+				request.setAttribute("tongbvok", 100);
+				request.setAttribute("tongbvhuy", 0);
+			}
 			request.setAttribute("tongbvloi", tongbvloi);
 			
 			baiviet.closeConnection();

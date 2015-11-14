@@ -124,17 +124,17 @@
 					</div>
 					
 					<!--Ghi chú  -->
-					<div class="form-group">
-						<label>Ghi chú - メーモ</label>
-						<textarea rows="10" cols="20" class="form-control" name="note" readonly="readonly"><%if(post.getGhiChu()!=null){%><%=post.getGhiChu()%><%} %></textarea>
-					</div>
+<!-- 					<div class="form-group"> -->
+<!-- 						<label>Ghi chú - メーモ</label> -->
+<%-- 						<textarea rows="10" cols="20" class="form-control" name="note" readonly="readonly"><%if(post.getGhiChu()!=null){%><%=post.getGhiChu()%><%} %></textarea> --%>
+<!-- 					</div> -->
 					<!-- Tên bai viet -->
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Tên bài viết(Tiếng Việt) - 記事名（ベトナム語）<span class="rq"> *</span>
 								</label><input type="text" class="form-control" id="namePostVi"
-									maxlength="300" name="namePostVi"
+									maxlength="300" name="namePostVi" <%if(post.getTenBaiVietVi() == null || post.getTenBaiVietVi().trim() == ""){%> disabled="disabled" <%} %>
 									value="<%if (post.getTenBaiVietVi() != null) {%><%=post.getTenBaiVietVi()%><%}%>">
 							</div>
 						</div>
@@ -142,7 +142,7 @@
 							<div class="form-group">
 								<label>Tên bài viết(Tiếng Nhật) - 記事名（日本語）<span class="rq"> * </span>
 								</label><input type="text" class="form-control" id="namePostJa"
-									maxlength="300" name="namePostJa"
+									maxlength="300" name="namePostJa"  <%if(post.getTenBaiVietJa() == null || post.getTenBaiVietJa().trim() == ""){%> disabled="disabled" <%} %>
 									value="<%if (post.getTenBaiVietJa() != null) {%><%=post.getTenBaiVietJa()%><%}%>">
 							</div>
 						</div>
@@ -151,13 +151,13 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Nội dung (Tiếng Việt) - 内容（ベトナム語）</label>
-								<textarea id="contentVi" name="contentVi" class="ckeditor"><%if(post.getNoiDungVi()!=null){%><%=post.getNoiDungVi() %><%} %></textarea>
+								<textarea id="contentVi" name="contentVi"  <%if(post.getNoiDungVi() == null || post.getNoiDungVi().trim() == ""){%> disabled="disabled" <%} %> class="ckeditor"><%if(post.getNoiDungVi()!=null){%><%=post.getNoiDungVi() %><%} %></textarea>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Nội dung (Tiếng Nhật) - 内容（日本語）</label>
-								<textarea id="contentJa" name="contentJa" class="ckeditor"><%if(post.getNoiDungJa()!=null){%><%=post.getNoiDungJa() %><%} %></textarea>
+								<textarea id="contentJa" name="contentJa"  <%if(post.getNoiDungJa() == null || post.getNoiDungJa().trim() == ""){%> disabled="disabled" <%} %> class="ckeditor"><%if(post.getNoiDungJa()!=null){%><%=post.getNoiDungJa() %><%} %></textarea>
 							</div>
 						</div>
 					</div>
@@ -166,13 +166,13 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Mô tả (Tiếng Việt) - 説明（ベトナム語）</label>
-								<textarea id="descriptionVi" name="descriptionVi" rows="5" cols="10" class="form-control"><%if(post.getMoTaVi()!=null){%><%=post.getMoTaVi() %><%} %></textarea>
+								<textarea id="descriptionVi" name="descriptionVi" rows="5" cols="10"  <%if(post.getMoTaVi() == null || post.getMoTaVi().trim() == ""){%> disabled="disabled" <%} %> class="form-control"><%if(post.getMoTaVi()!=null){%><%=post.getMoTaVi() %><%} %></textarea>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Mô tả (Tiếng Nhật) - 説明（日本語）</label>
-								<textarea id="descriptionJa" name="descriptionJa" rows="5" cols="10" class="form-control"><%if(post.getMoTaJa()!=null){%><%=post.getMoTaJa() %><%} %></textarea>
+								<textarea id="descriptionJa" name="descriptionJa" rows="5" cols="10"  <%if(post.getMoTaJa() == null || post.getMoTaJa().trim() == ""){%> disabled="disabled" <%} %> class="form-control"><%if(post.getMoTaJa()!=null){%><%=post.getMoTaJa() %><%} %></textarea>
 							</div>
 						</div>
 					</div>

@@ -25,7 +25,7 @@ public class AdminCreateDAO {
 		try {
 			if (resultsetOfselect.next()) {
 				/* User exist in the system */
-				errorExist = "User already exists int the system";
+				errorExist = "Tài khoản đã tồn tại trong hệ thống - ";
 				return true;
 			} else {
 				/* User not exist in the system */
@@ -34,7 +34,7 @@ public class AdminCreateDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			errorExist = "Error: Access database";
+			errorExist = "Lỗi: truy cập cơ sở dữ liệu - ";
 			return true;
 		}
 	}
@@ -65,7 +65,7 @@ public class AdminCreateDAO {
 		account.setTenTaiKhoan(DinhDangSQL.FomatSQL(account.getTenTaiKhoan()));
 		account.setMatKhau(DinhDangSQL.FomatSQL(account.getMatKhau()));
 		
-		String sql_insert_account = "INSERT INTO TAIKHOAN VALUES('"
+		String sql_insert_account = "INSERT INTO TAIKHOAN(IdTaiKhoan,TenTaiKhoan,MatKhau,HoTen,DiaChi,DienThoai,Email,QuyenQuanTri,CoXoa,NgonNgu,TinhTrang) VALUES('"
 				+ account.getIdTaiKhoan() + "','" + account.getTenTaiKhoan()
 				+ "','" + account.getMatKhau() + "',N'" + account.getHoTen()
 				+ "',N'" + account.getDiaChi() + "','" + account.getDienThoai()

@@ -23,7 +23,7 @@ public class BaiVietDAO {
 		ResultSet rs = db.getResultSet("select IdBaiViet,TenBaiVietVi, TenBaiVietJa, MoTaVi, MoTaJa, danhmuc.IdDanhMuc, TenDanhMucVi, TenDanhMucJa, HienThi, taikhoan.IdTaiKhoan, TenTaiKhoan, MatKhau, HoTen, DiaChi, DienThoai, Email, QuyenQuanTri, NoiDungVi, NoiDungJa, TrangThai, GhiChu, LienKet, NgayDang, taikhoan.HoTen, LuotXem from baiviet inner join danhmuc on baiviet.IdDanhMuc=danhmuc.IdDanhMuc inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan where IdBaiViet='"+id+"' and baiviet.CoXoa=0 ");
 		BAIVIET bv = null;
 		BinhLuanDAO bl = new BinhLuanDAO();
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		try {
 			if(rs.next()){
 				bv = new BAIVIET();
@@ -39,7 +39,7 @@ public class BaiVietDAO {
 				bv.setTrangThai(DinhDangSQL.DeFomatSQL(rs.getString("TrangThai")));
 				bv.setGhiChu(DinhDangSQL.DeFomatSQL(rs.getString("GhiChu")));
 				bv.setLienKet(DinhDangSQL.DeFomatSQL(rs.getString("LienKet")));
-				bv.setNgayDang(sdf.format(rs.getDate("NgayDang")));
+				bv.setNgayDang(sdf.format(rs.getTimestamp("NgayDang")));
 				bv.setLuotXem(rs.getInt("LuotXem"));
 				System.out.println(bv.getGhiChu());
 				if(bv.getTrangThai().equals("OK"))

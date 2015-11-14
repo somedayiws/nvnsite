@@ -54,3 +54,41 @@
 		<div id="wcopyright">© 2015 COPYRIGHT BY JPVN.NET, 2015</div>
 	</div>
 </div>
+<div id="sahred">
+				<g:plusone></g:plusone>
+				<a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+				<div id="fb-root"></div>
+				<!-- Your share button code -->
+				<div class="fb-share-button"
+					data-href="http://webvietnhat-demo.jelastic.skali.net/"
+					data-layout="button_count"></div>
+</div>
+<!-- Google+ -->
+<script type="text/javascript"
+	src="https://apis.google.com/js/plusone.js"></script>
+<!-- Twitter -->
+<script>
+	!function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/
+				.test(d.location) ? 'http' : 'https';
+		if (!d.getElementById(id)) {
+			js = d.createElement(s);
+			js.id = id;
+			js.src = p + '://platform.twitter.com/widgets.js';
+			fjs.parentNode.insertBefore(js, fjs);
+		}
+	}(document, 'script', 'twitter-wjs');
+</script>
+<!-- Facebook -->
+<script>
+	(function(d, s, id) {
+		$('.fb-share-button').attr("data-href",window.location.href);
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id))
+			return;
+		js = d.createElement(s);
+		js.id = id;
+		js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.4&appId=1671772309710877";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+</script>

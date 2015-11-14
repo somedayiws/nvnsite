@@ -70,7 +70,7 @@
 	}
 </style>
 </head>
-<body onLoad="initialize()">
+<body>
 	<div id="wrapper">
 		<%@include file="header.jsp"%>
 		<div id="mainContent">
@@ -256,13 +256,13 @@
 						<strong
 							onclick="loadData('Danh-sach-bai-viet','<%=list.get(i).getIdDanhMuc().trim()%>');">
 							<span id="iconImg"> <%
- 	if(list.get(i).getIcon()!=null)
-   							{
- %> <img src="images/icons/<%=list.get(i).getIcon()%>"> <%
- 	} else {
- %> <i class="fa fa-star-o"></i> <%
- 	}
- %>
+ 					if(list.get(i).getIcon()!=null)
+   											{
+ 				%> <img src="images/icons/<%=list.get(i).getIcon()%>"> <%
+			 	} else {
+				 %> <i class="fa fa-star-o"></i> <%
+			 	}
+				 %>
 						</span> <span><%=list.get(i).getTenDanhMucVi()%></span> - <%=list.get(i).getTenDanhMucJa()%></strong>
 						<a id="AllPosts"
 							href="Danh-sach-bai-viet?id=<%=list.get(i).getIdDanhMuc().trim()%>">
@@ -354,6 +354,9 @@
 				<%
 					} i++; }
 				%>
+				<div id="divloadmore">
+				<p id="loadmorebutton" onclick="loadmoredata()">Xem thêm</p>
+				</div>
 			</div>
 			
 			<!-- 			Quảng cáo banner -->
@@ -444,18 +447,6 @@
 						src="<%=listquangcao.get(5).getHinhAnh()%>"></a>
 				</div>
 			</div>
-			<!-- 			Quảng cáo banner -->
-			<div id="sahred" class="ancainay">
-				<g:plusone></g:plusone>
-
-				<a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
-
-				<div id="fb-root"></div>
-				<!-- Your share button code -->
-				<div class="fb-share-button"
-					data-href="http://jpvn.net/"
-					data-layout="button_count"></div>
-			</div>
 			<div class="clearfix"></div>
 			<br>
 			<div class="col-sm-10 col-md-12" align="center" id="load"></div>
@@ -475,10 +466,11 @@
 						$(window)
 								.scroll(
 										function() {
+// 											alert($('#baiviet .danhmucx').size());
+											var size = parseInt($('#baiviet .danhmucx').size())+1;
 											var nbaiviet = parseInt($(
-													"#baiviet .danhmucx:last-child")
+													"#baiviet .danhmucx:nth-child("+size+")")
 													.attr("id"));
-
 											if (($(document).height()
 													- $(this).scrollTop() - $(
 													this).height()) < 10) {
@@ -491,22 +483,22 @@
 															}, //dữ liệu gửi
 															async : true, //
 															beforeSend : function() {
-																$("#load")
+																$("#loadmorebutton")
 																		.html(
-																				"<i class='fa fa-refresh fa-2x fa-spin'></i>");
+																				"<i class='fa fa-spinner fa-pulse'></i></i> Xem thêm");
 															},
 															success : function(
 																	res) {
-																$("#baiviet")
-																		.append(
+																$("#divloadmore")
+																		.before(
 																				res);
 																nbaiviet = parseInt($(
 																		"#baiviet")
 																		.children()
 																		.size());
-																$("#load")
-																		.html(
-																				"");
+																$("#loadmorebutton")
+																.html(
+																		"Xem thêm");
 															},
 															error : function() {
 																alert('Có lỗi xảy ra - エラが発生した。');
@@ -518,34 +510,45 @@
 											}
 										});
 					});
-</script>
-<!-- Google+ -->
-<script type="text/javascript"
-	src="https://apis.google.com/js/plusone.js"></script>
-<!-- Twitter -->
-<script>
-	!function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/
-				.test(d.location) ? 'http' : 'https';
-		if (!d.getElementById(id)) {
-			js = d.createElement(s);
-			js.id = id;
-			js.src = p + '://platform.twitter.com/widgets.js';
-			fjs.parentNode.insertBefore(js, fjs);
-		}
-	}(document, 'script', 'twitter-wjs');
-</script>
-<!-- Facebook -->
-<script>
-	(function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id))
-			return;
-		js = d.createElement(s);
-		js.id = id;
-		js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.4&appId=1671772309710877";
-		fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
+	function loadmoredata() {
+		
+		var size = parseInt($('#baiviet .danhmucx').size())+1;
+		var nbaiviet = parseInt($(
+				"#baiviet .danhmucx:nth-child("+size+")")
+				.attr("id"));
+			$.ajax({
+						url : "DataDanhMucServlet", //file 
+						type : "POST", //phuong thức gưi
+						data : {
+							vitri : nbaiviet
+						}, //dữ liệu gửi
+						async : true, //
+						beforeSend : function() {
+							$("#loadmorebutton")
+									.html(
+											"<i class='fa fa-spinner fa-pulse'></i></i> Xem thêm");
+						},
+						success : function(
+								res) {
+							$("#divloadmore")
+									.before(
+											res);
+							nbaiviet = parseInt($(
+									"#baiviet")
+									.children()
+									.size());
+							$("#loadmorebutton")
+							.html(
+									"Xem thêm");
+						},
+						error : function() {
+							alert('Có lỗi xảy ra - エラが発生した。');
+							$("#load")
+									.html(
+											"");
+						}
+					});
+	}
 </script>
 <!-- Chuyển hướng đến danh muc x -->
 <script type="text/javascript">

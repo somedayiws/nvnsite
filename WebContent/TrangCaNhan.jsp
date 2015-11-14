@@ -16,7 +16,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Trang cá nhân - 個人ホーム</title>
 </head>
-<body onLoad="initialize()">
+<body>
 	<!-- Lấy dữ liệu từ server gửi về -->
 	<%
 		/* Danh sách bài đã đăng */
@@ -34,18 +34,6 @@
 	<div id="wrapper">
 		<%@include file="header.jsp"%>
 		<div id="mainContent">
-
-			<div id="sahred">
-				<g:plusone></g:plusone>
-
-				<a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
-
-				<div id="fb-root"></div>
-				<!-- Your share button code -->
-				<div class="fb-share-button"
-					data-href="http://webvietnhat-demo.jelastic.skali.net/"
-					data-layout="button_count"></div>
-			</div>
 			<!-- hiển thị nội dung chính ở đây -->
 			<div class="col-sm-9 col-md-9" id="baiviet" style="font-size: 12px;">
 				<center id="tieude">Thông tin cá nhân-個人の情報 </center>
@@ -165,34 +153,6 @@
 	</div>
 </body>
 <!-- Các đoạn script để đây -->
-<!-- Google+ -->
-<script type="text/javascript"
-	src="https://apis.google.com/js/plusone.js"></script>
-<!-- Twitter -->
-<script>
-	!function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/
-				.test(d.location) ? 'http' : 'https';
-		if (!d.getElementById(id)) {
-			js = d.createElement(s);
-			js.id = id;
-			js.src = p + '://platform.twitter.com/widgets.js';
-			fjs.parentNode.insertBefore(js, fjs);
-		}
-	}(document, 'script', 'twitter-wjs');
-</script>
-<!-- Facebook -->
-<script>
-	(function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id))
-			return;
-		js = d.createElement(s);
-		js.id = id;
-		js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.4&appId=1671772309710877";
-		fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
-</script>
 <!-- Hộp thoại phản hồi -->
 <script lang="javascript">
 	function dichuyen(x) {

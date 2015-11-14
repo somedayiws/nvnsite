@@ -299,10 +299,10 @@
 											<span class="glyphicon glyphicon-list-alt"></span>
 										</button> </a></td>
 								<td><a
-									href="<%if(posts.get(i).getTrangThai().contains("OK") || posts.get(i).getTrangThai().contains("DangDich") ){ %>#<%}else{ %> ./ShowAdminEditPostsServlet?idPost=<%=posts.get(i).getIdBaiViet()%>&from=list<%}%>"
+									href="<%if(posts.get(i).getTrangThai().contains("DangDich") ){ %>#<%}else{ %> ./ShowAdminEditPostsServlet?idPost=<%=posts.get(i).getIdBaiViet()%>&from=list<%}%>"
 									data-toggle="tooltip" title="Chỉnh sửa - 修正"><button
 											type="button" class="btn btn-primary btn-sm"
-											<%if(posts.get(i).getTrangThai().contains("OK") || posts.get(i).getTrangThai().contains("DangDich")){ %>
+											<%if(posts.get(i).getTrangThai().contains("DangDich")){ %>
 											disabled="disabled" <%} %>>
 											<span class="glyphicon glyphicon-pencil"> </span>
 										</button></a></td>
