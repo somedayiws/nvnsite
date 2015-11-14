@@ -42,13 +42,11 @@ public class AdminCreateDAO {
 	/** Get id of account last */
 	public String getId_Acc_last() {
 		String id_Account_last = null;
-		String sql_select_id_account = "SELECT * FROM TAIKHOAN";
+		String sql_select_id_account = "SELECT * FROM taikhoan order by IdTaiKhoan desc";
 		ResultSet resultset_id_account = db.getResultSet(sql_select_id_account);
 		try {
-			if(resultset_id_account.next()){
-				resultset_id_account.last();
-				id_Account_last = resultset_id_account.getString("IdTaiKhoan");
-			}
+			resultset_id_account.next();
+			id_Account_last = resultset_id_account.getString("IdTaiKhoan");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -65,7 +63,7 @@ public class AdminCreateDAO {
 		account.setTenTaiKhoan(DinhDangSQL.FomatSQL(account.getTenTaiKhoan()));
 		account.setMatKhau(DinhDangSQL.FomatSQL(account.getMatKhau()));
 		
-		String sql_insert_account = "INSERT INTO TAIKHOAN(IdTaiKhoan,TenTaiKhoan,MatKhau,HoTen,DiaChi,DienThoai,Email,QuyenQuanTri,CoXoa,NgonNgu,TinhTrang) VALUES('"
+		String sql_insert_account = "INSERT INTO taikhoan(IdTaiKhoan,TenTaiKhoan,MatKhau,HoTen,DiaChi,DienThoai,Email,QuyenQuanTri,CoXoa,NgonNgu,TinhTrang) VALUES('"
 				+ account.getIdTaiKhoan() + "','" + account.getTenTaiKhoan()
 				+ "','" + account.getMatKhau() + "',N'" + account.getHoTen()
 				+ "',N'" + account.getDiaChi() + "','" + account.getDienThoai()

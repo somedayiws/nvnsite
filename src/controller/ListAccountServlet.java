@@ -73,9 +73,9 @@ public class ListAccountServlet extends HttpServlet {
 				else if(result.contains("Phục hồi")){
 					request.setAttribute("result", result);
 				}
-				else if(result.contains("account")){
+				else if(result.contains("khoản")){
 					
-					if(result.contains("exists")){
+					if(result.contains("tồn tại")){
 						resultCreate = "Tài khoản đã tồn tại trong hệ thống - アカウントが既にシステム上に存在する。";
 					}else{
 						resultCreate = "Tạo tài khoản thành công - アカウントが作成できた";

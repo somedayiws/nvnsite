@@ -114,6 +114,7 @@
 									<th>Email<br>メール</th>
 									<th>Tài khoản<br>ユーザー名</th>
 									<th>Phân quyền<br>管理者の権利</th>
+									<th>Ngôn ngữ<br>言語</th>
 									<th>Tình trạng<br>状態</th>
 									<th></th>
 									<th></th>
@@ -124,12 +125,13 @@
 							%>
 							<tbody>
 								<tr>
-									<td><p><%=account.get(i).getIdTaiKhoan()%></p></td>
-									<td><p><%=account.get(i).getHoTen()%></p></td>
-									<td><p><%=account.get(i).getDiaChi()%></p></td>
-									<td><p><%=account.get(i).getDienThoai()%></p></td>
-									<td><p><%=account.get(i).getEmail()%></p></td>
-									<td><p><%=account.get(i).getTenTaiKhoan()%></p></td>
+									<td><p><%= (accounts.get(i).getIdTaiKhoan()== null)		? "" : accounts.get(i).getIdTaiKhoan()%></p></td>
+									<td><p><%= (accounts.get(i).getHoTen() == null)			? "" : accounts.get(i).getHoTen()%></p></td>
+									<td><p><%= (accounts.get(i).getDiaChi() == null)		? "" : accounts.get(i).getDiaChi()%></p></td>
+									<td><p><%= (accounts.get(i).getDienThoai()== null)		? "" : accounts.get(i).getDienThoai()%></p></td>
+									<td><p><%= (accounts.get(i).getEmail() == null) 		? "" : accounts.get(i).getEmail()%></p></td>
+									<td><p><%= (accounts.get(i).getTenTaiKhoan() == null)	? "" : accounts.get(i).getTenTaiKhoan()%></p></td>
+									<td><p><%= (accounts.get(i).getQuyenQuanTri() == null)	? "" :accounts.get(i).getQuyenQuanTri()%></p></td>
 									<td><p><%=account.get(i).getNgonNgu().equals("vi") ?"Việt Nam - ベトナム":"Nhật Bản - 日本"%></p></td>
 									<td>
 										<div class="resultMessage_<%=account.get(i).getIdTaiKhoan()%>">
@@ -345,14 +347,14 @@
 							%>
 							<tbody>
 								<tr>
-									<td><p><%=accounts.get(i).getIdTaiKhoan()%></p></td>
-									<td><p><%=accounts.get(i).getHoTen()%></p></td>
-									<td><p><%=accounts.get(i).getDiaChi()%></p></td>
-									<td><p><%=accounts.get(i).getDienThoai()%></p></td>
-									<td><p><%=accounts.get(i).getEmail()%></p></td>
-									<td><p><%=accounts.get(i).getTenTaiKhoan()%></p></td>
-									<td><p><%=accounts.get(i).getQuyenQuanTri()%></p></td>
-									<td><p><%=accounts.get(i).getNgonNgu().equals("vi") ?"Việt Nam <br> ベトナム":"Nhật Bản <br> 日本"%></p></td>
+									<td><p><%= (accounts.get(i).getIdTaiKhoan()== null)		? "" : accounts.get(i).getIdTaiKhoan()%></p></td>
+									<td><p><%= (accounts.get(i).getHoTen() == null)			? "" : accounts.get(i).getHoTen()%></p></td>
+									<td><p><%= (accounts.get(i).getDiaChi() == null)		? "" : accounts.get(i).getDiaChi()%></p></td>
+									<td><p><%= (accounts.get(i).getDienThoai()== null)		? "" : accounts.get(i).getDienThoai()%></p></td>
+									<td><p><%= (accounts.get(i).getEmail() == null) 		? "" : accounts.get(i).getEmail()%></p></td>
+									<td><p><%= (accounts.get(i).getTenTaiKhoan() == null)	? "" : accounts.get(i).getTenTaiKhoan()%></p></td>
+									<td><p><%= (accounts.get(i).getQuyenQuanTri() == null)	? "" :accounts.get(i).getQuyenQuanTri()%></p></td>
+									<td><p><%= accounts.get(i).getNgonNgu().equals("vi") ?"Việt Nam <br> ベトナム":"Nhật Bản <br> 日本"%></p></td>
 									<td>
 										<div class="resultMessage_<%=accounts.get(i).getIdTaiKhoan()%>">
 											<p><%=accounts.get(i).getTinhTrang().equals("MoiTao")? "Mới tạo <br>新規 " : (accounts.get(i).getTinhTrang().equals("CanhCao1")) ? "Cảnh cáo lần 1 <br>第1回目の警告" : (accounts.get(i).getTinhTrang().equals("CanhCao2")) ? "Cảnh cáo lần 2 <br>第2回目の警告 " : (accounts.get(i).getTinhTrang().equals("CanhCao3")) ? "Cảnh cáo lần 3 <br>第3回目の警告" : (accounts.get(i).getTinhTrang().equals("KhoaTK") )? "Khóa tài khoản <br>アカウントをロックする。" : "Mới tạo<br>新規"%></p>

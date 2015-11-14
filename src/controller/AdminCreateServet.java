@@ -70,7 +70,9 @@ public class AdminCreateServet extends HttpServlet {
 			account.setIdTaiKhoan(adminCreate.id_Account_after_increase());
 			// insert
 			if (adminCreate.insertAccount(account)) {
-				resultSubmit = "Tạo tài khoản thành công - アカウントが作成できた";				
+				resultSubmit = "Tạo tài khoản thành công - アカウントが作成できた";	
+				
+				System.out.println("resultSubmit: "+resultSubmit);
 				request.setAttribute("result", resultSubmit);
 				RequestDispatcher dispatcher;
 				if(type.equals("CTV")){
@@ -84,6 +86,7 @@ public class AdminCreateServet extends HttpServlet {
 			} else {
 
 				resultSubmit = "Tạo tài khoản thất bại";
+				System.out.println("resultSubmit: "+resultSubmit);
 				request.setAttribute("error", resultSubmit);
 				RequestDispatcher requestDis_error = request
 						.getRequestDispatcher("Error.jsp");
@@ -94,11 +97,11 @@ public class AdminCreateServet extends HttpServlet {
 		} else {
 			// Incorrect
 			// if user existed
-			resultSubmit = "Error: " + adminCreate.error;
+			resultSubmit = adminCreate.error;
 			if (resultSubmit != null
 					&& resultSubmit
 							.contains("tồn tại")) {
-				
+				System.out.println("resultSubmit: "+resultSubmit);
 				request.setAttribute("result", resultSubmit);
 				RequestDispatcher dispatcher;
 				if(type.equals("CTV")){
@@ -112,6 +115,7 @@ public class AdminCreateServet extends HttpServlet {
 			}
 			// if not exist
 			else {
+				System.out.println("resultSubmit: "+resultSubmit);
 				request.setAttribute("error", resultSubmit);
 				RequestDispatcher requestDis_error = request
 						.getRequestDispatcher("Error.jsp");

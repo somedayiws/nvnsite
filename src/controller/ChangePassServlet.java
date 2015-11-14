@@ -53,9 +53,10 @@ public class ChangePassServlet extends HttpServlet {
 		
 		ChangePassBO changePassBo = new ChangePassBO();
 		if(changePassBo.checkValid(password, password_new, re_password)){
-			if(!changePassBo.checkPassExist(password_new)){
+			if(changePassBo.checkPassExist(password_new)){
 				if(changePassBo.UpdatePass(password_new, username)){
 					RequestDispatcher dispatcher = request.getRequestDispatcher("EditProfileServlet");
+					request.setAttribute("result", "Cập nhật thành công - ログインができた。");
 					changePassBo.closeConnection();
 					dispatcher.forward(request, response);
 				}
@@ -67,7 +68,7 @@ public class ChangePassServlet extends HttpServlet {
 				}
 			}
 			else{
-				request.setAttribute("error", "Mật khẩu đã tồn tại trong hệ thống - ");
+				request.setAttribute("error", "Mật khẩu không tồn tại trong hệ thống - ");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("Error.jsp");
 				changePassBo.closeConnection();
 				dispatcher.forward(request, response);

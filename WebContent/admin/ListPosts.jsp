@@ -165,11 +165,26 @@
 				if (posts != null) {
 			%>
 			<div class="col-md-12 table-responsive panel panel-primary">
-				<div class="panel-heading">Bài viết -</div>
+				<div class="panel-heading">Bài viết - </div>			
 				<div class="panel-body">
+					<button type="button" class="btn btn-info" onclick="showFlag()">Thông tin thêm</button>
+					<script type="text/javascript">
+						function showFlag($param) {
+							 $(".flag").slideToggle();
+						}
+					</script>
+					<div class="flag" style="display: none">
+						<p><img alt="dang dich" src="../images/icons/checkered-flag-icon.png"><span>Đã duyệt - 承認された。</span></p>
+						<p><img alt="dang dich" src="../images/icons/Actions-flag-blue-icon.png"><span>Đang dịch - 翻訳中</span></p>
+						<p><img alt="dang dich" src="../images/icons/Actions-flag-yellow-icon.png"><span>Mới đăng - 新たな掲載</span></p>
+						<p><img alt="dang dich" src="../images/icons/Actions-flag-black-icon.png"><span>Không dịch - 翻訳しない。</span></p>
+						<p><img alt="dang dich" src="../images/icons/Actions-flag-green-icon.png"><span>Dịch xong - 翻訳を完了した</span></p>
+						<p><img alt="dang dich" src="../images/icons/Actions-flag-red-icon.png"><span>Hủy dịch - 翻訳をキャンセルした。</span></p>
+					</div>
 					<table class="table table-hover table-condensed">
 						<thead>
 							<tr>
+								<th></th>
 								<th>ID</th>
 								<th>Tên bài viết<br> 記事名
 								</th>
@@ -180,9 +195,9 @@
 								<th>Ngày đăng<br> 掲載の日付
 								</th>
 								<th>Mô tả<br> 説明
-								</th>
-								<% if(request.getParameter("view")!=null && request.getParameter("view").equals("all")) { %><th>Trạng thái<br> 状態 <% } %>
-								</th>
+<!-- 								</th> -->
+<%-- 								<% if(request.getParameter("view")!=null && request.getParameter("view").equals("all")) { %><th>Trạng thái<br> 状態 <% } %> --%>
+<!-- 								</th> -->
 								<th></th>
 								<th></th>
 								<th></th>
@@ -194,6 +209,9 @@
 							for (int i = 0; i < posts.size(); i++) {
 						%>
 							<tr>
+								<td>
+									<%if(posts.get(i).getTrangThai().equals("OK")){ %><img src="../images/icons/checkered-flag-icon.png"><%} %><%else if(posts.get(i).getTrangThai().equals("DangDich")){ %><img src="../images/icons/Actions-flag-blue-icon.png"><%}%><%else if(posts.get(i).getTrangThai().equals("MoiDang")){ %><img src="../images/icons/Actions-flag-yellow-icon.png"><%} %><%else if(posts.get(i).getTrangThai().equals("KhongDich")){ %><img src="../images/icons/Actions-flag-black-icon.png"><%} %><%else if(posts.get(i).getTrangThai().equals("DichXong")){ %><img src="../images/icons/Actions-flag-green-icon.png"><%} %><%else{%> <img src="../images/icons/Actions-flag-red-icon.png"><%} %>
+								</td>
 								<td><%=posts.get(i).getIdBaiViet()%></td>
 								
 								<td>
@@ -228,27 +246,27 @@
 										<%}}%>
 									 
 								</td>
-								<% if(request.getParameter("view")!=null && request.getParameter("view").equals("all")) { %>
-								<td>
-									<%if(posts.get(i).getTrangThai().equals("MoiDang")){ %>
-										<p class="bg-success">Mới đăng - 新たな掲載</p>
-									<%}else if(posts.get(i).getTrangThai().equals("DangDich")) {%>
-										<p class="bg-info">Đang dịch - 翻訳中</p>
-									<%}else if(posts.get(i).getTrangThai().equals("OK")){ %>
-										<p class="bg-info">Đã duyệt - 承認された。</p>
-									<%}else if(posts.get(i).getTrangThai().equals("DichXong")){ %>
-										<p class="bg-primary">Dịch xong - 翻訳を完了した</p>
-									<%}else if(posts.get(i).getTrangThai().equals("HuyDich")){ %>
-										<p class="bg-danger"> Hủy dịch - 翻訳をキャンセルした。</p>
-									<%}else if(posts.get(i).getTrangThai().equals("KhongDich")){ %>
-										<p class="bg-info">Không dịch - 翻訳しない。</p>
-									<%}else if(posts.get(i).getTrangThai().equals("XoaBai")){ %>
-										<p class="bg-danger"> Xóa bài - 記事を削除うする。</p>
-									<%}else{ %>
-										<%=posts.get(i).getTrangThai()%>
-									<%} %>
-								</td>
-								<% } %>
+<%-- 								<% if(request.getParameter("view")!=null && request.getParameter("view").equals("all")) { %> --%>
+<!-- 								<td> -->
+<%-- 									<%if(posts.get(i).getTrangThai().equals("MoiDang")){ %> --%>
+<!-- 										<p class="bg-success">Mới đăng - 新たな掲載</p> -->
+<%-- 									<%}else if(posts.get(i).getTrangThai().equals("DangDich")) {%> --%>
+<!-- 										<p class="bg-info">Đang dịch - 翻訳中</p> -->
+<%-- 									<%}else if(posts.get(i).getTrangThai().equals("OK")){ %> --%>
+<!-- 										<p class="bg-info">Đã duyệt - 承認された。</p> -->
+<%-- 									<%}else if(posts.get(i).getTrangThai().equals("DichXong")){ %> --%>
+<!-- 										<p class="bg-primary">Dịch xong - 翻訳を完了した</p> -->
+<%-- 									<%}else if(posts.get(i).getTrangThai().equals("HuyDich")){ %> --%>
+<!-- 										<p class="bg-danger"> Hủy dịch - 翻訳をキャンセルした。</p> -->
+<%-- 									<%}else if(posts.get(i).getTrangThai().equals("KhongDich")){ %> --%>
+<!-- 										<p class="bg-info">Không dịch - 翻訳しない。</p> -->
+<%-- 									<%}else if(posts.get(i).getTrangThai().equals("XoaBai")){ %> --%>
+<!-- 										<p class="bg-danger"> Xóa bài - 記事を削除うする。</p> -->
+<%-- 									<%}else{ %> --%>
+<%-- 										<%=posts.get(i).getTrangThai()%> --%>
+<%-- 									<%} %> --%>
+<!-- 								</td> -->
+<%-- 								<% } %> --%>
 								<td>
 									<%if(posts.get(i).getTrangThai().equals("MoiDang")){ %>
 										<a href="SendPostServlet?idPost=<%=posts.get(i).getIdBaiViet()%>&status=MoiDang" data-toggle="tooltip" title="Chuyển dịch - 転換する。"><button
@@ -317,7 +335,7 @@
 										</button></a></td>
 							</tr>
 							<%
-							}
+							}				
 						%>
 						</tbody>
 					</table>

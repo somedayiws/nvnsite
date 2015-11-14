@@ -212,9 +212,24 @@
 				<div class="table-responsive panel panel-primary">
 			 <div class="panel-heading">Bài viết</div>
 			 <div class="panel-body">
+			 <button type="button" class="btn btn-info" onclick="showFlag()">Thông tin thêm</button>
+					<script type="text/javascript">
+						function showFlag($param) {
+							 $(".flag").slideToggle();
+						}
+					</script>
+					<div class="flag" style="display: none">
+						<p><img alt="dang dich" src="../images/icons/checkered-flag-icon.png"><span>Đã duyệt - 承認された。</span></p>
+						<p><img alt="dang dich" src="../images/icons/Actions-flag-blue-icon.png"><span>Đang dịch - 翻訳中</span></p>
+						<p><img alt="dang dich" src="../images/icons/Actions-flag-yellow-icon.png"><span>Mới đăng - 新たな掲載</span></p>
+						<p><img alt="dang dich" src="../images/icons/Actions-flag-black-icon.png"><span>Không dịch - 翻訳しない。</span></p>
+						<p><img alt="dang dich" src="../images/icons/Actions-flag-green-icon.png"><span>Dịch xong - 翻訳を完了した</span></p>
+						<p><img alt="dang dich" src="../images/icons/Actions-flag-red-icon.png"><span>Hủy dịch - 翻訳をキャンセルした。</span></p>
+					</div>
 				<table class="table table-hover table-condensed">
 					<thead>
-						<tr>							
+						<tr>	
+							<th></th>						
 							<th>ID</th>
 							<th>Tên bài viết<br> 名前ポスト</th>
 							<th>Danh mục<br> カテゴリ</th>
@@ -232,6 +247,9 @@
 					<tbody>
 						<%for(int i=0;i<listposts.size();i++){ %>
 							<tr>
+								<td>
+									<%if(listposts.get(i).getTrangThai().equals("OK")){ %><img src="../images/icons/checkered-flag-icon.png"><%} %><%else if(listposts.get(i).getTrangThai().equals("DangDich")){ %><img src="../images/icons/Actions-flag-blue-icon.png"><%}%><%else if(listposts.get(i).getTrangThai().equals("MoiDang")){ %><img src="../images/icons/Actions-flag-yellow-icon.png"><%} %><%else if(listposts.get(i).getTrangThai().equals("KhongDich")){ %><img src="../images/icons/Actions-flag-black-icon.png"><%} %><%else if(listposts.get(i).getTrangThai().equals("DichXong")){ %><img src="../images/icons/Actions-flag-green-icon.png"><%} %><%else{%> <img src="../images/icons/Actions-flag-red-icon.png"><%} %>
+								</td>
 								<td><%=listposts.get(i).getIdBaiViet()%></td>
 								
 								<td>
