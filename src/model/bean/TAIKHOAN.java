@@ -17,7 +17,26 @@ public class TAIKHOAN {
 	private String TinhTrang;
 	@SerializedName(value="id")
 	private String FacebookID;
+	private String FacebookLink;
+	private String GoogleID;
+	private String picture;
 	
+	public String getGoogleID() {
+		return GoogleID;
+	}
+
+	public void setGoogleID(String googleID) {
+		GoogleID = googleID;
+	}
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
 	public String getFacebookID() {
 		return FacebookID;
 	}
@@ -34,9 +53,6 @@ public class TAIKHOAN {
 		FacebookLink = facebookLink;
 	}
 
-	private String FacebookLink;
-	
-	
 	public String getTinhTrang() {
 		return TinhTrang;
 	}
@@ -131,7 +147,7 @@ public class TAIKHOAN {
 	public void setEmail(String email) {
 		Email = email;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "TAIKHOAN [IdTaiKhoan=" + IdTaiKhoan + ", TenTaiKhoan="
@@ -139,7 +155,8 @@ public class TAIKHOAN {
 				+ ", DiaChi=" + DiaChi + ", DienThoai=" + DienThoai
 				+ ", Email=" + Email + ", QuyenQuanTri=" + QuyenQuanTri
 				+ ", NgonNgu=" + NgonNgu + ", TinhTrang=" + TinhTrang
-				+ ", FacebookID=" + FacebookID
-				+ ", FacebookLink=" + FacebookLink + "]";
+				+ ", FacebookID=" + FacebookID + ", GoogleID=" + GoogleID
+				+ ", picture=" + picture + ", FacebookLink=" + FacebookLink
+				+ "]";
 	}
 }

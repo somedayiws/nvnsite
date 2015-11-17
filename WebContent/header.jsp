@@ -4,6 +4,7 @@
 <%@page import="model.bean.BAIVIET"%>
 <%@page import="model.bean.DANHMUC"%>
 <%@page import="Utils.APIWrapper"%>
+<%@page import="Utils.GoogleAuth"%>
 
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
@@ -139,7 +140,7 @@
 							<a href="Dang-ky"><i class="fa fa-user-plus"></i> Đăng ký - 登録する</a>
 							
 							<a href="<%=APIWrapper.getDialogLink() %>" id="loginfb"><i class="fa fa-facebook"></i> Đăng nhập bằng Facebook</a>
-<%-- 							<a href="<%=APIWrapper.getDialogLink() %>" id="logingg"><i class="fa fa-google-plus"></i> Đăng nhập bằng Google</a> --%>
+							<a href="<%=GoogleAuth.getDialogLink() %>" id="logingg"><i class="fa fa-google-plus"></i> Đăng nhập bằng Google</a>
 						</div>
 						<div class="modal-footer">
 							<button name="xuly" name="submit" value="TrangChu"

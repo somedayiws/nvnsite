@@ -116,11 +116,57 @@ public class TaiKhoanDAO {
 				+ "')";
 		db.updateData(sql);
 	}
+	
+	public boolean checkLoginWithGoogle(String googleId) {
+		// Kiểm tra tồn tại của user
+		googleId = DinhDangSQL.FomatSQL(googleId);
+		String sql = "";
+		sql = "select * from taikhoan where GoogleId='" + googleId + "'";
+		ResultSet rs = db.getResultSet(sql);
+		try {
+			if (rs.next())
+				return true;
+		} catch (SQLException e) {
+			// Lỗi trả về sai
+			e.printStackTrace();
+			return false;
+		}
+		return false;
+	}
+	
+	public void registerAccountWithGoogle(String googleId, String hoten, String email) {
+		// TODO Auto-generated method stub
+		googleId = DinhDangSQL.FomatSQL(googleId);
+		hoten = DinhDangSQL.FomatSQL(hoten);
+		email = DinhDangSQL.FomatSQL(email);
+		String sql = "insert into taikhoan(IdTaiKhoan, TenTaiKhoan, QuyenQuanTri, HoTen, Email, CoXoa, TinhTrang, GoogleId)"
+				+ " values (N'"
+				+ getIdTaiKhoanMax()
+				+ "', N'"
+				+ googleId
+				+ "',N'user',"
+				+ " N'"
+				+ hoten
+				+ "',"
+				+ " N'"
+				+ email
+				+ "','0', N'MoiTao',N'"
+				+ googleId
+				+ "')";
+		db.updateData(sql);
+	}
 
 	public boolean updateAccountByEmail(TAIKHOAN user) {
 		// TODO Auto-generated method stub
 		String sql = "update taikhoan set FacebookId=N'" + user.getFacebookID()
 				+ "', FacebookLink=N'" + user.getFacebookLink()
+				+ "' where Email='" + user.getEmail() + "'";
+		return db.updateData(sql);
+	}
+	
+	public boolean updateAccountByEmailGoogle(TAIKHOAN user) {
+		// TODO Auto-generated method stub
+		String sql = "update taikhoan set GoogleId=N'" + user.getGoogleID()
 				+ "' where Email='" + user.getEmail() + "'";
 		return db.updateData(sql);
 	}
