@@ -13,3 +13,11 @@
 p{
 	min-width: 70px;
 }
+.notice{
+	    box-shadow: 2px 2px;
+    text-align: center;
+    line-height: 25px;
+    font-size: 18px;
+    border-radius: 10px 10px 10px 10px;
+    margin-top: 2%;
+}

@@ -169,15 +169,19 @@ public class ListAccountDAO {
 		
 		
 		int i = 0;
-		String sql_select_account = "SELECT * FROM taikhoan WHERE CoXoa = 0 AND QuyenQuanTri != 'ctv'";
+		String sql_select_account = "SELECT * FROM taikhoan WHERE CoXoa = 0 AND QuyenQuanTri != 'ctv' ORDER BY IdTaiKhoan DESC";
 		
 		//Tạo menu phân trang Url, page, sql
 		ResultSet result_select;
 		if(page==-1){
+			System.out.println("không có trang");
+			System.out.println("sql_select_account: "+sql_select_account);
 			result_select = db.getResultSet(sql_select_account);
 		}
 		else{
 			db.createMenu("ListAccountServlet?", page, sql_select_account);
+			System.out.println("có trang");
+			System.out.println("sql_select_account: "+sql_select_account  + " limit " + (page-1)*db.getNBangGhi() +","+ db.getNBangGhi());
 			result_select = db.getResultSet(sql_select_account  + " limit " + (page-1)*db.getNBangGhi() +","+ db.getNBangGhi());
 		}
 		ArrayList<TAIKHOAN> accounts = new ArrayList<TAIKHOAN>();

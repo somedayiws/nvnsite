@@ -15,8 +15,12 @@ $(".btnban").click(function() {
 									id : idAcc
 								}, //dữ liệu gửi
 								async : true, //
-								success : function(res) {									
+								success : function(res) {
+									if(res.indexOf("Khóa")> -1){
+										window.location = "ListAccountServlet";
+									}else{
 									$(".resultMessage_"+idAcc).html(res);
+									}
 								},
 								error : function() {
 									alert('Không thể thay đổi tình trạng - 現況が変更できない');
@@ -102,4 +106,7 @@ function checkValidateSearch() {
 }
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip(); 
+});
+$('.number').change(function(){
+	alert("message");
 });
