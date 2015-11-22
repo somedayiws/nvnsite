@@ -37,19 +37,33 @@
 				<%
 					//Hiển thị kết quả chỉnh sửa và xóa, tạo tài khoản
 					if (result != null) {
+						if(result.contains("thành công")){
 				%>
-				<div class="col-md-6 col-md-offset-3 alert alert-info">
-					<strong>Thông báo - 情報!</strong><%=result%>
-				</div>
-				<%
+							<div class="notice col-md-6 col-md-offset-3 alert alert-info">
+								<p><span class="glyphicon glyphicon-info-sign"></span><strong>Thông báo - 情報</strong></p>
+								<p><%=result%></p>
+							</div>
+							<%}else{ %>
+							<div class=" notice col-md-6 col-md-offset-3 alert alert-danger">
+								<p><span class = "glyphicon glyphicon-exclamation-sign"></span><strong>Thông báo - 情報</strong></p>
+								<p><%=result%></p>
+							</div>
+				<%}
 					}
 					//Hiển thị kết quả khôi phục
 					if(result_Restore!=null){
+						if(result_Restore.contains("thành công")){
 				%>
-				<div class="col-md-6 col-md-offset-3 alert alert-info">
-					<strong>Thông báo - 情報!</strong><%=result_Restore%>
-				</div>
-				<%
+							<div class=" notice col-md-6 col-md-offset-3 alert alert-info">
+								<p><span class="glyphicon glyphicon-info-sign"></span><strong>Thông báo - 情報</strong></p>
+								<p><%=result_Restore%></p>
+							</div>
+						<%}else{ %>
+						<div class=" notice col-md-6 col-md-offset-3 alert alert-danger">
+								<p><span class = "glyphicon glyphicon-exclamation-sign"></span><strong>Thông báo - 情報</strong></p>
+								<p><%=result_Restore%></p>
+							</div>
+				<%}
 					}
 				%>
 			</div>
@@ -125,17 +139,17 @@
 							%>
 							<tbody>
 								<tr>
-									<td><p><%= (accounts.get(i).getIdTaiKhoan()== null)		? "" : accounts.get(i).getIdTaiKhoan()%></p></td>
-									<td><p><%= (accounts.get(i).getHoTen() == null)			? "" : accounts.get(i).getHoTen()%></p></td>
-									<td><p><%= (accounts.get(i).getDiaChi() == null)		? "" : accounts.get(i).getDiaChi()%></p></td>
-									<td><p><%= (accounts.get(i).getDienThoai()== null)		? "" : accounts.get(i).getDienThoai()%></p></td>
-									<td><p><%= (accounts.get(i).getEmail() == null) 		? "" : accounts.get(i).getEmail()%></p></td>
-									<td><p><%= (accounts.get(i).getTenTaiKhoan() == null)	? "" : accounts.get(i).getTenTaiKhoan()%></p></td>
-									<td><p><%= (accounts.get(i).getQuyenQuanTri() == null)	? "" :accounts.get(i).getQuyenQuanTri()%></p></td>
-									<td><p><%=account.get(i).getNgonNgu().equals("vi") ?"Việt Nam - ベトナム":"Nhật Bản - 日本"%></p></td>
+									<td><p><%= (account.get(i).getIdTaiKhoan()== null)		? "" : account.get(i).getIdTaiKhoan()%></p></td>
+									<td><p><%= (account.get(i).getHoTen() == null)			? "" : account.get(i).getHoTen()%></p></td>
+									<td><p><%= (account.get(i).getDiaChi() == null)		? "" : account.get(i).getDiaChi()%></p></td>
+									<td><p><%= (account.get(i).getDienThoai()== null)		? "" : account.get(i).getDienThoai()%></p></td>
+									<td><p><%= (account.get(i).getEmail() == null) 		? "" : account.get(i).getEmail()%></p></td>
+									<td><p><%= (account.get(i).getTenTaiKhoan() == null)	? "" : account.get(i).getTenTaiKhoan()%></p></td>
+									<td><p><%= (account.get(i).getQuyenQuanTri() == null)	? "" :account.get(i).getQuyenQuanTri()%></p></td>
+									<td><p><%= (account.get(i).getNgonNgu() == null)		? "" : (account.get(i).getNgonNgu().equals("vi") ?"Việt Nam <br> ベトナム":"Nhật Bản <br> 日本")%></p></td>
 									<td>
 										<div class="resultMessage_<%=account.get(i).getIdTaiKhoan()%>">
-											<p><%=account.get(i).getTinhTrang().equals("MoiTao")? "Mới tạo - 新規" : (account.get(i).getTinhTrang().equals("CanhCao1")) ? "Cảnh cáo lần 1 - 第1回目の警告" : (account.get(i).getTinhTrang().equals("CanhCao2")) ? "Cảnh cáo lần 2 - 第2回目の警告" : (account.get(i).getTinhTrang().equals("CanhCao3")) ? "Cảnh cáo lần 3 - 第3回目の警告" : (account.get(i).getTinhTrang().equals("KhoaTK") )? "Khóa tài khoản - アカウントをロックする。" : "Mới tạo - 新規"%></p>
+											<p><%=(account.get(i).getTinhTrang() == null)	? "" :(account.get(i).getTinhTrang().equals("MoiTao")? "Mới tạo <br>新規 " : (account.get(i).getTinhTrang().equals("CanhCao1")) ? "Cảnh cáo lần 1 <br>第1回目の警告" : (account.get(i).getTinhTrang().equals("CanhCao2")) ? "Cảnh cáo lần 2 <br>第2回目の警告 " : (account.get(i).getTinhTrang().equals("CanhCao3")) ? "Cảnh cáo lần 3 <br>第3回目の警告" : (account.get(i).getTinhTrang().equals("KhoaTK") )? "Khóa tài khoản <br>アカウントをロックする。" : "Mới tạo<br>新規")%></p>
 										</div>
 									</td>
 										<td><button type="button"
@@ -182,7 +196,7 @@
 			%>
 			<!-------------------------- Modal chỉnh sửa--------------------------------->
 			<div class="modal fade"
-				id="modal_Search_<%=account.get(i).getIdTaiKhoan()%>">
+				id="edit_<%=account.get(i).getIdTaiKhoan()%>">
 				<div class="modal-dialog">
 
 					<!-- Modal content-->
@@ -211,7 +225,7 @@
 								</div>
 								<div class="form-group">
 									<label>Số điện thoại - 電話番号<span class="rq"> * </span>
-									</label> <input type="text" class="form-control" maxlength="11"
+									</label> <input type="text" class="form-control"
 										name="phone" value="<%=account.get(i).getDienThoai()%>">
 								</div>
 								<div class="form-group">
@@ -249,11 +263,11 @@
 									<label>Ngôn ngữ - 言語</label> <select class="form-control"
 										name="language">
 										<option value="vi"
-											<%if (account.get(i).getNgonNgu().equals("vi")) {%>
-											selected="selected" <%}%>>Tiếng việt - ベトナム語</option>
-										<option value="ja"
-											<%if (account.get(i).getNgonNgu().equals("ja")) {%>
-											selected="selected" <%}%>>Tiếng nhật - 日本語</option>
+											<%if (account.get(i).getNgonNgu() != null && account.get(i).getNgonNgu().equals("vi")) {%>
+													selected="selected" <%}%>>Tiếng việt - ベトナム語</option>
+												<option value="ja"
+													<%if (account.get(i).getNgonNgu() != null && account.get(i).getNgonNgu().equals("ja")) {%>
+													selected="selected" <%}%>>Tiếng nhật - 日本語</option>
 									</select>
 								</div>
 								<div class="form-group">
@@ -274,7 +288,7 @@
 			</div>
 			<!------------------------------------ Modal xóa -------------------------------------->
 			<div class="modal fade"
-				id="delete_Search<%=account.get(i).getIdTaiKhoan()%>">
+				id="delete_<%=account.get(i).getIdTaiKhoan()%>">
 				<div class="modal-dialog">
 
 					<!-- Modal content-->
@@ -354,10 +368,10 @@
 									<td><p><%= (accounts.get(i).getEmail() == null) 		? "" : accounts.get(i).getEmail()%></p></td>
 									<td><p><%= (accounts.get(i).getTenTaiKhoan() == null)	? "" : accounts.get(i).getTenTaiKhoan()%></p></td>
 									<td><p><%= (accounts.get(i).getQuyenQuanTri() == null)	? "" :accounts.get(i).getQuyenQuanTri()%></p></td>
-									<td><p><%= accounts.get(i).getNgonNgu().equals("vi") ?"Việt Nam <br> ベトナム":"Nhật Bản <br> 日本"%></p></td>
+									<td><p><%= (accounts.get(i).getNgonNgu() == null)		? "" : (accounts.get(i).getNgonNgu().equals("vi") ?"Việt Nam <br> ベトナム":"Nhật Bản <br> 日本")%></p></td>
 									<td>
-										<div class="resultMessage_<%=accounts.get(i).getIdTaiKhoan()%>">
-											<p><%=accounts.get(i).getTinhTrang().equals("MoiTao")? "Mới tạo <br>新規 " : (accounts.get(i).getTinhTrang().equals("CanhCao1")) ? "Cảnh cáo lần 1 <br>第1回目の警告" : (accounts.get(i).getTinhTrang().equals("CanhCao2")) ? "Cảnh cáo lần 2 <br>第2回目の警告 " : (accounts.get(i).getTinhTrang().equals("CanhCao3")) ? "Cảnh cáo lần 3 <br>第3回目の警告" : (accounts.get(i).getTinhTrang().equals("KhoaTK") )? "Khóa tài khoản <br>アカウントをロックする。" : "Mới tạo<br>新規"%></p>
+										<div class="resultMessage_<%=accounts.get(i).getIdTaiKhoan()%> number">
+											<p><%=(accounts.get(i).getTinhTrang() == null)	? "" :(accounts.get(i).getTinhTrang().equals("MoiTao")? "Mới tạo <br>新規 " : (accounts.get(i).getTinhTrang().equals("CanhCao1")) ? "Cảnh cáo lần 1 <br>第1回目の警告" : (accounts.get(i).getTinhTrang().equals("CanhCao2")) ? "Cảnh cáo lần 2 <br>第2回目の警告 " : (accounts.get(i).getTinhTrang().equals("CanhCao3")) ? "Cảnh cáo lần 3 <br>第3回目の警告" : (accounts.get(i).getTinhTrang().equals("KhoaTK") )? "Khóa tài khoản <br>アカウントをロックする。" : "Mới tạo<br>新規")%></p>
 										</div>
 									</td>
 									<td><button type="button"
@@ -366,6 +380,7 @@
 											id="<%=accounts.get(i).getIdTaiKhoan()%>"
 											class="btn btn-warning btn-sm btnban" title="Chuyển trạng thái - 状態を変更する。" data-placement="bottom" onclick="banAcc()">
 											<span class="glyphicon glyphicon-lock"></span>
+											
 										</button></td>
 									<td><button type="button" class="btn btn-primary btn-sm"
 											data-toggle="modal" title="Chỉnh sửa - 修正" data-placement="bottom"
@@ -430,7 +445,7 @@
 										</div>
 										<div class="form-group">
 											<label>Số điện thoại - 電話番号<span class="rq"> *</span>
-											</label> <input type="text" class="form-control" maxlength="11"
+											</label> <input type="text" class="form-control"
 												name="phone" value="<%=accounts.get(i).getDienThoai()%>">
 										</div>
 										<div class="form-group">
@@ -468,10 +483,10 @@
 											<label>Ngôn ngữ - 言語</label> <select class="form-control"
 												name="language">
 												<option value="vi"
-													<%if (accounts.get(i).getNgonNgu().equals("vi")) {%>
+													<%if (accounts.get(i).getNgonNgu() != null && accounts.get(i).getNgonNgu().equals("vi")) {%>
 													selected="selected" <%}%>>Tiếng việt - ベトナム語</option>
 												<option value="ja"
-													<%if (accounts.get(i).getNgonNgu().equals("ja")) {%>
+													<%if (accounts.get(i).getNgonNgu() != null && accounts.get(i).getNgonNgu().equals("ja")) {%>
 													selected="selected" <%}%>>Tiếng nhật - 日本語</option>
 											</select>
 										</div>

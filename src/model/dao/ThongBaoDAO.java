@@ -15,7 +15,7 @@ public class ThongBaoDAO {
 	public ArrayList<THONGBAO> getListThongBao(String den, int page) {
 		// TODO Auto-generated method stub
 		String sql = "select * from thongbao where "+den+" order by HienThi desc, NgayDang desc ";
-		db.createMenu("Thong-bao?", 1, sql);
+		db.createMenu("Thong-bao?", page, sql);
 		ResultSet rs = db.getResultSet(sql + " limit " + (page-1)*db.getNBangGhi() +","+ db.getNBangGhi());
 		ArrayList<THONGBAO> list = new ArrayList<THONGBAO>();
 		try {
@@ -94,7 +94,7 @@ public class ThongBaoDAO {
 					+ (timtheo.equals("3")?" and GuiDen like N'%"+find+"%'":"")
 					+ (timtheo.equals("4")?" and NoiDung like N'%"+find+"%'":"");
 		}
-		db.createMenu("ThongBaoServlet?", 1, sql);
+		db.createMenu("ThongBaoServlet?", page, sql);
 		ResultSet rs = db.getResultSet(sql + " limit " + (page-1)*db.getNBangGhi() +","+ db.getNBangGhi());
 		ArrayList<THONGBAO> list = new ArrayList<THONGBAO>();
 		try {

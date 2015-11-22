@@ -29,6 +29,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta property="og:image" content="http://jpvn.net/<%=((BAIVIET) request.getAttribute("baiviet")).getLienKet()%>" />
 <meta property="og:title" content="<%=titleStr%>" />
+<link rel="stylesheet" type="text/css" href="css/jssocials.css" />
+<link rel="stylesheet" type="text/css" href="css/jssocials-theme-flat.css" />
 <!-- <script type="text/javascript" src="js/disable-copyright.js"></script> -->
 <title>Chi tiết bài viết - 詳細な記事</title>
 </head>
@@ -86,6 +88,21 @@
 						}
 					%>
 				</p>
+				<div id="share"></div>
+
+			   	<script src="js/jssocials.min.js"></script>
+			  	<script>
+			     	  $("#share").jsSocials({
+   					 	showCount: false,
+    					showLabel: true,
+    					shares: [
+             			     { share: "facebook", label: "FACEBOOK" },
+         					 { share: "twitter", label: "TWITTER" },
+         					 { share: "googleplus", label: "GOOGLE+" },
+                  			 { share: "email", label: "EMAIL" }
+    					]
+					});
+			    </script>
 				<br> <br>
 				
 				<div id="noidung">

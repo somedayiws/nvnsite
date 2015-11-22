@@ -161,7 +161,7 @@
 				</p>
 			</div>
 			<button class="btn btn-primary btn-sm" type="submit" id="capnhat"
-				disabled="disabled">Cập nhật - アップデート</button>
+				>Cập nhật - アップデート</button>
 		</form>
 	</div>
 </body>
