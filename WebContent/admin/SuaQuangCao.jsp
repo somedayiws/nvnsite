@@ -218,13 +218,10 @@
 					<!-- Vị trí các trang khác -->
 					<div class="form-group" id="advNoHomepage" <%= qc.getTrangHienThi() == 1 ? "style='display: none;'" : "" %>>
 						<label for="postion">Vị trí - 位置</label>
-						<select class="form-control" id="positionInNoHome" name="positionInNoHome" disabled="disabled">
+						<select class="form-control" id="positionInNoHome" name="positionInNoHome">
 							<option value="1"
 								<%=qc.getViTri() == 1 ? "selected='selected'" : ""%>>vị
 								trí 1 - 1の位置</option>
-							<option value="2"
-								<%=qc.getViTri() == 2 ? "selected='selected'" : ""%>>vị
-								trí 2 - 2の位置</option>
 						</select>
 					</div>
 				</div>

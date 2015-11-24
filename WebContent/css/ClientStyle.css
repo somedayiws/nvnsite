@@ -979,6 +979,7 @@ form#seach {
 	width: auto;
 	border-radius: 0px;
 	margin-top: 10px;
+	padding: 3px 12px!important;
 }
 
 .btn {
@@ -1720,14 +1721,13 @@ img.imggia {
 	right: 0%;
 }
 
-#noidung #tiengviet p img {
-	width: 100% !important;
-	height: 100% !important;
+#noidung #tiengnhat img {
+max-width: 100%!important;
+height: 100%!important;
 }
-
-#noidung #tiengnhat p img {
-	width: 100% !important;
-	height: 100% !important;
+#noidung #tiengviet img {
+max-width: 100%!important;
+height: 100%!important;
 }
 
 #delailoinhan {
@@ -1801,4 +1801,9 @@ cursor: pointer;
 
 #loginggi {
 	font-size: 16;
+}
+
+#textdiv button {
+border: none;
+font-weight: bold;
 }
