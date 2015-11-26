@@ -218,14 +218,14 @@
 	}
 	
 </script>
-<!-- Hiện ẩn tùy chọn -->
+<!-- Hien an tuy chon -->
 <script type="text/javascript">
-	var giatritruoc = "0";
+	var giatritruoc = "";
 	function hienan() {
 		var giatri = $('#NgonNgu').val();
 		if (giatri == "2") {
 			//Dong bo du lieu
-			if(giatritruoc == "0"){
+			if(giatritruoc == "0" || giatritruoc == ""){
 				$("#TieuDeVi").val($("#TieuDe").val());
 				$("#MoTaVi").val($("#MoTa").val());
 				CKEDITOR.instances.NoiDungVi.setData(CKEDITOR.instances.NoiDung.getData());
@@ -236,21 +236,25 @@
 			}
 			$('.donngu').hide();
 			$('.dangu').show();
-		} else {
+		} else if(giatri == "1"){
 			//Dong bo du lieu
-			if(giatri == "0"){
-				$("#TieuDe").val($("#TieuDeVi").val());
-				$("#MoTa").val($("#MoTaVi").val());
-				CKEDITOR.instances.NoiDung.setData(CKEDITOR.instances.NoiDungVi.getData());
-			}else if(giatri == "1"){
+			if(giatritruoc == "2"){
 				$("#TieuDe").val($("#TieuDeJa").val());
 				$("#MoTa").val($("#MoTaJa").val());
 				CKEDITOR.instances.NoiDung.setData(CKEDITOR.instances.NoiDungJa.getData());
+				$('.dangu').hide();
+				$('.donngu').show();
 			}
-			$('.dangu').hide();
-			$('.donngu').show();
-			giatritruoc = giatri;
+		} else {
+			if(giatritruoc == "2"){
+				$("#TieuDe").val($("#TieuDeVi").val());
+				$("#MoTa").val($("#MoTaVi").val());
+				CKEDITOR.instances.NoiDung.setData(CKEDITOR.instances.NoiDungVi.getData());
+				$('.dangu').hide();
+				$('.donngu').show();
+			}
 		}
+		giatritruoc = giatri;
 	}
 </script>
 <!-- check validate -->

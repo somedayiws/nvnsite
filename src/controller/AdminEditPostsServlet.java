@@ -52,6 +52,25 @@ public class AdminEditPostsServlet extends HttpServlet {
 		String descriptionVi = request.getParameter("descriptionVi");
 		String descriptionJa = request.getParameter("descriptionJa");
 		
+		if(namePostVi == null){
+			namePostVi = "";
+		}
+		if(namePostJa == null){
+			namePostJa = "";
+		}
+		if(contentVi == null){
+			contentVi = "";
+		}
+		if(contentJa == null){
+			contentJa = "";
+		}
+		if(descriptionVi == null){
+			descriptionVi = "";
+		}
+		if(descriptionJa == null){
+			descriptionJa = "";
+		}
+		
 		String resultEdit;
 		BAIVIET post = new BAIVIET();
 		
