@@ -112,9 +112,9 @@
 	#contentFooter {
 		width: 1066px;
 	}
-        #about{
-                width: 270px;
-        }
+	#about {
+		width: 270px;
+	}
 }
 
 @media only screen and (max-width: 1065px) {
@@ -255,9 +255,9 @@
 	#contentFooter {
 		width: 960px;
 	}
-        #about{
-                width: 265px;
-        }
+	#about {
+		width: 265px;
+	}
 }
 
 @media only screen and (max-width: 970px) { /*Style 960px*/
@@ -314,6 +314,12 @@
 	}
 	.adv300x600 {
 		padding-top: 0px !important;
+	}
+	.adv728x90 {
+		margin-top: 25px;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
 	}
 	#leftTopContent {
 		display: none;
@@ -454,9 +460,9 @@
 	#linkleft, #linkright {
 		width: 240px;
 	}
-#about{
-width: 260px;
-}
+	#about {
+		width: 260px;
+	}
 }
 
 @media only screen and (max-width: 799px) {
@@ -507,9 +513,9 @@ width: 260px;
 	#footer {
 		font-size: 13px;
 	}
-#about{
-width: 245px;
-}
+	#about {
+		width: 245px;
+	}
 }
 
 @media only screen and (max-width: 767px) {
@@ -636,9 +642,9 @@ width: 245px;
 	#contentFooter {
 		height: 100%;
 	}
-#about{
-width: 100%;
-}
+	#about {
+		width: 100%;
+	}
 }
 
 @media only screen and (max-width: 719px) {

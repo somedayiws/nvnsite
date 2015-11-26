@@ -14,15 +14,13 @@
 	<%
 		BAIVIET baiviet = (BAIVIET) request.getAttribute("baiviet");
 		String titleStr = "";
-		if(baiviet.getTenBaiVietVi() != null ) {
+		if(baiviet.getTenBaiVietVi() != null && !baiviet.getTenBaiVietVi().equals("")) {
 			titleStr = baiviet.getTenBaiVietVi();
 		}
-		if(baiviet.getTenBaiVietVi() != null && baiviet.getTenBaiVietJa() != null) {
+		if(baiviet.getTenBaiVietVi() != null && !baiviet.getTenBaiVietVi().equals("") && baiviet.getTenBaiVietJa() != null && !baiviet.getTenBaiVietJa().equals("") ) {
 			titleStr += "<br>";
-		}
-		if(baiviet.getTenBaiVietJa() != null ) {
 			titleStr += baiviet.getTenBaiVietJa();
-		}		
+		}
 	%>
 
 
@@ -56,13 +54,14 @@
 				</h3>
 				<div id="infoNews">
 					<div class="infoDetail" id="category">
+						<i class="fa fa-folder-o"></i>
 						<a
 							href="Danh-sach-bai-viet?id=<%=baiviet.getDanhMuc().getIdDanhMuc()%>">
 							<%=baiviet.getDanhMuc().getTenDanhMucVi()+"-"+baiviet.getDanhMuc().getTenDanhMucJa()%></a>
 					</div>
 					<div class="infoDetail">
 						<i class="fa fa-user"></i>
-						<%=baiviet.getTaiKhoan().getHoTen()%></div>
+						<%=baiviet.getTaiKhoan().getTenTaiKhoan()%></div>
 					<div class="infoDetail">
 						<i class="fa fa-calendar"></i>
 						<%=baiviet.getNgayDang()%></div>
@@ -117,6 +116,17 @@
 					
 					<div class="col-xs-12 col-sm-6 col-md-6" id="tiengviet">
 						<%=baiviet.getNoiDungVi()%>
+						<div class="fb-like"></div>
+						<div id="fb-root"></div>
+						<script>(function(d, s, id) {
+						$('.fb-like').attr("data-href",window.location.href);
+						  var js, fjs = d.getElementsByTagName(s)[0];
+						  if (d.getElementById(id)) return;
+						  js = d.createElement(s); js.id = id;
+						  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.5&appId=925159020912140";
+						  fjs.parentNode.insertBefore(js, fjs);
+						}(document, 'script', 'facebook-jssdk'));
+						</script>
 					</div>
 					<div class="col-xs-12 col-sm-6 col-md-6" id="tiengnhat">
 						<%=baiviet.getNoiDungJa()%>
@@ -202,6 +212,17 @@
 					%>
 					<div class="col-xs-12 col-sm-12 col-md-12" id="tiengviet">
 						<%=baiviet.getNoiDungVi()%>
+						<div class="fb-like"></div>
+						<div id="fb-root"></div>
+						<script>(function(d, s, id) {
+						$('.fb-like').attr("data-href",window.location.href);
+						  var js, fjs = d.getElementsByTagName(s)[0];
+						  if (d.getElementById(id)) return;
+						  js = d.createElement(s); js.id = id;
+						  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.5&appId=925159020912140";
+						  fjs.parentNode.insertBefore(js, fjs);
+						}(document, 'script', 'facebook-jssdk'));
+						</script>
 					</div>
 					<div class="col-xs-12 col-sm-12 col-md-12" id="blviet">
 						<strong id="selfComment"> Bình luận - コメント</strong>
@@ -247,6 +268,17 @@
 					%>
 					<div class="col-xs-12 col-sm-12 col-md-12" id="tiengnhat">
 						<%=baiviet.getNoiDungJa()%>
+						<div class="fb-like"></div>
+						<div id="fb-root"></div>
+						<script>(function(d, s, id) {
+						$('.fb-like').attr("data-href",window.location.href);
+						  var js, fjs = d.getElementsByTagName(s)[0];
+						  if (d.getElementById(id)) return;
+						  js = d.createElement(s); js.id = id;
+						  js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.5&appId=925159020912140";
+						  fjs.parentNode.insertBefore(js, fjs);
+						}(document, 'script', 'facebook-jssdk'));
+						</script>
 					</div>
 					<div class="col-xs-12 col-sm-12 col-md-12" id="blnhat">
 						<strong id="selfComment"> Bình luận - コメント </strong>

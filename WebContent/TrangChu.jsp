@@ -286,7 +286,7 @@
 												href="Xem-bai-viet?id=<%=listbaiviet.get(j).getIdBaiViet()%>"
 												class="thongtinthem"> <img
 												src="<%=listbaiviet.get(j).getLienKet()==null?"images/baiviet.jpg":listbaiviet.get(j).getLienKet()%>"><strong><i
-													class="fa fa-user"></i> <%=listbaiviet.get(j).getTaiKhoan().getHoTen()%></strong>
+													class="fa fa-user"></i> <%=listbaiviet.get(j).getTaiKhoan().getTenTaiKhoan()%></strong>
 												<em> <i class="fa fa-calendar"></i> <%=listbaiviet.get(j).getNgayDang()%></em>
 												<em><i class="fa fa-eye"></i> <%=listbaiviet.get(j).getLuotXem()%>
 											</em>
