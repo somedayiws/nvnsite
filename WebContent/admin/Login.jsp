@@ -28,7 +28,7 @@
              <!-- Hiển thị kết quả khi login thất bại -->
             <%if(result!=null){ %>
             	<div class="alert alert-danger">
-  					<strong>Lỗi - エラー!</strong> <%if(result.equals("1")){%>Tên đăng nhập và mật khẩu không hợp lệ - ユーザー名およびパスワードが不適切です。<%}else if(result.equals("2")){ %>Tài khoản không tồn tại trong hệ thống - アカウントはシステム上に存しない。<%} else { %> Bạn chưa đăng nhập hệ thống. <% } %>
+  					<strong>Lỗi - エラー!</strong> <%if(result.equals("1")){%>Tên đăng nhập và mật khẩu không hợp lệ - ユーザー名およびパスワードが不適切です。<%}else if(result.equals("2")){ %>Tài khoản không tồn tại trong hệ thống - アカウントはシステム上に存しない。<%} else { %> Bạn chưa đăng nhập hệ thống - システム上にアカウントをまだ入力しなかった. <% } %>
 				</div>
             <%} %>
             <p id="profile-name" class="profile-name-card"></p>

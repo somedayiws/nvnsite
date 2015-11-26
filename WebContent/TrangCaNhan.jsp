@@ -73,7 +73,7 @@
 					</div>
 				</form>
 				<div style="clear: both;"></div>
-				<center id="tieude">Các bài viết đã đăng - 投資された記事です。</center>
+				<center id="tieude">Các bài viết đã đăng - 掲載された記事です。</center>
 				<%=hthi == null || hthi.equals("") ? "" : hthi%>
 				<table class="table table-hover">
 					<tr id="tieude1">

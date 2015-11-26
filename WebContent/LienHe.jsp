@@ -44,7 +44,7 @@
 						placeholder="Tiêu đề - テーマ"> 
 					<br>
 					<label class="form-label">Nội dung - `内容(*)</label> 
-					<textarea rows="3" placeholder="Nội dung liên hệ"
+					<textarea rows="3" placeholder="Nội dung liên hệ - 連絡の内容"
 								class="form-control" name="noidung" id="noidunglh"></textarea> 	
 								<br>
 					<input type="submit" value="Gửi - 送信"

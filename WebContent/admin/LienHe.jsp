@@ -16,7 +16,7 @@
 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 <link rel="stylesheet" href="css/register.css">
 <link rel="stylesheet" href="css/advertisement.css">
-<title>Quản lý phản hồi - </title>
+<title>Quản lý phản hồi</title>
 <style type="text/css">
 #advNoHomepage {
 	display: none;
@@ -55,10 +55,10 @@
 		ArrayList<LIENHE> list = (ArrayList<LIENHE>)request.getAttribute("list");
 		/* Thông báo báo lỗi */
 		String hthi = request.getParameter("xuly");
-		if(hthi!=null && hthi.equals("traloi-thanhcong")) hthi = "<div class='alert alert-success' role='alert'>Trả lời phản hồi thành công.</div>";
-		else if(hthi!=null && hthi.equals("traloi-thatbai")) hthi = "<div class='alert alert-danger' role='alert'>Trả lời phản hồi thất bại.</div>";
-		else if(hthi!=null && hthi.equals("xoa-thanhcong")) hthi = "<div class='alert alert-success' role='alert'>Xóa phản hồi thành công.</div>";
-		else if(hthi!=null && hthi.equals("xoa-thatbai")) hthi = "<div class='alert alert-danger' role='alert'>Xóa phản hồi thất bại.</div>";
+		if(hthi!=null && hthi.equals("traloi-thanhcong")) hthi = "<div class='alert alert-success' role='alert'>Trả lời phản hồi thành công - 返事を解答できた.</div>";
+		else if(hthi!=null && hthi.equals("traloi-thatbai")) hthi = "<div class='alert alert-danger' role='alert'>Trả lời phản hồi thất bại - 返事を解答できなかった.</div>";
+		else if(hthi!=null && hthi.equals("xoa-thanhcong")) hthi = "<div class='alert alert-success' role='alert'>Xóa phản hồi thành công - 返事の削除ができた.</div>";
+		else if(hthi!=null && hthi.equals("xoa-thatbai")) hthi = "<div class='alert alert-danger' role='alert'>Xóa phản hồi thất bại - 返事の削除がまだできなかった.</div>";
 		else if(hthi!=null && hthi.equals("loi-he-thong")) hthi = "<div class='alert alert-danger' role='alert'>Lỗi hệ thống. Vui lòng reset lại trang(Ctrl+F5).<br>システムのエラです。ホームページを改めてリセットして下さい(Ctrl+F5)。</div>";
 	%>
 
@@ -70,8 +70,8 @@
 				<select name="timtheo" class="form-control">
 					<option value="1">Tất cả - 全て</option>
 					<option value="2">Id</option>
-					<option value="3">Người gửi - </option>
-					<option value="4">Nội dung phản hồi - </option>
+					<option value="3">Người gửi - 送信者</option>
+					<option value="4">Nội dung phản hồi - 返事の内容</option>
 				</select>
 			</div>
 			<div class="col-md-6">
@@ -86,17 +86,17 @@
 			<!--------------------------- Hiển thị danh sách các quảng cáo trong cơ sở dữ liệu ------------------->
 			<%=request.getAttribute("mes")==null ? "" : request.getAttribute("mes")%>
 			<div class="col-md-10 col-md-offset-2 panel panel-primary quangcao">
-				<div class="panel-heading">Danh sách phản hồi - </div>
+				<div class="panel-heading">Danh sách phản hồi - 返事のリスト</div>
 				<div class="panel-body">
 					<div class="table-responsive table-hover">
 						<table class="table">
 							<thead>
 								<tr>
-									<th class="sua">Người gửi - 
+									<th class="sua">Người gửi - 送信者
 									</th>
-									<th>Tiêu đề - 
+									<th>Tiêu đề - 表題
 									</th>
-									<th class="sua">Ngày gửi - 
+									<th class="sua">Ngày gửi - 送信日
 									</th>
 									<th class="sua"></th>
 									<th class="xoa"></th>
@@ -184,7 +184,7 @@
 								<button type="button" class="close" data-dismiss="modal">
 								</button>
 								<h4 class="modal-title" id="myModalLabel">
-									Khách hàng -  <label id="idTBSua"></label>
+									Khách hàng - お客様 <label id="idTBSua"></label>
 								</h4>
 							</div>
 							<div class="modal-body" id="noidungsua">
@@ -195,7 +195,7 @@
 								<button type="button" class="btn btn-default"
 									data-dismiss="modal">Hủy - 削除する</button>
 								<button type="submit" class="btn btn-primary" id="xong"
-									disabled="disabled">Gửi - </button>
+									disabled="disabled">Gửi - 送信</button>
 							</div>
 						</div>
 					</div>
@@ -210,10 +210,10 @@
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal">
 								</button>
-								<h4 class="modal-title" id="myModalLabel">Xóa dữ liệu liên hệ - </h4>
+								<h4 class="modal-title" id="myModalLabel">Xóa dữ liệu liên hệ - 連絡先のデータを削除する</h4>
 							</div>
 							<div class="modal-body">
-								Bạn thật sự muốn xóa phản hồi này - <label id="idQC"></label> ??? <input
+								Bạn thật sự muốn xóa phản hồi này - あなたはこの返事を本当に削除したいですか<label id="idQC"></label> ??? <input
 									type="hidden" name="id" id="idXoa">
 							</div>
 							<div class="modal-footer">

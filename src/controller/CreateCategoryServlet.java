@@ -151,7 +151,7 @@ public class CreateCategoryServlet extends HttpServlet {
 			/** Check exist */
 			if (createCategory.checkExist(category)) {
 				// Exist
-				request.setAttribute("error", "Danh mục đã tồn tại trong hệ thống - ");
+				request.setAttribute("error", "Danh mục đã tồn tại trong hệ thống - 項目は既にシステム上に存在される");
 				RequestDispatcher requestDis_error = request
 						.getRequestDispatcher("Error.jsp");
 				createCategory.closeConnection();
@@ -191,7 +191,7 @@ public class CreateCategoryServlet extends HttpServlet {
 			}
 
 		} else {
-			request.setAttribute("error", "Bạn phải nhập đầy đủ thông tin -");
+			request.setAttribute("error", "Bạn phải nhập đầy đủ thông tin - あなたの情報を全て入力しなかった.");
 			RequestDispatcher requestDis_error = request
 					.getRequestDispatcher("Error.jsp");
 			requestDis_error.forward(request, response);

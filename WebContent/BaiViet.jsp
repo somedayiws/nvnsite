@@ -301,7 +301,7 @@
 					%>
 					<div class="row">
 						<!-- danh sách các bài viết trong nhóm -->
-						<img alt="Ảnh đại diện" src="images/baiviet.jpg"
+						<img alt="Ảnh đại diện-プロファイルの画像" src="images/baiviet.jpg"
 							style="width: 20px;"> <a
 							href="Xem-bai-viet?id=<%=listbaiviet.get(i).getIdBaiViet()%>">
 							<%=listbaiviet.get(i).getTenBaiVietVi()==null?"":listbaiviet.get(i).getTenBaiVietVi()+"<br>"%>

@@ -28,9 +28,9 @@ public class HuyBaiDichServlet extends HttpServlet {
 		BaiVietBO bv = new BaiVietBO();
 		String id = request.getParameter("id");
 		if(bv.HuyBaiDich(id)){
-			request.setAttribute("KetQua", "Hủy bài dịch thành công");
+			request.setAttribute("KetQua", "Hủy bài dịch thành công - 翻訳の削除ができた.");
 		}else{
-			request.setAttribute("KetQua", "Hủy bài dịch không thành công");
+			request.setAttribute("KetQua", "Hủy bài dịch không thành công - 翻訳の削除ができなかった.");
 		}
 		bv.closeConnection();
 		request.getRequestDispatcher("KetQuaHuyDich.jsp").forward(request, response);

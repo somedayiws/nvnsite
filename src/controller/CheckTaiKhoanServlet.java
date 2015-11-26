@@ -26,7 +26,7 @@ public class CheckTaiKhoanServlet extends HttpServlet {
 		TaiKhoanBO tk = new TaiKhoanBO();
 		
 		if(tk.kiemTraTonTai(taikhoan)){
-			response.getWriter().print("<label id='loitk' class='error'>Tài khoản đã tồn tại!</label>");
+			response.getWriter().print("<label id='loitk' class='error'>Tài khoản đã tồn tại - アカウントが既に存在された.</label>");
 		}
 	}
 

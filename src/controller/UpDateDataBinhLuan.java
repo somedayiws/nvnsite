@@ -55,10 +55,10 @@ public class UpDateDataBinhLuan extends HttpServlet {
 				String tieude = "JPVN.NET - Bài viết " + id + " được chú ý";
 				String noidung = "Chào bạn " + bv1.getTaiKhoan().getHoTen();
 				noidung += "\nBài viết "+(bv1.getTenBaiVietVi()!=null && !bv1.getTenBaiVietVi().equals("") ?bv1.getTenBaiVietVi():"")+"    "+(bv1.getTenBaiVietJa()!=null && !bv1.getTenBaiVietJa().equals("") ?bv1.getTenBaiVietJa():"");
-				noidung += "\nĐã nhận được phản hồi từ các thành viên.\nVui lòng truy cập http://jpvn.net/Xem-bai-viet?id=" + id+" trên để biết thêm chi tiết.";
+				noidung += "\nĐã nhận được phản hồi từ các thành viên(他の会員から返事が届いた).\nVui lòng truy cập http://jpvn.net/Xem-bai-viet?id=" + id+" trên để biết thêm chi tiết.";
 				String noidungtb = "Chào bạn <strong>" + bv1.getTaiKhoan().getHoTen()+"</strong>";
 				noidungtb += "<br>Bài viết <strong>"+(bv1.getTenBaiVietVi()!=null && !bv1.getTenBaiVietVi().equals("") ?bv1.getTenBaiVietVi():"")+"    "+(bv1.getTenBaiVietJa()!=null && !bv1.getTenBaiVietJa().equals("") ?bv1.getTenBaiVietJa():"")+"</strong>";
-				noidungtb += "<br>Bạn vừa nhận được phản hồi từ các thành viên.<br>Vui lòng truy cập <a href='http://jpvn.net/Xem-bai-viet?id=" + id+"'>http://jpvn.net/Xem-bai-viet?id=" + id+"</a> để biết thêm chi tiết.";
+				noidungtb += "<br>Bạn vừa nhận được phản hồi từ các thành viên(他の会員から返事が届いた).<br>Vui lòng truy cập <a href='http://jpvn.net/Xem-bai-viet?id=" + id+"'>http://jpvn.net/Xem-bai-viet?id=" + id+"</a> để biết thêm chi tiết.";
 				tb.ThemThongBaoClient(tieude, noidungtb, bv1.getTaiKhoan().getIdTaiKhoan());
 				try {
 		            EmailUtility.sendEmail(host, port, user1, pass, email, tieude,noidung);

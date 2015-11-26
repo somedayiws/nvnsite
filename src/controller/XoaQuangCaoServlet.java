@@ -33,13 +33,13 @@ public class XoaQuangCaoServlet extends HttpServlet {
 		if(idQC!=null){
 			QuangCaoBO quangCaoBo = new QuangCaoBO();
 			if(quangCaoBo.xoaQuangCao(idQC)){
-				request.setAttribute("mes", "<div class='alert alert-success tbmeg' role='alert'>Xóa thành công.</div>");
+				request.setAttribute("mes", "<div class='alert alert-success tbmeg' role='alert'>Xóa thành công - 削除ができた.</div>");
 			}else{
-				request.setAttribute("mes", "<div class='alert alert-danger tbmeg' role='alert'>Xóa không thành công.</div>");
+				request.setAttribute("mes", "<div class='alert alert-danger tbmeg' role='alert'>Xóa không thành công - 削除ができない.</div>");
 			}
 			quangCaoBo.closeConnection();
 		}else{
-			request.setAttribute("mes", "<div class='alert alert-warning tbmeg' role='alert'>Bạn không có thẩm quyền cho thao tác này.</div>");
+			request.setAttribute("mes", "<div class='alert alert-warning tbmeg' role='alert'>Bạn không có thẩm quyền cho thao tác này - この操作はあなたの権威に与えない.</div>");
 		}
 		request.getRequestDispatcher("AdvertisementServlet").forward(request, response);
 	}

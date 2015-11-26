@@ -7,13 +7,13 @@ public class Validate {
 			String typeOfText) {
 		/** Empty text */
 		if ("".equals(text)) {
-			errorValidate = "Hãy nhập - 入力します  " + nameOfText;
+			errorValidate = "Hãy nhập[入力して下さい]  " + nameOfText;
 			return false;
 		}
 		/** text is lager permit character */
 		if (text.length() > maxlength) {			
-			errorValidate = nameOfText + " nhỏ hơn - より小さい " + maxlength
-					+ " ký tự - 文字";
+			errorValidate = nameOfText + " nhỏ hơn[より小さい] " + maxlength
+					+ " ký tự[文字].";
 			return false;
 		}
 		/** text is phone number */
@@ -39,7 +39,7 @@ public class Validate {
 //			String userOrpass = "\\w+";
 //			if(!text.matches(userOrpass))
 //			{
-//				errorValidate = nameOfText+" không hợp lệ - 無効";
+//				errorValidate = nameOfText+" không hợp lệ[無効]";
 //				return false;
 //			}
 //		}

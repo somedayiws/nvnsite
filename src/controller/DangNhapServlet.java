@@ -82,7 +82,7 @@ public class DangNhapServlet extends HttpServlet {
 						request.setAttribute("topmoi", topmoi);
 						request.setAttribute("list", list);
 						request.setAttribute("listdanhmuc", listdanhmuc);
-						request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Tên đăng nhập hoặc mật khẩu không chính xác.</p></div>");
+						request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Tên đăng nhập hoặc mật khẩu không chính xác.<br>アカウントもしくパスワードを正しく入力しません.</p></div>");
 						TaiNguyenBO tainguyenBO = new TaiNguyenBO();
 						
 						String ThongDiep = tainguyenBO.getValue("ThongDiep");
@@ -117,7 +117,7 @@ public class DangNhapServlet extends HttpServlet {
 					request.setAttribute("list", list);
 					request.setAttribute("listdanhmuc", listdanhmuc);
 					request.setAttribute("topbaiviet", topbaiviet);
-					request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Bạn chưa nhập tài khoản.</p></div>");
+					request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Bạn chưa nhập tài khoản - アカウントをまだ入力しない.</p></div>");
 					TaiNguyenBO tainguyenBO = new TaiNguyenBO();
 					
 					String ThongDiep = tainguyenBO.getValue("ThongDiep");
@@ -150,7 +150,7 @@ public class DangNhapServlet extends HttpServlet {
 				request.setAttribute("list", list);
 				request.setAttribute("listdanhmuc", listdanhmuc);
 				request.setAttribute("topbaiviet", topbaiviet);
-				request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Bạn chưa mật khẩu.</p></div>");
+				request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Bạn chưa mật khẩu - パスワードをまだ入力しない.</p></div>");
 				TaiNguyenBO tainguyenBO = new TaiNguyenBO();
 				
 				String ThongDiep = tainguyenBO.getValue("ThongDiep");

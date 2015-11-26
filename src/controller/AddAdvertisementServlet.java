@@ -118,9 +118,9 @@ public class AddAdvertisementServlet extends HttpServlet {
 			//Thêm dữ liệu vào hệ thống
 			QuangCaoBO qcBO = new QuangCaoBO();
 			if(qcBO.ThemQuangCao(company, dienthoai, email, link, page, position, numberOfDay, price, Image, display)){
-				request.setAttribute("mes", "<div class='alert alert-success tbmeg' role='alert'>Thêm thành công.</div>");
+				request.setAttribute("mes", "<div class='alert alert-success tbmeg' role='alert'>Thêm thành công - 付加を成功する.</div>");
 			}else{
-				request.setAttribute("mes", "<div class='alert alert-danger tbmeg' role='alert'>Thêm không thành công.</div>");
+				request.setAttribute("mes", "<div class='alert alert-danger tbmeg' role='alert'>Thêm không thành công - 付加を失敗する.</div>");
 			}
 			//Đóng database
 			qcBO.closeConnection();

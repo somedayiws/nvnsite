@@ -100,7 +100,7 @@
 			<div class="row">
 				<!-- danh sách các bài viết trong nhóm -->
 				<div class="col-xs-2 col-md-1">
-					<img alt="Ảnh đại diện" src="<%=listbaiviet.get(j).getLienKet()==null?"images/baiviet.jpg":listbaiviet.get(j).getLienKet()%>"
+					<img alt="Ảnh đại diện-プロファイルの画像" src="<%=listbaiviet.get(j).getLienKet()==null?"images/baiviet.jpg":listbaiviet.get(j).getLienKet()%>"
 						style="width: 70px;">
 				</div>
 				<div class="col-xs-10 col-md-11">

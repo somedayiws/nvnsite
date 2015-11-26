@@ -48,7 +48,7 @@ public class LoginServlet extends HttpServlet {
 		String remember_me = request.getParameter("remember-me");
 		String result=null;
 		if(username==null || password==null){
-			request.setAttribute("result", "Bạn chưa đăng nhập hệ thống!");
+			request.setAttribute("result", "Bạn chưa đăng nhập hệ thống!<br>システムをログインしなかった!");
 			RequestDispatcher requestDis = request.getRequestDispatcher("Login.jsp");
 			requestDis.forward(request, response);
 		}else{

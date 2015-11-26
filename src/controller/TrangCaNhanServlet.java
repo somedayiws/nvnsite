@@ -68,14 +68,14 @@ public class TrangCaNhanServlet extends HttpServlet {
 					TaiKhoanBO tk = new TaiKhoanBO();
 					tk.UpdateThongTin(user);
 					tk.closeConnection();
-					request.setAttribute("meg", "<div class='alert alert-success' role='alert'><p>Cập nhật thành công.</p></div>");
+					request.setAttribute("meg", "<div class='alert alert-success' role='alert'><p>Cập nhật thành công - 更新を成功する.</p></div>");
 				}
 				else 
 				{
-					request.setAttribute("meg", "<div class='alert alert-danger' role='alert'>Mã xác nhận không đúng.</div>");
+					request.setAttribute("meg", "<div class='alert alert-danger' role='alert'>Mã xác nhận không đúng - 確認コードが正しくありません.</div>");
 				}
 			}else{
-				request.setAttribute("meg", "<div class='alert alert-success' role='alert'><p>Chào bạn " + user.getHoTen() + ", Chúc bạn một ngày làm việc vui vẻ.</p></div>");
+				request.setAttribute("meg", "<div class='alert alert-success' role='alert'><p>Chào bạn " + user.getHoTen() + ", Chúc bạn một ngày làm việc vui vẻ.<br>ようこそ " + user.getHoTen() + ", 良い一日を迎えるように.</p></div>");
 			}
 			BaiVietBO bv = new BaiVietBO();
 			DanhMucBO danhmuc = new DanhMucBO();

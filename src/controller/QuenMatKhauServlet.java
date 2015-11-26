@@ -87,17 +87,17 @@ public class QuenMatKhauServlet extends HttpServlet {
 			if(tk != null){
 				String email = tk.getEmail();
 				tk.setMatKhau(RandomPassword.password());
-				String tieude = "JPVN.NET - Reset mật khẩu tài khoản";
-				String noidung = "Chào " + tk.getHoTen() + "\nĐây là thông tin tài khoản của bạn sau khi reset\n\nTài khoản : " 
-				+ tk.getTenTaiKhoan() + "\nMật khẩu : " + tk.getMatKhau() + "\nVui lòng đăng nhập sớm và cập nhật lại mật khẩu của bạn.\n\nCám ơn nhiều!";
+				String tieude = "JPVN.NET - Reset mật khẩu tài khoản[アカウントをのパスワードをリッセトして下さい]";
+				String noidung = "Chào(ようこそ) " + tk.getHoTen() + "\nĐây là thông tin tài khoản của bạn sau khi reset(リッセト後、こちらのアカウントはあなたのものです)\n\nTài khoản(アカウント) : " 
+				+ tk.getTenTaiKhoan() + "\nMật khẩu(パスワード) : " + tk.getMatKhau() + "\nVui lòng đăng nhập sớm và cập nhật lại mật khẩu của bạn(早めにログインし、パスワードを更新して下さい).\n\nCám ơn nhiều(誠にありがとうございます)!";
 				if(ctv.UpdateThongTin(tk)){
 					String resultMessage = "";
 					try {
 			            EmailUtility.sendEmail(host, port, user, pass, email, tieude,noidung);
-			            resultMessage = "<div class='alert alert-success' role='alert'><p>Đã reset mật khẩu xong. Vui lòng vào mail kiểm tra lại. Cám ơn!</p></div>";
+			            resultMessage = "<div class='alert alert-success' role='alert'><p>Đã reset mật khẩu xong. Vui lòng vào mail kiểm tra lại. Cám ơn!<br>パスワードが既にリセットされたため、あなたのメールを改めて確認して下さい。ありがとうございます.</p></div>";
 			        } catch (Exception ex) {
 			            ex.printStackTrace();
-			            resultMessage = "<div class='alert alert-danger' role='alert'><p>Tài khoản không tồn tại. Vui lòng kiểm tra lại.</p></div>";
+			            resultMessage = "<div class='alert alert-danger' role='alert'><p>Tài khoản không tồn tại. Vui lòng kiểm tra lại.<br>アカウントを存在しないため、改めて確認して下さい</p></div>";
 			        } finally {
 			            request.setAttribute("meg", resultMessage);
 			            tainguyenBO.closeConnection();
@@ -108,7 +108,7 @@ public class QuenMatKhauServlet extends HttpServlet {
 			            request.getRequestDispatcher("QuenMatKhau.jsp").forward(request, response);
 			        }
 				} else {
-					request.setAttribute("meg", "<div class='alert alert-warning' role='alert'><p>Lỗi hệ thống. Vui lòng Reset lại trang. Cám ơn!</p></div>");
+					request.setAttribute("meg", "<div class='alert alert-warning' role='alert'><p>Lỗi hệ thống. Vui lòng Reset lại trang. Cám ơn!<br>システムのエラーを発生するため、ホームページをリセットして下さい。ありがとうございます.</p></div>");
 					tainguyenBO.closeConnection();
 					danhmuc.closeConnection();
 		            baiviet.closeConnection();

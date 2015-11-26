@@ -127,7 +127,7 @@
 						<label>Hình ảnh - 画像</label> <input type="file" id="HinhAnh"
 							name="HinhAnh" onchange="xem(this);" />
 						<p class="help-block">
-							Chọn file .png, .jpg ...<br> <img alt="Ảnh đại diện" src=""
+							Chọn file .png, .jpg ...<br>png, .jpg ...のファイルを選択して下さい<br> <img alt="Ảnh đại diện" src=""
 								id="fu2">
 						</p>
 					</div>
@@ -204,7 +204,7 @@
 		var giaja = $("#giaja").val();
 		/* alert("Xem : " + value.length); */
 		$("#thongbaodich").html(
-				"Giá của bài dịch này là "
+				"Giá của bài dịch này là - この記事は翻訳された価格です"
 						+ Math.ceil(value.split(/[ .,?!]+/).length * giavn
 								/ donvi)
 						+ "VND("

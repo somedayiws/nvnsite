@@ -41,7 +41,7 @@
 	<!-- nội dung chính -->
 	<div class="col-sm-2 col-md-2">
 		<%@include file="files/thongke.jsp" %>
-		<strong id="tke"><i class="fa fa-info-circle"></i> Thông tin</strong><br>
+		<strong id="tke"><i class="fa fa-info-circle"></i> Thông tin - 情報</strong><br>
 		<div class="info">
 			<label> ID : <%= bviet.getIdBaiViet() %></label><br>
 			<label><i class="fa fa-file-text-o"></i> : <%= request.getAttribute("TinhTrang") %></label><br>
@@ -116,7 +116,7 @@
 		<div class="col-xs-12 col-sm-12 col-md-12 khungbinhluan">
 			<strong> Phản hồi bài dịch - 翻訳文書の返事  </strong>
 			<div class="row" id="listblviet">
-				<%= bviet.getGhiChu()==null ? "" : bviet.getGhiChu().replace("<strong>"+user.getIdTaiKhoan(), "<strong>Tôi") %>
+				<%= bviet.getGhiChu()==null ? "" : bviet.getGhiChu().replace("<strong>"+user.getIdTaiKhoan(), "<strong>Tôi[私]") %>
 			</div>
 			<div class="row">
 				<textarea rows="3" placeholder="Bình luận của bạn - あなたのコメントです" class="form-control" id="txtviet"></textarea>
@@ -180,10 +180,10 @@
 	function comentvi(id){
 		var txt = $("#txtviet").val();
 		if(txt != ""){
-			var htm = "<strong>Tôi</strong> <p>"+txt+"</p>";
+			var htm = "<strong>Tôi[私]</strong> <p>"+txt+"</p>";
 			$("#listblviet").append(htm);
 			$("#txtviet").val("");
-			updatedatavi(id, htm.replace("Tôi", $("#iduser").val()));
+			updatedatavi(id, htm.replace("Tôi[私]", $("#iduser").val()));
 		}else{
 			alert("Bạn chưa nhập bình luận của mình.\nコメントをまだ記入しない。");
 		}

@@ -184,10 +184,10 @@
 							<label>Hình ảnh - 画像</label> <input type="file" id="HinhAnh"
 								name="HinhAnh" onchange="xem(this);" />
 							<p class="help-block">
-								Chọn file .png, .jpg ...<br> <input type="hidden"
+								Chọn file .png, .jpg ...<br>png, .jpg ...のファイルを選択して下さい<br> <input type="hidden"
 									name="linkan" value="<%=baiviet.getLienKet()%>"> <img
-									alt="Ảnh đại diện" src="<%=baiviet.getLienKet()%>" id="fu1">
-								<img alt="Ảnh thay thế" src="" id="fu2">
+									alt="Ảnh đại diện-プロファイルの画像" src="<%=baiviet.getLienKet()%>" id="fu1">
+								<img alt="Ảnh thay thế-交換の画像" src="" id="fu2">
 							</p>
 						</div>
 						<input type="hidden" id="dichbai" name="dichbai" value="khong">
@@ -265,7 +265,7 @@
 		var giaja = $("#giaja").val();
 		/* alert("Xem : " + value.length); */
 		$("#thongbaodich").html(
-				"Giá của bài dịch này là "
+				"Giá của bài dịch này là - この記事は翻訳された価格です "
 						+ Math.ceil(value.split(/[ .,?!]+/).length * giavn
 								/ donvi)
 						+ "VND("

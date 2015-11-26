@@ -35,11 +35,11 @@ public class HienThiThongBaoServlet extends HttpServlet {
 		String hienthi = request.getParameter("hienthi");
 		
 		if(tb.SuaThongBao(id, hienthi)){
-			if(hienthi.equals("1")) request.setAttribute("meg", "<div class='alert alert-success' role='alert'>Hiển thị thông báo thành công.</div>");
-			else request.setAttribute("meg", "<div class='alert alert-success' role='alert'>Gỡ bỏ thông báo thành công.</div>");
+			if(hienthi.equals("1")) request.setAttribute("meg", "<div class='alert alert-success' role='alert'>Hiển thị thông báo thành công - 表示ができた.</div>");
+			else request.setAttribute("meg", "<div class='alert alert-success' role='alert'>Gỡ bỏ thông báo thành công - 削除ができた.</div>");
 		}else{
-			if(hienthi.equals("1")) request.setAttribute("meg", "<div class='alert alert-danger' role='alert'>Hiển thị thông báo thất bại.</div>");
-			else request.setAttribute("meg", "<div class='alert alert-danger' role='alert'>Gỡ bỏ thông báo thất bại.</div>");
+			if(hienthi.equals("1")) request.setAttribute("meg", "<div class='alert alert-danger' role='alert'>Hiển thị thông báo thất bại - お知らせの表示ができなかった.</div>");
+			else request.setAttribute("meg", "<div class='alert alert-danger' role='alert'>Gỡ bỏ thông báo thất bại - お知らせの削除ができなかった.</div>");
 		}
 		tb.closeConnection();
 		request.getRequestDispatcher("ThongBaoServlet").forward(request, response);

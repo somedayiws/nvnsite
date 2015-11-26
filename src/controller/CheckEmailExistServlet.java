@@ -26,7 +26,7 @@ public class CheckEmailExistServlet extends HttpServlet {
 		TaiKhoanBO tk = new TaiKhoanBO();
 		
 		if(tk.kiemTraTonTai(taikhoan)){
-			response.getWriter().print("<label id='loiem' class='error'>Email đã được sử dụng!</label>");
+			response.getWriter().print("<label id='loiem' class='error'>Email đã được sử dụng - メールが既に使用された.</label>");
 		}
 	}
 }

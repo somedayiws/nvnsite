@@ -10,17 +10,17 @@ public class ChangePassBO {
 	{
 		if(!re_password_new.equals(password_new))
 		{
-			error = "Mật khẩu lặp lại phải giống mật khẩu mới";
+			error = "Mật khẩu lặp lại phải giống mật khẩu mới - 再入力したパスワードは必ず新しいパスワードを一致しなければならない.";
 			return false;
 		}
 		else if(!Validate.check_text("Password", password_new, 50, "pass")|| !Validate.check_text("New Password", password_new, 50, "pass"))
 		{
-			error = "Dữ liệu không hợp lệ";
+			error = "Dữ liệu không hợp lệ.";
 			return false;
 		}
 		else if(password.equals(password_new))
 		{
-			error = "Mật khẩu mới phải khác mật khẩu cũ";
+			error = "Mật khẩu mới phải khác mật khẩu cũ - 新しいパスワードは古いパスワードを必ず異なる.";
 			return false;
 		}
 		else

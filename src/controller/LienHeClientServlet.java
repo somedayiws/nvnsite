@@ -120,7 +120,7 @@ public class LienHeClientServlet extends HttpServlet {
 				}
 				request.setAttribute(
 						"loi",
-						"<div class='alert alert-danger' role='alert'><p>Bạn chưa nhập đầy đủ thông tin.</p></div>");
+						"<div class='alert alert-danger' role='alert'><p>Bạn chưa nhập đầy đủ thông tin - あなたの情報を全て入力しなかった.</p></div>");
 				danhmuc.closeConnection();
 				baiviet.closeConnection();
 				thongBaoBO.closeConnection();

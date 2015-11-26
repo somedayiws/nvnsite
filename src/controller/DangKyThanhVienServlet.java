@@ -95,10 +95,10 @@ public class DangKyThanhVienServlet extends HttpServlet {
 			String email = request.getParameter("email");
 			String ngonngu = request.getParameter("ngonngu");
 			if(ngonngu==null) ngonngu = "vi";
-			if(taikhoan == null) request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Bạn chưa nhập đầy đủ thông tin.</p></div>");
-			if(matkhau == null) request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Bạn chưa nhập đầy đủ thông tin.</p></div>");
-			if(email == null) request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Bạn chưa nhập đầy đủ thông tin.</p></div>");
-			if(hoten == null) request.setAttribute("loi", "Bạn chưa nhập đầy <div class='alert alert-danger' role='alert'><p>Bạn chưa nhập đầy đủ thông tin.</p></div>");
+			if(taikhoan == null) request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Bạn chưa nhập đầy đủ thông tin - あなたの情報を全て入力しません.</p></div>");
+			if(matkhau == null) request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Bạn chưa nhập đầy đủ thông tin - あなたの情報を全て入力しません.</p></div>");
+			if(email == null) request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Bạn chưa nhập đầy đủ thông tin - あなたの情報を全て入力しません.</p></div>");
+			if(hoten == null) request.setAttribute("loi", "Bạn chưa nhập đầy <div class='alert alert-danger' role='alert'><p>Bạn chưa nhập đầy đủ thông tin - あなたの情報を全て入力しません.</p></div>");
 			TaiKhoanBO taiKhoanBO = new TaiKhoanBO();
 			if(!taiKhoanBO.chekOk(taikhoan, "")){
 				taiKhoanBO.addTaiKhoan(taikhoan, matkhau, hoten, diachi, dienthoai, email, ngonngu);
@@ -110,13 +110,13 @@ public class DangKyThanhVienServlet extends HttpServlet {
 				String port = context.getInitParameter("port");
 				String user = context.getInitParameter("user");
 				String pass = context.getInitParameter("pass");
-				String tieude = "JPVN.NET - Đăng ký tài khoản thành viên";
-				String noidung = "Chào mừng bạn đến với JPVN.NET.\nĐây là thông tin tài khoản của bạn:\n\nTài khoản : " 
-				+ taikhoan + "\nMật khẩu : " + matkhau;
+				String tieude = "JPVN.NET - Đăng ký tài khoản thành viên(会員の登録)";
+				String noidung = "Chào mừng bạn đến với JPVN.NET(JPVN.NETへようこそ).\nĐây là thông tin tài khoản của bạn(こちらはあなたのアカウントです):\n\nTài khoản(アカウント) : " 
+				+ taikhoan + "\nMật khẩu(パスワード) : " + matkhau;
 				
 				try {
 		            EmailUtility.sendEmail(host, port, user, pass, email, tieude,noidung);
-		            request.setAttribute("tbao", "<div class='alert alert-success' role='alert'><p>Đăng ký thành công.<br>Vui lòng đăng nhập tài khoản thành viên.</p></div>");
+		            request.setAttribute("tbao", "<div class='alert alert-success' role='alert'><p>Đăng ký thành công - 登録を成功した.<br>Vui lòng đăng nhập tài khoản thành viên - 会員のアカウントを改めて入力してください.</p></div>");
 		        } catch (Exception ex) {
 		        	System.out.println("Lỗi! gửi mail.");
 		        }
@@ -130,7 +130,7 @@ public class DangKyThanhVienServlet extends HttpServlet {
 				taiKhoanBO.closeConnection();
 				return;
 			}else{
-				request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Tài khoản đã tồn tại. Vui lòng chọn tài khoản khác để đăng ký. Cảm ơn!</p></div>");
+				request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Tài khoản đã tồn tại. Vui lòng chọn tài khoản khác để đăng ký. Cảm ơn!<br>アカウントを既に存在したため、新しいアカウントを作成して下さい。ありがとうございます!</p></div>");
 			}
 			danhmuc.closeConnection();
 			baiviet.closeConnection();

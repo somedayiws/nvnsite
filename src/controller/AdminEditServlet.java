@@ -76,12 +76,12 @@ public class AdminEditServlet extends HttpServlet {
 			if(adminEdit.updateAccount(account))
 			{
 				//Update success
-				resultSubmit = "Cập nhật thành công";
+				resultSubmit = "Cập nhật thành công - 更新を成功する.";
 			}
 			else
 			{
 				//Update fail
-				resultSubmit = "Cập nhật thất bại";
+				resultSubmit = "Cập nhật thất bại - 更新を失敗する";
 			
 			}
 			request.setAttribute("result", resultSubmit);

@@ -50,10 +50,10 @@ public class EmailSendingServlet extends HttpServlet {
         try {
             EmailUtility.sendEmail(host, port, user, pass, recipient, subject,
                     content);
-            resultMessage = "Email được gởi thành công";
+            resultMessage = "Email được gởi thành công - メールを送信できた.";
         } catch (Exception ex) {
             ex.printStackTrace();
-            resultMessage = "Lỗi: " + ex.getMessage();
+            resultMessage = "Lỗi(エラー): " + ex.getMessage();
         } finally {
             request.setAttribute("Message", resultMessage);
             getServletContext().getRequestDispatcher("/Result.jsp").forward(

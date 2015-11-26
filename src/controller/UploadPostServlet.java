@@ -114,8 +114,8 @@ public class UploadPostServlet extends HttpServlet {
 			request.setAttribute("resultOK", "Duyệt bài thành công - 記事が承認された");
 			//Add thông báo
 			ThongBaoBO tb = new ThongBaoBO();
-			String tieude = "Thông báo duyệt bài viết "+idPost;
-			String noidung = "Bài viết của bạn đã được xét duyệt thành công!<br>Xem chi tiết bài viết tại địa chỉ: <a href='http://jpvn.net/Xem-bai-viet?id="+idPost+"'>http://jpvn.net/Xem-bai-viet?id="+idPost+"</a>";
+			String tieude = "Thông báo duyệt bài viết[承認された記事のお知らせです] "+idPost;
+			String noidung = "Bài viết của bạn đã được xét duyệt thành công(あなたの記事が承認された)!<br>Xem chi tiết bài viết tại địa chỉ(次のアドレスに記事を詳しく参照して下さい): <a href='http://jpvn.net/Xem-bai-viet?id="+idPost+"'>http://jpvn.net/Xem-bai-viet?id="+idPost+"</a>";
 			String guiden = checkID.post(idPost).getTaiKhoan().getTenTaiKhoan();
 			System.out.println("Xuat thong bao duyet bai thanh cong");
 			tb.ThemThongBaoClient(tieude, noidung, guiden);

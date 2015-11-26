@@ -116,9 +116,9 @@ public class editAdvertisementServlet extends HttpServlet {
 			//Thêm dữ liệu vào hệ thống
 			QuangCaoBO qcBO = new QuangCaoBO();
 			if(qcBO.SuaQuangCao(id, company, dienthoai, email, link, page, position, numberOfDay, price, Image)){
-				request.setAttribute("mes", "<div class='alert alert-success tbmeg' role='alert'>Cập nhật thành công.</div>");
+				request.setAttribute("mes", "<div class='alert alert-success tbmeg' role='alert'>Cập nhật thành công - 更新を成功する.</div>");
 			}else{
-				request.setAttribute("mes", "<div class='alert alert-danger tbmeg' role='alert'>Cập nhật không thành công.</div>");
+				request.setAttribute("mes", "<div class='alert alert-danger tbmeg' role='alert'>Cập nhật không thành công - 更新を失敗する.</div>");
 			}
 			qcBO.closeConnection();
 			request.getRequestDispatcher("AdvertisementServlet").forward(request, response);

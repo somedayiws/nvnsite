@@ -47,9 +47,9 @@ public class RemoveCommentSetvlet extends HttpServlet {
 		CommentBO commentBo = new CommentBO();
 		String resultDeleteComment;
 		if(commentBo.deleteComent(id)){
-			resultDeleteComment = "Xóa bình luận thành công - ";
+			resultDeleteComment = "Xóa bình luận thành công - コメントを削除できた.";
 		}else{
-			resultDeleteComment = "Xóa bình luận thất bại - ";
+			resultDeleteComment = "Xóa bình luận thất bại - コメントをまだ削除できなかった.";
 		}
 		request.setAttribute("result", resultDeleteComment);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("Message.jsp");

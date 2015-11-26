@@ -139,7 +139,7 @@
 							<a href="Quen-mat-khau" style="color: rgb(23,96,147);"> Quên mật khẩu - パスワードを忘れた。 ?</a><br> 
 							<a href="Dang-ky"><i class="fa fa-user-plus"></i> Đăng ký - 登録する</a>
 							
-							<a href="<%=APIWrapper.getDialogLink() %>" id="loginfb"><i class="fa fa-facebook"></i> Đăng nhập bằng Facebook</a>
+							<a href="<%=APIWrapper.getDialogLink() %>" id="loginfb"><i class="fa fa-facebook"></i> Đăng nhập bằng Facebook - フェイスブックでロックインをする</a>
 							<a href="<%=GoogleAuth.getDialogLink() %>" id="logingg"><i class="fa fa-google-plus"></i> Đăng nhập bằng Google</a>
 						</div>
 						<div class="modal-footer">

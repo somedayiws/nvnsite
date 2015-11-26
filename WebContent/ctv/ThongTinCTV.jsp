@@ -14,7 +14,7 @@
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/jquery-2.1.0.min.js"></script>
 <script src="../js/jquery.lazyload.js"></script>
-<title>Trang cá nhân - </title>
+<title>Trang cá nhân - 個人のホームページ</title>
 <!--auto combobox -->
 <script src="../js/magicsuggest-min.js"></script>
 <link rel="stylesheet" href="css/CongtacvienStyle.css">

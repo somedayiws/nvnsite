@@ -61,14 +61,14 @@
 			<h3>Dịch nội dung bài viết sang - 転送された記事の内容です。
 			<%if(languagePost == "1"){ %><span class="label label-success">Tiếng việt - ベトナム語</span>
 			<%}else if(languagePost == "2") {%><span class="label label-success">Tiếng nhật - 日本語</span>
-			<%}else{ %><span class="label label-success">Song ngữ - 両方の言語</span> <%} %></h3>
+			<%}else{ %><span class="label label-success">Song ngữ - 双方の言語</span> <%} %></h3>
 		</div>
 		<div class="table-responsive">
 		<table class="table table-hover">
 				<thead>
 					<tr>
 						<th>ID</th>
-						<th>Tên cộng tác viên - </th>
+						<th>Tên cộng tác viên - 協力者の氏名</th>
 						<th>Email - メール</th>
 						<th>Ngôn ngữ - 言語</th>
 						<th></th>
@@ -86,7 +86,7 @@
 						<td><%=listAccountByStatus.get(i).getIdTaiKhoan() %></td>
 						<td><%=listAccountByStatus.get(i).getHoTen() %></td>
 						<td><%=listAccountByStatus.get(i).getEmail() %></td>
-						<td><%=listAccountByStatus.get(i).getNgonNgu().equals("vi")?"Việt -> Nhật":"Nhật -> Việt" %></td>
+						<td><%=listAccountByStatus.get(i).getNgonNgu().equals("vi")?"Việt[ベトナム] -> Nhật[日本]":"Nhật[日本] -> Việt[ベトナム]" %></td>
 						
 						
 						<td><button class="btn btn-primary" data-toggle="modal"
@@ -133,7 +133,7 @@
 						<td><%=listAccountCTV.get(i).getIdTaiKhoan() %></td>
 						<td><%=listAccountCTV.get(i).getHoTen() %></td>
 						<td><%=listAccountCTV.get(i).getEmail() %></td>
-						<td><%=listAccountCTV.get(i).getNgonNgu().equals("vi")?"Việt -> Nhật<br>ベトナム -> 日本":"Nhật -> Việt<br>日本  -> ベトナム" %></td>	
+						<td><%=listAccountCTV.get(i).getNgonNgu().equals("vi")?"Việt[ベトナム] -> Nhật[日本]":"Nhật[日本] -> Việt[ベトナム]" %></td>	
 						
 						<!-- Nếu ngôn ngữ bài viết là tiếng việt thì gợi ý ctv có ngôn ngữ là tiếng nhật nghĩa là không cho ctv có ngôn ngữ tiếng việt dịch
 							Nếu ngôn ngữ bài viết là tiếng nhật thì gợi ý ctv có ngôn ngữ là tiếng việt nghĩa là không cho ctv có ngôn ngữ tiếng nhật dịch

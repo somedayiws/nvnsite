@@ -46,13 +46,13 @@ public class CapNhatThongTinServlet extends HttpServlet {
 				user.setMatKhau(matkhau);
 				TaiKhoanBO tk = new TaiKhoanBO();
 				if(tk.UpdateThongTin(user))
-					request.setAttribute("meg", "<div class='alert alert-success' role='alert'>Cập nhật thành công.<br>ログインができた。</div>");
+					request.setAttribute("meg", "<div class='alert alert-success' role='alert'>Cập nhật thành công - 更新を成功する.</div>");
 				else
-					request.setAttribute("meg", "<div class='alert alert-danger' role='alert'>Cập nhật thất bại.<br>ログインがまだできない。</div>");
+					request.setAttribute("meg", "<div class='alert alert-danger' role='alert'>Cập nhật thất bại - 更新を失敗する.</div>");
 				tk.closeConnection();
 			}else{
 				request.setAttribute("meg", "<div class='alert alert-success' role='alert'><p>Chào bạn " + user.getHoTen() + ", Chúc bạn một ngày làm việc vui vẻ.</p>"
-						+ "<br><p>"+user.getHoTen()+" 様に良い日々を迎えるように</p></div>");
+						+ "<br>ようこそ <p>"+user.getHoTen()+" 良い一日を迎えるように.</p></div>");
 			}
 
 			BaiVietBO baiviet = new BaiVietBO();

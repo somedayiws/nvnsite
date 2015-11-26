@@ -43,7 +43,7 @@
 												$("#typeDifference").hide();
 												$('#typeDay').hide();
 											} else if (typeFind == "GimTrangChu") {
-												alert("Nhập số 1 để xem bài viết đã ghim. Nhập số 0 để xem bài viết chưa ghim");
+												alert("Nhập số 1 để xem bài viết đã ghim. Nhập số 0 để xem bài viết chưa ghim\n固定した記事を見るため、1を入力して下さい。固定しない記事を見るため、0を入力して下さい.");
 												$("#typeCategory").hide();
 												$("#typeDifference").show();
 												$('#typeAccount').hide();
@@ -81,14 +81,14 @@
 											if (typeFind == "GimTrangChu") {
 												if (stringFind != "1"
 														&& stringFind != "0") {
-													alert("Bạn phải nhập 1(xem bài viết đã ghim) hoặc 0(bài viết chưa ghim)");
+													alert("Bạn phải nhập 1(xem bài viết đã ghim) hoặc 0(bài viết chưa ghim)\n1を入力して下さい（記事を固定するため）、また0を入力して下さい（記事をまだ固定しない）");
 													return false;
 												}
 											}
 											if (typeFind == "NgayDang") {
 												var regDay = /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/;
 												if (!regDay.test(stringFindDay)) {
-													alert("Ngày đăng không hợp lệ. Ngày đăng có dạng MM/DD/YYYY");
+													alert("Ngày đăng không hợp lệ. Ngày đăng có dạng MM/DD/YYYY\n掲載した日程が無効です。掲載する日程のように日/月/年");
 													return false;
 												}
 											}

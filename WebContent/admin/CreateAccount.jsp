@@ -41,7 +41,7 @@
 						<div class="form-group">
 							<label>Số điện thoại - 電話番号<span class="rq"> * </span>
 							</label> <input type="text" class="form-control" name="phone">
-							<p class="help-block">Nhập số điện thoại mà bạn đang dùng<br></p>
+							<p class="help-block">Nhập số điện thoại mà bạn đang dùng<br>あなたは使われている電話番号を入力して下さい</p>
 						</div>
 						<div class="form-group">
 							<label>Email - メール<span class="rq"> * </span>

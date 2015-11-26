@@ -382,7 +382,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Danh mục được hiển thị - </h4>
+          <h4 class="modal-title">Danh mục được hiển thị - 表示された項目です</h4>
         </div>
         <div class="modal-body">
         <%	if(listCategoryShowed!=null){ %>
@@ -412,7 +412,7 @@
     		</table>
     		<%}else{ %>
     			<div class="alert alert-danger">
-  					<strong>Cảnh báo - 警告する。!</strong>Không có danh mục nào được hiển thị lên thanh menu
+  					<strong>Cảnh báo - 警告する。!</strong>Không có danh mục nào được hiển thị lên thanh menu - 項目はメニューにいずれも表示されていない
 				</div>
     		<%}} %>
         </div>
@@ -600,7 +600,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Danh mục được hiển thị</h4>
+          <h4 class="modal-title">Danh mục được hiển thị - 表示された項目です</h4>
         </div>
         <div class="modal-body">
         <%	if(listCategoryShowed!=null){ %>
@@ -622,7 +622,7 @@
 				        <td><%=listCategoryShowed.get(i).getTenDanhMucVi() %></td>
 				        <td><%=listCategoryShowed.get(i).getTenDanhMucJa() %></td>
 				        <td>
-				        	<a href="EditCategoryServlet?id=<%=listCategoryShowed.get(i).getIdDanhMuc()%>"><button class="btnChange btn btn-primary btn-sm" >Thay đổi</button></a>
+				        	<a href="EditCategoryServlet?id=<%=listCategoryShowed.get(i).getIdDanhMuc()%>"><button class="btnChange btn btn-primary btn-sm" >Thay đổi - 変更</button></a>
 				        </td>
 				      </tr>
 				  <%} %>

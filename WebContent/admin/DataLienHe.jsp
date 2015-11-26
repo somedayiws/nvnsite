@@ -30,6 +30,6 @@
 		maxlength="200">
 </div>
 <div class="form-group">
-	<label for="company"> Trả lời - </label>
+	<label for="company"> Trả lời - 返事</label>
 	<textarea rows="5" cols="10" name="traloi" class="form-control"></textarea>
 </div>

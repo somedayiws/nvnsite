@@ -53,7 +53,7 @@ function check_Image(){
 			return false;
 		} 
 		if ($.inArray(extension, ['png', 'gif', 'jpeg', 'jpg']) == -1) {
-		      alert("File ảnh không hợp lệ!");
+		      alert("File ảnh không hợp lệ - 写真のファイルが無効です!");
 		      return false;
 		 } 
 		return true;

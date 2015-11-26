@@ -56,25 +56,25 @@ public class ChangePassServlet extends HttpServlet {
 			if(changePassBo.checkPassExist(password_new)){
 				if(changePassBo.UpdatePass(password_new, username)){
 					RequestDispatcher dispatcher = request.getRequestDispatcher("EditProfileServlet");
-					request.setAttribute("result", "Cập nhật thành công - ログインができた。");
+					request.setAttribute("result", "Cập nhật thành công - 更新を成功する。");
 					changePassBo.closeConnection();
 					dispatcher.forward(request, response);
 				}
 				else{
-					request.setAttribute("error", "Cập nhật thất bại - ログインがまだできない。");
+					request.setAttribute("error", "Cập nhật thất bại - 更新を失敗する。");
 					RequestDispatcher dispatcher = request.getRequestDispatcher("Error.jsp");
 					changePassBo.closeConnection();
 					dispatcher.forward(request, response);
 				}
 			}
 			else{
-				request.setAttribute("error", "Mật khẩu không tồn tại trong hệ thống - ");
+				request.setAttribute("error", "Mật khẩu không tồn tại trong hệ thống - パスワードが既にシステム上に存在される.");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("Error.jsp");
 				changePassBo.closeConnection();
 				dispatcher.forward(request, response);
 			}
 		}else{
-			request.setAttribute("error", "Dữ liệu không hợp lệ");
+			request.setAttribute("error", "Dữ liệu không hợp lệ.");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("Error.jsp");
 			changePassBo.closeConnection();
 			dispatcher.forward(request, response);

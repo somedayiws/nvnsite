@@ -51,11 +51,11 @@ public class EditCategoryServlet extends HttpServlet {
 			//Có tồn tại
 			if(editCategory.changeShowed(idCategory)){
 				//thay đổi thành công
-				resultChangeShowed = "Thay đổi thành công";
+				resultChangeShowed = "Thay đổi thành công - 変更を成功した.";
 			}
 			else{
 				//thay đổi không thành công
-				resultChangeShowed = "Thay đổi không thành công";
+				resultChangeShowed = "Thay đổi không thành công - 変更を失敗した.";
 			}			
 			request.setAttribute("resultChangeShowed", resultChangeShowed);
 			RequestDispatcher requestDis = request.getRequestDispatcher("ListCategoryServlet");
@@ -63,7 +63,7 @@ public class EditCategoryServlet extends HttpServlet {
 			requestDis.forward(request, response);
 		}else{
 			//Không tồn tại			
-			request.setAttribute("resultChangeShowed", "ID danh mục không tồn tại trong hệ thống");
+			request.setAttribute("resultChangeShowed", "ID danh mục không tồn tại trong hệ thống - 項目IDはシステム上に存在しない.");
 			RequestDispatcher requestDis = request.getRequestDispatcher("Error.jsp");
 			editCategory.closeConnection();
 			requestDis.forward(request, response);
@@ -186,7 +186,7 @@ public class EditCategoryServlet extends HttpServlet {
 			//Valid
 			if(editCategory.checkExist(category)){
 				//Exist
-				request.setAttribute("error", "Danh mục đã tồn tại trong hệ thống");
+				request.setAttribute("error", "Danh mục đã tồn tại trong hệ thống - 項目は既にシステム上に存在される.");
 				RequestDispatcher requestDis_error = request.getRequestDispatcher("Error.jsp");
 				requestDis_error.forward(request, response);
 			}
@@ -208,7 +208,7 @@ public class EditCategoryServlet extends HttpServlet {
 		}else
 		{
 			//Invalid
-			request.setAttribute("error", "Bạn phải nhập tên danh mục tiếng việt và tiếng nhật");
+			request.setAttribute("error", "Bạn phải nhập tên danh mục tiếng việt và tiếng nhật.<br>ベトナム語また日本をどちらかに入力して下さい.");
 			RequestDispatcher requestDis_error = request.getRequestDispatcher("Error.jsp");
 			requestDis_error.forward(request, response);
 		}

@@ -86,7 +86,7 @@
 							<th>Email<br>メール</th>
 							<th>Tài khoản<br>ユーザー名</th>
 							<th>Ngôn ngữ<br>言語</th>
-							<th>Tổng số bài viết<br>.....</th>
+							<th>Tổng số bài viết<br>全ての記事</th>
 							<th>Bài đã dịch<br>翻訳された記事</th>		
 							<th>Bài đang dịch<br>翻訳中の記事</th>						
 							<th>Bài đã gởi<br>送信した記事</th>

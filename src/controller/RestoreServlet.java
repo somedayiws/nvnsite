@@ -62,16 +62,16 @@ public class RestoreServlet extends HttpServlet {
 		if (valueId != null) {
 			if (valueId.contains("TK")) {
 				if (restore.restore("IdTaiKhoan", valueId, "taikhoan")) {
-					result_Restore = "Phục hồi tài khoản thành công - ";
+					result_Restore = "Phục hồi tài khoản thành công - アカウントを回復できた.";
 				} else {
-					result_Restore = "Phục hồi tài khoản thất bại - ";
+					result_Restore = "Phục hồi tài khoản thất bại - アカウントをまだ回復できなかった.";
 				}
 			}
 			else if (valueId.contains("DM")) {
 				if (restore.restore("IdDanhMuc", valueId, "danhmuc")) {
-					result_Restore = "Phục hồi danh mục thành công - ";
+					result_Restore = "Phục hồi danh mục thành công - 項目を回復できた.";
 				} else {
-					result_Restore = "Phục hồi danh mục thất bại - ";
+					result_Restore = "Phục hồi danh mục thất bại - 項目をまだ回復できなかった.";
 				}
 			}
 			else if (valueId.contains("BV")) {

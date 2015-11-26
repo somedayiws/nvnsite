@@ -36,16 +36,16 @@ public class ThemThongBaoServlet extends HttpServlet {
 		String guiden = request.getParameter("GuiDen");
 		if(guiden.equals("DienDan")){
 			if(tb.ThemThongBao(tieude, noidung, guiden)){
-				request.setAttribute("meg", "<div class='alert alert-success' role='alert'>Thêm thông báo thành công.</div>");
+				request.setAttribute("meg", "<div class='alert alert-success' role='alert'>Thêm thông báo thành công - 知らせの付加ができた.</div>");
 			}else{
-				request.setAttribute("meg", "<div class='alert alert-danger' role='alert'>Thêm thông báo thất bại.</div>");
+				request.setAttribute("meg", "<div class='alert alert-danger' role='alert'>Thêm thông báo thất bại - 知らせの付加がまだできなかった.</div>");
 			}
 		}
 		else{
 			if(tb.ThemThongBaoClient(tieude, noidung, guiden)){
-				request.setAttribute("meg", "<div class='alert alert-success' role='alert'>Thêm thông báo thành công.</div>");
+				request.setAttribute("meg", "<div class='alert alert-success' role='alert'>Thêm thông báo thành công - 知らせの付加ができた.</div>");
 			}else{
-				request.setAttribute("meg", "<div class='alert alert-danger' role='alert'>Thêm thông báo thất bại.</div>");
+				request.setAttribute("meg", "<div class='alert alert-danger' role='alert'>Thêm thông báo thất bại - 知らせの付加がまだできなかった.</div>");
 			}
 		}
 		tb.closeConnection();

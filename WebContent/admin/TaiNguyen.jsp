@@ -89,7 +89,7 @@
 			enctype="multipart/form-data">
 			<!-- Chữ chạy -->
 			<div class="form-group" id="banggia">
-				<label class="nhan1"> Thông điệp từ diễn đàn - </label> 
+				<label class="nhan1"> Thông điệp từ diễn đàn - フォーラムからのメッセージ</label> 
 				<br>Nội dung - 内容: 
 				<input class="form-control" onchange="capnhatlai();"
 					value="<%=(String) request.getAttribute("ThongDiep") == null || ((String) request.getAttribute("ThongDiep")).trim().equals("") ? "" : (String) request.getAttribute("ThongDiep") %>"

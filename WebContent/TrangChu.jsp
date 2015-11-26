@@ -266,7 +266,7 @@
 						</span> <span><%=list.get(i).getTenDanhMucVi()%></span> - <%=list.get(i).getTenDanhMucJa()%></strong>
 						<a id="AllPosts"
 							href="Danh-sach-bai-viet?id=<%=list.get(i).getIdDanhMuc().trim()%>">
-							Xem tất cả <i class="fa fa-chevron-right"></i>
+							Xem tất cả-全て見る <i class="fa fa-chevron-right"></i>
 						</a>
 					</p>
 
@@ -331,7 +331,7 @@
 							<div class="row">
 								<!-- danh sách các bài viết trong nhóm -->
 								<div class="col-xs-2 col-md-1">
-									<img alt="Ảnh đại diện"
+									<img alt="Ảnh đại diện-プロファイルの画像"
 										src="<%=listbaiviet.get(j).getLienKet()==null?"images/baiviet.jpg":listbaiviet.get(j).getLienKet()%>"
 										style="width: 70px;">
 								</div>

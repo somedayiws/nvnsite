@@ -75,9 +75,9 @@ public class AdminCreatePostsServlet extends HttpServlet {
 			posts.setMoTaVi(DescriptionVi);
 			posts.setMoTaJa(DescriptionJa);
 			if(createposts.insertPosts(posts, idCategory, idAccount)){
-				resultSubmit = "Thêm thành công";
+				resultSubmit = "Thêm thành công(付加を成功する).";
 			}else{
-				resultSubmit = "Thêm thất bại";
+				resultSubmit = "Thêm thất bại(付加を失敗する).";
 				
 			}
 			request.setAttribute("resultSubmit", resultSubmit);

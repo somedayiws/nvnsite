@@ -91,7 +91,7 @@
 			</div>
 			<%}else{ %>
 				<div class="alert alert-danger">
-  					<strong>Lỗi - エラ!</strong> Không tìm thấy tài khoản admin này - 
+  					<strong>Lỗi - エラ!</strong> Không tìm thấy tài khoản admin này - 管理者のアカウントが見当たらない
 				</div>
 			<%} %>
 		</div>
@@ -185,16 +185,16 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Thay đổi mật khẩu</h4>
+        <h4 class="modal-title">Thay đổi mật khẩu - パスワードを変更して下さい</h4>
       </div>
       <div class="modal-body">
        		<form action="ChangePassServlet" method="post" id="formChangePass">
        			<div class="form-group">
-				  <label for="pwd">Mật khẩu cũ:</label>
+				  <label for="pwd">Mật khẩu cũ - 古いパスワード:</label>
 				  <input type="password" class="form-control" id="pwd" name="password">
 				</div>
        			<div class="form-group">
-				  <label for="pwdnew">Mật khẩu mới:</label>
+				  <label for="pwdnew">Mật khẩu mới - 新しいパスワード:</label>
 				  <input type="password" class="form-control" id="pwd_new" name="password_new">
 				</div>
        			<div class="form-group">

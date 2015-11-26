@@ -50,7 +50,7 @@ public class AdminForgotPasswordServlet extends HttpServlet {
 				String subject = "Cổng thông tin thương mại Nhật―Việt - 日越ビジネス情報の窓口 ";
 				String password = RandomPassword.password();
 				if(forgotPass.updateEmail(password, email)){
-					String body = "Khôi phục lại mật khẩu admin.Mật khẩu mới của bạn là: "+password+".Bạn nên thay đổi mật khẩu để dễ nhớ hơn";
+					String body = "Khôi phục lại mật khẩu admin.Mật khẩu mới của bạn là: "+password+".Bạn nên thay đổi mật khẩu để dễ nhớ hơn<br>管理者のパスワードを回復する。あなたの新たなパスワードは : " + password + ". 覚えやすいパスワードを変更するべく";
 					sendEmail.sendFromGMail(to, subject, body);
 					forgotPass.closeConnection();
 					response.sendRedirect("ShowloginAdmin");

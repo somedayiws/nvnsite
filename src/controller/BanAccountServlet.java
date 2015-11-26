@@ -92,17 +92,17 @@ public class BanAccountServlet extends HttpServlet {
 				ChangeStatusBO changeStatusBo = new ChangeStatusBO();
 				
 				if(changeStatusBo.changeStatusAccount(id, statusChange)){
-					resultChangeStatusAccount = "Thay đổi thành công";
+					resultChangeStatusAccount = "Thay đổi thành công - 変更を成功する.";
 				}
 				else{
-					resultChangeStatusAccount = "Lỗi thay đổi trạng thái";
+					resultChangeStatusAccount = "Lỗi thay đổi trạng thái - 状態の変更がエラーを発生する.";
 				}
 			}
 			else{
-				resultChangeStatusAccount = "Lỗi tài khoản này đã bị khóa.";
+				resultChangeStatusAccount = "Lỗi tài khoản này đã bị khóa - アカウントのエラーがロックされる.";
 			}
 		}else{
-			resultChangeStatusAccount = "Lỗi trạng thái không hợp lệ";
+			resultChangeStatusAccount = "Lỗi trạng thái không hợp lệ - エラー状態が無効です.";
 		}
 		request.setAttribute("result", statusChange);
 		request.setAttribute("notice", resultChangeStatusAccount);
