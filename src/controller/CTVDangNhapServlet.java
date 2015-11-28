@@ -29,7 +29,7 @@ public class CTVDangNhapServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		try{
-			request.getSession().removeAttribute("user");
+			request.getSession().removeAttribute("ctv");
 		}catch(Exception e){
 			System.out.println("Lỗi : Chưa có session");
 		}
@@ -46,7 +46,7 @@ public class CTVDangNhapServlet extends HttpServlet {
 						TAIKHOAN user = taikhoanBO.getTaiKhoan(username,
 								password);
 						// Tạo session lưu trữ phiên làm việc
-						request.getSession().setAttribute("user", user);
+						request.getSession().setAttribute("ctv", user);
 						// Điều hướng đến trang khác mà không cần gửi dữ liệu
 						taikhoanBO.closeConnection();
 						response.sendRedirect("Trang-chu");

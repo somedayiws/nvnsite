@@ -33,7 +33,7 @@ public class XuLyBaiVietServlet extends HttpServlet {
 		if(fruits != null)
 		{
 			BaiVietBO bviet = new BaiVietBO();
-			TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("user");
+			TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("ctv");
 			for(int i=0; i<fruits.length; i++)
 			{
 				if(submit.equals("gui")){

@@ -32,7 +32,7 @@ public class DanhSachBaiDichServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String view = request.getParameter("view");
 		
-		TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("user");
+		TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("ctv");
 		
 		if(user != null){
 			int page = 1;

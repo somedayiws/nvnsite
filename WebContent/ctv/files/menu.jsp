@@ -1,3 +1,4 @@
+<%@page import="model.bean.TAIKHOAN"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -28,10 +29,10 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="Cap-nhat-tai-khoan">Chào CTV <i class="fa fa-cogs"> </i></a>
+					data-toggle="dropdown" href="Cap-nhat-tai-khoan"> <%= ((TAIKHOAN)request.getSession().getAttribute("ctv")).getTenTaiKhoan() %> <i class="fa fa-cogs"> </i></a>
 					<ul class="dropdown-menu">
 						<li><a href="Cap-nhat-tai-khoan"><i class="fa fa-info-circle"></i> Trang cá nhân<br>個人ホーム </a></li>
-						<li><a href="../Dang-xuat"><i class="fa fa-sign-out"></i> Đăng xuất<br>ログアウト</a></li>
+						<li><a href="Dang-xuat"><i class="fa fa-sign-out"></i> Đăng xuất<br>ログアウト</a></li>
 					</ul></li>
 			</ul>
 		</div>

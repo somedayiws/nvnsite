@@ -37,14 +37,14 @@ public class DichBaiDichServlet extends HttpServlet {
 			if(submit==null){
 				bviet = baiviet.getBaiViet(id);
 				request.setAttribute("baiviet", bviet);
-				TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("user");
+				TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("ctv");
 				String info = baiviet.getInfo(id, user.getIdTaiKhoan());
 				request.setAttribute("TinhTrang", info.split(",")[0]);
 				request.setAttribute("NgayGui", info.split(",")[1]);
 				baiviet.closeConnection();
 				request.getRequestDispatcher("DichBai.jsp").forward(request, response);
 			}else{
-				TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("user");
+				TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("ctv");
 				String tieude =  request.getParameter("tieude");
 				String mota =  request.getParameter("mota");
 				String noidung =  request.getParameter("noidung");

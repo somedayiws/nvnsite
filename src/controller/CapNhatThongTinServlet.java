@@ -35,7 +35,7 @@ public class CapNhatThongTinServlet extends HttpServlet {
 		String dienthoai = request.getParameter("dienthoai");
 		String email = request.getParameter("email");
 		String matkhau = request.getParameter("matkhau");
-		TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("user");
+		TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("ctv");
 		if(user!=null){
 			if(taikhoan != null && matkhau != null){
 				user.setTenTaiKhoan(taikhoan);

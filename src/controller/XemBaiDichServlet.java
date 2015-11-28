@@ -34,7 +34,7 @@ public class XemBaiDichServlet extends HttpServlet {
 			BaiVietBO baiviet = new BaiVietBO();
 			BAIVIET bviet = null;
 			bviet = baiviet.getBaiViet(id);
-			TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("user");
+			TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("ctv");
 			String info = baiviet.getInfo(id, user.getIdTaiKhoan());
 			request.setAttribute("TinhTrang", info.split(",")[0]);
 			request.setAttribute("NgayGui", info.split(",")[1]);

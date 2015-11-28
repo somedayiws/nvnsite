@@ -30,7 +30,7 @@ public class TrangChuCTVServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
-		TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("user");
+		TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("ctv");
 		if(user == null){
 			request.setAttribute("meg", "");
 			request.getRequestDispatcher("TrangChuCTV.jsp").forward(request, response);

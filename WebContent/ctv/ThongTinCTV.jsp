@@ -45,7 +45,7 @@ input.error {
 	<%@include file="files/menu.jsp" %>
 	<!-- dữ liệu -->
 	<% 
-		TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("user");
+		TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("ctv");
 	%>
 	<!-- nội dung chính -->
 	<div class="col-sm-2 col-md-2">

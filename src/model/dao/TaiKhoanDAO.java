@@ -15,12 +15,10 @@ public class TaiKhoanDAO {
 		password = DinhDangSQL.FomatSQL(password);
 		String sql = "";
 		if (password.equals("")) {
-			sql = "select * from taikhoan where TenTaiKhoan=N'" + username
-					+ "' and QuyenQuanTri=N'user'";
+			sql = "select * from taikhoan where TenTaiKhoan=N'" + username + "'";
 		} else {
 			sql = "select * from taikhoan where TenTaiKhoan=N'" + username
-					+ "' and MatKhau=N'" + password
-					+ "' and QuyenQuanTri=N'user'";
+					+ "' and MatKhau=N'" + password + "'";
 		}
 		ResultSet rs = db.getResultSet(sql);
 		try {
@@ -41,23 +39,21 @@ public class TaiKhoanDAO {
 		String sql = "";
 		if (password.equals("")) {
 			if (x == 0)
-				sql = "select * from taikhoan where TenTaiKhoan=N'" + username
-						+ "' and QuyenQuanTri=N'user'";
+				sql = "select * from taikhoan where TenTaiKhoan=N'" + username + "'";
 			else if (x == 1)
 				sql = "select * from taikhoan where TenTaiKhoan=N'" + username
-						+ "' and QuyenQuanTri=N'ctv'";
+						+ "' and (QuyenQuanTri=N'ctv' or QuyenQuanTri=N'admin')";
 			else
 				sql = "select * from taikhoan where TenTaiKhoan=N'" + username
 						+ "' and QuyenQuanTri=N'admin'";
 		} else {
 			if (x == 0)
 				sql = "select * from taikhoan where TenTaiKhoan=N'" + username
-						+ "' and MatKhau=N'" + password
-						+ "' and QuyenQuanTri=N'user'";
+						+ "' and MatKhau=N'" + password +"'";
 			else if (x == 1)
 				sql = "select * from taikhoan where TenTaiKhoan=N'" + username
 						+ "' and MatKhau=N'" + password
-						+ "' and QuyenQuanTri=N'ctv'";
+						+ "' and (QuyenQuanTri=N'ctv' or QuyenQuanTri=N'admin')";
 			else
 				sql = "select * from taikhoan where TenTaiKhoan=N'" + username
 						+ "' and QuyenQuanTri=N'admin'";

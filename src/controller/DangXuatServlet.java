@@ -23,19 +23,12 @@ public class DangXuatServlet extends HttpServlet {
 		doPost(request, response);
 	}
 
+	@SuppressWarnings("unused")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("user");
 		request.getSession().invalidate();
-		if(user.getQuyenQuanTri().equals("admin")){
-			response.sendRedirect("admin/Login.jsp");
-		}else if(user.getQuyenQuanTri().equals("ctv")){
-			response.sendRedirect("ctv/Dang-nhap");
-		}else {
-			response.sendRedirect("Trang-chu");
-		}
-		
+		response.sendRedirect("Trang-chu");
 	}
-
 }

@@ -218,7 +218,7 @@
 	}
 	
 </script>
-<!-- Hien an tuy chon -->
+<!-- Hiện ẩn tùy chọn -->
 <script type="text/javascript">
 	var giatritruoc = "";
 	function hienan() {

@@ -33,7 +33,7 @@
 	<%@include file="files/menu.jsp" %>
 	<!-- lấy dữ liệu -->
 	<%
-		TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("user");
+		TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("ctv");
 		ArrayList<BAIVIET> list = (ArrayList<BAIVIET>)request.getAttribute("listbaiviet");
 		String tbao = request.getParameter("xuly");
 		if(tbao!=null && tbao.equals("luu-thanhcong")) tbao = "<div class='alert alert-success' role='alert'>Lưu bài dịch thành công.<br>翻訳の記事が保存できた。</div>";

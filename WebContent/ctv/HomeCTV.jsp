@@ -33,7 +33,7 @@
 	<%@include file="files/menu.jsp" %>
 	<!-- lấy dữ liệu -->
 	<%
-		TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("user");
+		TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("ctv");
 		ArrayList<BAIVIET> listmoi = (ArrayList<BAIVIET>)request.getAttribute("listmoi");
 		ArrayList<BAIVIET> listtre = (ArrayList<BAIVIET>)request.getAttribute("listtre");
 	%>

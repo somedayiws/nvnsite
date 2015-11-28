@@ -535,7 +535,7 @@ public class BaiVietDAO {
 	 */
 	public ArrayList<BAIVIET> getListBaiViet(String id, int page) {
 		// TODO Auto-generated method stub
-		String sql = "select IdBaiViet, TenBaiVietVi, TenBaiVietJa, LuotXem, NgayDang, TrangThai, Lienket from baiviet where IdTaiKhoan=N'"+id+"'  order by IdBaiViet desc";
+		String sql = "select IdBaiViet, TenBaiVietVi, TenBaiVietJa, LuotXem, NgayDang, TrangThai, CoXoa, Lienket from baiviet where IdTaiKhoan=N'"+id+"'  order by IdBaiViet desc";
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		db.createMenu("Trang-ca-nhan?", page, sql);
 		ResultSet rs = db.getResultSet(sql+ " limit " + (page-1)*db.getNBangGhi() +","+ db.getNBangGhi());
@@ -549,14 +549,18 @@ public class BaiVietDAO {
 				bv.setLuotXem(rs.getInt("LuotXem"));
 				bv.setNgayDang(sdf.format(rs.getDate("NgayDang")));
 				String trangthai = DinhDangSQL.DeFomatSQL(rs.getString("TrangThai"));
-				if(trangthai.equals("OK"))
-					bv.setTrangThai("Đã đăng<br>既設");
-				else if(trangthai.equals("MoiDang")||trangthai.equals("DangDich")||trangthai.equals("KhongDich"))
-					bv.setTrangThai("Đang duyệt<br>バロース");
-				else if(trangthai.equals("SoanThao"))
-					bv.setTrangThai("Soạn thảo<br>開発中");
-				else
+				if(rs.getInt("CoXoa")==0){
+					if(trangthai.equals("OK"))
+						bv.setTrangThai("Đã đăng<br>既設");
+					else if(trangthai.equals("MoiDang")||trangthai.equals("DangDich")||trangthai.equals("KhongDich"))
+						bv.setTrangThai("Đang duyệt<br>バロース");
+					else if(trangthai.equals("SoanThao"))
+						bv.setTrangThai("Soạn thảo<br>開発中");
+					else
+						bv.setTrangThai("Bị hủy<br>破壊的");
+				} else {
 					bv.setTrangThai("Bị hủy<br>破壊的");
+				}
 				bv.setLienKet(DinhDangSQL.DeFomatSQL(rs.getString("Lienket")));
 				list.add(bv);
 			}
