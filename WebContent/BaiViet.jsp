@@ -20,7 +20,9 @@
 		if(baiviet.getTenBaiVietVi() != null && !baiviet.getTenBaiVietVi().equals("") && baiviet.getTenBaiVietJa() != null && !baiviet.getTenBaiVietJa().equals("") ) {
 			titleStr += "<br>";
 			titleStr += baiviet.getTenBaiVietJa();
-		}else {
+		}else if(baiviet.getTenBaiVietJa() != null && !baiviet.getTenBaiVietJa().equals(""))
+		
+		{
 			titleStr += baiviet.getTenBaiVietJa();
 		}
 	%>
