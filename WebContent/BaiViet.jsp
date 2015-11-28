@@ -20,6 +20,8 @@
 		if(baiviet.getTenBaiVietVi() != null && !baiviet.getTenBaiVietVi().equals("") && baiviet.getTenBaiVietJa() != null && !baiviet.getTenBaiVietJa().equals("") ) {
 			titleStr += "<br>";
 			titleStr += baiviet.getTenBaiVietJa();
+		}else {
+			titleStr += baiviet.getTenBaiVietJa();
 		}
 	%>
 
@@ -336,8 +338,8 @@
 						<img alt="Ảnh đại diện-プロファイルの画像" src="images/baiviet.jpg"
 							style="width: 20px;"> <a
 							href="Xem-bai-viet?id=<%=listbaiviet.get(i).getIdBaiViet()%>">
-							<%=listbaiviet.get(i).getTenBaiVietVi()==null?"":listbaiviet.get(i).getTenBaiVietVi()+"<br>"%>
-							<%=listbaiviet.get(i).getTenBaiVietJa()==null?"":listbaiviet.get(i).getTenBaiVietJa()%></a>
+							<%=listbaiviet.get(i).getTenBaiVietVi()==null || listbaiviet.get(i).getTenBaiVietVi()==""?"":listbaiviet.get(i).getTenBaiVietVi()+"<br>"%>
+							<%=listbaiviet.get(i).getTenBaiVietJa()==null || listbaiviet.get(i).getTenBaiVietJa()==""?"":listbaiviet.get(i).getTenBaiVietJa()%></a>
 					</div>
 					<%
 						i++; }

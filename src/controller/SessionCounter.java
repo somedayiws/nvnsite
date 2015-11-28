@@ -11,7 +11,7 @@ public class SessionCounter implements HttpSessionListener {
 
 	@SuppressWarnings("rawtypes")
 	private List sessions = new ArrayList();
-	private int view = 3858;
+	private int view = 4584;
 
 	public SessionCounter() {}
 

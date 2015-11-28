@@ -52,8 +52,8 @@
 				%>
 				<li><a
 					href="Xem-bai-viet?id=<%=topmoi.get(l).getIdBaiViet()%>"><i
-						class="fa fa-thumbs-o-up"></i> <%=topmoi.get(l).getTenBaiVietVi() == null ? "" : topmoi
-						.get(l).getTenBaiVietVi() + "<br>"%> <%=topmoi.get(l).getTenBaiVietJa() == null ? "" : topmoi
+						class="fa fa-thumbs-o-up"></i> <%=topmoi.get(l).getTenBaiVietVi() == null || topmoi.get(l).getTenBaiVietVi() == "" ? "" : topmoi
+						.get(l).getTenBaiVietVi() + "<br>"%> <%=topmoi.get(l).getTenBaiVietJa() == null || topmoi.get(l).getTenBaiVietJa() == ""? "" : topmoi
 						.get(l).getTenBaiVietJa()%></a></li>
 				<%
 					l++;

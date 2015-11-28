@@ -161,9 +161,9 @@
 						<a href="Xem-bai-viet?id=<%=slidePosts.get(i).getIdBaiViet()%>"
 							class="show"> <img src="<%=slidePosts.get(i).getLienKet()%>"
 							alt="<%=slidePosts.get(i).getTenBaiVietVi()%>" title="" alt=""
-							rel="<h3><%=slidePosts.get(i).getTenBaiVietVi()==null?"":slidePosts.get(i).getTenBaiVietVi()%> </br> <%=slidePosts.get(i).getTenBaiVietJa()==null?"":slidePosts.get(i).getTenBaiVietJa()%></h3>
-							<%=slidePosts.get(i).getMoTaVi()!=null ? (slidePosts.get(i).getMoTaVi().length()>90 ? (slidePosts.get(i).getMoTaVi().substring(0, 90)+"..."): slidePosts.get(i).getMoTaVi()):""%> 
-							</br><%=slidePosts.get(i).getMoTaJa() !=null ? (slidePosts.get(i).getMoTaJa().length()>90 ? (slidePosts.get(i).getMoTaJa().substring(0, 90)+"..."): slidePosts.get(i).getMoTaJa()): ""%>" />
+							rel="<h3><%=slidePosts.get(i).getTenBaiVietVi()==null||slidePosts.get(i).getTenBaiVietVi()==""?"":slidePosts.get(i).getTenBaiVietVi()%> </br> <%=slidePosts.get(i).getTenBaiVietJa()==null||slidePosts.get(i).getTenBaiVietJa()==""?"":slidePosts.get(i).getTenBaiVietJa()%></h3>
+							<%=slidePosts.get(i).getMoTaVi()!=null && slidePosts.get(i).getMoTaVi()!=""? (slidePosts.get(i).getMoTaVi().length()>90 ? (slidePosts.get(i).getMoTaVi().substring(0, 90)+"..."): slidePosts.get(i).getMoTaVi()):""%> 
+							</br><%=slidePosts.get(i).getMoTaJa() !=null && slidePosts.get(i).getMoTaJa() != "" ? (slidePosts.get(i).getMoTaJa().length()>90 ? (slidePosts.get(i).getMoTaJa().substring(0, 90)+"..."): slidePosts.get(i).getMoTaJa()): ""%>" />
 						</a>
 						<%
 							i++; }
@@ -182,8 +182,8 @@
 								<a
 									href="Xem-bai-viet?id=<%=slidePosts.get(i).getIdBaiViet()%>">
 									<img src="<%=slidePosts.get(i).getLienKet()%>"> <strong>
-										<%=slidePosts.get(i).getTenBaiVietVi()!=null ? (slidePosts.get(i).getTenBaiVietVi().length()>90 ? (slidePosts.get(i).getTenBaiVietVi().substring(0, 90)+"..."): slidePosts.get(i).getTenBaiVietVi()):""%>
-										</br> <%=slidePosts.get(i).getTenBaiVietJa() !=null ? (slidePosts.get(i).getTenBaiVietJa().length()>90 ? (slidePosts.get(i).getTenBaiVietJa().substring(0, 90)+"..."): slidePosts.get(i).getTenBaiVietJa()): ""%></strong>
+										<%=slidePosts.get(i).getTenBaiVietVi()!=null && slidePosts.get(i).getTenBaiVietVi()!="" ? (slidePosts.get(i).getTenBaiVietVi().length()>90 ? (slidePosts.get(i).getTenBaiVietVi().substring(0, 90)+"..."): slidePosts.get(i).getTenBaiVietVi()):""%>
+										</br> <%=slidePosts.get(i).getTenBaiVietJa() !=null && slidePosts.get(i).getTenBaiVietJa() !=""? (slidePosts.get(i).getTenBaiVietJa().length()>90 ? (slidePosts.get(i).getTenBaiVietJa().substring(0, 90)+"..."): slidePosts.get(i).getTenBaiVietJa()): ""%></strong>
 								</a>
 							</div>
 						</div>
@@ -208,9 +208,9 @@
 							%>
 							<li><a
 								href="Xem-bai-viet?id=<%=hotPosts.get(i).getIdBaiViet()%>"><i
-									class="fa fa-angle-double-right"></i> <%=hotPosts.get(i).getTenBaiVietVi()==null?"":hotPosts.get(i).getTenBaiVietVi()%>
-									<%=(hotPosts.get(i).getTenBaiVietVi()!=null && hotPosts.get(i).getTenBaiVietJa()!=null)?"<br>":""%>
-									<%=hotPosts.get(i).getTenBaiVietJa()==null?"":hotPosts.get(i).getTenBaiVietJa()%>
+									class="fa fa-angle-double-right"></i> <%=hotPosts.get(i).getTenBaiVietVi()==null || hotPosts.get(i).getTenBaiVietVi()==""?"":hotPosts.get(i).getTenBaiVietVi()%>
+									<%=(hotPosts.get(i).getTenBaiVietVi()!=null && hotPosts.get(i).getTenBaiVietVi()!="" && hotPosts.get(i).getTenBaiVietJa()!=null && hotPosts.get(i).getTenBaiVietJa()!="")?"<br>":""%>
+									<%=hotPosts.get(i).getTenBaiVietJa()==null || hotPosts.get(i).getTenBaiVietJa()==""?"":hotPosts.get(i).getTenBaiVietJa()%>
 							</a></li>
 							<%
 								i++; }
@@ -338,8 +338,8 @@
 								<div class="col-xs-10 col-md-11">
 									<a
 										href="Xem-bai-viet?id=<%=listbaiviet.get(j).getIdBaiViet()%>">
-										<%=listbaiviet.get(j).getTenBaiVietVi()==null?"":listbaiviet.get(j).getTenBaiVietVi()%>
-										<%=listbaiviet.get(j).getTenBaiVietJa()==null?"":"<br>"+listbaiviet.get(j).getTenBaiVietJa()%>
+										<%=listbaiviet.get(j).getTenBaiVietVi()==null || listbaiviet.get(j).getTenBaiVietVi()==""?"":listbaiviet.get(j).getTenBaiVietVi()%>
+										<%=listbaiviet.get(j).getTenBaiVietJa()==null || listbaiviet.get(j).getTenBaiVietJa()==""?"":"<br>"+listbaiviet.get(j).getTenBaiVietJa()%>
 									</a>
 								</div>
 							</div>
