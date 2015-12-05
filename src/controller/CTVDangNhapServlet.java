@@ -43,32 +43,45 @@ public class CTVDangNhapServlet extends HttpServlet {
 			if (kiemtra.check(username, "")) {
 				if (kiemtra.check(password, "")) {
 					if (taikhoanBO.chekOk(username, password, 1)) {
-						TAIKHOAN user = taikhoanBO.getTaiKhoan(username,
-								password);
-						// Tạo session lưu trữ phiên làm việc
-						request.getSession().setAttribute("ctv", user);
-						// Điều hướng đến trang khác mà không cần gửi dữ liệu
-						taikhoanBO.closeConnection();
-						response.sendRedirect("Trang-chu");
+						TAIKHOAN ctv = taikhoanBO.getTaiKhoan(username, password);
+						if(ctv!=null) {
+							System.out.println("Tạo session");
+							// Tạo session lưu trữ phiên làm việc
+							request.getSession().setAttribute("ctv", ctv);
+							// Điều hướng đến trang khác mà không cần gửi dữ liệu
+							taikhoanBO.closeConnection();
+							response.sendRedirect("Trang-chu");
+							return;
+						} else {
+							System.out.println("Tài khoản đã bị xóa");
+							request.setAttribute("meg", "Tên đăng nhập hoặc mật khẩu không chính xác!<br>ユーザー名またログインが不正確です。");
+							taikhoanBO.closeConnection();
+							request.getRequestDispatcher("TrangChuCTV.jsp").forward(request, response);
+							return;
+						}
 					} else {
 						request.setAttribute("meg", "Tên đăng nhập hoặc mật khẩu không chính xác!<br>ユーザー名またログインが不正確です。");
 						taikhoanBO.closeConnection();
 						request.getRequestDispatcher("TrangChuCTV.jsp").forward(request, response);
+						return;
 					}
 				} else {
 					request.setAttribute("meg", "Không thể để trống trường mật khẩu!<br>パスワードをすべて書き込んでください。");
 					taikhoanBO.closeConnection();
 					request.getRequestDispatcher("TrangChuCTV.jsp").forward(request, response);
+					return;
 				}
 			} else {
 				request.setAttribute("meg", "Không thể để trống trường tài khoản!<br>アカウントをすべて書き込んでください。");
 				taikhoanBO.closeConnection();
 				request.getRequestDispatcher("TrangChuCTV.jsp").forward(request, response);
+				return;
 			}
 		} else {
 			request.setAttribute("meg", "");
 			taikhoanBO.closeConnection();
 			request.getRequestDispatcher("TrangChuCTV.jsp").forward(request, response);
+			return;
 		}
 	}
 

@@ -223,7 +223,7 @@ public class TaiKhoanDAO {
 					+ username + "'");
 		} else {
 			rs = db.getResultSet("select * from taikhoan where TenTaiKhoan=N'"
-					+ username + "' and MatKhau=N'" + password + "'");
+					+ username + "' and MatKhau=N'" + password + "' and CoXoa=0");
 		}
 		TAIKHOAN taikhoan = null;
 		try {

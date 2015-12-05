@@ -15,6 +15,9 @@ public class BaiVietBO {
 	public BAIVIET getBaiViet(String id) {
 		return baiviet.getBaiViet(id);
 	}
+	public BAIVIET getBaiViet(String id, int coxoa) {
+		return baiviet.getBaiViet(id, coxoa);
+	}
 	/*
 	 * Lấy danh sách top bài viết từ vị trí nào đó trở đi
 	 * return ArrayList<BAIVIET>/null

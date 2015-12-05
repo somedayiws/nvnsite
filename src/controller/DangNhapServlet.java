@@ -49,14 +49,19 @@ public class DangNhapServlet extends HttpServlet {
 			if (kiemtra.check(username, "")) {
 				if (kiemtra.check(password, "")) {
 					if (taikhoanBO.chekOk(username, password)) {
-						TAIKHOAN user = taikhoanBO.getTaiKhoan(username,
-								password);
-						// Tạo session lưu trữ phiên làm việc
-						request.getSession().setAttribute("user", user);
-						request.getSession().setAttribute("CKFinder_UserRole", user.getQuyenQuanTri());
-						// Điều hướng đến trang khác mà không cần gửi dữ liệu
-						taikhoanBO.closeConnection();
-						response.sendRedirect("Trang-ca-nhan");
+						TAIKHOAN user = taikhoanBO.getTaiKhoan(username, password);
+						if(user!=null) {
+							// Tạo session lưu trữ phiên làm việc
+							request.getSession().setAttribute("user", user);
+							request.getSession().setAttribute("CKFinder_UserRole", user.getQuyenQuanTri());
+							// Điều hướng đến trang khác mà không cần gửi dữ liệu
+							taikhoanBO.closeConnection();
+							response.sendRedirect("Trang-ca-nhan");
+							return;
+						} else {
+							response.sendRedirect("Trang-chu");
+							return;
+						}
 					} else {
 						String txtFind = (String)request.getAttribute("txtFind");
 						if(txtFind == null) txtFind="";

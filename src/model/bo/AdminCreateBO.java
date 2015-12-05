@@ -53,6 +53,14 @@ public class AdminCreateBO {
 		}	
 	}
 	
+	public boolean checkStatusAcc(String email){
+		if(adminCreate.checkStatusAcc(email)) {
+			error = "Tài khoản đã bị khóa - アカウントのエラーがロックされる。";
+			return true;
+		}
+		return false;
+	}
+	
 	/**Get id Account last and auto incerase it*/
 	public String id_Account_after_increase()
 	{

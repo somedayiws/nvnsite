@@ -1,7 +1,6 @@
 package controller;
 
 import java.awt.image.BufferedImage;
-import java.awt.image.ColorConvertOp;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -68,7 +67,7 @@ public class CapNhatBaiVietServlet extends HttpServlet {
 					BaiVietBO baiviet = new BaiVietBO();
 					ArrayList<DANHMUC> listdanhmuc = danhmuc.getDanhSachDanhMuc("");
 					ArrayList<BAIVIET> topmoi = baiviet.getTopBaiViet("Moi");
-					BAIVIET bv = baiviet.getBaiViet(id);
+					BAIVIET bv = baiviet.getBaiViet(id, 1);
 					TaiNguyenBO tainguyenBO = new TaiNguyenBO();
 					String sotu = tainguyenBO.getValue("SoTuDich");
 					String giaVN = tainguyenBO.getValue("ThanhTienVN");

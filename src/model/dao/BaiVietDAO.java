@@ -1,4 +1,4 @@
-package model.dao;
+﻿package model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -53,6 +53,44 @@ public class BaiVietDAO {
 		}
 		return bv;
 	}
+	
+	public BAIVIET getBaiViet(String id, int coxoa) {
+		// TODO Auto-generated method stub
+		id = DinhDangSQL.FomatSQL(id);
+		ResultSet rs = db.getResultSet("select IdBaiViet,TenBaiVietVi, TenBaiVietJa, MoTaVi, MoTaJa, danhmuc.IdDanhMuc, TenDanhMucVi, TenDanhMucJa, HienThi, taikhoan.IdTaiKhoan, TenTaiKhoan, MatKhau, HoTen, DiaChi, DienThoai, Email, QuyenQuanTri, NoiDungVi, NoiDungJa, TrangThai, GhiChu, LienKet, NgayDang, taikhoan.HoTen, LuotXem from baiviet inner join danhmuc on baiviet.IdDanhMuc=danhmuc.IdDanhMuc inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan where IdBaiViet='"+id+"' ");
+		BAIVIET bv = null;
+		BinhLuanDAO bl = new BinhLuanDAO();
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+		try {
+			if(rs.next()){
+				bv = new BAIVIET();
+				bv.setIdBaiViet(DinhDangSQL.DeFomatSQL(id));
+				bv.setTenBaiVietVi(DinhDangSQL.DeFomatSQL(rs.getString("TenBaiVietVi")));
+				bv.setTenBaiVietJa(DinhDangSQL.DeFomatSQL(rs.getString("TenBaiVietJa")));
+				bv.setMoTaVi(DinhDangSQL.DeFomatSQL(rs.getString("MoTaVi")));
+				bv.setMoTaJa(DinhDangSQL.DeFomatSQL(rs.getString("MoTaJa")));
+				bv.setDanhMuc(new DANHMUC(DinhDangSQL.DeFomatSQL(rs.getString("IdDanhMuc")), DinhDangSQL.DeFomatSQL(rs.getString("TenDanhMucVi")), DinhDangSQL.DeFomatSQL(rs.getString("TenDanhMucJa")), rs.getInt("HienThi")));
+				bv.setTaiKhoan( new TAIKHOAN(DinhDangSQL.DeFomatSQL(rs.getString("IdTaiKhoan")), DinhDangSQL.DeFomatSQL(rs.getString("TenTaiKhoan")), DinhDangSQL.DeFomatSQL(rs.getString("MatKhau")), DinhDangSQL.DeFomatSQL(rs.getString("HoTen")), DinhDangSQL.DeFomatSQL(rs.getString("DiaChi")), rs.getString("DienThoai"), DinhDangSQL.DeFomatSQL(rs.getString("Email")), DinhDangSQL.DeFomatSQL(rs.getString("QuyenQuanTri"))));
+				bv.setNoiDungVi(DinhDangSQL.DeFomatSQL(rs.getString("NoiDungVi")));
+				bv.setNoiDungJa(DinhDangSQL.DeFomatSQL(rs.getString("NoiDungJa")));
+				bv.setTrangThai(DinhDangSQL.DeFomatSQL(rs.getString("TrangThai")));
+				bv.setGhiChu(DinhDangSQL.DeFomatSQL(rs.getString("GhiChu")));
+				bv.setLienKet(DinhDangSQL.DeFomatSQL(rs.getString("LienKet")));
+				bv.setNgayDang(sdf.format(rs.getTimestamp("NgayDang")));
+				bv.setLuotXem(rs.getInt("LuotXem"));
+				System.out.println(bv.getGhiChu());
+				if(bv.getTrangThai().equals("OK"))
+					db.updateData("update baiviet set LuotXem = LuotXem + 1 where IdBaiViet=N'"+id+"'");
+				bv.setBinhLuanVi(bl.getListBinhLuan(id, "vi", "0"));
+				bv.setBinhLuanJa(bl.getListBinhLuan(id, "ja", "0"));
+				return bv;
+			}
+		} catch (SQLException e) {
+			return null;
+		}
+		return bv;
+	}
+	
 	/*
 	 * Lấy danh sách top bài viết từ vị trí nào đó trở đi
 	 * return ArrayList<BAIVIET>/null
@@ -599,12 +637,12 @@ public class BaiVietDAO {
 			sql = "update baiviet set TenBaiVietVi=N'"+tieuDe+"', MotaVi=N'"+moTa+"',"
 				+ " IdDanhMuc=N'"+theLoai+"', IdTaiKhoan=N'"+taiKhoan+"',"
 				+ " NoiDungVi=N'"+noiDung+"', TrangThai=N'"+tinhTrang+"',"
-				+ " Lienket=N'"+hinh+"' where IdBaiViet=N'"+id+"'";
+				+ " Lienket=N'"+hinh+"', CoXoa=0 where IdBaiViet=N'"+id+"'";
 		}else{
 			sql = "update baiviet set TenBaiVietJa=N'"+tieuDe+"', MotaJa=N'"+moTa+"',"
 					+ " IdDanhMuc=N'"+theLoai+"', IdTaiKhoan=N'"+taiKhoan+"',"
 					+ " NoiDungJa=N'"+noiDung+"', TrangThai=N'"+tinhTrang+"',"
-					+ " Lienket=N'"+hinh+"' where IdBaiViet=N'"+id+"'";
+					+ " Lienket=N'"+hinh+"', CoXoa=0 where IdBaiViet=N'"+id+"'";
 		}
 		return db.updateData(sql);
 	}

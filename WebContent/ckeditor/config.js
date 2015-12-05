@@ -5,6 +5,7 @@
  */
 
 CKEDITOR.editorConfig = function(config) {
+	
 	config.toolbarGroups = [ {
 		name : 'document',
 		groups : [ 'mode', 'document', 'doctools' ]
@@ -23,7 +24,9 @@ CKEDITOR.editorConfig = function(config) {
 	}, {
 		name : 'styles',
 		groups : [ 'styles' ]
-	}, {
+	}, 
+	{ name: 'others', groups: [ 'Youtube' ] } ,
+	{
 		name : 'colors',
 		groups : [ 'colors' ]
 	}, {
@@ -44,9 +47,12 @@ CKEDITOR.editorConfig = function(config) {
 	}, {
 		name : 'about',
 		groups : [ 'about' ]
-	} ];
+	},
+	
+	];
 
-	config.removeButtons = 'Source,Save,Templates,Cut,Paste,Copy,PasteText,PasteFromWord,Undo,Redo,NewPage,Preview,Print,Find,Replace,SelectAll,Scayt,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Strike,RemoveFormat,Outdent,Indent,Blockquote,CreateDiv,BidiLtr,BidiRtl,Language,Anchor,Flash,HorizontalRule,Smiley,SpecialChar,PageBreak,Iframe,Youtube,Font,Styles,BGColor,ShowBlocks,Maximize,About';
+	config.extraPlugins = 'youtube';
+	config.removeButtons = 'Source,Save,Templates,Cut,Paste,Copy,PasteText,PasteFromWord,Undo,Redo,NewPage,Preview,Print,Find,Replace,SelectAll,Scayt,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Strike,RemoveFormat,Outdent,Indent,Blockquote,CreateDiv,BidiLtr,BidiRtl,Language,Anchor,Flash,HorizontalRule,Smiley,SpecialChar,PageBreak,Iframe,Font,Styles,BGColor,ShowBlocks,Maximize,About';
 	config.filebrowserBrowseUrl = 'ckfinder/ckfinder.html';
 	config.filebrowserImageBrowseUrl = 'ckfinder/ckfinder.html?type=Images';
 	config.filebrowserFlashBrowseUrl = 'ckfinder/ckfinder.html?type=Flash';
