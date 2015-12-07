@@ -6,7 +6,7 @@ var scrolltotop={
  
     setting: {startline:100, scrollto: 0, scrollduration:1000, fadeduration:[1000, 100]},
  
-    controlHTML: '<span class="back-top"><img src="https://lh5.googleusercontent.com/-l2eCaFvTNdc/U_3naQICcfI/AAAAAAAAAf8/mfozN9_KJa4/s50/back-to-top-1.png"/></span>', //HTML for control, which is auto wrapped in DIV w/ ID="topcontrol"
+    controlHTML: '<span class="back-top" style="display: none;"><img src="https://lh5.googleusercontent.com/-l2eCaFvTNdc/U_3naQICcfI/AAAAAAAAAf8/mfozN9_KJa4/s50/back-to-top-1.png"/></span>', //HTML for control, which is auto wrapped in DIV w/ ID="topcontrol"
  
     controlattrs: {offsetx:20, offsety:10}, //offset of control relative to right/ bottom of window corner
  

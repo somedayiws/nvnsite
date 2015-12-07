@@ -64,7 +64,8 @@ public class AdminCreateServet extends HttpServlet {
 		if (adminCreate.checkAccount(account)
 				&& adminCreate.checkException(re_password, password)
 				&& adminCreate.checkAccountexist(account.getTenTaiKhoan(),
-						account.getEmail())) {
+						account.getEmail())
+				&& !adminCreate.checkStatusAcc(account.getEmail())) {
 
 			// Correct
 			account.setIdTaiKhoan(adminCreate.id_Account_after_increase());

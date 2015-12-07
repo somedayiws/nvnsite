@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.bo.AdminDeletePostsBO;
+import model.bo.ShowAdminEditPostsBO;
+import model.bo.ThongBaoBO;
 
 /**
  * Servlet implementation class AdminDeletePostsServlet
@@ -41,7 +43,23 @@ public class AdminDeletePostsServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		String idPost =  request.getParameter("Idposts");
-				
+		
+		/***
+		 * fix send notice for user who post articles when delete posts
+		 * date: 05 - 12 - 2015 
+		 * 
+		 * */
+		ShowAdminEditPostsBO checkID = new ShowAdminEditPostsBO();
+		String message_input = request.getParameter("message_input");
+		String message_default = request.getParameter("message_default");
+		ThongBaoBO tb = new ThongBaoBO();
+		String tieude = "Thông báo hủy bài viết[記事を削除することのお知らせ] "+idPost;
+		String noidung = (message_input.equals(""))? message_default : message_input;
+		String guiden = checkID.post(idPost).getTaiKhoan().getTenTaiKhoan();
+		System.out.println("Xuat thong bao huy bai thanh cong");
+		tb.ThemThongBaoClient(tieude, noidung, guiden);
+		/**end fix by Hai*/
+		
 		String resultDelete;
 		AdminDeletePostsBO admindeletePost = new AdminDeletePostsBO();
 		
@@ -51,7 +69,8 @@ public class AdminDeletePostsServlet extends HttpServlet {
 		else{
 			resultDelete = "Xóa bài viết thất bại - 記事を削除することができない。";
 		}
-				
+		
+		
 		request.setAttribute("resultDelete", resultDelete);
 		RequestDispatcher requestDis_delete = request.getRequestDispatcher("ListPostsServlet");
 		admindeletePost.closeConnection();

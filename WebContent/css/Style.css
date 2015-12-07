@@ -259,6 +259,20 @@
 		width: 265px;
 	}
 }
+@media only screen and (max-width: 1023px){
+	#fix-post-news {
+	display: none;
+	}
+	#wrapper {
+	width: 100%!important;
+	}
+	.back-top {
+	display: inherit!important;
+	}
+	#delailoinhan {
+		right: 20px;
+	}
+} 
 
 @media only screen and (max-width: 970px) { /*Style 960px*/
 	#headerTop #headerMain a span {
@@ -911,6 +925,9 @@
 	}
 	#iconImg i {
 		padding: 6px 0px 8px 7px !important;
+	}
+	.jssocials-share-label {
+	display: none;
 	}
 }
 

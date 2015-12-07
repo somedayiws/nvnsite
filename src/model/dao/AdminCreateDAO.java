@@ -25,7 +25,7 @@ public class AdminCreateDAO {
 		try {
 			if (resultsetOfselect.next()) {
 				/* User exist in the system */
-				errorExist = "Tài khoản đã tồn tại trong hệ thống - ";
+				errorExist = "Tài khoản đã tồn tại - アカウントが既に存在された。";
 				return true;
 			} else {
 				/* User not exist in the system */
@@ -34,8 +34,34 @@ public class AdminCreateDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			errorExist = "Lỗi: truy cập cơ sở dữ liệu - ";
+			errorExist = "Lỗi: truy cập cơ sở dữ liệu - サーバにデータベースのエラーが発生した";
 			return true;
+		}
+	}
+	
+	
+	/**
+	 * add method: checkStatusAcc
+	 * date: 05 - 12 - 2015
+	 * check account inserted into database: 
+	 * 		if account deleted and status of account is ban ->return true
+	 * 			then can't created account 
+	 *		else created account success ->return false
+	 * */
+	public boolean checkStatusAcc(String email){
+		email = DinhDangSQL.FomatSQL(email);
+		String sql_check = "SELECT IdTaiKhoan "
+							+ "FROM taikhoan "
+							+ "WHERE Email = '"+email+"' AND TinhTrang = 'KhoaTK'";
+		ResultSet result_check = db.getResultSet(sql_check);
+		try {
+			while (result_check.next()){
+				 return true;
+			}
+			return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
 		}
 	}
 

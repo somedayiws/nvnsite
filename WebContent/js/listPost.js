@@ -5,7 +5,14 @@ $(document)
 						$('#typeAccount').hide();
 						$('#typeView').hide();
 						$('#typeDay').hide();
-
+						
+						/**
+						 * fix by Hai
+						 * date:05 - 12 - 2015
+						 * fix delete posts, send message to user
+						 * */
+						$('#message_default').css("display","none");
+						
 						$("#typeFind")
 								.change(
 										function() {
@@ -21,7 +28,7 @@ $(document)
 												$("#typeDifference").hide();
 												$('#typeDay').hide();
 											} else if (typeFind == "GimTrangChu") {
-												alert("Nhập số 1 để xem bài viết đã ghim. Nhập số 0 để xem bài viết chưa ghim.\n固定した記事を見るため、1を入力して下さい。固定しない記事を見るため、0を入力して下さい.");
+												alert("Nhập số 1 để xem bài viết đã ghim. Nhập số 0 để xem bài viết chưa ghim");
 												$("#typeCategory").hide();
 												$("#typeDifference").show();
 												$('#typeAccount').hide();
@@ -59,14 +66,14 @@ $(document)
 											if (typeFind == "GimTrangChu") {
 												if (stringFind != "1"
 														&& stringFind != "0") {
-													alert("Bạn phải nhập 1(xem bài viết đã ghim) hoặc 0(bài viết chưa ghim)\n1を入力して下さい（記事を固定するため）、また0を入力して下さい（記事をまだ固定しない）");
+													alert("Bạn phải nhập 1(xem bài viết đã ghim) hoặc 0(bài viết chưa ghim)");
 													return false;
 												}
 											}
 											if (typeFind == "NgayDang") {
 												var regDay = /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/;
 												if (!regDay.test(stringFindDay)) {
-													alert("Ngày đăng không hợp lệ. Ngày đăng có dạng MM/DD/YYYY.\n掲載した日程が無効です。掲載する日程のように日/月/年.");
+													alert("Ngày đăng không hợp lệ. Ngày đăng có dạng MM/DD/YYYY");
 													return false;
 												}
 											}
@@ -91,7 +98,7 @@ function changeBookmark(idPost) {
 
 		},
 		error : function() {
-			alert('Không thể ghim lên trang chủ - ホームページに固定することができない');
+			alert('Không thể ghim lên trang chủ');
 			$("#load").html("");
 		}
 	});
@@ -129,4 +136,31 @@ function HuyBaiDich(x) {
 				}
 			});
 	/* $('#suaThongBao').modal('show'); */
+}
+
+/**
+ * fix by Hai
+ * date:05 - 12 - 2015
+ * fix delete posts, send message to user
+ * */
+function showMessageDefault(){
+	if($("#rd_message").is(":checked")){
+		$('#message_default').show();
+	}
+	else{
+		$('#message_default').hide();
+	}
+}
+function check_existMessage(){
+		var message_input = $('#message_input').val();
+		if(message_input.trim() == ""){
+			if($("#rd_message").is(":checked")){
+			return true;
+		}
+		else{
+			alert("Bạn phải nhập tin nhắn hoặc chọn tin nhắn mặc định");
+			return false;
+		}
+		}
+	return true;
 }

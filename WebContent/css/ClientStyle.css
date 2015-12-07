@@ -979,7 +979,7 @@ form#seach {
 	width: auto;
 	border-radius: 0px;
 	margin-top: 10px;
-	padding: 3px 12px!important;
+	padding: 3px 12px !important;
 }
 
 .btn {
@@ -1722,12 +1722,13 @@ img.imggia {
 }
 
 #noidung #tiengnhat img {
-max-width: 100%!important;
-height: 100%!important;
+	max-width: 100% !important;
+	height: 100% !important;
 }
+
 #noidung #tiengviet img {
-max-width: 100%!important;
-height: 100%!important;
+	max-width: 100% !important;
+	height: 100% !important;
 }
 
 #delailoinhan {
@@ -1737,7 +1738,7 @@ height: 100%!important;
 	color: white !important;
 	font-weight: bold;
 	z-index: 999;
-	right: 10px;
+	right: 65px;
 	padding: 5px 7px 0px 7px;
 	margin-bottom: -5px;
 	border: 1px solid #4583ea;
@@ -1770,18 +1771,19 @@ height: 100%!important;
 	color: white !important:
 }
 
-
 #loadmorebutton {
-background: #45a3ea;
-border-radius: 4px!important;
-text-align: center;
-color: white;
-padding: 10px!important;
+	background: #45a3ea;
+	border-radius: 4px !important;
+	text-align: center;
+	color: white;
+	padding: 10px !important;
 }
+
 #loadmorebutton:hover {
-background: #318bd0;
-cursor: pointer;
+	background: #318bd0;
+	cursor: pointer;
 }
+
 #loginfb i {
 	font-size: 16;
 }
@@ -1804,6 +1806,147 @@ cursor: pointer;
 }
 
 #textdiv button {
-border: none;
-font-weight: bold;
+	border: none;
+	font-weight: bold;
+}
+
+#noidung iframe {
+	width: 100%;
+}
+
+#wrapper {
+	width: 97%;
+}
+
+#fix-post-news {
+	position: fixed;
+	z-index: 1000;
+	right: 0px;
+	top: 0;
+	height: 100%;
+	background: white;
+}
+
+#fix-post-news #fix-post-back {
+	position: fixed;
+	z-index: 99;
+	font-size: 13px;
+	right: 0px;
+	width: 45px;
+	height: 100%;
+	color: #333;
+	background: #fff;
+	padding: 3px 5px;
+	transition: 400ms;
+	text-align: center;
+	font-weight: bold;
+	border-left: 1px solid #ddd;
+}
+
+#fix-post-news .btn-right-panel {
+	position: fixed;
+	right: 0px;
+	z-index: 100;
+}
+
+#fix-post-news i {
+	width: 45px;
+	height: 40px;
+	border: none;
+	font-size: 20px;
+	padding: 10px;
+	float: left;
+	background: white;
+	border: 1px solid white;
+	border-left: 1px solid #ddd;
+	transition: 300ms;
+	color: #777;
+}
+
+#fix-post-news i:hover {
+	color: #45a3ea;
+	background: #fcfcfc;
+	cursor: pointer;
+	border: 1px solid #ddd;
+}
+
+#fix-post-news .fix-caption {
+	float: left;
+	font-size: 13px;
+	height: 40px;
+	color: #333;
+	background: #fff;
+	padding: 3px 5px;
+	transition: 500ms;
+	font-weight: bold;
+	border: 1px solid #55a3ea;
+	text-align: center;
+}
+
+#fix-post-news .fix-caption:hover {
+	cursor: pointer;
+}
+
+#fix-post-news #btn-post {
+	top: 41px;
+}
+
+#fix-post-news #btn-post #fix-post-caption {
+	margin-right: -150px;
+}
+
+#fix-post-news #btn-post:hover #fix-post-caption {
+	margin-right: -3px;
+}
+
+#fix-post-news #btn-post i {
+	background: #d9534f;
+	color: white;
+}
+
+#fix-post-news #btn-top {
+	bottom: 50px;
+}
+
+#fix-post-news #btn-top #fix-post-caption {
+	margin-right: -90px;
+}
+
+#fix-post-news #btn-top:hover #fix-post-caption {
+	margin-right: -3px;
+}
+
+#fix-post-news #btn-user {
+	top: 86px;
+}
+
+#fix-post-news #btn-user #fix-post-caption {
+	margin-right: -90px;
+}
+
+#fix-post-news #btn-user:hover #fix-post-caption {
+	margin-right: -3px;
+}
+
+#fix-post-news #btn-notify {
+	top: 131px;
+}
+
+#fix-post-news #btn-notify #fix-post-caption {
+	margin-right: -90px;
+}
+
+#fix-post-news #btn-notify:hover #fix-post-caption {
+	margin-right: -3px;
+}
+
+#countMailSide {
+	position: fixed;
+	background: #d9534f;
+	padding: 2px 7px;
+	border-radius: 10px;
+	right: 3px;
+	z-index: 1000;
+	font-size: 11px;
+	color: white;
 }
