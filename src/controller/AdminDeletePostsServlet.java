@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
+
 import model.bo.AdminDeletePostsBO;
 import model.bo.ShowAdminEditPostsBO;
 import model.bo.ThongBaoBO;
@@ -49,12 +51,14 @@ public class AdminDeletePostsServlet extends HttpServlet {
 		 * date: 05 - 12 - 2015 
 		 * 
 		 * */
+		final String MESSAGE_1 = "Bài viết của bạn đã bị xóa";
+		final String MESSAGE_2 = "Bài viết của bạn đã bị xóa vì không đúng nội quy của website";
 		ShowAdminEditPostsBO checkID = new ShowAdminEditPostsBO();
 		String message_input = request.getParameter("message_input");
 		String message_default = request.getParameter("message_default");
 		ThongBaoBO tb = new ThongBaoBO();
 		String tieude = "Thông báo hủy bài viết[記事を削除することのお知らせ] "+idPost;
-		String noidung = (message_input.equals(""))? message_default : message_input;
+		String noidung = (message_input.trim().equals(""))? ((message_default.equals("message_2")) ? MESSAGE_2 : MESSAGE_1 ) : message_input;
 		String guiden = checkID.post(idPost).getTaiKhoan().getTenTaiKhoan();
 		System.out.println("Xuat thong bao huy bai thanh cong");
 		tb.ThemThongBaoClient(tieude, noidung, guiden);

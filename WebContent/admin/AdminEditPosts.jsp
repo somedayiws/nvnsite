@@ -51,7 +51,7 @@
 			<div class="col-md-8 col-md-offset-2 panel panel-primary">		
 			 	<div class="panel-heading">Chỉnh sửa bài viết - 記事の修正</div>	
 			 	<div class="panel-body">
-				<form action="AdminEditPostsServlet" method="post" id="formAdminEditPost"
+				<form action="AdminEditPostsServlet" method="post" id="formAdminEditPost" enctype="multipart/form-data"
 					name="formAdminEditPost" onsubmit="return checkData()">
 					<!-- Id bài viết -->
 					<div class="form-group">
@@ -184,8 +184,14 @@
 					
 					<!-- Liên kết -->
 					<div class="form-group">
-						<label>Liên kết - 連結</label>
-						<input type="text" name="link" class="form-control" value="<%if(post.getLienKet()!=null){%><%=post.getLienKet()%><%} %>" readonly="readonly">
+						<label>Hình ảnh - 画像</label> <input type="file" id="HinhAnh"
+							name="HinhAnh" onchange="xem(this);" />
+						<p class="help-block">
+							Chọn file .png, .jpg ...<br>png, .jpg ...のファイルを選択して下さい<br> <input type="hidden"
+								name="linkan" value="<%=post.getLienKet()%>"> <img
+								alt="Ảnh đại diện-プロファイルの画像" src="<%=post.getLienKet()%>" id="fu1">
+							<img alt="Ảnh thay thế-交換の画像" src="" id="fu2">
+						</p>
 					</div>
 					
 					<!-- Ngày đăng -->
@@ -229,4 +235,15 @@
 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="../check_validate/formEdit.js"></script>
 <script src="../ckeditor/ckeditor.js"></script>
+<script>
+function xem(f) {
+	var reader = new FileReader();
+	reader.onload = function(e) {
+		var img = document.getElementById("fu2");
+		img.src = e.target.result;
+		img.style.display = "inline";
+	};
+	reader.readAsDataURL(f.files[0]);
+}
+</script>
 </html>

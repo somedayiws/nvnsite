@@ -380,6 +380,32 @@
 										name="Idposts" value="<%=listposts.get(i).getIdBaiViet()%>"
 										readonly="readonly">
 								</div>
+									<!------------------------------------------
+									 fix by Hai  
+									 Date: 05 - 12 - 2015
+									 fix delete posts, send message to user
+								-------------------------------------------->
+								<div class = "form-group">
+									<label>Tin nhắn thông báo</label>
+									<p class="help-block">Gởi tin nhắn đến người dùng đăng bài viết này</p>
+									<textarea autofocus rows="5" cols="20" class = "form-control" name = "message_input" id = "message_input">
+									</textarea>
+								</div>
+								<div class = "checkbox">
+									<label>
+										<input type = "checkbox" name="rd_message" id = "rd_message"  onchange="showMessageDefault()">
+										Chọn tin nhắn mặc định
+									</label>
+								</div>
+								<div class = "form-group">
+									<select name = "message_default" class = "form-control" id = "message_default">
+										<option value = "message_1">Bài viết của bạn đã bị xóa</option>
+										<option value = "message_2">Bài viết của bạn đã bị xóa vì không đúng nội quy của website</option>
+									</select>
+								</div>
+								<!------------------------------------------
+									 End fix 05 - 12 - 2015
+								-------------------------------------------->
 								<button type="submit" class="btn btn-success btn-sm">Xóa
 									- 削除</button>
 								<button type="button" id="btn" class="btn btn-default"
