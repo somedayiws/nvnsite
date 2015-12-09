@@ -131,7 +131,7 @@ public class BaiVietDAO {
 	 */
 	public ArrayList<BAIVIET> getListBaiViet(String id, String vitri, String top) {
 		// TODO Auto-generated method stub
-		String sql = "select IdBaiViet,TenBaiVietVi,TenBaiVietJa,MoTaVi,MoTaJa,NoiDungVi,NoiDungJa,NgayDang,Lienket,LuotXem,HoTen from baiviet inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan where TrangThai=N'OK' and IdDanhMuc=N'"+DinhDangSQL.FomatSQL(id)+"' and baiviet.CoXoa = 0 order by NgayDang desc, LuotXem desc limit " + vitri + ", " +top;
+		String sql = "select IdBaiViet,TenBaiVietVi,TenBaiVietJa,MoTaVi,MoTaJa,NoiDungVi,NoiDungJa,NgayDang,Lienket,LuotXem,HoTen,TenTaiKhoan from baiviet inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan where TrangThai=N'OK' and IdDanhMuc=N'"+DinhDangSQL.FomatSQL(id)+"' and baiviet.CoXoa = 0 order by NgayDang desc, LuotXem desc limit " + vitri + ", " +top;
 		ResultSet rs = db.getResultSet(sql);
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		ArrayList<BAIVIET> list = new ArrayList<BAIVIET>();
@@ -148,6 +148,7 @@ public class BaiVietDAO {
 				bv.setLuotXem(rs.getInt("LuotXem"));
 				TAIKHOAN tk = new TAIKHOAN();
 				tk.setHoTen(DinhDangSQL.DeFomatSQL(rs.getString("HoTen")));
+				tk.setTenTaiKhoan(DinhDangSQL.DeFomatSQL(rs.getString("TenTaiKhoan")));
 				bv.setTaiKhoan(tk);
 				list.add(bv);
 			}

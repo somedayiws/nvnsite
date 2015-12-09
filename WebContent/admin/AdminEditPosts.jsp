@@ -188,8 +188,9 @@
 							name="HinhAnh" onchange="xem(this);" />
 						<p class="help-block">
 							Chọn file .png, .jpg ...<br>png, .jpg ...のファイルを選択して下さい<br> <input type="hidden"
-								name="linkan" value="<%=post.getLienKet()%>"> <img
-								alt="Ảnh đại diện-プロファイルの画像" src="<%=post.getLienKet()%>" id="fu1">
+								name="linkan" value="<%=post.getLienKet()%>"> 
+								<img
+								alt="Ảnh đại diện-プロファイルの画像" src="../<%=post.getLienKet()%>" id="fu1">
 							<img alt="Ảnh thay thế-交換の画像" src="" id="fu2">
 						</p>
 					</div>
