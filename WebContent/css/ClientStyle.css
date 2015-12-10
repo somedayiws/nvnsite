@@ -1784,6 +1784,12 @@ img.imggia {
 	cursor: pointer;
 }
 
+#divloadmore {
+	overflow: hidden;
+	float: left;
+	width: 100%;
+}
+
 #loginfb i {
 	font-size: 16;
 }

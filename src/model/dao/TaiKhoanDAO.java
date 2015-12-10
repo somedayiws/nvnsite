@@ -74,7 +74,7 @@ public class TaiKhoanDAO {
 		// Kiểm tra tồn tại của user
 		facebookId = DinhDangSQL.FomatSQL(facebookId);
 		String sql = "";
-		sql = "select * from taikhoan where FacebookID='" + facebookId + "'";
+		sql = "select * from taikhoan where FacebookID='" + facebookId + "' and CoXoa=0";
 		ResultSet rs = db.getResultSet(sql);
 		try {
 			if (rs.next())
@@ -87,7 +87,7 @@ public class TaiKhoanDAO {
 		return false;
 	}
 
-	public void registerAccountWithFacebook(String facebookId,
+	public void registerAccountWithFacebook(String tenTaiKhoan, String facebookId,
 			String facebookLink, String hoten, String email) {
 		// TODO Auto-generated method stub
 		facebookId = DinhDangSQL.FomatSQL(facebookId);
@@ -98,7 +98,7 @@ public class TaiKhoanDAO {
 				+ " values (N'"
 				+ getIdTaiKhoanMax()
 				+ "', N'"
-				+ facebookId
+				+ tenTaiKhoan
 				+ "',N'user',"
 				+ " N'"
 				+ hoten
@@ -117,7 +117,7 @@ public class TaiKhoanDAO {
 		// Kiểm tra tồn tại của user
 		googleId = DinhDangSQL.FomatSQL(googleId);
 		String sql = "";
-		sql = "select * from taikhoan where GoogleId='" + googleId + "'";
+		sql = "select * from taikhoan where GoogleId='" + googleId + "' and CoXoa=0";
 		ResultSet rs = db.getResultSet(sql);
 		try {
 			if (rs.next())
@@ -130,7 +130,7 @@ public class TaiKhoanDAO {
 		return false;
 	}
 	
-	public void registerAccountWithGoogle(String googleId, String hoten, String email) {
+	public void registerAccountWithGoogle(String tenTaiKhoan, String googleId, String hoten, String email) {
 		// TODO Auto-generated method stub
 		googleId = DinhDangSQL.FomatSQL(googleId);
 		hoten = DinhDangSQL.FomatSQL(hoten);
@@ -139,7 +139,7 @@ public class TaiKhoanDAO {
 				+ " values (N'"
 				+ getIdTaiKhoanMax()
 				+ "', N'"
-				+ googleId
+				+ tenTaiKhoan
 				+ "',N'user',"
 				+ " N'"
 				+ hoten

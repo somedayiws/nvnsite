@@ -17,6 +17,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
 import Utils.GoogleAuth;
+import Utils.NetUtils;
 
 /**
  * Servlet implementation class LoginFacebook
@@ -73,14 +74,23 @@ public class LoginWithGoogle extends HttpServlet {
 			String apiURL = "https://www.googleapis.com/oauth2/v1/userinfo?access_token="
 					+ accessToken;
 			TAIKHOAN taikhoan = GoogleAuth.getUserInfo(apiURL);
-			taikhoan.setTenTaiKhoan(taikhoan.getGoogleID());
-			taikhoan.setQuyenQuanTri("user");
 			System.out.println(taikhoan.toString());
 			if (taikhoan.getGoogleID() == null
 					|| taikhoan.getGoogleID().equals("")) {
 				response.sendRedirect("Trang-chu");
 			} else {
 				TaiKhoanBO taiKhoanBO = new TaiKhoanBO();
+				if(taikhoan.getEmail() == null || taikhoan.getEmail().equals("")) {
+					taikhoan.setTenTaiKhoan(NetUtils.formatTextToAlphabet(taikhoan.getHoTen())+RandomPassword.password(4));
+				}else {
+					String emailName = taikhoan.getEmail().substring(0,taikhoan.getEmail().indexOf('@'));
+					if (taiKhoanBO.kiemTraTonTai(emailName)){
+						taikhoan.setTenTaiKhoan(emailName+ RandomPassword.password(5));
+					}else{
+						taikhoan.setTenTaiKhoan(emailName);
+					}
+				}
+				
 				if (taiKhoanBO.checkLoginWithGoogle(taikhoan.getGoogleID())) {
 					taikhoan = taiKhoanBO
 							.getAccountByEmail(taikhoan.getEmail());
@@ -103,7 +113,7 @@ public class LoginWithGoogle extends HttpServlet {
 						taiKhoanBO.closeConnection();
 						response.sendRedirect("Trang-ca-nhan");
 					} else {
-						taiKhoanBO.registerAccountWithGoogle(
+						taiKhoanBO.registerAccountWithGoogle(taikhoan.getTenTaiKhoan(),
 								taikhoan.getGoogleID(), taikhoan.getHoTen(),
 								taikhoan.getEmail());
 						taikhoan = taiKhoanBO.getAccountByEmail(taikhoan

@@ -43,9 +43,9 @@ public class TaiKhoanBO {
 		return taikhoanDAO.kiemTraTonTai(tk);
 	}
 
-	public void registerAccountWithFacebook(String facebookId,
+	public void registerAccountWithFacebook(String tenTaiKhoan, String facebookId,
 			String facebookLink, String hoten, String email) {
-		taikhoanDAO.registerAccountWithFacebook(facebookId, facebookLink,
+		taikhoanDAO.registerAccountWithFacebook(tenTaiKhoan, facebookId, facebookLink,
 				hoten, email);
 	}
 
@@ -53,9 +53,9 @@ public class TaiKhoanBO {
 		return taikhoanDAO.checkLoginWithFacebook(facebookId);
 	}
 
-	public void registerAccountWithGoogle(String googleId, String hoten,
+	public void registerAccountWithGoogle(String tenTaiKhoan, String googleId, String hoten,
 			String email) {
-		taikhoanDAO.registerAccountWithGoogle(googleId, hoten, email);
+		taikhoanDAO.registerAccountWithGoogle(tenTaiKhoan, googleId, hoten, email);
 	}
 
 	public boolean checkLoginWithGoogle(String googleId) {

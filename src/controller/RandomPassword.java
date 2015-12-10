@@ -16,6 +16,19 @@ public class RandomPassword {
 		}
 		return password;
 	}
+	public static String password(int n) {
+		String password = "";
+		for(int i=0;i<n;i++){
+			int tmp = rand(0, 1);
+			if(tmp==0){
+				password += randomCharacter();
+			}
+			else{
+				password +=rand(0, 10);
+			}
+		}
+		return password;
+	}
 	 public static int rand(int min, int max) {
 	        try {
 	            Random rn = new Random();

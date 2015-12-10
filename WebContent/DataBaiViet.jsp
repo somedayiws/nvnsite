@@ -13,7 +13,7 @@
 	<div class="baivieti col-xs-12 col-sm-12 col-md-12">
 			<a href="Xem-bai-viet?id=<%= listbaiviet.get(i).getIdBaiViet()%>" class="thongtinthem">
 				<img src="<%=listbaiviet.get(i).getLienKet()==null?"images/baiviet.jpg":listbaiviet.get(i).getLienKet()%>"><strong><i
-				class="fa fa-user"></i> <%=listbaiviet.get(i).getTaiKhoan().getHoTen()%></strong>
+				class="fa fa-user"></i> <%=listbaiviet.get(i).getTaiKhoan().getTenTaiKhoan()%></strong>
 				<em> <i class="fa fa-calendar"></i> <%=listbaiviet.get(i).getNgayDang()%></em>
 				<em><i class="fa fa-eye"></i> <%=listbaiviet.get(i).getLuotXem()%>
 				</em>

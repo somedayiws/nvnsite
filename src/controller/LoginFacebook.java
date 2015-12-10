@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.bean.TAIKHOAN;
 import model.bo.TaiKhoanBO;
 import Utils.APIWrapper;
+import Utils.NetUtils;
 
 /**
  * Servlet implementation class LoginFacebook
@@ -48,14 +49,24 @@ public class LoginFacebook extends HttpServlet {
 		wrapper.setAccessToken(accessToken);
 
 		TAIKHOAN taikhoan = wrapper.getUserInfo();
-		taikhoan.setTenTaiKhoan(taikhoan.getFacebookID());
-		taikhoan.setQuyenQuanTri("user");
-		System.out.println(taikhoan.toString());
 		if (taikhoan.getFacebookID() == null
 				|| taikhoan.getFacebookID().equals("")) {
 			response.sendRedirect("Trang-chu");
 		} else {
 			TaiKhoanBO taiKhoanBO = new TaiKhoanBO();
+			if(taikhoan.getEmail() == null || taikhoan.getEmail().equals("")) {
+				taikhoan.setTenTaiKhoan(NetUtils.formatTextToAlphabet(taikhoan.getHoTen())+RandomPassword.password(4));
+			}else {
+				String emailName = taikhoan.getEmail().substring(0,taikhoan.getEmail().indexOf('@'));
+				if (taiKhoanBO.kiemTraTonTai(emailName)){
+					taikhoan.setTenTaiKhoan(emailName+ RandomPassword.password(5));
+				}else{
+					taikhoan.setTenTaiKhoan(emailName);
+				}
+			}
+			taikhoan.setQuyenQuanTri("user");
+			System.out.println(taikhoan.toString());
+			
 			if (taiKhoanBO.checkLoginWithFacebook(taikhoan.getFacebookID())) {
 				taikhoan = taiKhoanBO.getAccountByEmail(taikhoan.getEmail());
 				// Tạo session lưu trữ phiên làm việc
@@ -75,7 +86,7 @@ public class LoginFacebook extends HttpServlet {
 					taiKhoanBO.closeConnection();
 					response.sendRedirect("Trang-ca-nhan");
 				} else {
-					taiKhoanBO.registerAccountWithFacebook(
+					taiKhoanBO.registerAccountWithFacebook(taikhoan.getTenTaiKhoan(),
 							taikhoan.getFacebookID(),
 							taikhoan.getFacebookLink(), taikhoan.getHoTen(),
 							taikhoan.getEmail());
@@ -89,6 +100,9 @@ public class LoginFacebook extends HttpServlet {
 				}
 			}
 		}
+//	}catch (Exception e){
+//		response.sendRedirect("Trang-chu");
+//	}
 	}
 
 }

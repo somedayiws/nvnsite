@@ -81,6 +81,10 @@
 			<%
 				i++; }
 			%>
+			<br>
+			<div id="divloadmore">
+				<p id="loadmorebutton" onclick="loadmoredata()">Xem thêm</p>
+			</div>
 		</div>
 		<%@include file="sidebar.jsp"%>
 	</div>
@@ -94,35 +98,47 @@
 <!-- Script ở đây -->
 <!-- Ajax load bài viết -->
 <script language="JavaScript">
-	var nbaiviet = parseInt($("#baiviet").children().size()) - 1;
 	jQuery(document).ready(function($) {
 		$(window).scroll(function() {
 			if (($(document).height() - $(this).scrollTop() - $(this).height()) < 10) {
-				$.ajax({
-					url : "DataBaiVietServlet", //file 
-					type : "POST", //phuong thức gưi
-					data : {
-						vitri : nbaiviet,
-						txtFind : $("#txtSearch").val(),
-						chon : $("#chon").val()
-					}, //dữ liệu gửi
-					async : true, //
-					beforeSend : function() {
-						$("#load").html("<i class='fa fa-refresh fa-2x fa-spin'></i>");
-					},
-					success : function(res) {
-						$("#baiviet").append(res);
-						nbaiviet = parseInt($("#baiviet").children().size()) - 1;
-						$("#load").html("");
-					},
-					error : function() {
-						alert('Có lỗi xảy ra - エラが発生した。');
-						$("#load").html("");
-					}
-				});
+				loadmoredata();
 			}
 		});
 	});
+	function loadmoredata() {
+		var nbaiviet = parseInt($("#baiviet").children().size()) - 1;
+		$.ajax({
+			url : "DataBaiVietServlet", //file 
+			type : "POST", //phuong thức gưi
+			data : {
+				vitri : nbaiviet,
+				txtFind : $("#txtSearch").val(),
+				chon : $("#chon").val()
+			}, //dữ liệu gửi
+			async : true, //
+			beforeSend : function() {
+				$("#loadmorebutton")
+				.html(
+						"<i class='fa fa-spinner fa-pulse'></i></i> Xem thêm");
+			},
+			success : function(res) {
+				$("#divloadmore")
+				.before(
+						res);
+				nbaiviet = parseInt($(
+				"#baiviet")
+				.children()
+				.size());
+				$("#loadmorebutton")
+				.html(
+				"Xem thêm");
+			},
+			error : function() {
+				alert('Có lỗi xảy ra - エラが発生した。');
+				$("#load").html("");
+			}
+		});
+	}
 </script>
 <!-- Chuyển hướng đến danh muc x -->
 <script type="text/javascript">

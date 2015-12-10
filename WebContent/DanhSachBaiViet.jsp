@@ -77,6 +77,10 @@ DANHMUC danhmuc = (DANHMUC)request.getAttribute("danhmuc");
 				<%
 					i++; }
 				%>
+			<br>
+			<div id="divloadmore">
+				<p id="loadmorebutton" onclick="loadmoredata()">Xem thêm</p>
+			</div>
 			</div>
 			<%@include file="sidebar.jsp"%>
 			<div class="clearfix"></div>
@@ -89,8 +93,6 @@ DANHMUC danhmuc = (DANHMUC)request.getAttribute("danhmuc");
 </body>
 <!-- Các đoạn script ở đây -->
 <script language="JavaScript">
-	var nbaiviet = 10;
-	var id = $("#id").val();
 	jQuery(document)
 			.ready(
 					function($) {
@@ -100,43 +102,49 @@ DANHMUC danhmuc = (DANHMUC)request.getAttribute("danhmuc");
 											if (($(document).height()
 													- $(this).scrollTop() - $(
 													this).height()) < 10) {
-												$
-														.ajax({
-															url : "DataBaiVietServlet", //file 
-															type : "POST", //phuong thức gưi
-															data : {
-																vitri : nbaiviet,
-																id : id
-															}, //dữ liệu gửi
-															async : true, //
-															beforeSend : function() {
-																$("#load")
-																		.html(
-																				"<i class='fa fa-refresh fa-2x fa-spin'></i>");
-															},
-															success : function(
-																	res) {
-																$("#baiviet")
-																		.append(
-																				res);
-																nbaiviet = parseInt($(
-																		"#baiviet")
-																		.children()
-																		.size() - 1);
-																$("#load")
-																		.html(
-																				"");
-															},
-															error : function() {
-																alert('Có lỗi xảy ra-エラが発生した。!!');
-																$("#load")
-																		.html(
-																				"");
-															}
-														});
+												loadmoredata();
 											}
 										});
 					});
+	function loadmoredata() {
+		var nbaiviet = parseInt($("#baiviet .baivieti").size());
+		var id = $("#id").val();
+
+		$
+		.ajax({
+			url : "DataBaiVietServlet", //file 
+			type : "POST", //phuong thức gưi
+			data : {
+				vitri : nbaiviet,
+				id : id
+			}, //dữ liệu gửi
+			async : true, //
+			beforeSend : function() {
+				$("#loadmorebutton")
+				.html(
+						"<i class='fa fa-spinner fa-pulse'></i></i> Xem thêm");
+			},
+			success : function(
+					res) {
+				$("#divloadmore")
+				.before(
+						res);
+				nbaiviet = parseInt($(
+				"#baiviet")
+				.children()
+				.size());
+				$("#loadmorebutton")
+				.html(
+				"Xem thêm");
+			},
+			error : function() {
+				alert('Có lỗi xảy ra-エラが発生した。!!');
+				$("#load")
+						.html(
+								"");
+			}
+		});
+	}
 </script>
 <!-- check validate -->
 <script src="js/jquery.validate.js" type="text/javascript"></script>
