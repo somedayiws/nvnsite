@@ -14,7 +14,7 @@
 	<%
 		} else if (request.getAttribute("KetQua").equals("Thanhcong")) {
 	%>
-	<div id="resultMessage"><%=request.getAttribute("KetQua") %></div>
+	<div id="resultMessage"><%=request.getAttribute("KetQua")%></div>
 	<div id="topmenu">
 		<!-- Lấy dữ liệu từ server gửi về -->
 		<%
@@ -53,15 +53,48 @@
 			}
 		%>
 	</div>
-	
-	
-	
-	
-	
+	<span class="col-sm-3 col-md-3">
+		<button style="font-weight: bold;" type="button"
+			onclick="dichuyen('Dang-bai-viet');"
+			class="btn btn-danger form-control">Đăng bài・Đăng kí Miễn
+			phí 無料掲載・登録</button>
+	</span>
+
+	<div id="fix-post-news">
+		<span id="fix-post-back"></span>
+		<div id="btn-post" class="btn-right-panel"
+			onclick="dichuyen('Dang-bai-viet');">
+			<span id="fix-post-caption" class="fix-caption">Đăng bài・Đăng
+				kí Miễn phí</br> 無料掲載・登録
+			</span> <i class="fa fa-paper-plane"></i>
+		</div>
+		<div id="btn-user" class="btn-right-panel"
+			onclick="dichuyen('Trang-ca-nhan');">
+			<span id="fix-post-caption" class="fix-caption">Trang cá nhân<br>
+				...
+			</span> <i class="fa fa-user"></i>
+		</div>
+		<div id="btn-notify" class="btn-right-panel"
+			onclick="dichuyen('Thong-bao');">
+			<div id="countMailSide"><%=request.getAttribute("soEmail") == null ? "0"
+						: request.getAttribute("soEmail")%></div>
+			<span id="fix-post-caption" class="fix-caption">Thông báo <br>
+				...
+			</span> <i class="fa fa-bell"></i>
+		</div>
+		<div id="btn-top" class="btn-right-panel" onclick="dichuyen('#');">
+			<span id="fix-post-caption" class="fix-caption">Lên đầu trang
+				<br> ...
+			</span> <i class="fa fa-arrow-up"></i>
+		</div>
+
+	</div>
+
+
 	<%
 		} else {
 	%>
-	<div id="resultMessage"><%=request.getAttribute("KetQua") %></div>
+	<div id="resultMessage"><%=request.getAttribute("KetQua")%></div>
 	<%
 		}
 	%>

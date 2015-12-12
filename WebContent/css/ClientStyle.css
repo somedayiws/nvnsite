@@ -1956,3 +1956,15 @@ img.imggia {
 	font-size: 11px;
 	color: white;
 }
+#wait-icon {
+overflow: hidden;
+position: fixed!important;
+top: 30%;
+right: 48%;
+font-size: 30px;
+background: rgba(0,0,0,0.5);
+padding:15px;
+border-radius:5px;
+z-index: 9999;
+transition: 400ms;
+}

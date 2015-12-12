@@ -55,6 +55,9 @@
 	</div>
 	<div id="resultAjax" style="display: none;">
 	</div>
+	<div id="wait-icon" style="display: none;">
+	<i class="fa fa-spinner fa-pulse"></i>
+	</div>
 </div>
 <div id="sahred">
 				<g:plusone></g:plusone>
@@ -96,6 +99,21 @@
 </script>
 <script src="js/jquery.validate.js" type="text/javascript"></script>
 <script type="text/javascript">
+function loginwithfacebook(){
+	alert("ok");
+	$.ajax({
+        type: 'POST',
+        url: 'DirectLink',
+        data: {
+        	type: "fb",
+        	url: "http://google.com"
+        },
+        success: function(responseText) {
+        	alert("ok");
+        	$('#resultAjax').html(responseText);
+        }
+    });
+}
 $(document).ready(function() {
 	$("#fdangnhap").validate({
 		rules : {
@@ -123,7 +141,6 @@ $(document).ready(function() {
                 success: function(responseText) {
                 	$('#resultAjax').html(responseText);
                     if($('#resultAjax #result #resultMessage').text().match("Thanhcong")) {
-                    	 $('#mdangnhap').modal('hide');
                     	 $.ajax({
                  			url : "CheckEmailServlet",
                  			type : "post",
@@ -132,8 +149,16 @@ $(document).ready(function() {
                  				$("#countMailSide").text($("#countMail").text());
                  			}
                  			});
-                    	 $('#headerTop #login #topmenu').html($('#resultAjax #result #topmenu').html());
-//                     	 location.reload();
+                    	 $('#loiDangNhap').html("<div class='alert alert-success' role='alert'><p>Đăng nhập thành công!</p></div>");
+                    	 $('#wait-icon').removeAttr("style");
+                    	 setTimeout(function(){
+                    		 $('#headerTop #login #topmenu').html($('#resultAjax #result #topmenu').html());
+                    		 $('#fix-post-news').html($('#resultAjax #result #fix-post-news').html());
+                        	 $('#textdiv .col-sm-3').html($('#resultAjax #result .col-sm-3 button'));
+                        	 $('#wait-icon').attr("style","display: none;");
+                        	 $('#mdangnhap').modal('hide');	
+                    	 }, 1500);
+                    	 
                      } else {
                     	 $('#loiDangNhap').html(responseText);
                      }

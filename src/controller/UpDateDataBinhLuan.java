@@ -2,6 +2,8 @@ package controller;
 
 import java.io.IOException;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,19 +42,19 @@ public class UpDateDataBinhLuan extends HttpServlet {
 			BinhLuanBO bl = new BinhLuanBO();
 			ServletContext context = getServletContext();
 			
-			String host = context.getInitParameter("host");
-			String port = context.getInitParameter("port");
-			String user1 = context.getInitParameter("user");
-			String pass = context.getInitParameter("pass");
+			final String host = context.getInitParameter("host");
+			final String port = context.getInitParameter("port");
+			final String user1 = context.getInitParameter("user");
+			final String pass = context.getInitParameter("pass");
 			
 			BaiVietBO bv = new BaiVietBO();
 			ThongBaoBO tb = new ThongBaoBO();
 			
 			BAIVIET bv1 = bv.getBaiViet(id);
-			String email = bv1.getTaiKhoan().getEmail();
+			final String email = bv1.getTaiKhoan().getEmail();
 			
 			if(!email.equals(user.getEmail())){
-				String tieude = "JPVN.NET - Bài viết " + id + " được chú ý";
+				final String tieude = "JPVN.NET - Bài viết " + id + " được chú ý";
 				String noidung = "Chào bạn " + bv1.getTaiKhoan().getHoTen();
 				noidung += "\nBài viết "+(bv1.getTenBaiVietVi()!=null && !bv1.getTenBaiVietVi().equals("") ?bv1.getTenBaiVietVi():"")+"    "+(bv1.getTenBaiVietJa()!=null && !bv1.getTenBaiVietJa().equals("") ?bv1.getTenBaiVietJa():"");
 				noidung += "\nĐã nhận được phản hồi từ các thành viên(他の会員から返事が届いた).\nVui lòng truy cập http://jpvn.net/Xem-bai-viet?id=" + id+" trên để biết thêm chi tiết.";
@@ -60,8 +62,22 @@ public class UpDateDataBinhLuan extends HttpServlet {
 				noidungtb += "<br>Bài viết <strong>"+(bv1.getTenBaiVietVi()!=null && !bv1.getTenBaiVietVi().equals("") ?bv1.getTenBaiVietVi():"")+"    "+(bv1.getTenBaiVietJa()!=null && !bv1.getTenBaiVietJa().equals("") ?bv1.getTenBaiVietJa():"")+"</strong>";
 				noidungtb += "<br>Bạn vừa nhận được phản hồi từ các thành viên(他の会員から返事が届いた).<br>Vui lòng truy cập <a href='http://jpvn.net/Xem-bai-viet?id=" + id+"'>http://jpvn.net/Xem-bai-viet?id=" + id+"</a> để biết thêm chi tiết.";
 				tb.ThemThongBaoClient(tieude, noidungtb, bv1.getTaiKhoan().getIdTaiKhoan());
+				final String contentMail = noidung;
 				try {
-		            EmailUtility.sendEmail(host, port, user1, pass, email, tieude,noidung);
+					new Thread(new Runnable() {
+						@Override
+						public void run() {
+				            try {
+								EmailUtility.sendEmail(host, port, user1, pass, email, tieude,contentMail);
+							} catch (AddressException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (MessagingException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					}).start();
 		        } catch (Exception ex) {
 		        	System.out.println("Lỗi! gửi mail.");
 		        }
