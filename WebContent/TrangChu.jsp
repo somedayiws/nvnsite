@@ -529,29 +529,4 @@
 </script>
 <!-- check validate -->
 <script src="js/jquery.validate.js" type="text/javascript"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$("#fdangnhap").validate({
-			rules : {
-				taikhoan : {
-					required : true
-				},
-				matkhau : {
-					required : true
-				}
-			},
-			messages : {
-				taikhoan : {
-					required : "<br>Chưa nhập tên tài khoản<br>ユーザー名をまだログインしない"
-				},
-				matkhau : {
-					required : "<br>Chưa nhập mật khẩu<br>ログインをまだしない!"
-				}
-			},
-			submitHandler : function(form) {
-				form.submit();
-			}
-		});
-	});
-</script>
 </html>

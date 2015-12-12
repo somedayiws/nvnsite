@@ -77,18 +77,24 @@
 	};
 	
 	function checkTaiKhoan() {
-		$.ajax({
-			url : "CheckTaiKhoanServlet", //file 
-			type : "POST", //phuong thức gưi
-			data : {
-	        	tk : $('#taikhoandk').val()
-	        },
-	        async : true,
-	        success : function(res) {
-	        	$('#loitk').remove();
-	        	$('#taikhoandk').after(res);
-			}
-		});
+		var tkhoan = $('#taikhoandk').val();
+		if(!/[*#!~?,.% ]/.test(tkhoan)){
+			$.ajax({
+				url : "CheckTaiKhoanServlet", //file 
+				type : "POST", //phuong thức gưi
+				data : {
+		        	tk : tkhoan
+		        },
+		        async : true,
+		        success : function(res) {
+		        	$('#loitk').remove();
+		        	$('#taikhoandk').after(res);
+				}
+			});
+		} else {
+			$('#loitk').remove();
+			$('#taikhoandk').after("<label id='loitk' class='error'>Tài khoản chỉ gôm các ký tự 0-9, a-z, A-Z, _</label>");
+		}
 	};
 	
 	function checkEmail() {
@@ -108,30 +114,9 @@
 	
 	$(document).ready(function() {
 		/* Check đăng nhập */
-		$("#fdangnhap").validate({
-			rules : {
-				taikhoan : {
-					required : true
-				},
-				matkhau : {
-					required : true
-				}
-			},
-			messages : {
-				taikhoan : {
-					required : "<br>Chưa nhập tên tài khoản<br>ユーザー名をまだログインしない"
-				},
-				matkhau : {
-					required : "<br>Chưa nhập mật khẩu<br>ログインをまだしない!"
-				}
-			},
-			submitHandler : function(form) {
-				form.submit();
-			}
-		});
-		
 		/* Check đăng ký */
 		$("#khungdangky").validate({
+			
 			rules : {
 				taikhoan : {
 					required : true,

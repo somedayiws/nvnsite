@@ -406,6 +406,7 @@
 	function dichuyen(x) {
 		window.location.href = x;
 	};
+	
 	function comentvi(id) {
 		var bien = $("#tkDangNhap").val();
 		var date = $("#dateComment").val();
@@ -427,7 +428,6 @@
 				alert("Bạn chưa nhập bình luận của mình.\nあなたはコメントをまだ入力しない。");
 			}
 		}
-		$("#txtviet").val("");
 	};
 	function comentja(id) {
 		var bien = $("#tkDangNhap").val();
@@ -450,7 +450,6 @@
 				alert("Bạn chưa nhập bình luận của mình.\nあなたはコメントをまだ入力しない。");
 			}
 		}
-		$("#txtnhat").val("");
 	};
 	function updatedatavi(id, laguage, bluan) {
 		$.ajax({

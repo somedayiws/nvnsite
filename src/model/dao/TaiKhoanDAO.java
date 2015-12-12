@@ -17,6 +17,7 @@ public class TaiKhoanDAO {
 		if (password.equals("")) {
 			sql = "select * from taikhoan where TenTaiKhoan=N'" + username + "'";
 		} else {
+			password = Utils.Utils.encryptMD5(password);
 			sql = "select * from taikhoan where TenTaiKhoan=N'" + username
 					+ "' and MatKhau=N'" + password + "'";
 		}
@@ -47,6 +48,7 @@ public class TaiKhoanDAO {
 				sql = "select * from taikhoan where TenTaiKhoan=N'" + username
 						+ "' and QuyenQuanTri=N'admin'";
 		} else {
+			password = Utils.Utils.encryptMD5(password);
 			if (x == 0)
 				sql = "select * from taikhoan where TenTaiKhoan=N'" + username
 						+ "' and MatKhau=N'" + password +"'";
@@ -73,6 +75,7 @@ public class TaiKhoanDAO {
 	public boolean checkLoginWithFacebook(String facebookId) {
 		// Kiểm tra tồn tại của user
 		facebookId = DinhDangSQL.FomatSQL(facebookId);
+		facebookId = Utils.Utils.encryptMD5(facebookId);
 		String sql = "";
 		sql = "select * from taikhoan where FacebookID='" + facebookId + "' and CoXoa=0";
 		ResultSet rs = db.getResultSet(sql);
@@ -91,6 +94,7 @@ public class TaiKhoanDAO {
 			String facebookLink, String hoten, String email) {
 		// TODO Auto-generated method stub
 		facebookId = DinhDangSQL.FomatSQL(facebookId);
+		facebookId = Utils.Utils.encryptMD5(facebookId);
 		hoten = DinhDangSQL.FomatSQL(hoten);
 		facebookLink = DinhDangSQL.FomatSQL(facebookLink);
 		email = DinhDangSQL.FomatSQL(email);
@@ -116,6 +120,7 @@ public class TaiKhoanDAO {
 	public boolean checkLoginWithGoogle(String googleId) {
 		// Kiểm tra tồn tại của user
 		googleId = DinhDangSQL.FomatSQL(googleId);
+		googleId = Utils.Utils.encryptMD5(googleId);
 		String sql = "";
 		sql = "select * from taikhoan where GoogleId='" + googleId + "' and CoXoa=0";
 		ResultSet rs = db.getResultSet(sql);
@@ -133,6 +138,7 @@ public class TaiKhoanDAO {
 	public void registerAccountWithGoogle(String tenTaiKhoan, String googleId, String hoten, String email) {
 		// TODO Auto-generated method stub
 		googleId = DinhDangSQL.FomatSQL(googleId);
+		googleId = Utils.Utils.encryptMD5(googleId);
 		hoten = DinhDangSQL.FomatSQL(hoten);
 		email = DinhDangSQL.FomatSQL(email);
 		String sql = "insert into taikhoan(IdTaiKhoan, TenTaiKhoan, QuyenQuanTri, HoTen, Email, CoXoa, TinhTrang, GoogleId)"
@@ -154,6 +160,7 @@ public class TaiKhoanDAO {
 
 	public boolean updateAccountByEmail(TAIKHOAN user) {
 		// TODO Auto-generated method stub
+		user.setFacebookID(Utils.Utils.encryptMD5(user.getFacebookID()));
 		String sql = "update taikhoan set FacebookId=N'" + user.getFacebookID()
 				+ "', FacebookLink=N'" + user.getFacebookLink()
 				+ "' where Email='" + user.getEmail() + "'";
@@ -162,6 +169,7 @@ public class TaiKhoanDAO {
 	
 	public boolean updateAccountByEmailGoogle(TAIKHOAN user) {
 		// TODO Auto-generated method stub
+		user.setGoogleID(Utils.Utils.encryptMD5(user.getGoogleID()));
 		String sql = "update taikhoan set GoogleId=N'" + user.getGoogleID()
 				+ "' where Email='" + user.getEmail() + "'";
 		return db.updateData(sql);
@@ -222,6 +230,7 @@ public class TaiKhoanDAO {
 			rs = db.getResultSet("select * from taikhoan where TenTaiKhoan=N'"
 					+ username + "'");
 		} else {
+			password = Utils.Utils.encryptMD5(password);
 			rs = db.getResultSet("select * from taikhoan where TenTaiKhoan=N'"
 					+ username + "' and MatKhau=N'" + password + "' and CoXoa=0");
 		}
@@ -250,6 +259,7 @@ public class TaiKhoanDAO {
 
 	public boolean UpdateThongTin(TAIKHOAN user) {
 		// TODO Auto-generated method stub
+		user.setMatKhau(Utils.Utils.encryptMD5(user.getMatKhau()));
 		String sql = "update taikhoan set MatKhau=N'"
 				+ DinhDangSQL.FomatSQL(user.getMatKhau()) + "', DiaChi=N'"
 				+ DinhDangSQL.FomatSQL(user.getDiaChi()) + "', HoTen=N'"
@@ -266,6 +276,7 @@ public class TaiKhoanDAO {
 		// TODO Auto-generated method stub
 		taikhoan = DinhDangSQL.FomatSQL(taikhoan);
 		matkhau = DinhDangSQL.FomatSQL(matkhau);
+		matkhau = Utils.Utils.encryptMD5(matkhau);
 		hoten = DinhDangSQL.FomatSQL(hoten);
 		diachi = DinhDangSQL.FomatSQL(diachi);
 		dienthoai = DinhDangSQL.FomatSQL(dienthoai);

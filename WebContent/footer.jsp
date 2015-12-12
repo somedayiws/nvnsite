@@ -53,6 +53,8 @@
 	<div id="copyright">
 		<div id="wcopyright">© 2015 COPYRIGHT BY JPVN.NET, 2015</div>
 	</div>
+	<div id="resultAjax" style="display: none;">
+	</div>
 </div>
 <div id="sahred">
 				<g:plusone></g:plusone>
@@ -91,4 +93,53 @@
 		js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.4&appId=1671772309710877";
 		fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));
+</script>
+<script src="js/jquery.validate.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#fdangnhap").validate({
+		rules : {
+			taikhoan : {
+				required : true
+			},
+			matkhau : {
+				required : true
+			}
+		},
+		messages : {
+			taikhoan : {
+				required : "<br>Chưa nhập tên tài khoản<br>アカウントのユーザー名をまだ入力しない"
+			},
+			matkhau : {
+				required : "<br>Chưa nhập mật khẩu<br>ログインをまだしない!"
+			}
+		},
+		submitHandler : function(form) {
+			/* form.submit(); */
+			$.ajax({
+                type: 'POST',
+                url: 'DangNhapAjaxServlet',
+                data: $('#fdangnhap').serialize(),
+                success: function(responseText) {
+                	$('#resultAjax').html(responseText);
+                    if($('#resultAjax #result #resultMessage').text().match("Thanhcong")) {
+                    	 $('#mdangnhap').modal('hide');
+                    	 $.ajax({
+                 			url : "CheckEmailServlet",
+                 			type : "post",
+                 			success : function(result) {
+                 				$("#checkmail").html(result);
+                 				$("#countMailSide").text($("#countMail").text());
+                 			}
+                 			});
+                    	 $('#headerTop #login #topmenu').html($('#resultAjax #result #topmenu').html());
+//                     	 location.reload();
+                     } else {
+                    	 $('#loiDangNhap').html(responseText);
+                     }
+                }
+            });
+		}
+	});
+});
 </script>

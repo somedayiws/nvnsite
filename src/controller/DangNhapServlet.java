@@ -155,7 +155,7 @@ public class DangNhapServlet extends HttpServlet {
 				request.setAttribute("list", list);
 				request.setAttribute("listdanhmuc", listdanhmuc);
 				request.setAttribute("topbaiviet", topbaiviet);
-				request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Bạn chưa mật khẩu - パスワードをまだ入力しない.</p></div>");
+				request.setAttribute("loi", "<div class='alert alert-danger' role='alert'><p>Bạn chưa nhập mật khẩu - パスワードをまだ入力しない.</p></div>");
 				TaiNguyenBO tainguyenBO = new TaiNguyenBO();
 				
 				String ThongDiep = tainguyenBO.getValue("ThongDiep");

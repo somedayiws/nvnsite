@@ -22,7 +22,7 @@
 			<!-- hiển thị nội dung chính ở đây -->
 			<div class="col-sm-9 col-md-9" id="baiviet" style="font-size: 12px;">
 
-				<form action="Dang-nhap" method="post" id="fdangnhap">
+				<form action="Dang-nhap" method="post" id="fdangnhap1">
 					<div class="login">
 						<div>
 							<h3 class="modal-title" id="myModalLabel">Đăng nhập - ログイン</h3>
@@ -67,28 +67,5 @@
 	function dichuyen(x) {
 		window.location.href = x;
 	};
-	$(document).ready(function() {
-		$("#fdangnhap").validate({
-			rules : {
-				taikhoan : {
-					required : true
-				},
-				matkhau : {
-					required : true
-				}
-			},
-			messages : {
-				taikhoan : {
-					required : "<br>Chưa nhập tên tài khoản<br>アカウントのユーザー名をまだ入力しない"
-				},
-				matkhau : {
-					required : "<br>Chưa nhập mật khẩu<br>ログインをまだしない!"
-				}
-			},
-			submitHandler : function(form) {
-				form.submit();
-			}
-		});
-	});
 </script>
 </html>

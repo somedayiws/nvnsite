@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.bean.TAIKHOAN;
 import model.bo.TaiKhoanBO;
 import Utils.APIWrapper;
-import Utils.NetUtils;
+import Utils.Utils;
 
 /**
  * Servlet implementation class LoginFacebook
@@ -55,7 +55,8 @@ public class LoginFacebook extends HttpServlet {
 		} else {
 			TaiKhoanBO taiKhoanBO = new TaiKhoanBO();
 			if(taikhoan.getEmail() == null || taikhoan.getEmail().equals("")) {
-				taikhoan.setTenTaiKhoan(NetUtils.formatTextToAlphabet(taikhoan.getHoTen())+RandomPassword.password(4));
+				taikhoan.setTenTaiKhoan(Utils.formatTextToAlphabet(taikhoan.getHoTen())+RandomPassword.password(4));
+				taikhoan.setEmail(taikhoan.getTenTaiKhoan());
 			}else {
 				String emailName = taikhoan.getEmail().substring(0,taikhoan.getEmail().indexOf('@'));
 				if (taiKhoanBO.kiemTraTonTai(emailName)){

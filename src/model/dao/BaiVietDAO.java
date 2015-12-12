@@ -311,7 +311,7 @@ public class BaiVietDAO {
 		// TODO Auto-generated method stub
 		String sql = "";
 		if(kieu.equals("All")){
-			sql = "select IdBaiViet,TenBaiVietVi,TenBaiVietJa,MoTaVi,MoTaJa,NoiDungVi,NoiDungJa,NgayDang,Lienket,LuotXem,HoTen from baiviet "
+			sql = "select IdBaiViet,TenBaiVietVi,TenBaiVietJa,MoTaVi,MoTaJa,NoiDungVi,NoiDungJa,NgayDang,Lienket,LuotXem,HoTen,TenTaiKhoan from baiviet "
 					+ "inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan "
 					+ "inner join danhmuc on baiviet.IdDanhMuc=danhmuc.IdDanhMuc "
 					+ "where TrangThai=N'OK' and baiviet.CoXoa = 0 and (TenDanhMucVi like N'%"+txtFind+"%' or TenDanhMucJa like N'%"+txtFind+"%'"
@@ -319,14 +319,14 @@ public class BaiVietDAO {
 					+ " or MotaVi like N'%"+txtFind+"%' or MotaJa like N'%"+txtFind+"%') "
 					+ "order by NgayDang desc, LuotXem desc limit " + vitri + ", " +top;
 		}else if(kieu.equals("ChuDe")){
-			sql = "select IdBaiViet,TenBaiVietVi,TenBaiVietJa,MoTaVi,MoTaJa,NoiDungVi,NoiDungJa,NgayDang,Lienket,LuotXem,HoTen from baiviet "
+			sql = "select IdBaiViet,TenBaiVietVi,TenBaiVietJa,MoTaVi,MoTaJa,NoiDungVi,NoiDungJa,NgayDang,Lienket,LuotXem,HoTen,TenTaiKhoan from baiviet "
 					+ "inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan "
                     + "inner join danhmuc on baiviet.IdDanhMuc=danhmuc.IdDanhMuc "
 					+ "where TrangThai=N'OK' and baiviet.CoXoa = 0 and (TenDanhMucVi like N'%"+txtFind+"%' or TenDanhMucJa like N'%"+txtFind+"%' "
 					+ "or TenBaiVietVi like N'%"+txtFind+"%' or TenBaiVietJa like N'%"+txtFind+"%') "
 					+ "order by NgayDang desc, LuotXem desc limit " + vitri + ", " +top;
 		}else {
-			sql = "select IdBaiViet,TenBaiVietVi,TenBaiVietJa,MoTaVi,MoTaJa,NoiDungVi,NoiDungJa,NgayDang,Lienket,LuotXem,HoTen from baiviet "
+			sql = "select IdBaiViet,TenBaiVietVi,TenBaiVietJa,MoTaVi,MoTaJa,NoiDungVi,NoiDungJa,NgayDang,Lienket,LuotXem,HoTen,TenTaiKhoan from baiviet "
 					+ "inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan "
 					+ "where TrangThai=N'OK' and baiviet.CoXoa = 0 and (TenBaiVietJa like N'%"+txtFind+"%' or TenBaiVietVi like N'%"+txtFind+"%'"
 					+ " or MotaJa like N'%"+txtFind+"%' or MotaVi like N'%"+txtFind+"%')"
@@ -348,6 +348,7 @@ public class BaiVietDAO {
 				bv.setLuotXem(rs.getInt("LuotXem"));
 				TAIKHOAN tk = new TAIKHOAN();
 				tk.setHoTen(DinhDangSQL.DeFomatSQL(rs.getString("HoTen")));
+				tk.setTenTaiKhoan(DinhDangSQL.DeFomatSQL(rs.getString("TenTaiKhoan")));
 				bv.setTaiKhoan(tk);
 				list.add(bv);
 			}

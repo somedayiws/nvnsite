@@ -66,27 +66,6 @@
 	};
 	$(document).ready(function() {
 		/* Check đăng nhập */
-		$("#fdangnhap").validate({
-			rules : {
-				taikhoan : {
-					required : true
-				},
-				matkhau : {
-					required : true
-				}
-			},
-			messages : {
-				taikhoan : {
-					required : "<br>Chưa nhập tên tài khoản<br>ユーザー名をまだログインしない"
-				},
-				matkhau : {
-					required : "<br>Chưa nhập mật khẩu<br>ログインをまだしない!"
-				}
-			},
-			submitHandler : function(form) {
-				form.submit();
-			}
-		});
 		/* Check đăng ký */
 		$("#khunglienhe").validate({
 			rules : {

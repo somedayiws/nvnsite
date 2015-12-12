@@ -117,7 +117,7 @@
 			</form>
 		</div>
 		<!-- form đăng nhập -->
-		<form action="Dang-nhap" method="post" id="fdangnhap">
+		<form method="post" id="fdangnhap">
 			<div class="modal fade" id="mdangnhap" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel">
 				<div class="modal-dialog" role="document">
@@ -130,6 +130,7 @@
 							<h3 class="modal-title" id="myModalLabel">Đăng nhập - ログインする</h3>
 						</div>
 						<div class="modal-body">
+							<div id="loiDangNhap"></div>
 							<div class="row">
 								<strong>Tài khoản - アカウント</strong> <input name="taikhoan"
 									type="text" placeholder="Tài khoản - アカウント" class="form-control">

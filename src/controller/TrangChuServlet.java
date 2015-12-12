@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Utils.NetUtils;
+import Utils.Utils;
 import model.bean.BAIVIET;
 import model.bean.DANHMUC;
 import model.bean.QUANGCAO;
@@ -37,9 +37,7 @@ public class TrangChuServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
-		
-		System.out.println(NetUtils.formatTextToAlphabet("Trần Việt Nghĩa 123"));
-		
+		System.out.println(Utils.encryptMD5("123456"));
 		String txtFind = (String) request.getAttribute("txtFind");
 		if (txtFind == null) txtFind = "";
 		DanhMucBO danhmuc = new DanhMucBO();

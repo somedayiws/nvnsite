@@ -29,7 +29,7 @@ public class APIWrapper {
 		accessTokenLink = String.format(accessTokenLink, appID, appSecret,
 				redirectUrl, code);
 
-		String result = NetUtils.getResult(accessTokenLink);
+		String result = Utils.getResult(accessTokenLink);
 		System.out.println(result);
 		String token = result.substring(result.indexOf("=") + 1,
 				result.indexOf("&"));
@@ -40,7 +40,7 @@ public class APIWrapper {
 		String infoUrl = "https://graph.facebook.com/me?fields=id,name,email,link&access_token=%s";
 		infoUrl = String.format(infoUrl, this.accessToken);
 
-		String result = NetUtils.getResult(infoUrl);
+		String result = Utils.getResult(infoUrl);
 
 		TAIKHOAN taikhoan = gson.fromJson(result, TAIKHOAN.class);
 		return taikhoan;

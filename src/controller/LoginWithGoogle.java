@@ -17,7 +17,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
 import Utils.GoogleAuth;
-import Utils.NetUtils;
+import Utils.Utils;
 
 /**
  * Servlet implementation class LoginFacebook
@@ -81,7 +81,7 @@ public class LoginWithGoogle extends HttpServlet {
 			} else {
 				TaiKhoanBO taiKhoanBO = new TaiKhoanBO();
 				if(taikhoan.getEmail() == null || taikhoan.getEmail().equals("")) {
-					taikhoan.setTenTaiKhoan(NetUtils.formatTextToAlphabet(taikhoan.getHoTen())+RandomPassword.password(4));
+					taikhoan.setTenTaiKhoan(Utils.formatTextToAlphabet(taikhoan.getHoTen())+RandomPassword.password(4));
 				}else {
 					String emailName = taikhoan.getEmail().substring(0,taikhoan.getEmail().indexOf('@'));
 					if (taiKhoanBO.kiemTraTonTai(emailName)){
