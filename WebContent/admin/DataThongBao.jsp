@@ -15,7 +15,7 @@
 </div>
 <div class="form-group">
 	<label for="company"> Nội dung thông báo - お知らせの内容</label>
-	<textarea rows="5" cols="10" name="NoiDung" class="form-control"><%=tb.getNoiDung()%></textarea>
+	<textarea name="NoiDung" id="noidungck" class="ckeditor"><%=tb.getNoiDung()%></textarea>
 </div>
 <div class="form-group">
 	<label for="company"> Gửi đến - 送信する</label> <select
@@ -34,6 +34,7 @@
 		class="form-control" name="GuiDen" maxlength="200"
 		value="<%=tb.getGuiDen()%>" id="GuiDen2">
 </div>
+
 <script type="text/javascript">
 	function chonGui2(type) {
 		var x = type;
@@ -50,4 +51,7 @@
 		}
 	}
 	chonGui2();
+</script>
+<script>
+	CKEDITOR.replace('noidungck');
 </script>

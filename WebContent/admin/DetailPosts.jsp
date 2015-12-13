@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="../bootstrap-3.3.5-dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/register.css">
 <link rel="stylesheet" href="css/detailPost.css">
+<script src="../ckeditor/ckeditor.js"></script>
 <title>Chi tiết bài viết - 詳細な記事</title>
 </head>
 <%
@@ -276,7 +277,7 @@
 								<div class = "form-group">
 									<label>Tin nhắn thông báo</label>
 									<p class="help-block">Gởi tin nhắn đến người dùng đăng bài viết này</p>
-									<textarea autofocus rows="5" cols="20" class = "form-control" name = "message_input" id = "message_input">
+									<textarea autofocus class = "ckeditor" name = "message_input" id = "message_input">
 									</textarea>
 								</div>
 								<div class = "checkbox">

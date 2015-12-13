@@ -16,6 +16,7 @@
 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 <link rel="stylesheet" href="css/register.css">
 <link rel="stylesheet" href="css/advertisement.css">
+<script src="../ckeditor/ckeditor.js"></script>
 <title>Quản lý phản hồi</title>
 <style type="text/css">
 #advNoHomepage {

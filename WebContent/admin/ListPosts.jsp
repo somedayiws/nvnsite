@@ -16,7 +16,7 @@
 <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
 <script type="text/javascript" src="../bootstrap-3.3.5-dist/js/bootstrap.js"></script>
 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
-
+<script src="../ckeditor/ckeditor.js"></script>
 
 <title>Quản lý bài viết - 記事の管理</title>
 </head>
@@ -389,7 +389,7 @@
 								<div class = "form-group">
 									<label>Tin nhắn thông báo</label>
 									<p class="help-block">Gởi tin nhắn đến người dùng đăng bài viết này</p>
-									<textarea autofocus rows="5" cols="20" class = "form-control" name = "message_input" id = "message_input">
+									<textarea autofocus class = "ckeditor" name = "message_input" id = "message_input">
 									</textarea>
 								</div>
 								<div class = "checkbox">

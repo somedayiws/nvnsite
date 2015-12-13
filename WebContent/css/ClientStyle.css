@@ -1766,11 +1766,9 @@ img.imggia {
 	color: white;
 	font-size: 14;
 }
-
-#loginfb {
-	color: white !important:
+#loginfb:hover {
+	cursor: pointer;
 }
-
 #loadmorebutton {
 	background: #45a3ea;
 	border-radius: 4px !important;

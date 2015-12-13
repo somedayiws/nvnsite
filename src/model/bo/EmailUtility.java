@@ -48,8 +48,8 @@ public class EmailUtility {
         msg.setRecipients(Message.RecipientType.TO, toAddresses);
         msg.setSubject(subject);
         msg.setSentDate(new Date());
-        msg.setText(message);
- 
+//        msg.setText(message);
+        msg.setContent(message, "text/html");
         // sends the e-mail
         Transport.send(msg);
  

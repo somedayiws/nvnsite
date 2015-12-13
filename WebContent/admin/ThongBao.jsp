@@ -16,10 +16,14 @@
 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 <link rel="stylesheet" href="css/register.css">
 <link rel="stylesheet" href="css/advertisement.css">
+<script src="../ckeditor/ckeditor.js"></script>
 <title>Quản lý thông báo - 知らせの管理</title>
 <style type="text/css">
 #advNoHomepage {
 	display: none;
+}
+#cke_1_contents {
+    height: 150px !important;
 }
 </style>
 <script type="text/javascript">
@@ -124,7 +128,7 @@
 									<th>ID</th>
 									<th class="sua">Gửi đến<br>送信する<br>
 									</th>
-									<th>Nội dung tin nhắn<br>メッセージの内容
+									<th>Thông báo<br>メッセージの内容
 									</th>
 									<th class="sua">Ngày Đăng<br>掲載された日付
 									</th>
@@ -140,7 +144,7 @@
 								<tr>
 									<td><%=listHienThi.get(i).getIdThongBao()%></td>
 									<td><%=listHienThi.get(i).getGuiDen()==null?"":listHienThi.get(i).getGuiDen().equals("DienDan")?"Diễn đàn":listHienThi.get(i).getGuiDen()%></td>
-									<td><%=listHienThi.get(i).getNoiDung()%></td>
+									<td><%=listHienThi.get(i).getTieuDe()%></td>
 									<td><%=listHienThi.get(i).getNgayDang()%></td>
 									<td><button type="button" class="btn btn-primary btn-sm"
 											onclick="HienThi('<%=listHienThi.get(i).getIdThongBao()%>', '1');">Gỡ
@@ -177,7 +181,7 @@
 									<th>ID</th>
 									<th class="sua">Gửi đến<br>送信する
 									</th>
-									<th>Nội dung tin nhắn<br>メッセージの内容
+									<th>Thông báo<br>メッセージの内容
 									</th>
 									<th class="sua">Ngày Đăng<br>掲載された日付
 									</th>
@@ -193,7 +197,7 @@
 								<tr>
 									<td><%=listAn.get(i).getIdThongBao()%></td>
 									<td><%=listAn.get(i).getGuiDen()==null?"":listAn.get(i).getGuiDen().equals("DienDan")?"Diễn đàn":listAn.get(i).getGuiDen()%></td>
-									<td><%=listAn.get(i).getNoiDung().length()>150?listAn.get(i).getNoiDung().substring(0, 150)+" ...":listAn.get(i).getNoiDung()%></td>
+									<td><%=listAn.get(i).getTieuDe().length()>150?listAn.get(i).getTieuDe().substring(0, 150)+" ...":listAn.get(i).getTieuDe()%></td>
 									<td><%=listAn.get(i).getNgayDang()%></td>
 									<td><button type="button" class="btn btn-primary btn-sm"
 											onclick="HienThi('<%=listAn.get(i).getIdThongBao()%>', '0');">Hiển
@@ -219,7 +223,7 @@
 			<div class="menuPhanTrang" id="page">
 				<%=request.getAttribute("pageNav")%>
 			</div>
-			<!-- Script xóa quảng cáo -->
+			<!-- Script xóa thông báo -->
 			<script type="text/javascript">
 					function XoaQC(x){
 						$("#idQC").text(x);
@@ -280,8 +284,8 @@
 								</div>
 								<div class="form-group">
 									<label for="company"> Nội dung thông báo - お知らせの内容</label>
-									<textarea rows="5" cols="10" name="NoiDung"
-										class="form-control"></textarea>
+									<textarea name="NoiDung" style="height: 150px"
+										class="ckeditor"></textarea>
 								</div>
 								<div class="form-group">
 									<label for="company"> Gửi đến - 送信する</label> <select
@@ -318,7 +322,7 @@
 					</div>
 				</div>
 			</form>
-			<!-- dialog thêm thông báo -->
+			<!-- dialog sửa thông báo -->
 			<form action="SuaThongBaoServlet" method="post" id="suathongbao">
 				<div class="modal fade" id="suaThongBao" tabindex="-1" role="dialog"
 					aria-labelledby="myModalLabel" aria-hidden="true">
@@ -370,7 +374,7 @@
 					</div>
 				</div>
 			</form>
-			<!-- dialog xác nhận xóa dữ liệu -->
+			<!-- dialog xác nhận hiển thị -->
 			<form action="HienThiThongBaoServlet" method="post">
 				<div class="modal fade" id="goQC" tabindex="-1" role="dialog"
 					aria-labelledby="myModalLabel" aria-hidden="true">

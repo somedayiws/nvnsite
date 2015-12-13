@@ -94,6 +94,7 @@ public class ThongBaoDAO {
 					+ (timtheo.equals("3")?" and GuiDen like N'%"+find+"%'":"")
 					+ (timtheo.equals("4")?" and NoiDung like N'%"+find+"%'":"");
 		}
+		sql += " order by IdThongBao desc ";
 		db.createMenu("ThongBaoServlet?", page, sql);
 		ResultSet rs = db.getResultSet(sql + " limit " + (page-1)*db.getNBangGhi() +","+ db.getNBangGhi());
 		ArrayList<THONGBAO> list = new ArrayList<THONGBAO>();

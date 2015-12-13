@@ -127,7 +127,7 @@ function xem(f,x){
 		<div class="container-fluid">
 			<%@include file="header_ver_1.jsp"%>			
 			<%@include file="Menu.jsp"%>
-			<%= request.getAttribute("meg")==null?"<div class='alert alert-success' role='alert'>Không có thông báo</div>":request.getAttribute("meg") %>
+			<%= request.getAttribute("meg")==null?"":request.getAttribute("meg") %>
 <!-------------------- Nội dung quản lý quảng cáo ------------------------>
 			<div id="content">
 	<!--------------------------- Tạo quảng cáo ---------------------------------------------------------->
@@ -143,7 +143,6 @@ function xem(f,x){
 								<tr>
 									<th>ID</th>
 									<th>Đối tác<br>パートナー</th>
-									<th>Liên kết<br>連結する</th>
 									<th>Trang<br>ページ</th>
 									<th>Vị trí<br>位置</th>
 									<th>Số ngày<br>日付の数</th>
@@ -157,7 +156,6 @@ function xem(f,x){
 								<tr>
 									<td><%=listHienThi.get(i).getIdQuangCao() %></td>
 									<td><%=listHienThi.get(i).getDonViQuangCao() %></td>
-									<td><%=listHienThi.get(i).getLienKet() %></td>
 									<td><%=listHienThi.get(i).getTrangHienThi()==1?"Home - ホーム":"Khác - 他の" %></td>
 									<td><%=listHienThi.get(i).getViTri() %></td>
 									<td><%=listHienThi.get(i).getSoNgay() %></td>
@@ -186,7 +184,6 @@ function xem(f,x){
 								<tr>
 									<th>ID</th>
 									<th>Đối tác<br>パートナー</th>
-									<th>Liên kết<br>連結する</th>
 									<th>Trang<br>ページ</th>
 									<th>Vị trí<br>位置</th>
 									<th>Số ngày<br>日付の数</th>
@@ -201,7 +198,6 @@ function xem(f,x){
 								<tr>
 									<td><%=advertisement.get(i).getIdQuangCao() %></td>
 									<td><%=advertisement.get(i).getDonViQuangCao() %></td>
-									<td><%=advertisement.get(i).getLienKet() %></td>
 									<td><%=advertisement.get(i).getTrangHienThi()==1?"Home - ホーム":"Khác - 他の" %></td>
 									<td><%=advertisement.get(i).getViTri() %></td>
 									<td><%=advertisement.get(i).getSoNgay() %></td>	
@@ -215,6 +211,9 @@ function xem(f,x){
 							</table>
 						</div>
 					</div>
+				</div>
+				<div class="menuPhanTrang" id="page">
+					<%=request.getAttribute("pageNav")%>
 				</div>
 				<!-- Script xóa quảng cáo -->
 				<script type="text/javascript">

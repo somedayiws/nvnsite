@@ -42,16 +42,20 @@ public class LoginFacebook extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String code = request.getParameter("code");
+//		String code = request.getParameter("code");
+//		System.out.println(code);
+//		String accessToken = wrapper.getAccessToken(code);
+		String access_token = request.getParameter("access_token");
+		System.out.println(access_token);
 
 		APIWrapper wrapper = new APIWrapper();
-		String accessToken = wrapper.getAccessToken(code);
-		wrapper.setAccessToken(accessToken);
+		wrapper.setAccessToken(access_token);
 
 		TAIKHOAN taikhoan = wrapper.getUserInfo();
 		if (taikhoan.getFacebookID() == null
 				|| taikhoan.getFacebookID().equals("")) {
-			response.sendRedirect("Trang-chu");
+			request.setAttribute("KetQua", "<div class='alert alert-danger' role='alert'><p>Đăng nhập facebook thất bại!</p></div>");
+			request.getRequestDispatcher("DataShow.jsp").forward(request, response);
 		} else {
 			TaiKhoanBO taiKhoanBO = new TaiKhoanBO();
 			if(taikhoan.getEmail() == null || taikhoan.getEmail().equals("")) {
@@ -75,7 +79,6 @@ public class LoginFacebook extends HttpServlet {
 				request.getSession().setAttribute("CKFinder_UserRole", "user");
 				// Điều hướng đến trang khác mà không cần gửi dữ liệu
 				taiKhoanBO.closeConnection();
-				response.sendRedirect("Trang-ca-nhan");
 			} else {
 				if (taiKhoanBO.chekEmail(taikhoan.getEmail())) {
 					taiKhoanBO.updateAccountByEmail(taikhoan);
@@ -85,7 +88,6 @@ public class LoginFacebook extends HttpServlet {
 							"user");
 					// Điều hướng đến trang khác mà không cần gửi dữ liệu
 					taiKhoanBO.closeConnection();
-					response.sendRedirect("Trang-ca-nhan");
 				} else {
 					taiKhoanBO.registerAccountWithFacebook(taikhoan.getTenTaiKhoan(),
 							taikhoan.getFacebookID(),
@@ -97,9 +99,10 @@ public class LoginFacebook extends HttpServlet {
 							"user");
 					// Điều hướng đến trang khác mà không cần gửi dữ liệu
 					taiKhoanBO.closeConnection();
-					response.sendRedirect("Trang-ca-nhan");
 				}
 			}
+			request.setAttribute("KetQua", "Thanhcong");
+			request.getRequestDispatcher("DataShow.jsp").forward(request, response);
 		}
 //	}catch (Exception e){
 //		response.sendRedirect("Trang-chu");

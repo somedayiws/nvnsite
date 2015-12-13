@@ -16,8 +16,8 @@ public class AdvertisementDAO {
 	public ArrayList<QUANGCAO> listAdv(int page, boolean hthi){
 		ArrayList<QUANGCAO> listAdvertise = new ArrayList<QUANGCAO>();
 		String sql_select_advertise = "";
-		if(hthi) sql_select_advertise = "SELECT * FROM quangcao where HienThi='1'";
-		else sql_select_advertise = "SELECT * FROM quangcao where HienThi='0'";
+		if(hthi) sql_select_advertise = "SELECT * FROM quangcao where HienThi='1' order by IdQuangCao desc ";
+		else sql_select_advertise = "SELECT * FROM quangcao where HienThi='0' order by IdQuangCao desc ";
 		db.createMenu("ListAdvertiseServlet?", page, sql_select_advertise);
 		ResultSet result_select = null;
 		if (page != -1) {
