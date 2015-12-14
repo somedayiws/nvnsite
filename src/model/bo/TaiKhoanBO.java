@@ -77,4 +77,9 @@ public class TaiKhoanBO {
 		return taikhoanDAO.getAccountByEmail(email);
 	}
 
+	public TAIKHOAN getTaiKhoanByKey(String guiden) {
+		// TODO Auto-generated method stub
+		return taikhoanDAO.getAccountEmailorUserName(guiden);
+	}
+
 }

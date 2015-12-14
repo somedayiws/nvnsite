@@ -2,7 +2,10 @@ package controller;
 
 import java.io.IOException;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.bean.BAIVIET;
 import model.bo.AdminEditPostsBO;
 import model.bo.ChangeStatusBO;
+import model.bo.EmailUtility;
 import model.bo.ShowAdminEditPostsBO;
 import model.bo.ThongBaoBO;
 
@@ -114,11 +118,28 @@ public class UploadPostServlet extends HttpServlet {
 			request.setAttribute("resultOK", "Duyệt bài thành công - 記事が承認された");
 			//Add thông báo
 			ThongBaoBO tb = new ThongBaoBO();
-			String tieude = "Thông báo duyệt bài viết[承認された記事のお知らせです] "+idPost;
-			String noidung = "Bài viết của bạn đã được xét duyệt thành công(あなたの記事が承認された)!<br>Xem chi tiết bài viết tại địa chỉ(次のアドレスに記事を詳しく参照して下さい): <a href='http://jpvn.net/Xem-bai-viet?id="+idPost+"'>http://jpvn.net/Xem-bai-viet?id="+idPost+"</a>";
+			final String tieude = "Thông báo duyệt bài viết[承認された記事のお知らせです] "+idPost;
+			final String noidung = "Bài viết của bạn đã được xét duyệt thành công(あなたの記事が承認された)!<br>Xem chi tiết bài viết tại địa chỉ(次のアドレスに記事を詳しく参照して下さい): <a href='http://jpvn.net/Xem-bai-viet?id="+idPost+"'>http://jpvn.net/Xem-bai-viet?id="+idPost+"</a>";
 			String guiden = checkID.post(idPost).getTaiKhoan().getTenTaiKhoan();
 			System.out.println("Xuat thong bao duyet bai thanh cong");
 			tb.ThemThongBaoClient(tieude, noidung, guiden);
+			
+			ServletContext context = getServletContext();
+			
+			final String host = context.getInitParameter("host");
+			final String port = context.getInitParameter("port");
+			final String user1 = context.getInitParameter("user");
+			final String pass = context.getInitParameter("pass");
+			final String email = checkID.post(idPost).getTaiKhoan().getEmail();
+			
+			try {
+				EmailUtility.sendEmailThread(host, port, user1, pass, email, tieude,noidung);
+			} catch (AddressException e) {
+				System.out.println("Lỗi : " + e.toString());
+			} catch (MessagingException e) {
+				System.out.println("Lỗi : " + e.toString());
+			}
+			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("ShowDetailPostsServlet");
 			checkID.closeConnection();
 			updateStatus.closeConnection();

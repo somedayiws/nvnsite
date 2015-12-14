@@ -2,12 +2,18 @@ package controller;
 
 import java.io.IOException;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.bean.TAIKHOAN;
+import model.bo.EmailUtility;
+import model.bo.TaiKhoanBO;
 import model.bo.ThongBaoBO;
 
 @WebServlet("/admin/ThemThongBaoServlet")
@@ -31,8 +37,8 @@ public class ThemThongBaoServlet extends HttpServlet {
 		}else{
 		ThongBaoBO tb = new ThongBaoBO();
 		
-		String tieude = request.getParameter("TieuDe");
-		String noidung = request.getParameter("NoiDung");
+		final String tieude = request.getParameter("TieuDe");
+		final String noidung = request.getParameter("NoiDung");
 		String guiden = request.getParameter("GuiDen");
 		if(guiden.equals("DienDan")){
 			if(tb.ThemThongBao(tieude, noidung, guiden)){
@@ -44,6 +50,23 @@ public class ThemThongBaoServlet extends HttpServlet {
 		else{
 			if(tb.ThemThongBaoClient(tieude, noidung, guiden)){
 				request.setAttribute("meg", "<div class='alert alert-success' role='alert'>Thêm thông báo thành công - 知らせの付加ができた.</div>");
+				TaiKhoanBO tk = new TaiKhoanBO();
+				TAIKHOAN tkhoan = tk.getTaiKhoanByKey(guiden);
+				final String email = tkhoan.getEmail();
+				
+				ServletContext context = getServletContext();
+				final String host = context.getInitParameter("host");
+				final String port = context.getInitParameter("port");
+				final String user = context.getInitParameter("user");
+				final String pass = context.getInitParameter("pass");
+				
+				try {
+					EmailUtility.sendEmailThread(host, port, user, pass, email, tieude,noidung);
+				} catch (AddressException e) {
+					System.out.println("Lỗi : " + e.toString());
+				} catch (MessagingException e) {
+					System.out.println("Lỗi : " + e.toString());
+				}
 			}else{
 				request.setAttribute("meg", "<div class='alert alert-danger' role='alert'>Thêm thông báo thất bại - 知らせの付加がまだできなかった.</div>");
 			}

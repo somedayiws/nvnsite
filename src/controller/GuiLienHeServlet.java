@@ -29,9 +29,9 @@ public class GuiLienHeServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		String taikhoan =  request.getParameter("taikhoan");
-		String email =  request.getParameter("email");
-		String tieude =  request.getParameter("tieude");
-		String traloi =  request.getParameter("traloi");
+		final String email =  request.getParameter("email");
+		final String tieude =  request.getParameter("tieude");
+		final String traloi =  request.getParameter("traloi");
 		
 		if(taikhoan!=null && !taikhoan.trim().equals("")){
 			ThongBaoBO tb = new ThongBaoBO();
@@ -40,16 +40,16 @@ public class GuiLienHeServlet extends HttpServlet {
 		
 		ServletContext context = getServletContext();
 		
-		String host = context.getInitParameter("host");
-		String port = context.getInitParameter("port");
-		String user = context.getInitParameter("user");
-		String pass = context.getInitParameter("pass");
+		final String host = context.getInitParameter("host");
+		final String port = context.getInitParameter("port");
+		final String user = context.getInitParameter("user");
+		final String pass = context.getInitParameter("pass");
 		String resultMessage = "xuly=loi-he-thong";
 		try {
-            EmailUtility.sendEmail(host, port, user, pass, email, tieude,traloi);
+			EmailUtility.sendEmailThread(host, port, user, pass, email, tieude,traloi);
             resultMessage = "xuly=traloi-thanhcong";
         } catch (Exception ex) {
-            ex.printStackTrace();
+        	System.out.println("Lỗi : " + ex.toString());
             resultMessage = "xuly=traloi-thatbai";
         } finally {
             response.sendRedirect("LienHeServlet?" + resultMessage);

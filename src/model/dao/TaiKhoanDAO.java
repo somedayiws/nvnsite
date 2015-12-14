@@ -204,6 +204,35 @@ public class TaiKhoanDAO {
 		return taikhoan;
 	}
 
+	public TAIKHOAN getAccountEmailorUserName(String guiden) {
+		// lấy tài khoản thỏa mãn
+		guiden = DinhDangSQL.FomatSQL(guiden);
+		ResultSet rs = null;
+		rs = db.getResultSet("select * from taikhoan where Email=N'" + guiden + "' or TenTaiKhoan=N'" + guiden
+				+ "'");
+		TAIKHOAN taikhoan = null;
+		try {
+			if (rs.next()) {
+				taikhoan = new TAIKHOAN(DinhDangSQL.DeFomatSQL(rs
+						.getString("IdTaiKhoan")), DinhDangSQL.DeFomatSQL(rs
+						.getString("TenTaiKhoan")), DinhDangSQL.DeFomatSQL(rs
+						.getString("MatKhau")), DinhDangSQL.DeFomatSQL(rs
+						.getString("HoTen")), DinhDangSQL.DeFomatSQL(rs
+						.getString("DiaChi")), rs.getString("DienThoai"),
+						DinhDangSQL.DeFomatSQL(rs.getString("Email")),
+						DinhDangSQL.DeFomatSQL(rs.getString("QuyenQuanTri")));
+				taikhoan.setNgonNgu(DinhDangSQL.DeFomatSQL(rs
+						.getString("NgonNgu")));
+				return taikhoan;
+			}
+		} catch (SQLException e) {
+			// Lỗi trả về sai
+			e.printStackTrace();
+			return taikhoan;
+		}
+		return taikhoan;
+	}
+	
 	public boolean chekEmail(String email) {
 		// Kiểm tra tồn tại của user
 		email = DinhDangSQL.FomatSQL(email);
