@@ -2,7 +2,7 @@ package model.bo;
 
 import java.util.Date;
 import java.util.Properties;
- 
+
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -52,6 +52,48 @@ public class EmailUtility {
         msg.setContent(message, "text/html");
         // sends the e-mail
         Transport.send(msg);
- 
+    }
+    
+    public static void sendEmailThread(final String host, final String port,
+            final String userName, final String password, final String toAddress,
+            final String subject, final String message) throws AddressException,
+            MessagingException {
+    	try {
+			new Thread(new Runnable() {
+				@Override
+				public void run() {
+		            try {
+		            	// sets SMTP server properties
+		                Properties properties = new Properties();
+		                properties.put("mail.smtp.host", host);
+		                properties.put("mail.smtp.port", port);
+		                properties.put("mail.smtp.auth", "true");
+		                properties.put("mail.smtp.starttls.enable", "true");
+		                // creates a new session with an authenticator
+		                Authenticator auth = new Authenticator() {
+		                    public PasswordAuthentication getPasswordAuthentication() {
+		                        return new PasswordAuthentication(userName, password);
+		                    }
+		                };
+		                Session session = Session.getInstance(properties, auth);
+		                Message msg = new MimeMessage(session);
+		                msg.setFrom(new InternetAddress(userName));
+		                InternetAddress[] toAddresses = { new InternetAddress(toAddress) };
+		                msg.setRecipients(Message.RecipientType.TO, toAddresses);
+		                msg.setSubject(subject);
+		                msg.setSentDate(new Date());
+		                msg.setContent(message, "text/html");
+		                Transport.send(msg);
+		            	
+					} catch (AddressException e) {
+						e.printStackTrace();
+					} catch (MessagingException e) {
+						e.printStackTrace();
+					}
+				}
+			}).start();
+        } catch (Exception ex) {
+        	System.out.println("Lỗi! gửi mail.");
+        }
     }
 }

@@ -18,7 +18,7 @@ import com.google.gson.annotations.SerializedName;
 public class GoogleAuth {
 	private static String googlePlusClientId = "1037503808399-a442sje04o207j31a67ejimq0tqmnnrp.apps.googleusercontent.com";
 	private static String appSecret = "tTv5sQDBzWqbrRKTnVCAF4bW";
-	private static String callbackURL = "http://jpvn.net/LoginWithGoogle";
+	private static String callbackURL = "http://localhost:8000/WEBVIETNHAT/LoginWithGoogle";
 	private static String permissionString = "https://www.googleapis.com/auth/userinfo.email,https://www.googleapis.com/auth/userinfo.profile";
 	private static String accessURL = "https://accounts.google.com/o/oauth2/token";
 	private String accessToken = "";

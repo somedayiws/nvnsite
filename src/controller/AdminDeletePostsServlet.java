@@ -2,16 +2,18 @@ package controller;
 
 import java.io.IOException;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
-
 import model.bo.AdminDeletePostsBO;
+import model.bo.EmailUtility;
 import model.bo.ShowAdminEditPostsBO;
 import model.bo.ThongBaoBO;
 
@@ -51,18 +53,34 @@ public class AdminDeletePostsServlet extends HttpServlet {
 		 * date: 05 - 12 - 2015 
 		 * 
 		 * */
+		ServletContext context = getServletContext();
+		
+		final String host = context.getInitParameter("host");
+		final String port = context.getInitParameter("port");
+		final String user1 = context.getInitParameter("user");
+		final String pass = context.getInitParameter("pass");
+		
 		final String MESSAGE_1 = "Bài viết của bạn đã bị xóa";
 		final String MESSAGE_2 = "Bài viết của bạn đã bị xóa vì không đúng nội quy của website";
 		ShowAdminEditPostsBO checkID = new ShowAdminEditPostsBO();
 		String message_input = request.getParameter("message_input");
 		String message_default = request.getParameter("message_default");
 		ThongBaoBO tb = new ThongBaoBO();
-		String tieude = "Thông báo hủy bài viết[記事を削除することのお知らせ] "+idPost;
-		String noidung = (message_input.trim().equals(""))? ((message_default.equals("message_2")) ? MESSAGE_2 : MESSAGE_1 ) : message_input;
+		final String tieude = "Thông báo hủy bài viết[記事を削除することのお知らせ] "+idPost;
+		final String noidung = (message_input.trim().equals(""))? ((message_default.equals("message_2")) ? MESSAGE_2 : MESSAGE_1 ) : message_input;
 		String guiden = checkID.post(idPost).getTaiKhoan().getTenTaiKhoan();
 		System.out.println("Xuat thong bao huy bai thanh cong");
 		tb.ThemThongBaoClient(tieude, noidung, guiden);
 		/**end fix by Hai*/
+		final String email = checkID.post(idPost).getTaiKhoan().getEmail();
+
+		try {
+			EmailUtility.sendEmailThread(host, port, user1, pass, email, tieude, noidung);
+		} catch (AddressException e) {
+			System.out.println("Lỗi : " + e.toString());
+		} catch (MessagingException e) {
+			System.out.println("Lỗi : " + e.toString());
+		}
 		
 		String resultDelete;
 		AdminDeletePostsBO admindeletePost = new AdminDeletePostsBO();

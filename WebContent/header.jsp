@@ -45,6 +45,14 @@
 		}, 30000);
 	});
 </script>
+
+<!-- google sign in -->
+<script src="https://apis.google.com/js/api:client.js"
+	gapi_processed="true"></script>
+<script type="text/javascript" src="js/update.ui.ajax.js"></script>
+<script  type="text/javascript" src="js/googlesignin.js"></script>
+<!-- End google sign in -->
+
 <div id=fullHeader>
 	<div id="headerTop">
 		<div id="headerMain">
@@ -58,18 +66,18 @@
 				<!-- Lấy dữ liệu từ server gửi về -->
 				<%
 					Calendar cal = Calendar.getInstance();
-					SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy z");
-					SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy z");
-					sdf.setTimeZone(TimeZone.getTimeZone("GMT+7"));
-					String homedate = sdf.format(cal.getTime());
-					/* Danh mục được hiển thị trong phần menu */
-					ArrayList<DANHMUC> listdanhmuc = (ArrayList<DANHMUC>) request
-							.getAttribute("listdanhmuc");
-					/* Lấy sesion người dùng */
-					TAIKHOAN user = (TAIKHOAN) request.getSession()
-							.getAttribute("user");
+									SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy z");
+									SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy z");
+									sdf.setTimeZone(TimeZone.getTimeZone("GMT+7"));
+									String homedate = sdf.format(cal.getTime());
+									/* Danh mục được hiển thị trong phần menu */
+									ArrayList<DANHMUC> listdanhmuc = (ArrayList<DANHMUC>) request
+											.getAttribute("listdanhmuc");
+									/* Lấy sesion người dùng */
+									TAIKHOAN user = (TAIKHOAN) request.getSession()
+											.getAttribute("user");
 
-					if (user != null) {
+									if (user != null) {
 				%>
 				<input type="hidden" id="tkDangNhap" value="<%=user.getHoTen()%>">
 				<ul class="nav navbar-nav navbar-right">
@@ -78,8 +86,8 @@
 						data-toggle="dropdown" href="Trang-ca-nhan">Chào-ようこそ<%=user.getHoTen()%>
 					</a>
 						<ul class="dropdown-menu">
-							<li><a href="Trang-ca-nhan"><i
-									class="fa fa-info-circle"></i> Trang cá nhân-個人ホーム</a></li>
+							<li><a href="Trang-ca-nhan"><i class="fa fa-info-circle"></i>
+									Trang cá nhân-個人ホーム</a></li>
 							<li><a href="Dang-xuat"><i class="fa fa-sign-out"></i>
 									Đăng xuất-ログアウト</a></li>
 						</ul></li>
@@ -92,8 +100,8 @@
 				<input type="hidden" id="tkDangNhap" value="null">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="Gia-dich-vu"> Quảng cáo - 広告</a> | <a
-						href="Dang-ky">Đăng ký - 登録する</a> | <a
-						data-toggle="modal" data-target="#mdangnhap"> Đăng nhập - ログインする</a></li>
+						href="Dang-ky">Đăng ký - 登録する</a> | <a data-toggle="modal"
+						data-target="#mdangnhap"> Đăng nhập - ログインする</a></li>
 					<%
 						}
 					%>
@@ -109,8 +117,8 @@
 					<option value="All" selected="selected">Tất cả - 全て</option>
 					<option value="ChuDe">Theo chủ đề - テーマ通り</option>
 					<option value="NoiDung">Theo nội dung - 内容通り</option>
-				</select> <input type="text" class="form-control"
-					placeholder="Tìm kiếm - 検索" name="txtFind">
+				</select> <input type="text" class="form-control" placeholder="Tìm kiếm - 検索"
+					name="txtFind">
 				<button type="submit" class="btn btn-success">
 					<i class="fa fa-search"></i> Tìm kiếm-検索
 				</button>
@@ -133,18 +141,28 @@
 							<div id="loiDangNhap"></div>
 							<div class="row">
 								<strong>Tài khoản - アカウント</strong> <input name="taikhoan"
-									type="text" placeholder="Tài khoản - アカウント" class="form-control">
+									type="text" placeholder="Tài khoản - アカウント"
+									class="form-control">
 							</div>
 							<div class="row">
 								<strong>Mật khẩu - パスワード</strong> <input name="matkhau"
-									type="password" placeholder="Tài khoản - パスワード" class="form-control">
+									type="password" placeholder="Tài khoản - パスワード"
+									class="form-control">
 							</div>
-							<a href="Quen-mat-khau" style="color: rgb(23,96,147);"> Quên mật khẩu - パスワードを忘れた。 ?</a><br> 
-							<a href="Dang-ky"><i class="fa fa-user-plus"></i> Đăng ký - 登録する</a>
-							
-							<a href="<%=APIWrapper.getDialogLink() %>" id="loginfb"><i class="fa fa-facebook"></i> Đăng nhập bằng Facebook - フェイスブックでロックインをする</a>
-							<p onclick="FBLogin()" id="loginfb"><i class="fa fa-facebook"></i> Đăng nhập bằng Facebook - フェイスブックでロックインをする</p>
-							<a href="<%=GoogleAuth.getDialogLink() %>" id="logingg"><i class="fa fa-google-plus"></i> Đăng nhập bằng Google</a>
+							<a href="Quen-mat-khau" style="color: rgb(23, 96, 147);">
+								Quên mật khẩu - パスワードを忘れた。 ?</a><br> <a href="Dang-ky"><i
+								class="fa fa-user-plus"></i> Đăng ký - 登録する</a>
+
+							<p onclick="FBLogin()" id="loginfb">
+								<i class="fa fa-facebook"></i> Đăng nhập bằng Facebook -
+								フェイスブックでロックインをする
+							</p>
+							<p id="logingg">
+								<i class="fa fa-google-plus"></i> Đăng nhập bằng Google
+							</p>
+							<script>
+								startApp();
+							</script>
 						</div>
 						<div class="modal-footer">
 							<button name="xuly" name="submit" value="TrangChu"
@@ -215,79 +233,89 @@
 	<div id="textdiv">
 		<span class="col-sm-2 col-md-2" id="datetime"><i
 			class="fa fa-clock-o"></i> <%=homedate%> </span> <span id="textcontent">
-			<marquee> <%= request.getAttribute("ThongDiep")==null ||request.getAttribute("ThongDiep").equals("")?"JPVN.NET   へようこそ　Chào Mừng Bạn Đến Với JPVN.NET":request.getAttribute("ThongDiep") %> </marquee>
+			<marquee>
+				<%=request.getAttribute("ThongDiep") == null
+					|| request.getAttribute("ThongDiep").equals("") ? "JPVN.NET   へようこそ　Chào Mừng Bạn Đến Với JPVN.NET"
+					: request.getAttribute("ThongDiep")%>
+			</marquee>
 		</span>
 		<%
 			if (user == null) {
 		%>
 		<span class="col-sm-3 col-md-3">
 			<button type="button" data-toggle="modal" data-target="#mdangnhap"
-				class="btn btn-danger form-control">
-				 Đăng bài・Đăng kí Miễn phí
-無料掲載・登録
-			</button> <%
+				class="btn btn-danger form-control">Đăng bài・Đăng kí Miễn
+				phí 無料掲載・登録</button> <%
  	} else {
  %> <span class="col-sm-3 col-md-3">
-				<button style="font-weight: bold;" type="button" onclick="dichuyen('Dang-bai-viet');"
-					class="btn btn-danger form-control">
-					Đăng bài・Đăng kí Miễn phí
-無料掲載・登録</button> <%
+				<button style="font-weight: bold;" type="button"
+					onclick="dichuyen('Dang-bai-viet');"
+					class="btn btn-danger form-control">Đăng bài・Đăng kí Miễn
+					phí 無料掲載・登録</button> <%
  	}
  %>
 		</span>
 	</div>
 </div>
 <div id="delailoinhan">
-	<p><a href="Lien-he"><i class="fa fa-envelope"></i> Liên hệ với admin - 管理者とコンタクト</a></p>
+	<p>
+		<a href="Lien-he"><i class="fa fa-envelope"></i> Liên hệ với admin
+			- 管理者とコンタクト</a>
+	</p>
+</div>
+<div id="fix-post-news">
+	<span id="fix-post-back"></span>
+	<%
+		if (user == null) {
+	%>
+	<div id="btn-post" class="btn-right-panel" data-toggle="modal"
+		data-target="#mdangnhap">
+		<span id="fix-post-caption" class="fix-caption">Đăng bài・Đăng
+			kí Miễn phí</br> 無料掲載・登録
+		</span> <i class="fa fa-paper-plane"></i>
 	</div>
-<div id="fix-post-news" >
-<span id="fix-post-back"></span>
- <%if (user == null) { %>
- <div id="btn-post" class="btn-right-panel" data-toggle="modal" data-target="#mdangnhap">
-	<span id="fix-post-caption" class="fix-caption">Đăng bài・Đăng kí Miễn phí</br>
-	無料掲載・登録
-	</span>
-	<i class="fa fa-paper-plane"></i>
-</div>
- <div id="btn-user" class="btn-right-panel" data-toggle="modal" data-target="#mdangnhap">
-	<span id="fix-post-caption" class="fix-caption">Trang cá nhân<br>
-	...
-	</span>
-	<i class="fa fa-user"></i>
-</div>
-<div id="btn-notify" class="btn-right-panel" data-toggle="modal" data-target="#mdangnhap">
-	<span id="fix-post-caption" class="fix-caption">Thông báo <br>
-	...
-	</span>
-	<i class="fa fa-bell"></i>
-</div>
-<%}else {%>
-<div id="btn-post" class="btn-right-panel" onclick="dichuyen('Dang-bai-viet');">
-	<span id="fix-post-caption" class="fix-caption">Đăng bài・Đăng kí Miễn phí</br>
-	無料掲載・登録
-	</span>
-	<i class="fa fa-paper-plane"></i>
-</div>
-<div id="btn-user" class="btn-right-panel" onclick="dichuyen('Trang-ca-nhan');">
-	<span id="fix-post-caption" class="fix-caption">Trang cá nhân<br>
-	...
-	</span>
-	<i class="fa fa-user"></i>
-</div>
-<div id="btn-notify" class="btn-right-panel" onclick="dichuyen('Thong-bao');">
-	<div id="countMailSide"><%=request.getAttribute("soEmail") == null ? "0" : request
-					.getAttribute("soEmail")%></div>
-	<span id="fix-post-caption" class="fix-caption">Thông báo <br>
-	...
-	</span>
-	<i class="fa fa-bell"></i>
-</div>
-<%} %>
-<div id="btn-top" class="btn-right-panel" onclick="dichuyen('#');">
-	<span id="fix-post-caption" class="fix-caption">Lên đầu trang <br>
-	...
-	</span>
-	<i class="fa fa-arrow-up"></i>
-</div>
+	<div id="btn-user" class="btn-right-panel" data-toggle="modal"
+		data-target="#mdangnhap">
+		<span id="fix-post-caption" class="fix-caption">Trang cá nhân<br>
+			...
+		</span> <i class="fa fa-user"></i>
+	</div>
+	<div id="btn-notify" class="btn-right-panel" data-toggle="modal"
+		data-target="#mdangnhap">
+		<span id="fix-post-caption" class="fix-caption">Thông báo <br>
+			...
+		</span> <i class="fa fa-bell"></i>
+	</div>
+	<%
+		} else {
+	%>
+	<div id="btn-post" class="btn-right-panel"
+		onclick="dichuyen('Dang-bai-viet');">
+		<span id="fix-post-caption" class="fix-caption">Đăng bài・Đăng
+			kí Miễn phí</br> 無料掲載・登録
+		</span> <i class="fa fa-paper-plane"></i>
+	</div>
+	<div id="btn-user" class="btn-right-panel"
+		onclick="dichuyen('Trang-ca-nhan');">
+		<span id="fix-post-caption" class="fix-caption">Trang cá nhân<br>
+			...
+		</span> <i class="fa fa-user"></i>
+	</div>
+	<div id="btn-notify" class="btn-right-panel"
+		onclick="dichuyen('Thong-bao');">
+		<div id="countMailSide"><%=request.getAttribute("soEmail") == null ? "0"
+						: request.getAttribute("soEmail")%></div>
+		<span id="fix-post-caption" class="fix-caption">Thông báo <br>
+			...
+		</span> <i class="fa fa-bell"></i>
+	</div>
+	<%
+		}
+	%>
+	<div id="btn-top" class="btn-right-panel" onclick="dichuyen('#');">
+		<span id="fix-post-caption" class="fix-caption">Lên đầu trang <br>
+			...
+		</span> <i class="fa fa-arrow-up"></i>
+	</div>
 
 </div>

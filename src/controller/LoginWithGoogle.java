@@ -48,36 +48,49 @@ public class LoginWithGoogle extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String code = request.getParameter("code");
-		String accessToken = null;
-		if (null != code) {
-			System.out.println("Code: " + code);
+//		String access_token = request.getParameter("access_token");
+//		System.out.println(access_token);
+//		String accessToken = access_token;
+//		String code = request.getParameter("code");
+//		System.out.println(code);
+//		String accessToken = "";
+//		if (null != code) {
+//			System.out.println("Code: " + code);
+//
+//			List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+//			nvps.add(new BasicNameValuePair("client_id", GoogleAuth
+//					.getGooglePlusClientId()));
+//			nvps.add(new BasicNameValuePair("client_secret", GoogleAuth
+//					.getAppSecret()));
+//			nvps.add(new BasicNameValuePair("grant_type", "authorization_code"));
+//			nvps.add(new BasicNameValuePair("redirect_uri", GoogleAuth
+//					.getCallbackURL()));
+//			nvps.add(new BasicNameValuePair("code", code));
+//			accessToken = GoogleAuth.getAccessToken(nvps);
+//		} else {
+//			response.sendRedirect(request.getContextPath() + "/error.html");
+//			return;
+//		}
 
-			List<NameValuePair> nvps = new ArrayList<NameValuePair>();
-			nvps.add(new BasicNameValuePair("client_id", GoogleAuth
-					.getGooglePlusClientId()));
-			nvps.add(new BasicNameValuePair("client_secret", GoogleAuth
-					.getAppSecret()));
-			nvps.add(new BasicNameValuePair("grant_type", "authorization_code"));
-			nvps.add(new BasicNameValuePair("redirect_uri", GoogleAuth
-					.getCallbackURL()));
-			nvps.add(new BasicNameValuePair("code", code));
+//		if (null != accessToken) {
+//			System.out.println("accessToken: " + accessToken);
+//			String apiURL = "https://www.googleapis.com/oauth2/v1/userinfo?access_token="
+//					+ accessToken;
+//			TAIKHOAN taikhoan = GoogleAuth.getUserInfo(apiURL);
+		
+			String id = request.getParameter("id");
+			String email = request.getParameter("email");
+			String name = request.getParameter("name");
 
-			accessToken = GoogleAuth.getAccessToken(nvps);
-		} else {
-			response.sendRedirect(request.getContextPath() + "/error.html");
-			return;
-		}
-
-		if (null != accessToken) {
-			System.out.println("accessToken: " + accessToken);
-			String apiURL = "https://www.googleapis.com/oauth2/v1/userinfo?access_token="
-					+ accessToken;
-			TAIKHOAN taikhoan = GoogleAuth.getUserInfo(apiURL);
+			TAIKHOAN taikhoan = new TAIKHOAN();
+			taikhoan.setGoogleID(id);
+			taikhoan.setEmail(email);
+			taikhoan.setHoTen(name);
 			System.out.println(taikhoan.toString());
 			if (taikhoan.getGoogleID() == null
 					|| taikhoan.getGoogleID().equals("")) {
-				response.sendRedirect("Trang-chu");
+				request.setAttribute("KetQua", "<div class='alert alert-danger' role='alert'><p>Đăng nhập facebook thất bại!</p></div>");
+				request.getRequestDispatcher("DataShow.jsp").forward(request, response);
 			} else {
 				TaiKhoanBO taiKhoanBO = new TaiKhoanBO();
 				if(taikhoan.getEmail() == null || taikhoan.getEmail().equals("")) {
@@ -100,7 +113,6 @@ public class LoginWithGoogle extends HttpServlet {
 							"user");
 					// Điều hướng đến trang khác mà không cần gửi dữ liệu
 					taiKhoanBO.closeConnection();
-					response.sendRedirect("Trang-ca-nhan");
 				} else {
 					if (taiKhoanBO.chekEmail(taikhoan.getEmail())) {
 						taiKhoanBO.updateAccountByEmailGoogle(taikhoan);
@@ -111,7 +123,6 @@ public class LoginWithGoogle extends HttpServlet {
 								"user");
 						// Điều hướng đến trang khác mà không cần gửi dữ liệu
 						taiKhoanBO.closeConnection();
-						response.sendRedirect("Trang-ca-nhan");
 					} else {
 						taiKhoanBO.registerAccountWithGoogle(taikhoan.getTenTaiKhoan(),
 								taikhoan.getGoogleID(), taikhoan.getHoTen(),
@@ -123,13 +134,15 @@ public class LoginWithGoogle extends HttpServlet {
 								"user");
 						// Điều hướng đến trang khác mà không cần gửi dữ liệu
 						taiKhoanBO.closeConnection();
-						response.sendRedirect("Trang-ca-nhan");
 					}
 				}
+				request.getSession().setAttribute("isGoogleAccount", "true");
+				request.setAttribute("KetQua", "Thanhcong");
+				request.getRequestDispatcher("DataShow.jsp").forward(request, response);
 			}
-		}
-		if (null == accessToken)
-			response.sendRedirect(request.getContextPath() + "/error.html");
+//		}
+//		if (null == accessToken)
+//			response.sendRedirect(request.getContextPath() + "/error.html");
 	}
 
 }
