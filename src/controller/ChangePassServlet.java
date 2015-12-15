@@ -52,7 +52,7 @@ public class ChangePassServlet extends HttpServlet {
 
 		
 		ChangePassBO changePassBo = new ChangePassBO();
-		if(changePassBo.checkValid(password, password_new, re_password)){
+		if(changePassBo.checkValid(password, password_new, re_password).equals("true")){
 			if(changePassBo.checkPassExist(password_new)){
 				if(changePassBo.UpdatePass(password_new, username)){
 					RequestDispatcher dispatcher = request.getRequestDispatcher("EditProfileServlet");

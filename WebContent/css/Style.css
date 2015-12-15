@@ -115,6 +115,12 @@
 	#about {
 		width: 270px;
 	}
+	#search-mobile {
+		display: none;
+	}
+	.navbar-brand {
+		display: none;
+	}
 }
 
 @media only screen and (max-width: 1065px) {
@@ -258,21 +264,28 @@
 	#about {
 		width: 265px;
 	}
+	#search-mobile {
+		display: none;
+	}
+	.navbar-brand {
+		display: none;
+	}
 }
-@media only screen and (max-width: 1023px){
+
+@media only screen and (max-width: 1023px) {
 	#fix-post-news {
-	display: none;
+		display: none;
 	}
 	#wrapper {
-	width: 100%!important;
+		width: 100% !important;
 	}
 	.back-top {
-	display: inherit!important;
+		display: inherit !important;
 	}
 	#delailoinhan {
 		right: 20px;
 	}
-} 
+}
 
 @media only screen and (max-width: 970px) { /*Style 960px*/
 	#headerTop #headerMain a span {
@@ -533,6 +546,32 @@
 }
 
 @media only screen and (max-width: 767px) {
+	.navbar-inverse .navbar-toggle {
+		border: none;
+	}
+	.navbar-brand {
+		color: white !important;
+		font-size: 20px !important;
+		display: block;
+	}
+	#search-mobile:hover {
+		cursor: pointer;
+	}
+	#search-mobile {
+		margin-left: 15px;
+		float: left;
+		overflow: hidden;
+	}
+	#search-mobile i {
+		font-size: 25px;
+		padding: 12px;
+	}
+	#search-mobile {
+		display: block;
+	}
+	#login {
+		border-top: 1px solid #eee;
+	}
 	.sidebar-item #content-item {
 		width: 70%;
 		float: left;
@@ -540,6 +579,10 @@
 	.navbar li a {
 		padding: 5px 20px 5px 17px;
 		font-size: 15px;
+	}
+	#seach {
+		transition: 500ms;
+		display: none;
 	}
 	/*Search bar*/
 	#login {
@@ -719,6 +762,9 @@
 }
 
 @media only screen and (max-width: 640px) {
+		.col-sm-2, #textcontent {
+		display: none;
+	}
 	#them {
 		width: 100%;
 		padding: 10px 50px;
@@ -927,7 +973,7 @@
 		padding: 6px 0px 8px 7px !important;
 	}
 	.jssocials-share-label {
-	display: none;
+		display: none;
 	}
 }
 

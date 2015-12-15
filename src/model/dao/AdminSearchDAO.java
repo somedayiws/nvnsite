@@ -18,10 +18,10 @@ public class AdminSearchDAO {
 			ArrayList<TAIKHOAN> accounts = new ArrayList<TAIKHOAN>();
 			String sql_select_account;
 			if(type.equals("CTV")){
-				sql_select_account = "SELECT IdTaiKhoan,TenTaiKhoan,HoTen,DiaChi,DienThoai,Email,QuyenQuanTri,NgonNgu,TinhTrang from taikhoan WHERE "+typeFind+" LIKE '%"+stringFind+"%' AND  CoXoa = 0 AND QuyenQuanTri == 'CTV' ORDER BY IdTaiKhoan DESC";
+				sql_select_account = "SELECT IdTaiKhoan,TenTaiKhoan,HoTen,DiaChi,DienThoai,Email,QuyenQuanTri,NgonNgu,TinhTrang from taikhoan WHERE "+typeFind+" LIKE '%"+stringFind+"%' AND  CoXoa = 0 AND QuyenQuanTri == 'CTV' ORDER BY HoTen, TenTaiKhoan ";
 			}
 			else{
-				sql_select_account = "SELECT IdTaiKhoan,TenTaiKhoan,HoTen,DiaChi,DienThoai,Email,QuyenQuanTri,NgonNgu,TinhTrang from taikhoan WHERE "+typeFind+" LIKE '%"+stringFind+"%' AND  CoXoa = 0 AND QuyenQuanTri != 'CTV' ORDER BY IdTaiKhoan DESC";
+				sql_select_account = "SELECT IdTaiKhoan,TenTaiKhoan,HoTen,DiaChi,DienThoai,Email,QuyenQuanTri,NgonNgu,TinhTrang from taikhoan WHERE "+typeFind+" LIKE '%"+stringFind+"%' AND  CoXoa = 0 AND QuyenQuanTri != 'CTV' ORDER BY HoTen, TenTaiKhoan ";
 			}
 			db.createMenu("AdminSearchSevlet?typeFind="+typeFind+"&stringFind="+stringFind+"&btnFind=Find&", page, sql_select_account);
 			System.out.println("result_select: "+sql_select_account + " limit "

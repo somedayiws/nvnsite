@@ -24,6 +24,17 @@
 <link rel="stylesheet" href="css/Style.css">
 <script type="text/javascript" src="js/back-to-top.js"></script>
 <script type="text/javascript">
+function showSearchPanel(){
+	if($('#seach').attr("class") == "collapse"){
+		$('#seach').attr("style","display: none;");
+		$('#seach').removeAttr("class");
+	}else{
+		$('#seach').attr("style","display: block;");
+		$('#seach').attr("class","collapse");
+	}
+}
+</script>
+<script type="text/javascript">
 	$(document).ready(function() {
 		$.ajax({
 			url : "CheckEmailServlet",
@@ -81,7 +92,6 @@
 				%>
 				<input type="hidden" id="tkDangNhap" value="<%=user.getHoTen()%>">
 				<ul class="nav navbar-nav navbar-right">
-
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="Trang-ca-nhan">Chào-ようこそ<%=user.getHoTen()%>
 					</a>
@@ -181,6 +191,8 @@
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
+				<span id="search-mobile" onclick="showSearchPanel()"><i class="fa fa-search"></i></span>
+				<a href="Trang-chu" class="navbar-brand">JPVN.NET</a>
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target="#myNavbar">
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span

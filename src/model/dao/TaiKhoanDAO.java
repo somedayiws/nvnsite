@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.bean.TAIKHOAN;
+import model.bo.Validate;
 
 public class TaiKhoanDAO {
 
@@ -33,6 +34,26 @@ public class TaiKhoanDAO {
 		return false;
 	}
 
+	public String checkValidChangePass(String username, String oldPassword, String newPassword, String passwordAgain) {
+		String resultCheck = "true";
+		if(!newPassword.equals(passwordAgain))
+		{
+			resultCheck = "Mật khẩu lặp lại phải giống mật khẩu mới - 再入力したパスワードは必ず新しいパスワードを一致しなければならない.";
+			return resultCheck;
+		}
+		else if(oldPassword.equals("")||newPassword.equals("")||oldPassword == null || newPassword==null)
+		{
+			resultCheck = "Dữ liệu không hợp lệ.";
+			return resultCheck;
+		}
+		else if(!chekOk(username, oldPassword))
+		{
+			resultCheck = "Nhập sai mật khẩu cũ! Vui lòng kiểm tra lại!<br>";
+			return resultCheck;
+		}
+		return resultCheck;
+	}
+	
 	public boolean chekOk(String username, String password, int x) {
 		// Kiểm tra tồn tại của user
 		username = DinhDangSQL.FomatSQL(username);

@@ -405,11 +405,50 @@ form#fdangnhap {
 	float: left;
 }
 
-#btnSubmit {
+.col-sm-6 {
+	padding: 0px 10px 10px 10px !important;
+}
+
+#btnSubmit, #btnChangePass {
+	margin-top: 10px;
+	padding: 10px;
+	border: transparent;
 	float: right;
-	width: 96.5%;
-	margin-right: 8px;
-	margin-top: 39px;
+}
+
+.titlegroup {
+	font-weight: bold;
+	border-bottom: 1px solid #ccc;
+	width: 100%;
+	font-size: 16px;
+	color: #333;
+}
+
+.nav-pills>li {
+	margin: 5px;
+	background: white;
+}
+
+.nav-pills>li:hover {
+	background: white !important;
+}
+
+#mainContent .nav {
+	padding: 5px;
+	border-bottom: 1px solid #eee;
+	margin: 10px 0px;
+}
+
+#tieude-trang-ca-nhan {
+	color: #555;
+	font-weight: bold;
+	font-size: 16px !important;
+	background: #eee !important;
+	padding: 10px !important;
+	border-bottom: 1px solid #ddd !important;
+	border-top: 1px solid #ddd !important;
+	border-radius: 0px !important;
+	margin: 10px 0px 0px 0px !important;
 }
 /*kết thúc*/
 .danhmucxxx {
@@ -634,15 +673,15 @@ a.fa.fa-home.fa-2x {
 }
 
 .xemnhieu #titleTabBar div {
-	font-size: 14px;
-	font-weight: normal;
-	padding: 0px 2px 0px 5px;
+	font-size: 18px;
+	font-weight: bold;
+	padding: 0px 4px 0px 5px;
 	margin-top: 10px;
 	margin-bottom: 0px;
 	color: #333;
 }
 
-.xemnhieu #titleTabBar .col-sm-6.col-md-6.active {
+.xemnhieu #titleTabBar .col-sm-12.col-md-12.active {
 	background: #45a3ea !important;
 	border-bottom: 1px solid #45a3ea;
 	color: white !important;
@@ -660,12 +699,10 @@ a.fa.fa-home.fa-2x {
 	width: 100%;
 	overflow: hidden;
 	border-bottom: 1px solid #45a3ea;
-	padding: 18px 0 0px 0;
 }
 
 .xemnhieu #titleTabBar p {
 	margin: 0px !important;
-	text-align: center;
 }
 
 .xemnhieu ul {
@@ -1691,13 +1728,15 @@ img.imggia {
 	width: 15% !important;
 }
 
-.xemnhieu #titleTabBar {
-	padding: 0px 0 0px 0;
-}
-
 .sidebar-item {
 	border-top: 1px solid #45a3ea;
 	border-radius: 0px 0px 3px 3px;
+}
+
+#pMoiNhat {
+	padding: 3px !important;
+	padding-left: 10px !important;
+	text-transform: uppercase;
 }
 
 .sidebar-item #title-item {
@@ -1766,9 +1805,11 @@ img.imggia {
 	color: white;
 	font-size: 14;
 }
+
 #loginfb:hover {
 	cursor: pointer;
 }
+
 #loadmorebutton {
 	background: #45a3ea;
 	border-radius: 4px !important;
@@ -1954,15 +1995,16 @@ img.imggia {
 	font-size: 11px;
 	color: white;
 }
+
 #wait-icon {
-overflow: hidden;
-position: fixed!important;
-top: 30%;
-right: 48%;
-font-size: 30px;
-background: rgba(0,0,0,0.5);
-padding:15px;
-border-radius:5px;
-z-index: 9999;
-transition: 400ms;
+	overflow: hidden;
+	position: fixed !important;
+	top: 30%;
+	right: 48%;
+	font-size: 30px;
+	background: rgba(0, 0, 0, 0.5);
+	padding: 15px;
+	border-radius: 5px;
+	z-index: 9999;
+	transition: 400ms;
 }

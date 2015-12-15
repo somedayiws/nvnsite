@@ -36,6 +36,11 @@ public class ChangePassDAO {
 		String sql_update_pass = "UPDATE taikhoan SET MatKhau ='"+password_new+"' WHERE TenTaiKhoan = '"+username+"' ";
 		return db.updateData(sql_update_pass);
 	}
+	public boolean updatePassClient(String password_new,String username)
+	{
+		String sql_update_pass = "UPDATE taikhoan SET MatKhau ='"+password_new+"' WHERE TenTaiKhoan = '"+username+"' ";
+		return db.updateData(sql_update_pass);
+	}
 
 
 	public void closeConnection() {

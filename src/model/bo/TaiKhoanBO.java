@@ -11,6 +11,12 @@ public class TaiKhoanBO {
 		// TODO Auto-generated method stub
 		return taikhoanDAO.chekOk(username, password);
 	}
+	public String checkValidChangePass(String username, String oldPassword, String newPassword, String passwordAgain) {
+		// TODO Auto-generated method stub
+		return taikhoanDAO.checkValidChangePass(username, oldPassword, newPassword, passwordAgain);
+	}
+	
+	
 
 	public boolean chekOk(String username, String password, int x) {
 		// TODO Auto-generated method stub

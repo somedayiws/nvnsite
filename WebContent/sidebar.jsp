@@ -41,8 +41,8 @@
 		</div>
 		<div class="xemnhieu">
 			<div id="titleTabBar">
-				<div class="col-sm-6 col-md-6 active" id="pMoiNhat">
-					<p>Mới nhất - 最新</p>
+				<div class="col-sm-12 col-md-12 active" id="pMoiNhat">
+					<p><i class="fa fa-file-text-o"></i> Mới nhất - 最新</p>
 				</div>
 			</div>
 			<ul id="contentMoiNhat">
