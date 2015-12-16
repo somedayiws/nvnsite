@@ -55,35 +55,35 @@ public class ChangePassClientServlet extends HttpServlet {
 
 		HttpSession session_user = request.getSession();
 		TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("user");
-		if (user.getTenTaiKhoan().equals(username)) {
+		if (user != null && user.getTenTaiKhoan().equals(username)) {
 			TaiKhoanBO taiKhoanBO = new TaiKhoanBO();
 			String checkPassResult = taiKhoanBO.checkValidChangePass(username, oldpassword,
 					newpassword, passwordagain);
 			if (checkPassResult.equals("true")) {
 				user.setMatKhau(newpassword);
-				if (taiKhoanBO.UpdateThongTin(user)) {
+				if (taiKhoanBO.updatePassword(user.getIdTaiKhoan(),newpassword)) {
+					taiKhoanBO.closeConnection();
 					RequestDispatcher dispatcher = request
 							.getRequestDispatcher("Result.jsp");
 					request.setAttribute("Message",
 							"Cập nhật thành công - 更新を成功する。");
 					request.setAttribute("type", "success");
-					taiKhoanBO.closeConnection();
 					dispatcher.forward(request, response);
 				} else {
+					taiKhoanBO.closeConnection();
 					request.setAttribute("type", "fail");
 					request.setAttribute("Message",
 							"Cập nhật thất bại - 更新を失敗する。");
 					RequestDispatcher dispatcher = request
 							.getRequestDispatcher("Result.jsp");
-					taiKhoanBO.closeConnection();
 					dispatcher.forward(request, response);
 				}
 			} else {
+				taiKhoanBO.closeConnection();
 				request.setAttribute("type", "fail");
 				request.setAttribute("Message", checkPassResult);
 				RequestDispatcher dispatcher = request
 						.getRequestDispatcher("Result.jsp");
-				taiKhoanBO.closeConnection();
 				dispatcher.forward(request, response);
 			}
 		} else {

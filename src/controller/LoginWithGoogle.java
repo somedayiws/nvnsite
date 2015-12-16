@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.bean.TAIKHOAN;
+import model.bo.EmailUtility;
 import model.bo.TaiKhoanBO;
 
 import org.apache.http.NameValuePair;
@@ -103,10 +105,8 @@ public class LoginWithGoogle extends HttpServlet {
 						taikhoan.setTenTaiKhoan(emailName);
 					}
 				}
-				
 				if (taiKhoanBO.checkLoginWithGoogle(taikhoan.getGoogleID())) {
-					taikhoan = taiKhoanBO
-							.getAccountByEmail(taikhoan.getEmail());
+					taikhoan = taiKhoanBO.getAccountByIdSocial("google", taikhoan.getGoogleID());
 					// Tạo session lưu trữ phiên làm việc
 					request.getSession().setAttribute("user", taikhoan);
 					request.getSession().setAttribute("CKFinder_UserRole",
@@ -116,19 +116,36 @@ public class LoginWithGoogle extends HttpServlet {
 				} else {
 					if (taiKhoanBO.chekEmail(taikhoan.getEmail())) {
 						taiKhoanBO.updateAccountByEmailGoogle(taikhoan);
-						taikhoan = taiKhoanBO.getAccountByEmail(taikhoan
-								.getEmail());
+						taikhoan = taiKhoanBO.getAccountByIdSocial("google", taikhoan.getGoogleID());
 						request.getSession().setAttribute("user", taikhoan);
 						request.getSession().setAttribute("CKFinder_UserRole",
 								"user");
 						// Điều hướng đến trang khác mà không cần gửi dữ liệu
 						taiKhoanBO.closeConnection();
 					} else {
+						String password = RandomPassword.password(8);
 						taiKhoanBO.registerAccountWithGoogle(taikhoan.getTenTaiKhoan(),
 								taikhoan.getGoogleID(), taikhoan.getHoTen(),
-								taikhoan.getEmail());
-						taikhoan = taiKhoanBO.getAccountByEmail(taikhoan
-								.getEmail());
+								taikhoan.getEmail(),password);
+						taikhoan = taiKhoanBO.getAccountByIdSocial("google", taikhoan.getGoogleID());
+						taikhoan = taiKhoanBO.getAccountByEmail(taikhoan.getEmail());
+						ServletContext context = getServletContext();
+						String host = context.getInitParameter("host");
+						String port = context.getInitParameter("port");
+						String user = context.getInitParameter("user");
+						String pass = context.getInitParameter("pass");
+						String tieude = "JPVN.NET - Đăng ký tài khoản thành viên(会員の登録)";
+						String noidung = "<h3>Chào mừng bạn đến với website JPVN.NET(JPVN.NETへようこそ) - Cổng thông tin thương mại điện tử Việt-Nhật</h3><br>Sau đây là thông tin tài khoản của bạn(こちらはあなたのアカウントです):<br><br><strong>Tài khoản(アカウント) </strong>: " 
+								+ taikhoan.getTenTaiKhoan() + "<br><strong>Mật khẩu(パスワード) </strong>: " + password
+								+ "<br>Vui lòng truy cập vào trang cá nhân để cập nhật lại thông tin tài khoản! <br><br>"
+								+ "Chúc bạn có được những thông tin hữu ích từ website http://jpvn.net <br>";
+						
+						try {
+				            EmailUtility.sendEmailThread(host, port, user, pass, taikhoan.getEmail(), tieude,noidung);
+				            request.setAttribute("tbao", "<div class='alert alert-success' role='alert'><p>Đăng ký thành công - 登録を成功した.<br>Vui lòng đăng nhập tài khoản thành viên - 会員のアカウントを改めて入力してください.</p></div>");
+				        } catch (Exception ex) {
+				        	System.out.println("Lỗi! gửi mail.");
+				        }
 						request.getSession().setAttribute("user", taikhoan);
 						request.getSession().setAttribute("CKFinder_UserRole",
 								"user");

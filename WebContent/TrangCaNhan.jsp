@@ -53,9 +53,13 @@
 				<div class="col-sm-6 col-md-6">
 					<p class="titlegroup">Thông tin cá nhân</p>
 					<form action="Trang-ca-nhan" method="post" id="fcapnhat">
-						<label>Tài khoản-アカウント</label> <input type="text" name="taikhoan"
-							readonly="readonly" class="form-control"
-							value="<%=user.getTenTaiKhoan()%>"><br> <label>Họ
+						<label>Tài khoản-アカウント</label> 
+						<input type="hidden" name="permission" class="form-control"
+							value="<%=user.getEditFlag()%>">
+						<input type="text" name="taikhoan"
+							<%if(user.getEditFlag().charAt(0)=='0'){%>readonly="readonly"<% } %> class="form-control"
+							value="<%=user.getTenTaiKhoan()%>" onblur="checkTaiKhoan();">
+							<br> <label>Họ
 							tên-氏名</label> <input type="text" name="hoten" class="form-control"
 							value="<%=user.getHoTen()==null?"":user.getHoTen()%>"> <br>
 						<label>Điện thoại-電話番号</label> <input type="text" name="dienthoai"
@@ -65,8 +69,8 @@
 							name="diachi" class="form-control"
 							value="<%=user.getDiaChi()==null?"":user.getDiaChi()%>"><br>
 						<label>Email</label> <input type="text" id="email" name="email"
-							class="form-control" readonly="readonly"
-							value="<%=user.getEmail()==null?"":user.getEmail()%>">
+							class="form-control" <%if(user.getEditFlag().charAt(1)=='0'){%> readonly="readonly" <%} %>
+							value="<%=user.getEmail()==null?"":user.getEmail()%>" onblur="checkEmail();">
 						<button type="submit" class="btn-primary" id="btnSubmit">
 							Cập nhật tài khoản<br>
 						</button>
@@ -181,6 +185,46 @@
 	};
 </script>
 <link rel="stylesheet" href="css/extend.bootstrap.css">
+
+<%-- <% if(!request.getAttribute("permission").equals("00")) { %> --%>
+<script type="text/javascript">
+function checkTaiKhoan() {
+	var tkhoan = $('#taikhoandk').val();
+	if(!/[*#!~?,.% ]/.test(tkhoan)){
+		$.ajax({
+			url : "CheckTaiKhoanServlet", //file 
+			type : "POST", //phuong thức gưi
+			data : {
+	        	tk : tkhoan
+	        },
+	        async : true,
+	        success : function(res) {
+	        	$('#loitk').remove();
+	        	$('#taikhoandk').after(res);
+			}
+		});
+	} else {
+		$('#loitk').remove();
+		$('#taikhoandk').after("<label id='loitk' class='error'>Tài khoản chỉ gôm các ký tự 0-9, a-z, A-Z, _</label>");
+	}
+};
+
+function checkEmail() {
+	$.ajax({
+		url : "CheckEmailExistServlet", //file 
+		type : "POST", //phuong thức gưi
+		data : {
+        	tk : $('#eml').val()
+        },
+        async : true,
+        success : function(res) {
+        	$('#loiem').remove();
+        	$('#eml').after(res);
+		}
+	});
+};
+</script>
+<%-- <%}%> --%>
 <script type="text/javascript">
 	$(document)
 			.ready(
@@ -223,10 +267,7 @@
 																	'#fchangepassword')
 																	.serialize(),
 															beforeSend : function() {
-																$(
-																		"#btnChangePass")
-																		.html(
-																				"<i class='fa fa-spinner fa-pulse'></i> Thay đổi mật khẩu");
+																$("#btnChangePass").html("<i class='fa fa-spinner fa-pulse'></i> Thay đổi mật khẩu");
 															},
 															success : function(
 																	responseText) {
@@ -251,6 +292,69 @@
 														});
 											}
 										});
+						$("#fcapnhat")
+						.validate(
+								{
+									rules : {
+										taikhoan : {
+											required : true,
+											maxlength : 30 
+										},
+										hoten : {
+											required : true
+										},
+										email : {
+											email : true
+										},
+										dienthoai : {
+											digits : true
+										}
+									},
+									messages : {
+										taikhoan : {
+											required : "Bạn chưa nhập tên tài khoản<br>あなたはユーザー名をまだログインしない",
+											maxlength : "Tên đăng nhập dùng để đăng nhập vào hệ thống, tối đa 30 ký tự, không chứa ký tự đặc biệt<br>ユーザー名はシステム上にログインし、最大に30文字で、特別な記号を使わないでください。"
+										},
+										hoten : {
+											required : "Bạn chưa nhập họ tên!<br>氏名をまだ入力しない!"
+										},
+										email : {
+											email : "Không đúng định dạng email<br>メールの形式が無効です"
+										},
+										dienthoai : {
+											digits : "Nhập sai định dạng số điện thoại<br>入力された電話番号が無効です。"
+										}
+									},
+									submitHandler : function(form) {
+										$.ajax({
+													type : 'POST',
+													url : 'ChangeInfoClientServlet',
+													data : $('#fcapnhat').serialize(),
+													beforeSend : function() {
+														$("#btnChangePass").html("<i class='fa fa-spinner fa-pulse'></i> Thay đổi mật khẩu");
+													},
+													success : function(responseText) {
+														$('#resultAjaxProfile').html(responseText);
+														$('#resultUpdate').html($('#resultAjaxProfile center h3').html());
+														if ($('#resultAjaxProfile #type').text() == "success"){
+															$('#alertResult').attr("class","alert alert-success alert-white rounded");
+															$('#alertResult i').attr("class","fa fa-check");
+															$('#alertResult strong').html("Thành công!");
+														}
+														else {
+															$('#alertResult').attr("class","alert alert alert-danger alert-white rounded");
+															$('#alertResult i').attr("class","fa fa-times-circle");
+															$('#alertResult strong').html("Thất bại!");
+														}
+														$('#alertResult').removeAttr("style");
+														$("#btnChangePass").html("Thay đổi mật khẩu");
+													},
+													error : function() {
+														$("#btnChangePass").html("Thay đổi mật khẩu");
+													}
+												});
+									}
+								});
 					});
 </script>
 </html>

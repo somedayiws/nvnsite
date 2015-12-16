@@ -161,6 +161,7 @@ public class DataBaseDAO {
 
 	public ResultSet getResultSet(String sql) {
 		try {
+			System.out.println("get result: "+sql);
 			return stm.executeQuery(sql);
 		} catch (SQLException e) {
 			System.out.println("Lỗi truy vấn");

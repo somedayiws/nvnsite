@@ -20,7 +20,16 @@ public class TAIKHOAN {
 	private String FacebookLink;
 	private String GoogleID;
 	private String picture;
+	private String editFlag;
 	
+	public String getEditFlag() {
+		return editFlag;
+	}
+
+	public void setEditFlag(String editFlag) {
+		this.editFlag = editFlag;
+	}
+
 	public String getGoogleID() {
 		return GoogleID;
 	}

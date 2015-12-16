@@ -32,13 +32,13 @@
 		<input type="hidden" id="chon" value="<%= chon%>">
 		<div class="col-sm-9 col-md-9" id="baiviet">
 			<h3>
-				<i class="fa fa-empire"></i> Kết quả tìm kiếm - 検索の結果 
+				<i class="fa fa-empire"></i> Kết quả tìm kiếm - 検索の結果 <br> Từ khóa: <%= txtSearch%>
 			</h3>
 			<%
 				if(listbaiviet == null) {
 			%>
 			<div class="alert alert-warning" role="alert">Không tìm thấy dữ
-				liệu bạn cần ... </br>あなたは調べた内容がありません。 ...</div>
+				liệu bạn cần ... <br>あなたは調べた内容がありません。 <br> Từ khóa: <%= txtSearch%></div>
 			<%
 				}
 			%>
@@ -112,7 +112,7 @@
 			type : "POST", //phuong thức gưi
 			data : {
 				vitri : nbaiviet,
-				txtFind : $("#txtSearch").val(),
+				txt : $("#txtSearch").val(),
 				chon : $("#chon").val()
 			}, //dữ liệu gửi
 			async : true, //

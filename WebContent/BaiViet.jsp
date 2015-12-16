@@ -65,7 +65,7 @@
 					</div>
 					<div class="infoDetail">
 						<i class="fa fa-user"></i>
-						<%=baiviet.getTaiKhoan().getTenTaiKhoan()%></div>
+						<a href="Tim-kiem?txt=<%=baiviet.getTaiKhoan().getTenTaiKhoan()%>&type=user"><%=baiviet.getTaiKhoan().getTenTaiKhoan()%></div>
 					<div class="infoDetail">
 						<i class="fa fa-calendar"></i>
 						<%=baiviet.getNgayDang()%></div>

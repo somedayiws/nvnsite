@@ -111,9 +111,10 @@ public class DangKyThanhVienServlet extends HttpServlet {
 				String user = context.getInitParameter("user");
 				String pass = context.getInitParameter("pass");
 				String tieude = "JPVN.NET - Đăng ký tài khoản thành viên(会員の登録)";
-				String noidung = "Chào mừng bạn đến với JPVN.NET(JPVN.NETへようこそ).\nĐây là thông tin tài khoản của bạn(こちらはあなたのアカウントです):\n\nTài khoản(アカウント) : " 
-				+ taikhoan + "\nMật khẩu(パスワード) : " + matkhau;
-				
+				String noidung = "<h3>Chào mừng bạn đến với website JPVN.NET(JPVN.NETへようこそ) - Cổng thông tin thương mại điện tử Việt-Nhật</h3><br>Sau đây là thông tin tài khoản của bạn(こちらはあなたのアカウントです):<br><br><strong>Tài khoản(アカウント) </strong>: " 
+				+ taikhoan + "<br><strong>Mật khẩu(パスワード) </strong>: " + matkhau
+				+ "<br>Vui lòng truy cập vào trang cá nhân để cập nhật lại thông tin tài khoản! <br><br>"
+				+ "Chúc bạn có được những thông tin hữu ích từ website http://jpvn.net <br>";
 				try {
 		            EmailUtility.sendEmail(host, port, user, pass, email, tieude,noidung);
 		            request.setAttribute("tbao", "<div class='alert alert-success' role='alert'><p>Đăng ký thành công - 登録を成功した.<br>Vui lòng đăng nhập tài khoản thành viên - 会員のアカウントを改めて入力してください.</p></div>");

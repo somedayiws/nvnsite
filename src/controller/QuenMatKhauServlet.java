@@ -93,7 +93,7 @@ public class QuenMatKhauServlet extends HttpServlet {
 				if(ctv.UpdateThongTin(tk)){
 					String resultMessage = "";
 					try {
-			            EmailUtility.sendEmail(host, port, user, pass, email, tieude,noidung);
+			            EmailUtility.sendEmailThread(host, port, user, pass, email, tieude,noidung);
 			            resultMessage = "<div class='alert alert-success' role='alert'><p>Đã reset mật khẩu xong. Vui lòng vào mail kiểm tra lại. Cám ơn!<br>パスワードが既にリセットされたため、あなたのメールを改めて確認して下さい。ありがとうございます.</p></div>";
 			        } catch (Exception ex) {
 			            ex.printStackTrace();

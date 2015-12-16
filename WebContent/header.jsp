@@ -123,12 +123,12 @@ function showSearchPanel(){
 			<!-- form tìm kiếm -->
 			<form id="seach" class="navbar-form navbar-right" role="search"
 				action="Tim-kiem" method="post">
-				<select name="categoryJa" class="form-control">
+				<select name="type" class="form-control">
 					<option value="All" selected="selected">Tất cả - 全て</option>
 					<option value="ChuDe">Theo chủ đề - テーマ通り</option>
 					<option value="NoiDung">Theo nội dung - 内容通り</option>
 				</select> <input type="text" class="form-control" placeholder="Tìm kiếm - 検索"
-					name="txtFind">
+					name="txt">
 				<button type="submit" class="btn btn-success">
 					<i class="fa fa-search"></i> Tìm kiếm-検索
 				</button>

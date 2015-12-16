@@ -49,7 +49,7 @@ public class EmailUtility {
         msg.setSubject(subject);
         msg.setSentDate(new Date());
 //        msg.setText(message);
-        msg.setContent(message, "text/html");
+        msg.setContent(message, "text/html;charset=utf-8");
         // sends the e-mail
         Transport.send(msg);
     }
@@ -82,7 +82,7 @@ public class EmailUtility {
 		                msg.setRecipients(Message.RecipientType.TO, toAddresses);
 		                msg.setSubject(subject);
 		                msg.setSentDate(new Date());
-		                msg.setContent(message, "text/html");
+		                msg.setContent(message, "text/html;charset=utf-8");
 		                Transport.send(msg);
 		            	
 					} catch (AddressException e) {

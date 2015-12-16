@@ -35,8 +35,9 @@ public class TimKiemServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
-		String txtFind = request.getParameter("txtFind");
-		String theo = request.getParameter("categoryJa");
+		String txtFind = request.getParameter("txt");
+		String theo = request.getParameter("type");
+		System.out.println(txtFind+theo);
 		if(txtFind == null) txtFind="";
 		String vitri = request.getParameter("vitri");
 		BaiVietBO baiviet = new BaiVietBO();

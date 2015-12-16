@@ -32,6 +32,17 @@ public class TaiKhoanBO {
 		// TODO Auto-generated method stub
 		return taikhoanDAO.UpdateThongTin(user);
 	}
+	
+	public boolean updateUsername(String oldUsername, String newUsername) {
+		return taikhoanDAO.updateUsername(oldUsername, newUsername);
+	}
+	public boolean updatePassword(String idTaiKhoan, String password) {
+		return taikhoanDAO.updatePassword(idTaiKhoan, password);
+	}
+	public boolean updateEmail(String oldEmail, String newEmail) {
+		// TODO Auto-generated method stub
+		return taikhoanDAO.updateEmail(oldEmail, newEmail);
+	}
 
 	public void addTaiKhoan(String taikhoan, String matkhau, String hoten,
 			String diachi, String dienthoai, String email, String ngonngu) {
@@ -50,9 +61,9 @@ public class TaiKhoanBO {
 	}
 
 	public void registerAccountWithFacebook(String tenTaiKhoan, String facebookId,
-			String facebookLink, String hoten, String email) {
+			String facebookLink, String hoten, String email, String password) {
 		taikhoanDAO.registerAccountWithFacebook(tenTaiKhoan, facebookId, facebookLink,
-				hoten, email);
+				hoten, email, password);
 	}
 
 	public boolean checkLoginWithFacebook(String facebookId) {
@@ -60,8 +71,8 @@ public class TaiKhoanBO {
 	}
 
 	public void registerAccountWithGoogle(String tenTaiKhoan, String googleId, String hoten,
-			String email) {
-		taikhoanDAO.registerAccountWithGoogle(tenTaiKhoan, googleId, hoten, email);
+			String email, String password) {
+		taikhoanDAO.registerAccountWithGoogle(tenTaiKhoan, googleId, hoten, email, password);
 	}
 
 	public boolean checkLoginWithGoogle(String googleId) {
@@ -81,6 +92,9 @@ public class TaiKhoanBO {
 
 	public TAIKHOAN getAccountByEmail(String email) {
 		return taikhoanDAO.getAccountByEmail(email);
+	}
+	public TAIKHOAN getAccountByIdSocial(String type, String email) {
+		return taikhoanDAO.getAccountByIdSocial(type, email);
 	}
 
 	public TAIKHOAN getTaiKhoanByKey(String guiden) {

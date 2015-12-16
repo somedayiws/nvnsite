@@ -546,6 +546,9 @@
 }
 
 @media only screen and (max-width: 767px) {
+	.dropdown {
+		padding-top: 10px;
+	}
 	.navbar-inverse .navbar-toggle {
 		border: none;
 	}
@@ -814,6 +817,9 @@
 }
 
 @media only screen and (max-width: 600px) {
+	.dropdown {
+		padding-top: 3px;
+	}
 	#topmenu .nav {
 		font-size: 14px;
 	}

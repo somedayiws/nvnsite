@@ -43,6 +43,11 @@ public class Utils {
 		return pt.matcher(charTest).matches();
 	}
 	
+	public static boolean checkUsername(String charTest) {
+		Pattern pt = Pattern.compile("^(?=[_a-zA-Z]+)[a-zA-Z0-9_]{6,30}$");
+		return pt.matcher(charTest).matches();
+	}
+	
 	public static String encryptMD5(String input) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");

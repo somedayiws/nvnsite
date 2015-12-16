@@ -325,6 +325,11 @@ public class BaiVietDAO {
 					+ "where TrangThai=N'OK' and baiviet.CoXoa = 0 and (TenDanhMucVi like N'%"+txtFind+"%' or TenDanhMucJa like N'%"+txtFind+"%' "
 					+ "or TenBaiVietVi like N'%"+txtFind+"%' or TenBaiVietJa like N'%"+txtFind+"%') "
 					+ "order by NgayDang desc, LuotXem desc limit " + vitri + ", " +top;
+		}else if(kieu.equals("user")){
+			sql = "select IdBaiViet,TenBaiVietVi,TenBaiVietJa,MoTaVi,MoTaJa,NoiDungVi,NoiDungJa,NgayDang,Lienket,LuotXem,HoTen,TenTaiKhoan from baiviet "
+					+ "inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan "
+					+ "where TrangThai=N'OK' and baiviet.CoXoa = 0 and TenTaiKhoan='"+txtFind+"'"
+					+ "order by NgayDang desc, LuotXem desc limit " + vitri + ", " +top;
 		}else {
 			sql = "select IdBaiViet,TenBaiVietVi,TenBaiVietJa,MoTaVi,MoTaJa,NoiDungVi,NoiDungJa,NgayDang,Lienket,LuotXem,HoTen,TenTaiKhoan from baiviet "
 					+ "inner join taikhoan on baiviet.IdTaiKhoan=taikhoan.IdTaiKhoan "

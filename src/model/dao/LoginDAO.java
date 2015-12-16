@@ -9,6 +9,7 @@ public class LoginDAO {
 	public boolean checkLogin(String username,String password) {
 		username = DinhDangSQL.FomatSQL(username);
 		password = DinhDangSQL.FomatSQL(password);
+		password = Utils.Utils.encryptMD5(password);
 		String sql_checkLogin = "select IdTaiKhoan from taikhoan where TenTaiKhoan='"+username+"' and MatKhau='"+password+"' and CoXoa=0 and QuyenQuanTri='admin'";
 		ResultSet result_checkLogin = db.getResultSet(sql_checkLogin);
 		try {
