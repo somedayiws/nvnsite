@@ -14,7 +14,7 @@
 		<div class="infoContent" id="about">
 			<div id="titleContent">GIỚI THIỆU - 自己紹介</div>
 			<div id="infoContent">
-				<p><a href="Gioi-Thieu">Về chúng tôi - について</a></p>
+				<p><a href="Gioi-Thieu">Về chúng tôi - 私達 について</a></p>
 				<p><a href="Quy-dinh">Quy định sử dụng - 利用規約</a></p>
 				<p>Liên hệ - 連絡先の情報  : <%= request.getAttribute("LienHe")==null?"":request.getAttribute("LienHe") %></p>
 				<p>Điện thoại - 電話番号: <%= request.getAttribute("DienThoai")==null?"":request.getAttribute("DienThoai") %></p>

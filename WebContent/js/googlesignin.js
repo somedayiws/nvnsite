@@ -29,6 +29,7 @@ function Google_signIn(googleUser) {
 	signInCallback(profile);
 }
 function signInCallback(profile) {
+	alert(profile.getId()+profile.getName()+profile.getEmail()+profile.getProfile())
 	$.ajax({
 		type : 'POST',
 		url : 'LoginWithGoogle',

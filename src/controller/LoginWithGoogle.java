@@ -88,6 +88,7 @@ public class LoginWithGoogle extends HttpServlet {
 			taikhoan.setGoogleID(id);
 			taikhoan.setEmail(email);
 			taikhoan.setHoTen(name);
+			taikhoan.setGoogleLink("https://plus.google.com/"+taikhoan.getGoogleID()+"/posts");
 			System.out.println(taikhoan.toString());
 			if (taikhoan.getGoogleID() == null
 					|| taikhoan.getGoogleID().equals("")) {
@@ -115,8 +116,8 @@ public class LoginWithGoogle extends HttpServlet {
 					taiKhoanBO.closeConnection();
 				} else {
 					if (taiKhoanBO.chekEmail(taikhoan.getEmail())) {
-						taiKhoanBO.updateAccountByEmailGoogle(taikhoan);
-						taikhoan = taiKhoanBO.getAccountByIdSocial("google", taikhoan.getGoogleID());
+						if(taiKhoanBO.updateAccountByEmailGoogle(taikhoan))
+							taikhoan = taiKhoanBO.getAccountByIdSocial("google", taikhoan.getGoogleID());
 						request.getSession().setAttribute("user", taikhoan);
 						request.getSession().setAttribute("CKFinder_UserRole",
 								"user");
@@ -126,7 +127,7 @@ public class LoginWithGoogle extends HttpServlet {
 						String password = RandomPassword.password(8);
 						taiKhoanBO.registerAccountWithGoogle(taikhoan.getTenTaiKhoan(),
 								taikhoan.getGoogleID(), taikhoan.getHoTen(),
-								taikhoan.getEmail(),password);
+								taikhoan.getEmail(),password, taikhoan.getGoogleLink());
 						taikhoan = taiKhoanBO.getAccountByIdSocial("google", taikhoan.getGoogleID());
 						taikhoan = taiKhoanBO.getAccountByEmail(taikhoan.getEmail());
 						ServletContext context = getServletContext();

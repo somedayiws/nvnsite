@@ -83,8 +83,8 @@ public class LoginFacebook extends HttpServlet {
 				taiKhoanBO.closeConnection();
 			} else {
 				if (taiKhoanBO.chekEmail(taikhoan.getEmail())) {
-					taiKhoanBO.updateAccountByEmail(taikhoan);
-					taikhoan = taiKhoanBO.getAccountByIdSocial("facebook", taikhoan.getFacebookID());
+					if(taiKhoanBO.updateAccountByEmail(taikhoan))
+						taikhoan = taiKhoanBO.getAccountByIdSocial("facebook", taikhoan.getFacebookID());
 					request.getSession().setAttribute("user", taikhoan);
 					request.getSession().setAttribute("CKFinder_UserRole",
 							"user");

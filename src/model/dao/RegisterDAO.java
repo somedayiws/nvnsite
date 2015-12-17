@@ -65,7 +65,7 @@ public class RegisterDAO {
 		
 		account.setIdTaiKhoan(DinhDangSQL.FomatSQL(account.getIdTaiKhoan()));
 		account.setTenTaiKhoan(DinhDangSQL.FomatSQL(account.getTenTaiKhoan()));
-		account.setMatKhau(DinhDangSQL.FomatSQL(account.getMatKhau()));
+		account.setMatKhau(Utils.Utils.encryptMD5(DinhDangSQL.FomatSQL(account.getMatKhau())));
 		account.setHoTen(DinhDangSQL.FomatSQL(account.getHoTen()));
 		account.setDiaChi(DinhDangSQL.FomatSQL(account.getDiaChi()));
 		account.setDienThoai(DinhDangSQL.FomatSQL(account.getDienThoai()));

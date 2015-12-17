@@ -17,8 +17,18 @@ public class TAIKHOAN {
 	private String TinhTrang;
 	@SerializedName(value="id")
 	private String FacebookID;
+	@SerializedName(value="link")
 	private String FacebookLink;
 	private String GoogleID;
+	private String GoogleLink;
+	public String getGoogleLink() {
+		return GoogleLink;
+	}
+
+	public void setGoogleLink(String googleLink) {
+		GoogleLink = googleLink;
+	}
+
 	private String picture;
 	private String editFlag;
 	

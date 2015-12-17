@@ -2,9 +2,10 @@ package model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import controller.RandomPassword;
 import model.bean.TAIKHOAN;
-import model.bo.Validate;
 
 public class TaiKhoanDAO {
 
@@ -157,14 +158,15 @@ public class TaiKhoanDAO {
 		return false;
 	}
 	
-	public void registerAccountWithGoogle(String tenTaiKhoan, String googleId, String hoten, String email, String password) {
+	public void registerAccountWithGoogle(String tenTaiKhoan, String googleId, String hoten, String email, String password, String googleLink) {
 		// TODO Auto-generated method stub
 		googleId = DinhDangSQL.FomatSQL(googleId);
 		googleId = Utils.Utils.encryptMD5(googleId);
 		password = Utils.Utils.encryptMD5(password);
 		hoten = DinhDangSQL.FomatSQL(hoten);
 		email = DinhDangSQL.FomatSQL(email);
-		String sql = "insert into taikhoan(IdTaiKhoan, TenTaiKhoan, QuyenQuanTri, HoTen, Email, CoXoa, TinhTrang, GoogleId, EditFlag, MatKhau)"
+		googleLink = DinhDangSQL.FomatSQL(googleLink);
+		String sql = "insert into taikhoan(IdTaiKhoan, TenTaiKhoan, QuyenQuanTri, HoTen, Email, CoXoa, TinhTrang, GoogleId, EditFlag, MatKhau, GoogleLink)"
 				+ " values (N'"
 				+ getIdTaiKhoanMax()
 				+ "', N'"
@@ -177,14 +179,13 @@ public class TaiKhoanDAO {
 				+ email
 				+ "','0', N'MoiTao',N'"
 				+ googleId
-				+ "','10',N'"+password+"')";
+				+ "','10',N'"+password+"',N'"+googleLink+"')";
 		db.updateData(sql);
 	}
 
 	public boolean updateAccountByEmail(TAIKHOAN user) {
 		// TODO Auto-generated method stub
-		user.setFacebookID(Utils.Utils.encryptMD5(user.getFacebookID()));
-		String sql = "update taikhoan set FacebookId=N'" + user.getFacebookID()
+		String sql = "update taikhoan set FacebookId=N'" + Utils.Utils.encryptMD5(user.getFacebookID())
 				+ "', FacebookLink=N'" + user.getFacebookLink()
 				+ "' where Email='" + user.getEmail() + "'";
 		return db.updateData(sql);
@@ -192,12 +193,43 @@ public class TaiKhoanDAO {
 	
 	public boolean updateAccountByEmailGoogle(TAIKHOAN user) {
 		// TODO Auto-generated method stub
-		user.setGoogleID(Utils.Utils.encryptMD5(user.getGoogleID()));
-		String sql = "update taikhoan set GoogleId=N'" + user.getGoogleID()
+		String sql = "update taikhoan set GoogleId=N'" + Utils.Utils.encryptMD5(user.getGoogleID())
+				+ "', GoogleLink=N'" + user.getGoogleLink()
 				+ "' where Email='" + user.getEmail() + "'";
 		return db.updateData(sql);
 	}
-
+	public boolean updatePasswordMd5(String idTaiKhoan, String password) {
+		password = Utils.Utils.encryptMD5(password);
+		String sql = "update taikhoan set MatKhau=N'" + password
+				+ "' where IdTaiKhoan='" + idTaiKhoan + "'";
+		return db.updateData(sql);
+	}
+	public boolean updateMd5Code() {
+		ResultSet rs = null;
+		rs = db.getResultSet("select * from taikhoan");
+		TAIKHOAN taikhoan = null;
+		ArrayList<TAIKHOAN> arrAccount = new ArrayList<TAIKHOAN>();
+		try {
+			while (rs.next()) {
+				taikhoan = new TAIKHOAN();
+				taikhoan.setIdTaiKhoan(DinhDangSQL.DeFomatSQL(rs
+						.getString("IdTaiKhoan")));
+				taikhoan.setMatKhau(DinhDangSQL.DeFomatSQL(rs
+						.getString("MatKhau")));
+				arrAccount.add(taikhoan);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		for(int i = 0; i < arrAccount.size(); i++)
+		{
+			if(!updatePassword(arrAccount.get(i).getIdTaiKhoan(), arrAccount.get(i).getMatKhau()))
+				return false;
+		
+		}
+		return true;
+	}
 	public TAIKHOAN getAccountByEmail(String email) {
 		// lấy tài khoản thỏa mãn
 		email = DinhDangSQL.FomatSQL(email);
@@ -219,6 +251,10 @@ public class TaiKhoanDAO {
 						.getString("NgonNgu")));
 				taikhoan.setEditFlag(DinhDangSQL.DeFomatSQL(rs
 						.getString("EditFlag")));
+				taikhoan.setFacebookLink(DinhDangSQL.DeFomatSQL(rs
+						.getString("FacebookLink")));
+				taikhoan.setGoogleLink(DinhDangSQL.DeFomatSQL(rs
+						.getString("GoogleLink")));
 				return taikhoan;
 			}
 		} catch (SQLException e) {
@@ -254,6 +290,10 @@ public class TaiKhoanDAO {
 						.getString("NgonNgu")));
 				taikhoan.setEditFlag(DinhDangSQL.DeFomatSQL(rs
 						.getString("EditFlag")));
+				taikhoan.setFacebookLink(DinhDangSQL.DeFomatSQL(rs
+						.getString("FacebookLink")));
+				taikhoan.setGoogleLink(DinhDangSQL.DeFomatSQL(rs
+						.getString("GoogleLink")));
 				return taikhoan;
 			}
 		} catch (SQLException e) {
@@ -285,6 +325,10 @@ public class TaiKhoanDAO {
 						.getString("NgonNgu")));
 				taikhoan.setEditFlag(DinhDangSQL.DeFomatSQL(rs
 						.getString("EditFlag")));
+				taikhoan.setFacebookLink(DinhDangSQL.DeFomatSQL(rs
+						.getString("FacebookLink")));
+				taikhoan.setGoogleLink(DinhDangSQL.DeFomatSQL(rs
+						.getString("GoogleLink")));
 				return taikhoan;
 			}
 		} catch (SQLException e) {
@@ -339,6 +383,10 @@ public class TaiKhoanDAO {
 						.getString("NgonNgu")));
 				taikhoan.setEditFlag(DinhDangSQL.DeFomatSQL(rs
 						.getString("EditFlag")));
+				taikhoan.setFacebookLink(DinhDangSQL.DeFomatSQL(rs
+						.getString("FacebookLink")));
+				taikhoan.setGoogleLink(DinhDangSQL.DeFomatSQL(rs
+						.getString("GoogleLink")));
 				return taikhoan;
 			}
 		} catch (SQLException e) {
@@ -373,6 +421,9 @@ public class TaiKhoanDAO {
 	}
 	public boolean updatePassword(String idTaiKhoan, String password) {
 		// TODO Auto-generated method stub
+		if(password == null || password.trim().equals("")){
+			password = RandomPassword.password(8);
+		}
 		password = Utils.Utils.encryptMD5(password);
 		String sql = "update taikhoan set MatKhau=N'"
 				+ DinhDangSQL.FomatSQL(password)

@@ -27,6 +27,7 @@ public class AdminForgotPasswordDAO {
 	
 	/**Update password*/
 	public boolean updatePassword(String password,String email){
+		password = Utils.Utils.encryptMD5(password);
 		String sql_update_password = "UPDATE taikhoan SET MatKhau = '"+password+"' WHERE Email ='"+email+"'";
 		return db.updateData(sql_update_password);
 	}

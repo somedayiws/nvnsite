@@ -87,8 +87,7 @@ public class AdminCreateDAO {
 		account.setDienThoai(DinhDangSQL.FomatSQL(account.getDienThoai()));
 		account.setEmail(DinhDangSQL.FomatSQL(account.getEmail()));
 		account.setTenTaiKhoan(DinhDangSQL.FomatSQL(account.getTenTaiKhoan()));
-		account.setMatKhau(DinhDangSQL.FomatSQL(account.getMatKhau()));
-		
+		account.setMatKhau(Utils.Utils.encryptMD5(DinhDangSQL.FomatSQL(account.getMatKhau())));
 		String sql_insert_account = "INSERT INTO taikhoan(IdTaiKhoan,TenTaiKhoan,MatKhau,HoTen,DiaChi,DienThoai,Email,QuyenQuanTri,CoXoa,NgonNgu,TinhTrang) VALUES('"
 				+ account.getIdTaiKhoan() + "','" + account.getTenTaiKhoan()
 				+ "','" + account.getMatKhau() + "',N'" + account.getHoTen()

@@ -71,8 +71,8 @@ public class TaiKhoanBO {
 	}
 
 	public void registerAccountWithGoogle(String tenTaiKhoan, String googleId, String hoten,
-			String email, String password) {
-		taikhoanDAO.registerAccountWithGoogle(tenTaiKhoan, googleId, hoten, email, password);
+			String email, String password, String googleLink) {
+		taikhoanDAO.registerAccountWithGoogle(tenTaiKhoan, googleId, hoten, email, password, googleLink);
 	}
 
 	public boolean checkLoginWithGoogle(String googleId) {
@@ -88,6 +88,9 @@ public class TaiKhoanBO {
 	}
 	public boolean updateAccountByEmailGoogle(TAIKHOAN user) {
 		return taikhoanDAO.updateAccountByEmailGoogle(user);
+	}
+	public boolean updateMd5Code() {
+		return taikhoanDAO.updateMd5Code();
 	}
 
 	public TAIKHOAN getAccountByEmail(String email) {
