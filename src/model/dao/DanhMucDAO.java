@@ -21,7 +21,7 @@ public class DanhMucDAO {
 			while(rs.next()){
 				DANHMUC dm = new DANHMUC(DinhDangSQL.DeFomatSQL(rs.getString("IdDanhMuc")),DinhDangSQL.DeFomatSQL(rs.getString("TenDanhMucVi")), DinhDangSQL.DeFomatSQL(rs.getString("TenDanhMucJa")), rs.getInt("HienThi"));
 				dm.setSoLuongBV(rs.getInt("SoLuongBai"));
-				System.out.println(dm.getSoLuongBV());
+//				System.out.println(dm.getSoLuongBV());
 				list.add(dm);
 			}
 			return list;
@@ -35,7 +35,7 @@ public class DanhMucDAO {
 	public ArrayList<DANHMUC> getListDanhMuc(String vitri, String top) {
 		// TODO Auto-generated method stub
 		String sql = "select IdDanhMuc,TenDanhMucVi,TenDanhMucJa,ICon from danhmuc where danhmuc.CoXoa=0 limit "+vitri+","+top;
-		System.out.println(sql);
+//		System.out.println(sql);
 		ResultSet rs = db.getResultSet(sql);
 		ArrayList<DANHMUC> list = new ArrayList<DANHMUC>();
 		BaiVietDAO baiviet = new BaiVietDAO();

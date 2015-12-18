@@ -55,8 +55,8 @@ public class ChangeInfoClientServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		boolean isChangeUsername = false;
 		boolean isChangeEmail = false;
-		System.out.println(username + hoten + dienthoai + diachi + email
-				+ permission);
+//		System.out.println(username + hoten + dienthoai + diachi + email
+//				+ permission);
 		HttpSession session_user = request.getSession();
 		TAIKHOAN user = (TAIKHOAN) request.getSession().getAttribute("user");
 		if (user != null) {

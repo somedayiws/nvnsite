@@ -89,7 +89,7 @@ public class LoginWithGoogle extends HttpServlet {
 			taikhoan.setEmail(email);
 			taikhoan.setHoTen(name);
 			taikhoan.setGoogleLink("https://plus.google.com/"+taikhoan.getGoogleID()+"/posts");
-			System.out.println(taikhoan.toString());
+//			System.out.println(taikhoan.toString());
 			if (taikhoan.getGoogleID() == null
 					|| taikhoan.getGoogleID().equals("")) {
 				request.setAttribute("KetQua", "<div class='alert alert-danger' role='alert'><p>Đăng nhập facebook thất bại!</p></div>");

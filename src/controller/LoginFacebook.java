@@ -72,7 +72,7 @@ public class LoginFacebook extends HttpServlet {
 				}
 			}
 			taikhoan.setQuyenQuanTri("user");
-			System.out.println(taikhoan.toString());
+//			System.out.println(taikhoan.toString());
 			
 			if (taiKhoanBO.checkLoginWithFacebook(taikhoan.getFacebookID())) {
 				taikhoan = taiKhoanBO.getAccountByIdSocial("facebook", taikhoan.getFacebookID());

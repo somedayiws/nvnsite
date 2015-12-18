@@ -63,14 +63,14 @@ public class DataBaseDAO {
 		} catch (SQLException e) {
 			tongBangGhi = 0;
 		}
-		System.out.println("Số bảng ghi : " + tongBangGhi);
+//		System.out.println("Số bảng ghi : " + tongBangGhi);
 		// Tổng số trang trên menu
 		int tongTrang = (tongBangGhi % nBangGhi == 0) ? (tongBangGhi / nBangGhi)
 				: (tongBangGhi / nBangGhi + 1);
-		System.out.println("Tổng số trang : " + tongTrang);
+//		System.out.println("Tổng số trang : " + tongTrang);
 		// Chi số đầu dãy trang cần đến
 		int chiso = page / nTrang;
-		System.out.println("Chi số : " + chiso);
+//		System.out.println("Chi số : " + chiso);
 		// Tạo menu
 		menuPhanTrang = "<ul class='pagination  pagination-sm' id='menupt'>";
 		if (page == 1)
@@ -88,7 +88,7 @@ public class DataBaseDAO {
 					+ "' onclick='loadMenu('giam');' >... <span class='sr-only'>(current)</span></a></li>";
 		for (int j = chiso * nTrang + 1; j <= tongTrang
 				&& j <= (chiso + 1) * nTrang; j++) {
-			System.out.println("menu " + j);
+//			System.out.println("menu " + j);
 			if (j != page)
 				menuPhanTrang += "<li><a href='" + url + "page=" + j
 						+ "' onclick='chuyen(" + j + ");'>" + j
@@ -161,7 +161,7 @@ public class DataBaseDAO {
 
 	public ResultSet getResultSet(String sql) {
 		try {
-			System.out.println("get result: "+sql);
+//			System.out.println("get result: "+sql);
 			return stm.executeQuery(sql);
 		} catch (SQLException e) {
 			System.out.println("Lỗi truy vấn");
@@ -171,7 +171,7 @@ public class DataBaseDAO {
 
 	public boolean updateData(String sql) {
 		try {
-			System.out.println("SQL command : " + sql);
+//			System.out.println("SQL command : " + sql);
 			stm.executeUpdate(sql);
 			return true;
 		} catch (SQLException e) {

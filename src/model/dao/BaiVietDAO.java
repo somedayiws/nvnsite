@@ -41,7 +41,7 @@ public class BaiVietDAO {
 				bv.setLienKet(DinhDangSQL.DeFomatSQL(rs.getString("LienKet")));
 				bv.setNgayDang(sdf.format(rs.getTimestamp("NgayDang")));
 				bv.setLuotXem(rs.getInt("LuotXem"));
-				System.out.println(bv.getGhiChu());
+//				System.out.println(bv.getGhiChu());
 				if(bv.getTrangThai().equals("OK"))
 					db.updateData("update baiviet set LuotXem = LuotXem + 1 where IdBaiViet=N'"+id+"'");
 				bv.setBinhLuanVi(bl.getListBinhLuan(id, "vi", "0"));
@@ -78,7 +78,7 @@ public class BaiVietDAO {
 				bv.setLienKet(DinhDangSQL.DeFomatSQL(rs.getString("LienKet")));
 				bv.setNgayDang(sdf.format(rs.getTimestamp("NgayDang")));
 				bv.setLuotXem(rs.getInt("LuotXem"));
-				System.out.println(bv.getGhiChu());
+//				System.out.println(bv.getGhiChu());
 				if(bv.getTrangThai().equals("OK"))
 					db.updateData("update baiviet set LuotXem = LuotXem + 1 where IdBaiViet=N'"+id+"'");
 				bv.setBinhLuanVi(bl.getListBinhLuan(id, "vi", "0"));
@@ -174,7 +174,7 @@ public class BaiVietDAO {
 				+DinhDangSQL.FomatSQL(taiKhoan)+"', N'"+DinhDangSQL.FomatSQL(noiDungVi)+"', N'"
 				+DinhDangSQL.FomatSQL(noiDungJa)+"', N'"+trangThai+"', '0', '"
 				+sdf.format(cal.getTime())+"', '0', N'"+hinhAnh+"')";
-		System.out.println("SQL : " + sql);
+//		System.out.println("SQL : " + sql);
 		return db.updateData(sql);
 	}
 	/*
@@ -480,7 +480,7 @@ public class BaiVietDAO {
 					+ "where (lichsu.TrangThai = N'DangDich'"
 					+ ") and baiviet.CoXoa = 0 and lichsu.IdTaiKhoan = N'"+idTaiKhoan+"'";
 		}
-		System.out.println("sql: "+sql);
+//		System.out.println("sql: "+sql);
 		//Tạo menu phân trang Url, page, sql
 		db.createMenu("Danh-sach-bai-dich?view="+view+"&", page, sql);
 		

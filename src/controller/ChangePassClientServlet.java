@@ -51,7 +51,7 @@ public class ChangePassClientServlet extends HttpServlet {
 		String oldpassword = request.getParameter("oldpassword");
 		String newpassword = request.getParameter("newpassword");
 		String passwordagain = request.getParameter("passwordagain");
-		System.out.println(username + oldpassword + newpassword + passwordagain);
+//		System.out.println(username + oldpassword + newpassword + passwordagain);
 
 		HttpSession session_user = request.getSession();
 		TAIKHOAN user = (TAIKHOAN)request.getSession().getAttribute("user");

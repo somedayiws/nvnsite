@@ -37,7 +37,6 @@ public class TrangChuServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
-		System.out.println(Utils.encryptMD5("123456"));
 		String txtFind = (String) request.getAttribute("txtFind");
 		if (txtFind == null) txtFind = "";
 		DanhMucBO danhmuc = new DanhMucBO();
