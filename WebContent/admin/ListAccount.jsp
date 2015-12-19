@@ -88,21 +88,15 @@
 					</div>
 					<div class=" form-group">
 						<button type="submit" name="btnFind" value="Find"
-							class=" col-md-1 btn btn-primary" data-toggle="tooltip" title="Tìm kiếm - 検索" data-placement="bottom">
-							<span class="glyphicon glyphicon-search"></span>
+							class="btn1 col-md-1 btn btn-primary" data-toggle="tooltip" title="Tìm kiếm - 検索" data-placement="bottom">
+							Tìm kiếm - 検索
 						</button>
 					</div>
 				</form>
 				<div class="form-group">
-					<a href="ShowCreateAccount?type=user"><button
-							class=" col-md-1 btn btn-success" data-toggle="tooltip" title="Tạo tài khoản - アカウントの作成" data-placement="bottom">
-							<span class="glyphicon glyphicon-user"></span>
-						</button></a>
-				</div>
-				<div class="form-group">
 					<a href="ShowRestoreServlet?type=account&screen=User"><button
-							class=" col-md-1 btn btn-success" data-toggle="tooltip" title="Khôi phục - 回復" data-placement="bottom">
-							<span class="glyphicon glyphicon-share-alt"></span>
+							class="btn1 col-md-1 btn btn-success" data-toggle="tooltip" title="Khôi phục - 回復" data-placement="bottom">
+							Khôi phục - 回復
 						</button></a>
 				</div>
 			</div>
@@ -114,8 +108,13 @@
 			<%
 				if (account != null) {
 			%>
-			<div class="col-md-10 col-md-offset-1 panel panel-success">
-				<div class="panel-heading">Kết quả - 結果</div>
+			<div class="col-md-12 panel panel-success">
+				<div class="panel-heading">Kết quả - 結果 
+					<a href="ShowCreateAccount?type=user"><button
+							class="btn2 col-md-1 btn btn-success" data-toggle="tooltip" title="Tạo tài khoản - アカウントの作成" data-placement="bottom">
+							Tạo tài khoản - アカウントの作成
+						</button></a>
+				</div>
 				<div class="panel-body">
 					<div class="table-responsive">
 						<table class="table table-hover table-condensed table-striped ">
@@ -123,12 +122,9 @@
 								<tr>
 									<th>ID</th>
 									<th>Họ tên<br>氏名</th>
-									<th>Địa chỉ<br>住所</th>
 									<th>Điện thoại<br>電話番号</th>
 									<th>Email<br>メール</th>
 									<th>Tài khoản<br>ユーザー名</th>
-									<th>Phân quyền<br>管理者の権利</th>
-									<th>Ngôn ngữ<br>言語</th>
 									<th>Tình trạng<br>状態</th>
 									<th></th>
 									<th></th>
@@ -139,14 +135,12 @@
 							%>
 							<tbody>
 								<tr>
-									<td><p><%= (account.get(i).getIdTaiKhoan()== null)		? "" : account.get(i).getIdTaiKhoan()%></p></td>
-									<td><p><%= (account.get(i).getHoTen() == null)			? "" : account.get(i).getHoTen()%></p></td>
-									<td><p><%= (account.get(i).getDiaChi() == null)		? "" : account.get(i).getDiaChi()%></p></td>
-									<td><p><%= (account.get(i).getDienThoai()== null)		? "" : account.get(i).getDienThoai()%></p></td>
-									<td><p><%= (account.get(i).getEmail() == null) 		? "" : account.get(i).getEmail()%></p></td>
-									<td><p><%= (account.get(i).getTenTaiKhoan() == null)	? "" : account.get(i).getTenTaiKhoan()%></p></td>
-									<td><p><%= (account.get(i).getQuyenQuanTri() == null)	? "" :account.get(i).getQuyenQuanTri()%></p></td>
-									<td><p><%= (account.get(i).getNgonNgu() == null)		? "" : (account.get(i).getNgonNgu().equals("vi") ?"Việt Nam <br> ベトナム":"Nhật Bản <br> 日本")%></p></td>
+									<td><p><%= (account.get(i).getQuyenQuanTri() == null)? "":account.get(i).getQuyenQuanTri().equals("user")?"<span class='glyphicon glyphicon-user'></span>":"<span class='glyphicon glyphicon-tower'></span>"%> <%= (account.get(i).getIdTaiKhoan()== null)	? "" : account.get(i).getIdTaiKhoan()%></p></td>
+									<td><p><%= (account.get(i).getIdTaiKhoan()== null)? "" : account.get(i).getIdTaiKhoan()%></p></td>
+									<td><p><%= (account.get(i).getHoTen() == null)? "" : account.get(i).getHoTen()%></p></td>
+									<td><p><%= (account.get(i).getDienThoai()== null)? "" : account.get(i).getDienThoai()%></p></td>
+									<td><p><%= (account.get(i).getEmail() == null)? "" : account.get(i).getEmail()%></p></td>
+									<td><p><%= (account.get(i).getTenTaiKhoan() == null)? "" : account.get(i).getTenTaiKhoan()%></p></td>
 									<td>
 										<div class="resultMessage_<%=account.get(i).getIdTaiKhoan()%>">
 											<p><%=(account.get(i).getTinhTrang() == null)	? "" :(account.get(i).getTinhTrang().equals("MoiTao")? "Mới tạo <br>新規 " : (account.get(i).getTinhTrang().equals("CanhCao1")) ? "Cảnh cáo lần 1 <br>第1回目の警告" : (account.get(i).getTinhTrang().equals("CanhCao2")) ? "Cảnh cáo lần 2 <br>第2回目の警告 " : (account.get(i).getTinhTrang().equals("CanhCao3")) ? "Cảnh cáo lần 3 <br>第3回目の警告" : (account.get(i).getTinhTrang().equals("KhoaTK") )? "Khóa tài khoản <br>アカウントをロックする。" : "Mới tạo<br>新規")%></p>
@@ -336,7 +330,11 @@
 			%>
 <!-- ********************Hiển thị danh sách người dùng******************************************* -->
 			<div class="col-md-12 panel panel-primary">
-				<div class="panel-heading">Danh sách người dùng - リストアカウント</div>
+				<div class="panel-heading">Danh sách người dùng - リストアカウント 
+					<a href="ShowCreateAccount?type=user"><button
+							class="btn2 col-md-1 btn btn-success" data-toggle="tooltip" title="Tạo tài khoản - アカウントの作成" data-placement="bottom">
+							Tạo tài khoản - アカウントの作成
+						</button></a></div>
 				<div class="panel-body">
 					<div class="table-responsive">
 						<table class=" table table-hover">
@@ -344,12 +342,9 @@
 								<tr>
 									<th>ID</th>
 									<th>Họ tên<br>氏名</th>
-									<th>Địa chỉ<br>住所</th>
 									<th>Điện thoại<br>電話番号</th>
 									<th>Email<br>メール</th>
 									<th>Tài khoản<br>ユーザー名</th>
-									<th>Phân quyền<br>管理者の権利</th>
-									<th>Ngôn ngữ<br>言語</th>
 									<th>Tình trạng<br>状態</th>
 									<th></th>
 									<th></th>
@@ -361,14 +356,11 @@
 							%>
 							<tbody>
 								<tr>
-									<td><p><%= (accounts.get(i).getIdTaiKhoan()== null)		? "" : accounts.get(i).getIdTaiKhoan()%></p></td>
-									<td><p><%= (accounts.get(i).getHoTen() == null)			? "" : accounts.get(i).getHoTen()%></p></td>
-									<td><p><%= (accounts.get(i).getDiaChi() == null)		? "" : accounts.get(i).getDiaChi()%></p></td>
-									<td><p><%= (accounts.get(i).getDienThoai()== null)		? "" : accounts.get(i).getDienThoai()%></p></td>
-									<td><p><%= (accounts.get(i).getEmail() == null) 		? "" : accounts.get(i).getEmail()%></p></td>
-									<td><p><%= (accounts.get(i).getTenTaiKhoan() == null)	? "" : accounts.get(i).getTenTaiKhoan()%></p></td>
-									<td><p><%= (accounts.get(i).getQuyenQuanTri() == null)	? "" :accounts.get(i).getQuyenQuanTri()%></p></td>
-									<td><p><%= (accounts.get(i).getNgonNgu() == null)		? "" : (accounts.get(i).getNgonNgu().equals("vi") ?"Việt Nam <br> ベトナム":"Nhật Bản <br> 日本")%></p></td>
+									<td><p><%= (accounts.get(i).getQuyenQuanTri() == null)? "":accounts.get(i).getQuyenQuanTri().equals("user")?"<span class='glyphicon glyphicon-user'></span>":"<span class='glyphicon glyphicon-tower'></span>"%> <%= (accounts.get(i).getIdTaiKhoan()== null)	? "" : accounts.get(i).getIdTaiKhoan()%></p></td>
+									<td><p><%= (accounts.get(i).getHoTen() == null)	? "" : accounts.get(i).getHoTen()%></p></td>
+									<td><p><%= (accounts.get(i).getDienThoai()== null)? "" : accounts.get(i).getDienThoai()%></p></td>
+									<td><p><%= (accounts.get(i).getEmail() == null)? "" : accounts.get(i).getEmail()%></p></td>
+									<td><p><%= (accounts.get(i).getTenTaiKhoan() == null)? "" : accounts.get(i).getTenTaiKhoan()%></p></td>
 									<td>
 										<div class="resultMessage_<%=accounts.get(i).getIdTaiKhoan()%> number">
 											<p><%=(accounts.get(i).getTinhTrang() == null)	? "" :(accounts.get(i).getTinhTrang().equals("MoiTao")? "Mới tạo <br>新規 " : (accounts.get(i).getTinhTrang().equals("CanhCao1")) ? "Cảnh cáo lần 1 <br>第1回目の警告" : (accounts.get(i).getTinhTrang().equals("CanhCao2")) ? "Cảnh cáo lần 2 <br>第2回目の警告 " : (accounts.get(i).getTinhTrang().equals("CanhCao3")) ? "Cảnh cáo lần 3 <br>第3回目の警告" : (accounts.get(i).getTinhTrang().equals("KhoaTK") )? "Khóa tài khoản <br>アカウントをロックする。" : "Mới tạo<br>新規")%></p>

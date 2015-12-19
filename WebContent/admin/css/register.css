@@ -5,3 +5,14 @@
 #panel_error {
 	display: none;
 }
+.btn1 {
+    width: auto !important;
+    margin-right: 2% !important;
+}
+.btn2 {
+    width: auto !important;
+    float: right !important;
+    margin-top: -0.5%;
+    background-color: #A52A2A;
+}
+

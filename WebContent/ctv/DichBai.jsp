@@ -116,7 +116,7 @@
 		<div class="col-xs-12 col-sm-12 col-md-12 khungbinhluan">
 			<strong> Phản hồi bài dịch - 翻訳文書の返事  </strong>
 			<div class="row" id="listblviet">
-				<%= bviet.getGhiChu()==null ? "" : bviet.getGhiChu().replace("<strong>"+user.getIdTaiKhoan(), "<strong>Tôi[私]") %>
+				<%= bviet.getGhiChu()==null ? "" : bviet.getGhiChu().replace("null", "").replace("<strong>"+user.getIdTaiKhoan(), "<strong>Tôi[私]") %>
 			</div>
 			<div class="row">
 				<textarea rows="3" placeholder="Bình luận của bạn - あなたのコメントです" class="form-control" id="txtviet"></textarea>

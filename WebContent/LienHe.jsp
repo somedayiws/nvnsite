@@ -14,7 +14,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Thư viện cho menu -->
 <!-- Google+ -->
-<link rel="canonical" href="http://webvietnhat-demo.jelastic.skali.net/" />
+<link rel="canonical" href="http://jpvn.net/" />
 <title>Liên hệ - 問い合わせ </title>
 </head>
 <body>

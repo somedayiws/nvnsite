@@ -58,22 +58,20 @@
 					</div>
 					<div class=" form-group">
 						<button type="submit" name="btnFind" value="Find"
-							class=" col-md-1 btn btn-primary btn-sm">Tìm kiếm<br>検索</button>
+							class="btn1 col-md-1 btn btn-primary btn-sm">Tìm kiếm - 検索</button>
 					</div>
 				</form>
 				<div class="form-group">
-					<a href="ShowCreateAccount?type=CTV"><button class=" col-md-1 btn btn-success btn-sm">Tạo tài khoản<br>アカウントの作成
-							</button></a>
-				</div>
-				<div class="form-group">
-					<a href="ShowRestoreServlet?type=account&screen=CTV"><button class=" col-md-1 btn btn-success btn-sm">Khôi phục<br>回復
+					<a href="ShowRestoreServlet?type=account&screen=CTV"><button class="btn1 col-md-1 btn btn-success btn-sm">Khôi phục - 回復
 					</button></a>
 				</div>
 			</div>
 					<%if(ctv!=null){ %>
 <!---------------------- Liệt kê tất cả cộng tác viên và thông tin ------------------->
 			<div class="col-md-12 panel panel-primary">
-			<div class="panel-heading">Danh sách Cộng tác viên - 協力者のリスト</div>
+			<div class="panel-heading">Danh sách Cộng tác viên - 協力者のリスト
+				<a href="ShowCreateAccount?type=CTV"><button class="btn2 col-md-1 btn btn-success btn-sm">Tạo tài khoản - アカウントの作成</button></a>
+			</div>
   			<div class="panel-body">
 			<div class="table-responsive">
 				<table class=" table table-hover">
@@ -81,18 +79,16 @@
 						<tr>
 							<th>ID</th>
 							<th>Họ tên<br>氏名</th>
-							<th>Địa chỉ<br>住所</th>
 							<th>Điện thoại<br>電話番号</th>
 							<th>Email<br>メール</th>
 							<th>Tài khoản<br>ユーザー名</th>
-							<th>Ngôn ngữ<br>言語</th>
-							<th>Tổng số bài viết<br>全ての記事</th>
-							<th>Bài đã dịch<br>翻訳された記事</th>		
-							<th>Bài đang dịch<br>翻訳中の記事</th>						
-							<th>Bài đã gởi<br>送信した記事</th>
-							<th>Bài bị lỗi<br>エラされた記事</th>
-							<th>Bài đã hủy<br>削除された記事</th>
-							<th>Bài mới nhận<br>新しい記事を受け取る</th>		
+							<th><img src="../images/Tong.png" title="Tổng số bài viết - 全ての記事" alt="Tổng số bài viết - 全ての記事"></th>
+							<th><img src="../images/TongOk.png" title="Bài đã dịch - 翻訳された記事" alt="Bài đã dịch - 翻訳された記事"></th>		
+							<th><img src="../images/icTrans.jpg" title="Bài đang dịch - 翻訳中の記事" alt="Bài đang dịch - 翻訳中の記事"></th>						
+							<th><img src="../images/icSend.jpg" title="Bài đã gởi - 送信した記事" alt="Bài đã gởi - 送信した記事"></th>
+							<th><img src="../images/icWaning.jpg" title="Bài bị lỗi - エラされた記事" alt="Bài bị lỗi - エラされた記事"></th>
+							<th><img src="../images/icCancel.jpg" title="Bài đã hủy - 削除された記事" alt="Bài đã hủy - 削除された記事"></th>
+							<th><img src="../images/icSendTrans.jpg" title="Bài mới nhận - 新しい記事を受け取る" alt="Bài mới nhận - 新しい記事を受け取る"></th>		
 							<th></th>
 							<th></th>
 						</tr>
@@ -106,11 +102,9 @@
 							<%if(ctv.get(i).getTaikhoan()!=null){ %>						
 								<td><%=ctv.get(i).getTaikhoan().getIdTaiKhoan()%></td>
 								<td><%=ctv.get(i).getTaikhoan().getHoTen()%></td>
-								<td><%=ctv.get(i).getTaikhoan().getDiaChi()%></td>
 								<td><%=ctv.get(i).getTaikhoan().getDienThoai()%></td>
 								<td><%=ctv.get(i).getTaikhoan().getEmail()%></td>
 								<td><%=ctv.get(i).getTaikhoan().getTenTaiKhoan()%></td>
-								<td><%=ctv.get(i).getTaikhoan().getNgonNgu().equals("vi") ?"Việt Nam - ベトナム":"Nhật Bản - 日本"%></td>
 								<td><%=ctv.get(i).getNumberPosts() %></td>
 							<%} %>
 							<%if(ctv.get(i).getArray_ListPost()!=null ){

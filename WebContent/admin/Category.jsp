@@ -60,58 +60,24 @@
 		<%@include file="header_ver_1.jsp"%>			
 		<%@include file="Menu.jsp"%>
 		<div id="divcontent">
-			<div class="row">			
-				<div class="col-md-8 col-md-offset-2 panel panel-primary">			
-					<div class="panel-heading">Thêm danh mục - 項目の作成</div>
-						<div class="panel-body">
-								<!-- Hiển thị kết quả thay đổi hiển thị -->
-								<%if(resultChangeShowed!=null){ %>				
-								<div class="alert alert-info">
-				  					<strong>Thông báo - お知らせ!</strong><%=resultChangeShowed%>
-								</div>
-								<%} %>
-				
-							<form class="form-horizontal" name="formcreateCategory"
-									action="CreateCategoryServlet" method="post" enctype="multipart/form-data"
-									onsubmit="return checkValidFormInsert()">
-								<div class="form-group">
-									<label>Tên danh mục(Việt Nam) - ベトナム語（項目名）<span class="rq"> * </span></label>
-									<input type="text" class="form-control" id="nameCategoryVi"
-									maxlength="15" name="nameCategoryVi">
-								</div>
-								<div class="form-group">
-									<label>Tên danh mục(Nhật Bản) - 日本語（項目名）<span class="rq"> * </span></label>
-									<input type="text" class="form-control" id="nameCategoryJa"
-									maxlength="15" name="nameCategoryJa">
-								</div>
-									<%if(countCategoryShowed>7){ %>
-									<div class="alert alert-danger">
-			  							<p><strong>Cảnh báo!</strong>Số danh mục hiển thị lên thanh menu đã tối đa.Nếu muốn thay đổi thì nhấn vào đây</p>
-			  							<p><strong>警告!メニューに表示された項目が最大に達した。.変更しい場合は、クリックして下さい。ここ</strong></p>
-			  							 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalChangeShow">Thay đổi - 変更</button>
-									</div>
-									<%} %>						 
-								<label>Hiện thị lên thanh menu - メニューに表示する<span class="rq"> * </span></label>											
-								<div class="radio-inline">
-									<label><input type="radio" id="display" name="display"
-										value="yes" <%if(countCategoryShowed >7){ %> readonly="readonly" <%} %>>Có - 有
-									</label>
-								</div>
-								<div class="radio-inline">
-									<label><input type="radio" id="display" name="display" 
-										value="no">Không - 無</label>
-								</div>
-								<div class="form-group">
-									<label>Icon - アイコン <input type="file" id="Image" name="Image" onchange="xem(this,'fua');"/></label>
-									<p class="help-block">Chọn tập tin có đuôi là .png, .jpg, .gif, .jpeg - ファイルの形式は.png, .jpg, .gif, .jpegを選択して下さい。<br>
-										<img alt="Icon đại diện" src="../images/icons/icondefault.png" id="fua" width="50px" height="50px">
-									</p>
-								</div>
-								<button type="submit" class="btn btn-success btn-md">Tạo danh mục - 項目の作成</button>
-							</form>
-					</div>
-				</div>			
+			<!-- Hiển thị kết quả thay đổi hiển thị -->
+			<%
+				if (resultChangeShowed != null) {
+			%>
+			<div class="alert alert-info">
+				<strong>Thông báo - お知らせ!</strong><%=resultChangeShowed%>
 			</div>
+			<%
+				}
+			%>
+			<%
+				if (countCategoryShowed > 7) {
+			%>
+			<div class="alert alert-danger">
+			  	<p><strong>Cảnh báo!</strong> Số danh mục hiển thị lên thanh menu đã tối đa.Nếu muốn thay đổi thì nhấn vào đây <button type="button" class="btn btn-link" data-toggle="modal" data-target="#modalChangeShow">[ Thay đổi ]</button></p>
+			  	<p><strong>警告! メニューに表示された項目が最大に達した。.変更しい場合は、クリックして下さい。ここ</strong> <button type="button" class="btn btn-link" data-toggle="modal" data-target="#modalChangeShow">[ 変更  ]</button></p>
+			</div>
+		<%} %>
 <!----------------------- Hiển thị kết quả  -------------------------->
 
 		<%
@@ -182,8 +148,8 @@
 		<div class="col-md-10 col-md-offset-1">
 			<form action="SearchCategoryServlet" method="post"
 				onsubmit="return checkValidateSearch()">
-				<h4 class="col-sm-2">Tìm kiếm - 検索</h4>
-				<div class="col-sm-2 form-group">
+				<h4 class="col-md-2">Tìm kiếm - 検索</h4>
+				<div class="col-md-2 form-group">
 					<select class="form-control" id="typeFind" name="typeFind">
 						<option value="IdDanhMuc">ID</option>
 						<option value="TenDanhMucVi">Tên - Tiếng Việt <br>氏名-ベトナム語</option>
@@ -191,21 +157,21 @@
 						<option value="HienThi">Hiển thị(1: có,0: không)<br>表示（1：有、０：無）</option>
 					</select>
 				</div>
-				<div class="col-sm-5 form-group">
+				<div class="col-md-5 form-group">
 					<input type="text" class="form-control" id="stringFind"
 						name="stringFind">
 				</div>
-				<div class="col-sm-1 form-group">
+				<div class="form-group">
 					<button type="submit" name="btnFind" value="Find"
-						class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="bottom" title="Tìm kiếm - 検索">
-						<span class="glyphicon glyphicon-search"></span>
+						class="btn1 col-md-1 btn btn-primary btn-sm" data-toggle="tooltip" data-placement="bottom" title="Tìm kiếm - 検索">
+						Tìm kiếm - 検索
 					</button>
 				</div>
 				</form>
-					<div class="col-sm-1 form-group">
+					<div class="form-group">
 				<a href="ShowRestoreServlet?type=category"><button type="submit" name="btnRestore" 
-					class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="bottom" title="Khôi phục - 回復">
-					<span class="glyphicon glyphicon-share-alt"></span></button></a>
+					class="btn1 col-md-1 btn-success btn-sm" data-toggle="tooltip" data-placement="bottom" title="Khôi phục - 回復">
+					Khôi phục - 回復 </button></a>
 					</div>
 			
 		</div>
@@ -268,6 +234,7 @@
 	</div>
 	<%} %>
 		</div>
+		
 		<%
 				for (int i = 0; i < category_after_search.size(); i++) {
 		%>
@@ -338,8 +305,6 @@
 			</div>
 		</div>
 		<!-- End modal edit -->
-
-
 		<!-- Modal Delete -->
 		<div class="modal fade" id="delete_Search_<%=category_after_search.get(i).getIdDanhMuc()%>">
 			<div class="modal-dialog">
@@ -370,8 +335,6 @@
 				</div>
 			</div>
 		</div>
-
-
 		<!-- End modal delete -->
 		
 		<!-- Model thay đổi hiện lên thanh menu -->
@@ -410,11 +373,11 @@
 				  <%} %>
 				</tbody>
     		</table>
-    		<%}else{ %>
+    		<%} else { %>
     			<div class="alert alert-danger">
   					<strong>Cảnh báo - 警告する。!</strong>Không có danh mục nào được hiển thị lên thanh menu - 項目はメニューにいずれも表示されていない
 				</div>
-    		<%}} %>
+    		<%} } %>
         </div>
         
       </div>
@@ -433,7 +396,9 @@
 		<hr>
 		<!----------------------- Form list ------------------------ -->
 		<div class="col-md-12 table-responsive panel panel-primary">
-		<div class="panel-heading">Danh mục - 項目</div>
+		<div class="panel-heading">Danh mục - 項目 
+			 <button type="button" class="btn2 btn btn-info btn-sm" data-toggle="modal" data-target="#addCategory">Thêm danh mục - 項目の作成</button>	
+		</div>
 		<div class="panel-body">
 		<table class="table table-hover">
 			<thead>
@@ -553,8 +518,6 @@
 			</div>
 		</div>
 		<!-- End modal edit -->
-
-
 		<!-- Modal Delete -->
 		<div class="modal fade" id="delete<%=category.get(i).getIdDanhMuc()%>">
 			<div class="modal-dialog">
@@ -640,7 +603,52 @@
     </div>
   </div>
 
-
+<!-- Modal add Category -->
+		<div class="modal fade" id="addCategory">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Thêm danh mục - 項目の作成</h4>
+					</div>
+					<div class="modal-body">
+							<form class="form-horizontal" name="formcreateCategory"
+									action="CreateCategoryServlet" method="post" enctype="multipart/form-data"
+									onsubmit="return checkValidFormInsert()">
+								<div class="form-group">
+									<label>Tên danh mục(Việt Nam) - ベトナム語（項目名）<span class="rq"> * </span></label>
+									<input type="text" class="form-control" id="nameCategoryVi"
+									maxlength="15" name="nameCategoryVi">
+								</div>
+								<div class="form-group">
+									<label>Tên danh mục(Nhật Bản) - 日本語（項目名）<span class="rq"> * </span></label>
+									<input type="text" class="form-control" id="nameCategoryJa"
+									maxlength="15" name="nameCategoryJa">
+								</div>
+								<label>Hiện thị lên thanh menu - メニューに表示する<span class="rq"> * </span></label>											
+								<div class="radio-inline">
+									<label><input type="radio" id="display" name="display"
+										value="yes" <%if(countCategoryShowed >7){ %> readonly="readonly" <%} %>>Có - 有
+									</label>
+								</div>
+								<div class="radio-inline">
+									<label><input type="radio" id="display" name="display" 
+										value="no">Không - 無</label>
+								</div>
+								<div class="form-group">
+									<label>Icon - アイコン <input type="file" id="Image" name="Image" onchange="xem(this,'fua');"/></label>
+									<p class="help-block">Chọn tập tin có đuôi là .png, .jpg, .gif, .jpeg - ファイルの形式は.png, .jpg, .gif, .jpegを選択して下さい。<br>
+										<img alt="Icon đại diện" src="../images/icons/icondefault.png" id="fua" width="50px" height="50px">
+									</p>
+								</div>
+								<button type="submit" class="btn btn-success btn-md">Tạo danh mục - 項目の作成</button>
+							</form>
+					</div>					
+				</div>
+			</div>
+		</div>
+		<!-- End add -->
 
 	</div>	
 </div>

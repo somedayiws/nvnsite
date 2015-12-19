@@ -56,46 +56,46 @@
 			<% if(bviet.getTrangThai().equals("ChuyenDich")) { %>
 			<div class="col-xs-12 col-sm-12 col-md-12">
 					<label>Tiêu đề - タイトル</label>
-					<p><%= bviet.getTenBaiVietVi() %></p>
+					<p><%= bviet.getTenBaiVietVi()==null?"":bviet.getTenBaiVietVi() %></p>
 					<label>Mô tả - 説明</label>
-					<p><%= bviet.getMoTaVi() %>"></p>
+					<p><%= bviet.getMoTaVi()==null?"":bviet.getMoTaVi() %>"></p>
 					<label>Nội dung - 内容</label>
 					<p id="ndviet">
-						<%= bviet.getNoiDungVi() %>
+						<%= bviet.getNoiDungVi()==null?"":bviet.getNoiDungVi() %>
 					</p>
 			</div>
 			<% } else { %>
 			<div class="row cot1">
 			<div class="col-xs-12 col-sm-6 col-md-6">
 					<strong>Tiêu đề</strong>
-					<p><%= bviet.getTenBaiVietVi() %></p>
+					<p><%= bviet.getTenBaiVietVi()==null?"":bviet.getTenBaiVietVi() %></p>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6">
 					<strong>タイトル</strong>
-					<p><%= bviet.getTenBaiVietJa() %></p>
+					<p><%= bviet.getTenBaiVietJa()==null?"":bviet.getTenBaiVietJa() %></p>
 			</div>
 			</div>
 			<div class="row cot2">
 			<div class="col-xs-12 col-sm-6 col-md-6">
 					<strong>Mô tả</strong>
-					<p><%= bviet.getMoTaVi() %>"></p>
+					<p><%= bviet.getMoTaVi()==null?"":bviet.getMoTaVi() %>"></p>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6">
 					<strong>説明</strong>
-					<p><%= bviet.getMoTaJa() %></p>
+					<p><%= bviet.getMoTaJa()==null?"":bviet.getMoTaJa() %></p>
 			</div>
 			</div>
 			<div class="row cot1">
 			<div class="col-xs-12 col-sm-6 col-md-6">
 					<strong>Nội dung</strong>
 					<p id="ndviet">
-						<%= bviet.getNoiDungVi() %>
+						<%= bviet.getNoiDungVi()==null?"":bviet.getNoiDungVi() %>
 					</p>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6">
 					<strong>内容</strong>
 					<p id="ndviet">
-						<%= bviet.getNoiDungJa() %>
+						<%= bviet.getNoiDungJa()==null?"":bviet.getNoiDungJa() %>
 					</p>
 			</div>
 			</div>
@@ -105,46 +105,46 @@
 			<% if(bviet.getTrangThai().equals("ChuyenDich")) { %>
 			<div class="col-xs-12 col-sm-12 col-md-12">
 					<label>Tiêu đề - タイトル</label>
-					<p><%= bviet.getTenBaiVietJa() %></p>
+					<p><%= bviet.getTenBaiVietJa()==null?"":bviet.getTenBaiVietJa() %></p>
 					<label>Mô tả - 説明</label>
-					<p><%= bviet.getMoTaJa() %></p>
+					<p><%= bviet.getMoTaJa()==null?"":bviet.getMoTaJa() %></p>
 					<label>Nội dung - 内容</label>
 					<p id="ndviet">
-						<%= bviet.getNoiDungJa() %>
+						<%= bviet.getNoiDungJa()==null?"":bviet.getNoiDungJa() %>
 					</p>
 			</div>
 			<% } else { %>
 			<div class="row cot1">
 			<div class="col-xs-12 col-sm-6 col-md-6">
 					<strong>タイトル</strong>
-					<p><%= bviet.getTenBaiVietJa() %></p>
+					<p><%= bviet.getTenBaiVietJa()==null?"":bviet.getTenBaiVietJa() %></p>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6">
 					<strong>Tiêu đề</strong>
-					<p><%= bviet.getTenBaiVietVi() %></p>
+					<p><%= bviet.getTenBaiVietVi()==null?"":bviet.getTenBaiVietVi() %></p>
 			</div>
 			</div>
 			<div class="row cot2">
 			<div class="col-xs-12 col-sm-6 col-md-6">
 					<strong>説明</strong>
-					<p><%= bviet.getMoTaJa() %></p>
+					<p><%= bviet.getMoTaJa()==null?"":bviet.getMoTaJa() %></p>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6">
 					<strong>Mô tả</strong>
-					<p><%= bviet.getMoTaVi() %></p>
+					<p><%= bviet.getMoTaVi()==null?"":bviet.getMoTaVi() %></p>
 			</div>
 			</div>
 			<div class="row cot1">
 			<div class="col-xs-12 col-sm-6 col-md-6">
 					<strong>内容</strong>
 					<p id="ndviet">
-						<%= bviet.getNoiDungJa() %>
+						<%= bviet.getNoiDungJa()==null?"":bviet.getNoiDungJa() %>
 					</p>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6">
 					<strong>Nội dung</strong>
 					<p id="ndviet">
-						<%= bviet.getNoiDungVi() %>
+						<%= bviet.getNoiDungVi()==null?"":bviet.getNoiDungVi() %>
 					</p>
 			</div>
 			</div>
@@ -153,7 +153,7 @@
 		<div class="col-xs-12 col-sm-12 col-md-12 khungbinhluan">
 			<strong> Phản hồi bài dịch - 翻訳文書の返事 </strong>
 			<div class="row" id="listblviet">
-				<%= bviet.getGhiChu()==null ? "" : bviet.getGhiChu().replace("<strong>"+user.getIdTaiKhoan(), "<strong>Tôi") %>
+				<%= bviet.getGhiChu()==null ? "" : bviet.getGhiChu().replace("null", "").replace("<strong>"+user.getIdTaiKhoan(), "<strong>Tôi") %>
 			</div>
 			<div class="row">
 				<textarea rows="3" placeholder="Bình luận của bạn - あなたのコメントです" class="form-control" id="txtviet"></textarea>
