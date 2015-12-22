@@ -12,8 +12,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- Thư viện cho menu -->
 <title>Đăng nhập - ログイン</title>
+<%@include file="script.jsp"%>
 </head>
 <body>
 	<div id="wrapper">
@@ -60,12 +60,4 @@
 		<%@include file="footer.jsp"%>
 	</div>
 </body>
-<!-- Các đoạn script để đây -->
-<!-- check validate -->
-<script src="js/jquery.validate.js" type="text/javascript"></script>
-<script type="text/javascript">
-	function dichuyen(x) {
-		window.location.href = x;
-	};
-</script>
 </html>

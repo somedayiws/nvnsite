@@ -3,7 +3,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.bean.BAIVIET"%>
 <%@page import="model.bean.DANHMUC"%>
-
 <%@page import="controller.SessionCounter"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -12,8 +11,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- Thư viện cho menu -->
 <title>Bảng giá quảng cáo - 広告の価格表</title>
+<%@include file="script.jsp"%>
 </head>
 <body>
 	<!-- Lấy dữ liệu từ server gửi về -->
@@ -46,13 +45,4 @@
 		<%@include file="footer.jsp"%>
 	</div>
 </body>
-<!-- Script ở đây -->
-<!-- check validate -->
-<script src="js/jquery.validate.js" type="text/javascript"></script>
-<!-- Chuyển hướng đến danh muc x -->
-<script type="text/javascript">
-	function dichuyen(x) {
-		window.location.href = x;
-	};
-</script>
 </html>

@@ -12,8 +12,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- Thư viện cho menu -->
 <title>Quên mật khẩu - パスワードを忘れた。</title>
+<%@include file="script.jsp"%>
 </head>
 <body>
 	<div id="wrapper">
@@ -53,67 +53,5 @@
 	</div>
 </body>
 <!-- Các đoạn script để đây -->
-<!-- Hộp thoại phản hồi -->
-<script lang="javascript">
-	function dichuyen(x) {
-		window.location.href = x;
-	};
-</script>
-<!-- check validate -->
-<script src="js/jquery.validate.js" type="text/javascript"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$("#fquen").validate({
-			rules : {
-				taikhoan : {
-					required : true
-				}
-			},
-			messages : {
-				taikhoan : {
-					required : "<br>Chưa nhập tên tài khoản-ユーザー名をまだログインしない"
-				}
-			},
-			submitHandler : function(form) {
-				form.submit();
-			}
-		});
-	});
-	$(document).ready(function() {
-		$("#fdangnhap").validate({
-			rules : {
-				taikhoan : {
-					required : true
-				},
-				matkhau : {
-					required : true
-				}
-			},
-			messages : {
-				taikhoan : {
-					required : "<br>Chưa nhập tên tài khoản<br>アカウントのユーザー名をまだ入力しない"
-				},
-				matkhau : {
-					required : "<br>Chưa nhập mật khẩu<br>ログインをまだしない!"
-				}
-			},
-			submitHandler : function(form) {
-				/* form.submit(); */
-				$.ajax({
-                    type: 'POST',
-                    url: 'DangNhapAjaxServlet',
-                    data: $('#fdangnhap').serialize(),
-                    success: function(responseText) {
-                         if(responseText.match("Thanhcong")) {
-                        	 $('#mdangnhap').modal('hide');
-                        	 location.reload();
-                         } else {
-                        	 $('#loiDangNhap').html(responseText);
-                         }
-                    }
-                });
-			}
-		});
-	});
-</script>
+<script type="text/javascript" src="js/forgot.validate.min.js"></script>
 </html>

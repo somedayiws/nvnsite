@@ -1096,7 +1096,7 @@ form#seach {
 	color: white;
 }
 
-.hotnewsinweek #contentWeek li a .fa.fa-eye, span {
+.hotnewsinweek #contentWeek li a .fa.fa-eye {
 	color: white;
 	font-size: 12px;
 }

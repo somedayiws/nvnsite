@@ -22,9 +22,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta property="og:title" content="<%=thongbao.getTieuDe() %>" />
 <meta property="og:description" content="<%=thongbao.getNoiDung() %>"/>
-<!-- Thư viện cho menu -->
-<!-- Google+ -->
 <title>Tin nhắn từ diễn đàn - フォーラムからのメッセージ</title>
+<%@include file="script.jsp"%>
 </head>
 <body>
 	<div id="wrapper">
@@ -53,14 +52,4 @@
 	<%@include file="footer.jsp"%>
 	</div>
 </body>
-<!-- Các đoạn script để đây -->
-<!-- Chuyển hướng đến danh muc x -->
-<script type="text/javascript">
-	function loadData(trang, x) {
-		window.location.href = trang + "?id=" + x;
-	};
-	function dichuyen(x) {
-		window.location.href = x;
-	};
-</script>
 </html>

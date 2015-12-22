@@ -1,5 +1,8 @@
 /**
- * Load content ui with ajax sign in somedayiws@gmail.com jpvn.net
+ * Load content ui with ajax sign in 
+ * Redirect url
+ * somedayiws@gmail.com 
+ * jpvn.net
  */
 function uiLogged() {
 	if ($('#resultAjax #result #resultMessage').text().match("Thanhcong")) {
@@ -30,3 +33,19 @@ function uiLogged() {
 		$('#loiDangNhap').html($('#resultAjax').html());
 	}
 }
+function showSearchPanel(){
+	if($('#seach').attr("class") == "collapse"){
+		$('#seach').attr("style","display: none;");
+		$('#seach').removeAttr("class");
+	}else{
+		$('#seach').attr("style","display: block;");
+		$('#seach').attr("class","collapse");
+	}
+}
+// Chuyển hướng đến danh muc x
+function dichuyen(x) {
+	window.location.href = x;
+};
+function loadData(trang, x) {
+	window.location.href = trang + "?id=" + x;
+};

@@ -337,6 +337,7 @@ public class BaiVietDAO {
 					+ " or MotaJa like N'%"+txtFind+"%' or MotaVi like N'%"+txtFind+"%')"
 					+ "order by NgayDang desc, LuotXem desc limit " + vitri + ", " +top;
 		}
+		System.out.println(sql);
 		ResultSet rs = db.getResultSet(sql);
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		ArrayList<BAIVIET> list = new ArrayList<BAIVIET>();

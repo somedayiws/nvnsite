@@ -12,8 +12,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- Thư viện cho menu -->
 <title>Giới thiệu - </title>
+<%@include file="script.jsp"%>
 </head>
 <body>
 	<!-- Lấy dữ liệu từ server gửi về -->
@@ -21,16 +21,14 @@
 		/* Top 10 bài viết đầu tiên được hiển thị */
 		ArrayList<BAIVIET> listbaiviet = (ArrayList<BAIVIET>) request.getAttribute("listbaiviet");
 	%>
-
 	<!-- Kết thúc quá trình lấy dữ liệu -->
 	<div id="wrapper">
 		<%@include file="header.jsp"%>
 		<div id="mainContent">
 			<!-- hiển thị nội dung chính ở đây -->
-			<div class="col-sm-9 col-md-9" id="baiviet">
+			<div class="col-sm-9 col-md-9" id="baigioithieu">
 				<%=request.getAttribute("gioithieu")==null?"":request.getAttribute("gioithieu")%>
 			</div>
-
 			<%@include file="sidebar.jsp"%>
 		</div>
 		<div class="clearfix"></div>
@@ -38,13 +36,4 @@
 		<%@include file="footer.jsp"%>
 	</div>
 </body>
-<!-- Script ở đây -->
-<!-- check validate -->
-<script src="js/jquery.validate.js" type="text/javascript"></script>
-<!-- Chuyển hướng đến danh muc x -->
-<script type="text/javascript">
-	function dichuyen(x) {
-		window.location.href = x;
-	};
-</script>
 </html>

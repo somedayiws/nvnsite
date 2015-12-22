@@ -17,10 +17,7 @@
 <meta property="og:title" content="Cổng thông tin thương mại Việt-Nhật - 日越ビジネス情報の窓口" />
 <meta property="og:description" content="Cổng thông tin thương mại Việt-Nhật 
 日越ビジネス情報の窓口" />
-<!-- Thư viện cho menu -->
 <title>Trang Chủ - ホーム</title>
-<!-- Google+ -->
-<link rel="canonical" href="http://jpvn.net/" />
 <style type="text/css">
 	body {
 		font-family: arial
@@ -69,6 +66,7 @@
 		color: #1DCCEF;
 	}
 </style>
+<%@include file="script.jsp"%>
 </head>
 <body>
 	<div id="wrapper">
@@ -455,78 +453,7 @@
 
 		<%@include file="footer.jsp"%>
 	</div>
-	
 </body>
 <!-- Các đoạn script để đây -->
-<script language="JavaScript">
-	var nbaiviet = 10;
-	jQuery(document)
-			.ready(
-					function($) {
-						$(window)
-								.scroll(
-										function() {
-// 											alert($('#baiviet .danhmucx').size());
-											var size = parseInt($('#baiviet .danhmucx').size())+1;
-											var nbaiviet = parseInt($(
-													"#baiviet .danhmucx:nth-child("+size+")")
-													.attr("id"));
-											if (($(document).height()
-													- $(this).scrollTop() - $(
-													this).height()) < 10) {
-												loadmoredata();
-											}
-										});
-					});
-	function loadmoredata() {
-		
-		var size = parseInt($('#baiviet .danhmucx').size())+1;
-		var nbaiviet = parseInt($(
-				"#baiviet .danhmucx:nth-child("+size+")")
-				.attr("id"));
-			$.ajax({
-						url : "DataDanhMucServlet", //file 
-						type : "POST", //phuong thức gưi
-						data : {
-							vitri : nbaiviet
-						}, //dữ liệu gửi
-						async : true, //
-						beforeSend : function() {
-							$("#loadmorebutton")
-									.html(
-											"<i class='fa fa-spinner fa-pulse'></i></i> Xem thêm");
-						},
-						success : function(
-								res) {
-							$("#divloadmore")
-									.before(
-											res);
-							nbaiviet = parseInt($(
-									"#baiviet")
-									.children()
-									.size());
-							$("#loadmorebutton")
-							.html(
-									"Xem thêm");
-						},
-						error : function() {
-							alert('Có lỗi xảy ra - エラが発生した。');
-							$("#load")
-									.html(
-											"");
-						}
-					});
-	}
-</script>
-<!-- Chuyển hướng đến danh muc x -->
-<script type="text/javascript">
-	function loadData(trang, x) {
-		window.location.href = trang + "?id=" + x;
-	};
-	function dichuyen(x) {
-		window.location.href = x;
-	};
-</script>
-<!-- check validate -->
-<script src="js/jquery.validate.js" type="text/javascript"></script>
+<script language="JavaScript" src="js/loadmore.home.ajax.min.js"></script>
 </html>

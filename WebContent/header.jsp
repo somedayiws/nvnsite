@@ -5,65 +5,13 @@
 <%@page import="model.bean.DANHMUC"%>
 <%@page import="Utils.APIWrapper"%>
 <%@page import="Utils.GoogleAuth"%>
-
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.TimeZone"%>
 
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Thư viện cho menu -->
-<link rel="stylesheet" href="bootstrap-3.3.5-dist/css/bootstrap.min.css">
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<link rel="stylesheet"
-	href="font-awesome-4.4.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="css/ClientStyle.css">
-<link rel="stylesheet" href="css/Style.css">
-<script type="text/javascript" src="js/back-to-top.js"></script>
-<script type="text/javascript">
-function showSearchPanel(){
-	if($('#seach').attr("class") == "collapse"){
-		$('#seach').attr("style","display: none;");
-		$('#seach').removeAttr("class");
-	}else{
-		$('#seach').attr("style","display: block;");
-		$('#seach').attr("class","collapse");
-	}
-}
-</script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$.ajax({
-			url : "CheckEmailServlet",
-			type : "post",
-			success : function(result) {
-				$("#checkmail").html(result);
-				$("#countMailSide").text($("#countMail").text());
-			}
-		});
-		var refreshId = setInterval(function() {
-			$.ajax({
-				url : "CheckEmailServlet",
-				type : "post",
-				success : function(result) {
-					$("#checkmail").html(result);
-					$("#countMailSide").text($("#countMail").text());
-				}
-			});
-		}, 30000);
-	});
-</script>
-
-<!-- google sign in -->
-<script src="https://apis.google.com/js/api:client.js"
-	gapi_processed="true"></script>
-<script type="text/javascript" src="js/update.ui.ajax.js"></script>
-<script  type="text/javascript" src="js/googlesignin.js"></script>
-<!-- End google sign in -->
-
 <div id=fullHeader>
 	<div id="headerTop">
 		<div id="headerMain">

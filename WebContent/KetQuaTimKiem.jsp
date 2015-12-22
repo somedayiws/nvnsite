@@ -12,8 +12,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- Thư viện cho menu -->
 <title>Danh sách bài viết - 文書のリスト</title>
+<%@include file="script.jsp"%>
 </head>
 <body>
 	<!-- Lấy dữ liệu từ server gửi về -->
@@ -95,61 +95,6 @@
 	<%@include file="footer.jsp"%>
 	</div>
 </body>
-<!-- Script ở đây -->
 <!-- Ajax load bài viết -->
-<script language="JavaScript">
-	jQuery(document).ready(function($) {
-		$(window).scroll(function() {
-			if (($(document).height() - $(this).scrollTop() - $(this).height()) < 10) {
-				loadmoredata();
-			}
-		});
-	});
-	function loadmoredata() {
-		var nbaiviet = parseInt($("#baiviet").children().size()) - 1;
-		$.ajax({
-			url : "DataBaiVietServlet", //file 
-			type : "POST", //phuong thức gưi
-			data : {
-				vitri : nbaiviet,
-				txt : $("#txtSearch").val(),
-				chon : $("#chon").val()
-			}, //dữ liệu gửi
-			async : true, //
-			beforeSend : function() {
-				$("#loadmorebutton")
-				.html(
-						"<i class='fa fa-spinner fa-pulse'></i></i> Xem thêm");
-			},
-			success : function(res) {
-				$("#divloadmore")
-				.before(
-						res);
-				nbaiviet = parseInt($(
-				"#baiviet")
-				.children()
-				.size());
-				$("#loadmorebutton")
-				.html(
-				"Xem thêm");
-			},
-			error : function() {
-				alert('Có lỗi xảy ra - エラが発生した。');
-				$("#load").html("");
-			}
-		});
-	}
-</script>
-<!-- Chuyển hướng đến danh muc x -->
-<script type="text/javascript">
-	function loadData(trang, x){
-		window.location.href = trang + "?id=" + x;
-	};
-	function dichuyen(x){
-		window.location.href = x;
-	};
-</script>
-<!-- check validate -->
-<script src="js/jquery.validate.js" type="text/javascript"></script>
-
+<script language="JavaScript" src="js/loadmore.listsearch.ajax.min.js"></script>
 </html>

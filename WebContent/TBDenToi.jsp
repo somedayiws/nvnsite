@@ -15,10 +15,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- Thư viện cho menu -->
-<!-- Google+ -->
-<link rel="canonical" href="http://webvietnhat-demo.jelastic.skali.net/" />
 <title>Tin nhắn từ diễn đàn - フォーラムからのメッセージ</title>
+<%@include file="script.jsp"%>
 </head>
 <body>
 	<!-- Lấy dữ liệu từ server gửi về -->
@@ -72,11 +70,4 @@
 		<%@include file="footer.jsp"%>
 	</div>
 </body>
-<!-- Các đoạn script để đây -->
-<!-- Hộp thoại phản hồi -->
-<script lang="javascript">
-	function dichuyen(x) {
-		window.location.href = x;
-	};
-</script>
 </html>

@@ -18,8 +18,8 @@ DANHMUC danhmuc = (DANHMUC)request.getAttribute("danhmuc");
 %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta property="og:title" content="<%=(danhmuc.getTenDanhMucVi()==null ? "" : danhmuc.getTenDanhMucVi()+" - ") + (danhmuc.getTenDanhMucJa()==null ? "" : danhmuc.getTenDanhMucJa())%>" />
-<!-- Thư viện cho menu -->
 <title>Danh sách bài viết - 文書のリスト</title>
+<%@include file="script.jsp"%>
 </head>
 <body>
 	<div id="wrapper">
@@ -92,88 +92,5 @@ DANHMUC danhmuc = (DANHMUC)request.getAttribute("danhmuc");
 	</div>
 </body>
 <!-- Các đoạn script ở đây -->
-<script language="JavaScript">
-	jQuery(document)
-			.ready(
-					function($) {
-						$(window)
-								.scroll(
-										function() {
-											if (($(document).height()
-													- $(this).scrollTop() - $(
-													this).height()) < 10) {
-												loadmoredata();
-											}
-										});
-					});
-	function loadmoredata() {
-		var nbaiviet = parseInt($("#baiviet .baivieti").size());
-		var id = $("#id").val();
-
-		$
-		.ajax({
-			url : "DataBaiVietServlet", //file 
-			type : "POST", //phuong thức gưi
-			data : {
-				vitri : nbaiviet,
-				id : id
-			}, //dữ liệu gửi
-			async : true, //
-			beforeSend : function() {
-				$("#loadmorebutton")
-				.html(
-						"<i class='fa fa-spinner fa-pulse'></i></i> Xem thêm");
-			},
-			success : function(
-					res) {
-				$("#divloadmore")
-				.before(
-						res);
-				nbaiviet = parseInt($(
-				"#baiviet")
-				.children()
-				.size());
-				$("#loadmorebutton")
-				.html(
-				"Xem thêm");
-			},
-			error : function() {
-				alert('Có lỗi xảy ra-エラが発生した。!!');
-				$("#load")
-						.html(
-								"");
-			}
-		});
-	}
-</script>
-<!-- check validate -->
-<script src="js/jquery.validate.js" type="text/javascript"></script>
-<script type="text/javascript">
-	function dichuyen(x) {
-		window.location.href = x;
-	};
-	$(document).ready(function() {
-		$("#fdangnhap").validate({
-			rules : {
-				taikhoan : {
-					required : true
-				},
-				matkhau : {
-					required : true
-				}
-			},
-			messages : {
-				taikhoan : {
-					required : "<br>Chưa nhập tên tài khoản<br>アカウントをまだ入力しない"
-				},
-				matkhau : {
-					required : "<br>Chưa nhập mật khẩu<br>ログインをまだしない!"
-				}
-			},
-			submitHandler : function(form) {
-				form.submit();
-			}
-		});
-	});
-</script>
+<script language="JavaScript" src="js/loadmore.listctalog.ajax.min.js"></script>
 </html>

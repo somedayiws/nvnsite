@@ -3,8 +3,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.bean.BAIVIET"%>
 <%@page import="model.bean.DANHMUC"%>
-
 <%@page import="controller.SessionCounter"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -26,13 +26,12 @@
 			titleStr += baiviet.getTenBaiVietJa();
 		}
 	%>
-
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta property="og:image" content="http://jpvn.net/<%=((BAIVIET) request.getAttribute("baiviet")).getLienKet()%>" />
 <meta property="og:title" content="<%=titleStr%>" />
 <link rel="stylesheet" type="text/css" href="css/jssocials.css" />
 <link rel="stylesheet" type="text/css" href="css/jssocials-theme-flat.css" />
+<%@include file="script.jsp"%>
 <!-- <script type="text/javascript" src="js/disable-copyright.js"></script> -->
 <title>Chi tiết bài viết - 詳細な記事</title>
 </head>
@@ -357,111 +356,5 @@
 </body>
 <!-- Script ở đây -->
 <!-- Xử lý load lấy bình luận -->
-<script type="text/javascript">
-	function loadBinhLuan(id, ngonngu) {
-		if (ngonngu == 'vi') {
-			var nvitri = $("#listblviet").children().size();
-			$.ajax({
-				url : "DataBinhLuanServlet", //file  
-				type : "POST", //phuong thức gưi
-				data : {
-					idbaiviet : id,
-					ngonngu : ngonngu,
-					vitri : nvitri
-				},//dữ liệu gửi
-				async : true, //
-				success : function(res) {
-					$("#listblviet").append(res);
-				},
-				error : function() {
-					alert('Có lỗi xảy ra - エラが発生した。!');
-				}
-			});
-		} else {
-			var nvitri = $("#listblnhat").children().size();
-			$.ajax({
-				url : "DataBinhLuanServlet", //file 
-				type : "POST", //phuong thức gưi
-				data : {
-					idbaiviet : id,
-					ngonngu : ngonngu,
-					vitri : nvitri
-				},//dữ liệu gửi
-				async : true, //
-				success : function(res) {
-					$("#listblnhat").append(res);
-				},
-				error : function() {
-					alert('Có lỗi xảy ra - エラが発生した。!');
-				}
-			});
-		}
-	}
-</script>
-<!-- Chuyển hướng đến danh muc x -->
-<script type="text/javascript">
-	function loadData(trang, x) {
-		window.location.href = trang + "?id=" + x;
-	};
-	function dichuyen(x) {
-		window.location.href = x;
-	};
-	
-	function comentvi(id) {
-		var bien = $("#tkDangNhap").val();
-		var date = $("#dateComment").val();
-		if (bien == 'null') {
-			alert("Bạn phải đăng nhập, mới được bình luận.\nログインをしないと、コメントをすることができい。");
-			$('#mdangnhap').modal('toggle');
-		} else {
-			var txt = $("#txtviet").val();
-			if (txt != "") {
-				var htm = "<div id='itemComment'><i class='fa fa-user'></i> <em>"
-						+ bien
-						+ "</em> <span id='dateComment'>"
-						+ date
-						+ "</span> <p>" + txt + "</p></div>";
-				$("#listblviet").prepend(htm);
-				$("#txtviet").val("");
-				updatedatavi(id, 'vi', txt);
-			} else {
-				alert("Bạn chưa nhập bình luận của mình.\nあなたはコメントをまだ入力しない。");
-			}
-		}
-	};
-	function comentja(id) {
-		var bien = $("#tkDangNhap").val();
-		var date = $("#dateComment").val();
-		if (bien == 'null') {
-			alert("Bạn phải đăng nhập, mới được bình luận.\nログインをしないと、コメントをすることができい。");
-			$('#mdangnhap').modal('toggle');
-		} else {
-			var txt = $("#txtnhat").val();
-			if (txt != "") {
-				var htm = "<div id='itemComment'><i class='fa fa-user'></i> <em>"
-						+ bien
-						+ "</em> <span id='dateComment'>"
-						+ date
-						+ "</span> <p>" + txt + "</p></div>";
-				$("#listblnhat").prepend(htm);
-				$("#txtnhat").val("");
-				updatedatavi(id, 'ja', txt);
-			} else {
-				alert("Bạn chưa nhập bình luận của mình.\nあなたはコメントをまだ入力しない。");
-			}
-		}
-	};
-	function updatedatavi(id, laguage, bluan) {
-		$.ajax({
-			url : "UpDateDataBinhLuan", //file 
-			type : "POST", //phuong thức gưi
-			data : {
-				idbaiviet : id,
-				ngonngu : laguage,
-				binhluan : bluan
-			}, //dữ liệu gửi
-			async : true
-		});
-	};
-</script>
+<script type="text/javascript" src="js/comment.ajax.min.js"></script>
 </html>

@@ -60,14 +60,19 @@
 	</div>
 </div>
 <div id="sahred">
-				<g:plusone></g:plusone>
-				<a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
-				<div id="fb-root"></div>
-				<!-- Your share button code -->
-				<div class="fb-share-button"
-					data-href="http://webvietnhat-demo.jelastic.skali.net/"
-					data-layout="button_count"></div>
+	<g:plusone></g:plusone>
+	<a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+	<div id="fb-root"></div>
+	<!-- Your share button code -->
+	<div class="fb-share-button"
+		data-href="http://webvietnhat-demo.jelastic.skali.net/"
+		data-layout="button_count"></div>
 </div>
+
+<script src="js/jquery.validate.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/login.form.validate.min.js"></script>
+<script src="js/facebook.login.ajax.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/back-to-top.min.js"></script>
 <!-- Google+ -->
 <script type="text/javascript"
 	src="https://apis.google.com/js/plusone.js"></script>
@@ -96,41 +101,4 @@
 		js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.4&appId=1671772309710877";
 		fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));
-</script>
-<script src="js/facebook.login.ajax.js" type="text/javascript"></script>
-<script src="js/jquery.validate.js" type="text/javascript"></script>
-<script type="text/javascript">
-
-$(document).ready(function() {
-	$("#fdangnhap").validate({
-		rules : {
-			taikhoan : {
-				required : true
-			},
-			matkhau : {
-				required : true
-			}
-		},
-		messages : {
-			taikhoan : {
-				required : "<br>Chưa nhập tên tài khoản<br>アカウントのユーザー名をまだ入力しない"
-			},
-			matkhau : {
-				required : "<br>Chưa nhập mật khẩu<br>ログインをまだしない!"
-			}
-		},
-		submitHandler : function(form) {
-			/* form.submit(); */
-			$.ajax({
-                type: 'POST',
-                url: 'DangNhapAjaxServlet',
-                data: $('#fdangnhap').serialize(),
-                success: function(responseText) {
-                	$('#resultAjax').html(responseText);
-                	uiLogged();
-                }
-            });
-		}
-	});
-});
 </script>

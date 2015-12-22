@@ -17,7 +17,6 @@ var startApp = function() {
 };
 
 function attachSignin(element) {
-	console.log(element.id);
 	auth2.attachClickHandler(element, {}, function(googleUser) {
 		Google_signIn(googleUser);
 	}, function(error) {
