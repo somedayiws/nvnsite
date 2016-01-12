@@ -1,5 +1,9 @@
 package Utils;
 
+import java.io.IOException;
+
+import org.apache.http.client.ClientProtocolException;
+
 import model.bean.TAIKHOAN;
 
 import com.google.gson.Gson;
@@ -29,7 +33,16 @@ public class APIWrapper {
 		accessTokenLink = String.format(accessTokenLink, appID, appSecret,
 				redirectUrl, code);
 
-		String result = Utils.getResult(accessTokenLink);
+		String result = "";
+		try {
+			result = NetworkUtils.doRequest(accessTokenLink);
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.out.println(result);
 		String token = result.substring(result.indexOf("=") + 1,
 				result.indexOf("&"));

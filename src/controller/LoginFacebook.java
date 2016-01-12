@@ -44,20 +44,26 @@ public class LoginFacebook extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-//		String code = request.getParameter("code");
-//		System.out.println(code);
-//		String accessToken = wrapper.getAccessToken(code);
+		
+		String code = request.getParameter("code");
+		System.out.println(code);
 		String access_token = request.getParameter("access_token");
 		System.out.println(access_token);
-
 		APIWrapper wrapper = new APIWrapper();
+		if(!(code==null || code.equals("null") || code.equals("")))
+			access_token = wrapper.getAccessToken(code);
+
 		wrapper.setAccessToken(access_token);
 
 		TAIKHOAN taikhoan = wrapper.getUserInfo();
 		if (taikhoan.getFacebookID() == null
 				|| taikhoan.getFacebookID().equals("")) {
-			request.setAttribute("KetQua", "<div class='alert alert-danger' role='alert'><p>Đăng nhập facebook thất bại!</p></div>");
-			request.getRequestDispatcher("DataShow.jsp").forward(request, response);
+			if(!(code==null || code.equals("null") || code.equals("")))
+				response.sendRedirect("Trang-chu");
+			else {
+				request.setAttribute("KetQua", "<div class='alert alert-danger' role='alert'><p>Đăng nhập facebook thất bại!</p></div>");
+				request.getRequestDispatcher("DataShow.jsp").forward(request, response);
+			}
 		} else {
 			TaiKhoanBO taiKhoanBO = new TaiKhoanBO();
 			if(taikhoan.getEmail() == null || taikhoan.getEmail().equals("")) {
@@ -121,8 +127,12 @@ public class LoginFacebook extends HttpServlet {
 					taiKhoanBO.closeConnection();
 				}
 			}
-			request.setAttribute("KetQua", "Thanhcong");
-			request.getRequestDispatcher("DataShow.jsp").forward(request, response);
+			if(!(code==null || code.equals("null") || code.equals("")))
+				response.sendRedirect("Trang-ca-nhan");
+			else{
+				request.setAttribute("KetQua", "Thanhcong");
+				request.getRequestDispatcher("DataShow.jsp").forward(request, response);
+			}
 		}
 //	}catch (Exception e){
 //		response.sendRedirect("Trang-chu");

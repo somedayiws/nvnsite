@@ -22,6 +22,9 @@ window.fbAsyncInit = function() {
 };
 
 function FBLogin() {
+	if(navigator.userAgent.match('CriOS') ){
+		var win = window.open($('#APIWrapper').text(), '_self');
+	}else{
 	FB
 			.login(
 					function(response) {
@@ -46,4 +49,5 @@ function FBLogin() {
 					}, {
 						scope : 'public_profile,email'
 					});
+	}
 }

@@ -115,6 +115,7 @@
 								<i class="fa fa-facebook"></i> Đăng nhập bằng Facebook -
 								フェイスブックでロックインをする
 							</p>
+							<span id="APIWrapper" style="display: none;"><%=APIWrapper.getDialogLink()%></span>
 							<p id="logingg">
 								<i class="fa fa-google-plus"></i> Đăng nhập bằng Google
 							</p>
@@ -237,13 +238,13 @@
 	<div id="btn-user" class="btn-right-panel" data-toggle="modal"
 		data-target="#mdangnhap">
 		<span id="fix-post-caption" class="fix-caption">Trang cá nhân<br>
-			...
+			個人ページ
 		</span> <i class="fa fa-user"></i>
 	</div>
 	<div id="btn-notify" class="btn-right-panel" data-toggle="modal"
 		data-target="#mdangnhap">
 		<span id="fix-post-caption" class="fix-caption">Thông báo <br>
-			...
+			お知らせ
 		</span> <i class="fa fa-bell"></i>
 	</div>
 	<%
@@ -258,7 +259,7 @@
 	<div id="btn-user" class="btn-right-panel"
 		onclick="dichuyen('Trang-ca-nhan');">
 		<span id="fix-post-caption" class="fix-caption">Trang cá nhân<br>
-			...
+			個人ページ
 		</span> <i class="fa fa-user"></i>
 	</div>
 	<div id="btn-notify" class="btn-right-panel"
@@ -266,7 +267,7 @@
 		<div id="countMailSide"><%=request.getAttribute("soEmail") == null ? "0"
 						: request.getAttribute("soEmail")%></div>
 		<span id="fix-post-caption" class="fix-caption">Thông báo <br>
-			...
+			お知らせ
 		</span> <i class="fa fa-bell"></i>
 	</div>
 	<%
@@ -274,7 +275,7 @@
 	%>
 	<div id="btn-top" class="btn-right-panel" onclick="dichuyen('#');">
 		<span id="fix-post-caption" class="fix-caption">Lên đầu trang <br>
-			...
+			トップへ戻る
 		</span> <i class="fa fa-arrow-up"></i>
 	</div>
 

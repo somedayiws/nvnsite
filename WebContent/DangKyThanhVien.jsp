@@ -50,7 +50,7 @@
 						placeholder="Email" onblur="checkEmail();"> 
 					<br>
 					<input type="hidden" name="ngonngu" value="vi">
-					<input type="checkbox" name="noiquy" align="right" title="Abd" > <label for="noiquy" id="noiquy"> Tôi đồng ý với quy định của diễn đàn.</label><br>
+					<input type="checkbox" name="noiquy" align="right" title="Abd" > <label for="noiquy" id="noiquy"> Tôi đồng ý với quy định của diễn đàn.<br>サイトの利用規約に従って行動することを同意する。</label><br>
 					<!-- <label class="form-label">Ngôn ngữ chính - 主要な言語(*) </label> <input
 						type="radio" name="ngonngu" value="vi" checked="checked">
 					Tiếng Việt - ベトナム語<input type="radio" name="ngonngu" title="ja">
