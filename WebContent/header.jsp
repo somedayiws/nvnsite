@@ -1,4 +1,4 @@
-<%@page import="model.bean.TAIKHOAN"%>
+﻿<%@page import="model.bean.TAIKHOAN"%>
 <%@page import="model.bean.BINHLUAN"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.bean.BAIVIET"%>
